@@ -1,0 +1,230 @@
+
+// ---------------------------------------------------------
+// HEADER
+// ---------------------------------------------------------
+
+.ja-header {
+  padding-top: @baseLineHeight;
+  padding-bottom: @baseLineHeight;
+}
+
+
+// Logo
+// ---------------------------------------------------------
+.logo {
+  float: left;
+
+  h1, h1 a {
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+  }
+
+}
+
+
+// Logo Image
+// ----------
+.logo-image {
+  overflow: hidden;
+
+  a {
+    background-image: url("@{T3LogoImage}");
+    background-repeat: no-repeat;
+    width: @T3logoWidth;
+    height: @T3logoHeight;
+  }
+
+  //hide sitename and slogan
+  span, small {
+    display: none;
+  }
+
+}
+
+
+
+// Logo Text
+// ----------
+.logo-text {
+
+  h1 {
+    color: @grayDark;
+  }
+
+  h1 a {
+    color: @grayDark;
+    text-decoration: none;
+  }
+
+  &:hover h1 a,
+  h1 a:hover,
+  h1 a:active,
+  h1 a:focus {
+    text-decoration: none;
+  }
+
+  // Taglines
+  .site-slogan {
+    display: block;
+    font-size: @baseFontSize;
+    margin-top: 5px;
+  }
+
+}
+
+// Head Search
+// ------------------------------------------------------
+.head-search {
+  float: right;
+  margin-top: @baseLineHeight;
+}
+
+.head-search form {
+  margin: 0;
+}
+
+.head-search label {
+  display: none;
+}
+
+.head-search .search {
+}
+
+.head-search .input {
+  background: url(../images/ico/search-invert.png) no-repeat 8px center;
+  width: 120px;
+  padding-left: 26px;
+}
+
+/* focus state */
+.head-search .input:focus {
+  color: @grayDark;
+  width: 180px;
+}
+
+
+
+// ---------------------------------------------------------
+// SPOTLIGHTS
+// ---------------------------------------------------------
+
+.ja-sl {
+  padding-bottom: @baseLineHeight * 3;
+  padding-top: @baseLineHeight * 3;
+  // /.clearfix();
+}
+
+// Spotlight 1
+// -----------
+.ja-sl-1 {
+}
+
+// Spotlight 2
+// -----------
+.ja-sl-2 {
+}
+
+// Spotlight 3
+// -----------
+.ja-sl-3 {
+}
+
+// Spotlight 4
+// -----------
+.ja-sl-4 {
+}
+
+
+
+// ---------------------------------------------------------
+// MAIN BODY
+// ---------------------------------------------------------
+.ja-mainbody {
+  padding-bottom: @baseLineHeight*2;
+  padding-top: @baseLineHeight*2;
+}
+
+// Content
+// -------
+.ja-content {
+}
+
+// Sidebars
+// --------
+.ja-sidebar {
+}
+
+.ja-sidebar-1 {
+}
+
+.ja-sidebar-2 {
+}
+
+
+
+// ---------------------------------------------------------
+// FOOTER
+// ---------------------------------------------------------
+
+.ja-footer {
+  background: @grayDarker;
+  color: @gray;
+  .clearfix();
+  // small
+  small {
+    display: block;
+    font-size: 100%; //Use global footer font size.
+  }
+  // links
+  a {
+    color: @T3FooterModuleColor;
+  }
+  a:hover, a:active, a:focus {
+    color: lighten(@gray,50%);
+  }
+}
+
+// Foot Nav
+// --------
+.ja-footnav {
+  padding: (@baseLineHeight * 3) 0 (@baseLineHeight * 2);
+  .clearfix();
+}
+
+.ja-footnav ul {
+  list-style: none;
+  margin-left: 0;
+}
+
+.ja-footnav li {
+  line-height: 24px;
+}
+
+.ja-footnav .module-title {
+  font-size: @baseFontSize + 4px;
+  color: @T3FooterModuleTitleColor;
+}
+
+// Copyright
+// ---------
+.ja-copyright {
+  border-top: 1px solid lighten(@grayDarker,5%);
+  font-size: @T3smallerFontSize;
+  padding: (@baseLineHeight * 2) 0 (@baseLineHeight * 4);
+  .clearfix();
+}
+
+.copyright {
+  float: left;
+}
+
+.poweredby {
+  float: right;
+}
+
+
+
+// ---------------------------------------------------------
+// MISC.
+// ---------------------------------------------------------

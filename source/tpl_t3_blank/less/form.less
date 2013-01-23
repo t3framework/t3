@@ -1,0 +1,405 @@
+//
+// FORM ELEMENTS
+// ------------------------------------------------------
+
+// GENERIC STYLES
+// ------------------------------------------------------
+
+// Make all forms have space below them
+form {
+  margin: 0 0 @baseLineHeight;
+}
+
+fieldset {
+}
+
+// Groups of fields with labels on top (legends)
+legend {
+  // Small
+  small {
+  }
+}
+
+// Set font for forms
+label,
+input,
+button,
+select,
+textarea {
+}
+
+// Identify controls by their labels
+label {
+}
+
+
+
+// FORM CONTROLS
+// ------------------------------------------------------
+
+// Shared size and type resets
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+}
+
+// Reset appearance properties for textual inputs and textarea
+// Declare width for legacy (can't be on input[type=*] selectors or it's too specific)
+input,
+textarea {
+  width: 210px;
+}
+
+// Everything else
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+  .transition(~"border linear .2s, box-shadow linear .2s, width 0.7s ease 0s");
+  // Focus state
+  &:focus {
+    border-color: darken(@inputBorder, 20%);
+    .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,0,0,.25)");
+  }
+}
+
+// Position radios and checkboxes better
+input[type="radio"],
+input[type="checkbox"] {
+}
+
+// Reset width of input images, buttons, radios, checkboxes
+input[type="file"],
+input[type="image"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto; // Override of generic input selector
+}
+
+// Set the height of select and file controls to match text inputs
+select,
+input[type="file"] {
+  height: 30px;
+  line-height: 30px;
+}
+
+// Make select elements obey height by applying a border
+select {
+  width: 220px;
+  border: 1px solid @T3borderColor;
+}
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+// Focus for select, file, radio, and checkbox
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+}
+
+
+// CHECKBOXES & RADIOS
+// -------------------
+
+// Indent the labels to position radios/checkboxes as hanging
+.radio,
+.checkbox {
+  padding-left: 18px;
+}
+
+.radio input[type="radio"],
+.checkbox input[type="checkbox"] {
+  margin-left: -18px;
+}
+
+// Move the options list down to align with labels
+.controls > .radio:first-child,
+.controls > .checkbox:first-child {
+  padding-top: 5px;
+}
+
+// Radios and checkboxes on same line
+.radio.inline,
+.checkbox.inline {
+  padding-top: 5px;
+  margin-bottom: 0;
+}
+
+.radio.inline + .radio.inline,
+.checkbox.inline + .checkbox.inline {
+  margin-left: 10px;
+}
+
+
+// INPUT SIZES
+// -----------
+
+// General classes for quick sizes
+.input-mini       { width: 60px; }
+.input-small      { width: 90px; }
+.input-medium     { width: 150px; }
+.input-large      { width: 210px; }
+.input-xlarge     { width: 270px; }
+.input-xxlarge    { width: 530px; }
+
+
+// FORM ACTIONS
+// ------------
+.form-actions {
+  padding: (@baseLineHeight - 1) 20px @baseLineHeight;
+  margin-top: @baseLineHeight;
+  margin-bottom: @baseLineHeight;
+  background-color: @formActionsBackground;
+  border-top: 1px solid @T3borderColor;
+}
+
+
+// HELP TEXT
+// ---------
+.help-block,
+.help-inline {
+  color: lighten(@textColor, 15%);
+}
+
+.help-block {
+  margin-bottom: @baseLineHeight / 2;
+}
+
+
+// INPUT GROUPS
+// ------------
+// Allow us to put symbols and text within the input field for a cleaner look
+.input-append,
+.input-prepend {
+  margin-bottom: 5px;
+}
+
+
+// HORIZONTAL & VERTICAL FORMS
+// ---------------------------
+
+// Common properties
+// -----------------
+.form-search,
+.form-inline,
+.form-horizontal {
+  input,
+  textarea,
+  select,
+  .help-inline,
+  .uneditable-input,
+  .input-prepend,
+  .input-append {
+    margin-bottom: 0;
+  }
+}
+
+// Remove margin for input-prepend/-append
+.form-search .input-append,
+.form-inline .input-append,
+.form-search .input-prepend,
+.form-inline .input-prepend {
+  margin-bottom: 0;
+}
+
+// Inline checkbox/radio labels (remove padding on left)
+.form-search .radio,
+.form-search .checkbox,
+.form-inline .radio,
+.form-inline .checkbox {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.form-search .radio input[type="radio"],
+.form-search .checkbox input[type="checkbox"],
+.form-inline .radio input[type="radio"],
+.form-inline .checkbox input[type="checkbox"] {
+  margin-right: 3px;
+  margin-left: 0;
+}
+
+.control-group {
+  margin-bottom: @baseLineHeight / 2;
+}
+
+// Legend collapses margin, so next element is responsible for spacing
+legend + .control-group {
+  margin-top: @baseLineHeight;
+}
+
+
+// Horizontal-specific styles
+// --------------------------
+.form-horizontal {
+
+  .control-group {
+    margin-bottom: @baseLineHeight;
+  }
+
+  .control-label {
+    width: 140px;
+    padding-top: 5px;
+    text-align: right;
+  }
+
+  .controls {
+    margin-left: 160px;
+  }
+
+  .help-block {
+    margin-top: @baseLineHeight / 2;
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    padding-left: 160px;
+  }
+}
+
+
+
+//
+// BUTTONS
+// ---------------------------------------------------------
+
+// Base styles
+// --------------------------------------------------
+// Core
+.btn {
+  padding: 4px 14px;
+  .border-radius(@baseBorderRadius);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.1)");
+  .buttonBackground(@btnBackgroundHighlight, @btnBackground, @textColor, 0 1px 1px rgba(255,255,255,.75));
+
+  // Hover state
+  &:hover,
+  a.btn:hover {
+    text-decoration: none;
+    background-color: @btnBackground;  // Using variable instead of fixed value like Bootstrap "buttons.less"
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus,
+  a.btn:focus {
+    outline: 0;
+  }
+
+  // Active state
+  &.active,
+  &:active,
+  a.btn:active {
+    text-decoration: none;
+    outline: 0;
+    .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+  }
+}
+
+
+// Button Sizes
+// --------------------------------------------------
+// Large
+.btn-large {
+  padding: 9px 14px;
+  font-size: @baseFontSize + 2px;
+  .border-radius(@baseBorderRadius);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.5)");
+}
+
+// Small
+.btn-small {
+  padding: 3px 9px;
+  font-size: @T3smallFontSize;
+}
+
+// Mini
+.btn-mini {
+  padding: 2px 6px;
+  font-size: @T3smallerFontSize;
+}
+
+
+// Set the backgrounds
+// -------------------------
+// T3 Note: Do NOT remove these lines if you have modified ".btn" values;
+.btn {
+  // reset here as of 2.0.3 due to Recess property order
+  border-color: #c5c5c5;
+  border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
+}
+.btn-primary {
+  .buttonBackground(@btnPrimaryBackgroundHighlight, @btnPrimaryBackground);
+}
+// Warning appears are orange
+.btn-warning {
+  .buttonBackground(@btnWarningBackgroundHighlight, @btnWarningBackground);
+}
+// Danger and error appear as red
+.btn-danger {
+  .buttonBackground(@btnDangerBackgroundHighlight, @btnDangerBackground);
+}
+// Success appears as green
+.btn-success {
+  .buttonBackground(@btnSuccessBackgroundHighlight, @btnSuccessBackground);
+}
+// Info appears as a neutral blue
+.btn-info {
+  .buttonBackground(@btnInfoBackgroundHighlight, @btnInfoBackground);
+}
+// Inverse appears as dark gray
+.btn-inverse {
+  .buttonBackground(@btnInverseBackgroundHighlight, @btnInverseBackground);
+}
+
+
+
+//
+// MISC.
+// -------------------------------------------------------
+.invalid {
+  border-color: @red;
+}
+
+label.invalid {
+  color: @red;
+}

@@ -1,0 +1,209 @@
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less"; // Include Variables and Mixins
+
+
+
+// BASIC STYLE FOR MEGAMENU
+// -------------------------
+.ja-megamenu {
+
+  // THE MEGAMENU
+  //--------------------------------------------
+
+  // Global Menu Inner padding
+  // -------------------------
+  .mega-inner {
+    padding: @baseLineHeight;
+  }
+
+  // Inner Padding for 1 column
+  .span12 .mega-inner {
+  }
+
+
+  // Menu Grids
+  // ----------
+  .row-fluid {
+  }
+
+  .row-fluid + .row-fluid  {
+    border-top: 1px solid @T3borderColor;
+  }
+
+  .row-fluid [class*="span"] {
+  }
+
+
+  // The Dropdown
+  // ------------
+  .mega-dropdown-menu {
+  }
+
+
+  // The Group
+  // ---------
+  .mega-group {
+  }
+
+  // Group Title
+  .mega-nav .mega-group > span,
+  .dropdown-menu .mega-nav .mega-group > span {
+    font-size: @T3biggerFontSize;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: @grayDarker;
+
+    &:hover, &:active, &:focus {
+      background: inherit;
+      color: @grayDarker;
+    }
+  }
+
+  // Group Content
+  .mega-group-ct {
+  }
+
+  .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+  }
+
+
+  // Nav in Megamenu
+  // ---------------
+  .mega-col-nav {
+  }
+
+  // Inner padding
+  .mega-col-nav .mega-inner {
+  }
+
+  // Inner padding for nav in 1 column
+  .span12.mega-col-nav .mega-inner {
+  }
+
+  // The Nav
+  .mega-nav,
+  .dropdown-menu .mega-nav {
+  }
+
+  .mega-nav > li,
+  .dropdown-menu .mega-nav > li {
+  }
+
+  .mega-nav > li a,
+  .dropdown-menu .mega-nav > li a {
+    padding: 5px ( @baseLineHeight / 2 );
+  }
+
+  // Nav in Group
+  .mega-group > .mega-nav,
+  .dropdown-menu .mega-group > .mega-nav {
+  }
+
+  .mega-group > .mega-nav > li,
+  .dropdown-menu .mega-group > .mega-nav > li {
+  }
+
+  .mega-group .mega-nav > li a,
+  .dropdown-menu .mega-group .mega-nav > li a {
+  }
+
+  // The caret
+  .mega-nav .dropdown-submenu > a::after {
+    margin-right: 0;
+  }
+
+
+  // Modules in Megamenu
+  // -------------------
+  .mega-col-module {
+  }
+
+  // Inner padding
+  .mega-col-module .mega-inner {
+  }
+
+  // Inner padding for module in 1 column
+  .span12.mega-col-nav .mega-inner {
+  }
+
+  // The module
+  .ja-module {
+  }
+
+  // Module Title
+  .ja-module .module-title {
+    font-size: @T3biggerFontSize;
+    color: @grayDarker;
+    display: block;
+    line-height: @baseLineHeight;
+    margin-bottom: 5px;
+  }
+
+  // Module Content
+  .ja-module .module-ct {
+  }
+
+  // List in Module
+  .ja-module ul {
+    margin: 0 0 0 @baseLineHeight;
+  }
+
+  .ja-module li {
+  }
+
+  .ja-module ul li a {
+  }
+
+  .ja-module ul li a:hover,
+  .ja-module ul li a:active,
+  .ja-module ul li a:focus,
+  .ja-module ul li a:visited {
+  }
+
+  // End
+}
+
+
+
+//  MEGAMENU (Inverted)
+// -------------------------------------------------------
+
+.T3Navbar() when (@T3NavbarInverted = 1) {
+
+  // The Group
+  // ---------
+  // Group Title
+  .mega-nav .mega-group > span,
+  .dropdown-menu .mega-nav .mega-group > span {
+    color: @white;
+
+    &:hover, &:active, &:focus {
+      color: @white;
+    }
+  }
+
+  // Modules in Megamenu
+  // -------------------
+  // Module Title
+  .ja-module .module-title {
+    color: @white;
+  }
+
+  // End Mixin
+}
+
+.T3Navbar() when (@T3NavbarInverted = 0) {
+  // Leave blank here because we will use the default style.
+}
+
+// Calling the styles
+.ja-megamenu {
+  .T3Navbar();
+}
+
+
+// RESPONSIVE FOR MEGAMENU
+// -------------------------
+@import "megamenu-responsive.less";
+

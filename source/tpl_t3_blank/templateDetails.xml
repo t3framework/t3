@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension
+	version="2.5"
+	type="template"
+	method="upgrade" client="site">
+	<name>t3_blank</name>
+	<version>1.0.1</version>
+	<creationDate>08 December 2012</creationDate>
+	<author>JoomlArt.com</author>
+	<authorEmail>webmaster@joomlart.com</authorEmail>
+	<authorUrl>http://www.t3-framework.org</authorUrl>
+	<copyright>Copyright (C), J.O.O.M Solutions Co., Ltd. All Rights Reserved.</copyright>
+	<license>license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<group>t3</group>
+	<description>	
+	<![CDATA[
+	Blank template for T3v3 using Bootstrap
+		]]>
+	</description>
+	<files>
+		<filename>component.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>templateInfo.php</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<folder>css</folder>
+		<folder>fonts</folder>
+		<folder>js</folder>
+		<folder>less</folder>
+		<folder>images</folder>
+		<folder>tpls</folder>
+	</files>
+	
+	<languages folder="languages">
+		<language tag="en-GB">en-GB.tpl_t3_blank.ini</language>
+		<language tag="en-GB">en-GB.tpl_t3_blank.sys.ini</language>
+	</languages>
+
+	<positions>
+		<position>head-search</position>
+		<position>mainnav</position>
+		<position>navhelper</position>
+		<position>breadcrumbs</position>
+		<position>sidebar-1</position>
+		<position>sidebar-2</position>
+		<position>mast-col</position>
+		<position>footer</position>
+		<position>home-0</position>
+		<position>home-1</position>
+		<position>home-2</position>
+		<position>home-3</position>
+		<position>home-4</position>
+		<position>home-5</position>
+		<position>position-0</position>
+		<position>position-1</position>
+		<position>position-2</position>
+		<position>position-3</position>
+		<position>position-4</position>
+		<position>position-5</position>
+		<position>position-6</position>
+		<position>position-7</position>
+		<position>position-8</position>
+		<position>position-9</position>
+		<position>position-10</position>
+		<position>position-11</position>
+		<position>position-12</position>
+		<position>position-13</position>
+		<position>position-14</position>
+		<position>position-15</position>
+		<position>footer-0</position>
+		<position>footer-1</position>
+		<position>footer-2</position>
+		<position>footer-3</position>
+		<position>footer-4</position>
+		<position>footer-5</position>
+		<position>footer-6</position>
+		<position>footer-7</position>
+		<position>footer-8</position>
+		<position>footer-9</position>
+		<position>footer-10</position>
+		<position>debug</position>
+	</positions>
+
+	<config>
+		<fields name="params" addfieldpath="/plugins/system/t3/includes/depend">
+
+			<!-- Sample for add or disable template parameters -->
+			<!--fieldset name="menu_params" label="T3V3_PARAMS_MEGAMENU">
+				<field name="group_disable" type="jadepend" function="@group">
+					<option for="menu_as_bg" value="no">menu_as_bg</option>
+				</field>
+			</fieldset-->
+			
+		</fields>
+		
+		<!-- Sample for add or disable configuration variable -->
+		<fields name="thememagic" addfieldpath="/plugins/system/t3/includes/depend">
+
+      <fieldset name="scaffolding_params" label="T3V3_TM_SCAFFOLDING">        
+        <field name="bodyBackground" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_BODY_BKG_LABEL" description="T3V3_TM_VARS_BODY_BKG_DESC" />
+        <field name="textColor" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_TEXT_COLOR_LABEL" description="T3V3_TM_VARS_TEXT_COLOR_DESC" />
+        <field name="linkColor" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_LINK_COLOR_LABEL" description="T3V3_TM_VARS_LINK_COLOR_DESC" />
+      </fieldset>
+      <fieldset name="visual_params" label="T3V3_TM_VISUAL">
+
+        <field name="inputBorderRadius" type="text" default="0px" class="input-tiny t3tm-dimension" 
+          label="T3V3_TM_VARS_ELEMENT_RADIUS_LABEL" 
+          description="T3V3_TM_VARS_ELEMENT_RADIUS_DESC" />
+
+        <field name="T3NavbarInverted" type="radio" class="btn-group" default="0"
+          label="T3V3_TM_VARS_NAVBAR_INVERTED_LABEL"
+          description="T3V3_TM_VARS_NAVBAR_INVERTED_DESC">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+
+        <field name="T3SpotlightsInverted" type="radio" class="btn-group" default="0"
+          label="T3V3_TM_VARS_SPOTLIGHT_INVERTED_LABEL"
+          description="T3V3_TM_VARS_SPOTLIGHT_INVERTED_DESC">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>        
+      </fieldset>
+
+      <fieldset name="module_params" label="T3V3_TM_MODULE">
+        <field name="T3moduleBackground" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_MODULE_BGCOLOR_LABEL" description="T3V3_TM_VARS_MODULE_BGCOLOR_DESC" />
+        <field name="T3moduleColor" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_MODULE_COLOR_LABEL" description="T3V3_TM_VARS_MODULE_COLOR_DESC" />
+        <field name="T3moduleTitleBackground" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_MODULE_TITLE_BGCOLOR_LABEL" description="T3V3_TM_VARS_MODULE_TITLE_BGCOLOR_DESC" />
+        <field name="T3moduleTitleColor" type="color" class="t3tm-color" default="" label="T3V3_TM_VARS_MODULE_TITLE_COLOR_LABEL" description="T3V3_TM_VARS_MODULE_TITLE_COLOR_DESC" />
+      </fieldset>
+
+      <fieldset name="typo_params" label="T3V3_TM_TYPO">
+        <field name="typo_params_default" type="jadepend" function="@group">
+          <option for="baseFontFamily" value="-1">baseFontFamily_custom</option>
+          <option for="headingsFontFamily" value="-1">headingsFontFamily_custom</option>
+        </field>
+
+        <field name="baseFontSize" type="text" default="14px" size="10" class="input-tiny t3tm-dimension" 
+          label="T3V3_TM_VARS_FONTSIZE_LABEL"
+          description="T3V3_TM_VARS_FONTSIZE_DESC" />
+
+        <field name="baseFontFamily" type="list" default="sans-serif" 
+          label="T3V3_TM_VARS_FONTFAMILY_LABEL" 
+          description="T3V3_TM_VARS_FONTFAMILY_DESC" >
+          <option value="serif">T3V3_TM_VARS_FONTFAMILY_SERIF</option>
+          <option value="sans-serif">T3V3_TM_VARS_FONTFAMILY_SANS_SERIF</option>
+          <option value="monospace">T3V3_TM_VARS_FONTFAMILY_MONOSPACE</option>
+          <option value="-1">T3V3_TM_VARS_FONTFAMILY_CUSTOM</option>  
+        </field>
+        <field name="baseFontFamily_custom" type="text" default="sans-serif"  size="30"
+          label="T3V3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
+          description="T3V3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
+
+        <field name="headingsFontFamily" type="list" default="sans-serif"
+          label="T3V3_TM_VARS_HEADINGFONTFAMILY_LABEL" 
+          description="T3V3_TM_VARS_HEADINGFONTFAMILY_DESC" >
+          <option value="serif">T3V3_TM_VARS_FONTFAMILY_SERIF</option>
+          <option value="sans-serif">T3V3_TM_VARS_FONTFAMILY_SANS_SERIF</option>
+          <option value="monospace">T3V3_TM_VARS_FONTFAMILY_MONOSPACE</option>
+          <option value="-1">T3V3_TM_VARS_FONTFAMILY_CUSTOM</option>  
+        </field>
+        <field name="headingsFontFamily_custom" type="text" default="sans-serif"  size="30"
+          label="T3V3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
+          description="T3V3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
+
+      </fieldset> 
+
+
+			<fieldset name="links_params" label="T3V3_THEMER_FOOTER">
+				<field name="T3FooterModuleTitleColor" type="color" class="t3tm-color" default="" label="T3V3_VARS_FOOTER_MOD_TCOLOR_LABEL" description="T3V3_VARS_FOOTER_MOD_TCOLOR_DESC" />
+				<field name="T3FooterModuleColor" type="color" class="t3tm-color" default="" label="T3V3_VARS_FOOTER_MOD_COLOR_LABEL" description="T3V3_VARS_FOOTER_MOD_COLOR_DESC" />
+			</fieldset>
+		</fields>
+    </config>
+
+	<updateservers>
+	   <server type="collection">http://update.joomlart.com/service/tracking/list.xml</server>
+	</updateservers>	
+
+</extension>

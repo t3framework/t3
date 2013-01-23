@@ -1,0 +1,212 @@
+/* Tour overlay 
+-------------------*/
+#t3-tour-overlay {
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:10000;
+}
+
+.t3-tour-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  background: #000;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=20);
+  width:100%;
+  height:100%;
+}
+
+/* Tour Intro
+-------------------*/
+.t3-tour-intro {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  width: 350px;
+  margin-left: -175px;
+  
+  color: #666;
+  border: 3px solid #f80;
+  text-shadow: 0 0 1px #fff;
+  font-size: 14px;
+  padding: 20px;
+  
+  background-color: #eee;
+  background-image: -moz-linear-gradient(top,#fff,#ddd);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#ddd));
+  background-image: -webkit-linear-gradient(top,#fff,#ddd);
+  background-image: -o-linear-gradient(top,#fff,#ddd);
+  background-image: linear-gradient(to bottom,#fff,#ddd);
+  background-repeat: repeat-x;
+  
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  z-index: 10002;
+  box-shadow: 0 0 5px rgba(0,0,0,.5);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.t3-tour-intro h1 {
+  font-size: 30px;
+  margin: 0 0 5px;
+  line-height: normal;
+}
+
+.t3-tour-intro-msg {
+  margin-bottom: 20px;
+}
+
+.t3-tour-starttour {
+  width: 60%;
+}
+
+.t3-tour-activated .t3-tour-intro {
+  display: none;
+}
+
+
+/* Tour Control
+-------------------*/
+#t3-tour-controls {
+  display: none;
+}
+
+.popover-controls #t3-tour-controls {
+  display: block;
+}
+
+.t3-tour-controls .t3-tour-controls-btns {
+  text-align: center;
+}
+
+.t3-tour-controls .t3-tour-controls-btns .btn,
+.t3-tour-intro-action .btn {
+  font-size: 14px;
+}
+
+
+/* hide prev, next button when tour is not started */
+#prevtourstep,
+#nexttourstep {
+  display: none;
+}
+
+/* show prev, next button when tour is started */
+.t3-tour-activated #prevtourstep,
+.t3-tour-activated #nexttourstep {
+  display: inline-block;
+}
+
+/* hide intro, start button when tour is started */
+.t3-tour-activated .t3-tour-intro,
+.t3-tour-activated #activatetour {
+  display: none;
+}
+
+
+/* Popover
+-------------------*/
+.popover {
+  z-index: 10010;
+}
+
+.t3-tour-popover {
+  width: auto;
+  width: 350px;
+  font-size: 14px;
+
+  background-color: #eee;
+  background-image: -moz-linear-gradient(top,#fff,#f2f2f2);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
+  background-image: -o-linear-gradient(top,#fff,#f2f2f2);
+  background-image: linear-gradient(to bottom,#fff,#f2f2f2);
+  background-repeat: repeat-x;
+
+  color: #666;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.t3-tour-popover .popover-title {
+  background: none;
+  padding: 20px 20px 0;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 0;
+  line-height: 1.2;
+}
+
+.t3-tour-popover .popover-content {
+  padding: 10px 20px 20px;
+}
+
+.t3-tour-popover .popover-content .t3-tour-img {
+  border: 1px solid #ccc;
+  margin: 10px 0 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0,0,0,.05);
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.t3-tour-popover .popover-content .t3-tour-img img {
+  width: 100%;
+}
+
+.t3-tour-popover .popover-controls {
+  padding: 0 20px 20px;
+}
+
+.t3-tour-count {
+  line-height: 18px;
+  padding: 4px 8px;
+  font-size: 12px;
+  display: inline-block;
+  border: 1px solid #ddd;
+  background: #eee;
+  border-radius: 5px;
+  box-shadow: inset 0 0 1px rgba(0,0,0,.2);
+  margin-left: 5px;
+  color: #999;
+  text-shadow: 1px 1px 1px #fff;
+}
+ 
+/* Tour icon in tab 
+--------------------*/
+.t3-tour-help {
+  font-size: 28px;
+  position: absolute;
+  right: 30px;
+  top: 8px;
+  cursor: pointer;
+}
+
+.t3-fieldset-desc {
+  padding-right: 70px;
+  position: relative;
+}
+
+
+/* Tour icon in tab 
+--------------------*/
+.t3-tour-quickhelp {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  color: #666;
+  display: none;
+  font-weight: bold;
+  padding: 5px;
+  position: absolute;
+  top: -50000px;
+  line-height: 1;
+  z-index: 2000;
+}

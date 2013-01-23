@@ -1,0 +1,159 @@
+// CSS Reset
+@import "../bootstrap/less/reset.less";
+
+
+// VARIABLES & MIXINS
+// ------------------
+
+// Prevent Bootstrap Upgrading errors
+@import "../bootstrap/less/variables.less";
+
+// Bootstrap mixins
+@import "../bootstrap/less/mixins.less";
+
+// T3 mixins
+@import "mixins.less";
+
+
+
+// T3 CUSTOM LAYOUT
+// ------------------
+
+.layout-custom {
+
+	//
+	// Grid system - By bootstrap
+	// --------------------------------------------------
+
+	width: 600px;	
+	max-width: 100%;	
+
+
+	// Reset utility classes due to specificity
+	[class*="span"].hide,
+	.row-fluid [class*="span"].hide {
+	  display: none;
+	}
+
+	[class*="span"].pull-right,
+	.row [class*="span"].pull-right,
+	.row-fluid [class*="span"].pull-right {
+	  float: right;
+	}
+
+
+	//
+	// Grid system - Extended by T3
+	// --------------------------------------------------
+
+	// Added "wrap" element
+	.wrap {
+	  width: auto;
+	  clear: both;
+	}
+  .container, .container-fluid {
+    width: 100%;
+  }
+
+  // Fluid grid
+  #grid-extend > .fluid(@fluidGridColumnWidth, @fluidGridGutterWidth);
+  
+	// first col
+	.spanfirst    { margin-left: 0 !important; }
+
+	// Fix offset
+	#grid-extend > .fixOffsetX(@fluidGridColumnWidth, @fluidGridGutterWidth);
+
+	// T3 Note: ensure those elements work good with floating elements
+	.t3-layout-section,
+	header,
+	footer,
+	section,
+	nav,
+	.ja-spotlight,
+	.ja-content,
+	.ja-sidebar,
+	.ja-mastcol {
+		.clearfix();
+	}
+
+
+	// Width by percentage
+	//---------------------
+	// 1 cols
+	.row .span100 {width: 100%; float: left;}
+	// 2 cols
+	.row .span50 {width: 50%; float: left;}
+	// 3 cols
+	.row .span33 {width: 33.3333%; float: left;}
+	// 4 cols
+	.row .span25 {width: 25%; float: left;}
+	// 5 cols
+	.row .span20 {width: 20%; float: left;}
+	// 6 cols
+	.row .span16 {width: 16.6666%; float: left;}
+
+
+	// Responsive layout
+	// -----------------
+
+	// wide
+	&.wide {
+		width: 720px;		
+	}
+	// normla
+	&.normal {
+		width: 600px;		
+	}
+	// tablet
+	&.xtablet {
+		width: 500px;		
+	}
+	// tablet
+	&.tablet {
+		width: 450px;		
+	}
+
+	// Fluid for small display
+	&.mobile {
+		// Padding to set content in a bit
+		padding-left: 20px;
+		padding-right: 20px;
+		width: 400px;
+
+		// Make all grid-sized elements block level again
+		.row, .row-fluid {
+			[class*="span"],
+			.uneditable-input[class*="span"], // Makes uneditable inputs full-width when using grid sizing
+			[class*="span"] {
+			float: none;
+			display: block;
+			width: 100%;
+			margin-left: 0 !important;
+				.box-sizing(border-box);
+			}
+		}
+
+		.row, .row-fluid {
+			// Width by percentage
+			//---------------------
+			// 2 cols
+			.span100 {width: 100%; float: left;}
+			// 2 cols
+			.span50 {width: 50%; float: left;}
+			// 3 cols
+			.span33 {width: 33.3333%; float: left;}
+			// 4 cols
+			.span25 {width: 25%; float: left;}
+			// 5 cols
+			.span20 {width: 20%; float: left;}
+			// 6 cols
+			.span16 {width: 16.6666%; float: left;}
+		}
+
+		[class*="offset"] {
+			margin-left: 0;
+		}
+	}	
+}
+

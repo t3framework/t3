@@ -1,0 +1,269 @@
+// -------------------------------------------------------
+//  JA MAIN MENU
+// -------------------------------------------------------
+
+.ja-mainnav {
+  #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+  border-top: 1px solid @navbarBackground;
+  border-bottom: 1px solid darken(@navbarBackground, 10%);
+  height: @navbarHeight;
+}
+
+.ja-mainnav .navbar {
+  color: @navbarText;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.ja-mainnav .navbar-inner {
+  min-height: @navbarHeight;
+  padding:  0;
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); //remove filter in IE
+  border: 0;
+  border-left: 1px solid darken(@navbarBackground, 5%);
+  .border-radius(0);
+  .box-shadow(none);
+}
+
+
+
+// NAVBAR
+// -------------------------------------------------------
+.ja-mainnav .navbar .nav {
+  margin: 0;
+}
+
+
+// Links
+// -----
+.ja-mainnav .navbar .nav > li > a {
+  border-top: 0;
+  border-right: 1px solid darken(@navbarBackground, 5%);
+  padding: ((@navbarHeight - @baseLineHeight) / 2) @baseLineHeight;
+  text-shadow: none;
+}
+
+// Hover
+.ja-mainnav .navbar .nav > li > a:focus,
+.ja-mainnav .navbar .nav > li > a:hover {
+  background-color: @navbarLinkBackgroundHover;
+  #gradient > .vertical(lighten(@navbarLinkBackgroundHover, 10%), @navbarLinkBackgroundHover);
+  text-shadow: none;
+}
+
+// Active nav items
+.ja-mainnav .navbar .nav > .active > a,
+.ja-mainnav .navbar .nav > .active > a:hover,
+.ja-mainnav .navbar .nav > .active > a:focus {
+  color: @navbarLinkColorActive;
+  text-shadow: none;
+  #gradient > .vertical(lighten(@navbarLinkBackgroundActive, 10%), @navbarLinkBackgroundActive);
+  .box-shadow(none );
+}
+
+
+// Toggle Button
+// -------------
+
+// Navbar button for toggling navbar items in responsive layouts
+// These definitions need to come after '.navbar .btn'
+.ja-mainnav .navbar .btn-navbar {
+  float: left;
+  padding: 7px 10px;
+  margin: 7px 20px 0;
+  .buttonBackground(darken(@navbarBackgroundHighlight, 5%), darken(@navbarBackground, 5%));
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)");
+}
+
+.ja-mainnav .navbar .btn-navbar .icon-bar {
+  width: 18px;
+  height: 2px;
+  background-color: #f5f5f5;
+  .border-radius(1px);
+  .box-shadow(0 1px 0 rgba(0,0,0,.25));
+}
+
+.ja-mainnav .btn-navbar .icon-bar + .icon-bar {
+  margin-top: 3px;
+}
+
+
+// DROPDOWN
+// -------------------------------------------------------
+
+// Dropdown arrow/caret
+// --------------------
+.ja-mainnav .caret {
+}
+
+// Place the caret
+.ja-mainnav .dropdown .caret {
+  margin-left: 5px;
+}
+
+
+// The dropdown menu
+// -----------------
+.ja-mainnav .dropdown-menu {
+  .box-shadow(0 5px 10px rgba(0,0,0,.2));
+
+  // Links within the dropdown menu
+  li > a {
+    border-top: 1px solid @hrBorder;
+    padding: 5px 20px;
+    text-shadow: none;
+  }
+}
+
+// No border top on the first
+.ja-mainnav .dropdown-menu li:first-child > a {
+  border-top: 0;
+}
+
+// Hide the Top arrow of the dropdown menu.
+// See bootstrap/navbar.less or comment these line if you want to show it again.
+.ja-mainnav .navbar .nav > li > .dropdown-menu {
+  &:before {
+    display: none;
+  }
+  &:after {
+    display: none;
+  }
+}
+
+
+// Hover state
+// -----------
+.ja-mainnav .dropdown-menu li > a:hover,
+.ja-mainnav .dropdown-menu li > a:focus,
+.ja-mainnav .dropdown-submenu:hover > a {
+}
+
+
+// Active state
+// ------------
+.ja-mainnav .dropdown-menu .active > a,
+.ja-mainnav .dropdown-menu .active > a:hover {
+}
+
+
+// Disabled state
+// --------------
+.ja-mainnav .dropdown-menu .disabled > a,
+.ja-mainnav .dropdown-menu .disabled > a:hover {
+  color: @grayLight;
+}
+
+.ja-mainnav .dropdown-menu .disabled > a:hover {
+  background-color: transparent;
+}
+
+
+// Open State
+// ----------
+.ja-mainnav .nav li.dropdown.open > .dropdown-toggle,
+.ja-mainnav .nav li.dropdown.active > .dropdown-toggle,
+.ja-mainnav .nav li.dropdown.open.active > .dropdown-toggle {
+}
+
+.ja-mainnav .nav li.dropdown > .dropdown-toggle .caret {
+}
+
+.ja-mainnav .nav li.dropdown.open > .dropdown-toggle .caret,
+.ja-mainnav .nav li.dropdown.active > .dropdown-toggle .caret,
+.ja-mainnav .nav li.dropdown.open.active > .dropdown-toggle .caret {
+}
+
+
+// Dropdown Sub menus
+// ------------------
+.ja-mainnav .dropdown-submenu > .dropdown-menu {
+}
+
+.ja-mainnav .dropdown-submenu > a:after {
+}
+
+.ja-mainnav .dropdown-submenu:hover > a:after {
+}
+
+
+
+// ------------------------------------------------------
+// JA MAIN MENU (Inverted)
+// -------------------------------------------------------
+.T3Navbar() when (@T3NavbarInverted = 1) {
+
+  // Begin: Mixin Styling
+  #gradient > .vertical(@grayDark, @grayDarker);
+  border-top: 1px solid @grayDark;
+  border-bottom: 1px solid @grayDark;
+  
+  .navbar {
+    color: @grayLighter;
+  }
+
+  .navbar-inner {
+    border-left: 1px solid @grayDark;
+  }
+
+
+  // NAVBAR
+  // -------------------------------------------------------
+
+  // Links
+  // -----
+  .navbar .nav > li > a {
+    color: @grayLighter;
+    border-right: 1px solid @grayDark;
+  }
+
+  // Hover
+  .navbar .nav > li > a:focus,
+  .navbar .nav > li > a:hover {
+    background-color: lighten(@grayDark, 10%);
+    #gradient > .vertical(lighten(@grayDark, 20%), lighten(@grayDark, 10%));
+  }
+
+  // Active nav items
+  .navbar .nav > .active > a,
+  .navbar .nav > .active > a:hover,
+  .navbar .nav > .active > a:focus {
+    color: @white;
+    #gradient > .vertical(lighten(@linkColor, 10%), @linkColor);
+  }
+
+
+  // DROPDOWN
+  // -------------------------------------------------------
+
+  // The dropdown menu
+  // -----------------
+  .dropdown-menu {
+    background-color: lighten(@grayDark, 10%);
+    border: 1px solid lighten(@grayDark, 20%);
+
+    // Links within the dropdown menu
+    li > a {
+    color: @grayLighter;
+    border-top: 1px solid lighten(@grayDark, 20%);
+    }
+  }
+
+  // Open dropdown
+  .nav li.dropdown.open > .dropdown-toggle,
+  .nav li.dropdown.active > .dropdown-toggle,
+  .nav li.dropdown.open.active > .dropdown-toggle {
+    #gradient > .vertical(lighten(@linkColor, 10%), @linkColor);
+  }
+  // End: Mixin Styling
+}
+
+.T3Navbar() when (@T3NavbarInverted = 0) {
+  // Leave blank here because we will use the default style.
+}
+
+// Calling the styles
+.ja-mainnav {
+  .T3Navbar();
+}

@@ -1,0 +1,865 @@
+// ---------------------------------------------------------
+// GENERIC ARTICLE STYLES
+// ---------------------------------------------------------
+
+
+// Articles Layout
+// ---------------------------------------------------------
+.blog {
+}
+
+// Home Blog
+.blog-featured {
+}
+
+// Leading Article Rows
+.items-leading {
+}
+
+.items-leading .leading {
+  margin-bottom: @baseLineHeight*2;
+}
+
+// Article Rows
+.items-row {
+}
+
+.items-row .item {
+  margin-bottom: @baseLineHeight * 2;
+}
+
+// Divider
+.divider-vertical {
+  margin: 0 0 (@baseLineHeight * 2);
+  border: 0;
+  border-top: 1px solid @hrBorder;
+  border-bottom: 1px solid @white;
+}
+
+
+// Article Aside
+// -------------
+.article-aside {
+	color: @grayLight;
+	font-size: @T3smallFontSize;
+  margin-bottom: @baseLineHeight;
+}
+
+.article-info {
+  margin: 0;
+  width: 90%;
+}
+
+.article-info a {
+}
+
+.article-info a:hover,
+.article-info a:active,
+.article-info a:focus {
+}
+
+.article-info .article-info-term {
+  display: none;
+}
+
+.article-info dd {
+  float: left;
+  margin-left: 0;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.article-info dd span {
+	font-weight: bold;
+}
+
+.article-url {
+}
+
+.modifydate {
+}
+
+// Article Desciption
+.contentdescription {
+}
+
+.contentdescription p {
+}
+
+
+// Article Footer
+// --------------
+.article-footer {
+  color: @grayLight;
+  font-size: @T3smallFontSize;
+  margin-bottom: @baseLineHeight;
+}
+
+
+// Article Images
+// --------------
+article img[align=left],
+.img_caption.left {
+  margin: 0 @gridGutterWidth @baseLineHeight 0;
+}
+
+article img[align=right],
+.img_caption.right {
+  margin: 0 0 @baseLineHeight @gridGutterWidth;
+}
+
+.img-intro-none,
+.img-intro-left,
+.img-intro-right,
+.img-fulltext-none,
+.img-fulltext-left,
+.img-fulltext-right,
+.img_caption {
+  position: relative;
+}
+
+.img-intro-none,
+.img-intro-left,
+.img-intro-right,
+.img-fulltext-none,
+.img-fulltext-left,
+.img-fulltext-right,
+.img_caption {
+  margin-bottom: @baseLineHeight;
+  max-width: 100%;
+}
+
+.img-fulltext-left {
+  float: left;
+  margin-right: @gridGutterWidth;
+}
+
+.img-fulltext-right {
+  float: right;
+  margin-left: @gridGutterWidth;
+}
+
+.img-intro-none img,
+.img-intro-left img,
+.img-intro-right img,
+.img-fulltext-none img,
+.img-fulltext-left img,
+.img-fulltext-right img {
+  margin: 0;
+}
+
+// Image caption
+.img_caption img {
+  margin-bottom: 1px !important;
+}
+
+.img_caption p.img_caption {
+  background: @grayLighter;
+  color: @gray;
+  font-size: @T3smallerFontSize;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  .box-sizing(border-box);
+  clear: both;
+}
+
+
+// Article Actions
+// ---------------
+article aside .btn-group {
+}
+
+article aside .btn-group .dropdown-menu {
+}
+
+article aside .btn-group > .dropdown-toggle {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  .box-shadow(none);
+}
+
+
+
+// ---------------------------------------------------------
+// COMMON JOOMLA STYLE
+// ---------------------------------------------------------
+
+// Login
+// ---------------------------------------------------------
+.login h1 {
+}
+
+.login_form fieldset,
+.login fieldset {
+  padding: 15px 0 0;
+}
+
+.login_form fieldset p,
+.login fieldset p {
+  margin: 0 0 5px;
+}
+
+.login_form label,
+.login label {
+  display: block;
+  font-weight: bold;
+}
+
+.login-fields {
+  margin: 0 0 10px;
+}
+
+.login_form .inputbox,
+.login-fields .required {
+  margin-left: 10px;
+  width: 150px;
+}
+
+.login_form .remember .inputbox {
+  width: 20px;
+}
+
+.login_form .button,
+.login button {
+}
+
+
+// Register
+// ---------------------------------------------------------
+.form-register fieldset {
+  padding: 0 0 10px;
+}
+
+.form-register p {
+  margin: 0 0 5px;
+}
+
+.form-register p.form-des {
+  margin: 15px 0;
+}
+
+.form-register label {
+  display: block;
+  float: left;
+  font-weight: bold;
+  text-align: right;
+  width: 130px;
+}
+
+.form-register .inputbox {
+  margin-left: 10px;
+  width: 200px;
+}
+
+.form-register .button {
+  margin-left: 140px;
+}
+
+.registration fieldset dt {
+  margin-right: 5px;
+}
+
+.admintable textarea {
+  max-width: 90% !important;
+  resize: none;
+}
+
+
+// Mail to Windows
+// ---------------------------------------------------------
+#mailto-window {
+  background: #fff;
+  margin: 10px 0 20px;
+  padding: 0;
+  position: relative;
+}
+
+#mailto-window h2 {
+  font-size: 150%;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+#mailto-window .mailto-close {
+  background: #FFF;
+  background: -moz-linear-gradient(bottom, #ccc, #f0f0f0);
+  background: -webkit-linear-gradient(bottom, #ccc, #f0f0f0);
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  color: #666;
+  font-size: 92%;
+  padding: 2px 5px;
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  text-shadow: 1px 1px 0 #f0f0f0;
+}
+
+#mailto-window .mailto-close a {
+  color: #666;
+}
+
+#mailto-window .mailto-close:hover {
+  border-color: #999;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+#mailtoForm .formelm {
+  padding: 5px 0;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+#mailtoForm .formelm label {
+  display: block;
+  float: left;
+  font-weight: bold;
+  vertical-align: middle;
+  width: 100px;
+}
+
+#mailtoForm p {
+  margin-top: 20px;
+}
+
+#mailtoForm .inputbox {
+  width: 70%;
+}
+
+#mailtoForm .button {
+  margin-right: 5px;
+}
+
+
+// User
+// ---------------------------------------------------------
+.user-details {
+  padding: 10px 0;
+}
+
+.user-details p {
+  margin: 0 0 5px;
+}
+
+.user-details label {
+  display: block;
+  float: left;
+  font-weight: bold;
+  text-align: right;
+  width: 130px;
+}
+
+.user-details .inputbox {
+  margin-left: 10px;
+  width: 200px;
+}
+
+.user-details .button {
+  margin-left: 140px;
+}
+
+.user-details .paramlist .paramlist_key {
+  padding: 0 0 5px;
+  width: 130px;
+}
+
+.user-details .paramlist .paramlist_value {
+  padding: 0 0 5px;
+}
+
+.user-details .user_name span {
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+
+// Reset & Remind
+// --------------
+.reset .form-validate p,
+.remind .form-validate p {
+  background: @grayLighter;
+  border: 1px solid @T3borderColor;
+  margin-bottom: @baseLineHeight;
+  padding: (@baseLineHeight / 2) @baseLineHeight;
+  .border-radius (@baseBorderRadius);
+}
+
+.reset .form-validate fieldset dl,
+.remind .form-validate fieldset dl {
+  margin: 0;
+}
+
+.reset .form-validate fieldset dt,
+.remind .form-validate fieldset dt {
+  margin: 4px 0 0 0;
+}
+
+
+// Profile
+//---------
+.profile .dl-horizontal dd {
+}
+
+.profile .dl-horizontal dt {
+}
+
+
+// Search
+// ---------------------------------------------------------
+.search {
+}
+
+.searchintro {
+}
+
+// Search Form
+// -----------
+#searchForm {
+  padding: (@baseLineHeight / 2) @baseLineHeight;
+  border: 1px solid @T3borderColor;
+  background: @grayLighter;
+  .border-radius (@baseBorderRadius);
+  .clearfix();
+  fieldset {
+    margin: @baseLineHeight 0;
+  }
+
+  legend {
+    margin-bottom: @baseLineHeight / 2;
+  }
+
+}
+
+.phrases-box input,
+.phrases-box label,
+.form-limit input,
+.form-limit label,
+.only label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.phrases-box input {
+  margin: 0;
+}
+
+
+// Search Result
+// -------------
+.search-results {
+  margin-top: @baseLineHeight;
+
+  // Title
+  .result-title {
+    font-size: @T3biggerFontSize;
+    margin-top: @baseLineHeight;
+  }
+
+  // Category
+  .result-category {
+    font-size: @T3smallerFontSize;
+    color: @grayLight;
+  }
+
+  // Result Text
+  .result-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  // Date
+  .result-created {
+    font-size: @T3smallerFontSize;
+    color: @grayLight;
+  }
+
+  // Higlight
+  .highlight {
+  }
+
+
+}
+
+
+
+// Contact
+// ---------------------------------------------------------
+.contact {}
+
+.contact .accordion-heading .accordion-toggle {
+  font-weight: bold;
+}
+
+
+// Archive
+// ---------------------------------------------------------
+#archive-items > li {
+  line-height: normal;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+}
+
+#archive-items div.intro {
+  clear: both;
+  overflow: hidden;
+}
+
+
+// Category List
+// ---------------------------------------------------------
+.categories-list {
+}
+
+
+.category-desc {
+
+}
+
+
+// Sub Category List
+// -----------------
+.category-item {
+  margin-top: @baseLineHeight;
+  .clearfix();
+  .page-header {
+    line-height: normal;
+    padding-top: @baseLineHeight / 2;
+    padding-bottom: @baseLineHeight / 2;
+    margin-bottom: @baseLineHeight;
+  }
+  // Sub Categories
+  .category-item {
+    margin-left: @fluidGridGutterWidth;
+  }
+}
+
+
+// News Feeds
+// ---------------------------------------------------------
+.newsfeed > h2 {
+  border-bottom: 1px solid @T3borderColor;
+  padding-bottom: @baseLineHeight;
+  margin-bottom: @baseLineHeight;
+}
+
+.feed-description {
+  margin-bottom: @baseLineHeight * 2;
+}
+
+
+// Edit Content
+// ---------------------------------------------------------
+.edit fieldset {
+}
+
+.edit fieldset legend {
+}
+
+.edit textarea {
+  .box-sizing (border-box);
+}
+
+// Editor Buttons
+// --------------
+#editor-xtd-buttons {
+}
+
+.button2-left,
+.button2-left div {
+  float: left;
+}
+
+.button2-right,
+.button2-right div {
+  float: right;
+}
+
+.button2-left {
+  margin: 5px 5px 0 0;
+}
+
+.button2-right {
+  margin: 5px 0 0 5px;
+}
+
+.button2-left a,
+.button2-right a,
+.button2-left span,
+.button2-right span {
+  background: @grayLighter;
+  border: 1px solid darken(@grayLighter, 5%);
+  color: @grayLight;
+  cursor: pointer;
+  display: block;
+  float: left;
+  padding: 2px 10px;
+  border-radius: @baseBorderRadius;
+}
+
+.button2-left span,
+.button2-right span {
+  color: @grayLight;
+  cursor: default;
+}
+
+.button2-left .page a,
+.button2-right .page a,
+.button2-left .page span,
+.button2-right .page span {
+  padding: 0 6px;
+}
+
+.button2-left a:hover,
+.button2-right a:hover {
+  background: darken(@grayLighter, 5%);
+  color: @grayDark;
+  text-decoration: none;
+}
+
+.button2-left .image {
+}
+
+.button2-left .readmore {
+}
+
+.button2-left .pagebreak {
+}
+
+
+// Calendar Button
+// ---------------
+.controls img.calendar {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+
+
+// ---------------------------------------------------------
+// CONTENT NAVIGATIONS
+// ---------------------------------------------------------
+
+//  Pagebreak Nav
+// --------------
+.article-content .pagination ul {
+  border-left: 1px solid @T3borderColor;
+}
+
+.article-content .pagination ul li {
+  float: left;
+  padding: (@baseLineHeight / 2) @baseLineHeight;
+  line-height: normal;
+  border: 1px solid @T3borderColor;
+  border-left: 0;
+}
+
+.article-content .pagination ul li:hover {
+}
+
+.article-content .pagination ul a {
+  border: 0;
+  text-decoration: none;
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+}
+
+.article-content .pagination ul a:hover,
+.article-content .pagination ul a:active,
+.article-content .pagination ul a:focus {
+}
+
+.pagenavcounter {
+  margin: 0 0 @baseLineHeight;
+  font-weight: bold;
+}
+
+
+// PageBreak Index
+// ---------------
+#article-index {
+  float: right;
+  margin: 0 0 @baseLineHeight @baseLineHeight;
+  padding: 10px;
+  width: 30%;
+  border: 1px solid @T3borderColor;
+  .border-radius (@baseBorderRadius);
+}
+
+#article-index ul {
+  margin: 0 0 0 20px;
+}
+
+
+// Articles Navigation
+// -------------------
+.pagenav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagenav li {
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+.pagenav li.pagenav-prev {
+  margin-right: 10px;
+}
+
+.pagenav li.pagenav-next {
+}
+
+.pagenav li a {
+  padding: (@baseLineHeight / 2) @baseLineHeight;
+  line-height: normal;
+  border: 1px solid @T3borderColor;
+  .border-radius (@baseBorderRadius);
+}
+
+.pagenav li a:hover {
+  background-color: @navbarLinkBackgroundHover;
+  color: @navbarLinkColorHover;
+}
+
+// Pagination
+// ----------
+.counter {
+  float: right;
+  line-height: 1;
+  margin: (@baseLineHeight / 2) 0;
+  text-align: right;
+}
+
+
+// Items More
+// -----------
+.items-more {
+}
+
+.items-more h3 {
+  margin: 0 0 5px;
+}
+
+.items-more ol {
+}
+
+
+// Back Buttons
+// -----------
+.back_button a,
+.back_button a:hover,
+.back_button a:active {
+  display: block;
+  margin: 10px 0;
+}
+
+
+// Form Control
+// ------------
+.filters {
+  margin: (@baseLineHeight / 2) 0 5px;
+}
+
+.display-limit {
+  margin: (@baseLineHeight / 2) 0 5px;
+}
+
+.filters .filter-search,
+.filters .display-limit {
+  float: left;
+  width: 50%;
+}
+
+.filters .display-limit {
+  float: right;
+  text-align: right;
+}
+
+
+
+// ---------------------------------------------------------
+// MESSAGES & NOTIFICATIONS
+// ---------------------------------------------------------
+
+// Messages
+// ---------------------------------------------------------
+#system-message {
+}
+
+#system-message dt {
+  font-weight: bold;
+}
+
+#system-message dd {
+  font-weight: bold;
+}
+
+
+#system-message dd.message ul,
+#system-message dd.error ul,
+#system-message dd.notice ul {
+  margin: 0;
+  padding: 0;
+}
+
+#system-message dd.message ul li,
+#system-message dd.error ul li,
+#system-message dd.notice ul li {
+  background: none;
+  margin: 0;
+  padding: 5px;
+}
+
+// System Standard Messages
+#system-message dd.message ul {
+}
+
+// System Error Messages
+.error {
+}
+
+.error h2 {
+}
+
+#system-message dd.error ul {
+}
+
+// System Notice Messages
+#system-message dd.notice ul {
+}
+
+
+// Tooltips
+// ---------------------------------------------------------
+.tip-wrap {
+  background: #fff6df;
+  border: 1px solid #fb3;
+  .border-radius (5px);
+  .box-shadow (0 0 3px rgba(0,0,0,.4));
+  max-width: 300px;
+  z-index: 999;
+}
+
+.tip-title {
+  border-bottom: 1px solid #fb3;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.tip-text {
+  font-size: @baseFontSize;
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.hasTip img {
+  border: none;
+  margin: 0 5px 0 0;
+}

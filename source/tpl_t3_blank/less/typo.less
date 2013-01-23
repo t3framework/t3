@@ -1,0 +1,427 @@
+// --------------------------------------------------
+// TYPOGRAPHY
+// --------------------------------------------------
+
+
+// BODY TEXT
+// ------------------------------------------------------
+
+// Paragraphs
+// ----------
+p {
+  margin: 0 0 @baseLineHeight / 2;
+  small, .small {
+    font-size: @T3smallerFontSize;
+    color: @grayLight;
+  }
+}
+
+.lead {
+  margin-bottom: @baseLineHeight;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: @baseLineHeight * 1.5;
+}
+
+
+// Emphasis & misc
+// ---------------
+
+small {
+  font-size: 85%; // Ex: 14px base font * 85% = about 12px
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+cite {
+  font-style: normal;
+}
+
+.muted {
+  color: @grayLight;
+}
+
+.highlight {
+  background-color: #FFC;
+  font-weight: bold;
+  padding: 1px 4px;
+}
+
+
+
+// HEADINGS
+// ------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  margin: (@baseLineHeight / 2) 0;
+  font-family: @headingsFontFamily;
+  font-weight: @headingsFontWeight;
+  line-height: 1;
+  color: @headingsColor;
+  text-rendering: optimizelegibility; // Fix the character spacing for headings
+  small {
+    font-weight: normal;
+    line-height: 1;
+    color: @grayLight;
+  }
+}
+
+h1 {
+  font-size: @baseFontSize * 2.5;
+  line-height: @baseLineHeight * 2;
+  small {
+    font-size: @baseFontSize * 2;
+  }
+}
+
+h2 {
+  font-size: @baseFontSize * 2; 
+  line-height: @baseLineHeight * 2;
+  small {
+    font-size: @baseFontSize * 1.5;
+  }
+}
+
+h3 {
+  font-size: @baseFontSize * 1.5; 
+  line-height: @baseLineHeight * 2; 
+  small {
+    font-size: @baseFontSize + 2px;
+  }
+}
+
+h4 {
+  font-size: @baseFontSize + 2px; 
+  line-height: @baseLineHeight;
+  small {
+    font-size: @baseFontSize;
+  }
+}
+
+h5 {
+  font-size: @baseFontSize + 1px; 
+  line-height: @baseLineHeight; 
+  small {
+    font-size: @baseFontSize - 2px;
+  }
+}
+
+h6 {
+  font-size: @baseFontSize; 
+  line-height: @baseLineHeight; 
+}
+
+
+
+// TITLES
+// ------------------------------------------------------
+
+// Page header
+// -----------
+.page-header {
+  border-bottom: 1px solid @T3borderColor;
+  padding-bottom: @baseLineHeight;
+  margin: 0 0 (@baseLineHeight * 2);
+}
+
+.page-title,
+.page-header h1 {
+  line-height: 1;
+  margin: 0;
+}
+
+
+// Page Subheader
+// --------------
+.page-subheader {
+  border-bottom: 1px solid @T3borderColor;
+  margin: 0 0 @baseLineHeight;
+  .clearfix();
+}
+
+.page-subtitle,
+.page-subheader h2 {
+  line-height: 1;
+  margin: 0;
+}
+
+.page-header + .page-subheader {
+  margin-top: -@baseLineHeight; //If there is page header, then omit the space before page subheader
+}
+
+
+// Article Header
+// --------------
+.article-header {
+}
+
+.article-title,
+.article-header h1, {
+  margin: 0 0 @baseLineHeight/2 0;
+  line-height: 1;
+}
+
+// Smaller "Article Title" in Blog and List layout
+h2.article-title,
+.article-header h2 {
+}
+
+
+// Item Header
+// -----------
+.item-title {
+  font-weight: bold;
+}
+
+
+
+// LISTS
+// ------------------------------------------------------
+
+// Unordered and Ordered lists
+// ---------------------------
+ul, ol {
+  padding: 0;
+  margin: 0 0 @baseLineHeight / 2 25px;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li {
+  line-height: @baseLineHeight;
+}
+
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+
+
+// Description Lists
+// -----------------
+dl {
+  margin-bottom: @baseLineHeight;
+}
+
+dt,
+dd {
+  line-height: @baseLineHeight;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: @baseLineHeight / 2;
+}
+
+// Horizontal layout (like forms)
+.dl-horizontal {
+  dt {
+    float: left;
+    width: 120px;
+    clear: left;
+    text-align: right;
+    .text-overflow();
+  }
+  dd {
+    margin-left: 130px;
+  }
+}
+
+
+
+
+// LABELS & BADGES
+// --------------------------------------------------
+
+// Base classes
+.label,
+.badge {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: @baseFontSize * .846;
+  font-weight: bold;
+  line-height: 14px; // ensure proper line-height if floated
+  color: @white;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  background-color: @grayLight;
+}
+
+// Set unique padding and border-radius
+.label {
+  .border-radius(@baseBorderRadius);
+}
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  .border-radius(@baseBorderRadius);
+}
+
+// Hover state, but only for links
+a {
+  &.label:hover,
+  &.badge:hover {
+    color: @white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+// Colors
+// Only give background-color difference to links (and to simplify, we don't qualifty with `a` but [href] attribute)
+.label,
+.badge {
+  // Important (red)
+  &-important         { background-color: @errorText; }
+  &-important[href]   { background-color: darken(@errorText, 10%); }
+  // Warnings (orange)
+  &-warning           { background-color: @orange; }
+  &-warning[href]     { background-color: darken(@orange, 10%); }
+  // Success (green)
+  &-success           { background-color: @successText; }
+  &-success[href]     { background-color: darken(@successText, 10%); }
+  // Info (turquoise)
+  &-info              { background-color: @infoText; }
+  &-info[href]        { background-color: darken(@infoText, 10%); }
+  // Inverse (black)
+  &-inverse           { background-color: @grayDark; }
+  &-inverse[href]     { background-color: darken(@grayDark, 10%); }
+}
+
+// Quick fix for labels/badges in buttons
+.btn {
+  .label,
+  .badge {
+    position: relative;
+    top: -1px;
+  }
+}
+
+.btn-mini {
+  .label,
+  .badge {
+    top: 0;
+  }
+}
+
+// Quick fix for labels/badges in page-header- NNTH
+.page-header {
+  .label,
+  .badge {
+    vertical-align: middle;
+  }
+}
+
+
+
+// MISC
+// ------------------------------------------------------
+
+// Horizontal rules
+// ----------------
+hr {
+  margin: @baseLineHeight 0;
+  border: 0;
+  border-top: 1px solid @hrBorder;
+  border-bottom: 1px solid @white;
+}
+
+
+// Abbreviations and acronyms
+// --------------------------
+abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted @grayLight;
+}
+
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+
+// Blockquotes
+// -----------
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 @baseLineHeight;
+  border-left: 5px solid @grayLighter;
+  p {
+    margin-bottom: 0;
+    #font > .shorthand(16px,300,@baseLineHeight * 1.25);
+  }
+  small {
+    display: block;
+    line-height: @baseLineHeight;
+    color: @grayLight;
+    &:before {
+      content: '\2014 \00A0';
+    }
+  }
+
+  // Float right with text-align: right
+  &.pull-right {
+    float: right;
+    padding-right: 15px;
+    padding-left: 0;
+    border-right: 5px solid @grayLighter;
+    border-left: 0;
+    p,
+    small {
+      text-align: right;
+    }
+    small {
+      &:before {
+        content: '';
+      }
+      &:after {
+        content: '\00A0 \2014';
+      }
+    }
+  }
+}
+
+
+// Quotes
+// ------
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+
+// Addresses
+// ---------
+address {
+  display: block;
+  margin-bottom: 0;
+  font-style: normal;
+  line-height: @baseLineHeight;
+}

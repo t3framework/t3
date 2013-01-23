@@ -1,0 +1,124 @@
+// The Grid extend
+// MIXINS
+#grid-extend {
+  
+  // extend left offset
+  .offset (@gridColumnWidth, @gridGutterWidth) {
+    .offset-X (@index) when (@index > 0) {
+      (~".offset-@{index}") { .offset-(@index); }
+      .offset-X(@index - 1);
+    }
+    .offset-X (0) {}
+
+    .offset- (@columns) {
+      margin-left: -(@gridColumnWidth * @columns) - (@gridGutterWidth * (@columns - 1));
+    }
+    
+    .offset-X (@gridColumns);
+  }
+
+  // fix the offset, used in layout-custom.less for layout configuration in template admin
+  .fixOffsetX (@fluidGridColumnWidth, @fluidGridGutterWidth) {
+
+    .offsetX (@index) when (@index > 0) {
+      (~'.offset@{index}') { .offset(@index); }
+      (~'.offset@{index}:first-child') { .offsetFirstChild(@index); }
+      .offsetX(@index - 1);
+    }
+    .offsetX (0) {}
+    .offset (@columns) {
+      margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) + (@fluidGridGutterWidth*2) !important;
+      *margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%) + (@fluidGridGutterWidth*2) - (.5 / @gridRowWidth * 100 * 1%) !important;
+    }
+    .offsetFirstChild (@columns) {
+      margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) + (@fluidGridGutterWidth) !important;
+      *margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%) + @fluidGridGutterWidth - (.5 / @gridRowWidth * 100 * 1%) !important;
+    }
+
+    .offset-X (@index) when (@index > 0) {
+      (~'.offset-@{index}') { .offset-(@index); }
+      .offset-X(@index - 1);
+    }
+    .offset-X (0) {}
+    .offset- (@columns) {
+      margin-left: -(@fluidGridColumnWidth * @columns) - (@fluidGridGutterWidth * (@columns - 1)) !important;
+      *margin-left: -(@fluidGridColumnWidth * @columns) - (@fluidGridGutterWidth * (@columns - 1)) + (.5 / @gridRowWidth * 100 * 1%) + (.5 / @gridRowWidth * 100 * 1%) !important;
+    }
+    
+    .offsetX (@gridColumns);
+    .offset-X (@gridColumns);
+  }
+
+  // fluid for all type of row - apply for small screen as mobile, portrait tablet
+  .fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
+
+    .spanX (@index) when (@index > 0) {
+      (~".span@{index}") { .span(@index); }
+      .spanX(@index - 1);
+    }
+    .spanX (0) {}
+
+    .span (@columns) {
+      width: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1));
+      *width: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%);
+    }
+
+    .row, .row-fluid {
+      width: 100%;
+      margin-left: 0;
+      .clearfix();
+      [class*="span"] {
+        .input-block-level();
+        float: left;
+        margin-left: @fluidGridGutterWidth;
+        *margin-left: @fluidGridGutterWidth - (.5 / @gridRowWidth * 100 * 1%);
+      }
+      [class*="span"]:first-child:not(.pull-right) {
+        margin-left: 0;
+      }
+
+      [class*="span"].pull-right:first-child + [class*="span"]:not(.pull-right) {
+        margin-left: 0;
+      }
+      
+      // generate .spanX
+      .spanX (@gridColumns);
+    }
+
+
+    .spanxy_(@pcols, @cols) {
+      width: percentage(((@fluidGridColumnWidth * @cols) + (@fluidGridGutterWidth * (@cols - 1)))/((@fluidGridColumnWidth * @pcols) + (@fluidGridGutterWidth * (@pcols - 1))));
+      *width: percentage(((@fluidGridColumnWidth * @cols) + (@fluidGridGutterWidth * (@cols - 1)))/((@fluidGridColumnWidth * @pcols) + (@fluidGridGutterWidth * (@pcols - 1)))) - (.5 / @gridRowWidth * 100 * 1%);
+    }
+    .spanXY (@indexx) when(@indexx > 0) {
+      (~".span@{indexx}") { 
+        .row {
+          // span for spany in spanx
+          [class*="span"] {
+            margin-left: percentage(@fluidGridGutterWidth / ((@fluidGridColumnWidth * @indexx) + (@fluidGridGutterWidth * (@indexx - 1))));
+            *margin-left: percentage(@fluidGridGutterWidth / ((@fluidGridColumnWidth * @indexx) + (@fluidGridGutterWidth * (@indexx - 1)))) - (.5 / @gridRowWidth * 100 * 1%);
+          }
+          [class*="span"]:first-child {
+            margin-left: 0;
+          }
+
+          .spanY (@indexy) when (@indexy > 0) {
+            (~".span@{indexy}") {
+              .spanxy_(@indexx, @indexy);
+            }
+            .spanY (@indexy - 1); 
+          }
+
+          .spanY (0) {}
+
+          .spanY (@indexx);
+        }
+      }
+      .spanXY(@indexx - 1);
+    }
+    .spanXY (0) {}
+
+    // generate .spanXY
+    .spanXY (@gridColumns);
+  }
+}

@@ -1,0 +1,161 @@
+// ---------------------------------------------------------
+// BANNERS
+// ---------------------------------------------------------
+
+
+//
+// Jumbotrons
+// ---------------------------------------------------------
+
+.jumbotron {
+  position: relative;
+  padding: (@baseLineHeight * 2) 0;
+}
+
+.jumbotron h1 {
+  font-size: @baseFontSize * 4;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0 0 (@baseLineHeight / 2) 0;
+}
+
+.jumbotron p {
+  font-size: @baseFontSize * 1.5;
+  line-height: 1.275;
+  margin: 0 0 @baseLineHeight 0;
+}
+
+.jumbotron .btn {
+  margin-top: @baseLineHeight / 2;
+}
+
+.jumbotron .btn-large {
+  margin-top: @baseLineHeight;
+  font-size: @baseFontSize + 4px;
+}
+
+// Masthead
+// --------
+.masthead {
+  padding: (@baseLineHeight * 4) 0 (@baseLineHeight * 3);
+  text-align: center;
+}
+
+.masthead h1 {
+  font-size: @baseFontSize * 7;
+}
+
+.masthead p {
+  font-size: @baseFontSize * 3;
+}
+
+.masthead .btn-large {
+  font-size: @baseFontSize * 2;
+  padding: @baseFontSize (@baseFontSize * 2);
+}
+
+
+/* Jumbotrons with images ---*/
+.jumbotron.has-image {
+  .box-sizing (border-box);
+}
+
+.masthead.has-image {
+  text-align: left;
+}
+
+
+/* THUMBNAILS
+-------------------------------------------------- */
+
+// Note: `.thumbnails` and `.thumbnails > li` are overriden in responsive files
+
+// Make wrapper ul behave like the grid
+.thumbnails {
+  margin-bottom: @baseLineHeight;
+  margin-left: -@gridGutterWidth;
+  list-style: none;
+  .clearfix();
+}
+
+// Fluid rows have no left margin
+.row-fluid .thumbnails {
+  margin-left: 0;
+}
+
+// Float li to make thumbnails appear in a row
+.thumbnails > li {
+  float: left; // Explicity set the float since we don't require .span* classes
+  position: relative;
+  margin-bottom: @baseLineHeight;
+  margin-left: @gridGutterWidth;
+}
+
+// The actual thumbnail (can be `a` or `div`)
+.thumbnail {
+  border: 1px solid @T3borderColor;
+  display: block;
+  padding: 4px;
+  line-height: @baseLineHeight;
+  .border-radius(@inputBorderRadius);
+  .box-shadow(0 1px 3px rgba(0,0,0,.055));
+  .transition(all .2s ease-in-out);
+}
+// Add a hover state for linked versions only
+a.thumbnail:hover {
+  border-color: @linkColor;
+  .box-shadow(0 1px 4px rgba(0,105,214,.25));
+}
+
+// Images and captions
+.thumbnail > img {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumbnail .caption {
+  padding: 9px;
+  color: @gray;
+}
+
+// Thumbnail Styles
+// ------------------
+/* Paper Style ---*/
+.thumbnails.paper > li:before,
+.thumbnails.paper > li:after {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  height: 20%;
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.thumbnails.paper > li:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+.thumbnails.paper .thumbnail {
+  border: none;
+  padding: 0;
+  .box-shadow(none);
+}
+
+.thumbnails.paper a.thumbnail.paper:hover {
+  .box-shadow(none);
+}

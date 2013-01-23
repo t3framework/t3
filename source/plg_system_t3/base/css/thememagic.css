@@ -1,0 +1,9 @@
+body {
+	visibility: hidden;
+	cursor: pointer;
+}
+
+body.ready {
+	visibility: visible;
+	cursor: auto;	
+}

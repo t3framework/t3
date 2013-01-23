@@ -1,0 +1,238 @@
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less"; // Modify this for custom colors, font-sizes, etc
+
+
+
+// ---------------------------------------------------------
+// HOME SPOTLIGHTS
+// ---------------------------------------------------------
+
+// Spotlight 1
+// -----------
+.home .ja-sl-1 {
+  padding: 0;
+
+  // jumbotron
+  .jumbotron {
+    #gradient > .radial(@white, @grayLighter);
+    border-bottom: 1px solid @T3borderColor;
+    //jumbotron btn
+    .btn-large {
+      font-size: @baseFontSize * 1.75;
+      padding: 18px ((@baseFontSize * 1.75) + 20px);
+    }
+  }
+
+  // social buttons
+  .t3-social {
+    background: @grayLighter;
+    padding: @baseLineHeight 0;
+
+    .t3-social-btns {
+      margin: 0;
+      height: 20px;
+      text-align: center;
+    }
+
+    .t3-social-btns li {
+      display: inline-block;
+      margin: 0 10px;
+      height: 20px;
+    }
+
+  }
+
+}
+
+
+// Spotlight 1 (Inverted)
+// ----------------------
+.T3HomeSpotlight1() when (@T3SpotlightsInverted = 1) {
+
+  // Begin: Mixin Styling
+  color: @grayLighter;
+  // jumbotron
+  .jumbotron {
+    #gradient > .radial(@grayDarker, @grayDarker);
+    h1 {
+      color: @white;
+    }
+  }
+
+  // End: Mixin Styling
+}
+
+.T3HomeSpotlight1() when (@T3SpotlightsInverted = 0) {
+  // Leave blank here because we will use the default style.
+}
+
+// Calling the styles
+.home .ja-sl-1 {
+  .T3HomeSpotlight1
+}
+
+
+// Spotlight 2
+// -----------
+.home .ja-sl-2 {
+  text-align: center;
+  p {
+    font-size: @T3biggerFontSize;
+    line-height: @baseLineHeight + 2px;
+  }
+}
+
+
+// Spotlight 3 & 4
+// ---------------
+.home .ja-sl-3 p img {
+  margin-bottom: @baseLineHeight;
+}
+
+.home .ja-sl-3,
+.home .ja-sl-4 {
+  border-top: 1px solid @hrBorder;
+  text-align: center;
+
+  p {
+    font-size: @T3biggerFontSize;
+    line-height: @baseLineHeight + 2px;
+  }
+
+  // jumbotron
+  .jumbotron {
+    padding-top: 0;
+    h1 {
+      margin-bottom: @baseLineHeight / 2;
+      margin-top: 0;
+    }
+    p {
+      font-size: @baseFontSize * 1.5;
+      line-height: 1.275;
+      color: @grayLight;
+    }
+  }
+}
+
+
+// Spotlight 5
+// -----------
+.home .ja-sl-5 {
+  background: @grayLighter;
+  border-top: 1px solid @T3borderColor;
+  padding: 0;
+
+  // jumbotron
+  .jumbotron {
+    //jumbotron btn
+    .btn-large {
+      font-size: @baseFontSize * 1.75;
+      padding: 18px ((@baseFontSize * 1.75) + 20px);
+      //width: 269px;
+    }
+  }
+
+  // arrow
+  .section-arrow-alt {
+    background: url(../images/arrow-section-alt.png) no-repeat center -1px @grayLighter;
+    width: 37px;
+    height: 19px;
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    margin-left: -19px;
+  }
+}
+
+
+// Spotlight 5 (Inverted)
+// ----------------------
+
+.T3HomeSpotlight5() when (@T3SpotlightsInverted = 1) {
+
+  // Begin: Mixin Styling
+  background: @grayDarker;
+  border-bottom: 1px solid @T3borderColor;
+  color: @grayLighter;
+
+  // arrow
+  .section-arrow-alt {
+    display: none;
+  }
+
+  // End: Mixin Styling
+}
+
+.T3HomeSpotlight5() when (@T3SpotlightsInverted = 0) {
+  // Leave blank here because we will use the default style.
+}
+
+// Calling the styles
+.home .ja-sl-5 {
+  .T3HomeSpotlight5
+}
+
+
+
+// ---------------------------------------------------------
+// MISC.
+// ---------------------------------------------------------
+
+// T3 Signup Modal
+// ---------------
+.modal-t3-signup {
+  .border-radius (@baseBorderRadius);
+}
+
+.modal-t3-signup .modal-header {
+  border-bottom: none;
+  padding: 0 (@baseLineHeight * 2);
+}
+
+.modal-t3-signup .modal-header h3 {
+  display: none;
+}
+
+.modal-t3-signup .modal-header .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  .border-bottom-left-radius(@baseBorderRadius);
+}
+
+.modal-t3-signup .modal-body {
+  padding: @baseLineHeight (@baseLineHeight * 2) (@baseLineHeight * 2);
+}
+
+.modal-t3-signup .modal-body p,
+.modal-t3-signup .modal-body input,
+.modal-t3-signup .modal-body .add-on,
+.modal-t3-signup .modal-body button {
+  font-size: @T3biggerFontSize;
+}
+
+.modal-t3-signup .modal-body p {
+  line-height: 24px;
+}
+
+.modal-t3-signup .form-t3-signup {
+  margin-top: @baseLineHeight * 2;
+}
+
+.modal-t3-signup .modal-body input {
+  padding: 9px 25px 8px 15px;
+}
+
+.modal-t3-signup .modal-body .add-on {
+  padding: 9px 9px 8px;
+}
+
+.modal-t3-signup .btn-large {
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.15)");
+}

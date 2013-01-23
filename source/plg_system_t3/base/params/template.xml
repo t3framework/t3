@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params" addfieldpath="/plugins/system/t3/includes/depend">
+		
+		<fieldset name="general_params" label="T3V3_GENERAL_LABEL" description="T3V3_GENERAL_DESC">
+			<field name="jat3v3_template" type="hidden" default="1" value="1" />
+			
+			<field name="devmode" type="radio" class="btn-group" default="0"
+				global="1"
+				label="T3V3_GENERAL_DEVELOPMENT_LABEL"
+				description="T3V3_GENERAL_DEVELOPMENT_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="themermode" type="radio" class="btn-group" default="1" 
+				global="1"
+				label="T3V3_GENERAL_THEMER_LABEL" 
+				description="T3V3_GENERAL_THEMER_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+			
+			<field name="responsive" type="radio" class="btn-group" default="1" 
+				global="1"
+				label="T3V3_GENERAL_RESPONSIVE_LABEL" 
+				description="T3V3_GENERAL_RESPONSIVE_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="cssminify" type="radio" class="btn-group" default="1" 
+				global="1"
+				label="T3V3_GENERAL_CSSMINIFY_LABEL" 
+				description="T3V3_GENERAL_CSSMINIFY_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="theme_params" label="T3V3_THEME_LABEL" description="T3V3_THEME_DESC">
+
+			<field name="theme_params_default" type="jadepend" function="@group">
+				<option for="logotype" value="text">
+					sitename,
+					slogan
+				</option>
+				<option for="logotype" value="image">
+					logoimage
+				</option>
+			</field>
+
+			<field name="theme" type="jafolderlist" default=""
+				label="T3V3_THEME_THEME_LABEL"
+				description="T3V3_THEME_THEME_DESC"
+				filter=".*"
+				directory="less/themes"
+				stripext="true"
+				hide_none="false" />
+
+			<field name="logotype" type="list" default="text"
+				label="T3V3_THEME_LOGOTYPE_LABEL"
+				description="T3V3_THEME_LOGOTYPE_DESC" >
+				<option value="text">T3V3_THEME_LOGOTYPE_TEXT</option>
+				<option value="image">T3V3_THEME_LOGOTYPE_IMAGE</option>
+			</field>
+
+			<field name="sitename" type="text" default="Sitename" filter="RAW" size="50"
+				label="T3V3_THEME_SITENAME_LABEL"
+				description="T3V3_THEME_SITENAME_DESC" />
+			<field name="slogan" type="text" default="Your slogan goes here" filter="RAW" size="50"
+				label="T3V3_THEME_SLOGAN_LABEL"
+				description="T3V3_THEME_SLOGAN_DESC" />
+
+			<field name="logoimage" type="jamedia" default=""
+				label="T3V3_THEME_LOGOIMAGE_LABEL" 
+				description="T3V3_THEME_LOGOIMAGE_DESC" />
+
+		</fieldset>
+		
+		<fieldset name="layout_params" label="T3V3_LAYOUT_LABEL" description="T3V3_LAYOUT_DESC">
+			<field name="layout_ajax_default" type="jadepend" function="@ajax">
+				<option 
+					for="mainlayout" 
+					site="admin"
+					query="t3action=layout&amp;t3task=display&amp;t3tp=layout"
+					func="T3V3AdminLayout.t3layout">
+				</option>
+			</field>
+
+			<field name="mainlayout" type="jafilelist" default="default"
+				label="T3V3_LAYOUT_LAYOUT_LABEL"
+				description="T3V3_LAYOUT_LAYOUT_DESC"
+				filter=".*\.php"
+				directory="tpls"
+				stripext="true"
+				hide_none="false"
+				hide_default="true"
+			/>
+
+		</fieldset>
+
+		<fieldset name="navigation_params" label="T3V3_NAVIGATION_LABEL" description="T3V3_NAVIGATION_DESC">
+			<field name="navigation_group_default" type="jadepend" function="@group">
+				<option for="navigation_type" value="megamenu">
+					mm_type
+				</option>
+			</field>
+			<field name="navigation_ajax_default" type="jadepend" function="@ajax">
+				<option 
+					for="mm_type" 
+					query="t3action=megamenu&amp;t3task=display"
+					func="T3V3AdminMegamenu.t3megamenu">
+				</option>
+			</field>
+
+			<field name="navigation_trigger" type="list" default="hover"
+				global="1"
+				label="T3V3_NAVIGATION_TRIGGER_LABEL"
+				description="T3V3_NAVIGATION_TRIGGER_DESC">
+				<option value="hover">Mouse Hover</option>
+				<option value="click">Mouse Click</option>
+			</field>
+
+			<field name="navigation_type" type="list" class="btn-group" default="0"
+				label="T3V3_NAVIGATION_TYPE_LABEL"
+				description="T3V3_NAVIGATION_TYPE_DESC">
+				<option value="joomla">Joomla Module</option>
+				<option value="megamenu">Megamenu</option>
+			</field>
+			<field name="mm_type" type="menu"
+				label="T3V3_NAVIGATION_MM_TYPE_LABEL"
+				description="T3V3_NAVIGATION_MM_TYPE_DESC"
+				 />
+
+		</fieldset>	
+	</fields>
+</form>

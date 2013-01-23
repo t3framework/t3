@@ -1,0 +1,145 @@
+// ------------------------------------------------------
+// CORE ELEMENTS
+// ------------------------------------------------------
+
+
+// SCAFFOLDING
+// ------------------------------------------------------
+
+body {
+  background-color: @bodyBackground;
+  color: @textColor;
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  margin: 0;
+}
+
+// Links
+// -----
+a {
+  color: @linkColor;
+  text-decoration: none;
+}
+
+a:hover {
+  color: @linkColorHover;
+  text-decoration: underline;
+}
+
+
+// IMAGES
+// ------------------------------------------------------
+img {
+  max-width: 100% !important;
+}
+
+.img-rounded {
+  .border-radius(@baseBorderRadius);
+}
+
+.img-polaroid {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc; // for IE 
+  border: 1px solid rgba(0,0,0,.2);
+  .box-shadow (0 1px 3px rgba(0,0,0,.1));
+}
+
+.img-circle {
+  .border-radius(500px);
+}
+
+
+
+// TABLES
+-------------------------------------------------------
+table {
+  background-color: @tableBackground;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  line-height: @baseLineHeight;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+} 
+
+td {
+  border-top: 1px solid @tableBorder;
+}
+
+tr td {
+}
+
+th {
+  background: @grayDark;
+  color: @grayLighter;
+  font-weight: bold;
+}
+
+th td {
+}
+
+th a {
+  color: @grayLighter;
+}
+
+th a:hover,
+th a:focus,
+th a:active {
+  color: @white;
+}
+
+.cat-list-row0,
+.cat-list-row1,
+tr.cat-list-row0 td,
+tr.cat-list-row1 td {
+}
+
+.cat-list-row0:hover,
+.cat-list-row1:hover {
+  background: @tableBackgroundHover;
+}
+
+.cat-list-row1,
+tr.cat-list-row1 td {
+  background: @tableBackgroundAccent;
+}
+
+table.contentpane,
+table.tablelist,
+table.category,
+table.admintable,
+table.blog {
+  width: 100%;
+}
+
+table.contentpaneopen {
+  border: 0;
+}
+
+
+
+// MISC
+-------------------------------------------------------
+.star {
+  color: @yellow;
+}
+
+.red {
+  color: @red;
+}
+
+.element-invisible {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}

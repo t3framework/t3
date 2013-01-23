@@ -1,0 +1,59 @@
+// Wide display
+// ----------------------------------
+@media (min-width: 980px) and (max-width: 1199px) {
+
+  // Fixed grid
+  #grid > .core(@gridColumnWidth980, @gridGutterWidth980);
+
+  // Fluid grid
+  #grid > .fluid(@fluidGridColumnWidth980, @fluidGridGutterWidth980);
+
+  // Input grid
+  #grid > .input(@gridColumnWidth980, @gridGutterWidth980);
+
+  // No need to reset .thumbnails here since it's the same @gridGutterWidth
+
+}
+
+// Extend for grid left offset, fluid
+// PORTRAIT TABLET TO DEFAULT DESKTOP
+// ----------------------------------
+
+// Offset
+@media (min-width: 768px) and (max-width: 979px) {
+  // Fixed grid
+  #grid-extend > .offset(@gridColumnWidth768, @gridGutterWidth768);
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+  // Fixed grid
+  #grid-extend > .offset(@gridColumnWidth980, @gridGutterWidth980);
+}
+@media (min-width: 1200px) {
+  // Fixed grid
+  #grid-extend > .offset(@gridColumnWidth1200, @gridGutterWidth1200);
+}
+
+// Fluid for small display
+@media (min-width: 600px) and (max-width: 767px) {
+  // Fluid grid
+  #grid-extend > .fluid(@fluidGridColumnWidth768, @fluidGridGutterWidth768);
+
+  // Remove left spacing
+  .spanfirst    { margin-left: 0 !important; }
+}
+
+
+// Width by percentage
+//---------------------
+// 2 cols
+.row, .row-fluid {
+  .span50 {width: 50%; float: left;}
+  // 3 cols
+  .span33 {width: 33.3333%; float: left;}
+  // 4 cols
+  .span25 {width: 25%; float: left;}
+  // 5 cols
+  .span20 {width: 20%; float: left;}
+  // 6 cols
+  .span16 {width: 16.6666%; float: left;}
+}

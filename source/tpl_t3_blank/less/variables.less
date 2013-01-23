@@ -1,0 +1,374 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+// Global values
+// --------------------------------------------------
+
+
+// Grays
+// -------------------------
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #444;
+@gray:                  #666;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@white:                 #fff;
+
+
+// Accent colors
+// -------------------------
+@blue:                  #07b;
+@blueDark:              darken(@blue, 15%);
+@green:                 #690;
+@cyan:                  #09c; // T3 added
+@red:                   #c00;
+@yellow:                #fc0;
+@orange:                #f80;
+@pink:                  #d60a6c;
+@purple:                #8b08ae;
+
+
+// Scaffolding
+// -------------------------
+@bodyBackground:        @white;
+@textColor:             @gray;
+
+
+// Links
+// -------------------------
+@linkColor:             @blue;
+@linkColorHover:        darken(@linkColor, 15%);
+
+
+// Typography
+// -------------------------
+@sansFontFamily:        sans-serif;
+@serifFontFamily:       serif;
+@monoFontFamily:        monospace;
+
+@baseFontSize:          14px;
+@baseFontFamily:        sans-serif;
+@baseLineHeight:        20px;
+@altFontFamily:         serif;
+
+@headingsFontFamily:    sans-serif; // empty to use BS default, @baseFontFamily
+@headingsFontWeight:    bold;    // instead of browser default, bold
+@headingsColor:         @grayDark; // empty to use BS default, @textColor
+
+
+@T3bigFontSize:         @baseFontSize + 1px;
+@T3biggerFontSize:      @baseFontSize + 2px;
+
+@T3smallFontSize:       @baseFontSize - 1px;
+@T3smallerFontSize:     @baseFontSize - 2px;
+
+
+// Component sizing
+// -------------------------
+// Based on 14px font-size and 20px line-height
+
+@fontSizeLarge:         @baseFontSize * 1.25; // ~18px
+@fontSizeSmall:         @baseFontSize * 0.85; // ~12px
+@fontSizeMini:          @baseFontSize * 0.75; // ~11px
+
+@paddingLarge:          11px 19px; // 44px
+@paddingSmall:          2px 10px;  // 26px
+@paddingMini:           1px 6px;   // 24px
+
+@baseBorderRadius:      4px;
+@borderRadiusLarge:     6px;
+@borderRadiusSmall:     3px;
+@LargeBorderRadius:		@borderRadiusLarge;
+
+// Tables
+// -------------------------
+@tableBackground:                   transparent; // overall background-color
+@tableBackgroundAccent:             #f9f9f9; // for striping
+@tableBackgroundHover:              #f5f5f5; // for hover
+@tableBorder:                       #ddd; // table and cell border
+
+
+// Buttons
+// -------------------------
+@btnBackground:                     @grayLighter;
+@btnBackgroundHighlight:            lighten(@grayLighter, 10%);
+@btnBorder:                         darken(@grayLighter, 10%);
+
+@btnPrimaryBackground:              @linkColor;
+@btnPrimaryBackgroundHighlight:     lighten(@linkColor, 10%);
+
+@btnInfoBackground:                 @cyan;
+@btnInfoBackgroundHighlight:        lighten(@cyan, 10%);
+
+@btnSuccessBackground:              @green;
+@btnSuccessBackgroundHighlight:     lighten(@green, 10%);
+
+@btnWarningBackground:              @orange;
+@btnWarningBackgroundHighlight:     lighten(@orange, 10%);
+
+@btnDangerBackground:               @red;
+@btnDangerBackgroundHighlight:      lighten(@red, 10%);
+
+@btnInverseBackground:              @grayDark;
+@btnInverseBackgroundHighlight:     lighten(@grayDark, 10%);
+
+
+// Forms
+// -------------------------
+@inputBackground:               @white;
+@inputBorder:                   #ccc;
+@inputBorderRadius:             @baseBorderRadius;
+@inputDisabledBackground:       @grayLighter;
+@formActionsBackground:         #f5f5f5;
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+@zindexDropdown:          1000;
+@zindexPopover:           1010;
+@zindexTooltip:           1030;
+@zindexFixedNavbar:       1030;
+@zindexModalBackdrop:     1040;
+@zindexModal:             1050;
+
+
+// Sprite icons path
+// -------------------------
+@iconSpritePath:          "../images/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png";
+
+
+// Input placeholder text color
+// -------------------------
+@placeholderText:         @grayLight;
+
+
+// Hr border color
+// -------------------------
+@hrBorder:                @grayLighter;
+
+
+// Wells
+// -------------------------
+@wellBackground:                  #f5f5f5;
+
+
+// Navbar
+// -------------------------
+@navbarCollapseWidth:             767px;
+
+@navbarHeight:                    40px;
+@navbarBackground:                darken(@navbarBackgroundHighlight, 10%);
+@navbarBackgroundHighlight:       #ffffff;
+@navbarBorder:                    darken(@navbarBackground, 12%);
+
+@navbarText:                      @gray;
+@navbarLinkColor:                 @gray;
+@navbarLinkColorHover:            @grayLighter;
+@navbarLinkColorActive:           @grayLighter;
+@navbarLinkBackgroundHover:       @gray;
+@navbarLinkBackgroundActive:      @linkColor;
+
+@navbarBrandColor:                @navbarLinkColor;
+
+// Inverted navbar
+@navbarInverseBackground:                #111111;
+@navbarInverseBackgroundHighlight:       #222222;
+@navbarInverseBorder:                    #252525;
+
+@navbarInverseText:                      @grayLight;
+@navbarInverseLinkColor:                 @grayLight;
+@navbarInverseLinkColorHover:            @white;
+@navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
+@navbarInverseLinkBackgroundHover:       transparent;
+@navbarInverseLinkBackgroundActive:      @navbarInverseBackground;
+
+@navbarInverseSearchBackground:          lighten(@navbarInverseBackground, 25%);
+@navbarInverseSearchBackgroundFocus:     @white;
+@navbarInverseSearchBorder:              @navbarInverseBackground;
+@navbarInverseSearchPlaceholderColor:    #ccc;
+
+@navbarInverseBrandColor:                @navbarInverseLinkColor;
+
+
+// Dropdowns
+// -------------------------
+// (T3 Note: Move "dropdowns" variables belows "navbar")
+@dropdownBackground:            @white;
+@dropdownBorder:                rgba(0,0,0,.2);
+@dropdownDividerTop:            #e5e5e5;
+@dropdownDividerBottom:         @white;
+
+@dropdownLinkColor:             @grayDark;
+
+@dropdownLinkColorHover:        @navbarLinkColorHover;
+@dropdownLinkBackgroundHover:   @navbarLinkBackgroundHover;
+
+@dropdownLinkColorActive:       @navbarLinkColorActive;
+@dropdownLinkBackgroundActive:  @navbarLinkBackgroundActive;
+
+
+// Pagination
+// -------------------------
+@paginationBackground:                #fff;
+@paginationBorder:                    #ddd;
+@paginationActiveBackground:          #f5f5f5;
+
+
+// Hero unit
+// -------------------------
+@heroUnitBackground:              @grayLighter;
+@heroUnitHeadingColor:            inherit;
+@heroUnitLeadColor:               inherit;
+
+
+// Form states and alerts
+// -------------------------
+@warningText:             @orange;
+@warningBackground:       #fcf8e3;
+@warningBorder:           darken(spin(@warningBackground, -10), 3%);
+
+@errorText:               @red;
+@errorBackground:         #f2dede;
+@errorBorder:             darken(spin(@errorBackground, -10), 3%);
+
+@successText:             @green;
+@successBackground:       #dff0d8;
+@successBorder:           darken(spin(@successBackground, -10), 5%);
+
+@infoText:                @blue;
+@infoBackground:          #d9edf7;
+@infoBorder:              darken(spin(@infoBackground, -10), 7%);
+
+
+// Tooltips and popovers
+// -------------------------
+@tooltipColor:            #fff;
+@tooltipBackground:       #000;
+@tooltipArrowWidth:       5px;
+@tooltipArrowColor:       @tooltipBackground;
+
+@popoverBackground:       #fff;
+@popoverArrowWidth:       10px;
+@popoverArrowColor:       #fff;
+@popoverTitleBackground:  darken(@popoverBackground, 3%);
+
+// Special enhancement for popovers
+@popoverArrowOuterWidth:  @popoverArrowWidth + 1;
+@popoverArrowOuterColor:  rgba(0,0,0,.25);
+
+
+
+// GRID
+// --------------------------------------------------
+
+// Default 940px grid
+// -------------------------
+@T3gridWidth:             940px;  // T3 add. For non-responsive layout.
+@gridColumns:             12;
+@gridGutterWidth:         40px;
+@gridColumnWidth:     	  floor((@T3gridWidth - @gridGutterWidth * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// 1200px min
+@T3gridWidth1200:         1200px;  // T3 add
+@gridGutterWidth1200:     40px;
+@gridColumnWidth1200:     floor((@T3gridWidth1200 - @gridGutterWidth1200 * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
+
+// 980px-1199px
+@T3gridWidth980:          940px;  // T3 add
+@gridGutterWidth980:      40px;
+@gridColumnWidth980:      floor((@T3gridWidth980 - @gridGutterWidth980 * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth980:         (@gridColumns * @gridColumnWidth980) + (@gridGutterWidth980 * (@gridColumns - 1));
+
+// T3 Add: 768px-979px
+@T3gridWidth768:          740px;  // T3 add
+@gridGutterWidth768:      20px;
+@gridColumnWidth768:      floor((@T3gridWidth768 - @gridGutterWidth768 * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth768:         (@gridColumns * @gridColumnWidth768) + (@gridGutterWidth768 * (@gridColumns - 1));
+
+
+// Fluid grid
+// -------------------------
+@fluidGridColumnWidth:    percentage(@gridColumnWidth/@gridRowWidth);
+@fluidGridGutterWidth:    percentage(@gridGutterWidth/@gridRowWidth);
+
+// 1200px min
+@fluidGridColumnWidth1200:     percentage(@gridColumnWidth1200/@gridRowWidth1200);
+@fluidGridGutterWidth1200:     percentage(@gridGutterWidth1200/@gridRowWidth1200);
+
+// 980px-1199px
+@fluidGridColumnWidth980:     percentage(@gridColumnWidth980/@gridRowWidth980);
+@fluidGridGutterWidth980:     percentage(@gridGutterWidth980/@gridRowWidth980);
+
+// T3 Extensed: 768px-979px
+@fluidGridColumnWidth768:      percentage(@gridColumnWidth768/@gridRowWidth768);
+@fluidGridGutterWidth768:      percentage(@gridGutterWidth768/@gridRowWidth768);
+
+
+
+//
+// T3 TEMPLATE STYLES
+// --------------------------------------------------
+@T3borderColor:   #ddd;
+@T3bodyBackgroundImage:  none;
+
+
+// Logo
+// -------------------------
+
+@T3NavbarInverted: 0;
+@T3SpotlightsInverted: 0;
+
+
+
+//
+// T3 LOGO
+// --------------------------------------------------
+@T3logoWidth:     270px;
+@T3logoHeight:    65px;
+
+@T3LogoImage:     "../images/logo.png";
+
+
+
+//
+// T3 GLOBAL STYLES
+// --------------------------------------------------
+
+// Module Styles
+// -------------------------
+// Module General
+@T3moduleBackground:            transparent;
+@T3moduleColor:                 inherit;
+@T3modulePadding:               0;
+@T3moduleBorder:                1px solid @T3borderColor;
+
+// Module Title
+@T3moduleTitleBackground:       inherit; // inherit from @moduleBackground
+@T3moduleTitleColor:            @headingsColor; // inherit from @moduleColor
+@T3moduleTitlePadding:          0;
+
+// Module Content
+@T3moduleContentBackground:     inherit; // inherit from @moduleBackground
+@T3moduleContentColor:          inherit; // inherit from @moduleColor
+@T3moduleContentPadding:        0;
+
+
+// Footer Modules Styles
+// -------------------------
+@T3FooterModuleTitleColor: @grayLight;
+@T3FooterModuleColor: @grayLight;
+
+
+

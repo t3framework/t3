@@ -1,0 +1,72 @@
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less";
+
+
+//
+// MOBILE
+// -------------------------------------------------------------
+@media (max-width: 767px) {
+
+  // -----------------------------------------------------------
+  // HOME SPOTLIGHTS
+  // -----------------------------------------------------------
+
+  // Spotlight 1 + 5
+  // ---------------
+  .home .ja-sl-1,
+  .home .ja-sl-5 {
+    margin-left: -20px;
+    margin-right: -20px;
+    //jumbotron
+    .jumbotron {
+      padding-top: 30px;
+      padding-bottom: 10px;
+      //jumbotron btn
+      .btn-large {
+        font-size: @baseFontSize + 2;
+        padding: (@baseFontSize - 2px) (@baseFontSize + 2px);
+      }
+    }
+  }
+
+
+  // Spotlight 2
+  // -----------
+  .home .ja-sl-2 {
+    text-align: center;
+    p {
+      font-size: @baseFontSize;
+      line-height: @baseLineHeight;
+    }
+  }
+
+
+  // Spotlight 3 & 4
+  // ---------------
+  .home .ja-sl-3 p img {
+    margin-bottom: 0;
+    margin-top: @baseLineHeight;
+  }
+
+  .home .ja-sl-3,
+  .home .ja-sl-4 {
+    p {
+      font-size: @baseFontSize;
+      line-height: @baseLineHeight;
+    }
+
+    //jumbotron
+    .jumbotron {
+      padding-bottom: 0;
+      h1 {
+        margin-bottom: @baseLineHeight / 2;
+        margin-top: @baseLineHeight / 2;
+      }
+      p {
+        font-size: @baseFontSize;
+      }
+    }
+  }
+
+}

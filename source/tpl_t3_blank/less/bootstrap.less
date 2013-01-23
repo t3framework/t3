@@ -1,0 +1,64 @@
+/*!
+ * Bootstrap v2.1.0
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+
+// CSS Reset
+@import "../../../plugins/system/t3/base/bootstrap/less/reset.less";
+
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less"; // Modify this for custom colors, font-sizes, etc
+
+// Grid system and page structure
+//@import "../../../plugins/system/t3/base/bootstrap/less/scaffolding.less"; // T3 Note: Already in T3 core.less
+@import "../../../plugins/system/t3/base/bootstrap/less/grid.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/layouts.less";
+
+// Base CSS
+//@import "../../../plugins/system/t3/base/bootstrap/less/type.less"; // T3 Note: Already in T3 typo.less
+@import "../../../plugins/system/t3/base/bootstrap/less/code.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/forms.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/tables.less";
+
+// Components: common
+//@import "../../../plugins/system/t3/base/bootstrap/less/sprites.less"; // T3 Note: Using FontAwesome instead
+@import "../fonts/font-awesome/less/font-awesome.less"; // T3 Note: Using FontAwesome
+//@import "../../../plugins/system/t3/base/bootstrap/less/dropdowns.less"; // T3 Note: Already in T3 navigation-core.less
+@import "../../../plugins/system/t3/base/bootstrap/less/wells.less";
+//@import "../../../plugins/system/t3/base/bootstrap/less/component-animations.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/close.less";
+
+// Components: Buttons & Alerts
+@import "../../../plugins/system/t3/base/bootstrap/less/buttons.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/button-groups.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
+@import "../../../plugins/system/t3/base/bootstrap/less/navs.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/navbar.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/breadcrumbs.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/pagination.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/pager.less";
+
+// Components: Popovers
+@import "../../../plugins/system/t3/base/bootstrap/less/modals.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/tooltip.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/popovers.less";
+
+// Components: Misc
+//@import "../../../plugins/system/t3/base/bootstrap/less/thumbnails.less"; // Note: Already in T3 global-typo.less
+@import "../../../plugins/system/t3/base/bootstrap/less/media.less";
+//@import "../../../plugins/system/t3/base/bootstrap/less/labels-badges.less";  // Note: Already in T3 typo.less
+@import "../../../plugins/system/t3/base/bootstrap/less/progress-bars.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/accordion.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/carousel.less";
+@import "../../../plugins/system/t3/base/bootstrap/less/hero-unit.less";
+
+// Utility classes
+@import "../../../plugins/system/t3/base/bootstrap/less/utilities.less"; // Has to be last to override when necessary
