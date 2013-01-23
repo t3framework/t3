@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 
-class T3InstallerScript
+class pkg_T3InstallerScript
 {
     /**
      * Called before any type of action

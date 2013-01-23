@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" version="2.5" method="upgrade">
-    <name>T3 Framework</name>
-    <packagename>t3</packagename>
+    <name>T3 Framework Package</name>
+    <packagename>pkg_t3</packagename>
     <version>1.0.0</version>
     <url>http://www.t3-framework.org</url>
     <creationDate>January 2013</creationDate>
@@ -13,7 +13,7 @@
     <packager>T3 Framework</packager>
     <packagerurl>http://www.t3-framework.org</packagerurl>
     <description></description>
-    <scriptfile>t3.script.php</scriptfile>
+    <scriptfile>pkg_t3.script.php</scriptfile>
     <files folder="source">
         <file type="plugin" id="plg_system_t3" group="system">plg_system_t3</file>
         <file type="template" id="tpl_t3_blank" client="site">tpl_t3_blank</file>
