@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="2.5" method="upgrade">
+    <name>T3 Framework</name>
+    <packagename>t3</packagename>
+    <version>1.0.0</version>
+    <url>http://www.t3-framework.org</url>
+    <creationDate>January 2013</creationDate>
+    <copyright>(C) 2012 - 2013. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>support@t3-framework.org</authorEmail>
+    <authorUrl>www.t3-framework.org</authorUrl>
+    <author>t3-framework.org</author>
+    <packager>T3 Framework</packager>
+    <packagerurl>http://www.t3-framework.org</packagerurl>
+    <description></description>
+    <scriptfile>t3.script.php</scriptfile>
+    <files folder="source">
+        <file type="plugin" id="plg_system_t3" group="system">plg_system_t3</file>
+        <file type="template" id="tpl_t3_blank" client="site">tpl_t3_blank</file>
+    </files>
+    <updateservers>
+        <server type="extension" priority="1" name="T3 Framework Update"><![CDATA[http://www.t3-framework.org/update.xml]]></server>
+    </updateservers>
+</extension>
