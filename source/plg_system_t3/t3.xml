@@ -42,7 +42,7 @@
 		<folder>includes</folder>
 		<folder>base</folder>
 	</files>
-	<languages>
+	<languages folder="languages">
 		<language tag="en-GB">en-GB.plg_system_t3.ini</language>
 		<language tag="en-GB">en-GB.plg_system_t3.sys.ini</language>
 	</languages>
