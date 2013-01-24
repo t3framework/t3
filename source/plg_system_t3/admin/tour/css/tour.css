@@ -203,10 +203,8 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   color: #666;
   display: none;
+  font-size: 13px;
   font-weight: bold;
   padding: 5px;
-  position: absolute;
-  top: -50000px;
   line-height: 1;
-  z-index: 2000;
 }

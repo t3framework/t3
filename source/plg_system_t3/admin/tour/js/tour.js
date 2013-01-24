@@ -175,7 +175,7 @@
 						$('html, body').animate({
 							scrollTop: Math.max(0, tipover.offset().top - ($(window).height() - tipover.outerHeight(true))/ 2)
 						});
-					}	
+					}
 				});
 			}, 160);
 		},
@@ -320,14 +320,22 @@
 				var placed = $('#t3-toolbar-help'),
 					tip = $('#t3-tour-quickhelp');
 
-				tip.appendTo(document.body).css({
-					display: 'block',
+				tip
+				.appendTo($('#t3-toolbar'))
+				.css({
+					display: 'inline-block',
 					opacity: 0,
-					top: placed.offset().top - (tip.outerHeight(true) - placed.outerHeight(true)) / 2,
-					left: placed.offset().left + placed.outerWidth(true) + 10 
-				}).delay(2000).fadeTo(700, 1).delay(4000).fadeTo(500, 0, function(){
-					$(this).remove();
-				}).on('click', $.proxy(this.defaultTour, this));
+				})
+				.delay(2000).fadeTo(700, 1)
+				.on('click', $.proxy(this.defaultTour, this))
+				.find('.close')
+					.on('click', function(){
+						tip.fadeTo(500, 0, function(){
+							$(this).remove();
+						});
+
+						return false;
+					});
 
 				$.cookie('t3-tour-firstshow', '1', { expires: 365, path: '/' });
 			}
