@@ -60,12 +60,14 @@
   }
 
   // Group Title
-  .mega-nav .mega-group > span,
-  .dropdown-menu .mega-nav .mega-group > span {
+  .mega-nav .mega-group > .mega-group-title,
+  .dropdown-menu .mega-nav .mega-group > .mega-group-title,
+  .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
+    background: inherit;
+    color: @grayDarker;
     font-size: @T3biggerFontSize;
     font-weight: bold;
     margin-bottom: 5px;
-    color: @grayDarker;
 
     &:hover, &:active, &:focus {
       background: inherit;
