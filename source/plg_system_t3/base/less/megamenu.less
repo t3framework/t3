@@ -70,15 +70,18 @@
   }
 
   // Group Title
-  .mega-nav .mega-group > span,
-  .dropdown-menu .mega-nav .mega-group > span {
+  .mega-nav .mega-group > .mega-group-title,
+  .dropdown-menu .mega-nav .mega-group > .mega-group-title,
+  .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
+    background: inherit;
+    color: inherit;
     font-weight: bold;
     padding: 0;
     margin: 0;
 
     &:hover, &:active, &:focus {
-    background: inherit;
-    color: inherit;
+      background: inherit;
+      color: inherit;
     }
   }
 

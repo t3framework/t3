@@ -216,8 +216,8 @@
 
 
 /* The group ---*/
-.t3-megamenu .mega-nav .mega-group > span,
-.t3-megamenu .dropdown-menu .mega-nav .mega-group > span {
+.ja-megamenu .mega-nav .mega-group > .mega-group-title,
+.ja-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title {
   padding: 5px 20px 5px 10px;
   cursor: pointer;
 }

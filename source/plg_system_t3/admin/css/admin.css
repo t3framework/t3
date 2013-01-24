@@ -705,9 +705,10 @@ button.btn-primary:active {
 --------------- */
 .progress-mini {
   display: inline-block;
-  width: 50px;
-  margin: 0 0 3px 10px;
+  width: 45px;
+  margin: 3px 0 0 10px;
   height: 25px;
+  vertical-align: top;
 }
 
 .progress-mini .bar {
