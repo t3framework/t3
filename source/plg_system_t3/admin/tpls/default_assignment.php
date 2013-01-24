@@ -18,7 +18,7 @@ $user = JFactory::getUser();
 <div class="t3-assignment clearfix">
 
 <div class="t3-fieldset-desc">
-  <?php echo JText::_('T3V3_MENUS_ASSIGNMENT_DESC'); ?>
+  <?php echo JText::_('T3_MENUS_ASSIGNMENT_DESC'); ?>
 </div>
 
 <div class="control-group t3-control-group">

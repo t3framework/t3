@@ -1,1 +1,1 @@
-var $ja = jQuery.noConflict();
+var $T3 = jQuery.noConflict();

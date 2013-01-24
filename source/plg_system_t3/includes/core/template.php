@@ -6,14 +6,14 @@
 // No direct access
 defined('_JEXEC') or die();
 
-t3v3import ('extendable/extendable');
+t3import ('extendable/extendable');
 
 /**
- * T3V3Template class provides extended template tools used for T3v3 framework
+ * T3Template class provides extended template tools used for T3 framework
  *
- * @package T3V3
+ * @package T3
  */
-class T3v3Template extends ObjectExtendable
+class T3Template extends ObjectExtendable
 {
 	/**
 	 * Define constants
@@ -102,7 +102,7 @@ class T3v3Template extends ObjectExtendable
 	*/
 	function loadBlock($block, $vars = array())
 	{
-		$path = T3V3Path::getPath ('tpls/blocks/'.$block.'.php');
+		$path = T3Path::getPath ('tpls/blocks/'.$block.'.php');
 		if ($path) {
 			include $path;
 		} else {
@@ -120,7 +120,7 @@ class T3v3Template extends ObjectExtendable
 	*/
 	function loadLayout($layout)
 	{
-		$path = T3V3Path::getPath ('tpls/'.$layout.'.php', 'tpls/default.php');
+		$path = T3Path::getPath ('tpls/'.$layout.'.php', 'tpls/default.php');
 
 		if (is_file ($path)) {
 			include $path;
@@ -231,17 +231,17 @@ class T3v3Template extends ObjectExtendable
 	}
 
 	function megamenu($menutype){
-			t3v3import('menu/megamenu');
+			t3import('menu/megamenu');
 
-			$file = T3V3_TEMPLATE_PATH.'/etc/megamenu.ini';
+			$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
 			$currentconfig = json_decode(@file_get_contents ($file), true);
 			$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
 
-			$menu = new T3V3MenuMegamenu ($menutype, $mmconfig);
+			$menu = new T3MenuMegamenu ($menutype, $mmconfig);
 			$menu->render();          
 
 			// add core megamenu.css in plugin
-			$this->addStyleSheet(T3V3_URL.'/css/megamenu.css');
+			$this->addStyleSheet(T3_URL.'/css/megamenu.css');
 			// megamenu.css override in template
 			$this->addCss ('megamenu');	
 	}
@@ -407,11 +407,11 @@ class T3v3Template extends ObjectExtendable
 	function addCss ($name) {
 		$devmode = $this->getParam('devmode', 0);
 		$themermode = $this->getParam('themermode', 0);
-		if (($devmode || ($themermode && defined ('T3V3_THEMER'))) && ($url = T3V3Path::getUrl('less/'.$name.'.less', '', true))) {
-			t3v3import ('core/less');
-			T3V3Less::addStylesheet ($url);
+		if (($devmode || ($themermode && defined ('T3_THEMER'))) && ($url = T3Path::getUrl('less/'.$name.'.less', '', true))) {
+			t3import ('core/less');
+			T3Less::addStylesheet ($url);
 		} else {
-			$url = T3V3Path::getUrl ('css/'.$name.'.css');
+			$url = T3Path::getUrl ('css/'.$name.'.css');
 			// Add this css into template
 			if ($url) {
 				$this->addStyleSheet($url);
@@ -420,7 +420,7 @@ class T3v3Template extends ObjectExtendable
 	}
 
 	/**
-	* Add T3v3 basic head 
+	* Add T3 basic head 
 	*/
 	function addHead () {
 		$responsive = $this->getParam('responsive', 1);
@@ -441,18 +441,18 @@ class T3v3Template extends ObjectExtendable
 		//if(version_compare(JVERSION, '3.0', 'ge')){
 		//	JHtml::_('jquery.framework');
 		//} else {
-			$this->addScript (T3V3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
+			$this->addScript (T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
 		//}
 		define('JQUERY_INCLUED', 1);
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
-		$this->addScript (T3V3_URL.'/bootstrap/js/bootstrap.js');	
-		$this->addScript (T3V3_URL.'/js/noconflict.js');
-		$this->addScript (T3V3_URL.'/js/touch.js');
-		$this->addScript (T3V3_URL.'/js/script.js');
+		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');	
+		$this->addScript (T3_URL.'/js/noconflict.js');
+		$this->addScript (T3_URL.'/js/touch.js');
+		$this->addScript (T3_URL.'/js/script.js');
 
 		if ($responsive) {
-			$this->addScript (T3V3_URL.'/js/responsive.js');
+			$this->addScript (T3_URL.'/js/responsive.js');
 		}
 
 		//check and add additional assets
@@ -464,7 +464,7 @@ class T3v3Template extends ObjectExtendable
 	*/
 	function updateHead () {
 		$devmode = $this->getParam('devmode', 0);
-		$themermode = $this->getParam('themermode', 0) && defined ('T3V3_THEMER');
+		$themermode = $this->getParam('themermode', 0) && defined ('T3_THEMER');
 		$theme = $this->getParam('theme', '');
 		$cssmin = $this->getParam('cssminify', 1) ? '.min' : '';
 
@@ -475,19 +475,19 @@ class T3v3Template extends ObjectExtendable
 
 		$doc = JFactory::getDocument();
 		$root = JURI::root(true);
-		$regex = '#'.T3V3_TEMPLATE_URL.'/css/([^/]*)\.css((\?|\#).*)?$#i';
+		$regex = '#'.T3_TEMPLATE_URL.'/css/([^/]*)\.css((\?|\#).*)?$#i';
 		$stylesheets = array();
 		foreach ($doc->_styleSheets as $url => $css) {
 			// detect if this css in template css 
 			if (preg_match($regex, $url, $match)) {
 				$fname = $match[1];
 				if ($devmode || $themermode) {
-					if (is_file (T3V3_TEMPLATE_PATH.'/less/'.$fname.'.less')) {
+					if (is_file (T3_TEMPLATE_PATH.'/less/'.$fname.'.less')) {
 						if ($themermode) {
-							$newurl = T3V3_TEMPLATE_URL.'/less/'.$fname.'.less';
+							$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
 							$css ['mime'] = 'text/less';
 						} else {
-							$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3V3_TEMPLATE.'/less/'.$fname.'.less';
+							$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
 						}
 						$stylesheets[$newurl] = $css;
 						continue;
@@ -495,8 +495,8 @@ class T3v3Template extends ObjectExtendable
 				} 
 
 				// check if css exists in current theme
-				if (is_file (T3V3_TEMPLATE_PATH.'/css/themes/'.$theme.'/'.$fname.$cssmin.'.css')) {
-					$newurl = T3V3_TEMPLATE_URL.'/css/themes/'.$theme.'/'.$fname.$cssmin.'.css';
+				if (is_file (T3_TEMPLATE_PATH.'/css/themes/'.$theme.'/'.$fname.$cssmin.'.css')) {
+					$newurl = T3_TEMPLATE_URL.'/css/themes/'.$theme.'/'.$fname.$cssmin.'.css';
 					$stylesheets[$newurl] = $css;
 					continue;
 				}
@@ -542,7 +542,7 @@ class T3v3Template extends ObjectExtendable
 	function addExtraAssets(){
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
-		foreach(array(T3V3_PATH, T3V3_TEMPLATE_PATH) as $bpath){
+		foreach(array(T3_PATH, T3_TEMPLATE_PATH) as $bpath){
 			//full path
 			$afile = $bpath . '/etc/assets.xml';
 			if(is_file($afile)){
@@ -577,7 +577,7 @@ class T3v3Template extends ObjectExtendable
 								} else if ($url[0] == '/'){ //absolute link from based folder
 									$url = is_file(JPATH_ROOT . $url) ? $base . $url : false; 
 								} else if (!preg_match($regurl, $url)) { //not match a full url -> sure internal link
-									$url = T3V3Path::getUrl($url);		// so get it
+									$url = T3Path::getUrl($url);		// so get it
 								}
 
 								if($url){

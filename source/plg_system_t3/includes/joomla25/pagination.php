@@ -286,8 +286,8 @@ class JPagination extends JObject
 		$itemOverride = false;
 		$listOverride = false;
 
-		// T3V3: detect if chrome pagination.php in template or in plugin
-		$chromePath = T3V3Path::getPath ('html/pagination.php');		
+		// T3: detect if chrome pagination.php in template or in plugin
+		$chromePath = T3Path::getPath ('html/pagination.php');		
 		// $chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/pagination.php';
 		if (file_exists($chromePath))
 		{
@@ -402,8 +402,8 @@ class JPagination extends JObject
 		$list['pagescounter'] = $this->getPagesCounter();
 		$list['pageslinks'] = $this->getPagesLinks();
 
-		// T3V3: detect if chrome pagination.php in template or in plugin
-		$chromePath = T3V3Path::getPath ('html/pagination.php');		
+		// T3: detect if chrome pagination.php in template or in plugin
+		$chromePath = T3Path::getPath ('html/pagination.php');		
 		// $chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/pagination.php';
 		if (file_exists($chromePath))
 		{

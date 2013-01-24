@@ -99,21 +99,21 @@ a.btn, a.btn:hover {
   color: #666;
 }
 
-.header #ja-theme-form {
+.header #t3-theme-form {
   margin: 0;
   padding: 15px;
   border-bottom: 1px solid #444;
   white-space: nowrap;
 }
 
-.header #ja-theme-form select {
+.header #t3-theme-form select {
   margin-left: 10px;
   margin-right: 10px;
   padding-right: 0;
   width: 100px;
 }
 
-.header #ja-theme-form .dropdown-menu {
+.header #t3-theme-form .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -138,7 +138,7 @@ input, select {
 }
 
 /* Variables Form ---*/
-#ja-variable-form {
+#t3-variable-form {
 	position: absolute;
 	top: 180px;
 	bottom: 0;

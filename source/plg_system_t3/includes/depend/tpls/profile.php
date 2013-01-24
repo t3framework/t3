@@ -27,10 +27,10 @@ $javersion = new JVersion;
 				JAFileConfig.changeProfile($('jformparams<?php echo str_replace('holder', '', $this->fieldname);?>').val());
 			});
 
-		}(window.$ja || window.jQuery);
+		}(window.$T3 || window.jQuery);
 	</script>
 
-	<div class="ja-profile">
+	<div class="t3-profile">
 		<label class="hasTip" for="jform_params_<?php echo $this->field_name?>" id="jform_params_<?php echo $this->field_name?>-lbl" title="<?php echo JText::_($this->element['description'])?>"><?php echo JText::_($this->element["label"])?></label>
 		<?php echo $profileHTML; ?>
 		<div class="profile_action">
@@ -52,7 +52,7 @@ $javersion = new JVersion;
 <?php endif; ?>
 
 <?php		
-$fieldSets = $jaform->getFieldsets('params');
+$fieldSets = $t3form->getFieldsets('params');
 
 foreach ($fieldSets as $name => $fieldSet) :
 	if (isset($fieldSet->description) && trim($fieldSet->description)){
@@ -60,7 +60,7 @@ foreach ($fieldSets as $name => $fieldSet) :
 	}
 	
 	$hidden_fields = '';
-	foreach ($jaform->getFieldset($name) as $field) :
+	foreach ($t3form->getFieldset($name) as $field) :
 		if (!$field->hidden) :
 			if($javersion->isCompatible('3.0')) : ?>
 		<div class="control-group t3-control-group">
@@ -68,13 +68,13 @@ foreach ($fieldSets as $name => $fieldSet) :
 			<?php else: ?> 
 		<li>
 			<?php endif;
-				echo $jaform->getLabel($field->fieldname,$field->group);
+				echo $t3form->getLabel($field->fieldname,$field->group);
 			
 				if($javersion->isCompatible('3.0')) : ?>
 			</div>
 			<div class="controls t3-controls">
 				<?php endif;
-				echo $jaform->getInput($field->fieldname,$field->group);
+				echo $t3form->getInput($field->fieldname,$field->group);
 				if($javersion->isCompatible('3.0')) : ?>
 			</div>
 		</div>
@@ -82,7 +82,7 @@ foreach ($fieldSets as $name => $fieldSet) :
 		</li>
 			<?php endif;
 		else : 
-			$hidden_fields .= $jaform->getInput($field->fieldname,$field->group);	
+			$hidden_fields .= $t3form->getInput($field->fieldname,$field->group);	
 		endif;
 	endforeach;
 	echo $hidden_fields; 

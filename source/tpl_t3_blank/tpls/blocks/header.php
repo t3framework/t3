@@ -16,7 +16,7 @@ if ($logoimage) {
 ?>
 
 <!-- HEADER -->
-<header id="ja-header" class="container ja-header">
+<header id="t3-header" class="container t3-header">
   <div class="row">
 
     <!-- LOGO -->

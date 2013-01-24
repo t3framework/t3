@@ -3,13 +3,13 @@
 defined('_JEXEC') or die;
 
 //check if t3 plugin is existed
-if(!defined('T3V3')){
-	throw new Exception(JText::_('T3V3_MISSING_T3V3_PLUGIN'));
+if(!defined('T3')){
+	throw new Exception(JText::_('T3_MISSING_T3_PLUGIN'));
 }
 
-$t3v3 = T3V3::getApp($this);
+$t3app = T3::getApp($this);
 
 // get configured layout
-$layout = $t3v3->getLayout();
+$layout = $t3app->getLayout();
 
-$t3v3->loadLayout ($layout);
+$t3app->loadLayout ($layout);

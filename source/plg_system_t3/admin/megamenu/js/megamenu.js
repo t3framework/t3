@@ -1,4 +1,4 @@
-var T3V3AdminMegamenu = window.T3V3AdminMegamenu || {};
+var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 !function ($) {
 	var currentSelected = null,
@@ -391,7 +391,7 @@ var T3V3AdminMegamenu = window.T3V3AdminMegamenu || {};
 
 		var menutype = $('#jform_params_mm_type').val();
 		$.ajax({
-			url: T3V3Admin.adminurl,
+			url: T3Admin.adminurl,
 			data:{'t3action':'megamenu', 't3task':'save', 'menutype': menutype, 'config': JSON.stringify(config)},
 			type: 'POST',
 			async: !e || e.isTrigger
@@ -560,7 +560,7 @@ var T3V3AdminMegamenu = window.T3V3AdminMegamenu || {};
 					// get module content
 					if (value) {
 						$.ajax({
-							url: T3V3Admin.rooturl,
+							url: T3Admin.rooturl,
 							data:{'t3action':'module', 'mid': value}
 						}).done(function ( data ) {
 							currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
@@ -620,10 +620,10 @@ var T3V3AdminMegamenu = window.T3V3AdminMegamenu || {};
 		unbindEvents(els);
 		bindEvents(els);
 	}
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);
 
 !function($){
-	$.extend(T3V3AdminMegamenu, {
+	$.extend(T3AdminMegamenu, {
 		// put megamenu admin panel into right place
 		prepare: function(){
 			// var panel = $('#jform_params_mm_panel-lbl').closest ('.control-group').find('.controls');
@@ -673,12 +673,12 @@ var T3V3AdminMegamenu = window.T3V3AdminMegamenu || {};
 	});
 
 	$(window).load(function(){
-		T3V3AdminMegamenu.prepare();
+		T3AdminMegamenu.prepare();
 	});
 
 	$(document).ready(function(){
-		T3V3AdminMegamenu.initPanel();
-		T3V3AdminMegamenu.initPreSubmit();
+		T3AdminMegamenu.initPanel();
+		T3AdminMegamenu.initPreSubmit();
 	});
 
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);

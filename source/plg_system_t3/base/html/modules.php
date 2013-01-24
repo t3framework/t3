@@ -21,11 +21,11 @@ defined('_JEXEC') or die('Restricted access');
 /*
  * Default Module Chrome that has sematic markup and has best SEO support
  */
-function modChrome_JAxhtml($module, &$params, &$attribs)
+function modChrome_T3Xhtml($module, &$params, &$attribs)
 { 
-	$badge = preg_match ('/badge/', $params->get('moduleclass_sfx'))?"<span class=\"badge\">&nbsp;</span>\n":"";
+	$badge = preg_match ('/badge/', $params->get('moduleclass_sfx'))? '<span class="badge">&nbsp;</span>' : '';
 ?>
-	<div class="ja-module module<?php echo $params->get('moduleclass_sfx'); ?>" id="Mod<?php echo $module->id; ?>">
+	<div class="t3-module module<?php echo $params->get('moduleclass_sfx'); ?>" id="Mod<?php echo $module->id; ?>">
     <div class="module-inner">
       <?php echo $badge; ?>
       <?php if ($module->showtitle != 0) : ?>

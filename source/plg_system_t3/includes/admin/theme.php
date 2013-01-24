@@ -9,7 +9,7 @@
  * @author JoomlArt
  *
  */
-class T3v3AdminTheme
+class T3AdminTheme
 {
 	/**
 	 *
@@ -29,19 +29,19 @@ class T3v3AdminTheme
 		$result = array();
 		
 		if(empty($path)){
-			return self::error(JText::_('T3V3_TM_UNKNOWN_THEME'));
+			return self::error(JText::_('T3_TM_UNKNOWN_THEME'));
 		}
 		
 		$theme = JFactory::getApplication()->input->getCmd('theme');
 		$from = JFactory::getApplication()->input->getCmd('from');
 		if (!$theme) {
-		   return self::error(JText::_('T3V3_TM_INVALID_DATA_TO_SAVE'));
+		   return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
 		}
 
 		$file = $path . '/less/themes/' . $theme . '/variables-custom.less';
 
 		if(!class_exists('JRegistryFormatLESS')){
-			t3v3import('format/less');
+			t3import('format/less');
 		}
 		$variables = new JRegistry();
 		$variables->loadObject($_POST);
@@ -55,7 +55,7 @@ class T3v3AdminTheme
 
 			if(JFolder::exists($path . '/less/themes/' . $from)){
 				if(@JFolder::copy($path . '/less/themes/' . $from, $path . '/less/themes/' . $theme) != true){
-					return self::error(JText::_('T3V3_TM_NOT_FOUND'));
+					return self::error(JText::_('T3_TM_NOT_FOUND'));
 				}
 			} else if($from == 'base') {
 				$dummydata = "";
@@ -68,16 +68,16 @@ class T3v3AdminTheme
 		$return = @JFile::write($file, $data);
 
 		if (!$return) {
-			return self::error(JText::_('T3V3_TM_OPERATION_FAILED'));
+			return self::error(JText::_('T3_TM_OPERATION_FAILED'));
 		} else {
-			$result['success'] = JText::sprintf('T3V3_TM_SAVE_SUCCESSFULLY', $theme);
+			$result['success'] = JText::sprintf('T3_TM_SAVE_SUCCESSFULLY', $theme);
 			$result['theme'] = $theme;
 			$result['type'] = $type;
 		}
 
-		//LessHelper::compileForTemplate(T3V3_TEMPLATE_PATH, $theme);
-		t3v3import ('core/less');
-		T3V3Less::compileAll($theme);
+		//LessHelper::compileForTemplate(T3_TEMPLATE_PATH, $theme);
+		t3import ('core/less');
+		T3Less::compileAll($theme);
 		return self::response($result);
 	}
 
@@ -92,32 +92,32 @@ class T3v3AdminTheme
 		$result = array();
 		
 		if (empty($theme) || empty($from)) {
-			return self::error(JText::_('T3V3_TM_INVALID_DATA_TO_SAVE'));
+			return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
 		}
 
 		$source = $path . '/less/themes/' . $from;
 		if (!JFolder::exists($source)) {
-			return self::error(JText::sprintf('T3V3_TM_NOT_FOUND', $from));
+			return self::error(JText::sprintf('T3_TM_NOT_FOUND', $from));
 		}
 		
 		$dest = $path . '/less/themes/' . $theme;
 		if (JFolder::exists($dest)) {
-			return self::error(JText::sprintf('T3V3_TM_EXISTED', $theme));
+			return self::error(JText::sprintf('T3_TM_EXISTED', $theme));
 		}
 
 		$result = array();
 		if (@JFolder::copy($source, $dest) == true) {
-			$result['success'] = JText::_('T3V3_TM_CLONE_SUCCESSFULLY');
+			$result['success'] = JText::_('T3_TM_CLONE_SUCCESSFULLY');
 			$result['theme'] = $theme;
 			$result['reset'] = true;
 			$result['type'] = 'duplicate';
 		} else {
-			return self::error(JText::_('T3V3_TM_OPERATION_FAILED'));
+			return self::error(JText::_('T3_TM_OPERATION_FAILED'));
 		}
 		
-		//LessHelper::compileForTemplate(T3V3_TEMPLATE_PATH , $theme);
-		t3v3import ('core/less');
-		T3V3Less::compileAll($theme);
+		//LessHelper::compileForTemplate(T3_TEMPLATE_PATH , $theme);
+		t3import ('core/less');
+		T3Less::compileAll($theme);
 		return self::response($result);
 	}
 
@@ -132,23 +132,23 @@ class T3v3AdminTheme
 		$result = array();
 		
 		if (!$theme) {
-			return self::error(JText::_('T3V3_TM_UNKNOWN_THEME'));
+			return self::error(JText::_('T3_TM_UNKNOWN_THEME'));
 		}
 
 		$file = $path . '/less/themes/' . $theme;
 		$return = false;
 		if (!JFolder::exists($file)) {
-			return self::error(JText::sprintf('T3V3_TM_NOT_FOUND', $theme));
+			return self::error(JText::sprintf('T3_TM_NOT_FOUND', $theme));
 		}
 		
 		$return = @JFolder::delete($file);
 		
 		if (!$return) {
-			return self::error(JText::sprintf('T3V3_TM_DELETE_FAIL', $file));
+			return self::error(JText::sprintf('T3_TM_DELETE_FAIL', $file));
 		} else {
 			
 			$result['template'] = '0';
-			$result['success'] = JText::sprintf('T3V3_TM_DELETE_SUCCESSFULLY', $theme);
+			$result['success'] = JText::sprintf('T3_TM_DELETE_SUCCESSFULLY', $theme);
 			$result['theme'] = $theme;
 			$result['type'] = 'delete';
 		}
@@ -172,10 +172,10 @@ class T3v3AdminTheme
 		//todo: Need to optimize here
 		$tplparams = JApplication::getInstance('site')->getTemplate(true)->params;
 
-		$jassetspath = T3V3_TEMPLATE_PATH;
-		$jathemepath = $jassetspath . '/less/themes';
+		$assetspath = T3_TEMPLATE_PATH;
+		$themepath = $assetspath . '/less/themes';
 		if(!class_exists('JRegistryFormatLESS')){
-			include_once T3V3_ADMIN_PATH . '/includes/format/less.php';
+			include_once T3_ADMIN_PATH . '/includes/format/less.php';
 		}
 
 		$themes = array();
@@ -186,18 +186,18 @@ class T3v3AdminTheme
 		$tobj->id = 'base';
 		$tobj->title = JText::_('JDEFAULT');
 		$themes['base'] = $tobj;
-		$varfile = $jassetspath . '/less/variables.less';
+		$varfile = $assetspath . '/less/variables.less';
 		if(file_exists($varfile)){
 			$params = new JRegistry;
 			$params->loadString(JFile::read($varfile), 'LESS');
 			$jsondata['base'] = $params->toArray();
 		}
 
-		if (JFolder::exists($jathemepath)) {
-			$jathemes = JFolder::folders($jathemepath);
-			if (count($jathemes)) {
-				foreach ($jathemes as $theme) {
-					$varsfile = $jathemepath . '/' . $theme . '/variables-custom.less';
+		if (JFolder::exists($themepath)) {
+			$listthemes = JFolder::folders($themepath);
+			if (count($listthemes)) {
+				foreach ($listthemes as $theme) {
+					$varsfile = $themepath . '/' . $theme . '/variables-custom.less';
 					if(file_exists($varsfile)){
 
 						$tobj = new stdClass();
@@ -206,16 +206,16 @@ class T3v3AdminTheme
 
 						//check for all less file in theme folder
 						$params = false;
-						$others = JFolder::files($jathemepath . '/' . $theme, '.less');
+						$others = JFolder::files($themepath . '/' . $theme, '.less');
 						foreach($others as $other){
 							//get those developer custom values
 							if($other == 'variables.less'){
 								$params = new JRegistry;
-								$params->loadString(JFile::read($jathemepath . '/' . $theme . '/variables.less'), 'LESS');								
+								$params->loadString(JFile::read($themepath . '/' . $theme . '/variables.less'), 'LESS');								
 							}
 
 							if($other != 'variables-custom.less'){
-								$tobj->$other = true; //JFile::read($jathemepath . '/' . $theme . '/' . $other);
+								$tobj->$other = true; //JFile::read($themepath . '/' . $theme . '/' . $other);
 							}
 						}
 
@@ -237,14 +237,14 @@ class T3v3AdminTheme
 		}
 
 		$langs = array (
-			'addTheme' => JText::_('T3V3_TM_ASK_ADD_THEME'),
-			'delTheme' => JText::_('T3V3_TM_ASK_DEL_THEME'),
-			'correctName' => JText::_('T3V3_TM_ASK_CORRECT_NAME'),
-			'themeExist' => JText::_('T3V3_TM_EXISTED'),
-			'saveChange' => JText::_('T3V3_TM_ASK_SAVE_CHANGED'),
-			'previewError' => JText::_('T3V3_TM_PREVIEW_ERROR'),
+			'addTheme' => JText::_('T3_TM_ASK_ADD_THEME'),
+			'delTheme' => JText::_('T3_TM_ASK_DEL_THEME'),
+			'correctName' => JText::_('T3_TM_ASK_CORRECT_NAME'),
+			'themeExist' => JText::_('T3_TM_EXISTED'),
+			'saveChange' => JText::_('T3_TM_ASK_SAVE_CHANGED'),
+			'previewError' => JText::_('T3_TM_PREVIEW_ERROR'),
 			'lblCancel' => JText::_('JCANCEL'),
-			'lblOk'	=> JText::_('T3V3_TM_LABEL_OK'),
+			'lblOk'	=> JText::_('T3_TM_LABEL_OK'),
 			'lblNo' => JText::_('JNO'),
 			'lblYes' => JText::_('JYES')
 		);
@@ -258,13 +258,13 @@ class T3v3AdminTheme
 			$backurl->delVar('themer');
 		}
 
-		$form = new JForm('thememagic.themer', array('control' => 'jaform'));
-		$form->load(JFile::read(T3V3_PATH . DIRECTORY_SEPARATOR . 'params' . DIRECTORY_SEPARATOR . 'thememagic.xml'));
-		$form->loadFile(T3V3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . 'templateDetails.xml', false, '//config');
+		$form = new JForm('thememagic.themer', array('control' => 't3form'));
+		$form->load(JFile::read(T3_PATH . DIRECTORY_SEPARATOR . 'params' . DIRECTORY_SEPARATOR . 'thememagic.xml'));
+		$form->loadFile(T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . 'templateDetails.xml', false, '//config');
 
 		$fieldSets = $form->getFieldsets('thememagic');
 
-		include T3V3_ADMIN_PATH.'/admin/thememagic/thememagic.tpl.php';
+		include T3_ADMIN_PATH.'/admin/thememagic/thememagic.tpl.php';
 		
 		exit();
 	}
@@ -273,25 +273,25 @@ class T3v3AdminTheme
 		$japp = JFactory::getApplication();
 		$jdoc = JFactory::getDocument();
 		$params = $japp->getTemplate(true)->params;
-		if(defined('T3V3_THEMER') && $params->get('themermode', 0)){
+		if(defined('T3_THEMER') && $params->get('themermode', 0)){
 			
-			$jdoc->addStyleSheet(T3V3_URL.'/css/thememagic.css');
-			$jdoc->addScript(T3V3_URL.'/js/thememagic.js');
+			$jdoc->addStyleSheet(T3_URL.'/css/thememagic.css');
+			$jdoc->addScript(T3_URL.'/js/thememagic.js');
 			
 			$theme = $params->get('theme');
 			$params = new JRegistry;
 			$themeinfo = new stdClass;
 
 			if($theme){
-				$themepath = T3V3_TEMPLATE_PATH . '/less/themes/' . $theme;
+				$themepath = T3_TEMPLATE_PATH . '/less/themes/' . $theme;
 
 				if(file_exists($themepath . '/variables-custom.less')){
 					if(!class_exists('JRegistryFormatLESS')){
-						include_once T3V3_ADMIN_PATH . '/includes/format/less.php';
+						include_once T3_ADMIN_PATH . '/includes/format/less.php';
 					}
 
 					//default variables
-					$varfile = T3V3_TEMPLATE_PATH . '/less/variables.less';
+					$varfile = T3_TEMPLATE_PATH . '/less/variables.less';
 					if(file_exists($varfile)){
 						$params->loadString(JFile::read($varfile), 'LESS');
 						
@@ -328,17 +328,17 @@ class T3v3AdminTheme
 			}
 
 			$jdoc->addScriptDeclaration('
-				var T3V3Theme = window.T3V3Theme || {};
-				T3V3Theme.vars = ' . json_encode($params->toArray()) . ';
-				T3V3Theme.others = ' . json_encode($themeinfo) . ';
-				T3V3Theme.theme = \'' . $theme . '\';
-				T3V3Theme.base = \'' . JURI::base() . '\';
+				var T3Theme = window.T3Theme || {};
+				T3Theme.vars = ' . json_encode($params->toArray()) . ';
+				T3Theme.others = ' . json_encode($themeinfo) . ';
+				T3Theme.theme = \'' . $theme . '\';
+				T3Theme.base = \'' . JURI::base() . '\';
 				if(typeof less != \'undefined\'){
 					
 					//we need to build one - cause the js will have unexpected behavior
 					
-					if(window.parent.T3V3Theme && window.parent.T3V3Theme.applyLess){
-						window.parent.T3V3Theme.applyLess(true);
+					if(window.parent.T3Theme && window.parent.T3Theme.applyLess){
+						window.parent.T3Theme.applyLess(true);
 					} else {
 						less.refresh();
 					}

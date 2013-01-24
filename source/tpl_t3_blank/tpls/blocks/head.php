@@ -19,12 +19,12 @@ defined('_JEXEC') or die;
 <!-- //SYSTEM CSS -->
 
 <?php
-	// Add T3v3 Basic head
+	// Add T3 Basic head
 	$this->addHead();
 ?>
 
 <!-- CUSTOM CSS -->
-<link href="<?php echo T3V3_TEMPLATE_URL ?>/css/custom.css" rel="stylesheet" />
+<link href="<?php echo T3_TEMPLATE_URL ?>/css/custom.css" rel="stylesheet" />
 <!-- //CUSTOM CSS -->
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -33,6 +33,6 @@ defined('_JEXEC') or die;
 <![endif]-->
 
 <!-- for IE6-8 support of media query -->
-<script type="text/javascript" src="<?php echo T3V3_URL ?>/js/respond.min.js"></script>
+<script type="text/javascript" src="<?php echo T3_URL ?>/js/respond.min.js"></script>
 
 <!-- You can add Google Analytics here-->

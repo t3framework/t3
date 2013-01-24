@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-JHtml::addIncludePath(T3V3_PATH.'/html/com_content');
+JHtml::addIncludePath(T3_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
 
 JHtml::_('behavior.tooltip');

@@ -52,7 +52,7 @@ $helpcls = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'fileconfig.php';
 if(file_exists($helpcls))
 include_once $helpcls;
 
-$task = isset($_REQUEST['jaction']) ? $_REQUEST['jaction'] : '';
+$task = isset($_REQUEST['dptask']) ? $_REQUEST['dptask'] : '';
 if ($task != '' && method_exists('JAFileConfig', $task)) {
 	JAFileConfig::$task();
 }

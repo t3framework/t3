@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 	$rowcls = isset($vars['row-fluid']) && $vars['row-fluid'] ? 'row-fluid':'row';
 	?>
 	<!-- SPOTLIGHT -->
-	<div class="ja-spotlight ja-<?php echo $name ?> <?php echo $rowcls ?>">
+	<div class="t3-spotlight t3-<?php echo $name ?> <?php echo $rowcls ?>">
 		<?php
 		foreach ($splparams as $i => $splparam):
 			$param = (object)$splparam;

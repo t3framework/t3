@@ -7,8 +7,8 @@
 
 defined('_JEXEC') or die;
 
-if(!defined('T3V3_TPL_COMPONENT')){
-  define('T3V3_TPL_COMPONENT', 1);
+if(!defined('T3_TPL_COMPONENT')){
+  define('T3_TPL_COMPONENT', 1);
 }
 ?>
 
@@ -21,9 +21,9 @@ if(!defined('T3V3_TPL_COMPONENT')){
   </head>
 
   <body>
-    <section id="ja-mainbody" class="container ja-mainbody">
+    <section id="t3-mainbody" class="container t3-mainbody">
       <div class="row">
-        <div id="ja-content" class="ja-content span12">
+        <div id="t3-content" class="t3-content span12">
           <jdoc:include type="component" />    
         </div>
       </div>

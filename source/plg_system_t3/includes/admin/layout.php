@@ -10,7 +10,7 @@
  * @author JoomlArt
  *
  */
-class T3v3AdminLayout
+class T3AdminLayout
 {
 	public static function response($result = array()){
 		die(json_encode($result));
@@ -32,12 +32,12 @@ class T3v3AdminLayout
 			$tplid = JFactory::getApplication()->input->getCmd('view') == 'style' ? JFactory::getApplication()->input->getCmd('id', 0) : false;
 			if(!$tplid){
 				die(json_encode(array(
-					'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+					'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 					)));
 			}
 
 			$cache = JFactory::getCache('com_templates', '');
-			if (!$templates = $cache->get('jat3tpl')) {
+			if (!$templates = $cache->get('t3tpl')) {
 				// Load styles
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true);
@@ -54,7 +54,7 @@ class T3v3AdminLayout
 					$registry->loadString($template->params);
 					$template->params = $registry;
 				}
-				$cache->store($templates, 'jat3tpl');
+				$cache->store($templates, 't3tpl');
 			}
 
 			if (isset($templates[$tplid])) {
@@ -66,9 +66,9 @@ class T3v3AdminLayout
 		}
 
 		ob_clean();
-		$t3v3 = T3v3::getSite($tpl);
-		$layout = $t3v3->getLayout();
-		$t3v3->loadLayout($layout);
+		$t3app = T3::getSite($tpl);
+		$layout = $t3app->getLayout();
+		$t3app->loadLayout($layout);
 		$lbuffer = ob_get_clean();
 		die($lbuffer);
 	}
@@ -80,7 +80,7 @@ class T3v3AdminLayout
 		$template = $input->getCmd('template');
 		$layout = $input->getCmd('layout');
 		if (!$template || !$layout) {
-			return self::error(JText::_('T3V3_LAYOUT_INVALID_DATA_TO_SAVE'));
+			return self::error(JText::_('T3_LAYOUT_INVALID_DATA_TO_SAVE'));
 		}
 		
 		$file = JPATH_ROOT . '/templates/' . $template . '/etc/layout/' . $layout . '.ini';
@@ -93,11 +93,11 @@ class T3v3AdminLayout
 
 		$data = $params->toString('INI');
 		if (!@JFile::write($file, $data)) {
-			return self::error(JText::_('T3V3_LAYOUT_OPERATION_FAILED'));
+			return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
 		}
 
 		return self::response(array(
-			'successful' => JText::sprintf('T3V3_LAYOUT_SAVE_SUCCESSFULLY', $layout),
+			'successful' => JText::sprintf('T3_LAYOUT_SAVE_SUCCESSFULLY', $layout),
 			'layout' => $layout,
 			'type' => 'new'
 			));
@@ -115,7 +115,7 @@ class T3v3AdminLayout
 		$layout = JApplication::stringURLSafe($layout);
 
 		if (!$template || !$original || !$layout) {
-			return self::error(JText::_('T3V3_LAYOUT_INVALID_DATA_TO_SAVE'));
+			return self::error(JText::_('T3_LAYOUT_INVALID_DATA_TO_SAVE'));
 		}
 
 		$srcpath = JPATH_ROOT . '/templates/' . $template . '/tpls/';
@@ -133,7 +133,7 @@ class T3v3AdminLayout
 
 		$data = $params->toString('INI');
 		if ($data && !@JFile::write($confdest, $data)) {
-			return self::error(JText::_('T3V3_LAYOUT_OPERATION_FAILED'));
+			return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
 		}
 
 		// Check if original file exists
@@ -141,7 +141,7 @@ class T3v3AdminLayout
 			// Check if the desired file already exists
 			if (!JFile::exists($dest)) {
 				if (!JFile::copy($source, $dest)) {
-					return self::error(JText::_('T3V3_LAYOUT_OPERATION_FAILED'));
+					return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
 				} else {
 					//clone configuration file, we only copy if the target file does not exist
 					if(!JFile::exists($confdest) && JFile::exists($confpath . $original . '.ini')){
@@ -150,15 +150,15 @@ class T3v3AdminLayout
 				}
 			}
 			else {
-				return self::error(JText::_('T3V3_LAYOUT_EXISTED'));
+				return self::error(JText::_('T3_LAYOUT_EXISTED'));
 			}
 		}
 		else {
-			return self::error(JText::_('T3V3_LAYOUT_NOT_FOUND'));
+			return self::error(JText::_('T3_LAYOUT_NOT_FOUND'));
 		}
 
 		return self::response(array(
-			'successful' => JText::_('T3V3_LAYOUT_SAVE_SUCCESSFULLY'),
+			'successful' => JText::_('T3_LAYOUT_SAVE_SUCCESSFULLY'),
 			'original' => $original,
 			'layout' => $layout,
 			'type' => 'clone'
@@ -172,7 +172,7 @@ class T3v3AdminLayout
 		$template = $input->getCmd('template');
 
 		if (!$layout) {
-			return self::error(JText::_('T3V3_LAYOUT_UNKNOW_ACTION'));
+			return self::error(JText::_('T3_LAYOUT_UNKNOW_ACTION'));
 		}
 
 		$layoutfile = JPATH_ROOT . '/templates/' . $template . '/tpls/' . $layout . '.php';
@@ -180,18 +180,18 @@ class T3v3AdminLayout
 
 		$return = false;
 		if (!JFile::exists($layoutfile)) {
-			return self::error(JText::sprintf('T3V3_LAYOUT_NOT_FOUND', $layout));
+			return self::error(JText::sprintf('T3_LAYOUT_NOT_FOUND', $layout));
 		}
 		
 		$return = @JFile::delete($layoutfile);
 		
 		if (!$return) {
-			return self::error(JText::_('T3V3_LAYOUT_DELETE_FAIL'));
+			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
 		} else {
 			@JFile::delete($initfile);
 			
 			return self::response(array(
-				'successful' => JText::_('T3V3_LAYOUT_DELETE_SUCCESSFULLY'),
+				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
 				'layout' => $layout,
 				'type' => 'delete'
 			));
@@ -200,7 +200,7 @@ class T3v3AdminLayout
 
 	public static function getTplPositions(){
 
-		$template = T3V3_TEMPLATE;
+		$template = T3_TEMPLATE;
 		$path = JPATH_SITE;
 		$lang = JFactory::getLanguage();
 		$lang->load('tpl_'.$template.'.sys', $path, null, false, false)

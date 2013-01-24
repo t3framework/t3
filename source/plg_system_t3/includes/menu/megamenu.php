@@ -1,7 +1,7 @@
 <?php
-t3v3import ('menu/megamenu.tpl');
+t3import ('menu/megamenu.tpl');
 
-class T3V3MenuMegamenu {
+class T3MenuMegamenu {
 	protected $children = array();
 	protected $_items = array();
 	protected $settings = null;
@@ -244,8 +244,8 @@ class T3V3MenuMegamenu {
 	}
 
 	function _ ($tmpl, $vars = array()) {
-		if (method_exists('T3V3MenuMegamenuTpl', $tmpl)) {			
-			$this->menu .= T3V3MenuMegamenuTpl::$tmpl($vars)."\n";
+		if (method_exists('T3MenuMegamenuTpl', $tmpl)) {			
+			$this->menu .= T3MenuMegamenuTpl::$tmpl($vars)."\n";
 		} else {
 			$this->menu .= "$tmpl\n";			
 		}

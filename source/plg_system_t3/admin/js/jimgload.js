@@ -4,7 +4,7 @@
 	// blank image data-uri bypasses webkit log warning (thx doug jones)
 	var blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
-	$.fn.jaload = function(option){
+	$.fn.t3imgload = function(option){
 		var opts = $.extend({onload: false}, $.isFunction(option) ? {onload: option} : option),
 			jimgs = this.find('img').add(this.filter('img')),
 			total = jimgs.length,
@@ -16,19 +16,19 @@
 
 				loaded.push(this);
 
-				$.data(this, 'JAImgLoad', {src: this.src});
+				$.data(this, 't3iload', {src: this.src});
 				if (total === loaded.length){
 					$.isFunction(opts.onload) && setTimeout(opts.onload);
-					jimgs.unbind('.JAImgLoad');
+					jimgs.unbind('.t3iload');
 				}
 			};
 
 		if (!total){
 			$.isFunction(opts.onload) && opts.onload();
 		} else {
-			jimgs.on('load.JAImgLoad error.JAImgLoad', onload).each(function(i, el){
+			jimgs.on('load.t3iload error.t3iload', onload).each(function(i, el){
 				var src = el.src,
-					cached = $.data(el, 'JAImgLoad');
+					cached = $.data(el, 't3iload');
 
 				if(cached && cached.src === src){
 					onload.call(el);
@@ -49,4 +49,4 @@
 
 		return this;
 	};
-})(window.$ja || window.jQuery);
+})(window.$T3 || window.jQuery);

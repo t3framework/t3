@@ -1,15 +1,15 @@
 <?php
 
-class T3v3AdminMegamenu {
+class T3AdminMegamenu {
 	public static function display () {
-		t3v3import('menu/megamenu');
+		t3import('menu/megamenu');
 		$input = JFactory::getApplication()->input;
 		$menutype = $input->get ('t3menu', 'mainmenu');
-		$file = T3V3_TEMPLATE_PATH.'/etc/megamenu.ini';
+		$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
 		$currentconfig = json_decode(@file_get_contents ($file), true);
 		$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
 		$mmconfig['editmode'] = true;
-		$menu = new T3V3MenuMegamenu ($menutype, $mmconfig);
+		$menu = new T3MenuMegamenu ($menutype, $mmconfig);
 		$buffer = $menu->render(true);
 		// replace image path
 		$base   = JURI::base(true).'/administrator/';
@@ -27,7 +27,7 @@ class T3v3AdminMegamenu {
 		$input = JFactory::getApplication()->input;
 		$mmconfig = $input->getString ('config');
 		$menutype = $input->get ('menutype', 'mainmenu');
-		$file = T3V3_TEMPLATE_PATH.'/etc/megamenu.ini';
+		$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
 		$currentconfig = json_decode(@file_get_contents($file), true);
 		if (!$currentconfig) $currentconfig = array();
 		$currentconfig[$menutype] = json_decode($mmconfig, true);

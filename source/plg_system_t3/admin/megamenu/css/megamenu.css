@@ -106,18 +106,18 @@
 
 
 /* Global Menu Inner padding ---*/
-.ja-megamenu .mega-inner {
+.t3-megamenu .mega-inner {
   padding: 10px;
 }
 
 
 /* Menu Grid ---*/
-.ja-megamenu .row-fluid + .row-fluid {
+.t3-megamenu .row-fluid + .row-fluid {
   margin-top: 0;
   border-top: 0;
 }
 
-.ja-megamenu .row-fluid [class*="span"] {
+.t3-megamenu .row-fluid [class*="span"] {
   border: 1px dotted #cccccc;
   border-radius: 3px;
   transition: all 0.1s ease 0s;
@@ -128,12 +128,12 @@
 
 
 /* The Nav ---*/
-.ja-megamenu .nav > li {
+.t3-megamenu .nav > li {
   margin-right: 20px;
 }
 
-.ja-megamenu .nav > li > a,
-.ja-megamenu .nav > li > span
+.t3-megamenu .nav > li > a,
+.t3-megamenu .nav > li > span
  {
   border: 1px solid #dddddd;
   padding: 8px 20px;
@@ -146,18 +146,18 @@
 }
 
 /* The caret */
-.ja-megamenu .mega-nav .dropdown-submenu > a::after {
+.t3-megamenu .mega-nav .dropdown-submenu > a::after {
   margin-right: -10px;
 }
 
 
 /* Dropdown ---*/
-.ja-megamenu .dropdown-menu::before,
-.ja-megamenu .dropdown-menu::after {
+.t3-megamenu .dropdown-menu::before,
+.t3-megamenu .dropdown-menu::after {
   display: none !important; /* Hide the Arrow */
 }
 
-.ja-megamenu .dropdown-menu {
+.t3-megamenu .dropdown-menu {
   border: 1px solid #dddddd;
   padding: 10px;
   margin-top: 10px;
@@ -172,26 +172,26 @@
   /* Fixed overlap with the Joomla Toolbar */
 }
 
-.ja-megamenu .dropdown-menu .dropdown-menu {
+.t3-megamenu .dropdown-menu .dropdown-menu {
   margin-top: 0;
   margin-left: 11px;
 }
 
-.ja-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
+.t3-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
   margin-left: 0;
   margin-right: 11px;
 }
 
-.ja-megamenu .mega-nav li {
+.t3-megamenu .mega-nav li {
   margin-bottom: 5px;
 }
 
-.ja-megamenu .mega-nav li:last-child {
+.t3-megamenu .mega-nav li:last-child {
   margin-bottom: 0;
 }
 
-.ja-megamenu .mega-nav li a,
-.ja-megamenu .mega-nav li span {
+.t3-megamenu .mega-nav li a,
+.t3-megamenu .mega-nav li span {
   padding: 5px 20px 5px 10px;
   border: 1px dotted #dddddd;
   border-radius: 3px;
@@ -204,13 +204,13 @@
 
 
 /* The group ---*/
-.ja-megamenu .mega-nav .mega-group > span,
-.ja-megamenu .dropdown-menu .mega-nav .mega-group > span {
+.t3-megamenu .mega-nav .mega-group > span,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > span {
   padding: 5px 20px 5px 10px;
   cursor: pointer;
 }
 
-.ja-megamenu .mega-group-ct {
+.t3-megamenu .mega-group-ct {
   border: 1px solid #dddddd;
   padding: 10px;
   margin: 10px 0 10px 0;
@@ -221,13 +221,13 @@
   background: #f2f2f2;
 }
 
-.ja-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+.t3-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
   padding: 10px;
 }
 
 
 /* Module in Menu ---*/
-.ja-megamenu .ja-module {
+.t3-megamenu .t3-module {
   pointer-events: none;
   cursor: default;
   position: relative;
@@ -237,7 +237,7 @@
   -moz-transition: all 0.1s ease 0s;
 }
 
-.ja-megamenu .ja-module:after {
+.t3-megamenu .t3-module:after {
   display: block;
   position: absolute;
   background: #eeeeee;
@@ -255,24 +255,24 @@
   border-width: 1px 0 0 1px;
 }
 
-.ja-megamenu .ja-module .module-inner {
+.t3-megamenu .t3-module .module-inner {
   opacity: .3;
   font-size: 12px;
 }
 
-.ja-megamenu .ja-module .module-title {
+.t3-megamenu .t3-module .module-title {
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 14px;
 }
 
-.ja-megamenu .ja-module .module-ct {
+.t3-megamenu .t3-module .module-ct {
   overflow: hidden;
   zoom: 1;
 }
 
-.ja-megamenu [class*="span"].hover .ja-module:after,
-.ja-megamenu [class*="span"].selected .ja-module:after {
+.t3-megamenu [class*="span"].hover .t3-module:after,
+.t3-megamenu [class*="span"].selected .t3-module:after {
   border-style: solid;
   border-color: #666666;
   background: #ffbb00;
@@ -280,18 +280,18 @@
 }
 
 /* Fix Form display problem in Modules */
-.ja-megamenu .ja-module .control-group {
+.t3-megamenu .t3-module .control-group {
   margin-bottom: 5px;
 }
 
-.ja-megamenu .ja-module .controls {
+.t3-megamenu .t3-module .controls {
   margin-left: 3px;
 }
 
 
 /* Open Item ---*/
-.ja-megamenu .nav > li.open > a,
-.ja-megamenu .open > a {
+.t3-megamenu .nav > li.open > a,
+.t3-megamenu .open > a {
   background: #333333 !important;
   color: #fff !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5) !important;
@@ -299,10 +299,10 @@
 
 
 /* Hover Item ---*/
-.ja-megamenu .nav-child.hover,
-.ja-megamenu ul[class*="level"] > li > a.hover,
-.ja-megamenu ul[class*="level"] > li > span.hover,
-.ja-megamenu .row-fluid [class*="span"].hover {
+.t3-megamenu .nav-child.hover,
+.t3-megamenu ul[class*="level"] > li > a.hover,
+.t3-megamenu ul[class*="level"] > li > span.hover,
+.t3-megamenu .row-fluid [class*="span"].hover {
   background: #fffbf0 !important;
   color: #333333 !important;
   border: 1px solid #666666 !important;
@@ -310,23 +310,23 @@
   border-radius: 3px;
 }
 
-.ja-megamenu ul[class*="level"] > li > a:hover,
-.ja-megamenu ul[class*="level"] > li > a:focus,
-.ja-megamenu ul[class*="level"] > li > a:active {
+.t3-megamenu ul[class*="level"] > li > a:hover,
+.t3-megamenu ul[class*="level"] > li > a:focus,
+.t3-megamenu ul[class*="level"] > li > a:active {
   background: #fffbf0 !important;
   color: #333333 !important;
   text-shadow: 0 1px 1px #fff !important;
 }
 
 /* The caret */
-.ja-megamenu .mega-nav li a.hover:after,
-.ja-megamenu .mega-nav li a.selected:after {
+.t3-megamenu .mega-nav li a.hover:after,
+.t3-megamenu .mega-nav li a.selected:after {
   border-left-color: #333333;
 }
 
 
 /* Selected Item ---*/
-.ja-megamenu .selected {
+.t3-megamenu .selected {
   background: #fffbf0 !important;
   color: #333333 !important;
   border: 1px solid #666666 !important;

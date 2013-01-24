@@ -5,15 +5,15 @@
 
 // No direct access
 defined('_JEXEC') or die();
-t3v3import ('core/template');
+t3import ('core/template');
 jimport('joomla.utilities.utility');
 
 /**
- * T3V3Template class provides extended template tools used for T3v3 framework
+ * T3Template class provides extended template tools used for T3 framework
  *
- * @package T3V3
+ * @package T3
  */
-class T3v3TemplateLayout extends T3v3Template
+class T3TemplateLayout extends T3Template
 {
 	protected $_block = null;
 
@@ -60,9 +60,9 @@ class T3v3TemplateLayout extends T3v3Template
 			$this->_block = $block;
 		}
 
-		$path = T3V3Path::getPath ('tpls/system/'.$block.'.php');
+		$path = T3Path::getPath ('tpls/system/'.$block.'.php');
 		if(!$path){
-			$path = T3V3Path::getPath ('tpls/blocks/'.$block.'.php');
+			$path = T3Path::getPath ('tpls/blocks/'.$block.'.php');
 		}
 		
 		ob_start();
@@ -92,9 +92,9 @@ class T3v3TemplateLayout extends T3v3Template
 	*/
 	function loadLayout($layout)
 	{
-		$path = T3V3_TEMPLATE_PATH . '/tpls/'.$layout.'.php';
+		$path = T3_TEMPLATE_PATH . '/tpls/'.$layout.'.php';
 		if (!is_file ($path)) {
-			$path = T3V3_TEMPLATE_PATH . '/tpls/default.php';
+			$path = T3_TEMPLATE_PATH . '/tpls/default.php';
 		}
 
 		if (is_file ($path)) {
@@ -257,10 +257,10 @@ class T3v3TemplateLayout extends T3v3Template
 
 		$tp = 'tpls/system/tp.php';
 		$path = '';
-		if (is_file (T3V3_TEMPLATE_PATH . '/' . $tp)) {
-			$path = T3V3_TEMPLATE_PATH . '/' . $tp;
-		} else if (is_file (T3V3_PATH . '/' . $tp)) {
-			$path = T3V3_PATH . '/' . $tp;
+		if (is_file (T3_TEMPLATE_PATH . '/' . $tp)) {
+			$path = T3_TEMPLATE_PATH . '/' . $tp;
+		} else if (is_file (T3_PATH . '/' . $tp)) {
+			$path = T3_PATH . '/' . $tp;
 		}
 
 		return $this->loadFile ($path, $attribs);
@@ -275,7 +275,7 @@ class T3v3TemplateLayout extends T3v3Template
 	}
 
 	/**
-	* Add T3v3 basic head 
+	* Add T3 basic head 
 	*/
 	function addHead () {
 		//TODO: should we return null here
@@ -286,8 +286,8 @@ class T3v3TemplateLayout extends T3v3Template
 		$this->addCss ('layout-custom'); 
 
 		// Add scripts
-		$this->addScript (T3V3_URL.'/bootstrap/js/jquery.js');
-		$this->addScript (T3V3_URL.'/bootstrap/js/bootstrap.js');
+		$this->addScript (T3_URL.'/bootstrap/js/jquery.js');
+		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
 	}
 
 	function megamenu($menutype){

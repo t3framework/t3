@@ -2,7 +2,7 @@
 	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
 	
 	if(isTouch){
-		$.fn.jatouchMenu = function(){
+		$.fn.touchmenu = function(){
 			return this.each(function(){	
 				var	itemsel = $(this).has('.mega').length ? 'li.mega' : 'li.parent',
 					jitems = $(this).find(itemsel),
@@ -60,11 +60,11 @@
 		};
 		
 		$(document).ready(function(){
-			$('ul.nav').has('.dropdown-menu').jatouchMenu();
+			$('ul.nav').has('.dropdown-menu').touchmenu();
 		});
 
 	}
 
 	$('html').addClass(isTouch ? 'touch' : 'no-touch');
 	
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);

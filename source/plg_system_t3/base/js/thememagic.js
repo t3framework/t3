@@ -1,8 +1,8 @@
 
 !function($){
-	T3V3Theme = window.T3V3Theme || {};
+	T3Theme = window.T3Theme || {};
 
-	$.extend(T3V3Theme, {
+	$.extend(T3Theme, {
 		handleLink: function(){
 			var links = document.links,
 				forms = document.forms,
@@ -28,28 +28,28 @@
 		},
 		applyLess: function(data){
 			if(data && typeof data == 'object'){
-				T3V3Theme.vars = data.vars;
-				T3V3Theme.others = data.others;
-				T3V3Theme.theme = data.theme;		
+				T3Theme.vars = data.vars;
+				T3Theme.others = data.others;
+				T3Theme.theme = data.theme;		
 			}
 			
 			less.refresh(true);
 		},
 
 		onCompile: function(completed, total){
-			if(window.parent != window && window.parent.T3V3Theme){
-				window.parent.T3V3Theme.onCompile(completed, total);
+			if(window.parent != window && window.parent.T3Theme){
+				window.parent.T3Theme.onCompile(completed, total);
 			}
 
 			if(completed >= total){
-				T3V3Theme.bodyReady();
+				T3Theme.bodyReady();
 			}
 		},
 
 		bodyReady: function(){
 			if(!this.ready){
 				$(document).ready(function(){
-					T3V3Theme.ready = 1;
+					T3Theme.ready = 1;
 					$(document.body).addClass('ready');
 				});
 			} else {
@@ -59,7 +59,7 @@
 	});
 
 	$(document).ready(function(){
-		T3V3Theme.handleLink();
+		T3Theme.handleLink();
 	});
 	
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);

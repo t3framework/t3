@@ -1,4 +1,4 @@
 //jquery no-conflict
 if(typeof jQuery != 'undefined'){
-	window.$ja = jQuery.noConflict();
+	window.$T3 = jQuery.noConflict();
 }

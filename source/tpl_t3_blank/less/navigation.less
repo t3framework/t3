@@ -2,20 +2,20 @@
 //  JA MAIN MENU
 // -------------------------------------------------------
 
-.ja-mainnav {
+.t3-mainnav {
   #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
   border-top: 1px solid @navbarBackground;
   border-bottom: 1px solid darken(@navbarBackground, 10%);
   height: @navbarHeight;
 }
 
-.ja-mainnav .navbar {
+.t3-mainnav .navbar {
   color: @navbarText;
   margin-bottom: 0;
   margin-top: 0;
 }
 
-.ja-mainnav .navbar-inner {
+.t3-mainnav .navbar-inner {
   min-height: @navbarHeight;
   padding:  0;
   background: transparent;
@@ -30,14 +30,14 @@
 
 // NAVBAR
 // -------------------------------------------------------
-.ja-mainnav .navbar .nav {
+.t3-mainnav .navbar .nav {
   margin: 0;
 }
 
 
 // Links
 // -----
-.ja-mainnav .navbar .nav > li > a {
+.t3-mainnav .navbar .nav > li > a {
   border-top: 0;
   border-right: 1px solid darken(@navbarBackground, 5%);
   padding: ((@navbarHeight - @baseLineHeight) / 2) @baseLineHeight;
@@ -45,17 +45,17 @@
 }
 
 // Hover
-.ja-mainnav .navbar .nav > li > a:focus,
-.ja-mainnav .navbar .nav > li > a:hover {
+.t3-mainnav .navbar .nav > li > a:focus,
+.t3-mainnav .navbar .nav > li > a:hover {
   background-color: @navbarLinkBackgroundHover;
   #gradient > .vertical(lighten(@navbarLinkBackgroundHover, 10%), @navbarLinkBackgroundHover);
   text-shadow: none;
 }
 
 // Active nav items
-.ja-mainnav .navbar .nav > .active > a,
-.ja-mainnav .navbar .nav > .active > a:hover,
-.ja-mainnav .navbar .nav > .active > a:focus {
+.t3-mainnav .navbar .nav > .active > a,
+.t3-mainnav .navbar .nav > .active > a:hover,
+.t3-mainnav .navbar .nav > .active > a:focus {
   color: @navbarLinkColorActive;
   text-shadow: none;
   #gradient > .vertical(lighten(@navbarLinkBackgroundActive, 10%), @navbarLinkBackgroundActive);
@@ -68,7 +68,7 @@
 
 // Navbar button for toggling navbar items in responsive layouts
 // These definitions need to come after '.navbar .btn'
-.ja-mainnav .navbar .btn-navbar {
+.t3-mainnav .navbar .btn-navbar {
   float: left;
   padding: 7px 10px;
   margin: 7px 20px 0;
@@ -76,7 +76,7 @@
   .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)");
 }
 
-.ja-mainnav .navbar .btn-navbar .icon-bar {
+.t3-mainnav .navbar .btn-navbar .icon-bar {
   width: 18px;
   height: 2px;
   background-color: #f5f5f5;
@@ -84,7 +84,7 @@
   .box-shadow(0 1px 0 rgba(0,0,0,.25));
 }
 
-.ja-mainnav .btn-navbar .icon-bar + .icon-bar {
+.t3-mainnav .btn-navbar .icon-bar + .icon-bar {
   margin-top: 3px;
 }
 
@@ -94,18 +94,18 @@
 
 // Dropdown arrow/caret
 // --------------------
-.ja-mainnav .caret {
+.t3-mainnav .caret {
 }
 
 // Place the caret
-.ja-mainnav .dropdown .caret {
+.t3-mainnav .dropdown .caret {
   margin-left: 5px;
 }
 
 
 // The dropdown menu
 // -----------------
-.ja-mainnav .dropdown-menu {
+.t3-mainnav .dropdown-menu {
   .box-shadow(0 5px 10px rgba(0,0,0,.2));
 
   // Links within the dropdown menu
@@ -117,13 +117,13 @@
 }
 
 // No border top on the first
-.ja-mainnav .dropdown-menu li:first-child > a {
+.t3-mainnav .dropdown-menu li:first-child > a {
   border-top: 0;
 }
 
 // Hide the Top arrow of the dropdown menu.
 // See bootstrap/navbar.less or comment these line if you want to show it again.
-.ja-mainnav .navbar .nav > li > .dropdown-menu {
+.t3-mainnav .navbar .nav > li > .dropdown-menu {
   &:before {
     display: none;
   }
@@ -135,56 +135,56 @@
 
 // Hover state
 // -----------
-.ja-mainnav .dropdown-menu li > a:hover,
-.ja-mainnav .dropdown-menu li > a:focus,
-.ja-mainnav .dropdown-submenu:hover > a {
+.t3-mainnav .dropdown-menu li > a:hover,
+.t3-mainnav .dropdown-menu li > a:focus,
+.t3-mainnav .dropdown-submenu:hover > a {
 }
 
 
 // Active state
 // ------------
-.ja-mainnav .dropdown-menu .active > a,
-.ja-mainnav .dropdown-menu .active > a:hover {
+.t3-mainnav .dropdown-menu .active > a,
+.t3-mainnav .dropdown-menu .active > a:hover {
 }
 
 
 // Disabled state
 // --------------
-.ja-mainnav .dropdown-menu .disabled > a,
-.ja-mainnav .dropdown-menu .disabled > a:hover {
+.t3-mainnav .dropdown-menu .disabled > a,
+.t3-mainnav .dropdown-menu .disabled > a:hover {
   color: @grayLight;
 }
 
-.ja-mainnav .dropdown-menu .disabled > a:hover {
+.t3-mainnav .dropdown-menu .disabled > a:hover {
   background-color: transparent;
 }
 
 
 // Open State
 // ----------
-.ja-mainnav .nav li.dropdown.open > .dropdown-toggle,
-.ja-mainnav .nav li.dropdown.active > .dropdown-toggle,
-.ja-mainnav .nav li.dropdown.open.active > .dropdown-toggle {
+.t3-mainnav .nav li.dropdown.open > .dropdown-toggle,
+.t3-mainnav .nav li.dropdown.active > .dropdown-toggle,
+.t3-mainnav .nav li.dropdown.open.active > .dropdown-toggle {
 }
 
-.ja-mainnav .nav li.dropdown > .dropdown-toggle .caret {
+.t3-mainnav .nav li.dropdown > .dropdown-toggle .caret {
 }
 
-.ja-mainnav .nav li.dropdown.open > .dropdown-toggle .caret,
-.ja-mainnav .nav li.dropdown.active > .dropdown-toggle .caret,
-.ja-mainnav .nav li.dropdown.open.active > .dropdown-toggle .caret {
+.t3-mainnav .nav li.dropdown.open > .dropdown-toggle .caret,
+.t3-mainnav .nav li.dropdown.active > .dropdown-toggle .caret,
+.t3-mainnav .nav li.dropdown.open.active > .dropdown-toggle .caret {
 }
 
 
 // Dropdown Sub menus
 // ------------------
-.ja-mainnav .dropdown-submenu > .dropdown-menu {
+.t3-mainnav .dropdown-submenu > .dropdown-menu {
 }
 
-.ja-mainnav .dropdown-submenu > a:after {
+.t3-mainnav .dropdown-submenu > a:after {
 }
 
-.ja-mainnav .dropdown-submenu:hover > a:after {
+.t3-mainnav .dropdown-submenu:hover > a:after {
 }
 
 
@@ -264,6 +264,6 @@
 }
 
 // Calling the styles
-.ja-mainnav {
+.t3-mainnav {
   .T3Navbar();
 }

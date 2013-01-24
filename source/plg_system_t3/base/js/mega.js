@@ -9,7 +9,7 @@
 	// blank image data-uri bypasses webkit log warning (thx doug jones)
 	var blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
-	$.fn.jaload = function(option){
+	$.fn.t3imgload = function(option){
 		var opts = $.extend({onload: false}, $.isFunction(option) ? {onload: option} : option),
 			jimgs = this.find('img').add(this.filter('img')),
 			total = jimgs.length,
@@ -21,19 +21,19 @@
 
 				loaded.push(this);
 
-				$.data(this, 'JAImgLoad', {src: this.src});
+				$.data(this, 't3iload', {src: this.src});
 				if (total === loaded.length){
 					$.isFunction(opts.onload) && setTimeout(opts.onload);
-					jimgs.unbind('.JAImgLoad');
+					jimgs.unbind('.t3iload');
 				}
 			};
 
 		if (!total){
 			$.isFunction(opts.onload) && opts.onload();
 		} else {
-			jimgs.on('load.JAImgLoad error.JAImgLoad', onload).each(function(i, el){
+			jimgs.on('load.t3iload error.t3iload', onload).each(function(i, el){
 				var src = el.src,
-					cached = $.data(el, 'JAImgLoad');
+					cached = $.data(el, 't3iload');
 
 				if(cached && cached.src === src){
 					onload.call(el);
@@ -54,13 +54,13 @@
 
 		return this;
 	};
-})(window.$ja || window.jQuery);
+})(window.$T3 || window.jQuery);
 
 ;(function($){
 	'use strict';
 
-	var JAInsts = window.JAInsts = window.JAInsts || {};
-	JAInsts.megamenu = [];
+	var T3MenuI = window.T3MenuI = window.T3MenuI || {};
+	T3MenuI.megamenu = [];
 
 	var MegaMenu = function(elm, options){
 
@@ -81,7 +81,7 @@
 		this.loaded = false;
 		this.imgloaded = false;
 		
-		$(this.menu).jaload($.proxy(this.update, this, true));
+		$(this.menu).t3imgload($.proxy(this.update, this, true));
 	};
 
 	MegaMenu.prototype = {
@@ -305,7 +305,7 @@
 			});
 
 			//click on windows will close all submenus
-			var container = $('#ja-wrapper');
+			var container = $('#t3-wrapper');
 			if (!container) {
 				container = document.body;
 			}
@@ -675,7 +675,7 @@
 			
 			if (!data) {
 				jelm.data('megamenu', (data = new MegaMenu(this, options)));
-				JAInsts.megamenu.push(data);
+				T3MenuI.megamenu.push(data);
 			} else {
 				if (typeof option == 'string' && data[option]){
 					data[option]()
@@ -698,18 +698,18 @@
 
 	$(document).ready(function(){
 		
-		if(JAInsts.megamenu || JAInsts.megamenu.length){
-			JAInsts.mmid = null;
+		if(T3MenuI.megamenu || T3MenuI.megamenu.length){
+			T3MenuI.mmid = null;
 			$(window).on('resize.mm', function(){
-				clearTimeout(JAInsts.mmid);
-				JAInsts.mmid = setTimeout(function(){
-					for(var i = 0, il = JAInsts.megamenu.length; i < il; i++){
-						JAInsts.megamenu[i].update();
+				clearTimeout(T3MenuI.mmid);
+				T3MenuI.mmid = setTimeout(function(){
+					for(var i = 0, il = T3MenuI.megamenu.length; i < il; i++){
+						T3MenuI.megamenu[i].update();
 					}
 
 				}, /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? 500 : 100);
 			});
 		}
 	});
-})(window.$ja || window.jQuery);
+})(window.$T3 || window.jQuery);
 

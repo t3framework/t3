@@ -1,8 +1,8 @@
 <?php
 
-class T3V3MenuMegamenuTpl {
+class T3MenuMegamenuTpl {
 	static function beginmenu ($vars) {
-		return '<div class="ja-megamenu">';
+		return '<div class="t3-megamenu">';
 	}
 	static function endmenu ($vars) {
 		return '</div>';

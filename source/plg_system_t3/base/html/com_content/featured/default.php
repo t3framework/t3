@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-JHtml::addIncludePath(T3V3_PATH.'/html/com_content');
+JHtml::addIncludePath(T3_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space

@@ -12,39 +12,39 @@ defined('_JEXEC') or die;
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<title><?php echo JText::_('T3V3_TM_TITLE'); ?></title>
-		<link type="text/css" rel="stylesheet" href="<?php echo T3V3_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
-		<link type="text/css" rel="stylesheet" href="<?php echo T3V3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.css" />
-		<link type="text/css" rel="stylesheet" href="<?php echo T3V3_ADMIN_URL; ?>/admin/thememagic/css/thememagic.css" />
+		<title><?php echo JText::_('T3_TM_TITLE'); ?></title>
+		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.css" />
+		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/thememagic/css/thememagic.css" />
 
-		<script type="text/javascript" src="<?php echo T3V3_ADMIN_URL; ?>/admin/js/jquery-1.8.0.min.js"></script>
-		<script type="text/javascript" src="<?php echo T3V3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
 	</head>
 
 	<body<?php echo $tplparams->get('themermode', 0) == 0 ? ' class="nomagic"' : ''?>>
 		<div id="wrapper">
 			<?php if($tplparams->get('themermode', 0)): ?>
 			<div id="thememagic">
-				<a href="<?php echo JURI::base(true); ?>" class="themer-minimize"><i class="icon-remove-sign"></i><i class="icon-magic"></i>  <span><?php echo JText::_('T3V3_TM_MINIMIZE') ; ?></span></a>
-				<a href="<?php echo $backurl; ?>" class="themer-close" title="<?php echo JText::_($isadmin ? 'T3V3_TM_BACK_TO_ADMIN' : 'T3V3_TM_EXIT'); ?>"><i class="icon-arrow-left"></i><?php echo JText::_($isadmin ? 'T3V3_TM_BACK_TO_ADMIN' : 'T3V3_TM_EXIT'); ?></a>
+				<a href="<?php echo JURI::base(true); ?>" class="themer-minimize"><i class="icon-remove-sign"></i><i class="icon-magic"></i>  <span><?php echo JText::_('T3_TM_MINIMIZE') ; ?></span></a>
+				<a href="<?php echo $backurl; ?>" class="themer-close" title="<?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?>"><i class="icon-arrow-left"></i><?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?></a>
 
 				<div class="header">
-				  <h2><strong><?php echo JText::_('T3V3_TM_CUSTOMIZING'); ?></strong> <span><?php echo $tplparams->get('sitename'); ?></span></h2>
-				  <form id="ja-theme-form" name="ja-theme-form" class="form-validate form-inline">
+				  <h2><strong><?php echo JText::_('T3_TM_CUSTOMIZING'); ?></strong> <span><?php echo $tplparams->get('sitename'); ?></span></h2>
+				  <form id="t3-theme-form" name="t3-theme-form" class="form-validate form-inline">
 					<div class="controls controls-row">
-						<label for="ja-theme-list"><?php echo JText::_('T3V3_TM_THEME_LABEL'); ?></label>
+						<label for="t3-theme-list"><?php echo JText::_('T3_TM_THEME_LABEL'); ?></label>
 					  <?php
-						echo JHTML::_('select.genericlist', $themes, 'ja-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
+						echo JHTML::_('select.genericlist', $themes, 't3-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
 					  ?>
 					 
 					  <div class="btn-group">
-						<button class="btn btn-primary" type="submit" id="ja-theme-preview"><?php echo JText::_('T3V3_TM_PREVIEW') ?></button>
+						<button class="btn btn-primary" type="submit" id="t3-theme-preview"><?php echo JText::_('T3_TM_PREVIEW') ?></button>
 						<?php if( $isadmin) : ?>
 						<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
 						<ul class="dropdown-menu">
-						  <li><a id="ja-theme-save" href="#" title="Save As"><?php echo JText::_('T3V3_TM_SAVE') ?></a></li>
-						  <li><a id="ja-theme-saveas" href="#" title="Save As"><?php echo JText::_('T3V3_TM_SAVEAS') ?></a></li>
-						  <li><a id="ja-theme-delete" href="#" title="Delete"><?php echo JText::_('T3V3_TM_DELETE') ?></a></li>
+						  <li><a id="t3-theme-save" href="#" title="Save As"><?php echo JText::_('T3_TM_SAVE') ?></a></li>
+						  <li><a id="t3-theme-saveas" href="#" title="Save As"><?php echo JText::_('T3_TM_SAVEAS') ?></a></li>
+						  <li><a id="t3-theme-delete" href="#" title="Delete"><?php echo JText::_('T3_TM_DELETE') ?></a></li>
 						</ul>
 					  	<?php endif; ?>
 					  </div>
@@ -52,7 +52,7 @@ defined('_JEXEC') or die;
 				  </form>
 				</div>
 	
-				<form id="ja-variable-form" name="adminForm" class="form-validate">
+				<form id="t3-variable-form" name="adminForm" class="form-validate">
 					<div id="recss-progress" class="progress progress-striped active fade invisible">
 						<div class="bar"></div>
 					</div>
@@ -103,7 +103,7 @@ defined('_JEXEC') or die;
 									}
 
 									foreach ($forders as $field) :
-										$hide = ($field->type === 'JaDepend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
+										$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
 										// add placeholder to Text input
 										if ($field->type == 'Text') {
 											$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group).'"/>', $field->input);
@@ -138,13 +138,13 @@ defined('_JEXEC') or die;
 			<div id="themer-warning" class="modal hide fade">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h3><?php echo JText::_('T3V3_TM_TITLE'); ?></h3>
+					<h3><?php echo JText::_('T3_TM_TITLE'); ?></h3>
 				</div>
 				<div class="modal-body">
-					<p><?php echo JText::_('T3V3_MSG_ENABLE_THEMEMAGIC'); ?></p>
+					<p><?php echo JText::_('T3_MSG_ENABLE_THEMEMAGIC'); ?></p>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('T3V3_LBL_OK') ?></a>
+					<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('T3_LBL_OK') ?></a>
 				</div>
 			</div>
 
@@ -163,7 +163,7 @@ defined('_JEXEC') or die;
 			</div>
 			<div class="modal-body">
 				<form id="prompt-form" name="prompt-form" class="form-horizontal prompt-block">
-					<span class="help-block"><?php echo JText::_('T3V3_THEME_ASK_ADD_THEME') ?></span>
+					<span class="help-block"><?php echo JText::_('T3_THEME_ASK_ADD_THEME') ?></span>
 					<p>
 						<input type="text" id="theme-name" placeholder="Theme name" style="width: 90%; margin-top: 10px;">
 					</p>
@@ -179,10 +179,10 @@ defined('_JEXEC') or die;
 		</div>
 		
 		
-		<script type="text/javascript" src="<?php echo T3V3_ADMIN_URL; ?>/admin/js/json2.js"></script>
-		<script type="text/javascript" src="<?php echo T3V3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.js"></script>
-		<script type="text/javascript" src="<?php echo T3V3_ADMIN_URL; ?>/includes/depend/js/jadepend.js"></script>
-		<script type="text/javascript" src="<?php echo T3V3_ADMIN_URL; ?>/admin/thememagic/js/thememagic.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/json2.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/includes/depend/js/depend.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/thememagic/js/thememagic.js"></script>
 		<script type="text/javascript">
 			// add class active for open 
 			$('#jaccord .accordion-group').on('hide', function () {
@@ -191,16 +191,16 @@ defined('_JEXEC') or die;
 				$(this).addClass('active');
 			});
 			
-			var T3V3Theme = window.T3V3Theme || {};
-			T3V3Theme.admin = <?php echo intval($isadmin); ?>;
-			T3V3Theme.data = <?php echo json_encode($jsondata); ?>;
-			T3V3Theme.themes = <?php echo json_encode($themes); ?>;
-			T3V3Theme.template = '<?php echo T3V3_TEMPLATE; ?>';
-			T3V3Theme.url = '<?php echo JURI::root(true) . '/administrator/index.php'; ?>';
-			T3V3Theme.langs = <?php echo json_encode($langs); ?>;
-			T3V3Theme.active = '<?php echo $tplparams->get('theme', 'base')?>';
-			T3V3Theme.variables = <?php echo ($tplparams->get('theme', -1) == -1 ? '{}' : 'T3V3Theme.data[T3V3Theme.active]') ?>;
-			T3V3Theme.colorimgurl = '<?php echo T3V3_ADMIN_URL; ?>/admin/plugins/colorpicker/images/ui-colorpicker.png';
+			var T3Theme = window.T3Theme || {};
+			T3Theme.admin = <?php echo intval($isadmin); ?>;
+			T3Theme.data = <?php echo json_encode($jsondata); ?>;
+			T3Theme.themes = <?php echo json_encode($themes); ?>;
+			T3Theme.template = '<?php echo T3_TEMPLATE; ?>';
+			T3Theme.url = '<?php echo JURI::root(true) . '/administrator/index.php'; ?>';
+			T3Theme.langs = <?php echo json_encode($langs); ?>;
+			T3Theme.active = '<?php echo $tplparams->get('theme', 'base')?>';
+			T3Theme.variables = <?php echo ($tplparams->get('theme', -1) == -1 ? '{}' : 'T3Theme.data[T3Theme.active]') ?>;
+			T3Theme.colorimgurl = '<?php echo T3_ADMIN_URL; ?>/admin/plugins/colorpicker/images/ui-colorpicker.png';
 		</script>
 		<?php else :?>
 			<script type="text/javascript">

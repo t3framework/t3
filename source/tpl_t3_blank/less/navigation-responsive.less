@@ -10,7 +10,7 @@
 
   // BREADCRUMBS
   // -------------------------------------------------------
-  .ja-navhelper {
+  .t3-navhelper {
     margin-left: -20px;
     margin-right: -20px;
   }
@@ -21,7 +21,7 @@
   //  JA MAIN MENU
   // -------------------------------------------------------
 
-  .ja-mainnav {
+  .t3-mainnav {
     background: @navbarBackground;
     border-top: 1px solid darken(@navbarBackground, 5%);
     height: auto;
@@ -30,7 +30,7 @@
   }
 
   // Toggle Button
-  .ja-mainnav .navbar .btn-navbar {
+  .t3-mainnav .navbar .btn-navbar {
     margin-bottom: (@baseLineHeight / 2);
   }
 
@@ -39,28 +39,28 @@
   // ----------------------------------------------------
 
   // The nav
-  .ja-mainnav .nav-collapse {
+  .t3-mainnav .nav-collapse {
     margin-top: (@baseLineHeight / 2);
     background: #fff;
     //#gradient > .vertical(@navbarBackground, @navbarBackgroundHighlight);
   }
 
-  .ja-mainnav .nav-collapse .nav {
+  .t3-mainnav .nav-collapse .nav {
     margin: 0;
   }
 
-  .ja-mainnav .nav-collapse .nav > li {
+  .t3-mainnav .nav-collapse .nav > li {
   }
 
-  .ja-mainnav .nav-collapse .nav > li > a {
+  .t3-mainnav .nav-collapse .nav > li > a {
     margin-bottom: 0;
   }
 
 
   // Nav and dropdown links in navbar
   // -------------------------------
-  .ja-mainnav .nav-collapse .nav > li > a,
-  .ja-mainnav .nav-collapse .dropdown-menu a {
+  .t3-mainnav .nav-collapse .nav > li > a,
+  .t3-mainnav .nav-collapse .dropdown-menu a {
     border-bottom: 1px solid @hrBorder;
     padding: (@baseLineHeight / 2) @baseLineHeight;
     font-weight: bold;
@@ -69,12 +69,12 @@
     .border-radius(0);
   }
 
-  .ja-mainnav .nav-collapse .dropdown-menu li + li a {
+  .t3-mainnav .nav-collapse .dropdown-menu li + li a {
     margin-bottom: 0;
   }
 
   // Hover state
-  .ja-mainnav .nav-collapse .nav > li > a:hover {
+  .t3-mainnav .nav-collapse .nav > li > a:hover {
     background-color: @dropdownLinkBackgroundHover;
     background-image: none;
     filter: none;
@@ -83,7 +83,7 @@
 
   // dropdown links
   // --------------
-  .ja-mainnav .nav-collapse .dropdown-menu a {
+  .t3-mainnav .nav-collapse .dropdown-menu a {
     border-top: 1px solid darken(@navbarBackground, 5%);
     border-bottom: 0;
     font-weight: normal;
@@ -92,7 +92,7 @@
 
 
   // Hover state
-  .ja-mainnav .nav-collapse .dropdown-menu a:hover {
+  .t3-mainnav .nav-collapse .dropdown-menu a:hover {
     background-color: @dropdownLinkBackgroundHover;
     background-image: none;
     filter: none;
@@ -101,7 +101,7 @@
 
   // Dropdowns in the navbar
   // -----------------------
-  .ja-mainnav .nav-collapse .dropdown-menu {
+  .t3-mainnav .nav-collapse .dropdown-menu {
     margin: 0;
     padding: 0;
     background-color: @navbarBackground;
@@ -179,7 +179,7 @@
   }
 
   // Calling the styles
-  .ja-mainnav {
+  .t3-mainnav {
     .T3Navbar();
   }
 
@@ -187,13 +187,13 @@
   
   //  MISC
   // ----------------------------------------------------
-  .ja-mainnav .navbar .nav > li > .dropdown-menu {
+  .t3-mainnav .navbar .nav > li > .dropdown-menu {
     &:before, &:after, .divider {
       display: none;
     }
   }
 
-  .ja-mainnav .customization {
+  .t3-mainnav .customization {
     display: none;
   }
 

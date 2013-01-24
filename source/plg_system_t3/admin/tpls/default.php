@@ -15,12 +15,12 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
 $user = JFactory::getUser();
 $canDo = TemplatesHelper::getActions();
-$iswritable = is_writable('jat3test.txt');
+$iswritable = is_writable('t3test.txt');
 ?>
 <?php if($iswritable): ?>
 <div id="writable-message" class="alert warning">
 	<button type="button" class="close" data-dismiss="alert">×</button>
-	<strong><?php echo JText::_('T3V3_MSG_WARNING'); ?></strong> <?php echo JText::_('T3V3_MSG_FILE_NOT_WRITABLE'); ?>
+	<strong><?php echo JText::_('T3_MSG_WARNING'); ?></strong> <?php echo JText::_('T3_MSG_FILE_NOT_WRITABLE'); ?>
 </div>
 <?php endif;?>
 <div class="t3-adminform clearfix">
@@ -29,7 +29,7 @@ $iswritable = is_writable('jat3test.txt');
 		<div class="controls-row">
 			<div class="control-group t3-control-group">
 				<div class="control-label t3-control-label">
-					<label id="t3-styles-list-lbl" for="t3-styles-list" class="hasTip" title="<?php echo JText::_('T3V3_SELECT_STYLE_DESC'); ?>"><?php echo JText::_('T3V3_SELECT_STYLE_LABEL'); ?></label>
+					<label id="t3-styles-list-lbl" for="t3-styles-list" class="hasTip" title="<?php echo JText::_('T3_SELECT_STYLE_DESC'); ?>"><?php echo JText::_('T3_SELECT_STYLE_LABEL'); ?></label>
 				</div>
 				<div class="controls t3-controls">
 					<?php echo JHTML::_('select.genericlist', $styles, 't3-styles-list', 'autocomplete="off"', 'id', 'title', $input->get('id')); ?>
@@ -74,7 +74,7 @@ $iswritable = is_writable('jat3test.txt');
     <div class="t3-admin clearfix">
     	<div class="t3-admin-nav">
 			<ul class="nav nav-tabs">
-				<li<?php echo $t3lock == 'overview_params' ? ' class="active"' : ''?>><a href="#overview_params" data-toggle="tab"><?php echo JText::_('T3V3_OVERVIEW_LABEL');?></a></li>
+				<li<?php echo $t3lock == 'overview_params' ? ' class="active"' : ''?>><a href="#overview_params" data-toggle="tab"><?php echo JText::_('T3_OVERVIEW_LABEL');?></a></li>
 				<?php
 				$fieldSets = $form->getFieldsets('params');
 				foreach ($fieldSets as $name => $fieldSet) :
@@ -86,7 +86,7 @@ $iswritable = is_writable('jat3test.txt');
 				?>
 				<?php if ($user->authorise('core.edit', 'com_menu') && ($form->getValue('client_id') == 0)):?>
 					<?php if ($canDo->get('core.edit.state')) : ?>
-							<li<?php echo $t3lock == 'assignment' ? ' class="active"' : ''?>><a href="#assignment_params" data-toggle="tab"><?php echo JText::_('T3V3_MENUS_ASSIGNMENT_LABEL');?></a></li>
+							<li<?php echo $t3lock == 'assignment' ? ' class="active"' : ''?>><a href="#assignment_params" data-toggle="tab"><?php echo JText::_('T3_MENUS_ASSIGNMENT_LABEL');?></a></li>
 					<?php endif; ?>
 				<?php endif;?>
 			</ul>
@@ -94,11 +94,11 @@ $iswritable = is_writable('jat3test.txt');
 		<div class="t3-admin-tabcontent tab-content clearfix">
 			<div class="tab-pane tab-overview clearfix<?php echo $t3lock == 'overview_params' ? ' active' : ''?>" id="overview_params">
 				<?php
-				$default_overview_override = T3V3_TEMPLATE_PATH . '/admin/default_overview.php';
+				$default_overview_override = T3_TEMPLATE_PATH . '/admin/default_overview.php';
 				if(file_exists($default_overview_override)) {
 					include $default_overview_override;
 				} else {
-					include T3V3_ADMIN_PATH . '/admin/tpls/default_overview.php';
+					include T3_ADMIN_PATH . '/admin/tpls/default_overview.php';
 				}
 				?>
 			</div>
@@ -114,13 +114,13 @@ $iswritable = is_writable('jat3test.txt');
 					endif;
 
 					foreach ($form->getFieldset($name) as $field) :
-					$hide = ($field->type === 'JaDepend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
+					$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
 					if ($field->type == 'Text') {
 						// add placeholder to Text input
 						$textinput = str_replace ('/>', ' placeholder="'.$form->getFieldAttribute($field->fieldname, 'default', '', $field->group).'"/>', $field->input);
 					}
 					?>
-					<?php if ($field->hidden || ($field->type == 'JaDepend' && !$field->label)) : ?>
+					<?php if ($field->hidden || ($field->type == 'T3Depend' && !$field->label)) : ?>
 						<?php echo $field->input; ?>
 					<?php else : ?>
 					<div class="control-group t3-control-group<?php echo $hide ? ' hide' : ''?>">
@@ -139,7 +139,7 @@ $iswritable = is_writable('jat3test.txt');
 			<?php if ($user->authorise('core.edit', 'com_menu') && $form->getValue('client_id') == 0):?>
 				<?php if ($canDo->get('core.edit.state')) : ?>
 					<div class="tab-pane clearfix<?php echo $t3lock == 'assignment' ? ' active' : ''?>" id="assignment_params">
-						<?php include T3V3_ADMIN_PATH . '/admin/tpls/default_assignment.php'; ?>
+						<?php include T3_ADMIN_PATH . '/admin/tpls/default_assignment.php'; ?>
 					</div>
 				<?php endif; ?>
 			<?php endif;?>
@@ -152,15 +152,15 @@ $iswritable = is_writable('jat3test.txt');
 </div>
 
 <?php
-	if (is_file(T3V3_ADMIN_PATH . '/admin/tour/tour.tpl.php')){
-		include_once T3V3_ADMIN_PATH . '/admin/tour/tour.tpl.php';
+	if (is_file(T3_ADMIN_PATH . '/admin/tour/tour.tpl.php')){
+		include_once T3_ADMIN_PATH . '/admin/tour/tour.tpl.php';
 	}
 
-	if (is_file(T3V3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php')){
-		include_once T3V3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
+	if (is_file(T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php')){
+		include_once T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
 	}
 
-	if (is_file(T3V3_ADMIN_PATH . '/admin/layout/layout.tpl.php')){
-		include_once T3V3_ADMIN_PATH . '/admin/layout/layout.tpl.php';
+	if (is_file(T3_ADMIN_PATH . '/admin/layout/layout.tpl.php')){
+		include_once T3_ADMIN_PATH . '/admin/layout/layout.tpl.php';
 	}
 ?>

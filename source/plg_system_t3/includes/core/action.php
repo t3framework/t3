@@ -6,14 +6,14 @@
 // No direct access
 defined('_JEXEC') or die();
 /**
- * T3V3Less class compile less
+ * T3Less class compile less
  *
- * @package T3V3
+ * @package T3
  */
-class T3V3Action extends JObject
+class T3Action extends JObject
 {
 	public static function run ($action) {
-		if (method_exists('T3V3Action', $action)) {
+		if (method_exists('T3Action', $action)) {
 			$option = preg_replace('/[^A-Z0-9_\.-]/i', '', JFactory::getApplication()->input->getCmd('view'));
 
 			if(!defined('JPATH_COMPONENT')){
@@ -28,14 +28,15 @@ class T3V3Action extends JObject
 				define('JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR . '/components/' . $option);
 			}
 
-			T3V3Action::$action();
+			T3Action::$action();
 		}
 	}
 
 	public static function lessc () {
 		$path = JFactory::getApplication()->input->getString ('s');
-		t3v3import ('core/less');
-		$t3less = new T3V3Less;
+
+		t3import ('core/less');
+		$t3less = new T3Less;
 		$css = $t3less->getCss($path);
 
 		header("Content-Type: text/css");
@@ -45,15 +46,15 @@ class T3V3Action extends JObject
 	}
 
 	public static function lesscall(){
-		JFactory::getLanguage()->load(T3V3_PLUGIN, JPATH_ADMINISTRATOR);
-		t3v3import ('core/less');
+		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+		t3import ('core/less');
 		
 		$result = array();
 		try{
-			T3V3Less::compileAll();
-			$result['successful'] = JText::_('T3V3_MSG_COMPILE_SUCCESS');
+			T3Less::compileAll();
+			$result['successful'] = JText::_('T3_MSG_COMPILE_SUCCESS');
 		}catch(Exception $e){
-			$result['error'] = sprintf(JText::_('T3V3_MSG_COMPILE_FAILURE'), $e->getMessage());
+			$result['error'] = sprintf(JText::_('T3_MSG_COMPILE_FAILURE'), $e->getMessage());
 		}
 		
 		die(json_encode($result));
@@ -61,12 +62,12 @@ class T3V3Action extends JObject
 
 	public static function theme(){
 		
-		JFactory::getLanguage()->load(T3V3_PLUGIN, JPATH_ADMINISTRATOR);
-		JFactory::getLanguage()->load('tpl_' . T3V3_TEMPLATE, JPATH_SITE);
+		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
 
-		if(!defined('T3V3')) {
+		if(!defined('T3')) {
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_PLUGIN_NOT_READY')
+				'error' => JText::_('T3_MSG_PLUGIN_NOT_READY')
 			)));
 		}
 
@@ -75,23 +76,23 @@ class T3V3Action extends JObject
 
 		if ($action != 'thememagic' && !$user->authorise('core.manage', 'com_templates')) {
 		    die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_NO_PERMISSION')
+				'error' => JText::_('T3_MSG_NO_PERMISSION')
 			)));
 		}
 		
 		if(empty($action)){
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+				'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 			)));
 		}
 
-		t3v3import('admin/theme');
+		t3import('admin/theme');
 		
-		if(method_exists('T3v3AdminTheme', $action)){
-			T3v3AdminTheme::$action(T3V3_TEMPLATE_PATH);	
+		if(method_exists('T3AdminTheme', $action)){
+			T3AdminTheme::$action(T3_TEMPLATE_PATH);	
 		} else {
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+				'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 			)));
 		}
 	}
@@ -99,7 +100,7 @@ class T3V3Action extends JObject
 	public static function positions(){
 		self::cloneParam('t3layout');
 
-		JFactory::getLanguage()->load(T3V3_PLUGIN, JPATH_ADMINISTRATOR);
+		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 
 		$japp = JFactory::getApplication();
 		if(!$japp->isAdmin()){
@@ -109,12 +110,12 @@ class T3V3Action extends JObject
 			$tplid = JFactory::getApplication()->input->getCmd('view') == 'style' ? JFactory::getApplication()->input->getCmd('id', 0) : false;
 			if(!$tplid){
 				die(json_encode(array(
-					'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+					'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 					)));
 			}
 
 			$cache = JFactory::getCache('com_templates', '');
-			if (!$templates = $cache->get('jat3tpl')) {
+			if (!$templates = $cache->get('t3tpl')) {
 				// Load styles
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true);
@@ -131,7 +132,7 @@ class T3V3Action extends JObject
 					$registry->loadString($template->params);
 					$template->params = $registry;
 				}
-				$cache->store($templates, 'jat3tpl');
+				$cache->store($templates, 't3tpl');
 			}
 
 			if (isset($templates[$tplid])) {
@@ -142,26 +143,26 @@ class T3V3Action extends JObject
 			}
 		}
 
-		$t3v3 = T3v3::getSite($tpl);
-		$layout = $t3v3->getLayout();
-		$t3v3->loadLayout($layout);
+		$t3app = T3::getSite($tpl);
+		$layout = $t3app->getLayout();
+		$t3app->loadLayout($layout);
 	}
 
 	public static function layout(){
 		self::cloneParam('t3layout');
 
-		JFactory::getLanguage()->load(T3V3_PLUGIN, JPATH_ADMINISTRATOR);
+		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 
-		if(!defined('T3V3')) {
+		if(!defined('T3')) {
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_PLUGIN_NOT_READY')
+				'error' => JText::_('T3_MSG_PLUGIN_NOT_READY')
 			)));
 		}
 
 		$action = JFactory::getApplication()->input->get('t3task', '');
 		if(empty($action)){
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+				'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 			)));
 		}
 
@@ -169,18 +170,18 @@ class T3V3Action extends JObject
 			$user = JFactory::getUser();
 			if (!$user->authorise('core.manage', 'com_templates')) {
 			    die(json_encode(array(
-					'error' => JText::_('T3V3_MSG_NO_PERMISSION')
+					'error' => JText::_('T3_MSG_NO_PERMISSION')
 				)));
 			}
 		}
 
-		t3v3import('admin/layout');
+		t3import('admin/layout');
 		
-		if(method_exists('T3v3AdminLayout', $action)){
-			T3v3AdminLayout::$action(T3V3_TEMPLATE_PATH);	
+		if(method_exists('T3AdminLayout', $action)){
+			T3AdminLayout::$action(T3_TEMPLATE_PATH);	
 		} else {
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+				'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 			)));
 		}
 	}
@@ -188,17 +189,17 @@ class T3V3Action extends JObject
 	public static function megamenu() {
 		self::cloneParam('t3menu');
 
-		JFactory::getLanguage()->load(T3V3_PLUGIN, JPATH_ADMINISTRATOR);
-		if(!defined('T3V3')) {
+		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+		if(!defined('T3')) {
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_PLUGIN_NOT_READY')
+				'error' => JText::_('T3_MSG_PLUGIN_NOT_READY')
 			)));
 		}
 
 		$action = JFactory::getApplication()->input->get('t3task', '');
 		if(empty($action)){
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+				'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 			)));
 		}
 
@@ -206,19 +207,19 @@ class T3V3Action extends JObject
 			$user = JFactory::getUser();
 			if (!$user->authorise('core.manage', 'com_templates')) {
 			    die(json_encode(array(
-					'error' => JText::_('T3V3_MSG_NO_PERMISSION')
+					'error' => JText::_('T3_MSG_NO_PERMISSION')
 				)));
 			}
 		}
 
-		t3v3import('admin/megamenu');
+		t3import('admin/megamenu');
 		
-		if(method_exists('T3v3AdminMegamenu', $action)){
-			T3v3AdminMegamenu::$action();	
+		if(method_exists('T3AdminMegamenu', $action)){
+			T3AdminMegamenu::$action();	
 			exit;
 		} else {
 			die(json_encode(array(
-				'error' => JText::_('T3V3_MSG_UNKNOW_ACTION')
+				'error' => JText::_('T3_MSG_UNKNOW_ACTION')
 			)));
 		}
 	}
@@ -269,13 +270,13 @@ class T3V3Action extends JObject
 	public static function unittest () {
 		$app = JFactory::getApplication();
 		$tpl = $app->getTemplate(true);
-		$t3v3 = T3V3::getApp($tpl);
+		$t3app = T3::getApp($tpl);
 		$layout = JFactory::getApplication()->input->getCmd('layout', 'default');
 		ob_start();
-		$t3v3->loadLayout ($layout);
+		$t3app->loadLayout ($layout);
 		ob_clean();
 		echo "Positions for layout [$layout]: <br />";
-		var_dump ($t3v3->getPositions());
+		var_dump ($t3app->getPositions());
 		exit;
 	}	
 }

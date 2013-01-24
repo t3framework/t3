@@ -290,8 +290,8 @@
   box-flex: 1;
 }
 
-.layout-custom #ja-content,
-.layout-custom #ja-mainbody .ja-sidebar {
+.layout-custom #t3-content,
+.layout-custom #t3-mainbody .t3-sidebar {
   display: -webkit-box;
   display: -moz-box;
   display: -o-box;

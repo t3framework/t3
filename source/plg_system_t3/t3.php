@@ -21,26 +21,26 @@ class plgSystemT3 extends JPlugin
 		$template = $this->detect();
 
 		if($template){
-			define ('T3V3_TEMPLATE', $template);
-			define ('T3V3_TEMPLATE_URL', JURI::root(true).'/templates/'.T3V3_TEMPLATE);
-			define ('T3V3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3V3_TEMPLATE);
-			define ('T3V3_TEMPLATE_REL', 'templates/' . T3V3_TEMPLATE);
+			define ('T3_TEMPLATE', $template);
+			define ('T3_TEMPLATE_URL', JURI::root(true).'/templates/'.T3_TEMPLATE);
+			define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
+			define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
 
 			$input = JFactory::getApplication()->input;
 
 			if($input->getCmd('themer', 0)){
-				define('T3V3_THEMER', 1);
+				define('T3_THEMER', 1);
 			}
 
 			if($input->getCmd('t3lock', '')){
-				JFactory::getSession()->set('T3v3.t3lock', $input->getCmd('t3lock', ''));
+				JFactory::getSession()->set('T3.t3lock', $input->getCmd('t3lock', ''));
 				$input->set('t3lock', null);
 			}
 			
-			include_once dirname(__FILE__) . '/includes/core/t3v3.php';
+			include_once dirname(__FILE__) . '/includes/core/t3.php';
 			
-			if (!defined('T3V3')){
-				throw new Exception(JText::_('T3V3_MSG_PACKAGE_DAMAGED'));
+			if (!defined('T3')){
+				throw new Exception(JText::_('T3_MSG_PACKAGE_DAMAGED'));
 			}
 			
 			// capture for tm=1 => show theme magic
@@ -48,10 +48,10 @@ class plgSystemT3 extends JPlugin
 				$input->set('t3action', 'theme');
 				$input->set('t3task', 'thememagic');
 			}
-			// excute action by T3v3
+			// excute action by T3
 			if ($action = $input->getCmd ('t3action')) {
-				t3v3import ('core/action');
-				T3V3Action::run ($action);
+				t3import ('core/action');
+				T3Action::run ($action);
 			}
 		}
 	}
@@ -61,13 +61,13 @@ class plgSystemT3 extends JPlugin
 			$japp = JFactory::getApplication();
 			if($japp->isAdmin()){
 
-				$t3v3app = T3v3::getApp();
-				$t3v3app->addAssets();
+				$t3app = T3::getApp();
+				$t3app->addAssets();
 			} else {
 				$params = $japp->getTemplate(true)->params;
-				if(defined('T3V3_THEMER') && $params->get('themermode', 0)){
-					t3v3import('admin/theme');
-					T3v3AdminTheme::addAssets();
+				if(defined('T3_THEMER') && $params->get('themermode', 0)){
+					t3import('admin/theme');
+					T3AdminTheme::addAssets();
 				}
 			}
 		}
@@ -77,9 +77,9 @@ class plgSystemT3 extends JPlugin
 		$app = JFactory::getApplication();
 		if($this->detect() && !$app->isAdmin()){
 			// call update head for replace css to less if in devmode
-			$t3v3app = T3v3::getApp();
-			if($t3v3app){
-				$t3v3app->updateHead();
+			$t3app = T3::getApp();
+			if($t3app){
+				$t3app->updateHead();
 			}
 		}
 	}
@@ -89,8 +89,8 @@ class plgSystemT3 extends JPlugin
 		$japp = JFactory::getApplication();
 		if($japp->isAdmin()){
 			if($this->detect()){
-				$t3v3app = T3v3::getApp();
-				$t3v3app->render();
+				$t3app = T3::getApp();
+				$t3app->render();
 			}
 		}
 	}
@@ -108,21 +108,21 @@ class plgSystemT3 extends JPlugin
 		// extra option for menu item
 		/*if ($form->getName() == 'com_menus.item') {
 			$this->loadLanguage();
-			JForm::addFormPath(T3V3_PATH . DIRECTORY_SEPARATOR . 'params');
+			JForm::addFormPath(T3_PATH . DIRECTORY_SEPARATOR . 'params');
 			$form->loadFile('megaitem', false);
 
 			$jversion = new JVersion;
 			if(!$jversion->isCompatible('3.0')){
 				$jdoc = JFactory::getDocument();
-				$jdoc->addScript(T3V3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
-				$jdoc->addScript(T3V3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
+				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
+				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 			}
 
 		} else 
 		*/
 		if($this->detect() && $form->getName() == 'com_templates.style'){
 			$this->loadLanguage();
-			JForm::addFormPath(T3V3_PATH . DIRECTORY_SEPARATOR . 'params');
+			JForm::addFormPath(T3_PATH . DIRECTORY_SEPARATOR . 'params');
 			$form->loadFile('template', false);
 		}
 	}
@@ -182,10 +182,10 @@ class plgSystemT3 extends JPlugin
 
 	function detect()
 	{
-		static $t3v3;
+		static $t3;
 
-		if (!isset($t3v3)) {
-			$t3v3 = false; // set false
+		if (!isset($t3)) {
+			$t3 = false; // set false
 			$app = JFactory::getApplication();
 			$input = JFactory::getApplication()->input;
 			// get template name
@@ -233,12 +233,12 @@ class plgSystemT3 extends JPlugin
 				if (is_file ($filePath)) {
 					$xml = JInstaller::parseXMLInstallFile($filePath);
 					if (strtolower($xml['group']) == 't3') {
-						$t3v3 = $tplname;
+						$t3 = $tplname;
 					}
 				}
 			}
 		}
-		return $t3v3;
+		return $t3;
 	}
 
     /**
@@ -260,7 +260,7 @@ class plgSystemT3 extends JPlugin
     		if (!$chromed) {
     			$chromed = true;
                 // We don't need chrome multi times
-    			$chromePath = T3V3Path::getPath('html/modules.php');
+    			$chromePath = T3Path::getPath('html/modules.php');
     			if (file_exists($chromePath)) {
     				include_once $chromePath;
     			}
@@ -284,7 +284,7 @@ class plgSystemT3 extends JPlugin
     {
         // Detect layout path in T3 themes
     	if ($this->detect()) {
-    		$tPath = T3V3Path::getPath('html/' . $module . '/' . $layout . '.php');
+    		$tPath = T3Path::getPath('html/' . $module . '/' . $layout . '.php');
     		if ($tPath)
     			return $tPath;
     	}

@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- FOOTER -->
-<footer id="ja-footer" class="wrap ja-footer">
+<footer id="t3-footer" class="wrap t3-footer">
 
   <!-- FOOT NAVIGATION -->
   <div class="container">
@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
   </div>
   <!-- //FOOT NAVIGATION -->
 
-  <section class="ja-copyright">
+  <section class="t3-copyright">
     <div class="container">
       <div class="row">
         <div class="span8 copyright<?php $this->_c('footer')?>">

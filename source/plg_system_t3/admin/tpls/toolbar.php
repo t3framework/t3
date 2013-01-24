@@ -21,8 +21,8 @@ defined('_JEXEC') or die;
       <span class="caret"></span>&nbsp;
     </button>
     <ul class="dropdown-menu">
-      <li id="t3-toolbar-style-save-close"><a href="#"><?php echo JText::_('T3V3_TOOLBAR_SAVECLOSE') ?></a></li>
-      <li id="t3-toolbar-style-save-clone"><a href="#"><?php echo JText::_('T3V3_TOOLBAR_SAVE_AS_CLONE') ?></a></li>
+      <li id="t3-toolbar-style-save-close"><a href="#"><?php echo JText::_('T3_TOOLBAR_SAVECLOSE') ?></a></li>
+      <li id="t3-toolbar-style-save-clone"><a href="#"><?php echo JText::_('T3_TOOLBAR_SAVE_AS_CLONE') ?></a></li>
     </ul>
   </div>
   <?php 
@@ -30,18 +30,18 @@ defined('_JEXEC') or die;
   ?>
 
 	<div id="t3-toolbar-recompile" class="btn-group">
-		<button class="btn"><i class="icon-check"></i><i class="icon-loading"></i><?php echo JText::_('T3V3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
+		<button class="btn"><i class="icon-check"></i><i class="icon-loading"></i><?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
 	</div>
 
 	<div id="t3-toolbar-themer" class="btn-group">
-		<button class="btn"><i class="icon-magic"></i><?php echo JText::_('T3V3_TOOLBAR_THEMER') ?></button>
+		<button class="btn"><i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?></button>
 	</div>
 
 	<div id="t3-toolbar-close" class="btn-group <?php echo $input->getCmd('view') ?>">
-		<button class="btn"><i class="icon-remove"></i><?php echo JText::_('T3V3_TOOLBAR_CLOSE') ?></button>
+		<button class="btn"><i class="icon-remove"></i><?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
 	</div>
 	<div id="t3-toolbar-help" class="btn-group <?php echo $input->getCmd('view') ?>">
-		<button class="btn"><i class="icon-question-sign"></i><?php echo JText::_('T3V3_TOOLBAR_HELP') ?></button>
+		<button class="btn"><i class="icon-question-sign"></i><?php echo JText::_('T3_TOOLBAR_HELP') ?></button>
 	</div>
 
 </div>

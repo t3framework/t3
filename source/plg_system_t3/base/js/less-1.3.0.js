@@ -3147,7 +3147,7 @@ if (less.env === 'development') {
     less.optimization = 3;
 }
 
-/* JoomlArt */
+/* T3 framework */
 var cache = {
     storage: {
     },
@@ -3187,9 +3187,9 @@ less.refresh = function (reload) {
     var startTime, endTime;
     startTime = endTime = new(Date);
 
-    /* JoomlArt */
-    if(typeof T3V3Theme != 'undefined') {
-        T3V3Theme.onCompile(0, less.sheets.length);
+    /* T3 framework */
+    if(typeof T3Theme != 'undefined') {
+        T3Theme.onCompile(0, less.sheets.length);
     }
 
     loadStyleSheets(function (e, root, _, sheet, env) {
@@ -3202,9 +3202,9 @@ less.refresh = function (reload) {
         log("css for " + sheet.href + " generated in " + (new(Date) - endTime) + 'ms');
         (env.remaining === 0) && log("css generated in " + (new(Date) - startTime) + 'ms');
 
-        /* JoomlArt */
-        if(typeof T3V3Theme != 'undefined') {
-            T3V3Theme.onCompile(less.sheets.length - env.remaining, less.sheets.length);
+        /* T3 framework */
+        if(typeof T3Theme != 'undefined') {
+            T3Theme.onCompile(less.sheets.length - env.remaining, less.sheets.length);
         }
 
         endTime = new(Date);
@@ -3214,7 +3214,7 @@ less.refresh = function (reload) {
 };
 less.refreshStyles = loadStyles;
 
-//JoomlArt commented
+//T3 framework commented
 //less.refresh(less.env === 'development');
 
 function loadStyles() {
@@ -3315,7 +3315,7 @@ function createCSS(styles, sheet, lastModified) {
         css.type = 'text/css';
         css.media = sheet.media || 'screen';
         css.id = id;
-        /* JoomlArt.com: add to the sheet position inteads of at the end of head */
+        /* T3 framework: add to the sheet position inteads of at the end of head */
         // document.getElementsByTagName('head')[0].appendChild(css);
         document.getElementsByTagName('head')[0].insertBefore (css, sheet);
     }
@@ -3348,7 +3348,7 @@ function createCSS(styles, sheet, lastModified) {
 
 function xhr(url, type, callback, errback) {
 
-    /* JoomlArt.com: check if the file is loaded and store in cache */
+    /* T3 framework: check if the file is loaded and store in cache */
     var lessContent = cache ? cache.getItem(url + ':less') : false;
     if(lessContent){
         var xhr = {
@@ -3357,7 +3357,7 @@ function xhr(url, type, callback, errback) {
         };
     } else {
 
-    /* JoomlArt.com: end modified*/
+    /* T3 framework: end modified*/
         var xhr = getXMLHttpRequest();
         var async = isFileProtocol ? false : less.async;
 
@@ -3371,8 +3371,8 @@ function xhr(url, type, callback, errback) {
 
     if (isFileProtocol) {
         if (xhr.status === 0 || (xhr.status >= 200 && xhr.status < 300)) {
-            /* JoomlArt.com: preprocess output before compile */
-            var res = t3v3Preprocess (xhr, url);
+            /* T3 framework: preprocess output before compile */
+            var res = t3Preprocess (xhr, url);
             callback(res.data);
         } else {
             errback(xhr.status, url);
@@ -3380,14 +3380,14 @@ function xhr(url, type, callback, errback) {
     } else if (async) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
-                /* JoomlArt.com: preprocess output before compile */
-                var res = t3v3Preprocess (xhr, url);
+                /* T3 framework: preprocess output before compile */
+                var res = t3Preprocess (xhr, url);
                 handleResponse(xhr, res, callback, errback);
             }
         };
     } else {
-        /* JoomlArt.com: preprocess output before compile */
-        var res = t3v3Preprocess (xhr, url);
+        /* T3 framework: preprocess output before compile */
+        var res = t3Preprocess (xhr, url);
         handleResponse(xhr, res, callback, errback);
     }
 
@@ -3399,8 +3399,8 @@ function xhr(url, type, callback, errback) {
         }
     }
 
-    /* JoomlArt: added by JA. Serve for T3v3 framework */
-    function t3v3Filename(url){
+    /* T3 framework */
+    function t3Filename(url){
         //this removes the anchor at the end, if there is one
         url = url.substring(0, (url.indexOf('#') == -1) ? url.length : url.indexOf('#'));
         //this removes the query after the file name, if there is one
@@ -3411,15 +3411,15 @@ function xhr(url, type, callback, errback) {
         return url;
     }
 
-    function t3v3Preprocess (xhr, url) {
+    function t3Preprocess (xhr, url) {
         //store the less content
         cache.setItem(url + ':less', xhr.responseText || '/*dummy*/' );
         
         var res = {'data': xhr.responseText, 'lastModified': xhr.getResponseHeader ? xhr.getResponseHeader("Last-Modified") : new Date().toString()};
         
-        var fname = t3v3Filename(url);
-        if(window.T3V3Theme && T3V3Theme.others[fname] && url.indexOf('themes/' + T3V3Theme.theme + '/' + fname) == -1 && url.indexOf('base') == -1){
-           res.data = res.data + "\n" + '@import "themes/' + T3V3Theme.theme + '/' + fname + '";' + "\n";
+        var fname = t3Filename(url);
+        if(window.T3Theme && T3Theme.others[fname] && url.indexOf('themes/' + T3Theme.theme + '/' + fname) == -1 && url.indexOf('t3/base') == -1){
+           res.data = res.data + "\n" + '@import "themes/' + T3Theme.theme + '/' + fname + '";' + "\n";
         }
 
         regex = /.*@import\s+\"(vars\.less)\".*/;
@@ -3433,7 +3433,7 @@ function xhr(url, type, callback, errback) {
         res.lastModified += 1;
 
         //extend vars with new params
-        var vars = window.T3V3Theme ? T3V3Theme.vars : false,
+        var vars = window.T3Theme ? T3Theme.vars : false,
             variables = '';
 
         if(vars){

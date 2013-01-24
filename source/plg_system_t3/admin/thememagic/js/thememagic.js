@@ -1,10 +1,10 @@
-var T3V3Theme = window.T3V3Theme || {};
+var T3Theme = window.T3Theme || {};
 
 !function ($) {
 
 
 
-	$.extend(T3V3Theme, {
+	$.extend(T3Theme, {
 
 		placeholder: 'placeholder' in document.createElement('input'),
 
@@ -18,14 +18,14 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 		
 		initCacheSource: function(){
-			T3V3Theme.links = [];
+			T3Theme.links = [];
 
 			$('link[rel="stylesheet/less"]').each(function(){
 				$(this).data('original', this.href.split('?')[0]);
 			});
 
-			$.each(T3V3Theme.data, function(key){
-				T3V3Theme.data[key] = $.extend({}, T3V3Theme.data.base, this);
+			$.each(T3Theme.data, function(key){
+				T3Theme.data[key] = $.extend({}, T3Theme.data.base, this);
 			});
 		},
 
@@ -79,96 +79,96 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 		
 		initThemeAction: function(){
-			this.jel = document.getElementById('ja-theme-list');
+			this.jel = document.getElementById('t3-theme-list');
 			
 			//change theme
-			$('#ja-theme-list').on('change', function(){
+			$('#t3-theme-list').on('change', function(){
 				
 				var val = this.value;
 
-				if(T3V3Theme.admin && T3V3Theme.changed){
+				if(T3Theme.admin && T3Theme.changed){
 
-					if(T3V3Theme.active == 'base' || T3V3Theme.active == -1){
-						T3V3Theme.confirm(T3V3Theme.langs.saveChange, function(option){
+					if(T3Theme.active == 'base' || T3Theme.active == -1){
+						T3Theme.confirm(T3Theme.langs.saveChange, function(option){
 							if(option){
-								T3V3Theme.nochange = 1;
-								T3V3Theme.saveThemeAs(function(){
-									T3V3Theme.changeTheme(val);
+								T3Theme.nochange = 1;
+								T3Theme.saveThemeAs(function(){
+									T3Theme.changeTheme(val);
 								});
 							} else {
-								T3V3Theme.changeTheme(val);
+								T3Theme.changeTheme(val);
 							}
 						});
 					}else {
-						T3V3Theme.confirm(T3V3Theme.langs.saveChange.replace('%THEME%', T3V3Theme.theme), function(option){
+						T3Theme.confirm(T3Theme.langs.saveChange.replace('%THEME%', T3Theme.theme), function(option){
 							if(option){
-								T3V3Theme.saveTheme();
+								T3Theme.saveTheme();
 
 								$('#thememagic-dlg').modal('hide');
 							}
 
-							T3V3Theme.changeTheme(val);
+							T3Theme.changeTheme(val);
 						});
 					}
 				} else {
-					T3V3Theme.changeTheme(val);
+					T3Theme.changeTheme(val);
 				}
 								
 				return false;
 			});
 			
 			//preview theme
-			$('#ja-theme-preview').on('click', function(){
+			$('#t3-theme-preview').on('click', function(){
 				if($('#recss-progress').hasClass('invisible')){
-					T3V3Theme.applyLess();
+					T3Theme.applyLess();
 				}
 
 				return false;
 			});
 			
 
-			if(T3V3Theme.admin){
+			if(T3Theme.admin){
 
 				//save theme
-				$('#ja-theme-save').on('click', function(e){
+				$('#t3-theme-save').on('click', function(e){
 					e.preventDefault();
 
 					if(!$(this).hasClass('disabled') && $('#recss-progress').hasClass('invisible')){
-						setTimeout(T3V3Theme.saveTheme, 1);
+						setTimeout(T3Theme.saveTheme, 1);
 					}
 				});
 				//saveas theme
-				$('#ja-theme-saveas').on('click', function(e){
+				$('#t3-theme-saveas').on('click', function(e){
 					e.preventDefault();
 					
 					if(!$(this).hasClass('disabled') && $('#recss-progress').hasClass('invisible')){
-						setTimeout(T3V3Theme.saveThemeAs, 1);
+						setTimeout(T3Theme.saveThemeAs, 1);
 					}
 				});
 				
 				//delete theme
-				$('#ja-theme-delete').on('click', function(e){
+				$('#t3-theme-delete').on('click', function(e){
 					e.preventDefault();
 					
 					if(!$(this).hasClass('disabled') && $('#recss-progress').hasClass('invisible')){
-						setTimeout(T3V3Theme.deleteTheme, 1);
+						setTimeout(T3Theme.deleteTheme, 1);
 					}
 				});
 			}
 
-			if(T3V3Theme.active != -1){
-				T3V3Theme.fillData();
+			if(T3Theme.active != -1){
+				T3Theme.fillData();
 			}
 
-			$('#ja-theme-save, #ja-theme-delete')[($('#ja-theme-list').val() == 'base' ? 'addClass' : 'removeClass')]('disabled');
+			$('#t3-theme-save, #t3-theme-delete')[($('#t3-theme-list').val() == 'base' ? 'addClass' : 'removeClass')]('disabled');
 		},
 
 		initModalDialog: function(){
 			$('#thememagic-dlg').on('click', '.modal-footer a', function(){
-				T3V3Theme.addtime = 500; //add time for close popup
+				T3Theme.addtime = 500; //add time for close popup
 
-				if($.isFunction(T3V3Theme.modalCallback)){
-					T3V3Theme.modalCallback($(this).hasClass('btn-primary'));
+				if($.isFunction(T3Theme.modalCallback)){
+					T3Theme.modalCallback($(this).hasClass('btn-primary'));
 					return false;
 				} else if($(this).hasClass('btn-primary')){
 					$('#thememagic-dlg').modal('hide');
@@ -189,10 +189,10 @@ var T3V3Theme = window.T3V3Theme || {};
 				jpg.removeClass('invisible').addClass('in').find('.bar').width(0);
 			}
 
-			var nvars = T3V3Theme.rebuildData(true),
+			var nvars = T3Theme.rebuildData(true),
 				jsonstr = JSON.stringify(nvars);
 
-			if(!force && T3V3Theme.jsonstr === jsonstr){
+			if(!force && T3Theme.jsonstr === jsonstr){
 				setTimeout(function(){
 					jpg.addClass('invisible').find('.bar').width(0);
 				}, 300);
@@ -200,8 +200,8 @@ var T3V3Theme = window.T3V3Theme || {};
 				return false;
 			}
 
-			T3V3Theme.variables = nvars;
-			T3V3Theme.jsonstr = jsonstr;
+			T3Theme.variables = nvars;
+			T3Theme.jsonstr = jsonstr;
 
 			setTimeout(function(){
 
@@ -212,14 +212,14 @@ var T3V3Theme = window.T3V3Theme || {};
 					wnd.location.href = urlparts.join('#');
 					
 				} else {
-					if(wnd.T3V3Theme){
-						wnd.T3V3Theme.applyLess({
-							vars: T3V3Theme.variables,
-							theme: T3V3Theme.active,
-							others: T3V3Theme.themes[T3V3Theme.active]
+					if(wnd.T3Theme){
+						wnd.T3Theme.applyLess({
+							vars: T3Theme.variables,
+							theme: T3Theme.active,
+							others: T3Theme.themes[T3Theme.active]
 						});
 					} else {
-						T3V3Theme.alert('error', T3V3Theme.langs.previewWindowError);
+						T3Theme.alert('error', T3Theme.langs.previewWindowError);
 					}
 				}
 			}, 10);
@@ -239,10 +239,10 @@ var T3V3Theme = window.T3V3Theme || {};
 			}
 			
 			//enable or disable control buttons
-			$('#ja-theme-save, #ja-theme-delete')[(theme == 'base' ? 'addClass' : 'removeClass')]('disabled');
+			$('#t3-theme-save, #t3-theme-delete')[(theme == 'base' ? 'addClass' : 'removeClass')]('disabled');
 			
-			T3V3Theme.active = theme;	//store the current theme
-			T3V3Theme.changed = false;
+			T3Theme.active = theme;	//store the current theme
+			T3Theme.changed = false;
 
 			if(!pass){
 				this.fillData();			//fill the data
@@ -255,8 +255,8 @@ var T3V3Theme = window.T3V3Theme || {};
 		serializeArray: function(){
 			var els = [],
 				allelms = document.adminForm.elements,
-				pname1 = 'jaform\\[thememagic\\]\\[.*\\]',
-				pname2 = 'jaform\\[thememagic\\]\\[.*\\]\\[\\]';
+				pname1 = 't3form\\[thememagic\\]\\[.*\\]',
+				pname2 = 't3form\\[thememagic\\]\\[.*\\]\\[\\]';
 				
 			for (var i = 0, il = allelms.length; i < il; i++){
 				var el = allelms[i];
@@ -272,24 +272,24 @@ var T3V3Theme = window.T3V3Theme || {};
 		fillData: function (){
 			
 			var els = this.serializeArray(),
-				data = T3V3Theme.data[T3V3Theme.active];
+				data = T3Theme.data[T3Theme.active];
 				
 			if(els.length == 0 || !data){
 				return;
 			}
 			
 			$.each(els, function(){
-				var name = T3V3Theme.getName(this),
+				var name = T3Theme.getName(this),
 					values = (data[name] != undefined) ? data[name] : '';
 				
-				T3V3Theme.setValues(this, $.makeArray(values));
+				T3Theme.setValues(this, $.makeArray(values));
 			});
 			
 			//reset form state when new data is filled
 			$(document.adminForm).find('.changed').removeClass('changed');
 
-			if(typeof JADepend != 'undefined'){
-				JADepend.update();
+			if(typeof T3Depend != 'undefined'){
+				T3Depend.update();
 			}
 		},
 		
@@ -331,7 +331,7 @@ var T3V3Theme = window.T3V3Theme || {};
 					jel.attr('placeholder', vals[0]);
 					jel.val(vals[0]);
 
-					if(T3V3Theme.placeholder && T3V3Theme.data.base[T3V3Theme.getName(el)] == vals[0]){
+					if(T3Theme.placeholder && T3Theme.data.base[T3Theme.getName(el)] == vals[0]){
 						jel.val('');
 					}
 				}
@@ -343,20 +343,20 @@ var T3V3Theme = window.T3V3Theme || {};
 				json = {};
 				
 			$.each(els, function(){
-				var values = T3V3Theme.valuesFrom(this);
+				var values = T3Theme.valuesFrom(this);
 				if(values.length && values[0] != '' && (!optimize || (optimize && !this._disabled))){
-					var name = T3V3Theme.getName(this),
+					var name = T3Theme.getName(this),
 						val = this.name.substr(-2) == '[]' ? values : values[0],
 						adjust = null,
 						filter = this.className.match(/t3tm-(\w*)\s?/);
 
-					if(filter && $.isFunction(T3V3Theme['filter' + filter[1]])){
-						adjust = T3V3Theme['filter' + filter[1]](val);
+					if(filter && $.isFunction(T3Theme['filter' + filter[1]])){
+						adjust = T3Theme['filter' + filter[1]](val);
 					}
 
 					if(adjust != null && adjust != val){
 						val = adjust;
-						T3V3Theme.setValues(this, $.makeArray(val));
+						T3Theme.setValues(this, $.makeArray(val));
 					}
 
 					json[name] = val;
@@ -373,7 +373,7 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 
 		filtercolor: function(hex){
-			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || T3V3Theme.colors[hex.toLowerCase()]){
+			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || T3Theme.colors[hex.toLowerCase()]){
 				return hex;
 			}
 
@@ -382,7 +382,7 @@ var T3V3Theme = window.T3V3Theme || {};
 				hex = hex.substr(0, 6);
 
 				if(hex.length !== 3 && hex.length !== 6){
-					hex = T3V3Theme.padding(hex, hex.length < 3 ? 3 : 6);
+					hex = T3Theme.padding(hex, hex.length < 3 ? 3 : 6);
 				}
 
 				hex = '#' + hex;
@@ -413,7 +413,7 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 		
 		getName: function(el){
-			var matches = el.name.match('jaform\\[thememagic\\]\\[([^\\]]*)\\]');
+			var matches = el.name.match('t3form\\[thememagic\\]\\[([^\\]]*)\\]');
 			if (matches){
 				return matches[1];
 			}
@@ -423,11 +423,11 @@ var T3V3Theme = window.T3V3Theme || {};
 		
 		deleteTheme: function(){
 
-			T3V3Theme.confirm(T3V3Theme.langs.delTheme, function(option){
+			T3Theme.confirm(T3Theme.langs.delTheme, function(option){
 				if(option){
-					T3V3Theme.submitForm({
+					T3Theme.submitForm({
 						t3task: 'delete',
-						theme: T3V3Theme.active
+						theme: T3Theme.active
 					});
 
 					$('#thememagic-dlg').modal('hide');
@@ -436,23 +436,23 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 		
 		cloneTheme: function(){
-			T3V3Theme.prompt(T3V3Theme.langs.addTheme, function(option){
+			T3Theme.prompt(T3Theme.langs.addTheme, function(option){
 				if(option){
 					var nname = $('#theme-name').val();
 					if(nname){
 						nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
 						if(nname == ''){
-							T3V3Theme.alert('warning', T3V3Theme.langs.correctName);
-							return T3V3Theme.cloneTheme();
+							T3Theme.alert('warning', T3Theme.langs.correctName);
+							return T3Theme.cloneTheme();
 						}
 						
-						T3V3Theme.data[nname] = T3V3Theme.data[T3V3Theme.active];
-						T3V3Theme.themes[nname] = $.extend({}, T3V3Theme.themes[T3V3Theme.active]);
+						T3Theme.data[nname] = T3Theme.data[T3Theme.active];
+						T3Theme.themes[nname] = $.extend({}, T3Theme.themes[T3Theme.active]);
 						
-						T3V3Theme.submitForm({
+						T3Theme.submitForm({
 							t3task: 'duplicate',
 							theme: nname,
-							from: T3V3Theme.active
+							from: T3Theme.active
 						});
 					}
 
@@ -465,35 +465,35 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 		
 		saveTheme: function(){
-			T3V3Theme.data[T3V3Theme.active] = T3V3Theme.rebuildData();
-			T3V3Theme.submitForm({
+			T3Theme.data[T3Theme.active] = T3Theme.rebuildData();
+			T3Theme.submitForm({
 				t3task: 'save',
-				theme: T3V3Theme.active
-			}, T3V3Theme.data[T3V3Theme.active])		
+				theme: T3Theme.active
+			}, T3Theme.data[T3Theme.active])		
 		},
 		
 		saveThemeAs: function(callback){
-			T3V3Theme.prompt(T3V3Theme.langs.addTheme, function(option){
+			T3Theme.prompt(T3Theme.langs.addTheme, function(option){
 				if(option){
 					var nname = $('#theme-name').val();
 					if(nname){
 						nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
 						if(nname == ''){
-							T3V3Theme.alert('warning', T3V3Theme.langs.correctName);
-							return T3V3Theme.saveThemeAs(callback);
-						} else if(T3V3Theme[nname]){
-							T3V3Theme.alert('warning', T3V3Theme.langs.themeExist);
-							return T3V3Theme.saveThemeAs(callback);
+							T3Theme.alert('warning', T3Theme.langs.correctName);
+							return T3Theme.saveThemeAs(callback);
+						} else if(T3Theme[nname]){
+							T3Theme.alert('warning', T3Theme.langs.themeExist);
+							return T3Theme.saveThemeAs(callback);
 						}
 						
-						T3V3Theme.data[nname] = T3V3Theme.rebuildData();
-						T3V3Theme.themes[nname] = $.extend({}, T3V3Theme.themes[T3V3Theme.active]);
+						T3Theme.data[nname] = T3Theme.rebuildData();
+						T3Theme.themes[nname] = $.extend({}, T3Theme.themes[T3Theme.active]);
 
-						T3V3Theme.submitForm({
+						T3Theme.submitForm({
 							t3task: 'save',
 							theme: nname,
-							from: T3V3Theme.active
-						}, T3V3Theme.data[nname]);
+							from: T3Theme.active
+						}, T3Theme.data[nname]);
 					}
 
 					$('#thememagic-dlg').modal('hide');
@@ -510,27 +510,27 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 		
 		submitForm: function(params, data){
-			if(T3V3Theme.run){
-				T3V3Theme.ajax.abort();
+			if(T3Theme.run){
+				T3Theme.ajax.abort();
 			}
 
 			$('#recss-progress').removeClass('invisible').addClass('in').find('.bar').width(0);
-			clearTimeout(T3V3Theme.progressid);
-			T3V3Theme.progressid = setTimeout(function(){
+			clearTimeout(T3Theme.progressid);
+			T3Theme.progressid = setTimeout(function(){
 				$('#recss-progress').find('.bar').width('10%');
 			}, 500);
 			
-			T3V3Theme.run = true;
-			T3V3Theme.ajax = $.post(
-				T3V3Theme.url + (T3V3Theme.url.indexOf('?') != -1 ? '' : '?') +
+			T3Theme.run = true;
+			T3Theme.ajax = $.post(
+				T3Theme.url + (T3Theme.url.indexOf('?') != -1 ? '' : '?') +
 				$.param($.extend(params, {
 					t3action: 'theme',
-					t3template: T3V3Theme.template
+					t3template: T3Theme.template
 				})) , data, function(result){
 					
-				T3V3Theme.run = false;
+				T3Theme.run = false;
 
-				clearTimeout(T3V3Theme.progressid);
+				clearTimeout(T3Theme.progressid);
 				$('#recss-progress').find('.bar').width('100%');
 
 				if(result == ''){
@@ -539,11 +539,11 @@ var T3V3Theme = window.T3V3Theme || {};
 				
 				result = $.parseJSON(result);
 
-				T3V3Theme.alert(result.error || result.success, result.error ? 'error' : (result.success ? 'success' : 'info'), result.theme);
+				T3Theme.alert(result.error || result.success, result.error ? 'error' : (result.success ? 'success' : 'info'), result.theme);
 
 				if(result.theme){
 					
-					var jel = T3V3Theme.jel;
+					var jel = T3Theme.jel;
 					
 					switch (result.type){	
 						
@@ -551,10 +551,10 @@ var T3V3Theme = window.T3V3Theme || {};
 						case 'duplicate':			
 							jel.options[jel.options.length] = new Option(result.theme, result.theme);							
 							
-							if(!T3V3Theme.nochange){
+							if(!T3Theme.nochange){
 								jel.options[jel.options.length - 1].selected = true;
-								T3V3Theme.changeTheme(result.theme, true);	
-								T3V3Theme.nochange = 0;
+								T3Theme.changeTheme(result.theme, true);	
+								T3Theme.nochange = 0;
 							} else {
 
 							}
@@ -571,7 +571,7 @@ var T3V3Theme = window.T3V3Theme || {};
 							}
 							
 							jel.options[0].selected = true;					
-							T3V3Theme.changeTheme(jel.options[0].value);
+							T3Theme.changeTheme(jel.options[0].value);
 						break;
 						
 						default:
@@ -591,35 +591,35 @@ var T3V3Theme = window.T3V3Theme || {};
 		alert: function(msg, type, title){
 			$('#thememagic .alert').remove();
 
-			T3V3Theme.jalert = $([
+			T3Theme.jalert = $([
 				'<div class="alert alert-', (type || 'info'), '">',
 					'<button type="button" class="close" data-dismiss="alert">×</button>',
 					(title ? '<h4 class="alert-heading">' + title + '</h4>' : ''),
 					'<p>', msg, '</p>',
 				'</div>'].join(''))
-				.prependTo($('#ja-variable-form'))
+				.prependTo($('#t3-variable-form'))
 				.on('closed', function(){
-					clearTimeout(T3V3Theme.salert);
-					T3V3Theme.jalert = null;
+					clearTimeout(T3Theme.salert);
+					T3Theme.jalert = null;
 				}).alert();
 
-			clearTimeout(T3V3Theme.salert);
-			T3V3Theme.salert = setTimeout(function(){
-				if(T3V3Theme.jalert){
-					T3V3Theme.jalert.alert('close');
-					T3V3Theme.jalert = null;
+			clearTimeout(T3Theme.salert);
+			T3Theme.salert = setTimeout(function(){
+				if(T3Theme.jalert){
+					T3Theme.jalert.alert('close');
+					T3Theme.jalert = null;
 				}
 			}, 10000);
 		},
 
 		confirm: function(msg, callback){
-			T3V3Theme.modalCallback = callback;
+			T3Theme.modalCallback = callback;
 
 			var jdialog = $('#thememagic-dlg');
 			jdialog.find('.prompt-block').hide();
 			jdialog.find('.message-block').show().find('p').html(msg);
-			jdialog.find('.cancel').html(T3V3Theme.langs.lblNo);
-			jdialog.find('.btn-primary').html(T3V3Theme.langs.lblYes);
+			jdialog.find('.cancel').html(T3Theme.langs.lblNo);
+			jdialog.find('.btn-primary').html(T3Theme.langs.lblYes);
 
 			jdialog.removeClass('modal-prompt modal-alert')
 				.addClass('modal-confirm')
@@ -627,12 +627,12 @@ var T3V3Theme = window.T3V3Theme || {};
 		},
 
 		prompt: function(msg, callback){
-			T3V3Theme.modalCallback = callback;
+			T3Theme.modalCallback = callback;
 			var jdialog = $('#thememagic-dlg');
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show().find('span').html(msg);
-			jdialog.find('.cancel').html(T3V3Theme.langs.lblCancel);
-			jdialog.find('.btn-primary').html(T3V3Theme.langs.lblOk);
+			jdialog.find('.cancel').html(T3Theme.langs.lblCancel);
+			jdialog.find('.btn-primary').html(T3Theme.langs.lblOk);
 
 			jdialog.removeClass('modal-alert modal-confirm')
 				.addClass('modal-prompt')
@@ -655,17 +655,17 @@ var T3V3Theme = window.T3V3Theme || {};
 	});
 
 	$(document).ready(function(){
-		T3V3Theme.initialize();
+		T3Theme.initialize();
 	});
 	
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);
 
 !function ($) {
 	
 	$(document).ready(function(){
 		if(typeof MooRainbow == 'undefined'){ //only initialize when there was no Joomla default color picker
 
-			$.extend(T3V3Theme, {
+			$.extend(T3Theme, {
 
 				colors: {
 					aliceblue: '#F0F8FF',
@@ -822,7 +822,7 @@ var T3V3Theme = window.T3V3Theme || {};
 				},
 
 				expandHex: function(hex) {
-					hex = T3V3Theme.cleanHex(hex);
+					hex = T3Theme.cleanHex(hex);
 					if( !hex ) return null;
 					if( hex.length === 3 ) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
 					return hex.length === 6 ? hex : null;
@@ -833,9 +833,9 @@ var T3V3Theme = window.T3V3Theme || {};
 				if( e.keyCode === 9 ) {
 					this.value = $(this).next().val();
 				} else {
-					var color = T3V3Theme.colors[this.value.toLowerCase()];
+					var color = T3Theme.colors[this.value.toLowerCase()];
 					if(!color){
-						color = T3V3Theme.expandHex(this.value);	
+						color = T3Theme.expandHex(this.value);	
 					}
 					
 					if(color){
@@ -855,4 +855,4 @@ var T3V3Theme = window.T3V3Theme || {};
 		}
 	});
 	
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);

@@ -170,7 +170,7 @@
 			setTimeout(function(){
 				var tipover = $('.t3-tour-popover');
 			
-				tipover.jaload(function(){
+				tipover.t3imgload(function(){
 					if(tipover.offset().top < $(window).scrollTop() || (tipover.offset().top + tipover.outerHeight(true)) > ($(window).scrollTop() + $(window).height())){
 						$('html, body').animate({
 							scrollTop: Math.max(0, tipover.offset().top - ($(window).height() - tipover.outerHeight(true))/ 2)
@@ -364,4 +364,4 @@
 		tour_overlay: true
 	};
 	
-}(window.$ja || window.jQuery);
+}(window.$T3 || window.jQuery);
