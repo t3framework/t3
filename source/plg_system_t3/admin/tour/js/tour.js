@@ -1,13 +1,13 @@
 /** 
- *-------------------------------------------------------------------------
- * T3 Framework for Joomla!
- * ------------------------------------------------------------------------
- * Copyright (C) 2004-2013 JoomlArt.com, Ltd. All Rights Reserved.
- * License - GNU/GPL, http://www.gnu.org/licenses/gpl.html
- * Authors:  JoomlArt, JoomlaBamboo 
- * If you want to be come co-authors of this project, please follow our 
- * guidelines at http://t3-framework.org/contribute
- * ------------------------------------------------------------------------
+ *------------------------------------------------------------------------------
+ * @package   T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license   GNU General Public License; http://www.gnu.org/licenses/gpl.html
+ * @author    JoomlArt, JoomlaBamboo 
+ *            If you want to be come co-authors of this project, please follow 
+ *            our guidelines at http://t3-framework.org/contribute
+ *------------------------------------------------------------------------------
  */
 
 !function ($) {
@@ -312,7 +312,7 @@
 				event.stopPropagation();
 				if ($(document.body).data ('t3-tour-contextTip')) return;
 				$(document.body).data('t3tour').showTip (tip);
-				$(document.body).data ('t3-tour-contextTip', tip);
+				$(document.body).data('t3-tour-contextTip', tip);
 				$(tip.element).off(tip.monitor);
 			});
 		}, 
@@ -346,10 +346,10 @@
 							$(this).remove();
 						});
 
+						$.cookie('t3-tour-firstshow', '1', { expires: 365, path: '/' });
+						
 						return false;
 					});
-
-				$.cookie('t3-tour-firstshow', '1', { expires: 365, path: '/' });
 			}
 		}
 	};

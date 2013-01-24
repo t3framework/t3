@@ -1,14 +1,14 @@
 <?php
 /** 
- *-------------------------------------------------------------------------
- * T3 Framework for Joomla!
- * ------------------------------------------------------------------------
- * Copyright (C) 2004-2013 JoomlArt.com, Ltd. All Rights Reserved.
- * License - GNU/GPL, http://www.gnu.org/licenses/gpl.html
- * Authors:  JoomlArt, JoomlaBamboo 
- * If you want to be come co-authors of this project, please follow our 
- * guidelines at http://t3-framework.org/contribute
- * ------------------------------------------------------------------------
+ *------------------------------------------------------------------------------
+ * @package   T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license   GNU General Public License; http://www.gnu.org/licenses/gpl.html
+ * @author    JoomlArt, JoomlaBamboo 
+ *            If you want to be come co-authors of this project, please follow 
+ *            our guidelines at http://t3-framework.org/contribute
+ *------------------------------------------------------------------------------
  */
 
 // no direct access
@@ -104,13 +104,13 @@ class plgSystemT3 extends JPlugin
 	}
 	
 	/**
-     * Add JA Extended menu parameter in administrator
-     *
-     * @param   JForm   $form   The form to be altered.
-     * @param   array   $data   The associated data for the form
-     *
-     * @return  null
-     */
+	 * Add JA Extended menu parameter in administrator
+	 *
+	 * @param   JForm   $form   The form to be altered.
+	 * @param   array   $data   The associated data for the form
+	 *
+	 * @return  null
+	 */
 	function onContentPrepareForm($form, $data)
 	{
 		// extra option for menu item
@@ -249,53 +249,53 @@ class plgSystemT3 extends JPlugin
 		return $t3;
 	}
 
-    /**
-     * Implement event onRenderModule to include the module chrome provide by T3
-     * This event is fired by overriding ModuleHelper class
-     * Return false for continueing render module
-     *
-     * @param   object  &$module   A module object.
-     * @param   array   $attribs   An array of attributes for the module (probably from the XML).
-     *
-     * @return  bool
-     */
-    function onRenderModule (&$module, $attribs)
-    {
-    	static $chromed = false;
-        // Detect layout path in T3 themes
-    	if ($this->detect()) {
-            // Chrome for module
-    		if (!$chromed) {
-    			$chromed = true;
-                // We don't need chrome multi times
-    			$chromePath = T3Path::getPath('html/modules.php');
-    			if (file_exists($chromePath)) {
-    				include_once $chromePath;
-    			}
-    		}
-    	}
-    	return false;
-    }
+	/**
+	 * Implement event onRenderModule to include the module chrome provide by T3
+	 * This event is fired by overriding ModuleHelper class
+	 * Return false for continueing render module
+	 *
+	 * @param   object  &$module   A module object.
+	 * @param   array   $attribs   An array of attributes for the module (probably from the XML).
+	 *
+	 * @return  bool
+	 */
+	function onRenderModule (&$module, $attribs)
+	{
+		static $chromed = false;
+		// Detect layout path in T3 themes
+		if ($this->detect()) {
+			// Chrome for module
+			if (!$chromed) {
+				$chromed = true;
+				// We don't need chrome multi times
+				$chromePath = T3Path::getPath('html/modules.php');
+				if (file_exists($chromePath)) {
+					include_once $chromePath;
+				}
+			}
+		}
+		return false;
+	}
 
-    /**
-     * Implement event onGetLayoutPath to return the layout which override by T3 & T3 templates
-     * This event is fired by overriding ModuleHelper class
-     * Return path to layout if found, false if not
-     *
-     * @param   string  $module  The name of the module
-     * @param   string  $layout  The name of the module layout. If alternative
-     *                           layout, in the form template:filename.
-     *
-     * @return  null
-     */
-    function onGetLayoutPath($module, $layout)
-    {
-        // Detect layout path in T3 themes
-    	if ($this->detect()) {
-    		$tPath = T3Path::getPath('html/' . $module . '/' . $layout . '.php');
-    		if ($tPath)
-    			return $tPath;
-    	}
-    	return false;
-    }	
+	/**
+	 * Implement event onGetLayoutPath to return the layout which override by T3 & T3 templates
+	 * This event is fired by overriding ModuleHelper class
+	 * Return path to layout if found, false if not
+	 *
+	 * @param   string  $module  The name of the module
+	 * @param   string  $layout  The name of the module layout. If alternative
+	 *                           layout, in the form template:filename.
+	 *
+	 * @return  null
+	 */
+	function onGetLayoutPath($module, $layout)
+	{
+		// Detect layout path in T3 themes
+		if ($this->detect()) {
+			$tPath = T3Path::getPath('html/' . $module . '/' . $layout . '.php');
+			if ($tPath)
+				return $tPath;
+		}
+		return false;
+	}	
 }
