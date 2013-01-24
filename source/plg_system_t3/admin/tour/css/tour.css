@@ -192,6 +192,7 @@
   text-shadow: 1px 1px 1px #fff;
 }
  
+
 /* Tour icon in tab 
 --------------------*/
 .t3-tour-help {
@@ -208,16 +209,53 @@
 }
 
 
-/* Tour icon in tab 
+/* Quick Help 
 --------------------*/
 .t3-tour-quickhelp {
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  color: #666;
+  background: #FEFFDE;
+  border-radius: 4px;
+  box-shadow: 1px 2px 2px rgba(0,0,0,.1);
+  border: 1px solid #ccc;
+  color: #333;
   display: none;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 5px;
-  line-height: 1;
+  font-size: 12px;
+  padding: 0 5px 0 10px;
+  line-height: 25px;
+  height: 25px;
+  width: 170px;
+  position: relative;
+  left: 10px;
+  top: 5px;
+}
+
+.t3-tour-quickhelp::before {
+  display: block;
+  content: " ";
+  float: left;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 5px 5px 0;
+  border-right-color: #c0c0c0;
+  margin-top: 8px;
+  margin-left: -15px;
+}
+
+.t3-tour-quickhelp::after {
+  display: block;
+  content: " ";
+  float: left;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 4px 4px 4px 0;
+  border-right-color: #FEFFDE;
+  margin-top: -16px;
+  margin-left: -14px;
+}
+
+.t3-tour-quickhelp .close {
+  margin-top: 4px;
 }
