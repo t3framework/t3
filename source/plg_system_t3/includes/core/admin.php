@@ -251,6 +251,9 @@ class T3Admin {
 			
 			$db->setQuery($query);
 			$styles = $db->loadObjectList();
+			foreach ($styles as $key => &$style) {
+				$style->title = ucwords(str_replace('_', ' ', $style->title));
+			}
 			
 			$session = JFactory::getSession();
 			$t3lock = $session->get('T3.t3lock', 'overview_params');
