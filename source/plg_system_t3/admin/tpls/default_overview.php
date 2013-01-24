@@ -42,6 +42,10 @@ if(count($results)){
 
 $hasperm = JFactory::getUser()->authorise('core.manage', 'com_installer');
 
+// Try to humanize the name
+$xml->name = ucwords(str_replace('_', ' ', $xml->name));
+$fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
+
 ?>
 <div class="t3-overview">
 
