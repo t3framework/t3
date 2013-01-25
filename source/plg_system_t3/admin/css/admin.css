@@ -185,6 +185,7 @@ h1.page-title small {
 .t3-admin-nav .nav-tabs > li {
   margin-bottom: 0;
   border-right: 1px solid #4f4f4f;
+  position: relative;
 }
 
 .t3-admin-nav .nav-tabs > li > a {
@@ -218,9 +219,6 @@ h1.page-title small {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0077bb', endColorstr='#ff005b8f', GradientType=0);
 }
 
-
-.t3-admin-nav .nav-tabs > .t3-changed > a {
-}
 
 
 /* ADMIN TAB NAVIGATIONS
@@ -726,6 +724,27 @@ button.btn-primary:active {
 
 .progress-mini .bar {
   border-radius: 5px;
+}
+
+
+/* CHANGED INDICATOR
+-------------------- */
+.t3-admin-nav .nav-tabs > .t3-changed > a::after,
+.t3-control-group.t3-changed .t3-control-label label::before {
+  display: inline-block;
+  content: "\f071"; 
+  font-family: "FontAwesome";
+  font-size: 12px;
+  margin-left: 5px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.t3-control-group.t3-changed .t3-control-label label::before {
+  margin-left: 0;
+  margin-right: 5px;
+  color: #ffbb00;
+  font-size: 14px;
 }
 
 
