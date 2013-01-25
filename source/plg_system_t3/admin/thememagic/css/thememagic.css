@@ -20,8 +20,8 @@
 
 /* Layout
 --------- */
-#thememagic,
-#preview {
+#t3-admin-thememagic,
+#t3-admin-tm-preview {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -38,24 +38,24 @@
 	-webkit-backface-visibility: hidden; /* it seem webkit-only, FF 13 have problem*/
 }
 
-#thememagic {
+#t3-admin-thememagic {
 	left: 0;
 	width: 300px;
 	z-index: 2;
 }
 
-#preview {
+#t3-admin-tm-preview {
 	left: 300px;
 	right: 0;
 }
 
-#ifr-preview {
+#t3-admin-tm-ifr-preview {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 }
 
-.nomagic #preview {
+.no-magic #t3-admin-tm-preview {
   left: 0;
 }
 
@@ -66,7 +66,7 @@ a.btn, a.btn:hover {
 
 /* thememagic
 ------------- */
-#thememagic {
+#t3-admin-thememagic {
   font: 12px/16px sans-serif;
   color: #666;
   background: #eee;
@@ -74,20 +74,20 @@ a.btn, a.btn:hover {
   box-shadow: 3px 0 5px rgba(0,0,0,.1);
 }
 
-#thememagic a,
-#thememagic a:hover {
+#t3-admin-thememagic a,
+#t3-admin-thememagic a:hover {
   text-decoration: none;
 }
 
 /* Cutomizer Header ---*/
-.header {
+.t3-admin-tm-header {
   background: #333;
   color: #ccc;
   margin-right: -1px;
   z-index: 2;
 }
 
-.header h2 {
+.t3-admin-tm-header h2 {
   font-size: 30px;
   font-weight: normal;
   line-height: normal;
@@ -96,13 +96,13 @@ a.btn, a.btn:hover {
   border-bottom: 1px solid #444;
 }
 
-.header h2 span {
+.t3-admin-tm-header h2 span {
   display: block;
   line-height: 30px;
   text-shadow: 0 1px 1px #000;
 }
 
-.header h2 strong {
+.t3-admin-tm-header h2 strong {
   display: block;
   font-size: 12px;
   font-weight: bold;
@@ -111,21 +111,21 @@ a.btn, a.btn:hover {
   color: #666;
 }
 
-.header #t3-theme-form {
+.t3-admin-tm-header #t3-admin-tm-form {
   margin: 0;
   padding: 15px;
   border-bottom: 1px solid #444;
   white-space: nowrap;
 }
 
-.header #t3-theme-form select {
+.t3-admin-tm-header #t3-admin-tm-form select {
   margin-left: 10px;
   margin-right: 10px;
   padding-right: 0;
   width: 100px;
 }
 
-.header #t3-theme-form .dropdown-menu {
+.t3-admin-tm-header #t3-admin-tm-form .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -150,7 +150,7 @@ input, select {
 }
 
 /* Variables Form ---*/
-#t3-variable-form {
+#t3-admin-tm-variable-form {
 	position: absolute;
 	top: 180px;
 	bottom: 0;

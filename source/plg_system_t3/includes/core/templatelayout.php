@@ -87,7 +87,7 @@ class T3TemplateLayout extends T3Template
 			$this->_block = null;
 		}
 		
-		echo isset($vars['spl']) ? $content : ("<div class=\"t3-layout-section\">".$content."</div>");
+		echo isset($vars['spl']) ? $content : ("<div class=\"t3-admin-layout-section\">".$content."</div>");
 	} 
 
 	/**
@@ -291,7 +291,7 @@ class T3TemplateLayout extends T3Template
 
 		// BOOTSTRAP CSS
 		$this->addCss ('bootstrap'); 
-		$this->addCss ('layout-custom'); 
+		$this->addCss ('t3-admin-layout-preview'); 
 
 		// Add scripts
 		$this->addScript (T3_URL.'/bootstrap/js/jquery.js');
@@ -299,7 +299,7 @@ class T3TemplateLayout extends T3Template
 	}
 
 	function megamenu($menutype){
-		echo "<div class='t3-layout-pos block-nav t3-layout-uneditable'> <h3>Megamenu [$menutype]</h3></div>";
+		echo "<div class='t3-admin-layout-pos block-nav t3-admin-layout-uneditable'> <h3>Megamenu [$menutype]</h3></div>";
 	}
 
 	/**

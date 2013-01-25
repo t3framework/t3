@@ -17,7 +17,7 @@
 
 /* Layout Config Panel
 ---------------------------------------------------*/
-.layout-custom {
+.t3-admin-layout-preview {
   width: 720px;
   float: left;
   padding: 12px;
@@ -30,7 +30,7 @@
 
 /* Reset
 --------*/
-.layout-custom .navbar-inner {
+.t3-admin-layout-preview .navbar-inner {
   min-height: none;
   padding-left: 0;
   padding-right: 0;
@@ -48,33 +48,33 @@
 
 /* Styling
 -----------*/
-.t3-layout-section {
+.t3-admin-layout-section {
   margin: 0 0 12px;
   padding: 12px 12px 0;
   border-radius: 3px;
   background: #f2f2f2;
 }
 
-.t3-layout-section .t3-layout-section {
+.t3-admin-layout-section .t3-admin-layout-section {
   padding: 0;
   margin: 0;
 }
 
-.t3-layout-section .container {
+.t3-admin-layout-section .container {
   text-align: left;
 }
 
-.t3-layout-splgroup {
+.t3-admin-layout-splgroup {
   background: url(../images/grouper.gif) no-repeat left bottom, url(../images/grouper.gif) no-repeat right bottom;
   margin-bottom: 12px;
 }
 
-.t3-layout-mode-r .t3-layout-splgroup {
+.t3-admin-layout-mode-r .t3-admin-layout-splgroup {
   padding-bottom: 26px !important;
   position: relative;
 }
 
-.t3-layout-mode-r .t3-layout-splgroup:before {
+.t3-admin-layout-mode-r .t3-admin-layout-splgroup:before {
   content: "Spotlight";
   text-transform: UPPERCASE;
   font-size: 10px;
@@ -93,7 +93,7 @@
   margin-left: -40px;
 }
 
-.t3-layout-pos {
+.t3-admin-layout-pos {
   background: #fff;
   border: 1px solid #ddd;
   position: relative;
@@ -109,14 +109,14 @@
   overflow: hidden;
 }
 
-.t3-layout-pos h3 {
+.t3-admin-layout-pos h3 {
   margin: 0;
   line-height: normal;
   font-size: 12px;
   white-space: nowrap;
 }
 
-.t3-layout-pos:hover {
+.t3-admin-layout-pos:hover {
   border: 1px solid #aaa;
   box-shadow: 0 0 3px rgba(0,0,0,.3);
 }
@@ -124,28 +124,28 @@
 
 /* Layout Edit Tabs
 -------------------- */
-.t3-row-device {
+.t3-admin-layout-row-device {
   padding: 15px 30px;
   background-color: #fff;
   border-bottom: 1px dotted #ccc;
 }
 
-.t3-row-mode .t3-reset-all {
+.t3-admin-layout-row-mode .t3-admin-layout-reset-all {
   margin-top: -40px;
   margin-right: 30px;
 }
 
-.t3-row-device .t3-reset-position,
-.t3-row-device .t3-reset-device {
+.t3-admin-layout-row-device .t3-admin-layout-reset-position,
+.t3-admin-layout-row-device .t3-admin-layout-reset-device {
 }
 
-.t3-layout-devices {
+.t3-admin-layout-devices {
   display: inline-block;
 }
 
 
 /* Fullscreen Toggle */
-#layout_params .t3-tog-fullscreen {
+#layout_params .t3-admin-tog-fullscreen {
   position: absolute;
   right: 30px;
   top: -50px;
@@ -155,7 +155,7 @@
 /* User Interation Elements
 --------------------------*/
 /* Edit Button ---*/
-.t3-layout-edit {
+.t3-admin-layout-edit {
   cursor: pointer;
   position: absolute;
   right: 0;
@@ -173,13 +173,13 @@
   display: none;
 }
 
-.t3-layout-mode-m .t3-layout-pos:hover .t3-layout-edit {
+.t3-admin-layout-mode-m .t3-admin-layout-pos:hover .t3-admin-layout-edit {
   display: block;
 }
 
 
 /* Visibility Button ---*/
-.t3-layout-vis {
+.t3-admin-layout-vis {
   cursor: pointer;
   position: absolute;
   right: 0;
@@ -197,17 +197,17 @@
   display: none;
 }
 
-.t3-layout-mode-r .t3-layout-pos .t3-layout-vis {
+.t3-admin-layout-mode-r .t3-admin-layout-pos .t3-admin-layout-vis {
   display: block;
 }
 
-.t3-layout-unit {
+.t3-admin-layout-unit {
   position: relative;
 }
 
 
 /* Resize 2 ---*/
-.t3-layout-rzhandle {
+.t3-admin-layout-rzhandle {
   display: block;
   cursor: e-resize;
   width: 7px;
@@ -221,49 +221,49 @@
   opacity: .15;
 }
 
-.t3-layout-rzhandle:hover {
+.t3-admin-layout-rzhandle:hover {
   opacity: .8;
 }
 
-.t3-layout-mode-m .t3-layout-rzhandle {
+.t3-admin-layout-mode-m .t3-admin-layout-rzhandle {
   display: none;
 }
 
 /* Resizer position for different devices */
-.wide .t3-layout-rzhandle {
+.wide .t3-admin-layout-rzhandle {
   right: -11px;
 }
 
-.normal .t3-layout-rzhandle {
+.normal .t3-admin-layout-rzhandle {
   right: -9px;
 }
 
-.xtablet .t3-layout-rzhandle,
-.tablet .t3-layout-rzhandle,
-.mobile .t3-layout-rzhandle {
+.xtablet .t3-admin-layout-rzhandle,
+.tablet .t3-admin-layout-rzhandle,
+.mobile .t3-admin-layout-rzhandle {
   right: -8px;
 }
 
 
 /* Column Chooser ---*/
-.t3-layout-ncolumns {
+.t3-admin-layout-ncolumns {
   display: none;
   text-align: center;
   position: relative;
 }
 
-.t3-layout-mode-m .t3-layout-ncolumns {
+.t3-admin-layout-mode-m .t3-admin-layout-ncolumns {
   display: block;
 }
 
-.t3-layout-ncolumns .btn {
+.t3-admin-layout-ncolumns .btn {
   font-size: 12px;
   background: #eee;
   border-color: #ddd;
 }
 
-.t3-layout-ncolumns .btn.active,
-.t3-layout-ncolumns .btn:active {
+.t3-admin-layout-ncolumns .btn.active,
+.t3-admin-layout-ncolumns .btn:active {
   background: #ddd;
 }
 
@@ -302,8 +302,8 @@
   box-flex: 1;
 }
 
-.layout-custom #t3-content,
-.layout-custom #t3-mainbody .t3-sidebar {
+.t3-admin-layout-preview #t3-content,
+.t3-admin-layout-preview #t3-mainbody .t3-sidebar {
   display: -webkit-box;
   display: -moz-box;
   display: -o-box;
@@ -316,14 +316,14 @@
 }
 
 /* Logo ---*/
-.layout-custom .logo {
+.t3-admin-layout-preview .logo {
   width: auto;
   max-width: none;
   margin-bottom: 12px;
   padding: 10px;
 }
 
-.layout-custom .logo h1 {
+.t3-admin-layout-preview .logo h1 {
   font-size: 24px;
   margin: 0;
   line-height: normal;
@@ -354,7 +354,7 @@
   color: #c00;
 }
 
-.pos-off .t3-layout-edit {
+.pos-off .t3-admin-layout-edit {
   display: block;
 }
 
@@ -368,7 +368,7 @@
   box-shadow: 0 0 3px rgba(0,0,0,.3);
 }
 
-.t3-layout-mode-m .pos-active .t3-layout-edit {
+.t3-admin-layout-mode-m .pos-active .t3-admin-layout-edit {
   display: block;
 }
 
@@ -377,11 +377,11 @@
 }
 
 /* Pos Hidden ---*/
-.t3-layout-hiddenpos {
+.t3-admin-layout-hiddenpos {
   display: none;
 }
 
-.t3-layout-hiddenpos.has-pos {
+.t3-admin-layout-hiddenpos.has-pos {
   display: block;
   padding: 0 12px 0 42px;
   margin-bottom: 20px;
@@ -390,7 +390,7 @@
   position: relative;
 }
 
-.t3-layout-hiddenpos:before {
+.t3-admin-layout-hiddenpos:before {
   content: "\f070";
   font-family: "FontAwesome";
   font-size: 16px;
@@ -434,7 +434,7 @@
   display: none !important;
 }
 
-.layout-custom .hidden {
+.t3-admin-layout-preview .hidden {
   opacity: 0.5;
   display: block;
   visibility: visible;
@@ -442,20 +442,20 @@
 
 /* Layout Clone
 ---------------------------------------------------*/
-#t3-layout-clone-btns {
+#t3-admin-layout-clone-btns {
   display: inline-block;
   margin-left: 10px;
   vertical-align: top;
 }
 
-#t3-layout-clone-btns .btn {
+#t3-admin-layout-clone-btns .btn {
   margin-left: 5px;
 }
 
 /* Layout Clone Modal
 ---------------------------------------------------*/
 
-#t3-layout-clone-dlg {
+#t3-admin-layout-clone-dlg {
   font: 14px/20px sans-serif;
   color: #666;
   width: 450px;

@@ -65,20 +65,20 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		initPrepareLayout: function(){
-			var jlayout = $('#t3-layout-admin').appendTo($('#jform_params_mainlayout').closest('.controls')),
-				jelms = $('#t3-layout-cont'),
-				jdevices = jlayout.find('.t3-layout-devices'),
-				jresetdevice = jlayout.find('.t3-reset-device'),
-				jresetposition = jlayout.find('.t3-reset-position'),
-				jresetall = jlayout.find('.t3-reset-all'),
-				jfullscreen = jlayout.find('.t3-tog-fullscreen'),
-				jselect = $('#t3-layout-tpl-positions');
+			var jlayout = $('#t3-admin-layout').appendTo($('#jform_params_mainlayout').closest('.controls')),
+				jelms = $('#t3-admin-layout-container'),
+				jdevices = jlayout.find('.t3-admin-layout-devices'),
+				jresetdevice = jlayout.find('.t3-admin-layout-reset-device'),
+				jresetposition = jlayout.find('.t3-admin-layout-reset-position'),
+				jresetall = jlayout.find('.t3-admin-layout-reset-all'),
+				jfullscreen = jlayout.find('.t3-admin-tog-fullscreen'),
+				jselect = $('#t3-admin-layout-tpl-positions');
 
 			jlayout
-				.find('.t3-layout-modes')
+				.find('.t3-admin-layout-modes')
 				.on('click', 'li', function(){
-					if($(this).hasClass('mode-layout')){
-						jelms.removeClass('t3-layout-mode-m').addClass('t3-layout-mode-r');
+					if($(this).hasClass('t3-admin-layout-mode-layout')){
+						jelms.removeClass('t3-admin-layout-mode-m').addClass('t3-admin-layout-mode-r');
 						T3AdminLayout.layout.mode = 1;
 
 						jdevices.removeClass('hide');
@@ -86,10 +86,10 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						jresetposition.addClass('hide');
 						jselect.hide();
 
-						jelms.find('.t3-layout-vis').each(T3AdminLayout.t3updatevisible);
+						jelms.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
 						jdevices.find('[data-device="wide"]').removeClass('active').trigger('click');
 					} else {
-						jelms.removeClass('t3-layout-mode-r').addClass('t3-layout-mode-m');
+						jelms.removeClass('t3-admin-layout-mode-r').addClass('t3-admin-layout-mode-m');
 						T3AdminLayout.layout.mode = 0;
 
 						jdevices.addClass('hide');
@@ -136,8 +136,10 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 					var jspl = $(curspan).parent().parent().parent();
 					if(jspl.attr('data-spotlight')){
-						var spanidx = $(curspan).closest('.t3-layout-unit').index();
-						jspl.nextAll('.t3-layout-hiddenpos').children().eq(spanidx).html((this.value || T3Admin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
+						var spanidx = $(curspan).closest('.t3-admin-layout-unit').index();
+						jspl.nextAll('.t3-admin-layout-hiddenpos').children().eq(spanidx).html((this.value || T3Admin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
+					} else {
+						$(curspan).parent().next('.t3-admin-layout-hiddenpos').children().html((this.value || T3Admin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
 					}
 
 					if(!this.value){
@@ -145,19 +147,19 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					}
 
 					$(this)
-						.next('.t3-chzn-empty')[this.value ? 'removeClass' : 'addClass']('disabled')
-						.next('.t3-chzn-default')[this.value != $(curspan).closest('[data-original]').attr('data-original') ? 'removeClass' : 'addClass']('disabled');
+						.next('.t3-admin-layout-rmvbtn')[this.value ? 'removeClass' : 'addClass']('disabled')
+						.next('.t3-admin-layout-defbtn')[this.value != $(curspan).closest('[data-original]').attr('data-original') ? 'removeClass' : 'addClass']('disabled');
 				}
 
 				return false;
 			});
 
-			jselect.find('.t3-chzn-empty, .t3-chzn-default')
+			jselect.find('.t3-admin-layout-rmvbtn, .t3-admin-layout-defbtn')
 				.on('click', function(){
 					var curspan = T3AdminLayout.curspan;
 
 					if(curspan && !$(this).hasClass('disabled')){
-						var vdef = $(this).hasClass('t3-chzn-default') ? $(curspan).closest('[data-original]').attr('data-original') : '';
+						var vdef = $(this).hasClass('t3-admin-layout-defbtn') ? $(curspan).closest('[data-original]').attr('data-original') : '';
 						T3AdminLayout.jallpos.val(vdef).trigger('change');
 					}
 
@@ -184,7 +186,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		initMarkChange: function(){
 			clearTimeout(T3AdminLayout.chsid);
 
-			var jcontrol = $('#t3-layout-admin'),
+			var jcontrol = $('#t3-admin-layout'),
 				jpane = jcontrol.closest('.tab-pane'),
 				jtab = $('.t3-admin-nav .nav li').eq(jpane.index()),
 
@@ -200,17 +202,17 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		initLayoutClone: function(){
-			$('#t3-layout-clone-dlg')
+			$('#t3-admin-layout-clone-dlg')
 				.on('show', function(){
-					$('#t3-layout-cloned-name').val($('#jform_params_mainlayout').val() + '-copy');
+					$('#t3-admin-layout-cloned-name').val($('#jform_params_mainlayout').val() + '-copy');
 				})
 				.on('shown', function(){
-					$('#t3-layout-cloned-name').focus();
+					$('#t3-admin-layout-cloned-name').focus();
 				});
 
-			$('#t3-layout-clone-btns')
+			$('#t3-admin-layout-clone-btns')
 				.insertAfter('#jform_params_mainlayout')
-				.find('#t3-layout-clone-copy').on('click', function(){
+				.find('#t3-admin-layout-clone-copy').on('click', function(){
 					T3AdminLayout.prompt(T3Admin.langs.askCloneLayout, T3AdminLayout.t3clonelayout);
 					return false;
 				}).next().on('click', function(){
@@ -220,18 +222,18 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		initModalDialog: function(){
-			$('#t3-layout-clone-dlg')
+			$('#t3-admin-layout-clone-dlg')
 				.appendTo(document.body)
 				.on('click', '.modal-footer button', function(e){
 					if($.isFunction(T3AdminLayout.modalCallback)){
 						T3AdminLayout.modalCallback($(this).hasClass('yes'));
 					} else if($(this).hasClass('yes')){
-						$('#t3-layout-clone-dlg').modal('hide');
+						$('#t3-admin-layout-clone-dlg').modal('hide');
 					}
 					return false;
 				})
 				.find('.form-horizontal').on('submit', function(){
-					$('#t3-layout-clone-dlg .modal-footer .yes').trigger('click');
+					$('#t3-admin-layout-clone-dlg .modal-footer .yes').trigger('click');
 
 					return false;
 				});
@@ -239,11 +241,11 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 		alert: function(msg, type, title, placeholder){
 			//remove
-			$('#t3-layout-alert').remove();
+			$('#t3-admin-layout-alert').remove();
 
 			//add new
 			$([
-				'<div id="t3-layout-alert" class="alert alert-', (type || 'info'), '">',
+				'<div id="t3-admin-layout-alert" class="alert alert-', (type || 'info'), '">',
 					'<button type="button" class="close" data-dismiss="alert">×</button>',
 					(title ? '<h4 class="alert-heading">' + title + '</h4>' : ''),
 					'<p>', msg, '</p>',
@@ -255,7 +257,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		confirm: function(msg, callback){
 			T3AdminLayout.modalCallback = callback;
 
-			var jdialog = $('#t3-layout-clone-dlg');
+			var jdialog = $('#t3-admin-layout-clone-dlg');
 			jdialog.find('h3').html(msg);
 			jdialog.find('.prompt-block').hide();
 			jdialog.find('.message-block').show();
@@ -270,7 +272,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		prompt: function(msg, callback){
 			T3AdminLayout.modalCallback = callback;
 
-			var jdialog = $('#t3-layout-clone-dlg');
+			var jdialog = $('#t3-admin-layout-clone-dlg');
 			jdialog.find('h3').html(msg);
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show();
@@ -283,19 +285,19 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3reset: function(){
-			var jlayout = $('#t3-layout-admin'),
-				jelms = $('#t3-layout-cont');
+			var jlayout = $('#t3-admin-layout'),
+				jelms = $('#t3-admin-layout-container');
 
-			jelms.removeClass('t3-layout-mode-r').addClass('t3-layout-mode-m');
+			jelms.removeClass('t3-admin-layout-mode-r').addClass('t3-admin-layout-mode-m');
 			jelms.removeClass(T3AdminLayout.layout.clayout);
 
 			T3AdminLayout.layout.mode = 0;
 			T3AdminLayout.layout.clayout = 'default';
 
-			jlayout.find('.mode-structure').addClass('active').siblings().removeClass('active');
-			jlayout.find('.t3-layout-devices').addClass('hide');
-			jlayout.find('.t3-reset-device').addClass('hide');
-			jlayout.find('.t3-reset-position').removeClass('hide');
+			jlayout.find('.t3-admin-layout-mode-structure').addClass('active').siblings().removeClass('active');
+			jlayout.find('.t3-admin-layout-devices').addClass('hide');
+			jlayout.find('.t3-admin-layout-reset-device').addClass('hide');
+			jlayout.find('.t3-admin-layout-reset-position').removeClass('hide');
 		},
 
 		t3clonelayout: function(ok){
@@ -303,13 +305,13 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				return false;
 			}
 
-			var nname = $('#t3-layout-cloned-name').val();
+			var nname = $('#t3-admin-layout-cloned-name').val();
 			if(nname){
 				nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();					
 			}
 
 			if(nname == ''){
-				T3AdminLayout.alert(T3Admin.langs.correctLayoutName, 'warning', '', $('#t3-layout-cloned-name').parent());
+				T3AdminLayout.alert(T3Admin.langs.correctLayoutName, 'warning', '', $('#t3-admin-layout-cloned-name').parent());
 				return false;
 			}
 
@@ -397,14 +399,14 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 		t3getlayoutdata: function(){
 			var json = {},
-				jcontainer = $(document.adminForm).find('.t3-layout-cont'),
-				jblocks = jcontainer.find('.t3-layout-pos'),
+				jcontainer = $(document.adminForm).find('.t3-admin-layout-container'),
+				jblocks = jcontainer.find('.t3-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-layout-pos');
+				jsplblocks = jspls.find('.t3-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
 				var name = $(this).attr('data-original'),
-					val = $(this).find('.t3-layout-posname').html(),
+					val = $(this).find('.t3-admin-layout-posname').html(),
 					vis = $(this).closest('[data-vis]').data('data-vis'),
 					others = $(this).closest('[data-others]').data('data-others'),
 					info = {position: val ? val : '', 'default': '', wide: '', normal: '', xtablet: '', tablet: '', mobile: ''};
@@ -430,8 +432,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 				$(this).children().each(function(idx){
 					var jpos = $(this),
-						pname = jpos.find('.t3-layout-pos').attr('data-original'),
-						val = jpos.find('.t3-layout-posname').html(),
+						pname = jpos.find('.t3-admin-layout-pos').attr('data-original'),
+						val = jpos.find('.t3-admin-layout-posname').html(),
 						info = {position: val, 'default': '', wide: '', normal: '', xtablet: '', tablet: '', mobile: ''},
 						width = T3AdminLayout.t3getwidth(idx, widths),
 						visible = T3AdminLayout.t3visible(idx, vis.vals),
@@ -491,7 +493,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					}
 				},
 				complete: function(){
-					$('#t3-layout-clone-dlg').modal('hide');
+					$('#t3-admin-layout-clone-dlg').modal('hide');
 				}
 			});
 		},
@@ -512,11 +514,11 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3fullscreen: function(){
 			if ($(this).hasClass('t3-fullscreen-full')) {
 				$('.subhead-collapse').removeClass ('subhead-fixed');
-				$('#t3-layout-admin').closest('.controls').removeClass ('controlbox-fixed');			
+				$('#t3-admin-layout').closest('.controls').removeClass ('controlbox-fixed');			
 				$(this).removeClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-full');
 			} else {
 				$('.subhead-collapse').addClass ('subhead-fixed');
-				$('#t3-layout-admin').closest('.controls').addClass ('controlbox-fixed');
+				$('#t3-admin-layout').closest('.controls').addClass ('controlbox-fixed');
 				$(this).addClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-small');
 			}
 
@@ -787,7 +789,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				maxwidth: (minsize + absgap) * cmaxcol - absgap + 6
 			});
 
-			jspl.find('.t3-layout-unit').each(function(idx){
+			jspl.find('.t3-admin-layout-unit').each(function(idx){
 				if(visible[idx] == 0 || visible[idx] == undefined){ //ignore all hidden spans
 					if(needfirst || (sum + parseInt(width[idx]) > T3AdminLayout.layout.maxgrid)){
 						$(this).addClass('spanfirst');
@@ -802,12 +804,13 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				}
 			});
 
-			jspl.find('.t3-layout-rzhandle').css('right', Math.min(-7, -3.5 - absgap / 2));
+			jspl.find('.t3-admin-layout-rzhandle').css('right', Math.min(-7, -3.5 - absgap / 2));
 		},
 
 		// apply the visibility value for current device - trigger when change device
 		t3updatevisible: function(idx, item){
 			var jvis = $(item),
+				jpos = jvis.parent(),
 				jdata = jvis.closest('[data-vis]'),
 				visible = jdata.data('data-vis').vals[T3AdminLayout.layout.clayout],
 				state = 0, idx = 0,
@@ -815,17 +818,23 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 			//if spotlight -> get the index
 			if(spotlight){
-				idx = jvis.closest('.t3-layout-unit').index();
+				idx = jvis.closest('.t3-admin-layout-unit').index();
 			}
 			
 			state = visible[idx] || 0;
 			
 			if(spotlight){
-				jvis.closest('.t3-layout-unit')[state == 0 ? 'show' : 'hide']();
+				jvis.closest('.t3-admin-layout-unit')[state == 0 ? 'show' : 'hide']();
 
-				var jhiddenpos = jdata.nextAll('.t3-layout-hiddenpos');
+				var jhiddenpos = jdata.nextAll('.t3-admin-layout-hiddenpos');
 				jhiddenpos.children().eq(idx)[state == 0 ? 'addClass' : 'removeClass']('hide');
 				jhiddenpos[jhiddenpos.children().not('.hide, .t3-hide').length ? 'addClass' : 'removeClass']('has-pos');
+			} else {
+				var jhiddenpos = jpos.next('.t3-admin-layout-hiddenpos');
+				if(jhiddenpos.length){
+					jhiddenpos[state == 0 ? 'removeClass' : 'addClass']('has-pos');
+					jpos[state == 0 ? 'removeClass' : 'addClass']('hide');
+				}
 			}
 
 			jvis.parent()[state == 1 && T3AdminLayout.layout.mode ? 'addClass' : 'removeClass']('pos-hidden');
@@ -840,7 +849,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			jspl.children().each(function(idx){
 				//remove all class and reset style width
 				this.className = this.className.replace(/(\s*)span(\d+)(\s*)/g, ' ');
-				$(this).css('width', '').addClass('span' + T3AdminLayout.t3widthconvert(width[idx])).find('.t3-layout-poswidth').html(width[idx]);
+				$(this).css('width', '').addClass('span' + T3AdminLayout.t3widthconvert(width[idx])).find('.t3-admin-layout-poswidth').html(width[idx]);
 			});
 
 			T3AdminLayout.t3updategrid(spl);
@@ -884,7 +893,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			
 			//apply width from previous settings
 			T3AdminLayout.jspls.each(T3AdminLayout.t3updatespl);
-			T3AdminLayout.jelms.find('.t3-layout-vis').each(T3AdminLayout.t3updatevisible);
+			T3AdminLayout.jelms.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
 
 			T3AdminLayout.t3equalheight();
 		},
@@ -893,11 +902,11 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			
 			var layout = T3AdminLayout.layout.clayout,
 				jcontainer = T3AdminLayout.jelms,
-				jblocks = jcontainer.find('.t3-layout-pos'),
+				jblocks = jcontainer.find('.t3-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-layout-pos');
+				jsplblocks = jspls.find('.t3-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
 				var name = $(this).attr('data-original'),
 					vis = $(this).closest('[data-vis]').data('data-vis');
 
@@ -928,7 +937,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			});
 
 			jspls.each(T3AdminLayout.t3updatespl);
-			jcontainer.find('.t3-layout-vis').each(T3AdminLayout.t3updatevisible);
+			jcontainer.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
 
 			return false;
 		},
@@ -936,11 +945,11 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3resetall: function(){
 			var layout = T3AdminLayout.layout.clayout,
 				jcontainer = T3AdminLayout.jelms,
-				jblocks = jcontainer.find('.t3-layout-pos'),
+				jblocks = jcontainer.find('.t3-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-layout-pos');
+				jsplblocks = jspls.find('.t3-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
 				if($(this).find('[data-original]').length){
 					return;
 				}
@@ -949,7 +958,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					vis = $(this).closest('[data-vis]').data('data-vis');
 
 				//change the name
-				$(this).find('.t3-layout-posname').html(name);
+				$(this).find('.t3-admin-layout-posname').html(name);
 				if(vis){
 					$.extend(true, vis.vals, vis.deft);
 				}
@@ -957,7 +966,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			
 			jspls.each(function(){
 				var jspl = $(this),
-					jhides = jspl.nextAll('.t3-layout-hiddenpos').children(),
+					jhides = jspl.nextAll('.t3-admin-layout-hiddenpos').children(),
 					vis = jspl.data('data-vis'),
 					widths = jspl.data('data-widths'),
 					//firsts = $(this).data('data-firsts'),
@@ -969,14 +978,14 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 				for(var i = 0; i < numcols; i++){
 					html = html.concat([
-					'<div class="t3-layout-unit span', owidths['default'][i], '">', //we do not need convert width here
-						'<div class="t3-layout-pos block-', original[i], (original[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (original[i] || ''), '">',
-							'<span class="t3-layout-edit"><i class="icon-cog"></i></span>',
-							'<span class="t3-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', owidths['default'][i], '</span>',
-							'<h3 class="t3-layout-posname" title="', T3Admin.langs.layoutPosName, '">', original[i], '</h3>',
-							'<span class="t3-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
+					'<div class="t3-admin-layout-unit span', owidths['default'][i], '">', //we do not need convert width here
+						'<div class="t3-admin-layout-pos block-', original[i], (original[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (original[i] || ''), '">',
+							'<span class="t3-admin-layout-edit"><i class="icon-cog"></i></span>',
+							'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', owidths['default'][i], '</span>',
+							'<h3 class="t3-admin-layout-posname" title="', T3Admin.langs.layoutPosName, '">', original[i], '</h3>',
+							'<span class="t3-admin-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
 						'</div>',
-						'<div class="t3-layout-rzhandle" title="', T3Admin.langs.layoutDragResize, '"></div>',
+						'<div class="t3-admin-layout-rzhandle" title="', T3Admin.langs.layoutDragResize, '"></div>',
 					'</div>']);
 
 					jhides.eq(i).html(original[i] + '<i class="icon-eye-close">').removeClass('t3-hide');
@@ -997,11 +1006,11 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				//optimized: not need
 				//$.extend(true, firsts, ofirsts);
 
-				$(this).nextAll('.t3-layout-ncolumns').children().eq(owidths['default'].length - 1).trigger('click');
+				$(this).nextAll('.t3-admin-layout-ncolumns').children().eq(owidths['default'].length - 1).trigger('click');
 			});
 
 			//change to default view
-			jcontainer.prev().find('.mode-structure').trigger('click');
+			jcontainer.prev().find('.t3-admin-layout-mode-structure').trigger('click');
 
 			return false;
 		},
@@ -1009,13 +1018,13 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3resetposition: function(){
 			var layout = T3AdminLayout.layout.clayout,
 				jcontainer = T3AdminLayout.jelms,
-				jblocks = jcontainer.find('.t3-layout-pos'),
+				jblocks = jcontainer.find('.t3-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-layout-pos');
+				jsplblocks = jspls.find('.t3-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
 				//reset position
-				$(this).find('.t3-layout-posname')
+				$(this).find('.t3-admin-layout-posname')
 					.html(
 						$(this).attr('data-original')
 					)
@@ -1025,17 +1034,17 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			
 			jspls.each(function(){
 				var original = $(this).attr('data-original').split(','),
-					jhides = $(this).nextAll('.t3-layout-hiddenpos').children();
+					jhides = $(this).nextAll('.t3-admin-layout-hiddenpos').children();
 
-				$(this).find('.t3-layout-pos').each(function(idx){
+				$(this).find('.t3-admin-layout-pos').each(function(idx){
 					if(original[idx] != undefined){
 						$(this)[original[idx] == T3Admin.langs.emptyLayoutPosition ? 'addClass' : 'removeClass']('pos-off')
-						.find('.t3-layout-posname')
+						.find('.t3-admin-layout-posname')
 						.html(original[idx]);
 						
 						jhides.eq(idx).html(original[idx] + '<i class="icon-eye-close">');
 					} else {
-						$(this).addClass('pos-off').find('.t3-layout-posname').html(T3Admin.langs.emptyLayoutPosition);
+						$(this).addClass('pos-off').find('.t3-admin-layout-posname').html(T3Admin.langs.emptyLayoutPosition);
 					}
 				});
 			});
@@ -1056,7 +1065,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 			//if spotlight -> the name is based on block, else use the name property
 			if(spotlight){
-				idx = jvis.closest('.t3-layout-unit').index();
+				idx = jvis.closest('.t3-admin-layout-unit').index();
 				junits = jdata.children();
 			}
 
@@ -1064,9 +1073,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			state = 1 - state;
 			
 			if(spotlight){
-				jvis.closest('.t3-layout-unit')[state == 0 ? 'show' : 'hide']();
+				jvis.closest('.t3-admin-layout-unit')[state == 0 ? 'show' : 'hide']();
 			
-				var jhiddenpos = jdata.nextAll('.t3-layout-hiddenpos');
+				var jhiddenpos = jdata.nextAll('.t3-admin-layout-hiddenpos');
 				jhiddenpos.children().eq(idx)[state == 0 ? 'addClass' : 'removeClass']('hide');
 				jhiddenpos[jhiddenpos.children().not('.hide, .t3-hide').length ? 'addClass' : 'removeClass']('has-pos');
 
@@ -1086,8 +1095,14 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						vi = visibleIdxs[i];
 						widths[vi] = width[i];
 						junits[vi].className = junits[vi].className.replace(/(\s*)span(\d+)(\s*)/g, ' ');
-						junits.eq(vi).addClass('span' + T3AdminLayout.t3widthconvert(width[i])).find('.t3-layout-poswidth').html(width[i]);
+						junits.eq(vi).addClass('span' + T3AdminLayout.t3widthconvert(width[i])).find('.t3-admin-layout-poswidth').html(width[i]);
 					}
+				}
+			} else {
+				var jhiddenpos = jpos.next('.t3-admin-layout-hiddenpos');
+				if(jhiddenpos.length){
+					jhiddenpos[state == 0 ? 'removeClass' : 'addClass']('has-pos');
+					jpos[state == 0 ? 'removeClass' : 'addClass']('hide');
 				}
 			}
 			
@@ -1126,7 +1141,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					}
 
 					var	curspan = T3AdminLayout.curspan = null,
-						jelms = T3AdminLayout.jelms = $('#t3-layout-cont').empty().html(bdhtml),
+						jelms = T3AdminLayout.jelms = $('#t3-admin-layout-container').empty().html(bdhtml),
 						jrlems = T3AdminLayout.jrlems = jelms.find('[class*="span"]').each(function(){
 							var jelm = $(this);
 							jelm.data();
@@ -1147,9 +1162,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						.html(T3Admin.langs.logoPresent);
 
 					jelms
-						.find('.t3-layout-pos')
-						.not('.t3-layout-uneditable')
-						.prepend('<span class="t3-layout-edit" title="' + T3Admin.langs.layoutEditPosition + '"><i class="icon-cog"></i></span>');
+						.find('.t3-admin-layout-pos')
+						.not('.t3-admin-layout-uneditable')
+						.prepend('<span class="t3-admin-layout-edit" title="' + T3Admin.langs.layoutEditPosition + '"><i class="icon-cog"></i></span>');
 
 					jelms
 						.find('[data-vis]')
@@ -1161,13 +1176,28 @@ var T3AdminLayout = window.T3AdminLayout || {};
 								.attr('data-vis', '')
 								.attr('data-others', '')
 						})
-						.find('.t3-layout-pos')
-						.append('<span class="t3-layout-vis" title="' + T3Admin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>');
+						.find('.t3-admin-layout-pos')
+						.each(function(){
+							var jpos = $(this);
+
+							jpos
+							.append('<span class="t3-admin-layout-vis" title="' + T3Admin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>')
+							.after(['<div class="t3-admin-layout-hiddenpos" title="', T3Admin.langs.layoutHiddenposDesc, '">',
+									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', jpos.find('h3').html() ,'<i class="icon-eye-close"></i></span>',
+								'</div>'].join(''))
+							.next()
+							.find('.pos-hidden')
+								.on('click', function(){
+									T3AdminLayout.t3onvisible.call(jpos.find('.t3-admin-layout-vis'));
+									return false;
+								});
+						});
+						
 
 					jelms
-						.find('.t3-layout-pos')
+						.find('.t3-admin-layout-pos')
 						.find('h3, h1')
-						.addClass('t3-layout-posname')
+						.addClass('t3-admin-layout-posname')
 						.attr('title', T3Admin.langs.layoutPosName)
 						.each(function(){
 							var jparent = $(this).parentsUntil('.row').last(),
@@ -1177,13 +1207,13 @@ var T3AdminLayout = window.T3AdminLayout || {};
 								span = T3Admin.langs.layoutUnknownWidth;
 							}
 
-							$(this).before('<span class="t3-layout-poswidth" title="' + T3Admin.langs.layoutPosWidth + '">' + span + '</span>');
+							$(this).before('<span class="t3-admin-layout-poswidth" title="' + T3Admin.langs.layoutPosWidth + '">' + span + '</span>');
 						});
 
 					jelms
 						.off('click.t3lvis').off('click.t3ledit')
-						.on('click.t3lvis', '.t3-layout-vis', T3AdminLayout.t3onvisible)
-						.on('click.t3ledit', '.t3-layout-edit', function(e){
+						.on('click.t3lvis', '.t3-admin-layout-vis', T3AdminLayout.t3onvisible)
+						.on('click.t3ledit', '.t3-admin-layout-edit', function(e){
 							if(curspan){
 								$(curspan).parent().removeClass('pos-active');
 							}
@@ -1210,8 +1240,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 							}).show()
 								.find('select')
 								.val(jspan.siblings('h3').html())
-								.next('.t3-chzn-empty')[jallpos.val() ? 'removeClass' : 'addClass']('disabled')
-								.next('.t3-chzn-default')[jspan.siblings('h3').html() != jspan.closest('[data-original]').attr('data-original') ? 'removeClass' : 'addClass']('disabled');
+								.next('.t3-admin-layout-rmvbtn')[jallpos.val() ? 'removeClass' : 'addClass']('disabled')
+								.next('.t3-admin-layout-defbtn')[jspan.siblings('h3').html() != jspan.closest('[data-original]').attr('data-original') ? 'removeClass' : 'addClass']('disabled');
 
 							jallpos.scrollTop(Math.min(jallpos.prop('scrollHeight') - jallpos.height(), jallpos.prop('selectedIndex') * (jallpos.prop('scrollHeight') / jallpos[0].options.length)));
 							
@@ -1221,7 +1251,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						jspls.each(function(){
 
 							var jncols = $([
-								'<div class="btn-group t3-layout-ncolumns">',
+								'<div class="btn-group t3-admin-layout-ncolumns">',
 									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">1</span>',
 									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">2</span>',
 									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">3</span>',
@@ -1249,16 +1279,16 @@ var T3AdminLayout = window.T3AdminLayout || {};
 								.data('data-ofirsts', ofirsts).removeAttr('data-ofirsts', '') //store and clean the data
 								.data('data-firsts', firsts).removeAttr('data-firsts', '') //store and clean the data
 								.data('data-others', $.parseJSON($(this).attr('data-others'))).removeAttr('data-others', '') //store and clean the data
-								.parent().addClass('t3-layout-splgroup');
+								.parent().addClass('t3-admin-layout-splgroup');
 
 							jcols.each(function(idx){
 								positions[idx] = $(this).find('h3').html();
 
 								$(this)
-								.addClass('t3-layout-unit')
-								.find('.t3-layout-pos')
+								.addClass('t3-admin-layout-unit')
+								.find('.t3-admin-layout-pos')
 								.attr('data-original', defpos[idx])
-								.append('<span class="t3-layout-vis" title="' + T3Admin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>');
+								.append('<span class="t3-admin-layout-vis" title="' + T3Admin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>');
 							});
 
 							for(var i = numpos; i < 6; i++){
@@ -1266,7 +1296,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 							}
 
 							var jhides = $([
-								'<div class="t3-layout-hiddenpos" title="', T3Admin.langs.layoutHiddenposDesc, '">',
+								'<div class="t3-admin-layout-hiddenpos" title="', T3Admin.langs.layoutHiddenposDesc, '">',
 									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[0], '<i class="icon-eye-close"></i></span>',
 									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[1], '<i class="icon-eye-close"></i></span>',
 									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[2], '<i class="icon-eye-close"></i></span>',
@@ -1288,7 +1318,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 							$(spotlight).xresize({
 								grid: false,
 								gap: 0,
-								selector: '.t3-layout-unit'
+								selector: '.t3-admin-layout-unit'
 							});
 
 							jncols.on('click', '.btn', function(e){
@@ -1313,14 +1343,14 @@ var T3AdminLayout = window.T3AdminLayout || {};
 									var html = [];
 									for(i = 0; i < numpos; i++){
 										html = html.concat([
-										'<div class="t3-layout-unit span', widths['default'][i], '">',
-											'<div class="t3-layout-pos block-', positions[i], (positions[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (defpos[i] || ''), '">',
-												'<span class="t3-layout-edit"><i class="icon-cog"></i></span>',
-												'<span class="t3-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', widths['default'][i], '</span>',
-												'<h3 class="t3-layout-posname" title="', T3Admin.langs.layoutPosName, '">', positions[i], '</h3>',
-												'<span class="t3-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
+										'<div class="t3-admin-layout-unit span', widths['default'][i], '">',
+											'<div class="t3-admin-layout-pos block-', positions[i], (positions[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (defpos[i] || ''), '">',
+												'<span class="t3-admin-layout-edit"><i class="icon-cog"></i></span>',
+												'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', widths['default'][i], '</span>',
+												'<h3 class="t3-admin-layout-posname" title="', T3Admin.langs.layoutPosName, '">', positions[i], '</h3>',
+												'<span class="t3-admin-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
 											'</div>',
-											'<div class="t3-layout-rzhandle" title="', T3Admin.langs.layoutDragResize, '"></div>',
+											'<div class="t3-admin-layout-rzhandle" title="', T3Admin.langs.layoutDragResize, '"></div>',
 										'</div>']);
 									}
 
@@ -1338,7 +1368,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 							}).children().removeClass('active').eq(numpos -1).addClass('active').trigger('click');
 
 							jhides.on('click', 'span', function(){
-								T3AdminLayout.t3onvisible.call($(spotlight).children().eq($(this).index()).find('.t3-layout-vis'));
+								T3AdminLayout.t3onvisible.call($(spotlight).children().eq($(this).index()).find('.t3-admin-layout-vis'));
 								return false;
 							});
 						});
@@ -1349,12 +1379,12 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						jtabpane.removeClass('active');
 					}
 
-					$('#t3-layout-admin').removeClass('hide');
+					$('#t3-admin-layout').removeClass('hide');
 
 					T3AdminLayout.initMarkChange();
 
 				} else {
-					jcontrol.find('.controls').html('<p class="t3-layout-error">' + T3Admin.langs.layoutCanNotLoad + '</p>');
+					jcontrol.find('.controls').html('<p class="t3-admin-layout-error">' + T3Admin.langs.layoutCanNotLoad + '</p>');
 				}
 			}
 		}
@@ -1429,7 +1459,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				memwidth[rzindex] = rzminspan * ((width + opts.gap) / opts.grid) >> 0;
 				owidth = width;
 
-				$(curelm).find('.t3-layout-poswidth').html(memwidth[rzindex]);
+				$(curelm).find('.t3-admin-layout-poswidth').html(memwidth[rzindex]);
 			}
 
 			curelm.style['width'] = (togrid ? width : rwidth) + 'px';
@@ -1463,7 +1493,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			rzleft = e.pageX;
 			owidth = rzwidth  = $(curelm).width();
 
-			var jdata = $(this).closest('.t3-layout-xresize');
+			var jdata = $(this).closest('.t3-admin-layout-xresize');
 			
 			opts = jdata.data('rzdata');
 			rzlayout = T3AdminLayout.layout.clayout;
@@ -1495,9 +1525,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 	$.fn.xresize = function(opts) {
 		return this.each(function () {
-			$(opts.selector ? $(this).find(opts.selector) : this).append('<div class="t3-layout-rzhandle" title="' + T3Admin.langs.layoutDragResize + '"></div>');			
+			$(opts.selector ? $(this).find(opts.selector) : this).append('<div class="t3-admin-layout-rzhandle" title="' + T3Admin.langs.layoutDragResize + '"></div>');			
 			$(this)
-			.addClass('t3-layout-xresize')
+			.addClass('t3-admin-layout-xresize')
 			.data('rzdata', $.extend({
 				selector: '',
 				minwidth: 0,
@@ -1507,7 +1537,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				grid: 0,
 				gap: 0
 			}, opts))
-			.on('mousedown.wresize', '.t3-layout-rzhandle', mousedown);
+			.on('mousedown.wresize', '.t3-admin-layout-rzhandle', mousedown);
 		});
 	};
 

@@ -22,14 +22,14 @@ $canDo = TemplatesHelper::getActions();
 $iswritable = is_writable('t3test.txt');
 ?>
 <?php if($iswritable): ?>
-<div id="writable-message" class="alert warning">
+<div id="t3-admin-writable-message" class="alert warning">
 	<button type="button" class="close" data-dismiss="alert">×</button>
 	<strong><?php echo JText::_('T3_MSG_WARNING'); ?></strong> <?php echo JText::_('T3_MSG_FILE_NOT_WRITABLE'); ?>
 </div>
 <?php endif;?>
-<div class="t3-adminform clearfix">
+<div class="t3-admin-form clearfix">
 <form action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id='.$input->getInt('id')); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal">
-	<div class="t3-header clearfix">
+	<div class="t3-admin-header clearfix">
 		<div class="controls-row">
 			<div class="control-group t3-control-group">
 				<div class="control-label t3-control-label">
@@ -114,7 +114,7 @@ $iswritable = is_writable('t3test.txt');
 					<?php
 
 					if (isset($fieldSet->description) && trim($fieldSet->description)) :
-						echo '<div class="t3-fieldset-desc">'.(JText::_($fieldSet->description)).'</div>';
+						echo '<div class="t3-admin-fieldset-desc">'.(JText::_($fieldSet->description)).'</div>';
 					endif;
 
 					foreach ($form->getFieldset($name) as $field) :

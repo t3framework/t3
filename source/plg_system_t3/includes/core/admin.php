@@ -180,7 +180,7 @@ class T3Admin {
 
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
-		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout-custom.css');
+		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout-preview.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin.css');
 		if(!$jversion->isCompatible('3.0')){

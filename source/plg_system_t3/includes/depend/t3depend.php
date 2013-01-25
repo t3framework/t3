@@ -344,6 +344,6 @@ class JFormFieldT3Depend extends JFormField
 	}
 
 	function legend(){
-		return '<legend class="t3-form-legend">' . JText::_($this->element['label']) . '<small class="t3-form-legend-desc">' . JText::_($this->element['description']) . '</small> </legend>';
+		return '<legend class="t3-admin-form-legend">' . JText::_($this->element['label']) . '<small class="t3-admin-form-legend-desc">' . JText::_($this->element['description']) . '</small> </legend>';
 	}
 } 

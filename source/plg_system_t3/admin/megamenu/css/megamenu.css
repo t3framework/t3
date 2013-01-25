@@ -15,7 +15,7 @@
 /* T3 MEGAMENU ADMIN UI
 ---------------------------------------------------*/
 
-#megamenu-admin {
+#t3-admin-megamenu {
   min-height: 800px;
   background: url(../images/grid-bg.jpg) top left;
   margin: 0 -20px;
@@ -34,17 +34,17 @@
 
 /* Intro
 ---------------------*/
-#megamenu-intro {
+#t3-admin-mm-intro {
   float: left;
   padding: 20px 200px 20px 20px;
   text-shadow: 0 1px 1px white;
 }
 
-#megamenu-intro h3 {
+#t3-admin-mm-intro h3 {
   margin-top: 0;
 }
 
-#megamenu-intro p {
+#t3-admin-mm-intro p {
   display: block;
   color: #999999;
   max-height: 50px;
@@ -55,16 +55,16 @@
 
 /* Toolbox
 ---------------------*/
-#megamenu-toolbox {
+#t3-admin-mm-tb {
   float: left;
   text-shadow: 0 1px 1px #fff;
 }
 
-#megamenu-admin .t3-inline-toolbox {
+#t3-admin-megamenu .admin-inline-toolbox {
   height: 119px;
 }
 
-#megamenu-toolbox .toolbox {
+#t3-admin-mm-tb .admin-toolbox {
   height: 119px;
   padding: 20px;
   display: none;
@@ -74,44 +74,43 @@
   -o-box-sizing: border-box;
 }
 
-#megamenu-toolbox .toolbox h3 {
+#t3-admin-mm-tb .admin-toolbox h3 {
   margin-top: 0;
 }
 
-#megamenu-toolbox .toolbox ul {
-  float: left;
+#t3-admin-mm-tb .admin-toolbox ul {
   margin-right: 20px;
+  float: left;
 }
 
-#megamenu-toolbox .toolbox li > label {
+#t3-admin-mm-tb .admin-toolbox li > label {
   font-size: 11px;
   color: #999999;
 }
 
 
 /* Toolbox Actions ---- */
-.t3-row-mega .toolbox-actions-group {
+.t3-admin-mm-row .toolbox-actions-group {
   height: 100px;
   position: absolute;
   right: 20px;
 }
 
-.t3-row-mega .toolbox-actions-group button {
+.t3-admin-mm-row .toolbox-actions-group button {
 }
 
 
 /* Fullscreen Toggle */
-#navigation_params .t3-tog-fullscreen {
+#navigation_params .t3-admin-tog-fullscreen {
   position: absolute;
   right: 0;
   top: -50px;
 }
 
 
-
 /* The Menu
 ---------------------*/
-#megamenu-container {
+#t3-admin-mm-container {
   float: left;
   margin-left: 20px;
 }
@@ -351,27 +350,27 @@
 
 /* Fix for Joomla! Default Admin Template
 --------------------------------------------------*/
-#megamenu-admin .dropdown-menu a {
+#t3-admin-megamenu .dropdown-menu a {
   white-space: normal;
 }
-#megamenu-admin .row-fluid [class*="span"] {
+#t3-admin-megamenu .row-fluid [class*="span"] {
   margin-left: 2.12766%;
 }
-#megamenu-admin .row-fluid [class*="span"]:first-child {
+#t3-admin-megamenu .row-fluid [class*="span"]:first-child {
   margin-left: 0;
 }
 
 /* Fix right spacing for chzn chosen in Megamenu Admin UI */
-#megamenu-admin ul.chzn-results {
+#t3-admin-megamenu ul.chzn-results {
   margin-right: 4px;
   float: none;
 }
 
 /* Fix submenu auto open on hover */
-#megamenu-admin .dropdown-submenu:hover .dropdown-menu {
+#t3-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
   display: none;
 }
 
-#megamenu-admin .dropdown-submenu:hover > .dropdown-menu {
+#t3-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
   display: block;
 }

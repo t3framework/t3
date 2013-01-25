@@ -48,9 +48,9 @@
 		**/
 		startTour: function(){
 			// add class activated to control
-			// $('#t3-tour-overlay').addClass ('t3-tour-activated');
+			// $('#t3-admin-tour-overlay').addClass ('t3-admin-tour-activated');
 			this.activated = true;
-			$('.t3-tour-intro').hide();
+			$('.t3-admin-tour-intro').hide();
 			this.nextStep();
 		},
 		
@@ -85,8 +85,8 @@
 			this.step = 0;
 			this.currentTip = null;
 			this.activeIntro = activeIntro;
-			$('#t3-tour-controls .t3-tour-idx').text (this.step);
-			$('#t3-tour-controls .t3-tour-total').text (this.total_steps);			
+			$('#t3-admin-tour-controls .t3-admin-tour-idx').text (this.step);
+			$('#t3-admin-tour-controls .t3-admin-tour-total').text (this.total_steps);			
 			return true;
 		},
 
@@ -148,7 +148,7 @@
 				html: true,
 				placement: this.currentTip.position,
 				trigger: 'manual',
-				template: '<div class="popover t3-tour-popover"><div class="arrow"></div><div class="popover-inner">'
+				template: '<div class="popover t3-admin-tour-popover"><div class="arrow"></div><div class="popover-inner">'
 							+ '<h3 class="popover-title"></h3>'
 							+ '<div class="popover-content"><div></div></div>'
 							+ '<div class="popover-controls"></div>'
@@ -159,17 +159,17 @@
 			tip.popover ('show');
 
 			// add active/highlight class
-			if (this.currentTip.highlighter) $(this.currentTip.highlighter).addClass ('t3-tour-hilite');
-			tip.addClass ('t3-tour-active t3-tour-hilite')
+			if (this.currentTip.highlighter) $(this.currentTip.highlighter).addClass ('t3-admin-tour-hilite');
+			tip.addClass ('t3-admin-tour-active t3-admin-tour-hilite')
 
 			if ($.isFunction(this.currentTip.afterShow)){
 				this.currentTip.afterShow.apply(this);
 			}
 
 			// controls
-			if ($('.popover-controls').length) $('.popover-controls').html('').append($('#t3-tour-controls'));
+			if ($('.popover-controls').length) $('.popover-controls').html('').append($('#t3-admin-tour-controls'));
 			if (atip !== undefined) {
-				$('.popover-controls').addClass ('t3-tour-single-tip');
+				$('.popover-controls').addClass ('t3-admin-tour-single-tip');
 			}
 
 			this.focusTip();
@@ -180,7 +180,7 @@
 			$('html, body').stop(true);
 
 			setTimeout(function(){
-				var tipover = $('.t3-tour-popover');
+				var tipover = $('.t3-admin-tour-popover');
 			
 				tipover.t3imgload(function(){
 					if(tipover.offset().top < $(window).scrollTop() || (tipover.offset().top + tipover.outerHeight(true)) > ($(window).scrollTop() + $(window).height())){
@@ -194,26 +194,26 @@
 
 		hideTip: function () {
 			// hide current tips
-			$('#t3-tour-controls').appendTo ($('body'));
+			$('#t3-admin-tour-controls').appendTo ($('body'));
 			if (this.currentTip) {
 				var tip = $(this.currentTip.element)
 				tip.popover('destroy');
-				if (this.currentTip.highlighter) $(this.currentTip.highlighter).removeClass ('t3-tour-hilite');
-				tip.removeClass ('t3-tour-active t3-tour-hilite');
+				if (this.currentTip.highlighter) $(this.currentTip.highlighter).removeClass ('t3-admin-tour-hilite');
+				tip.removeClass ('t3-admin-tour-active t3-admin-tour-hilite');
 				this.currentTip = null;
 			}
 
-			if ($(document.body).data ('t3-tour-contextTip')) {
-				var tip = $(document.body).data ('t3-tour-contextTip');
-				$(document.body).data ('t3-tour-contextTip', null);
+			if ($(document.body).data ('t3-admin-tour-contextTip')) {
+				var tip = $(document.body).data ('t3-admin-tour-contextTip');
+				$(document.body).data ('t3-admin-tour-contextTip', null);
 				this.unbindContextTip (tip);
 			}
 		},
 
 		actionStatus: function () {
-			if (this.step <= 1) $('.t3-tour-prevtourstep').addClass ('disabled'); else $('.t3-tour-prevtourstep').removeClass ('disabled');
-			if (this.step >= this.total_steps) $('.t3-tour-nexttourstep').addClass ('disabled'); else $('.t3-tour-nexttourstep').removeClass ('disabled');
-			$('#t3-tour-controls .t3-tour-idx').text (this.step);
+			if (this.step <= 1) $('.t3-admin-tour-prevtourstep').addClass ('disabled'); else $('.t3-admin-tour-prevtourstep').removeClass ('disabled');
+			if (this.step >= this.total_steps) $('.t3-admin-tour-nexttourstep').addClass ('disabled'); else $('.t3-admin-tour-nexttourstep').removeClass ('disabled');
+			$('#t3-admin-tour-controls .t3-admin-tour-idx').text (this.step);
 		},
 
 		bind: function(){
@@ -224,27 +224,27 @@
 			Tour.isbind = true;
 
 			var self = this;
-			$(document.body).on('click', '.t3-tour-starttour, .t3-tour-canceltour, .t3-tour-endtour, .t3-tour-restarttour, .t3-tour-nexttourstep, .t3-tour-prevtourstep', function(){
+			$(document.body).on('click', '.t3-admin-tour-starttour, .t3-admin-tour-canceltour, .t3-admin-tour-endtour, .t3-admin-tour-restarttour, .t3-admin-tour-nexttourstep, .t3-admin-tour-prevtourstep', function(){
 				var $this = $(this);
 				if ($this.hasClass ('disabled')) return;
 				
-				if ($this.hasClass ('t3-tour-starttour')) {
+				if ($this.hasClass ('t3-admin-tour-starttour')) {
 					self.startTour();
 				}
 
-				if ($this.hasClass ('t3-tour-endtour')) {
+				if ($this.hasClass ('t3-admin-tour-endtour')) {
 					self.endTour();
 				}
 
-				if ($this.hasClass ('t3-tour-restarttour')) {
+				if ($this.hasClass ('t3-admin-tour-restarttour')) {
 					self.restartTour();
 				}
 
-				if ($this.hasClass ('t3-tour-nexttourstep')) {
+				if ($this.hasClass ('t3-admin-tour-nexttourstep')) {
 					self.nextStep();
 				}
 
-				if ($this.hasClass ('t3-tour-prevtourstep')) {
+				if ($this.hasClass ('t3-admin-tour-prevtourstep')) {
 					self.prevStep();
 				}
 			});
@@ -274,8 +274,8 @@
 			});
 
 			// add help button to tab description
-			$('.t3-fieldset-desc').append ('<span class="t3-tour-help"><i class="icon-question-sign"></i></span>');
-			$('.t3-tour-help').click(function(){
+			$('.t3-admin-fieldset-desc').append ('<span class="t3-admin-tour-help"><i class="icon-question-sign"></i></span>');
+			$('.t3-admin-tour-help').click(function(){
 				self.showControls();
 			})
 		},
@@ -287,32 +287,32 @@
 
 			if (this.moveControls === undefined) {
 				this.moveControls = true;
-				$('#t3-tour-overlay').appendTo ($('body'));
-				// $('#t3-tour-controls').appendTo ($('body'));
+				$('#t3-admin-tour-overlay').appendTo ($('body'));
+				// $('#t3-admin-tour-controls').appendTo ($('body'));
 			}
 			if (!this.activateTour(firstTour)) return;
 
 			if (this.activeIntro) {
-				$('.t3-tour-intro').show().children('.t3-tour-intro-msg').html (this.activeIntro);
+				$('.t3-admin-tour-intro').show().children('.t3-admin-tour-intro-msg').html (this.activeIntro);
 			} else {
 				this.startTour();
 			}
-			// $('#t3-tour-controls').show();
-			$('#t3-tour-overlay').show();
+			// $('#t3-admin-tour-controls').show();
+			$('#t3-admin-tour-overlay').show();
 		},
 		
 		hideControls: function(){
-			// $('#t3-tour-controls').hide();
-			// $('#t3-tour-controls').removeClass ('t3-tour-activated');
-			$('#t3-tour-overlay').hide();
+			// $('#t3-admin-tour-controls').hide();
+			// $('#t3-admin-tour-controls').removeClass ('t3-admin-tour-activated');
+			$('#t3-admin-tour-overlay').hide();
 		},
 
 		bindContextTip: function (tip) {
 			$(tip.element).on (tip.monitor, function (event) {
 				event.stopPropagation();
-				if ($(document.body).data ('t3-tour-contextTip')) return;
+				if ($(document.body).data ('t3-admin-tour-contextTip')) return;
 				$(document.body).data('t3tour').showTip (tip);
-				$(document.body).data('t3-tour-contextTip', tip);
+				$(document.body).data('t3-admin-tour-contextTip', tip);
 				$(tip.element).off(tip.monitor);
 			});
 		}, 
@@ -326,14 +326,14 @@
 		},
 
 		firstShow: function () {
-			if (!$.cookie('t3-tour-firstshow')) {
+			if (!$.cookie('t3-admin-tour-firstshow')) {
 				//this.defaultTour();
 
-				var placed = $('#t3-toolbar-help'),
-					tip = $('#t3-tour-quickhelp');
+				var placed = $('#t3-admin-tb-help'),
+					tip = $('#t3-admin-tour-quickhelp');
 
 				tip
-				.appendTo($('#t3-toolbar'))
+				.appendTo($('#t3-admin-toolbar'))
 				.css({
 					display: 'inline-block',
 					opacity: 0,
@@ -346,7 +346,7 @@
 							$(this).remove();
 						});
 
-						$.cookie('t3-tour-firstshow', '1', { expires: 365, path: '/' });
+						$.cookie('t3-admin-tour-firstshow', '1', { expires: 365, path: '/' });
 						
 						return false;
 					});

@@ -21,30 +21,30 @@ defined('_JEXEC') or die;
 <script type="text/javascript" src="<?php echo T3_ADMIN_URL ?>/admin/tour/js/tour.js"></script>
 
 
-<div id="t3-tour-overlay" class="hide">
-	<div class="t3-tour-overlay"></div>
-	<div class="t3-tour-intro">
-		<div class="t3-tour-intro-msg">
+<div id="t3-admin-tour-overlay" class="hide">
+	<div class="t3-admin-tour-overlay"></div>
+	<div class="t3-admin-tour-intro">
+		<div class="t3-admin-tour-intro-msg">
 		    <h1>Welcome to T3!</h1>
 		    <p>Are you ready to discover the best framework for Joomla! yet? Click the buttons below to start your travel and having fun!</p>
 		</div>
-		<div class="t3-tour-intro-action clearfix">
-			<button class="t3-tour-starttour btn btn-large btn-primary pull-left"><i class="icon-signin"></i>Start the tour!</button>	
-			<button class="t3-tour-endtour btn btn-large pull-right"><i class="icon-ok"></i>End</button>	
+		<div class="t3-admin-tour-intro-action clearfix">
+			<button class="t3-admin-tour-starttour btn btn-large btn-primary pull-left"><i class="icon-signin"></i>Start the tour!</button>	
+			<button class="t3-admin-tour-endtour btn btn-large pull-right"><i class="icon-ok"></i>End</button>	
 		</div>
 	</div>	
 
-	<div id="t3-tour-controls" class="t3-tour-controls clearfix">
+	<div id="t3-admin-tour-controls" class="t3-admin-tour-controls clearfix">
 		<div class="btn-group  pull-left">
-			<button class="t3-tour-prevtourstep btn btn-primary"><i class="icon-caret-left"></i>Prev</button>	
-			<button class="t3-tour-nexttourstep btn btn-primary">Next<i class="icon-caret-right" style="margin-left: 5px; margin-right: 0;"></i></button>
+			<button class="t3-admin-tour-prevtourstep btn btn-primary"><i class="icon-caret-left"></i>Prev</button>	
+			<button class="t3-admin-tour-nexttourstep btn btn-primary">Next<i class="icon-caret-right" style="margin-left: 5px; margin-right: 0;"></i></button>
 		</div>
-		<button class="t3-tour-endtour btn pull-right"><i class="icon-ok"></i>End</button>	
-		<div class="t3-tour-count"><span class="t3-tour-idx"></span>/<span class="t3-tour-total"></span></div>
+		<button class="t3-admin-tour-endtour btn pull-right"><i class="icon-ok"></i>End</button>	
+		<div class="t3-admin-tour-count"><span class="t3-admin-tour-idx"></span>/<span class="t3-admin-tour-total"></span></div>
 	</div>
 </div>
 
-<div id="t3-tour-quickhelp" class="t3-tour-quickhelp hide">
+<div id="t3-admin-tour-quickhelp" class="t3-admin-tour-quickhelp hide">
 	<button type="button" class="close" aria-hidden="true">&times;</button>
 	<div><?php echo JTexT::_('T3_TOUR_QUICK_HELP') ?></div>
 </div>
@@ -55,7 +55,7 @@ defined('_JEXEC') or die;
 	T3Tours.tours = [
 		{
 			id		: '1',
-			element : "#t3-toolbar-recompile",
+			element : "#t3-admin-tb-recompile",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "",
@@ -65,7 +65,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '2',
-			element : "#t3-toolbar-themer",
+			element : "#t3-admin-tb-themer",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -95,7 +95,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '5',
-			element : "#template-home .updater",
+			element : "#t3-admin-template-home .updater",
 			position: "left",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -106,7 +106,7 @@ defined('_JEXEC') or die;
 		},
 				{
 			id		: '6',
-			element : "#framework-home .updater",
+			element : "#t3-admin-framework-home .updater",
 			position: "left",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -210,40 +210,40 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '16',
-			element : ".mode-structure",
+			element : ".t3-admin-layout-mode-structure",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
 			title	: <?php echo json_encode(JText::_('T3_TOUR_GUIDE_21_TITLE')) ?>,
 			text    : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_21_CONTENT')) ?>,
 			dismiss : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_DISMISS_1')) ?>,
-			beforeShow	: function() {jQuery('.mode-structure').trigger ('click')}
+			beforeShow	: function() {jQuery('.t3-admin-layout-mode-structure').trigger ('click')}
 		},
 				{
 			id		: '17',
-			element : ".t3-layout-mode-m",
+			element : ".t3-admin-layout-mode-m",
 			position: "right",
 			highlighter: "", 
 			monitor	: "mouseover",
 			title	: <?php echo json_encode(JText::_('T3_TOUR_GUIDE_20_TITLE')) ?>,
 			text    : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_20_CONTENT')) ?>,
 			dismiss : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_DISMISS_1')) ?>,
-			beforeShow	: function() {jQuery('.t3-layout-mode-m').trigger ('click')}
+			beforeShow	: function() {jQuery('.t3-admin-layout-mode-m').trigger ('click')}
 		},
 				{
 			id		: '18',
-			element : ".mode-layout",
+			element : ".t3-admin-layout-mode-layout",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
 			title	: <?php echo json_encode(JText::_('T3_TOUR_GUIDE_22_TITLE')) ?>,
 			text    : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_22_CONTENT')) ?>,
 			dismiss : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_DISMISS_1')) ?>,
-			beforeShow	: function() {jQuery('.mode-layout').trigger ('click')}
+			beforeShow	: function() {jQuery('.t3-admin-layout-mode-layout').trigger ('click')}
 		},
 		{
 			id		: '19',
-			element : ".t3-layout-mode-r",
+			element : ".t3-admin-layout-mode-r",
 			position: "right",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -253,7 +253,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '20',
-			element : ".head-search .t3-layout-edit",
+			element : "#t3-admin-layout .head-search .t3-admin-layout-edit",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -338,7 +338,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '28',
-			element : "#megamenu-intro",
+			element : "#t3-admin-mm-intro",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -409,7 +409,7 @@ defined('_JEXEC') or die;
 		}
 
 		// integrate with help button
-		$('#t3-toolbar-help').on('click', function(){
+		$('#t3-admin-tb-help').on('click', function(){
 			if(typeof T3Tours != 'undefined'){
 				$(document.body).t3tour('defaultTour');
 			}

@@ -70,7 +70,7 @@ div.pagetitle h2 small {
 
 
 /* Toolbar ---*/
-#t3-toolbar {
+#t3-admin-toolbar {
   float: right;
 }
 
@@ -92,24 +92,24 @@ div#element-box div.m {
 
 /* Menu Assignment
 ---------------------------------------------------*/
-.t3-assignment h5 {
+.t3-admin-assignment h5 {
   color: #333;
   margin: 0 0 5px -18px;
 }
 
-.t3-assignment ul.menu-links,
+.t3-admin-assignment ul.menu-links,
 div#menu-assignment ul.menu-links {
   margin: 0;
   width: 100%;
   clear: both;
 }
 
-.t3-assignment li.span3 {margin-bottom: 20px;}
+.t3-admin-assignment li.span3 {margin-bottom: 20px;}
 
-.t3-assignment label.checkbox {
+.t3-admin-assignment label.checkbox {
   padding: 3px 0;
 }
 
-.t3-assignment div#menu-assignment ul.menu-links li:last-child label {
+.t3-admin-assignment div#menu-assignment ul.menu-links li:last-child label {
   margin-bottom: 0;
 }

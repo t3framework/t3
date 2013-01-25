@@ -16,7 +16,7 @@
 defined('_JEXEC') or die;
 ?>
 <?php
-	$style = 'JAxhtml';
+	$style = 'T3Xhtml';
 	$name = $vars['name'];
 	$splparams = $vars['splparams'];
 	$datas = $vars['datas'];

@@ -48,7 +48,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		$('.toolbox-action, .toolbox-toggle, .toolbox-input').unbind ("focus blur click change keydown");
 
 		// stop popup event when click in toolbox area
-		$('.t3-row-mega').click (function(event) {
+		$('.t3-admin-mm-row').click (function(event) {
 			event.stopPropagation();
 			return false;
 		});
@@ -334,11 +334,11 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	actions.toggleScreen = function () {
 		if ($('.toolbox-togglescreen').hasClass('t3-fullscreen-full')) {
 			$('.subhead-collapse').removeClass ('subhead-fixed');
-			$('#megamenu-admin').closest('.controls').removeClass ('controlbox-fixed');			
+			$('#t3-admin-megamenu').closest('.controls').removeClass ('controlbox-fixed');			
 			$('.toolbox-togglescreen').removeClass ('t3-fullscreen-full').find('i').removeClass().addClass(actions.datas.iconfull);
 		} else {
 			$('.subhead-collapse').addClass ('subhead-fixed');
-			$('#megamenu-admin').closest('.controls').addClass ('controlbox-fixed');
+			$('#t3-admin-megamenu').closest('.controls').addClass ('controlbox-fixed');
 			$('.toolbox-togglescreen').addClass ('t3-fullscreen-full').find('i').removeClass().addClass(actions.datas.iconsmall);
 		}
 	}
@@ -415,14 +415,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	}
 
 	hide_toolbox = function (show_intro) {
-		$('#megamenu-toolbox .toolbox').hide();
+		$('#t3-admin-mm-tb .admin-toolbox').hide();
 		currentSelected = null;
 		if (megamenu && megamenu.data('nav_all')) megamenu.data('nav_all').removeClass ('selected');
 		megamenu.find ('li').removeClass ('open');
 		if (show_intro) {
-			$('#megamenu-intro').show();
+			$('#t3-admin-mm-intro').show();
 		} else {
-			$('#megamenu-intro').hide();
+			$('#t3-admin-mm-intro').hide();
 		}
 	}
 
@@ -439,17 +439,17 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		megamenu.data('nav_all').removeClass ('selected');
 		currentSelected.addClass ('selected');		
 		var type = toolbox_type ();
-		$('#megamenu-tool' + type).show();
+		$('#t3-admin-mm-tool' + type).show();
 		update_toolbox (type);
 
-		$('#megamenu-toolbox').show();
+		$('#t3-admin-mm-tb').show();
 	}
 
 	update_toolbox = function (type) {
 		if (!type) type = toolbox_type ();
 		// remove all disabled status
-		$('#megamenu-toolbox .disabled').removeClass('disabled');
-		$('#megamenu-toolbox .active').removeClass('active');
+		$('#t3-admin-mm-tb .disabled').removeClass('disabled');
+		$('#t3-admin-mm-tb .active').removeClass('active');
 		switch (type) {
 			case 'item':
 				$('.toolitem-exclass').attr('value', currentSelected.data ('class') || '');
@@ -640,7 +640,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		prepare: function(){
 			// var panel = $('#jform_params_mm_panel-lbl').closest ('.control-group').find('.controls');
 			var panel = $('#jform_params_mm_type').closest ('.controls');
-			panel.append ($('#megamenu-admin').removeClass('hidden'));
+			panel.append ($('#t3-admin-megamenu').removeClass('hidden'));
 
 			// first load
 			if ($('#jform_params_navigation_type').val() == 'megamenu') {
@@ -659,7 +659,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		},
 
 		t3megamenu: function(form, ctrlelm, ctrl, rsp){
-			$('#megamenu-container').html(rsp).megamenuAdmin().find(':input').removeAttr('name');
+			$('#t3-admin-mm-container').html(rsp).megamenuAdmin().find(':input').removeAttr('name');
 		},
 
 		initPanel: function(){

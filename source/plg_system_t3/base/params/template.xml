@@ -51,7 +51,7 @@
 				</option>
 			</field>
 
-			<field name="theme" type="jafolderlist" default=""
+			<field name="theme" type="t3folderlist" default=""
 				label="T3_THEME_THEME_LABEL"
 				description="T3_THEME_THEME_DESC"
 				filter=".*"
@@ -73,7 +73,7 @@
 				label="T3_THEME_SLOGAN_LABEL"
 				description="T3_THEME_SLOGAN_DESC" />
 
-			<field name="logoimage" type="jamedia" default=""
+			<field name="logoimage" type="t3media" default=""
 				label="T3_THEME_LOGOIMAGE_LABEL" 
 				description="T3_THEME_LOGOIMAGE_DESC" />
 
@@ -89,7 +89,7 @@
 				</option>
 			</field>
 
-			<field name="mainlayout" type="jafilelist" default="default"
+			<field name="mainlayout" type="t3filelist" default="default"
 				label="T3_LAYOUT_LAYOUT_LABEL"
 				description="T3_LAYOUT_LAYOUT_DESC"
 				filter=".*\.php"

@@ -31,17 +31,17 @@ $modules = $db->loadObjectList();
 <?php endif; ?>
 <script type="text/javascript" src="<?php echo T3_ADMIN_URL ?>/admin/megamenu/js/megamenu.js"></script>
 
-<div id="megamenu-admin" class="hidden">
-  <div class="t3-inline-toolbox clearfix">
-    <div class="t3-row t3-row-mega clearfix">
+<div id="t3-admin-megamenu" class="hidden">
+  <div class="admin-inline-toolbox clearfix">
+    <div class="t3-admin-mm-row clearfix">
       
-      <div id="megamenu-intro" class="pull-left">
+      <div id="t3-admin-mm-intro" class="pull-left">
         <h3><?php echo JTexT::_('T3_NAVIGATION_MM_TOOLBOX') ?></h3>
         <p><?php echo JTexT::_('T3_NAVIGATION_MM_TOOLBOX_DESC') ?></p>
       </div>
       
-      <div id="megamenu-toolbox">
-        <div id="megamenu-toolitem" class="toolbox">
+      <div id="t3-admin-mm-tb">
+        <div id="t3-admin-mm-toolitem" class="admin-toolbox">
           <h3><?php echo JTexT::_('T3_NAVIGATION_MM_ITEM_CONF') ?></h3>
           <ul>
             <li>
@@ -84,7 +84,7 @@ $modules = $db->loadObjectList();
           </ul>
         </div>
 
-        <div id="megamenu-toolsub" class="toolbox">
+        <div id="t3-admin-mm-toolsub" class="admin-toolbox">
           <h3><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_CONF') ?></h3>
           <ul>
             <li>
@@ -124,7 +124,7 @@ $modules = $db->loadObjectList();
           </ul>
         </div>
 
-        <div id="megamenu-toolcol" class="toolbox">
+        <div id="t3-admin-mm-toolcol" class="admin-toolbox">
           <h3><?php echo JTexT::_('T3_NAVIGATION_MM_COLUMN_CONF') ?></h3>
           <ul>
             <li>
@@ -183,7 +183,7 @@ $modules = $db->loadObjectList();
       </div> 
       
       <div class="toolbox-actions-group">
-        <button class="t3-tog-fullscreen toolbox-action toolbox-togglescreen" data-action="toggleScreen" data-iconfull="icon-resize-full" data-iconsmall="icon-resize-small"><i class="icon-resize-full"></i></button>
+        <button class="t3-admin-tog-fullscreen toolbox-action toolbox-togglescreen" data-action="toggleScreen" data-iconfull="icon-resize-full" data-iconsmall="icon-resize-small"><i class="icon-resize-full"></i></button>
 
         <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i><?php echo JTexT::_('T3_NAVIGATION_MM_SAVE') ?></button>
         <!--button class="btn btn-danger toolbox-action toolbox-resetConfig"><i class="icon-undo"></i><?php echo JTexT::_('T3_NAVIGATION_MM_RESET') ?></button-->
@@ -192,9 +192,9 @@ $modules = $db->loadObjectList();
     </div>
   </div>
 
-  <div id="megamenu-container" class="navbar clearfix"></div> 
+  <div id="t3-admin-mm-container" class="navbar clearfix"></div> 
 </div>
 
 <script type="text/javascript">
-jQuery('#megamenu-admin select').chosen();
+  jQuery('#t3-admin-megamenu select').chosen();
 </script>

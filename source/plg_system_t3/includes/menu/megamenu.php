@@ -248,7 +248,7 @@ class T3MenuMegamenu {
 
 		//check in case the module is unpublish or deleted
 		if($module && $module->id){
-			$style = 'jaxhtml';
+			$style = 'T3Xhtml';
 			$content = JModuleHelper::renderModule($module, array('style'=>$style));
 
 			$this->menu .= $content."\n";

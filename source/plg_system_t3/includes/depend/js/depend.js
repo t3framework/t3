@@ -220,8 +220,8 @@
 				ctrl.indicator.insertAfter(ctrl.indicator.next('.chzn-container'));
 			}
 
-			if(ctrl.indicator.next('#t3-layout-clone-btns').length){
-				ctrl.indicator.insertAfter($('#t3-layout-clone-btns'));	
+			if(ctrl.indicator.next('#t3-admin-layout-clone-btns').length){
+				ctrl.indicator.insertAfter($('#t3-admin-layout-clone-btns'));	
 			}
 
 			ctrl.indicator.show();

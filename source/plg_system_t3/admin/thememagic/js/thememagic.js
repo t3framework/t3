@@ -44,14 +44,14 @@ var T3Theme = window.T3Theme || {};
 
 		initCPanel: function(){
 			
-			$('#thememagic .themer-minimize').on('click', function(){
+			$('#t3-admin-thememagic .themer-minimize').on('click', function(){
 				if($(this).hasClass('active')){
 					$(this).removeClass('active');
-					$('#thememagic').css('left', 0);
-					$('#preview').css('left', $('#thememagic').outerWidth(true));
+					$('#t3-admin-thememagic').css('left', 0);
+					$('#preview').css('left', $('#t3-admin-thememagic').outerWidth(true));
 				} else {
 					$(this).addClass('active');
-					$('#thememagic').css('left', - $('#thememagic').outerWidth(true));
+					$('#t3-admin-thememagic').css('left', - $('#t3-admin-thememagic').outerWidth(true));
 					$('#preview').css('left', 0);
 				}
 				
@@ -61,8 +61,8 @@ var T3Theme = window.T3Theme || {};
 
 		initRadioGroup: function(){
 			//clone from J3.0 a2
-			$('#thememagic .radio.btn-group label').addClass('btn')
-			$('#thememagic').on('click', '.btn-group label', function(){
+			$('#t3-admin-thememagic .radio.btn-group label').addClass('btn')
+			$('#t3-admin-thememagic').on('click', '.btn-group label', function(){
 				var label = $(this),
 					input = $('#' + label.attr('for'));
 
@@ -76,11 +76,11 @@ var T3Theme = window.T3Theme || {};
 					input.prop('checked', true).trigger('change.less');
 				}
 			});
-			$('#thememagic .radio.btn-group input:checked').each(function(){
+			$('#t3-admin-thememagic .radio.btn-group input:checked').each(function(){
 				$('label[for=' + $(this).attr('id') + ']').addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
 			});
 
-			$('#thememagic').on('change.depend', 'input[type=radio]', function(){
+			$('#t3-admin-thememagic').on('change.depend', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
 						.closest('.btn-group')
@@ -92,10 +92,10 @@ var T3Theme = window.T3Theme || {};
 		},
 		
 		initThemeAction: function(){
-			this.jel = document.getElementById('t3-theme-list');
+			this.jel = document.getElementById('t3-admin-theme-list');
 			
 			//change theme
-			$('#t3-theme-list').on('change', function(){
+			$('#t3-admin-theme-list').on('change', function(){
 				
 				var val = this.value;
 
@@ -117,7 +117,7 @@ var T3Theme = window.T3Theme || {};
 							if(option){
 								T3Theme.saveTheme();
 
-								$('#thememagic-dlg').modal('hide');
+								$('#t3-admin-thememagic-dlg').modal('hide');
 							}
 
 							T3Theme.changeTheme(val);
@@ -131,8 +131,8 @@ var T3Theme = window.T3Theme || {};
 			});
 			
 			//preview theme
-			$('#t3-theme-preview').on('click', function(){
-				if($('#recss-progress').hasClass('invisible')){
+			$('#t3-admin-tm-pvbtn').on('click', function(){
+				if($('#t3-admin-tm-recss-progress').hasClass('invisible')){
 					T3Theme.applyLess();
 				}
 
@@ -143,27 +143,27 @@ var T3Theme = window.T3Theme || {};
 			if(T3Theme.admin){
 
 				//save theme
-				$('#t3-theme-save').on('click', function(e){
+				$('#t3-admin-tm-save').on('click', function(e){
 					e.preventDefault();
 
-					if(!$(this).hasClass('disabled') && $('#recss-progress').hasClass('invisible')){
+					if(!$(this).hasClass('disabled') && $('#t3-admin-tm-recss-progress').hasClass('invisible')){
 						setTimeout(T3Theme.saveTheme, 1);
 					}
 				});
 				//saveas theme
-				$('#t3-theme-saveas').on('click', function(e){
+				$('#t3-admin-tm-saveas').on('click', function(e){
 					e.preventDefault();
 					
-					if(!$(this).hasClass('disabled') && $('#recss-progress').hasClass('invisible')){
+					if(!$(this).hasClass('disabled') && $('#t3-admin-tm-recss-progress').hasClass('invisible')){
 						setTimeout(T3Theme.saveThemeAs, 1);
 					}
 				});
 				
 				//delete theme
-				$('#t3-theme-delete').on('click', function(e){
+				$('#t3-admin-tm-delete').on('click', function(e){
 					e.preventDefault();
 					
-					if(!$(this).hasClass('disabled') && $('#recss-progress').hasClass('invisible')){
+					if(!$(this).hasClass('disabled') && $('#t3-admin-tm-recss-progress').hasClass('invisible')){
 						setTimeout(T3Theme.deleteTheme, 1);
 					}
 				});
@@ -173,23 +173,23 @@ var T3Theme = window.T3Theme || {};
 				T3Theme.fillData();
 			}
 
-			$('#t3-theme-save, #t3-theme-delete')[($('#t3-theme-list').val() == 'base' ? 'addClass' : 'removeClass')]('disabled');
+			$('#t3-admin-tm-save, #t3-admin-tm-delete')[($('#t3-admin-theme-list').val() == 'base' ? 'addClass' : 'removeClass')]('disabled');
 		},
 
 		initModalDialog: function(){
-			$('#thememagic-dlg').on('click', '.modal-footer a', function(){
+			$('#t3-admin-thememagic-dlg').on('click', '.modal-footer a', function(){
 				T3Theme.addtime = 500; //add time for close popup
 
 				if($.isFunction(T3Theme.modalCallback)){
 					T3Theme.modalCallback($(this).hasClass('btn-primary'));
 					return false;
 				} else if($(this).hasClass('btn-primary')){
-					$('#thememagic-dlg').modal('hide');
+					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
 			});
 
 			$('#prompt-form').on('submit', function(){
-				$('#thememagic-dlg .modal-footer a.btn-primary').trigger('click');
+				$('#t3-admin-thememagic-dlg .modal-footer a.btn-primary').trigger('click');
 
 				return false;
 			});
@@ -197,7 +197,7 @@ var T3Theme = window.T3Theme || {};
 		
 		applyLess: function(force){
 			
-			var jpg = $('#recss-progress');
+			var jpg = $('#t3-admin-tm-recss-progress');
 			if(jpg.hasClass('invisible')){
 				jpg.removeClass('invisible').addClass('in').find('.bar').width(0);
 			}
@@ -218,7 +218,7 @@ var T3Theme = window.T3Theme || {};
 
 			setTimeout(function(){
 
-				var wnd = (window.frames['ifr-preview'] || document.getElementById('ifr-preview').contentWindow);
+				var wnd = (window.frames['t3-admin-tm-ifr-preview'] || document.getElementById('t3-admin-tm-ifr-preview').contentWindow);
 				if(wnd.location.href.indexOf('themer=') == -1){
 					var urlparts = wnd.location.href.split('#');
 					urlparts[0] += urlparts[0].indexOf('?') == -1 ? '?themer=1' : '&themer=1';
@@ -241,9 +241,9 @@ var T3Theme = window.T3Theme || {};
 		},
 		
 		changeTheme: function(theme, pass){
-			if(pass && !$('#recss-progress').hasClass('invisible')){
+			if(pass && !$('#t3-admin-tm-recss-progress').hasClass('invisible')){
 				setTimeout(function(){
-					$('#recss-progress').addClass('invisible').find('.bar').width(0);
+					$('#t3-admin-tm-recss-progress').addClass('invisible').find('.bar').width(0);
 				}, 1000);
 			}
 
@@ -252,7 +252,7 @@ var T3Theme = window.T3Theme || {};
 			}
 			
 			//enable or disable control buttons
-			$('#t3-theme-save, #t3-theme-delete')[(theme == 'base' ? 'addClass' : 'removeClass')]('disabled');
+			$('#t3-admin-tm-save, #t3-admin-tm-delete')[(theme == 'base' ? 'addClass' : 'removeClass')]('disabled');
 			
 			T3Theme.active = theme;	//store the current theme
 			T3Theme.changed = false;
@@ -443,7 +443,7 @@ var T3Theme = window.T3Theme || {};
 						theme: T3Theme.active
 					});
 
-					$('#thememagic-dlg').modal('hide');
+					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
 			});
 		},
@@ -469,7 +469,7 @@ var T3Theme = window.T3Theme || {};
 						});
 					}
 
-					$('#thememagic-dlg').modal('hide');
+					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
 				
 			});
@@ -509,7 +509,7 @@ var T3Theme = window.T3Theme || {};
 						}, T3Theme.data[nname]);
 					}
 
-					$('#thememagic-dlg').modal('hide');
+					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
 
 				if($.isFunction(callback)){
@@ -527,10 +527,10 @@ var T3Theme = window.T3Theme || {};
 				T3Theme.ajax.abort();
 			}
 
-			$('#recss-progress').removeClass('invisible').addClass('in').find('.bar').width(0);
+			$('#t3-admin-tm-recss-progress').removeClass('invisible').addClass('in').find('.bar').width(0);
 			clearTimeout(T3Theme.progressid);
 			T3Theme.progressid = setTimeout(function(){
-				$('#recss-progress').find('.bar').width('10%');
+				$('#t3-admin-tm-recss-progress').find('.bar').width('10%');
 			}, 500);
 			
 			T3Theme.run = true;
@@ -544,7 +544,7 @@ var T3Theme = window.T3Theme || {};
 				T3Theme.run = false;
 
 				clearTimeout(T3Theme.progressid);
-				$('#recss-progress').find('.bar').width('100%');
+				$('#t3-admin-tm-recss-progress').find('.bar').width('100%');
 
 				if(result == ''){
 					return;
@@ -589,20 +589,20 @@ var T3Theme = window.T3Theme || {};
 						
 						default:
 							setTimeout(function(){
-								$('#recss-progress').addClass('invisible').find('.bar').width(0);
+								$('#t3-admin-tm-recss-progress').addClass('invisible').find('.bar').width(0);
 							}, 1000);
 						break;
 					}
 				} else {
 					setTimeout(function(){
-						$('#recss-progress').addClass('invisible').find('.bar').width(0);
+						$('#t3-admin-tm-recss-progress').addClass('invisible').find('.bar').width(0);
 					}, 1000);
 				}
 			});
 		},
 
 		alert: function(msg, type, title){
-			$('#thememagic .alert').remove();
+			$('#t3-admin-thememagic .alert').remove();
 
 			T3Theme.jalert = $([
 				'<div class="alert alert-', (type || 'info'), '">',
@@ -610,7 +610,7 @@ var T3Theme = window.T3Theme || {};
 					(title ? '<h4 class="alert-heading">' + title + '</h4>' : ''),
 					'<p>', msg, '</p>',
 				'</div>'].join(''))
-				.prependTo($('#t3-variable-form'))
+				.prependTo($('#t3-admin-tm-variable-form'))
 				.on('closed', function(){
 					clearTimeout(T3Theme.salert);
 					T3Theme.jalert = null;
@@ -628,7 +628,7 @@ var T3Theme = window.T3Theme || {};
 		confirm: function(msg, callback){
 			T3Theme.modalCallback = callback;
 
-			var jdialog = $('#thememagic-dlg');
+			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.prompt-block').hide();
 			jdialog.find('.message-block').show().find('p').html(msg);
 			jdialog.find('.cancel').html(T3Theme.langs.lblNo);
@@ -641,7 +641,7 @@ var T3Theme = window.T3Theme || {};
 
 		prompt: function(msg, callback){
 			T3Theme.modalCallback = callback;
-			var jdialog = $('#thememagic-dlg');
+			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show().find('span').html(msg);
 			jdialog.find('.cancel').html(T3Theme.langs.lblCancel);
@@ -654,7 +654,7 @@ var T3Theme = window.T3Theme || {};
 		
 		onCompile: function(completed, total){
 			
-			var jpg = $('#recss-progress'),
+			var jpg = $('#t3-admin-tm-recss-progress'),
 				percent = Math.max(jpg.data('percent') || 10, Math.ceil(completed / total * 100));
 				//trick for user experience (10%)
 

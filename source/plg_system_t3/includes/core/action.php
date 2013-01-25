@@ -249,7 +249,7 @@ class T3Action extends JObject
 		}
 
 		if (!empty ($module)) {
-			$style = $input->getCmd ('style', 'jaxhtml');
+			$style = $input->getCmd ('style', 'T3Xhtml');
 			$buffer = JModuleHelper::renderModule($module, array('style'=>$style));
 			// replace relative images url
 			$base   = JURI::base(true).'/';

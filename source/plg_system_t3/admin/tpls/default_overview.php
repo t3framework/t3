@@ -51,10 +51,10 @@ $xml->name = ucwords(str_replace('_', ' ', $xml->name));
 $fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
 
 ?>
-<div class="t3-overview">
+<div class="t3-admin-overview">
 
-  <legend class="t3-form-legend"><?php echo JText::_('T3_OVERVIEW_TPL_INFO')?></legend>
-  <div id="template-home" class="section">
+  <legend class="t3-admin-form-legend"><?php echo JText::_('T3_OVERVIEW_TPL_INFO')?></legend>
+  <div id="t3-admin-template-home" class="section">
   	<div class="row-fluid">
 
   		<div class="span8">
@@ -66,7 +66,7 @@ $fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
   		</div>
 
       <div class="span4">
-        <div id="tpl-info" class="admin-block clearfix">
+        <div id="t3-admin-tpl-info" class="t3-admin-overview-block clearfix">
           <h3><?php echo JText::_('T3_OVERVIEW_TPL_INFO')?></h3>
           <dl class="info">
             <dt><?php echo JText::_('T3_OVERVIEW_NAME')?></dt>
@@ -79,7 +79,7 @@ $fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
             <dd><a href="<?php echo $xml->authorUrl ?>" title="<?php echo $xml->author ?>"><?php echo $xml->author ?></a></dd>
           </dl>
         </div>
-        <div class="admin-block updater<?php echo $thasnew ? ' outdated' : '' ?> clearfix">
+        <div class="t3-admin-overview-block updater<?php echo $thasnew ? ' outdated' : '' ?> clearfix">
           <h3><?php echo empty($xml->updateservers) ? JText::sprintf('T3_OVERVIEW_TPL_VERSION', $xml->name, $xml->version) : JText::sprintf($thasnew ? 'T3_OVERVIEW_TPL_NEW' : 'T3_OVERVIEW_TPL_SAME', $xml->name) ?></h3>
           <p><?php echo empty($xml->updateservers) ? JText::_('T3_OVERVIEW_TPL_VERSION_MSG') : ($thasnew ? JText::sprintf('T3_OVERVIEW_TPL_NEW_MSG', $ctversion, $xml->name, $ntversion) : JText::sprintf('T3_OVERVIEW_TPL_SAME_MSG', $ctversion)) ?></p>
           <?php if($hasperm) :
@@ -96,8 +96,8 @@ $fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
     </div>
   </div>
 
-  <legend class="t3-form-legend"><?php echo JText::_('T3_OVERVIEW_FRMWRK_INFO')?></legend>
-  <div id="framework-home" class="section">
+  <legend class="t3-admin-form-legend"><?php echo JText::_('T3_OVERVIEW_FRMWRK_INFO')?></legend>
+  <div id="t3-admin-framework-home" class="section">
 
     <div class="row-fluid">
 
@@ -110,7 +110,7 @@ $fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
       </div>
 
       <div class="span4">
-        <div id="frmk-info" class="admin-block clearfix">
+        <div id="t3-admin-frmk-info" class="t3-admin-overview-block clearfix">
           <h3><?php echo JText::_('T3_OVERVIEW_FRMWRK_INFO')?></h3>
           <dl class="info">
             <dt><?php echo JText::_('T3_OVERVIEW_NAME')?></dt>
@@ -123,7 +123,7 @@ $fxml->name = ucwords(str_replace('_', ' ', $fxml->name));
             <dd><a href="<?php echo $fxml->authorUrl ?>" title="<?php echo $fxml->author ?>"><?php echo $fxml->author ?></a></dd>
           </dl>
         </div>
-        <div class="admin-block updater<?php echo $fhasnew ? ' outdated' : '' ?> clearfix">
+        <div class="t3-admin-overview-block updater<?php echo $fhasnew ? ' outdated' : '' ?> clearfix">
           <h3><?php echo JText::sprintf($fhasnew ? 'T3_OVERVIEW_FRMWRK_NEW' : 'T3_OVERVIEW_FRMWRK_SAME', $fxml->name)?></h3>
           <p><?php echo $fhasnew ? JText::sprintf('T3_OVERVIEW_FRMWRK_NEW_MSG', $cfversion, $fxml->name, $nfversion) : JText::sprintf('T3_OVERVIEW_FRMWRK_SAME_MSG', $cfversion) ?></p>
           <?php if($hasperm): ?>

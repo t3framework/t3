@@ -97,19 +97,19 @@ h1.page-title small {
 
 
 /* Toolbar ---*/
-#t3-toolbar {
+#t3-admin-toolbar {
 }
 
-#t3-toolbar .btn-group {
+#t3-admin-toolbar .btn-group {
   margin-left: 5px;
 }
 
-#t3-toolbar #t3-toolbar-save {
+#t3-admin-toolbar #t3-admin-tb-save {
   margin-right: 15px;
   margin-left: 15px;
 }
 
-#t3-toolbar #t3-toolbar-close {
+#t3-admin-toolbar #t3-admin-tb-close {
   margin-left: 20px;
 }
 
@@ -120,17 +120,17 @@ h1.page-title small {
   font-size: 14px;
 }
 
-#t3-toolbar button {
+#t3-admin-toolbar button {
   box-shadow: 1px 2px 2px rgba(0,0,0,.1);
 }
 
 /* Loading */
-#t3-toolbar-recompile .icon-loading,
-#t3-toolbar-recompile.loading .icon-check {
+#t3-admin-tb-recompile .icon-loading,
+#t3-admin-tb-recompile.loading .icon-check {
   display: none;
 }
 
-#t3-toolbar-recompile.loading .icon-loading {
+#t3-admin-tb-recompile.loading .icon-loading {
   display: inline-block;
   background: url(../images/loading.gif) no-repeat !important;
   width: 14px;
@@ -140,7 +140,7 @@ h1.page-title small {
 
 /* Header 
 --------- */
-.t3-header {
+.t3-admin-header {
   background: #eee;
   padding: 0 20px;
   border-top: 1px solid #fff;
@@ -222,7 +222,7 @@ h1.page-title small {
 
 /* ADMIN TAB NAVIGATIONS
 ---------------------------------------------------*/
-.t3-inline-nav {
+.t3-admin-inline-nav {
   margin: 15px -20px 20px;
   padding: 20px 0 0;
   box-sizing: border-box;
@@ -234,23 +234,23 @@ h1.page-title small {
   position: relative;
 }
 
-.t3-inline-nav .nav-tabs {
+.t3-admin-inline-nav .nav-tabs {
   padding: 0 20px;
   margin: 0;
 }
 
-.t3-inline-nav .nav-tabs > li > a {
+.t3-admin-inline-nav .nav-tabs > li > a {
   padding: 10px 20px;
   color: #666;
   text-shadow: 0 1px 1px #fff;
 }
 
-.t3-inline-nav .nav-tabs > li > a:hover {
+.t3-admin-inline-nav .nav-tabs > li > a:hover {
   color: #333;
 }
 
-.t3-inline-nav .nav-tabs > .active > a,
-.t3-inline-nav .nav-tabs > .active > a:hover {
+.t3-admin-inline-nav .nav-tabs > .active > a,
+.t3-admin-inline-nav .nav-tabs > .active > a:hover {
   color: #333;
 }
 
@@ -258,7 +258,7 @@ h1.page-title small {
 
 /* ADMIN TOOLBOX
 ---------------------------------------------------*/
-.t3-inline-toolbox {
+.admin-inline-toolbox {
   margin: 15px 0 20px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -269,12 +269,12 @@ h1.page-title small {
   border-top: 1px solid #e6e6e6; 
 }
 
-.t3-inline-toolbox ul {
+.admin-inline-toolbox ul {
   margin: 0;
   padding: 0;
 }
 
-.t3-inline-toolbox li {
+.admin-inline-toolbox li {
   margin: 0;
   padding: 0;
   display: inline-block;
@@ -282,7 +282,7 @@ h1.page-title small {
 }
 
 /* Fullscreen Toggle */
-.t3-tog-fullscreen {
+.t3-admin-tog-fullscreen {
   border: 1px solid #ccc;
   background: #e6e6e6;
   padding: 5px 10px;
@@ -306,7 +306,7 @@ fieldset button {
   float: none;
 }
 
-.t3-adminform form {
+.t3-admin-form form {
   margin: 0;
 }
 
@@ -362,7 +362,7 @@ select, input[type="file"] {
 
 /* Legends
 ---------- */
-.t3-form-legend {
+.t3-admin-form-legend {
   background-color: whiteSmoke;
   background-image: -moz-linear-gradient(top, white, #E6E6E6);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
@@ -385,7 +385,7 @@ select, input[type="file"] {
   text-indent: 20px;
 }
 
-.t3-form-legend-desc {
+.t3-admin-form-legend-desc {
   display: block;
   font-weight: normal;
   font-size: 12px;
@@ -418,13 +418,13 @@ select, input[type="file"] {
 
 /* Form Controls
 ---------------*/
-.t3-adminform .form-horizontal .t3-control-group {
+.t3-admin-form .form-horizontal .t3-control-group {
   margin: 0;
   padding: 0;
   border-top: 1px solid #e6e6e6;
 }
 
-.t3-adminform .form-horizontal .t3-control-label {
+.t3-admin-form .form-horizontal .t3-control-label {
   width: 18%;
   padding: 20px 20px 0;
   box-sizing: border-box;
@@ -434,11 +434,11 @@ select, input[type="file"] {
   text-align: right;
 }
 
-.t3-adminform .form-horizontal .t3-control-label > label {
+.t3-admin-form .form-horizontal .t3-control-label > label {
   font-weight: bold;
 }
 
-.t3-adminform .form-horizontal .t3-controls {
+.t3-admin-form .form-horizontal .t3-controls {
   padding: 15px 20px;
   text-align: left;
   box-sizing: border-box;
@@ -450,24 +450,24 @@ select, input[type="file"] {
 }
 
 /* Clearfix for form coltrol */
-.t3-adminform .form-horizontal .controls {
+.t3-admin-form .form-horizontal .controls {
   *zoom: 1;
 }
 
-.t3-adminform .form-horizontal .controls:before,
-.t3-adminform .form-horizontal .controls:after {
+.t3-admin-form .form-horizontal .controls:before,
+.t3-admin-form .form-horizontal .controls:after {
   display: table;
   content: "";
   line-height: 0;
 }
 
-.t3-adminform .form-horizontal .controls:after {
+.t3-admin-form .form-horizontal .controls:after {
   clear: both;
 }
 
 
 /* Header Form Control ---*/ 
-.t3-adminform .form-horizontal .t3-header .control-group {
+.t3-admin-form .form-horizontal .t3-admin-header .control-group {
   width: auto !important;
   display: block;
   float: left;
@@ -479,18 +479,18 @@ select, input[type="file"] {
   height: 30px;
 }
 
-.t3-adminform .form-horizontal .t3-header .control-group.hide {
+.t3-admin-form .form-horizontal .t3-admin-header .control-group.hide {
   display: none;
 }
 
-.t3-adminform .form-horizontal .t3-header .control-label {
+.t3-admin-form .form-horizontal .t3-admin-header .control-label {
   width: auto !important;
   display: block;
   float: left;
   padding: 8px 0 0 0;
 }
 
-.t3-adminform .form-horizontal .t3-header .controls {
+.t3-admin-form .form-horizontal .t3-admin-header .controls {
   margin: 0 0 0 10px;
   width: auto !important;
   display: block;
@@ -499,7 +499,7 @@ select, input[type="file"] {
   background: none;
 }
 
-.t3-adminform .form-horizontal .t3-header .inputbox {
+.t3-admin-form .form-horizontal .t3-admin-header .inputbox {
   width: 250px;
   font-weight: bold;
 }
@@ -568,7 +568,7 @@ button.btn-primary:active {
 
 /* Misc
 ------- */
-.t3-adminform .form-horizontal .media-preview .hasTipPreview {
+.t3-admin-form .form-horizontal .media-preview .hasTipPreview {
   position: relative;
   z-index: 10;
 }
@@ -582,7 +582,7 @@ button.btn-primary:active {
 
 /* DESC
 ---------- */
-.t3-fieldset-desc {
+.t3-admin-fieldset-desc {
   padding: 12px 40px;
   background: #FEFFDE;
 }
@@ -896,16 +896,16 @@ button.btn-primary:active {
 /* @end */
 
 /* T3 Custom Chosen default icon*/
-#t3-layout-tpl-positions {
+#t3-admin-layout-tpl-positions {
   width: 248px;
 }
 
-#t3-layout-tpl-positions select {
+#t3-admin-layout-tpl-positions select {
   margin-bottom: 5px;
 }
 
-.t3-chzn-default,
-.t3-chzn-empty {
+.t3-admin-layout-defbtn,
+.t3-admin-layout-rmvbtn {
   cursor: pointer;
   margin-right: 5px;
   z-index: 10;
@@ -918,20 +918,20 @@ button.btn-primary:active {
 
 /* Overview
 ---------------------------------------------------*/
-.t3-overview {
+.t3-admin-overview {
   overflow: hidden;
 }
 
-.t3-overview .section {
+.t3-admin-overview .section {
   padding: 40px;
 }
 
-.t3-overview .t3-form-legend {
+.t3-admin-overview .t3-admin-form-legend {
   padding-left: 40px;
 }
 
-/* admin-block ---*/
-.admin-block {
+/* t3-admin-overview-block ---*/
+.t3-admin-overview-block {
   background-color: #f8f8f8;
   background-image: -moz-linear-gradient(top, #fff, #f8f8f8);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#f8f8f8));
@@ -952,7 +952,7 @@ button.btn-primary:active {
   font-size: 12px;
 }
 
-.admin-block h3 {
+.t3-admin-overview-block h3 {
   margin: 0 0 10px;
   font-size: 14px;
   line-height: normal;
@@ -986,47 +986,47 @@ button.btn-primary:active {
 }
 
 /* Preview IMG ---*/
-.tpl-preview {
+.t3-admin-prd-preview {
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
 }
 
-.tpl-preview img {
+.t3-admin-prd-preview img {
   width: 100%;
   border-radius: 5px;
 }
 
 /* Overview ---*/
-.overview-header {
+.t3-admin-overview-header {
   margin-bottom: 30px;
 }
 
-.overview-header h2 {
+.t3-admin-overview-header h2 {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 30px;
   line-height: 40px;
 }
 
-.overview-header h2 small {
+.t3-admin-overview-header h2 small {
   font-size: 18px;
 }
 
-.overview-body {}
+.t3-admin-overview-body {}
 
-.overview-body h4 {
+.t3-admin-overview-body h4 {
   font-size: 18px;
 }
 
-.overview-features {
+.t3-admin-overview-features {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.overview-features li {
+.t3-admin-overview-features li {
   display: inline-block !important;
   margin: 0 5px 10px 0 !important;
   padding: 4px 10px !important;
@@ -1078,13 +1078,13 @@ button.btn-primary:active {
 
 /* Menu Assignment
 ---------------------------------------------------*/
-.t3-assignment {
+.t3-admin-assignment {
   overflow: hidden;
   padding: 0;
   position: relative;
 }
 
-.t3-assignment .btn-toolbar {
+.t3-admin-assignment .btn-toolbar {
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -1098,7 +1098,7 @@ button.btn-primary:active {
   font-family: 'IcoMoon' !important;
 }
 
-#t3-toolbar .btn .caret {
+#t3-admin-toolbar .btn .caret {
   margin-bottom: 0;
 }
 
@@ -1122,34 +1122,34 @@ button.btn-primary:active {
 /* Responsive
 ---------------------------------------------------*/
 @media (max-width: 767px) {
-  .t3-overview .section {
+  .t3-admin-overview .section {
     padding: 20px;
   }
 
-  .admin-block {
+  .t3-admin-overview-block {
     margin-top: 20px;
     margin-bottom: 0;
   }
 
-  .overview-header h2 {
+  .t3-admin-overview-header h2 {
     font-size: 20px;
   }
 
-  .overview-header h2 small {
+  .t3-admin-overview-header h2 small {
     font-size: 14px;
   }
 
-  .overview-body h4 {
+  .t3-admin-overview-body h4 {
     font-size: 14px;
   }
 
- .t3-form-legend,
- .t3-overview .t3-form-legend {
+ .t3-admin-form-legend,
+ .t3-admin-overview .t3-admin-form-legend {
     font-size: 16px;
     padding-left: 20px;
   }
 
- .t3-form-legend small {
+ .t3-admin-form-legend small {
     font-size: 14px;
   }
 
@@ -1158,11 +1158,11 @@ button.btn-primary:active {
     width: auto;
   }
 
-  #t3-toolbar button {
+  #t3-admin-toolbar button {
     margin-bottom: 5px;
   }
 
-  .t3-adminform .form-horizontal .t3-header .control-group {
+  .t3-admin-form .form-horizontal .t3-admin-header .control-group {
     float: none;
   }
 

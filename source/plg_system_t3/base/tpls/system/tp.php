@@ -11,13 +11,13 @@
  *------------------------------------------------------------------------------
  */
  
-$cls = array('t3-layout-pos', 'block-' . $vars['name']);
+$cls = array('t3-admin-layout-pos', 'block-' . $vars['name']);
 $attr = '';
 
 if(isset($vars['data-original'])){
 	$attr = ' data-original="'. $vars['data-original'] . '"';
 } else {
-	$cls[] = 't3-layout-uneditable'; 
+	$cls[] = 't3-admin-layout-uneditable'; 
 }
 ?>
 <div class="<?php echo implode(' ', $cls) ?>"<?php echo $attr ?>>

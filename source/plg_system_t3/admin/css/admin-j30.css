@@ -18,11 +18,11 @@
 
 /* Menu Assignment
 ---------------------------------------------------*/
-.t3-assignment .thumbnail {
+.t3-admin-assignment .thumbnail {
   padding: 10px;
 }
 
-.t3-assignment h5 {
+.t3-admin-assignment h5 {
   margin: 0 0 5px;
   color: #333;
 }
@@ -31,7 +31,7 @@
 /* Responsive
 ---------------------------------------------------*/
 @media (max-width: 767px) {
-  .t3-adminform {
+  .t3-admin-form {
     margin-left: -20px;
     margin-right: -20px;
   }

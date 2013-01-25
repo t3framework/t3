@@ -27,30 +27,30 @@ defined('_JEXEC') or die;
 		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
 	</head>
 
-	<body<?php echo $tplparams->get('themermode', 0) == 0 ? ' class="nomagic"' : ''?>>
+	<body<?php echo $tplparams->get('themermode', 0) == 0 ? ' class="no-magic"' : ''?>>
 		<div id="wrapper">
 			<?php if($tplparams->get('themermode', 0)): ?>
-			<div id="thememagic">
+			<div id="t3-admin-thememagic">
 				<a href="<?php echo JURI::base(true); ?>" class="themer-minimize"><i class="icon-remove-sign"></i><i class="icon-magic"></i>  <span><?php echo JText::_('T3_TM_MINIMIZE') ; ?></span></a>
 				<a href="<?php echo $backurl; ?>" class="themer-close" title="<?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?>"><i class="icon-arrow-left"></i><?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?></a>
 
-				<div class="header">
+				<div class="t3-admin-tm-header">
 				  <h2><strong><?php echo JText::_('T3_TM_CUSTOMIZING'); ?></strong> <span><?php echo $tplparams->get('sitename'); ?></span></h2>
-				  <form id="t3-theme-form" name="t3-theme-form" class="form-validate form-inline">
+				  <form id="t3-admin-tm-form" name="t3-admin-tm-form" class="form-validate form-inline">
 					<div class="controls controls-row">
-						<label for="t3-theme-list"><?php echo JText::_('T3_TM_THEME_LABEL'); ?></label>
+						<label for="t3-admin-theme-list"><?php echo JText::_('T3_TM_THEME_LABEL'); ?></label>
 					  <?php
-						echo JHTML::_('select.genericlist', $themes, 't3-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
+						echo JHTML::_('select.genericlist', $themes, 't3-admin-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
 					  ?>
 					 
 					  <div class="btn-group">
-						<button class="btn btn-primary" type="submit" id="t3-theme-preview"><?php echo JText::_('T3_TM_PREVIEW') ?></button>
+						<button id="t3-admin-tm-pvbtn" class="btn btn-primary"><?php echo JText::_('T3_TM_PREVIEW') ?></button>
 						<?php if( $isadmin) : ?>
 						<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
 						<ul class="dropdown-menu">
-						  <li><a id="t3-theme-save" href="#" title="Save As"><?php echo JText::_('T3_TM_SAVE') ?></a></li>
-						  <li><a id="t3-theme-saveas" href="#" title="Save As"><?php echo JText::_('T3_TM_SAVEAS') ?></a></li>
-						  <li><a id="t3-theme-delete" href="#" title="Delete"><?php echo JText::_('T3_TM_DELETE') ?></a></li>
+						  <li><a id="t3-admin-tm-save" href="" title="<?php echo JText::_('T3_TM_SAVE') ?>"><?php echo JText::_('T3_TM_SAVE') ?></a></li>
+						  <li><a id="t3-admin-tm-saveas" href="" title="<?php echo JText::_('T3_TM_SAVEAS') ?>"><?php echo JText::_('T3_TM_SAVEAS') ?></a></li>
+						  <li><a id="t3-admin-tm-delete" href="" title="<?php echo JText::_('T3_TM_DELETE') ?>"><?php echo JText::_('T3_TM_DELETE') ?></a></li>
 						</ul>
 					  	<?php endif; ?>
 					  </div>
@@ -58,12 +58,12 @@ defined('_JEXEC') or die;
 				  </form>
 				</div>
 	
-				<form id="t3-variable-form" name="adminForm" class="form-validate">
-					<div id="recss-progress" class="progress progress-striped active fade invisible">
+				<form id="t3-admin-tm-variable-form" name="adminForm" class="form-validate">
+					<div id="t3-admin-tm-recss-progress" class="progress progress-striped active fade invisible">
 						<div class="bar"></div>
 					</div>
 
-					<div class="accordion" id="jaccord">
+					<div class="accordion" id="t3-admin-tm-accord">
 						<?php
 						$i = 0;
 						foreach ($fieldSets as $name => $fieldSet) :
@@ -72,7 +72,7 @@ defined('_JEXEC') or die;
 							
 						<div class="accordion-group<?php echo $i == 0?' active':'' ?>">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#jaccord" href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>"><?php echo JText::_($label) ?></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#t3-admin-tm-accord" href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>"><?php echo JText::_($label) ?></a>
 							</div>
 							<div id="<?php echo preg_replace( '/\s+/', ' ', $name);?>" class="accordion-body collapse<?php echo (($i == 0)? ' in' : ''); ?>">
 								<div class="accordion-inner">
@@ -141,7 +141,7 @@ defined('_JEXEC') or die;
 			</div>
 			<?php else :?>
 			
-			<div id="themer-warning" class="modal hide fade">
+			<div id="t3-admin-tm-warning" class="modal hide fade">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h3><?php echo JText::_('T3_TM_TITLE'); ?></h3>
@@ -155,14 +155,14 @@ defined('_JEXEC') or die;
 			</div>
 
 			<?php endif;?>
-			<div id="preview">
-				<iframe id="ifr-preview" frameborder="0" src="<?php echo $url . ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '') ?>"></iframe>
+			<div id="t3-admin-tm-preview">
+				<iframe id="t3-admin-tm-ifr-preview" frameborder="0" src="<?php echo $url . ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '') ?>"></iframe>
 			</div>
 
 		</div>
 
 		<?php if($tplparams->get('themermode', 0)): ?>
-		<div id="thememagic-dlg" class="modal hide fade">
+		<div id="t3-admin-thememagic-dlg" class="modal hide fade">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3>Save this theme as...</h3>
@@ -179,8 +179,8 @@ defined('_JEXEC') or die;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn cancel" data-dismiss="modal" aria-hidden="true"></a>
-				<a href="#" class="btn btn-primary"></a>
+				<a href="" class="btn cancel" data-dismiss="modal" aria-hidden="true"></a>
+				<a href="" class="btn btn-primary"></a>
 			</div>
 		</div>
 		
@@ -191,7 +191,7 @@ defined('_JEXEC') or die;
 		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/thememagic/js/thememagic.js"></script>
 		<script type="text/javascript">
 			// add class active for open 
-			$('#jaccord .accordion-group').on('hide', function () {
+			$('#t3-admin-tm-accord .accordion-group').on('hide', function () {
 				$(this).removeClass('active');
 			}).on('show', function() {
 				$(this).addClass('active');
@@ -211,7 +211,7 @@ defined('_JEXEC') or die;
 		<?php else :?>
 			<script type="text/javascript">
 				$(document).ready(function(){
-					$('#themer-warning').modal('show')
+					$('#t3-admin-tm-warning').modal('show')
 				});
 			</script>
 		<?php endif;?>

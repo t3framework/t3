@@ -13,7 +13,7 @@
 
 /* Tour overlay 
 -------------------*/
-#t3-tour-overlay {
+#t3-admin-tour-overlay {
   position:fixed;
   width:100%;
   height:100%;
@@ -22,7 +22,7 @@
   z-index:10000;
 }
 
-.t3-tour-overlay {
+.t3-admin-tour-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -35,7 +35,7 @@
 
 /* Tour Intro
 -------------------*/
-.t3-tour-intro {
+.t3-admin-tour-intro {
   position: fixed;
   top: 30%;
   left: 50%;
@@ -66,41 +66,41 @@
   -webkit-box-sizing: border-box;
 }
 
-.t3-tour-intro h1 {
+.t3-admin-tour-intro h1 {
   font-size: 30px;
   margin: 0 0 5px;
   line-height: normal;
 }
 
-.t3-tour-intro-msg {
+.t3-admin-tour-intro-msg {
   margin-bottom: 20px;
 }
 
-.t3-tour-starttour {
+.t3-admin-tour-starttour {
   width: 60%;
 }
 
-.t3-tour-activated .t3-tour-intro {
+.t3-admin-tour-activated .t3-admin-tour-intro {
   display: none;
 }
 
 
 /* Tour Control
 -------------------*/
-#t3-tour-controls {
+#t3-admin-tour-controls {
   display: none;
 }
 
-.popover-controls #t3-tour-controls {
+.popover-controls #t3-admin-tour-controls {
   display: block;
 }
 
-.t3-tour-controls .t3-tour-controls-btns {
+.t3-admin-tour-controls .t3-admin-tour-controls-btns {
   text-align: center;
 }
 
-.t3-tour-controls .t3-tour-controls-btns .btn,
-.t3-tour-intro-action .btn {
+.t3-admin-tour-controls .t3-admin-tour-controls-btns .btn,
+.t3-admin-tour-intro-action .btn {
   font-size: 14px;
 }
 
@@ -112,14 +112,14 @@
 }
 
 /* show prev, next button when tour is started */
-.t3-tour-activated #prevtourstep,
-.t3-tour-activated #nexttourstep {
+.t3-admin-tour-activated #prevtourstep,
+.t3-admin-tour-activated #nexttourstep {
   display: inline-block;
 }
 
 /* hide intro, start button when tour is started */
-.t3-tour-activated .t3-tour-intro,
-.t3-tour-activated #activatetour {
+.t3-admin-tour-activated .t3-admin-tour-intro,
+.t3-admin-tour-activated #activatetour {
   display: none;
 }
 
@@ -130,7 +130,7 @@
   z-index: 10010;
 }
 
-.t3-tour-popover {
+.t3-admin-tour-popover {
   width: auto;
   width: 350px;
   font-size: 14px;
@@ -147,7 +147,7 @@
   text-shadow: 1px 1px 1px #fff;
 }
 
-.t3-tour-popover .popover-title {
+.t3-admin-tour-popover .popover-title {
   background: none;
   padding: 20px 20px 0;
   font-size: 22px;
@@ -156,11 +156,11 @@
   line-height: 1.2;
 }
 
-.t3-tour-popover .popover-content {
+.t3-admin-tour-popover .popover-content {
   padding: 10px 20px 20px;
 }
 
-.t3-tour-popover .popover-content .t3-tour-img {
+.t3-admin-tour-popover .popover-content .t3-admin-tour-img {
   border: 1px solid #ccc;
   margin: 10px 0 20px;
   border-radius: 5px;
@@ -170,15 +170,15 @@
   overflow: hidden;
 }
 
-.t3-tour-popover .popover-content .t3-tour-img img {
+.t3-admin-tour-popover .popover-content .t3-admin-tour-img img {
   width: 100%;
 }
 
-.t3-tour-popover .popover-controls {
+.t3-admin-tour-popover .popover-controls {
   padding: 0 20px 20px;
 }
 
-.t3-tour-count {
+.t3-admin-tour-count {
   line-height: 18px;
   padding: 4px 8px;
   font-size: 12px;
@@ -195,7 +195,7 @@
 
 /* Tour icon in tab 
 --------------------*/
-.t3-tour-help {
+.t3-admin-tour-help {
   font-size: 28px;
   position: absolute;
   right: 30px;
@@ -203,7 +203,7 @@
   cursor: pointer;
 }
 
-.t3-fieldset-desc {
+.t3-admin-fieldset-desc {
   padding-right: 70px;
   position: relative;
 }
@@ -211,7 +211,7 @@
 
 /* Quick Help 
 --------------------*/
-.t3-tour-quickhelp {
+.t3-admin-tour-quickhelp {
   background: #FEFFDE;
   border-radius: 4px;
   box-shadow: 1px 2px 2px rgba(0,0,0,.1);
@@ -228,7 +228,7 @@
   top: 5px;
 }
 
-.t3-tour-quickhelp::before {
+.t3-admin-tour-quickhelp::before {
   display: block;
   content: " ";
   float: left;
@@ -242,7 +242,7 @@
   margin-left: -15px;
 }
 
-.t3-tour-quickhelp::after {
+.t3-admin-tour-quickhelp::after {
   display: block;
   content: " ";
   float: left;
@@ -256,6 +256,6 @@
   margin-left: -14px;
 }
 
-.t3-tour-quickhelp .close {
+.t3-admin-tour-quickhelp .close {
   margin-top: 4px;
 }

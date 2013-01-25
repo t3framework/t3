@@ -18,7 +18,7 @@ var T3Admin = window.T3Admin || {};
 		
 		initBuildLessBtn: function(){
 			//t3 added
-			$('#t3-toolbar-recompile').on('click', function(){
+			$('#t3-admin-tb-recompile').on('click', function(){
 				var jrecompile = $(this);
 				jrecompile.addClass('loading');
 				$.get(T3Admin.adminurl, {'t3action': 'lesscall'}, function(rsp){
@@ -46,7 +46,7 @@ var T3Admin = window.T3Admin || {};
 				return false;
 			});
 
-			$('#t3-toolbar-themer').on('click', function(){
+			$('#t3-admin-tb-themer').on('click', function(){
 				if(!T3Admin.themermode){
 					alert(T3Admin.langs.enableThemeMagic);
 				} else {
@@ -56,19 +56,19 @@ var T3Admin = window.T3Admin || {};
 			});
 
 			//for style toolbar
-			$('#t3-toolbar-style-save-save').on('click', function(){
+			$('#t3-admin-tb-style-save-save').on('click', function(){
 				Joomla.submitbutton('style.apply');
 			});
 
-			$('#t3-toolbar-style-save-close').on('click', function(){
+			$('#t3-admin-tb-style-save-close').on('click', function(){
 				Joomla.submitbutton('style.save');
 			});
 			
-			$('#t3-toolbar-style-save-clone').on('click', function(){
+			$('#t3-admin-tb-style-save-clone').on('click', function(){
 				Joomla.submitbutton('style.save2copy');
 			});
 
-			$('#t3-toolbar-close').on('click', function(){
+			$('#t3-admin-tb-close').on('click', function(){
 				Joomla.submitbutton(($(this).hasClass('template') ? 'template' : 'style') + '.cancel');
 			});
 		},
@@ -92,7 +92,7 @@ var T3Admin = window.T3Admin || {};
 				}
 			});
 
-			$('.t3-adminform').on('update', 'input[type=radio]', function(){
+			$('.t3-admin-form').on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
 						.closest('.btn-group')
@@ -214,8 +214,8 @@ var T3Admin = window.T3Admin || {};
 
 		initCheckupdate: function(){
 			
-			var tinfo = $('#tpl-info dd'),
-				finfo = $('#frmk-info dd');
+			var tinfo = $('#t3-admin-tpl-info dd'),
+				finfo = $('#t3-admin-frmk-info dd');
 
 			T3Admin.chkupdating = null;
 			T3Admin.tplname = tinfo.eq(0).html();
@@ -223,7 +223,7 @@ var T3Admin = window.T3Admin || {};
 			T3Admin.frmkname = finfo.eq(0).html();
 			T3Admin.frmkversion = finfo.eq(1).html();
 			
-			$('#framework-home .updater, #template-home .updater').on('click', 'a.btn', function(){
+			$('#t3-admin-framework-home .updater, #t3-admin-template-home .updater').on('click', 'a.btn', function(){
 				
 				//if it is outdated, then we go direct to link
 				if($(this).closest('.updater').hasClass('outdated')){
@@ -249,8 +249,8 @@ var T3Admin = window.T3Admin || {};
 				url: T3Admin.t3updateurl,
 				data: {eid: T3Admin.eids},
 				success: function(data) {
-					var jfrmk = $('#framework-home .updater:first'),
-						jtemp = $('#template-home .updater:first');
+					var jfrmk = $('#t3-admin-framework-home .updater:first'),
+						jtemp = $('#t3-admin-template-home .updater:first');
 
 					jfrmk.find('.btn').removeClass('loading');
 					jtemp.find('.btn').removeClass('loading');
