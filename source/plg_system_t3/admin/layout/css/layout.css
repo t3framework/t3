@@ -28,6 +28,7 @@
   clear: both;
 }
 
+
 /* Reset
 --------*/
 .t3-admin-layout-preview .navbar-inner {
@@ -46,84 +47,8 @@
 }
 
 
-/* Styling
------------*/
-.t3-admin-layout-section {
-  margin: 0 0 12px;
-  padding: 12px 12px 0;
-  border-radius: 3px;
-  background: #f2f2f2;
-}
-
-.t3-admin-layout-section .t3-admin-layout-section {
-  padding: 0;
-  margin: 0;
-}
-
-.t3-admin-layout-section .container {
-  text-align: left;
-}
-
-.t3-admin-layout-splgroup {
-  background: url(../images/grouper.gif) no-repeat left bottom, url(../images/grouper.gif) no-repeat right bottom;
-  margin-bottom: 12px;
-}
-
-.t3-admin-layout-mode-r .t3-admin-layout-splgroup {
-  padding-bottom: 26px !important;
-  position: relative;
-}
-
-.t3-admin-layout-mode-r .t3-admin-layout-splgroup:before {
-  content: "Spotlight";
-  text-transform: UPPERCASE;
-  font-size: 10px;
-  background: #ddd;
-  color: #666;
-  width: 80px;
-  height: 20px;
-  line-height: 20px;
-  display: block;
-  position: absolute;
-  left: 50%;
-  bottom: 3px;
-  text-align: center;
-  text-shadow: 1px 1px 1px #FFF;
-  border-radius: 10px;
-  margin-left: -40px;
-}
-
-.t3-admin-layout-pos {
-  background: #fff;
-  border: 1px solid #ddd;
-  position: relative;
-  margin-bottom: 12px;
-  font-size: 12px;
-  padding: 10px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  border-radius: 3px;
-  text-align: left;
-  overflow: hidden;
-}
-
-.t3-admin-layout-pos h3 {
-  margin: 0;
-  line-height: normal;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.t3-admin-layout-pos:hover {
-  border: 1px solid #aaa;
-  box-shadow: 0 0 3px rgba(0,0,0,.3);
-}
-
-
 /* Layout Edit Tabs
--------------------- */
+--------------------*/
 .t3-admin-layout-row-device {
   padding: 15px 30px;
   background-color: #fff;
@@ -149,6 +74,87 @@
   position: absolute;
   right: 30px;
   top: -50px;
+}
+
+
+
+/* Layout Panel Styling
+---------------------------------------------------*/
+.t3-admin-layout-section {
+  margin: 0 0 12px;
+  padding: 12px 12px 0;
+  border-radius: 3px;
+  background: #f2f2f2;
+}
+
+.t3-admin-layout-section .t3-admin-layout-section {
+  padding: 0;
+  margin: 0;
+}
+
+.t3-admin-layout-section .container {
+  text-align: left;
+}
+
+.t3-admin-layout-pos {
+  background: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 3px;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+.t3-admin-layout-pos h3 {
+  margin: 0;
+  line-height: normal;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.t3-admin-layout-pos:hover {
+  border: 1px solid #aaa;
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+
+
+
+/* Spotlight Group 
+-------------------*/
+.t3-admin-layout-splgroup {
+  background: url(../images/grouper.gif) no-repeat left bottom, url(../images/grouper.gif) no-repeat right bottom;
+  margin-bottom: 12px;
+}
+
+.t3-admin-layout-mode-r .t3-admin-layout-splgroup {
+  padding-bottom: 26px !important;
+  position: relative;
+}
+
+.t3-admin-layout-mode-r .t3-admin-layout-splgroup::before {
+  content: "Spotlight";
+  text-transform: UPPERCASE;
+  font-size: 10px;
+  background: #ddd;
+  color: #666;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #FFF;
+  border-radius: 10px;
+  margin-left: -40px;
 }
 
 
@@ -268,11 +274,34 @@
 }
 
 
-/* Popover*/
+/* Popover ---*/
 .popover .chzn-done {
   width: 100%;
   margin-bottom: 10px;
   font-size: 13px;
+}
+
+
+/* Layout Clone ---*/
+#t3-admin-layout-clone-btns {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+#t3-admin-layout-clone-btns .btn {
+  margin-left: 5px;
+}
+
+
+/* Layout Clone Modal */
+#t3-admin-layout-clone-dlg {
+  font: 14px/20px sans-serif;
+  color: #666;
+  width: 450px;
+  margin: -200px 0 0 -225px;
+  border: 1px solid #333;
+  border-radius: 3px;
 }
 
 
@@ -384,13 +413,13 @@
 .t3-admin-layout-hiddenpos.has-pos {
   display: block;
   padding: 0 12px 0 42px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: #ddd;
   border-radius: 3px;
   position: relative;
 }
 
-.t3-admin-layout-hiddenpos:before {
+.t3-admin-layout-hiddenpos::before {
   content: "\f070";
   font-family: "FontAwesome";
   font-size: 16px;
@@ -398,7 +427,7 @@
   color: #fff;
   width: 34px;
   height: 100%;
-  line-height: 36px;
+  line-height: 35px;
   display: block;
   position: absolute;
   left: 0;
@@ -438,28 +467,4 @@
   opacity: 0.5;
   display: block;
   visibility: visible;
-}
-
-/* Layout Clone
----------------------------------------------------*/
-#t3-admin-layout-clone-btns {
-  display: inline-block;
-  margin-left: 10px;
-  vertical-align: top;
-}
-
-#t3-admin-layout-clone-btns .btn {
-  margin-left: 5px;
-}
-
-/* Layout Clone Modal
----------------------------------------------------*/
-
-#t3-admin-layout-clone-dlg {
-  font: 14px/20px sans-serif;
-  color: #666;
-  width: 450px;
-  margin: -200px 0 0 -225px;
-  border: 1px solid #333;
-  border-radius: 3px;
 }
