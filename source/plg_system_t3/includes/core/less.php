@@ -57,8 +57,8 @@ class T3Less extends lessc
 
 		$realpath = realpath(JPATH_ROOT.'/'.$path);
         // check path
-        //if(!is_file($realpath)){
-		if (!JPath::check ($realpath)){
+        if(!is_file($realpath)){
+		//if (!JPath::check ($realpath)){
             return;
         }
 		// Get file content

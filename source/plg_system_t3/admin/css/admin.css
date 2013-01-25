@@ -52,7 +52,7 @@ hr {
   margin: 0;
 }
 
-.disabled {
+.t3-admin-form .disabled {
   pointer-events: none;
   cursor: default;
   opacity: .3;
@@ -576,6 +576,16 @@ button.btn-primary:active {
 .t3-changed {
 }
 
+/* Fixed control for fullscreen
+------- */
+.t3-admin-control-fixed {
+  position: absolute;
+  top: 73px;
+  left: 0;
+  right: 0;
+  padding: 20px !important;
+  margin: 0 !important;
+}
 
 /* USERS INTERACTION ELEMENTS
 ---------------------------------------------------*/

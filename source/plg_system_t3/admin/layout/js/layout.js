@@ -514,11 +514,11 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3fullscreen: function(){
 			if ($(this).hasClass('t3-fullscreen-full')) {
 				$('.subhead-collapse').removeClass ('subhead-fixed');
-				$('#t3-admin-layout').closest('.controls').removeClass ('controlbox-fixed');			
+				$('#t3-admin-layout').closest('.controls').removeClass ('t3-admin-control-fixed');			
 				$(this).removeClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-full');
 			} else {
 				$('.subhead-collapse').addClass ('subhead-fixed');
-				$('#t3-admin-layout').closest('.controls').addClass ('controlbox-fixed');
+				$('#t3-admin-layout').closest('.controls').addClass ('t3-admin-control-fixed');
 				$(this).addClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-small');
 			}
 

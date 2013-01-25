@@ -1,3 +1,14 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package   T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license   GNU General Public License; http://www.gnu.org/licenses/gpl.html
+ * @author    JoomlArt, JoomlaBamboo 
+ *            If you want to be come co-authors of this project, please follow 
+ *            our guidelines at http://t3-framework.org/contribute
+ *------------------------------------------------------------------------------
+ */
 article,
 aside,
 details,
@@ -92,6 +103,16 @@ input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
 input[type="search"] {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -105,6 +126,57 @@ input[type="search"]::-webkit-search-cancel-button {
 textarea {
   overflow: auto;
   vertical-align: top;
+}
+@media print {
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
 .clearfix {
   *zoom: 1;
@@ -133,6 +205,17 @@ textarea {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+/** 
+ *------------------------------------------------------------------------------
+ * @package   T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license   GNU General Public License; http://www.gnu.org/licenses/gpl.html
+ * @author    JoomlArt, JoomlaBamboo 
+ *            If you want to be come co-authors of this project, please follow 
+ *            our guidelines at http://t3-framework.org/contribute
+ *------------------------------------------------------------------------------
+ */
 .t3-admin-layout-preview {
   width: 600px;
   max-width: 100%;
@@ -800,10 +883,10 @@ textarea {
 .t3-admin-layout-preview footer,
 .t3-admin-layout-preview section,
 .t3-admin-layout-preview nav,
-.t3-admin-layout-preview .ja-spotlight,
-.t3-admin-layout-preview .ja-content,
-.t3-admin-layout-preview .ja-sidebar,
-.t3-admin-layout-preview .ja-mastcol {
+.t3-admin-layout-preview .t3-spotlight,
+.t3-admin-layout-preview .t3-content,
+.t3-admin-layout-preview .t3-sidebar,
+.t3-admin-layout-preview .t3-mastcol {
   *zoom: 1;
 }
 .t3-admin-layout-preview .t3-admin-layout-section:before,
@@ -811,19 +894,19 @@ textarea {
 .t3-admin-layout-preview footer:before,
 .t3-admin-layout-preview section:before,
 .t3-admin-layout-preview nav:before,
-.t3-admin-layout-preview .ja-spotlight:before,
-.t3-admin-layout-preview .ja-content:before,
-.t3-admin-layout-preview .ja-sidebar:before,
-.t3-admin-layout-preview .ja-mastcol:before,
+.t3-admin-layout-preview .t3-spotlight:before,
+.t3-admin-layout-preview .t3-content:before,
+.t3-admin-layout-preview .t3-sidebar:before,
+.t3-admin-layout-preview .t3-mastcol:before,
 .t3-admin-layout-preview .t3-admin-layout-section:after,
 .t3-admin-layout-preview header:after,
 .t3-admin-layout-preview footer:after,
 .t3-admin-layout-preview section:after,
 .t3-admin-layout-preview nav:after,
-.t3-admin-layout-preview .ja-spotlight:after,
-.t3-admin-layout-preview .ja-content:after,
-.t3-admin-layout-preview .ja-sidebar:after,
-.t3-admin-layout-preview .ja-mastcol:after {
+.t3-admin-layout-preview .t3-spotlight:after,
+.t3-admin-layout-preview .t3-content:after,
+.t3-admin-layout-preview .t3-sidebar:after,
+.t3-admin-layout-preview .t3-mastcol:after {
   display: table;
   content: "";
   line-height: 0;
@@ -833,10 +916,10 @@ textarea {
 .t3-admin-layout-preview footer:after,
 .t3-admin-layout-preview section:after,
 .t3-admin-layout-preview nav:after,
-.t3-admin-layout-preview .ja-spotlight:after,
-.t3-admin-layout-preview .ja-content:after,
-.t3-admin-layout-preview .ja-sidebar:after,
-.t3-admin-layout-preview .ja-mastcol:after {
+.t3-admin-layout-preview .t3-spotlight:after,
+.t3-admin-layout-preview .t3-content:after,
+.t3-admin-layout-preview .t3-sidebar:after,
+.t3-admin-layout-preview .t3-mastcol:after {
   clear: both;
 }
 .t3-admin-layout-preview .row .span100 {

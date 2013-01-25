@@ -4,19 +4,24 @@
 .t3-megamenu .row-fluid + .row-fluid {
   border-top: 1px solid #444;
 }
-.t3-megamenu .mega-nav .mega-group > span,
-.t3-megamenu .dropdown-menu .mega-nav .mega-group > span {
+.t3-megamenu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
+  background: inherit;
+  color: #222;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #222;
 }
-.t3-megamenu .mega-nav .mega-group > span:hover,
-.t3-megamenu .mega-nav .mega-group > span:active,
-.t3-megamenu .mega-nav .mega-group > span:focus,
-.t3-megamenu .dropdown-menu .mega-nav .mega-group > span:hover,
-.t3-megamenu .dropdown-menu .mega-nav .mega-group > span:active,
-.t3-megamenu .dropdown-menu .mega-nav .mega-group > span:focus {
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:focus {
   background: inherit;
   color: #222;
 }

@@ -113,3 +113,7 @@ div#menu-assignment ul.menu-links {
 .t3-admin-assignment div#menu-assignment ul.menu-links li:last-child label {
   margin-bottom: 0;
 }
+
+.t3-admin-control-fixed {
+  top: 170px;
+}

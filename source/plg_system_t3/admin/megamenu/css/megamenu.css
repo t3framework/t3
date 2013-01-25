@@ -21,17 +21,6 @@
   margin: 0 -20px;
 }
 
-.controlbox-fixed {
-  position: absolute;
-  top: 73px;
-  left: 0;
-  right: 0;
-  padding: 20px !important;
-  margin: 0 !important;
-}
-
-
-
 /* Intro
 ---------------------*/
 #t3-admin-mm-intro {
