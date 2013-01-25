@@ -123,7 +123,7 @@
 				<option value="click">Mouse Click</option>
 			</field>
 
-			<field name="navigation_type" type="list" class="btn-group" default="joomla"
+			<field name="navigation_type" type="list" class="btn-group" default="default"
 				label="T3_NAVIGATION_TYPE_LABEL"
 				description="T3_NAVIGATION_TYPE_DESC">
 				<option value="joomla">Joomla Module</option>

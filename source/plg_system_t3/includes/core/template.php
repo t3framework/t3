@@ -58,7 +58,7 @@ class T3Template extends ObjectExtendable
 			
 			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
 			if(empty($layout)){
-				$layout = $template->params->get('mainlayout', 'default');
+				$layout = $template->params->get('mainlayout', 'default-joomla-3.x');
 			}
 			$fconfig = JPATH_ROOT . '/templates/' . $template->template . '/etc/layout/' . $layout . '.ini';		
 			if(is_file($fconfig)){
