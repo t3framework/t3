@@ -89,7 +89,7 @@
 				</option>
 			</field>
 
-			<field name="mainlayout" type="t3filelist" default="default"
+			<field name="mainlayout" type="t3filelist" default="default-joomla-3.x"
 				label="T3_LAYOUT_LAYOUT_LABEL"
 				description="T3_LAYOUT_LAYOUT_DESC"
 				filter=".*\.php"
@@ -123,7 +123,7 @@
 				<option value="click">Mouse Click</option>
 			</field>
 
-			<field name="navigation_type" type="list" class="btn-group" default="0"
+			<field name="navigation_type" type="list" class="btn-group" default="joomla"
 				label="T3_NAVIGATION_TYPE_LABEL"
 				description="T3_NAVIGATION_TYPE_DESC">
 				<option value="joomla">Joomla Module</option>
