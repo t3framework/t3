@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
         <?php $this->megamenu($this->getParam('mm_type', 'mainmenu')) ?>
       <?php else : ?>
         <div class="mainnav-wrap <?php $this->_c('navhelper') ?>">
-          <jdoc:include type="modules" name="mainnav" style="raw" />
+          <jdoc:include type="modules" name="<?php $this->_p('mainnav') ?>" style="raw" />
         </div>
       <?php endif ?>
   		</div>
