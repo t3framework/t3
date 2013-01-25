@@ -176,37 +176,33 @@ var T3Admin = window.T3Admin || {};
 				var jinput = $(this),
 					oval = jinput.data('org-val'),
 					nval = jinput.val(),
-					mthd = 'removeClass',
-					cmp = true;
+					eq = true;
 
 				if(oval != nval){
 					if($.isArray(oval) && $.isArray(nval)){
 						if(oval.length != nval.length){
-							cmp = false;
+							eq = false;
 						} else {
 							for(var i = 0; i < oval.length; i++){
 								if(oval[i] != nval[i]){
-									cmp = false;
+									eq = false;
 									break;
 								}
 							}
 						}
 					} else {
-						cmp = false;
+						eq = false;
 					}
 				}
 
-				if(!cmp) {
-					mthd = 'addClass';
-				}
+				var jgroup = jinput.closest('.control-group'),
+					jpane = jgroup.closest('.tab-pane'),
+					chretain = Math.max(0, (jgroup.data('chretain') || 0) + (eq ? -1 : 1));
 
-				jinput
-					.closest('.control-group')
-					//.add(jinput.next('.chzn-container'))
-					[mthd]('t3-changed');
+				jgroup.data('chretain', chretain)
+					[chretain ? 'addClass' : 'removeClass']('t3-changed');
 
-				var jpane = jinput.closest('.tab-pane');
-				$('.t3-admin-nav .nav li').eq(jpane.index())[(!cmp || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
+				$('.t3-admin-nav .nav li').eq(jpane.index())[(!eq || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
 
 			}).find(':input').each(function(){
 				$(this).data('org-val', $(this).val());

@@ -186,13 +186,18 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		initMarkChange: function(){
 			clearTimeout(T3AdminLayout.chsid);
 
-			var jcontrol = $('#t3-admin-layout'),
-				jpane = jcontrol.closest('.tab-pane'),
+			var jgroup = $('#t3-admin-layout').closest('.control-group'),
+				jpane = jgroup.closest('.tab-pane'),
 				jtab = $('.t3-admin-nav .nav li').eq(jpane.index()),
 
 			check = function(){
-				jcontrol[JSON.stringify(T3AdminLayout.t3getlayoutdata()) == T3AdminLayout.curconfig ? 'removeClass' : 'addClass']('t3-changed');
-				jtab[jpane.find('.t3-changed').length ? 'addClass' : 'removeClass']('t3-changed');
+				var eq = JSON.stringify(T3AdminLayout.t3getlayoutdata()) == T3AdminLayout.curconfig,
+					chretain = Math.max(0, (jgroup.data('chretain') || 0) + (eq ? -1 : 1));
+
+				jgroup.data('chretain', chretain)
+					[chretain ? 'addClass' : 'removeClass']('t3-changed');
+
+				jtab[!eq || jpane.find('.t3-changed').length ? 'addClass' : 'removeClass']('t3-changed');
 
 				T3AdminLayout.chsid = setTimeout(check, 1500);
 			};
