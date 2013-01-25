@@ -35,6 +35,7 @@
 		</div>
 		]]>
 	</description>	
+	<scriptfile>t3.script.php</scriptfile>
 	<files>
 		<filename plugin="t3">t3.php</filename>
 		<filename>index.html</filename>
