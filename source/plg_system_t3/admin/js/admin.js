@@ -201,7 +201,8 @@ var T3Admin = window.T3Admin || {};
 				}
 
 				jinput
-					.add(jinput.next('.chzn-container'))
+					.closest('.control-group')
+					//.add(jinput.next('.chzn-container'))
 					[mthd]('t3-changed');
 
 				var jpane = jinput.closest('.tab-pane');

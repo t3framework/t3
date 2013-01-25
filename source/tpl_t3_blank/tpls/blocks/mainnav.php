@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- MAIN NAVIGATION -->
-<nav id="t3-mainnav" class="wrap t3-mainnav">
+<nav id="ja-mainnav" class="wrap ja-mainnav">
   <div class="container navbar">
     <div class="navbar-inner">
 
@@ -23,9 +23,7 @@ defined('_JEXEC') or die;
       <?php if ($this->getParam('navigation_type') == 'megamenu') : ?>
         <?php $this->megamenu($this->getParam('mm_type', 'mainmenu')) ?>
       <?php else : ?>
-        <div class="mainnav-wrap <?php $this->_c('navhelper') ?>">
-          <jdoc:include type="modules" name="<?php $this->_p('mainnav') ?>" style="raw" />
-        </div>
+        <jdoc:include type="modules" name="<?php $this->_p('mainnav') ?>" style="raw" />
       <?php endif ?>
   		</div>
     </div>

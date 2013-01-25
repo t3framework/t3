@@ -26,8 +26,9 @@
 		<filename>templateInfo.php</filename>
 		<filename>template_preview.png</filename>
 		<filename>template_thumbnail.png</filename>
-		<folder>css</folder>
+		<folder>etc</folder>
 		<folder>fonts</folder>
+		<folder>css</folder>
 		<folder>js</folder>
 		<folder>less</folder>
 		<folder>images</folder>
