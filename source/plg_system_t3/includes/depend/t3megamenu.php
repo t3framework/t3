@@ -1,15 +1,17 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package   T3 Framework for Joomla!
+ * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license   GNU General Public License; http://www.gnu.org/licenses/gpl.html
- * @author    JoomlArt, JoomlaBamboo 
- *            If you want to be come co-authors of this project, please follow 
- *            our guidelines at http://t3-framework.org/contribute
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License; http://www.gnu.org/licenses/gpl.html
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         https://github.com/t3framework/ 
  *------------------------------------------------------------------------------
  */
+
 
 defined('JPATH_PLATFORM') or die;
 
@@ -107,14 +109,34 @@ class JFormFieldT3MegaMenu extends JFormFieldList
 	protected function getMegaMenuMarkup()
 	{
 		if(!defined('T3')){
+			$t3path = dirname(dirname(dirname(__FILE__)));
+			if(is_file($t3path . '/includes/core/defines.php')){
+				include_once $t3path . '/includes/core/defines.php';
+			} else {
+				return false;
+			}
+		}
+
+		if(!defined('T3')){
 			return false;
 		}
+
+		$t3path = T3_ADMIN_PATH;
 		
 		if(!defined('__T3_MEGAMENU_ASSET__')){
 			define('__T3_MEGAMENU_ASSET__', 1);
 
 			$jdoc = JFactory::getDocument();
-			$jdoc->addScript()
+			$jdoc->addScript();
+
+			$uri = str_replace('\\', '/', str_replace( JPATH_SITE, JURI::base(), dirname(__FILE__) ));
+			$uri = str_replace('/administrator/', '/', $uri);
+			
+			if(!defined('T3')){
+                $jdoc = JFactory::getDocument();
+                $jdoc->addStyleSheet($uri.'/css/depend.css');
+                $jdoc->addScript($uri.'/js/depend.js');    
+            }
 		}
 	}
 }

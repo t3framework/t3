@@ -1,13 +1,14 @@
 ﻿<?php
 /** 
  *------------------------------------------------------------------------------
- * @package   T3 Framework for Joomla!
+ * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license   GNU General Public License; http://www.gnu.org/licenses/gpl.html
- * @author    JoomlArt, JoomlaBamboo 
- *            If you want to be come co-authors of this project, please follow 
- *            our guidelines at http://t3-framework.org/contribute
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License; http://www.gnu.org/licenses/gpl.html
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         https://github.com/t3framework/ 
  *------------------------------------------------------------------------------
  */
 
