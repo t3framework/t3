@@ -51,12 +51,16 @@ class plgSystemT3 extends JPlugin
 			if (!defined('T3')){
 				JError::raiseError(500, JText::_('T3_MSG_PACKAGE_DAMAGED'));
 			}
+
+			//load T3 Framework language
+			JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 			
 			// capture for tm=1 => show theme magic
 			if ($input->getCmd('tm') == 1) {
 				$input->set('t3action', 'theme');
 				$input->set('t3task', 'thememagic');
 			}
+
 			// excute action by T3
 			if ($action = $input->getCmd ('t3action')) {
 				t3import ('core/action');

@@ -55,7 +55,6 @@ class T3Action extends JObject
 	}
 
 	public static function lesscall(){
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 		t3import ('core/less');
 		
 		$result = array();
@@ -71,7 +70,6 @@ class T3Action extends JObject
 
 	public static function theme(){
 		
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
 
 		if(!defined('T3')) {
@@ -108,8 +106,6 @@ class T3Action extends JObject
 
 	public static function positions(){
 		self::cloneParam('t3layout');
-
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 
 		$japp = JFactory::getApplication();
 		if(!$japp->isAdmin()){
@@ -160,8 +156,6 @@ class T3Action extends JObject
 	public static function layout(){
 		self::cloneParam('t3layout');
 
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
-
 		if(!defined('T3')) {
 			die(json_encode(array(
 				'error' => JText::_('T3_MSG_PLUGIN_NOT_READY')
@@ -198,7 +192,6 @@ class T3Action extends JObject
 	public static function megamenu() {
 		self::cloneParam('t3menu');
 
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 		if(!defined('T3')) {
 			die(json_encode(array(
 				'error' => JText::_('T3_MSG_PLUGIN_NOT_READY')
