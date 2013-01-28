@@ -14,4 +14,9 @@
 //jquery no-conflict
 if(typeof jQuery != 'undefined'){
 	window.$T3 = jQuery.noConflict();
+
+	if(window.t3bkQuery){
+		window.jQuery = window.t3bkQuery;
+		delete window.t3bkQuery; //should we delete?
+	}
 }

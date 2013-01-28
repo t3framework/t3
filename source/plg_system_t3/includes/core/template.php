@@ -447,16 +447,17 @@ class T3Template extends ObjectExtendable
 		}
 
 		// Add scripts
-		//if(version_compare(JVERSION, '3.0', 'ge')){
-		//	JHtml::_('jquery.framework');
-		//} else {
+		if(version_compare(JVERSION, '3.0', 'ge')){
+			JHtml::_('jquery.framework');
+		} else {
+			$this->addScript (T3_URL.'/js/jquery.backup.js');
 			$this->addScript (T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
-		//}
+		}
 		define('JQUERY_INCLUED', 1);
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
 		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');	
-		$this->addScript (T3_URL.'/js/noconflict.js');
+		$this->addScript (T3_URL.'/js/jquery.noconflict.js');
 		$this->addScript (T3_URL.'/js/touch.js');
 		$this->addScript (T3_URL.'/js/script.js');
 
