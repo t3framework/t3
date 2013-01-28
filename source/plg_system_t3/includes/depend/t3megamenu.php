@@ -15,7 +15,7 @@
 
 defined('JPATH_PLATFORM') or die;
 
-JFormHelper::loadFieldClass('list');
+JFormHelper::loadFieldClass('hidden');
 
 // Import the com_menus helper.
 require_once realpath(JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
@@ -76,16 +76,11 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 	protected function getMegaMenuMarkup()
 	{
 		if(!defined('T3')){
-			$t3path = dirname(dirname(dirname(__FILE__)));
-			if(is_file($t3path . '/includes/core/defines.php')){
-				include_once $t3path . '/includes/core/defines.php';
-			} else {
-				return false;
-			}
+			return false;
 		}
 
-		if(!defined('T3')){
-			return false;
+		if(!defined('T3_TEMPLATE')){
+			$this->loadT3Depend();
 		}
 
 		$t3path = T3_ADMIN_PATH;
@@ -122,5 +117,27 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 		</script>
 		<?php
 		endif;
+	}
+
+	/**
+	 * Check and load assets file if needed
+	 */
+	function loadT3Depend(){
+		if (!defined ('_T3_DEPEND_ASSET_')) {
+			define ('_T3_DEPEND_ASSET_', 1);
+			
+			JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+			
+			$jdoc = JFactory::getDocument();	
+			$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
+			$jdoc->addScript(T3_ADMIN_URL . '/includes/depend/js/depend.js');
+
+			JFactory::getDocument()->addScriptDeclaration ( '
+				jQuery.extend(T3Depend, {
+					adminurl: \'' . JFactory::getURI()->toString() . '\',
+					rooturl: \'' . JURI::root() . '\'
+				});
+			');
+		}
 	}
 }

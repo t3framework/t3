@@ -692,6 +692,52 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				}
 			};
 		},
+
+		initRadioGroup: function(){
+			//copy from J3.0
+			// Turn radios into btn-group
+			if(typeof T3Admin != 'undefined'){
+				return true;
+			}
+
+			var jt3menu = $('.t3-admin-megamenu');
+
+			jt3menu.find('.radio.btn-group label').addClass('btn');
+			jt3menu.find('.btn-group label').unbind('click').click(function() {
+				var label = $(this),
+					input = $('#' + label.attr('for'));
+
+				if (!input.prop('checked')){
+					label.closest('.btn-group')
+						.find('label')
+						.removeClass('active btn-success btn-danger btn-primary');
+
+					label.addClass('active ' + (input.val() == '' ? 'btn-primary' : (input.val() == 0 ? 'btn-danger' : 'btn-success')));
+					
+					input.prop('checked', true).trigger('change');
+				}
+			});
+
+			jt3menu.on('update', 'input[type=radio]', function(){
+				if(this.checked){
+					$(this)
+						.closest('.btn-group')
+						.find('label').removeClass('active btn-success btn-danger btn-primary')
+						.filter('[for="' + this.id + '"]')
+							.addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
+				}
+			});
+
+			jt3menu.find('.btn-group input[checked=checked]').each(function(){
+				if($(this).val() == ''){
+					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-primary');
+				} else if($(this).val() == 0){
+					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-danger');
+				} else {
+					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-success');
+				}
+			});
+		}
 	});
 
 	$(window).load(function(){
@@ -701,6 +747,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	$(document).ready(function(){
 		T3AdminMegamenu.initPanel();
 		T3AdminMegamenu.initPreSubmit();
+		T3AdminMegamenu.initRadioGroup();
 	});
 
 }(window.$T3 || window.jQuery);

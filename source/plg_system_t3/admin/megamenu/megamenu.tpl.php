@@ -24,7 +24,7 @@ $db->setQuery($query);
 $modules = $db->loadObjectList();
 ?>
 
-<div id="t3-admin-megamenu" class="hidden">
+<div id="t3-admin-megamenu" class="hidden t3-admin-megamenu">
   <div class="admin-inline-toolbox clearfix">
     <div class="t3-admin-mm-row clearfix">
       

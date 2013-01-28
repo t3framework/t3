@@ -34,18 +34,40 @@ class JFormFieldT3Modules extends JFormField
 	 * Check and load assets file if needed
 	 */
 	function loadAsset(){
-		if (!defined ('_T3_DEPEND_ASSET_')) {
-			define ('_T3_DEPEND_ASSET_', 1);
-			$uri = str_replace('\\', '/', str_replace( JPATH_SITE, JURI::base(), dirname(__FILE__) ));
-			$uri = str_replace('/administrator/', '/', $uri);
-			
-			if(!defined('T3')){
-                $jdoc = JFactory::getDocument();
-                $jdoc->addStyleSheet($uri.'/css/depend.css');
-                $jdoc->addScript($uri.'/js/depend.js');    
+        if (!defined ('_T3_DEPEND_ASSET_')) {
+            define ('_T3_DEPEND_ASSET_', 1);
+            
+            if(!defined('T3')){
+                $t3url = str_replace(DIRECTORY_SEPARATOR, '/', JURI::base(true) . '/' . substr(dirname(__FILE__), strlen(JPATH_SITE)));
+                $t3url = str_replace('/administrator/', '/', $uri);
+                $t3url = str_replace('//', '/', $uri);
+            } else {
+                $t3url = T3_ADMIN_URL;
             }
-		}
-	}
+
+            $jdoc = JFactory::getDocument();
+
+            if(!defined('T3_TEMPLATE')){
+                JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+
+                if(version_compare(JVERSION, '3.0', 'ge')){
+                    JHtml::_('jquery.framework');
+                } else {
+                    $jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
+                }
+
+                $jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
+                $jdoc->addScript(T3_ADMIN_URL . '/includes/depend/js/depend.js');
+            }
+
+            JFactory::getDocument()->addScriptDeclaration ( '
+                jQuery.extend(T3Depend, {
+                    adminurl: \'' . JFactory::getURI()->toString() . '\',
+                    rooturl: \'' . JURI::root() . '\'
+                });
+            ');
+        }
+    }
 	
     /**
      * Method to get the field input markup.
