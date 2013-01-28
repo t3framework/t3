@@ -49,7 +49,7 @@ class plgSystemT3 extends JPlugin
 			include_once dirname(__FILE__) . '/includes/core/t3.php';
 			
 			if (!defined('T3')){
-				throw new Exception(JText::_('T3_MSG_PACKAGE_DAMAGED'));
+				JError::raiseError(500, JText::_('T3_MSG_PACKAGE_DAMAGED'));
 			}
 			
 			// capture for tm=1 => show theme magic
