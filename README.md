@@ -35,7 +35,7 @@ Help & Userguide
 
 Bug Tracker
 ------------
-Have a bug or a feature request? Feel free to open an issue via this link https://github.com/joomlart/t3v3/issues
+Have a bug or a feature request? Feel free to open an issue via this link https://github.com/t3framework/t3/issues
 
 Contribution & Developer Network
 ----------
