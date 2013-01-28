@@ -35,6 +35,9 @@ class plgSystemT3 extends JPlugin
 			define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
 			define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
 
+			//load T3 Framework language
+			JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+			
 			$input = JFactory::getApplication()->input;
 
 			if($input->getCmd('themer', 0)){
@@ -47,13 +50,6 @@ class plgSystemT3 extends JPlugin
 			}
 			
 			include_once dirname(__FILE__) . '/includes/core/t3.php';
-			
-			if (!defined('T3')){
-				JError::raiseError(500, JText::_('T3_MSG_PACKAGE_DAMAGED'));
-			}
-
-			//load T3 Framework language
-			JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 			
 			// capture for tm=1 => show theme magic
 			if ($input->getCmd('tm') == 1) {
