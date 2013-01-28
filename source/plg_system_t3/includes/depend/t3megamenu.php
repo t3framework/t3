@@ -89,6 +89,7 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 			define('__T3_MEGAMENU_ASSET__', 1);
 
 			$jdoc = JFactory::getDocument();
+
 			if(is_file(T3_PATH . '/css/megamenu.css')){
 				$jdoc->addStylesheet(T3_URL . '/css/megamenu.css');
 			}
@@ -97,6 +98,13 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 				$jdoc->addStylesheet(T3_ADMIN_URL . '/admin/megamenu/css/megamenu.css');
 			}
 
+			if(version_compare(JVERSION, '3.0', 'ge')){
+				JHtml::_('jquery.framework');
+			} else {
+				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
+				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
+			}
+			
 			if(is_file(T3_ADMIN_PATH . '/admin/megamenu/js/megamenu.js')){
 				$jdoc->addScript(T3_ADMIN_URL . '/admin/megamenu/js/megamenu.js');
 			}

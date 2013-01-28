@@ -54,6 +54,7 @@ class JFormFieldJaPositions extends JFormField
 					JHtml::_('jquery.framework');
 				} else {
 					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
+					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 				}
 
 				$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
