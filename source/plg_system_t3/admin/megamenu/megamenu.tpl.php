@@ -23,14 +23,6 @@ $query->order('title');
 $db->setQuery($query);
 $modules = $db->loadObjectList();
 ?>
-<?php if(is_file(T3_PATH . '/css/megamenu.css')): ?>
-  <link rel="stylesheet" href="<?php echo T3_URL ?>/css/megamenu.css" type="text/css" />
-<?php endif; ?>
-
-<?php if(is_file(T3_ADMIN_PATH . '/admin/megamenu/css/megamenu.css')): ?>
-  <link rel="stylesheet" href="<?php echo T3_ADMIN_URL ?>/admin/megamenu/css/megamenu.css" type="text/css" />
-<?php endif; ?>
-<script type="text/javascript" src="<?php echo T3_ADMIN_URL ?>/admin/megamenu/js/megamenu.js"></script>
 
 <div id="t3-admin-megamenu" class="hidden">
   <div class="admin-inline-toolbox clearfix">
@@ -195,7 +187,6 @@ $modules = $db->loadObjectList();
 
   <div id="t3-admin-mm-container" class="navbar clearfix"></div> 
 </div>
-
 <script type="text/javascript">
   jQuery('#t3-admin-megamenu select').chosen();
 </script>

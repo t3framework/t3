@@ -27,7 +27,7 @@ require_once realpath(JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus
  * @subpackage  Form
  * @since       1.6
  */
-class JFormFieldT3MegaMenu extends JFormFieldList
+class JFormFieldT3MegaMenu extends JFormFieldHidden
 {
 	/**
 	 * The form field type.
@@ -35,7 +35,7 @@ class JFormFieldT3MegaMenu extends JFormFieldList
 	 * @var    string
 	 * @since  1.6
 	 */
-	public $type = 'Menu';
+	public $type = 'T3MegaMenu';
 
 	/**
 	 * Method to get the list of menus for the field options.
@@ -62,40 +62,7 @@ class JFormFieldT3MegaMenu extends JFormFieldList
 	 */
 	protected function getInput()
 	{
-		$html = array();
-		$attr = '';
-
-		// Initialize some field attributes.
-		$attr .= $this->element['class'] ? ' class="' . (string) $this->element['class'] . '"' : '';
-
-		// To avoid user's confusion, readonly="true" should imply disabled="true".
-		if ((string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true')
-		{
-			$attr .= ' disabled="disabled"';
-		}
-
-		$attr .= $this->element['size'] ? ' size="' . (int) $this->element['size'] . '"' : '';
-		$attr .= $this->multiple ? ' multiple="multiple"' : '';
-
-		// Initialize JavaScript field attributes.
-		$attr .= $this->element['onchange'] ? ' onchange="' . (string) $this->element['onchange'] . '"' : '';
-
-		// Get the field options.
-		$options = (array) $this->getOptions();
-
-		// Create a read-only list (no name) with a hidden input to store the value.
-		if ((string) $this->element['readonly'] == 'true')
-		{
-			$html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
-			$html[] = '<input type="hidden" name="' . $this->name . '" value="' . $this->value . '"/>';
-		}
-		// Create a regular list.
-		else
-		{
-			$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
-		}
-
-		return implode($html);
+		return parent::getInput() . "\n" . $this->getMegaMenuMarkup();
 	}
 
 	/**
@@ -127,16 +94,33 @@ class JFormFieldT3MegaMenu extends JFormFieldList
 			define('__T3_MEGAMENU_ASSET__', 1);
 
 			$jdoc = JFactory::getDocument();
-			$jdoc->addScript();
+			if(is_file(T3_PATH . '/css/megamenu.css')){
+				$jdoc->addStylesheet(T3_URL . '/css/megamenu.css');
+			}
 
-			$uri = str_replace('\\', '/', str_replace( JPATH_SITE, JURI::base(), dirname(__FILE__) ));
-			$uri = str_replace('/administrator/', '/', $uri);
-			
-			if(!defined('T3')){
-                $jdoc = JFactory::getDocument();
-                $jdoc->addStyleSheet($uri.'/css/depend.css');
-                $jdoc->addScript($uri.'/js/depend.js');    
-            }
+			if(is_file(T3_ADMIN_PATH . '/admin/megamenu/css/megamenu.css')){
+				$jdoc->addStylesheet(T3_ADMIN_URL . '/admin/megamenu/css/megamenu.css');
+			}
+
+			if(is_file(T3_ADMIN_PATH . '/admin/megamenu/js/megamenu.js')){
+				$jdoc->addScript(T3_ADMIN_URL . '/admin/megamenu/js/megamenu.js');
+			}
 		}
+
+		if(is_file(T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php')){
+			include T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
+		}
+
+		if($this->element['hide']):
+		?>
+		<script type="text/javascript">
+			//<![CDATA[
+			jQuery(document).ready(function($){
+				$('#<?php echo $this->id ?>').closest('li, div.control-group').css('display', 'none');
+			});
+			//]]>
+		</script>
+		<?php
+		endif;
 	}
 }

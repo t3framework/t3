@@ -242,10 +242,10 @@ class T3Template extends ObjectExtendable
 	function megamenu($menutype){
 			t3import('menu/megamenu');
 
-			$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
-			$currentconfig = json_decode(@file_get_contents ($file), true);
+			//$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
+			//$currentconfig = json_decode(@file_get_contents ($file), true);
+			$currentconfig = json_decode($this->getParam('mm_config', ''), true);
 			$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
-
 			$menu = new T3MenuMegamenu ($menutype, $mmconfig);
 			$menu->render();          
 

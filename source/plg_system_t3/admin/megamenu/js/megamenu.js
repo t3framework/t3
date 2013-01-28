@@ -402,13 +402,22 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			if (Object.keys(item).length) config[id] = item;
 		});
 
-		var menutype = $('#jform_params_mm_type').val();
-		$.ajax({
-			url: T3Admin.adminurl,
-			data:{'t3action':'megamenu', 't3task':'save', 'menutype': menutype, 'config': JSON.stringify(config)},
-			type: 'POST',
-			async: !e || e.isTrigger
-		});
+		var menutype = $('#jform_params_mm_type').val(),
+			jmmconfig = $('#jform_params_mm_config'),
+			curconfig = null;
+
+		try {
+			curconfig = jmmconfig.val() ? $.parseJSON(jmmconfig.val()) : {};
+		} catch(e){
+			curconfig = {};
+		}
+
+		if($.isArray(curconfig) && curconfig.length == 0){
+			curconfig = {};
+		}
+
+		curconfig[menutype] = config;
+		jmmconfig.val(JSON.stringify(curconfig));
 	}
 
 	toolbox_type = function () {
