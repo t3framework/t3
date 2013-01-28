@@ -28,7 +28,7 @@ body {
 
 
 /* Title & Toolbar
-/* ---------------- */
+---------------------------------------------------*/
 #toolbar-box {
   padding: 0;
   margin: 0;
@@ -50,7 +50,8 @@ div#toolbar-box div.m {
 }
 
 
-/* Page Tittle ---*/
+/* Page Tittle
+---------------------------------------------------*/
 div.pagetitle {
   margin: 0;
   padding: 0;
@@ -70,14 +71,15 @@ div.pagetitle h2 small {
 }
 
 
-/* Toolbar ---*/
+/* Toolbar 
+---------------------------------------------------*/
 #t3-admin-toolbar {
   float: right;
 }
 
 
 /* Main
-/* ---------------- */
+---------------------------------------------------*/
 #element-box {
   margin: 0;
   padding: 0;
@@ -90,6 +92,11 @@ div#element-box div.m {
   border-radius: 0 0 3px 3px;
 }
 
+/* Tab content
+---------------------------------------------------*/
+.t3-admin-form .tab-content {
+  overflow: visible;
+}
 
 /* Menu Assignment
 ---------------------------------------------------*/

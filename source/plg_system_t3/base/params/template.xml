@@ -129,12 +129,13 @@
 				<option value="joomla">Joomla Module</option>
 				<option value="megamenu">Megamenu</option>
 			</field>
+
 			<field name="mm_type" type="menu" default="mainmenu"
 				label="T3_NAVIGATION_MM_TYPE_LABEL"
 				description="T3_NAVIGATION_MM_TYPE_DESC"
 				 />
 
-			<field name="mm_config" type="t3megamenu" hide="true"
+			<field name="mm_config" type="t3megamenu" hide="true" global="1"
 				label=""
 				description=""
 				 />
