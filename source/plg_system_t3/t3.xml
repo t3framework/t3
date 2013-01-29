@@ -10,7 +10,7 @@
 	<version>1.1.0 RC1</version>
 	<description>
 	<![CDATA[
-		<h2>T3 Framework - JoomlArt Template Framework for Joomla 2.5 & 3.0</h2>
+		<div align="left"><h2>T3 Framework - JoomlArt Template Framework for Joomla 2.5 & 3.0</h2>
 		<div style='font-weight: normal'>
 		<p><span style='color: #ff6600;'>
 		<p><strong><span style='color: #ff0000;'>Overview:</span></strong></p>
@@ -32,6 +32,7 @@
 			<li><a href="http://pm.joomlart.com/browse/T3V3" title="">Changelog Link</a></li>
 		</ul>
 		<p>Copyright 2004 - 2013 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
+		</div>
 		</div>
 		]]>
 	</description>	
