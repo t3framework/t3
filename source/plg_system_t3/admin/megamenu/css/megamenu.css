@@ -129,6 +129,10 @@
 
 
 /* The Nav ---*/
+.t3-megamenu .span12.mega-col-nav .mega-inner {
+  padding: 10px;
+}
+
 .t3-megamenu .nav > li {
   margin-right: 20px;
 }
