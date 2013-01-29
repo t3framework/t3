@@ -74,4 +74,4 @@
 		T3Theme.handleLink();
 	});
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);

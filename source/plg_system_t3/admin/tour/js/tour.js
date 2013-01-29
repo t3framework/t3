@@ -385,4 +385,4 @@
 		tour_overlay: true
 	};
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);

@@ -63,7 +63,7 @@
 
 		return this;
 	};
-})(window.$T3 || window.jQuery);
+})(jQuery);
 
 ;(function($){
 	'use strict';
@@ -720,5 +720,5 @@
 			});
 		}
 	});
-})(window.$T3 || window.jQuery);
+})(jQuery);
 

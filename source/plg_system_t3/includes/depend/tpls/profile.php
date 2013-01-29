@@ -37,7 +37,7 @@ $javersion = new JVersion;
 				JAFileConfig.changeProfile($('jformparams<?php echo str_replace('holder', '', $this->fieldname);?>').val());
 			});
 
-		}(window.$T3 || window.jQuery);
+		}(jQuery);
 	</script>
 
 	<div class="t3-profile">

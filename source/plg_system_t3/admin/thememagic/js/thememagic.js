@@ -672,7 +672,7 @@ var T3Theme = window.T3Theme || {};
 		T3Theme.initialize();
 	});
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);
 
 !function ($) {
 	
@@ -869,4 +869,4 @@ var T3Theme = window.T3Theme || {};
 		}
 	});
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);

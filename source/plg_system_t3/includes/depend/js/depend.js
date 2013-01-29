@@ -499,5 +499,5 @@
 		setTimeout($.proxy(T3Depend.start, T3Depend), 100);
 	});
 
-}(window.$T3 || window.jQuery);
+}(jQuery);
 

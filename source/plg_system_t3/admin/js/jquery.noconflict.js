@@ -11,4 +11,6 @@
  *------------------------------------------------------------------------------
  */
  
-var $T3 = jQuery.noConflict();
+if(typeof jQuery != 'undefined'){
+	jQuery.noConflict(true);
+}

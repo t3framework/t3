@@ -62,4 +62,4 @@
 
 		return this;
 	};
-})(window.$T3 || window.jQuery);
+})(jQuery);

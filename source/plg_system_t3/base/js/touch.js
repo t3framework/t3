@@ -80,4 +80,4 @@
 
 	$('html').addClass(isTouch ? 'touch' : 'no-touch');
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);

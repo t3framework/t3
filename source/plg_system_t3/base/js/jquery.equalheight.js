@@ -26,4 +26,4 @@
 			$(this).css( "min-height", tallest );
 		});
 	}
-})(window.$T3 || window.jQuery);
+})(jQuery);

@@ -1403,7 +1403,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		T3AdminLayout.initPreSubmit();
 	});
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);
 
 !function($){
 
@@ -1547,4 +1547,4 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		});
 	};
 
-}(window.$T3 || window.jQuery);
+}(jQuery);

@@ -642,7 +642,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		unbindEvents(els);
 		bindEvents(els);
 	}
-}(window.$T3 || window.jQuery);
+}(jQuery);
 
 !function($){
 	$.extend(T3AdminMegamenu, {
@@ -750,4 +750,4 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		T3AdminMegamenu.initRadioGroup();
 	});
 
-}(window.$T3 || window.jQuery);
+}(jQuery);

@@ -13,7 +13,7 @@
 
 //jquery no-conflict
 if(typeof jQuery != 'undefined'){
-	window.$T3 = jQuery.noConflict();
+	jQuery.noConflict(true);
 }
 
 !function($){
@@ -29,4 +29,4 @@ if(typeof jQuery != 'undefined'){
 			}
 		});
 	});
-}(window.$T3 || window.jQuery);
+}(jQuery);

@@ -389,4 +389,4 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.switchTab();
 	});
 	
-}(window.$T3 || window.jQuery);
+}(jQuery);
