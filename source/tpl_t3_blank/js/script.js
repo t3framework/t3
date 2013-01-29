@@ -10,7 +10,3 @@
  * @Link:         https://github.com/t3framework/ 
  *------------------------------------------------------------------------------
  */
-
-if(typeof jQuery != 'undefined'){
-	jQuery.noConflict(true);
-}

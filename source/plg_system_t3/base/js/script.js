@@ -11,11 +11,6 @@
  *------------------------------------------------------------------------------
  */
 
-//jquery no-conflict
-if(typeof jQuery != 'undefined'){
-	jQuery.noConflict(true);
-}
-
 !function($){
 	$(document).ready(function(){
 		//remove conflict of mootools more show/hide function of element
