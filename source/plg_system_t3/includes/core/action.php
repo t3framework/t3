@@ -39,6 +39,7 @@ class T3Action extends JObject
 
 			T3Action::$action();
 		}
+		exit;
 	}
 
 	public static function lessc () {
@@ -51,7 +52,6 @@ class T3Action extends JObject
 		header("Content-Type: text/css");
 		header("Content-length: ".strlen($css));
 		echo $css;
-		exit;
 	}
 
 	public static function lesscall(){
@@ -65,7 +65,7 @@ class T3Action extends JObject
 			$result['error'] = sprintf(JText::_('T3_MSG_COMPILE_FAILURE'), $e->getMessage());
 		}
 		
-		die(json_encode($result));
+		echo json_encode($result);
 	}
 
 	public static function theme(){
@@ -257,7 +257,6 @@ class T3Action extends JObject
 		$buffer = preg_replace(array( '@<style[^>]*?>.*?</style>@siu', '@<script[^>]*?.*?</script>@siu'), array('', ''), $buffer);
 
 		echo $buffer;
-		exit ();
 	}
 
 	//translate param name to new name, from jvalue => to desired param name
@@ -279,6 +278,5 @@ class T3Action extends JObject
 		ob_clean();
 		echo "Positions for layout [$layout]: <br />";
 		var_dump ($t3app->getPositions());
-		exit;
 	}	
 }
