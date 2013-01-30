@@ -1069,6 +1069,11 @@ button.btn-primary:active {
   border-radius: 5px;
 }
 
+.t3-admin-overview-features li a,
+.t3-admin-overview-features li a:visited {
+  color: #07b;
+}
+
 /* Updater ---*/
 .updater {
   color: #ffffff;
