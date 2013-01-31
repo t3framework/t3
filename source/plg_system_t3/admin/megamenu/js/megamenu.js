@@ -377,7 +377,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						} else if ($(this).data('position')) {
 							col['position'] = $(this).data('position');
 						} else {
-							col['item'] = 0;
+							col['item'] = -1;
 						}
 						if ($(this).data('width')) col['width'] = $(this).data('width');
 						if ($(this).data('class')) col['class'] = $(this).data('class');

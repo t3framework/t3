@@ -171,10 +171,13 @@ class T3MenuMegamenu {
 				}
 			}
 			if (!count($items)) return;
-		} else {
+		} else if ($start == 0){
 			$pid = $pitem->id;
 			if (!isset($this->children[$pid])) return ;
 			$items = $this->children[$pid];			
+		} else {
+			//empty menu
+			return;
 		}
 
 		$this->_('beginnav', array ('item'=>$pitem));
