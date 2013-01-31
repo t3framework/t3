@@ -127,6 +127,9 @@ var T3Admin = window.T3Admin || {};
 			var titles = jptitle.html().split(':');
 
 			jptitle.html(titles[0] + '<small>' + titles[1] + '</small>');
+
+			//remove joomla title
+			$('#template-manager .tpl-desc-name').remove();
 		},
 
 		hideDisabled: function(){
