@@ -15,10 +15,16 @@ JHtml::addIncludePath(dirname(dirname(__FILE__)));
 
 // Create shortcuts to some parameters.
 $params		= $this->item->params;
-$images = json_decode($this->item->images);
-$urls = json_decode($this->item->urls);
+$images 	= json_decode($this->item->images);
+$urls 		= json_decode($this->item->urls);
 $canEdit	= $this->item->params->get('access-edit');
 $user		= JFactory::getUser();
+$aInfo 		= (($params->get('show_author') && !empty($this->item->author )) ||
+				($params->get('show_category')) ||
+				($params->get('show_create_date')) ||
+				($params->get('show_parent_category')) ||
+				($params->get('show_publish_date')));
+$exAction	= ($canEdit ||  $params->get('show_print_icon') || $params->get('show_email_icon'));
 ?>
 
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
@@ -46,10 +52,11 @@ $user		= JFactory::getUser();
 		</header>
 		<?php endif; ?>
 
+		<?php if($aInfo || $exAction) :?>
 		<!-- Aside -->
 		<aside class="article-aside clearfix">
 
-			<?php if (($params->get('show_author') && !empty($this->item->author )) || ($params->get('show_category')) || ($params->get('show_create_date')) || ($params->get('show_parent_category')) || ($params->get('show_publish_date'))) : ?>
+			<?php if ($aInfo) : ?>
 			<dl class="article-info pull-left">
 				<dt class="article-info-term"><?php  echo JText::_('COM_CONTENT_ARTICLE_INFO'); ?></dt>
 
@@ -112,7 +119,7 @@ $user		= JFactory::getUser();
 			</dl>
 			<?php endif; ?>
 
-			<?php if ($canEdit ||  $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
+			<?php if ($exAction) : ?>
 				<div class="btn-group pull-right"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-cog"></i> <span class="caret"></span> </a>
 					<ul class="dropdown-menu">
 						<?php if (!$this->print) : ?>
@@ -133,6 +140,7 @@ $user		= JFactory::getUser();
 			<?php endif; ?>
 		</aside>
 		<!-- //Aside -->
+		<?php endif; ?>
 
 		<?php if (isset ($this->item->toc)) : ?>
 			<?php echo $this->item->toc; ?>
