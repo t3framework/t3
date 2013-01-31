@@ -18,21 +18,24 @@ defined('_JEXEC') or die;
 <link href="<?php echo JURI::base(true) ?>/templates/system/css/system.css" rel="stylesheet" />
 <!-- //SYSTEM CSS -->
 
-<?php
-	// Add T3 Basic head
-	$this->addHead();
-?>
+<!-- T3 BASE HEAD -->
+<?php $this->addHead(); ?>
+<!-- //T3 BASE HEAD -->
 
+<?php if(is_file(T3_TEMPLATE_PATH . '/css/custom.css')): ?>
 <!-- CUSTOM CSS -->
 <link href="<?php echo T3_TEMPLATE_URL ?>/css/custom.css" rel="stylesheet" />
 <!-- //CUSTOM CSS -->
+<?php endif; ?>
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<!-- for IE6-8 support of media query -->
+<!-- For IE6-8 support of media query -->
+<!--[if lt IE 9]>
 <script type="text/javascript" src="<?php echo T3_URL ?>/js/respond.min.js"></script>
+<![endif]-->
 
 <!-- You can add Google Analytics here-->
