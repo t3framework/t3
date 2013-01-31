@@ -12,7 +12,46 @@
     <author>t3-framework.org</author>
     <packager>T3 Framework</packager>
     <packagerurl>http://www.t3-framework.org</packagerurl>
-    <description></description>
+    <description>	
+	<![CDATA[
+		<div align="left"><h2>Congratulation! You have just installed T3 Framework successfully.</h2>
+		<div style='font-weight: normal'>
+		<p><span style='color: #ff6600;'>
+		<p><h3>T3 Framework Package</h3></p>
+		<p>The package you have just installed includes:</p>
+		<ul>
+		<li><h4>T3 Framework Plugin</h4></li>
+		<li><h4>T3 Blank Template</h4></li>
+		</ul>
+		<p><h3>Usage Instruction:</h3></p>
+		<p>The package includes all required elements of the framework. </p>
+		<ul>
+		<li><p><h4>Enable T3 Framework plugin</h4></p>
+		<p>By default, the T3 framework plugin is enabled, you can check it by going to: <em>Extensions --> Pluign Manager --> find the T3 framework plugin</em>.</p></li>
+		<li><p><h4>Set T3 Blank template as your default template</h4></p>
+		<p>To set the T3 blank template as default template, go to: <em>Extensions --> Template Manager</em>, then select T3 Blank template as your default template. Now, it's time for you to play around the setting of the T3 Blank template. Enjoy!</p></li>
+		</ul>
+		<p><h3>Resource:</h3></p>
+		<ul>
+			<li>Demo J25: <a href="http://demo.t3.joomlart.com/joomla25/" title="">http://demo.t3.joomlart.com/joomla25/</a></li>
+			<li>Demo J30: <a href="http://demo.t3.joomlart.com/joomla30/" title="">http://demo.t3.joomlart.com/joomla30/</a></li>
+			<li><a href="http://www.joomlart.com/forums/downloads.php?do=cat&id=460" title="">Download Link</a></li>
+			<li><a href="http://www.joomlart.com/forums/forumdisplay.php?411-JA-T3V3-Framework" title="">Forum Link</a></li>
+			<li><a href="http://update.joomlart.com/" title="">Update & Version</a></li>
+			<li><a href="http://t3.joomlart.com/documentation.html" title="">Documentation Link</a></li>
+			<li><a href="http://pm.joomlart.com/browse/T3V3" title="">Changelog Link: T3 Framework</a></li>
+			<li><a href="http://pm.joomlart.com/browse/JATCBLANK3" title="">Changelog Link: T3 Blank Template</a></li>
+		</ul>
+		<p><h3>Upgrade Method:</h3></p>
+		<ul>
+		  <li>You can install new version directly over this version. Uninstallation is not required. </li>
+		  <li>Follow upgrade instructions and backup site / plugin before upgrading</li>
+		</ul>
+		<p>Copyright 2004 - 2013 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
+		</div>
+		</div>
+		]]>
+	</description>
     <files folder="source">
         <file type="plugin" id="plg_system_t3" group="system">plg_system_t3</file>
         <file type="template" id="tpl_t3_blank" client="site">tpl_t3_blank</file>

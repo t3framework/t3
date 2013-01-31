@@ -246,6 +246,12 @@ class plgSystemT3 extends JPlugin
 					}
 				}
 			}
+			if (!$t3 && $input->getCmd ('t3action')) {
+				// if t3action is call and the current url is not in a T3 template, 
+				// just return a fake T3 template to force the t3action run in T3 context
+				$t3 = 't3';
+			}
+			
 		}
 		return $t3;
 	}

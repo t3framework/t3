@@ -15,8 +15,29 @@
 	<group>t3</group>
 	<description>	
 	<![CDATA[
-		<p>Blank template for T3 using Bootstrap</p>
-	]]>
+		<div align="left"><h2>T3 Blank Template</h2>
+		<div style='font-weight: normal'>
+		<p><span style='color: #ff6600;'>
+		<p><strong><span style='color: #ff0000;'>Overview:</span></strong></p>
+		<p>T3 Blank is a blank theme for T3 Framework. With the latest improvements, features and ease of usage, you can now easily adapt it to your site. T3 is way ahead of its predecessors versions viz T3v1 and T3v2. Its more powerful, elegant, user friendly, feature rich and developed to support the latest Joomla 3.0 improvements, don't worry T3v3 is also available for Joomla 2.5 too.</p>
+		<p><strong><span style='color: #ff0000;'>Upgrade Method:</span></strong></p>
+		<ul>
+		  <li>You can install new version directly over this version. Uninstallation is not required. </li>
+		  <li>Follow upgrade instructions and backup site / plugin before upgrading</li>
+		</ul>
+		<p><span style='color: #008000;'><strong>Resource:</strong></span></p>
+		<ul>
+			<li>Demo: <a href="http://demo.t3.joomlart.com/joomla25/" title="">Joomla! 2.5</a> / <a href="http://demo.t3.joomlart.com/joomla30/" title="">Joomla! 3.0</a></li>
+			<li><a href="http://www.joomlart.com/forums/downloads.php?do=cat&id=460" title="">Download Link</a></li>
+			<li><a href="http://www.joomlart.com/forums/forumdisplay.php?411-JA-T3V3-Framework" title="">Forum Link</a></li>
+			<li><a href="http://update.joomlart.com/" title="">Update & Version</a></li>
+			<li><a href="http://t3.joomlart.com/documentation.html" title="">Documentation Link</a></li>
+			<li><a href="http://pm.joomlart.com/browse/JATCBLANK3" title="">Changelog Link</a></li>
+		</ul>
+		<p>Copyright 2004 - 2013 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
+		</div>
+		</div>
+		]]>
 	</description>
 	<files>
 		<filename>component.php</filename>

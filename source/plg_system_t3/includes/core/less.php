@@ -46,10 +46,37 @@ class T3Less extends lessc
 		}
 
 		// not cached, build & store it
-		$data = $this->compileCss ($path);
+		$data = $this->compileCss ($path)."\n";
 		$cache->store ($data, $key, $group);
 
 		return $data;
+	}
+
+	function buildCss ($path) {
+		$app = JFactory::getApplication();
+		// get vars last-modified
+		$vars_lm = $app->getUserState('vars_last_modified', 0);
+
+		// less file last-modified
+		$filepath = JPATH_ROOT.'/'.$path;
+		$less_lm = filemtime ($filepath);
+
+		// cache key
+		$key = md5 ($vars_lm.':'.$less_lm.':'.$path);
+
+		$cssurl = $app->getUserState($key, '');
+
+		if ($cssurl) return $cssurl;
+
+		$cssurl = 'css-cached/'.str_replace('/', '_', $path).'.css';
+
+		// not cached, build & store it
+		$this->compileCss ($path, $cssurl);
+
+		$cssurl = JURI::base(true).'/'.$cssurl;
+		$app->setUserState($key, $cssurl);
+
+		return $cssurl;
 	}
 
 	function compileCss ($path, $topath = '') {
@@ -57,11 +84,11 @@ class T3Less extends lessc
 		$theme = $app->getUserState('vars_theme');
 
 		$realpath = realpath(JPATH_ROOT.'/'.$path);
-        // check path
-        if(!is_file($realpath)){
-		//if (!JPath::check ($realpath)){
-            return;
-        }
+    // check path
+    //if(!is_file($realpath)){
+		if (!JPath::check ($realpath)){
+        return;
+    }
 		// Get file content
 		$content = JFile::read($realpath);
 		// remove comments
@@ -217,9 +244,11 @@ class T3Less extends lessc
 	public static function addStylesheet ($lesspath) {
 		// build less vars, once only
 		static $vars_built = false;
+		static $t3less = null;
 		if (!$vars_built) {
 			self::buildVars();
 			$vars_built = true;
+			$t3less = new T3Less;
 		}
 
 		$app = JFactory::getApplication();
@@ -246,18 +275,26 @@ class T3Less extends lessc
 							continue;
 						}
 						$url = $path.'/'.$url;
-						$doc->addStyleSheet(JURI::current().'?t3action=lessc&s='.T3::cleanPath($url));
+						// $doc->addStyleSheet(JURI::current().'?t3action=lessc&s='.T3::cleanPath($url));
+						// 
+						$cssurl = $t3less->buildCss (T3::cleanPath($url));
+						$doc->addStyleSheet($cssurl);
 					}
 				}
 			} else {
-				$doc->addStyleSheet(JURI::current().'?t3action=lessc&s='.T3::cleanPath($lesspath));
+				// $doc->addStyleSheet(JURI::current().'?t3action=lessc&s='.T3::cleanPath($lesspath));
+				// 
+				$cssurl = $t3less->buildCss (T3::cleanPath($lesspath));
+				$doc->addStyleSheet($cssurl);
 			}	
 
 			// check and add theme less
 			if ($theme && !preg_match ('#bootstrap#', $lesspath)) {
 				$themepath = str_replace ('/less/', '/less/themes/'.$theme.'/', $lesspath);
 				if (is_file (JPATH_ROOT . '/' . $themepath)) {
-					$doc->addStyleSheet(JURI::current().'?t3action=lessc&s='.T3::cleanPath($themepath));
+					// $doc->addStyleSheet(JURI::current().'?t3action=lessc&s='.T3::cleanPath($themepath));
+					$cssurl = $t3less->buildCss (T3::cleanPath($themepath));
+					$doc->addStyleSheet($cssurl);
 				}
 			}
 		}	
