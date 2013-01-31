@@ -61,20 +61,19 @@ class T3Less extends lessc
 		$filepath = JPATH_ROOT.'/'.$path;
 		$less_lm = filemtime ($filepath);
 
-		// cache key
-		$key = md5 ($vars_lm.':'.$less_lm.':'.$path);
-
-		$cssurl = $app->getUserState($key, '');
-
-		if ($cssurl) return $cssurl;
-
-		$cssurl = 'css-cached/'.str_replace('/', '_', $path).'.css';
+		// get css cached file
+		$cssfile = T3_DEV_FOLDER.'/'.str_replace('/', '.', $path).'.css';
+		$cssurl = JURI::base(true).'/'.$cssfile;
+		$csspath = JPATH_ROOT.'/'.$cssfile;
+		if (is_file ($csspath) && filemtime($csspath) > $less_lm && filemtime($csspath) > $vars_lm) {
+			return $cssurl;
+		}
 
 		// not cached, build & store it
-		$this->compileCss ($path, $cssurl);
-
-		$cssurl = JURI::base(true).'/'.$cssurl;
-		$app->setUserState($key, $cssurl);
+		if (!$this->compileCss ($path, $cssfile)) {
+			JError::raiseError(500, sprintf (JText::_('T3_MSG_DEVFOLDER_NOT_WRITABLE'), T3_DEV_FOLDER));
+			exit;
+		}
 
 		return $cssurl;
 	}
@@ -131,7 +130,7 @@ class T3Less extends lessc
 				}
 			}
 		}
-        $output = $this->compile ($vars ."\n" . $output);
+    $output = $this->compile ($vars ."\n" . $output);
 
 		$arr = preg_split ('#^\s*\#less-file-path\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
 
@@ -162,8 +161,7 @@ class T3Less extends lessc
 			if (!is_dir (dirname($tofile))) {
 				JFolder::create (dirname($tofile));
 			}
-			JFile::write($tofile, $output);
-			return true;
+			return JFile::write($tofile, $output);
 		}
 
 		return $output;
@@ -328,7 +326,7 @@ class T3Less extends lessc
 		// compile all css files
 		$files = array ();
 		$lesspath = 'templates/'.T3_TEMPLATE.'/less/';
-		$csspath = 'templates/'.T3_TEMPLATE.'/css/';
+		$csspath = 'templates/'.T3_TEMPLATE.'/css-compiled/';
 
 		// get single files need to compile
 		$lessFiles = JFolder::files (JPATH_ROOT.'/'.$lesspath, '.less');

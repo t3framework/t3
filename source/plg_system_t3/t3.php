@@ -40,8 +40,14 @@ class plgSystemT3 extends JPlugin
 			
 			$input = JFactory::getApplication()->input;
 
-			if($input->getCmd('themer', 0)){
-				define('T3_THEMER', 1);
+			if ($input->getCmd('themer', 0)){
+				define ('T3_THEMER', 1);
+			}
+
+			if (!JFactory::getApplication()->isAdmin()) {
+				$dev_folder = JFactory::getApplication()->getTemplate(true)->params->get ('dev_folder');
+				if (!$dev_folder) $dev_folder = 'tmp/t3-devmode';
+				define ('T3_DEV_FOLDER', $dev_folder);
 			}
 
 			if($input->getCmd('t3lock', '')){

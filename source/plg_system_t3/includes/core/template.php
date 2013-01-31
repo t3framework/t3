@@ -420,7 +420,7 @@ class T3Template extends ObjectExtendable
 			t3import ('core/less');
 			T3Less::addStylesheet ($url);
 		} else {
-			$url = T3Path::getUrl ('css/'.$name.'.css');
+			$url = T3Path::getUrl ('css-compiled/'.$name.'.css');
 			// Add this css into template
 			if ($url) {
 				$this->addStyleSheet($url);

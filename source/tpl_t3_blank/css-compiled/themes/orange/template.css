@@ -1078,6 +1078,7 @@ label.invalid {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7f7f7f', endColorstr='#ff666666', GradientType=0);
   text-shadow: none;
+  outline: none;
 }
 .t3-mainnav .navbar .nav > .active > a,
 .t3-mainnav .navbar .nav > .active > a:hover,
@@ -1095,6 +1096,7 @@ label.invalid {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  outline: none;
 }
 .t3-mainnav .navbar .btn-navbar {
   float: left;
