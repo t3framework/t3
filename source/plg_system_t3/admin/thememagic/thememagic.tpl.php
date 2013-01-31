@@ -28,9 +28,9 @@ defined('_JEXEC') or die;
 		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
 	</head>
 
-	<body<?php echo $tplparams->get('themermode', 0) == 0 ? ' class="no-magic"' : ''?>>
+	<body<?php echo $tplparams->get('themermode', 1) == 0 ? ' class="no-magic"' : ''?>>
 		<div id="wrapper">
-			<?php if($tplparams->get('themermode', 0)): ?>
+			<?php if($tplparams->get('themermode', 1)): ?>
 			<div id="t3-admin-thememagic">
 				<a href="<?php echo JURI::base(true); ?>" class="themer-minimize"><i class="icon-remove-sign"></i><i class="icon-magic"></i>  <span><?php echo JText::_('T3_TM_MINIMIZE') ; ?></span></a>
 				<a href="<?php echo $backurl; ?>" class="themer-close" title="<?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?>"><i class="icon-arrow-left"></i><?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?></a>
@@ -162,7 +162,7 @@ defined('_JEXEC') or die;
 
 		</div>
 
-		<?php if($tplparams->get('themermode', 0)): ?>
+		<?php if($tplparams->get('themermode', 1)): ?>
 		<div id="t3-admin-thememagic-dlg" class="modal hide fade">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -282,7 +282,7 @@ class T3AdminTheme
 		$japp = JFactory::getApplication();
 		$jdoc = JFactory::getDocument();
 		$params = $japp->getTemplate(true)->params;
-		if(defined('T3_THEMER') && $params->get('themermode', 0)){
+		if(defined('T3_THEMER') && $params->get('themermode', 1)){
 			
 			$jdoc->addStyleSheet(T3_URL.'/css/thememagic.css');
 			$jdoc->addScript(T3_URL.'/js/thememagic.js');

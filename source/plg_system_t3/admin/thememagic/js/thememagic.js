@@ -387,7 +387,7 @@ var T3Theme = window.T3Theme || {};
 		},
 
 		filtercolor: function(hex){
-			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || T3Theme.colors[hex.toLowerCase()]){
+			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || T3Theme.colors[hex.toLowerCase()]){
 				return hex;
 			}
 

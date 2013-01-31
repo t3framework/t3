@@ -206,7 +206,7 @@ class T3Admin {
 			T3Admin.template = \'' . T3_TEMPLATE . '\';
 			T3Admin.langs = ' . json_encode($langs) . ';
 			T3Admin.devmode = ' . $params->get('devmode', 0) . ';
-			T3Admin.themermode = ' . $params->get('themermode', 0) . ';
+			T3Admin.themermode = ' . $params->get('themermode', 1) . ';
 			T3Admin.eids = [' . implode($eids, ',') .'];
 			T3Admin.telement = \'' . T3_TEMPLATE . '\';
 			T3Admin.felement = \'' . T3_ADMIN . '\';

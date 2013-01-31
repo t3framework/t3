@@ -35,11 +35,11 @@ defined('_JEXEC') or die;
   ?>
 
 	<div id="t3-admin-tb-recompile" class="btn-group">
-		<button class="btn"><i class="icon-check"></i><i class="icon-loading"></i><?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
+		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-check"></i><i class="icon-loading"></i><?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
 	</div>
 
 	<div id="t3-admin-tb-themer" class="btn-group">
-		<button class="btn"><i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?></button>
+		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_THEMER') ?>::<?php echo JText::_('T3_TOOLBAR_THEMER_DESC') ?>"><i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?></button>
 	</div>
 
 	<div id="t3-admin-tb-close" class="btn-group <?php echo $input->getCmd('view') ?>">
