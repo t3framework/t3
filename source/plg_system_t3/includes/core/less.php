@@ -257,7 +257,7 @@ class T3Less extends lessc
 			// in Themer mode, using js to parse less for faster
 			$doc->addHeadLink(JURI::base(true).'/'.T3::cleanPath($lesspath), 'stylesheet/less');
 			// Add lessjs to process lesscss
-			$doc->addScript (T3_URL.'/js/less-1.3.0.js');
+			$doc->addScript (T3_URL.'/js/less-1.3.3.js');
 		} else {
 			// in development mode, using php to compile less for a better view of development
 			if (preg_match('#(template(-responsive)?.less)#',$lesspath)) {

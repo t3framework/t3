@@ -378,8 +378,14 @@ var T3Theme = window.T3Theme || {};
 			});
 
 			for(var k in json){
-				if(json.hasOwnProperty(k) && k.match(/_custom/)){
-					json[k.replace('_custom', '')] = json[k];	
+				if(json.hasOwnProperty(k)){
+					if(k.match(/_custom/)){
+						json[k.replace('_custom', '')] = json[k];	
+					}
+
+					if(json[k] == 'undefined' || json[k] == ''){
+						delete json[k];
+					}
 				}
 			}
 			

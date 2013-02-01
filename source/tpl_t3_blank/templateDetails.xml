@@ -161,33 +161,33 @@
 
       <fieldset name="typo_params" label="T3_TM_TYPO">
         <field name="typo_params_default" type="jadepend" function="@group">
-          <option for="baseFontFamily" value="-1">baseFontFamily_custom</option>
-          <option for="headingsFontFamily" value="-1">headingsFontFamily_custom</option>
+          <option for="baseFontFamily" value="undefined">baseFontFamily_custom</option>
+          <option for="headingsFontFamily" value="undefined">headingsFontFamily_custom</option>
         </field>
 
         <field name="baseFontSize" type="text" default="14px" size="10" class="input-tiny t3tm-dimension" 
           label="T3_TM_VARS_FONTSIZE_LABEL"
           description="T3_TM_VARS_FONTSIZE_DESC" />
 
-        <field name="baseFontFamily" type="list" default="sans-serif" 
+        <field name="baseFontFamily" type="list"
           label="T3_TM_VARS_FONTFAMILY_LABEL" 
           description="T3_TM_VARS_FONTFAMILY_DESC" >
-          <option value="serif">T3_TM_VARS_FONTFAMILY_SERIF</option>
           <option value="sans-serif">T3_TM_VARS_FONTFAMILY_SANS_SERIF</option>
+          <option value="serif">T3_TM_VARS_FONTFAMILY_SERIF</option>
           <option value="monospace">T3_TM_VARS_FONTFAMILY_MONOSPACE</option>
-          <option value="-1">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
+          <option value="undefined">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
         </field>
         <field name="baseFontFamily_custom" type="text" default="sans-serif"  size="30"
           label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
           description="T3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
 
-        <field name="headingsFontFamily" type="list" default="sans-serif"
+        <field name="headingsFontFamily" type="list"
           label="T3_TM_VARS_HEADINGFONTFAMILY_LABEL" 
           description="T3_TM_VARS_HEADINGFONTFAMILY_DESC" >
-          <option value="serif">T3_TM_VARS_FONTFAMILY_SERIF</option>
           <option value="sans-serif">T3_TM_VARS_FONTFAMILY_SANS_SERIF</option>
+          <option value="serif">T3_TM_VARS_FONTFAMILY_SERIF</option>
           <option value="monospace">T3_TM_VARS_FONTFAMILY_MONOSPACE</option>
-          <option value="-1">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
+          <option value="undefined">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
         </field>
         <field name="headingsFontFamily_custom" type="text" default="sans-serif"  size="30"
           label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
