@@ -179,7 +179,7 @@ var T3Admin = window.T3Admin || {};
 			$(document.adminForm).on('change', ':input', function(){
 				var jinput = $(this),
 					oval = jinput.data('org-val'),
-					nval = jinput.val(),
+					nval = (this.type == 'radio' || this.type == 'checkbox') ? jinput.prop('checked') : jinput.val(),
 					eq = true;
 
 				if(oval != nval){
@@ -209,7 +209,7 @@ var T3Admin = window.T3Admin || {};
 				$('.t3-admin-nav .nav li').eq(jpane.index())[(!eq || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
 
 			}).find(':input').each(function(){
-				$(this).data('org-val', $(this).val());
+				$(this).data('org-val', (this.type == 'radio' || this.type == 'checkbox') ? $(this).prop('checked') : $(this).val());
 			});
 		},
 
