@@ -71,7 +71,7 @@ class T3Less extends lessc
 
 		// not cached, build & store it
 		if (!$this->compileCss ($path, $cssfile)) {
-			JError::raiseError(500, sprintf (JText::_('T3_MSG_DEVFOLDER_NOT_WRITABLE'), T3_DEV_FOLDER));
+			throw new Exception(JText::sprintf('T3_MSG_DEVFOLDER_NOT_WRITABLE', T3_DEV_FOLDER)));
 			exit;
 		}
 

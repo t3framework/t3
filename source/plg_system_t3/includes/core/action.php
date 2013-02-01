@@ -62,7 +62,7 @@ class T3Action extends JObject
 			T3Less::compileAll();
 			$result['successful'] = JText::_('T3_MSG_COMPILE_SUCCESS');
 		}catch(Exception $e){
-			$result['error'] = sprintf(JText::_('T3_MSG_COMPILE_FAILURE'), $e->getMessage());
+			$result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->getMessage());
 		}
 		
 		echo json_encode($result);
