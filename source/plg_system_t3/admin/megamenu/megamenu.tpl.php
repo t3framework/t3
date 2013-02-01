@@ -154,8 +154,8 @@ $modules = $db->loadObjectList();
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_MODULE'), '::', JTexT::_('T3_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_MODULE') ?></label>
               <fieldset class="">
-                <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position">
-                  <option value=""><?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?></option>
+                <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
+                  <option value=""></option>
                   <?php
                   foreach ($modules as $module) {
                     echo "<option value=\"{$module->id}\">{$module->title}</option>\n";
@@ -189,5 +189,7 @@ $modules = $db->loadObjectList();
   <div id="t3-admin-mm-container" class="navbar clearfix"></div> 
 </div>
 <script type="text/javascript">
-  jQuery('#t3-admin-megamenu select').chosen();
+  jQuery('#t3-admin-megamenu select').chosen({
+    allow_single_deselect: true
+  });
 </script>
