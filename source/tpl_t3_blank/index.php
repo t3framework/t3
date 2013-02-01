@@ -17,8 +17,7 @@ defined('_JEXEC') or die;
 
 //check if t3 plugin is existed
 if(!defined('T3')){
-	throw new Exception(JText::_('T3_MISSING_T3_PLUGIN'));
-	exit;
+	T3::error(JText::_('T3_MISSING_T3_PLUGIN'));
 }
 
 $t3app = T3::getApp($this);

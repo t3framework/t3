@@ -147,7 +147,9 @@ class T3 {
 	public static function error($msg, $code = 500){
 		if (JError::$legacy) {
 			JError::setErrorHandling(E_ERROR, 'die');
-			return JError::raiseError($code, $msg);
+			JError::raiseError($code, $msg);
+			
+			exit;
 		} else {
 			throw new Exception($msg, $code);
 		}
