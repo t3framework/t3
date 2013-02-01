@@ -54,6 +54,7 @@
 		<folder>etc</folder>
 		<folder>fonts</folder>
 		<folder>css</folder>
+		<folder>css-compiled</folder>
 		<folder>js</folder>
 		<folder>less</folder>
 		<folder>images</folder>
