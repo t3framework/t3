@@ -76,10 +76,10 @@
 				<option value="image">T3_THEME_LOGOTYPE_IMAGE</option>
 			</field>
 
-			<field name="sitename" type="text" default="Sitename" filter="RAW" size="50"
+			<field name="sitename" type="text" default="" filter="RAW" size="50"
 				label="T3_THEME_SITENAME_LABEL"
 				description="T3_THEME_SITENAME_DESC" />
-			<field name="slogan" type="text" default="Your slogan goes here" filter="RAW" size="50"
+			<field name="slogan" type="text" default="" filter="RAW" size="50"
 				label="T3_THEME_SLOGAN_LABEL"
 				description="T3_THEME_SLOGAN_DESC" />
 

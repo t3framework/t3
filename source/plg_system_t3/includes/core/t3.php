@@ -143,6 +143,15 @@ class T3 {
 
 		return rtrim ($path, '/');
 	}
+
+	public static function error($msg, $code = 500){
+		if (JError::$legacy) {
+			JError::setErrorHandling(E_ERROR, 'die');
+			return JError::raiseError($code, $msg);
+		} else {
+			throw new Exception($msg, $code);
+		}
+	}
 }
 
 T3::init();

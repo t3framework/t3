@@ -324,6 +324,32 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
+	 * Check system messages
+	 */
+	private function checkSysMsg()
+	{
+		// Initialise variables.
+		$lists = array();
+
+		// Get the message queue
+		$messages = JFactory::getApplication()->getMessageQueue();
+
+		// Build the sorted message list
+		if (is_array($messages) && !empty($messages))
+		{
+			foreach ($messages as $msg)
+			{
+				if (isset($msg['type']) && isset($msg['message']))
+				{
+					$lists[$msg['type']][] = $msg['message'];
+				}
+			}
+		}
+
+		return count($lists);
+	}
+
+	/**
 	* Get position name
 	*
 	* @param $poskey string
