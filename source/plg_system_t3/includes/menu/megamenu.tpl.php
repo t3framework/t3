@@ -45,11 +45,15 @@ class T3MenuMegamenuTpl {
 		$cls = 'nav-child '.($item->dropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-ct');
 		$style = '';
 		$data = '';
-		if (isset($sub['width'])) {
-			$style = " style=\"width:{$sub['width']}px\"";
-			$data .= " data-width=\"{$sub['width']}\"";
-		} 
 		if (isset($setting['class'])) $data .= " data-class=\"{$setting['class']}\"";
+		if (isset($setting['alignsub']) && $setting['alignsub'] == 'justify') {
+			$cls .= " span12";
+		} else {
+			if (isset($sub['width'])) {
+				$style = " style=\"width:{$sub['width']}px\"";
+				$data .= " data-width=\"{$sub['width']}\"";
+			} 			
+		}
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
 
