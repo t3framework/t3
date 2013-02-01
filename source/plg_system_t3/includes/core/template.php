@@ -326,7 +326,7 @@ class T3Template extends ObjectExtendable
 	/**
 	 * Check system messages
 	 */
-	private function checkSysMsg()
+	function checkSysMsg()
 	{
 		// Initialise variables.
 		$lists = array();
