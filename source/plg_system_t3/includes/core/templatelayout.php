@@ -236,8 +236,10 @@ class T3TemplateLayout extends T3Template
 		
 		$posparams = $this->getLayoutSetting($name, '');
 
-		$oinfo = $this->parseInfo($cls);
-		$cinfo = $this->parseInfo($posparams);
+		$cinfo = $oinfo = $this->parseInfo($cls);
+		if(!empty($posparams)){
+			$cinfo = $this->parseInfo($posparams);
+		}
 
 		$visible = array(
 			'name' => $name,
