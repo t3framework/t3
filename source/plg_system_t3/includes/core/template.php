@@ -329,7 +329,8 @@ class T3Template extends ObjectExtendable
 	function hasMessage()
 	{
 		// Get the message queue
-		return !empty(JFactory::getApplication()->getMessageQueue());
+		$messages = JFactory::getApplication()->getMessageQueue();
+		return !empty($messages);
 	}
 
 	/**
