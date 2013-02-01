@@ -602,18 +602,18 @@
 
   .fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
 
-    .spanX (@index) when (@index > 0) {
+    .spanX (@index, @fluidGridColumnWidth, @fluidGridGutterWidth) when (@index > 0) {
       (~".span@{index}") { .span(@index); }
-      .spanX(@index - 1);
+      .spanX(@index - 1, @fluidGridColumnWidth, @fluidGridGutterWidth);
     }
-    .spanX (0) {}
+    .spanX (0, @fluidGridColumnWidth, @fluidGridGutterWidth) {}
 
-    .offsetX (@index) when (@index > 0) {
+    .offsetX (@index, @fluidGridColumnWidth, @fluidGridGutterWidth) when (@index > 0) {
       (~'.offset@{index}') { .offset(@index); }
       (~'.offset@{index}:first-child') { .offsetFirstChild(@index); }
-      .offsetX(@index - 1);
+      .offsetX(@index - 1, @fluidGridColumnWidth, @fluidGridGutterWidth);
     }
-    .offsetX (0) {}
+    .offsetX (0, @fluidGridColumnWidth, @fluidGridGutterWidth) {}
 
     .offset (@columns) {
       margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) + (@fluidGridGutterWidth*2);
@@ -649,8 +649,8 @@
       }
 
       // generate .spanX and .offsetX
-      .spanX (@gridColumns);
-      .offsetX (@gridColumns);
+      .spanX (@gridColumns, @fluidGridColumnWidth, @fluidGridGutterWidth);
+      .offsetX (@gridColumns, @fluidGridColumnWidth, @fluidGridGutterWidth);
     }
 
   }
