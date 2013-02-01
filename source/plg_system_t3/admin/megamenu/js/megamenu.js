@@ -260,7 +260,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 	actions.alignment = function () {
 		var liitem = currentSelected.closest ('li');
-		liitem.removeClass ('mega-align-left mega-align-center mega-align-right').addClass ('mega-align-'+actions.datas.align);
+		liitem.removeClass ('mega-align-left mega-align-center mega-align-right mega-align-justify').addClass ('mega-align-'+actions.datas.align);
+		if (actions.datas.align == 'justify') {
+			currentSelected.addClass('span12');
+			currentSelected.css('width', '');
+		} else {
+			currentSelected.removeClass('span12');
+			if (currentSelected.data('width')) currentSelected.css('width', currentSelected.data('width'));
+		}
 		liitem.data('alignsub', actions.datas.align);
 		update_toolbox ();
 	}
@@ -516,11 +523,15 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					// if not top level, allow align-left & right only
 					if (liitem.data('level') > 1) {
 						$('.toolsub-align-center').addClass ('disabled');
-					}
+						$('.toolsub-align-justify').addClass ('disabled');
+					} 
 
 					// active align button
 					if (liitem.data('alignsub')) {
 						$('.toolsub-align-'+liitem.data('alignsub')).addClass ('active');
+						if (liitem.data('alignsub') == 'justify') {
+							$('.toolsub-width').addClass ('disabled');
+						}
 					}					
 				}
 

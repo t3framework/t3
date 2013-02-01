@@ -59,8 +59,13 @@
 
   // The Dropdown
   // ------------
-  .mega-dropdown-menu {
+  .mega > .mega-dropdown-menu {
     min-width: 200px;
+    display: none;
+  }
+  .mega.open > .mega-dropdown-menu,
+  .mega.dropdown-submenu:hover > .mega-dropdown-menu {
+    display: block;
   }
 
 
@@ -248,6 +253,13 @@
     right: 100%;
   }
 
+  .mega-align-justify {
+    position: static;
+  }
+  .mega-align-justify > .dropdown-menu {
+    left: 0;
+    margin-left: 0;
+  }
 
   // The caret
   // ---------

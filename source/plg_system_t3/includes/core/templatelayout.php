@@ -35,6 +35,7 @@ class T3TemplateLayout extends T3Template
 	{
 		parent::__construct($template);
 		$this->setParam('responsive', 0);
+		$this->setParam('devmode', 0);
 	}
 
 	/**
