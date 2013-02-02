@@ -29,21 +29,4 @@ defined('_JEXEC') or die;
     </div>
   </div>
 </nav>
-
-<?php if ($this->getParam ('navigation_trigger') == 'hover') :?>
-  <script type="text/javascript">
-    jQuery(document).ready(function($){
-      $('.nav > li').hover(function(event) {
-          var $this = $(this);
-          clearTimeout ($this.data('hoverTimeout'));
-          $this.addClass ('open');
-      },
-      function(event) {
-          var $this = $(this);
-          $this.data('hoverTimeout', 
-              setTimeout(function(){$this.removeClass ('open')}, 100));
-      });
-    });
-  </script>
-<?php endif ?>
 <!-- //MAIN NAVIGATION -->

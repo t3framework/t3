@@ -470,6 +470,12 @@ class T3Template extends ObjectExtendable
 		$this->addScript (T3_URL.'/js/touch.js');
 		$this->addScript (T3_URL.'/js/script.js');
 
+		//menu control script
+		if ($this->getParam ('navigation_trigger') == 'hover'){
+			$this->addScript (T3_URL.'/js/menu.js');
+		}
+
+		//reponsive script
 		if ($responsive) {
 			$this->addScript (T3_URL.'/js/responsive.js');
 		}
