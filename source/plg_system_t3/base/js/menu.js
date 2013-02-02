@@ -14,7 +14,7 @@
 !function($){		
 	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
 
-	if(!isTouch{
+	if(!isTouch){
 		$(document).ready(function($){
 			$('.nav > li').hover(function(event) {
 				var $this = $(this);
