@@ -275,8 +275,9 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	actions.addColumn = function () {
 		if (!currentSelected) return ;
 		var $cols = currentSelected.parent().children('[class*="span"]'),
-		colcount = $cols.length + 1,
-		colwidths = defaultColumnsWidth (colcount);
+			colcount = $cols.length + 1,
+			colwidths = defaultColumnsWidth (colcount);
+			
 		// add new column  
 		var $col = $('<div><div class="mega-inner"></div></div>');
 		if (actions.datas.addfirst) 
@@ -296,32 +297,38 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	}
 
 	actions.removeColumn = function () {
-		if (!currentSelected) return ;
-		var $col = currentSelected,
-		$row = $col.parent(),
-		$rows = $row.parent().children ('[class*="row"]'),
-		$allcols = $rows.children('[class*="span"]'),
-		$allmenucols = $allcols.filter (function(){return !$(this).data('position')}),
-		$cols = $row.children('[class*="span"]'),
-		colcount = $cols.length - 1,
-		colwidths = defaultColumnsWidth (colcount),
-		type_menu = $col.data ('position') ? false : true;
-
-		if ((type_menu && $allmenucols.length == 1) || $allcols.length == 1) {
-			// if this is the only one column left
-			return ;
+		if (!currentSelected){
+			return;
 		}
+
+		var $col = currentSelected,
+			$row = $col.parent(),
+			$rows = $row.parent().children ('[class*="row"]'),
+			$allcols = $rows.children('[class*="span"]'),
+			$allmenucols = $allcols.filter (function(){return !$(this).data('position')}),
+			$haspos = $allcols.filter (function(){return $(this).data('position')}).length,
+			$cols = $row.children('[class*="span"]'),
+			colcount = $cols.length - 1,
+			colwidths = defaultColumnsWidth (colcount),
+			type_menu = $col.data ('position') ? false : true;
+
+		if ((type_menu && ((!$haspos && $allmenucols.length == 1) || ($haspos && $allmenucols.length == 0))) 
+			|| $allcols.length == 1) {
+			// if this is the only one column left
+			return;
+		}
+
 		// remove column  
 		// check and move content to other column        
 		if (type_menu) {
 			var colidx = $allmenucols.index($col),
-			tocol = colidx == 0 ? $allmenucols[1] : $allmenucols[colidx-1];
+				tocol = colidx == 0 ? $allmenucols[1] : $allmenucols[colidx-1];
+
 			$col.find ('ul:first > li').appendTo ($(tocol).find('ul:first'));
 		} 
 
 		var colidx = $allcols.index($col),
-		nextActiveCol = colidx == 0 ? $allcols[1] : $allcols[colidx-1];
-
+			nextActiveCol = colidx == 0 ? $allcols[1] : $allcols[colidx-1];
 		
 		if (colcount < 1) {
 			$row.remove();
