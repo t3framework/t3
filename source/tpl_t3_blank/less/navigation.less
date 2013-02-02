@@ -15,191 +15,191 @@
 // -------------------------------------------------------
 //  JA MAIN MENU
 // -------------------------------------------------------
-
 .t3-mainnav {
   #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
   border-top: 1px solid @navbarBackground;
   border-bottom: 1px solid darken(@navbarBackground, 10%);
   height: @navbarHeight;
-}
 
-.t3-mainnav .navbar {
-  color: @navbarText;
-  margin-bottom: 0;
-  margin-top: 0;
-}
+  .navbar {
+    color: @navbarText;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 
-.t3-mainnav .navbar-inner {
-  min-height: @navbarHeight;
-  padding:  0;
-  background: transparent;
-  border: 0;
-  border-left: 1px solid darken(@navbarBackground, 5%);
-  .border-radius(0);
-  .box-shadow(none);
-  .reset-filter();
-}
-
+  .navbar-inner {
+    min-height: @navbarHeight;
+    padding:  0;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid darken(@navbarBackground, 5%);
+    .border-radius(0);
+    .box-shadow(none);
+    .reset-filter();
+  }
 
 
-// NAVBAR
-// -------------------------------------------------------
-.t3-mainnav .navbar .nav {
-  margin: 0;
-}
+
+  // NAVBAR
+  // -------------------------------------------------------
+  .navbar .nav {
+    margin: 0;
+  }
 
 
-// Links
-// -----
-.t3-mainnav .navbar .nav > li > a {
-  border-top: 0;
-  border-right: 1px solid darken(@navbarBackground, 5%);
-  padding: ((@navbarHeight - @baseLineHeight) / 2) @baseLineHeight;
-  text-shadow: none;
-}
-
-// Hover
-.t3-mainnav .navbar .nav > li > a:focus,
-.t3-mainnav .navbar .nav > li > a:hover {
-  background-color: @navbarLinkBackgroundHover;
-  #gradient > .vertical(lighten(@navbarLinkBackgroundHover, 10%), @navbarLinkBackgroundHover);
-  text-shadow: none;
-  outline: none;
-}
-
-// Active nav items
-.t3-mainnav .navbar .nav > .active > a,
-.t3-mainnav .navbar .nav > .active > a:hover,
-.t3-mainnav .navbar .nav > .active > a:focus {
-  color: @navbarLinkColorActive;
-  text-shadow: none;
-  #gradient > .vertical(lighten(@navbarLinkBackgroundActive, 10%), @navbarLinkBackgroundActive);
-  .box-shadow(none );
-  outline: none;
-}
-
-// Toggle Button
-// -------------
-
-// Navbar button for toggling navbar items in responsive layouts
-// These definitions need to come after '.navbar .btn'
-.t3-mainnav .navbar .btn-navbar {
-  float: left;
-  padding: 7px 10px;
-  margin: 7px 20px 0;
-  .buttonBackground(darken(@navbarBackgroundHighlight, 5%), darken(@navbarBackground, 5%));
-  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)");
-}
-
-.t3-mainnav .navbar .btn-navbar .icon-bar {
-  width: 18px;
-  height: 2px;
-  background-color: #f5f5f5;
-  .border-radius(1px);
-  .box-shadow(0 1px 0 rgba(0,0,0,.25));
-}
-
-.t3-mainnav .btn-navbar .icon-bar + .icon-bar {
-  margin-top: 3px;
-}
-
-
-// DROPDOWN
-// -------------------------------------------------------
-
-// Dropdown arrow/caret
-// --------------------
-.t3-mainnav .caret {
-}
-
-// Place the caret
-.t3-mainnav .dropdown .caret {
-  margin-left: 5px;
-}
-
-
-// The dropdown menu
-// -----------------
-.t3-mainnav .dropdown-menu {
-  .box-shadow(0 5px 10px rgba(0,0,0,.2));
-
-  // Links within the dropdown menu
-  li > a {
-    border-top: 1px solid @hrBorder;
-    padding: 5px 20px;
+  // Links
+  // -----
+  .navbar .nav > li > a {
+    border-top: 0;
+    border-right: 1px solid darken(@navbarBackground, 5%);
+    padding: ((@navbarHeight - @baseLineHeight) / 2) @baseLineHeight;
     text-shadow: none;
   }
-}
 
-// No border top on the first
-.t3-mainnav .dropdown-menu li:first-child > a {
-  border-top: 0;
-}
-
-// Hide the Top arrow of the dropdown menu.
-// See bootstrap/navbar.less or comment these line if you want to show it again.
-.t3-mainnav .navbar .nav > li > .dropdown-menu {
-  &:before {
-    display: none;
+  // Hover
+  .navbar .nav > li > a:focus,
+  .navbar .nav > li > a:hover {
+    background-color: @navbarLinkBackgroundHover;
+    #gradient > .vertical(lighten(@navbarLinkBackgroundHover, 10%), @navbarLinkBackgroundHover);
+    text-shadow: none;
+    outline: none;
   }
-  &:after {
-    display: none;
+
+  // Active nav items
+  .navbar .nav > .active > a,
+  .navbar .nav > .active > a:hover,
+  .navbar .nav > .active > a:focus {
+    color: @navbarLinkColorActive;
+    text-shadow: none;
+    #gradient > .vertical(lighten(@navbarLinkBackgroundActive, 10%), @navbarLinkBackgroundActive);
+    .box-shadow(none );
+    outline: none;
   }
-}
+
+  // Toggle Button
+  // -------------
+
+  // Navbar button for toggling navbar items in responsive layouts
+  // These definitions need to come after '.navbar .btn'
+  .navbar .btn-navbar {
+    float: left;
+    padding: 7px 10px;
+    margin: 7px 20px 0;
+    .buttonBackground(darken(@navbarBackgroundHighlight, 5%), darken(@navbarBackground, 5%));
+    .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)");
+  }
+
+  .navbar .btn-navbar .icon-bar {
+    width: 18px;
+    height: 2px;
+    background-color: #f5f5f5;
+    .border-radius(1px);
+    .box-shadow(0 1px 0 rgba(0,0,0,.25));
+  }
+
+  .btn-navbar .icon-bar + .icon-bar {
+    margin-top: 3px;
+  }
 
 
-// Hover state
-// -----------
-.t3-mainnav .dropdown-menu li > a:hover,
-.t3-mainnav .dropdown-menu li > a:focus,
-.t3-mainnav .dropdown-submenu:hover > a {
-}
+  // DROPDOWN
+  // -------------------------------------------------------
+
+  // Dropdown arrow/caret
+  // --------------------
+  .caret {
+  }
+
+  // Place the caret
+  .dropdown .caret {
+    margin-left: 5px;
+  }
 
 
-// Active state
-// ------------
-.t3-mainnav .dropdown-menu .active > a,
-.t3-mainnav .dropdown-menu .active > a:hover {
-}
+  // The dropdown menu
+  // -----------------
+  .dropdown-menu {
+    .box-shadow(0 5px 10px rgba(0,0,0,.2));
+
+    // Links within the dropdown menu
+    li > a {
+      border-top: 1px solid @hrBorder;
+      padding: 5px 20px;
+      text-shadow: none;
+    }
+  }
+
+  // No border top on the first
+  .dropdown-menu li:first-child > a {
+    border-top: 0;
+  }
+
+  // Hide the Top arrow of the dropdown menu.
+  // See bootstrap/navbar.less or comment these line if you want to show it again.
+  .navbar .nav > li > .dropdown-menu {
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: none;
+    }
+  }
 
 
-// Disabled state
-// --------------
-.t3-mainnav .dropdown-menu .disabled > a,
-.t3-mainnav .dropdown-menu .disabled > a:hover {
-  color: @grayLight;
-}
-
-.t3-mainnav .dropdown-menu .disabled > a:hover {
-  background-color: transparent;
-}
+  // Hover state
+  // -----------
+  .dropdown-menu li > a:hover,
+  .dropdown-menu li > a:focus,
+  .dropdown-submenu:hover > a {
+  }
 
 
-// Open State
-// ----------
-.t3-mainnav .nav li.dropdown.open > .dropdown-toggle,
-.t3-mainnav .nav li.dropdown.active > .dropdown-toggle,
-.t3-mainnav .nav li.dropdown.open.active > .dropdown-toggle {
-}
-
-.t3-mainnav .nav li.dropdown > .dropdown-toggle .caret {
-}
-
-.t3-mainnav .nav li.dropdown.open > .dropdown-toggle .caret,
-.t3-mainnav .nav li.dropdown.active > .dropdown-toggle .caret,
-.t3-mainnav .nav li.dropdown.open.active > .dropdown-toggle .caret {
-}
+  // Active state
+  // ------------
+  .dropdown-menu .active > a,
+  .dropdown-menu .active > a:hover {
+  }
 
 
-// Dropdown Sub menus
-// ------------------
-.t3-mainnav .dropdown-submenu > .dropdown-menu {
-}
+  // Disabled state
+  // --------------
+  .dropdown-menu .disabled > a,
+  .dropdown-menu .disabled > a:hover {
+    color: @grayLight;
+  }
 
-.t3-mainnav .dropdown-submenu > a:after {
-}
+  .dropdown-menu .disabled > a:hover {
+    background-color: transparent;
+  }
 
-.t3-mainnav .dropdown-submenu:hover > a:after {
+
+  // Open State
+  // ----------
+  .nav li.dropdown.open > .dropdown-toggle,
+  .nav li.dropdown.active > .dropdown-toggle,
+  .nav li.dropdown.open.active > .dropdown-toggle {
+  }
+
+  .nav li.dropdown > .dropdown-toggle .caret {
+  }
+
+  .nav li.dropdown.open > .dropdown-toggle .caret,
+  .nav li.dropdown.active > .dropdown-toggle .caret,
+  .nav li.dropdown.open.active > .dropdown-toggle .caret {
+  }
+
+
+  // Dropdown Sub menus
+  // ------------------
+  .dropdown-submenu > .dropdown-menu {
+  }
+
+  .dropdown-submenu > a:after {
+  }
+
+  .dropdown-submenu:hover > a:after {
+  }
+  // End 
 }
 
 
