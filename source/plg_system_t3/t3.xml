@@ -10,30 +10,16 @@
 	<version>1.1.0 RC1</version>
 	<description>
 	<![CDATA[
-		<div align="left"><h2>T3 Framework - JoomlArt Template Framework for Joomla 2.5 & 3.0</h2>
-		<div style='font-weight: normal'>
-		<p><span style='color: #ff6600;'>
-		<p><strong><span style='color: #ff0000;'>Overview:</span></strong></p>
-		<p>With the JA T3 Blank Template, developing template has never could become easier. Do not let the simplicity fools you, as JAT3 does come packed with great power. You are now in full control to use multiple themes simultaneously or mix and match them as you see fit. The JA T3 Template Administration Panel will allow you the full flexibility in editing your files, upload your themes and customize your settings all in one window.</p>
-		<p><strong><span style='color: #ff0000;'>Upgrade Method:</span></strong></p>
-		<ul>
-		  <li>You can install new version directly over this version. Uninstallation is not required. </li>
-		  <li>Follow upgrade instructions and backup site / plugin before upgrading</li>
-		</ul>
-	    </p> </p>
-		<p><span style='color: #008000;'><strong>Resource:</strong></span></p>
-		<p>To explore T3 in depth, please check out the following informative resources:</p>
-		<ul>
-			<li>Demo: <a href="http://demo.t3.joomlart.com/joomla25/" title="">Joomla! 2.5</a> / <a href="http://demo.t3.joomlart.com/joomla30/" title="">Joomla! 3.0</a></li>
-			<li><a href="http://www.joomlart.com/forums/downloads.php?do=cat&id=460" title="">Download Link</a></li>
-			<li><a href="http://www.joomlart.com/forums/forumdisplay.php?411-JA-T3V3-Framework" title="">Forum Link</a></li>
-			<li><a href="http://update.joomlart.com/" title="">Update & Version</a></li>
-			<li><a href="http://t3.joomlart.com/documentation.html" title="">Documentation Link</a></li>
-			<li><a href="http://pm.joomlart.com/browse/T3V3" title="">Changelog Link</a></li>
-		</ul>
+	<div align="center">
+		<div class="alert alert-success" style="background-color:#DFF0D8;border-color:#D6E9C6;color: #468847;padding: 1px 0;">
+               <h2>Thanks for using T3 Framework.</h2>
+				<a href="http://t3-framework.org/"><img src="http://joomlart.s3.amazonaws.com/images/jat3v3-documents/message-installation/logo.png" alt="some_text" width="400" height="132"></a>
+				<h3><a href="http://t3-framework.org/" title="">Home</a> | <a href="http://demo.t3-framework.org/j25/" title="">Demo J25</a> | <a href="http://demo.t3-framework.org/j30/" title="">Demo J30</a> | <a href="http://t3-framework.org/documentation" title="">Document</a> | <a href="https://github.com/t3framework/t3/wiki/Changelog" title="">Changelog</a></h3>
+		<p> </p>
 		<p>Copyright 2004 - 2013 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
 		</div>
-		</div>
+     <style>table.adminform{width: 100%;}</style>
+	 </div>
 		]]>
 	</description>	
 	<scriptfile>t3.script.php</scriptfile>
