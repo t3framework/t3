@@ -476,12 +476,12 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		$('#t3-admin-mm-tb .active').removeClass('active');
 		switch (type) {
 			case 'item':
-				$('.toolitem-exclass').attr('value', currentSelected.data ('class') || '');
 				// value for toggle
 				var liitem = currentSelected.closest('li'),
 					liparent = liitem.parent().closest('li'),
 					sub = liitem.find ('.nav-child:first');
 					
+				$('.toolitem-exclass').attr('value', liitem.data ('class') || '');
 				// toggle Submenu
 				var toggle = $('.toolitem-sub');
 				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
