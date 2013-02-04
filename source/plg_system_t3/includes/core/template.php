@@ -16,9 +16,6 @@
 defined('_JEXEC') or die();
 
 t3import ('extendable/extendable');
-t3import ('minify/csscompressor');
-t3import ('core/less');
-t3import ('core/path');
 
 /**
  * T3Template class provides extended template tools used for T3 framework
@@ -494,193 +491,6 @@ class T3Template extends ObjectExtendable
 		$this->addExtraAssets();
 	}
 
-	function minifiable($string) {
-		$string = preg_replace('#[?\#]+.*$#', '', $string);
-		
-		if(substr($string, 0, 2) === '//'){ //check and append if url is omit http
-			$string = 'http:' . $string; 
-		}
-
-		if (preg_match('/^https?\:/', $string)) {
-			if (! preg_match('#^' . preg_quote(JURI::base()) . '#', $string)) {
-				// External css
-				return false;
-			}
-		}
-
-		foreach ( self::$cssexts as $ext ) {
-			if (substr_compare($string, $ext, -strlen($ext), strlen($ext)) === 0) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	function fromUrlToPath($url){
-		$root = JURI::root(true);
-		$path = '';
-
-		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
-			$url = 'http:' . $url; 
-		}
-
-		if(preg_match('#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu', $url)){ //this is a full link
-			$path = JPath::clean(JPATH_ROOT . '/' . substr($url, strlen(JURI::base())));
-		} else {
-			$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) == 0 ? substr($url, strlen($root)) : $url));
-		}
-		
-		return $path;
-	}
-
-	function optimizecss()
-	{
-		jimport('joomla.filesystem.file');
-		
-		$minify = $this->getParam('minify', 0);
-		if (!$minify) {
-			return false; //no optimize css
-		}
-
-		$outputpath = JPATH_ROOT . '/' . $this->getParam('t3-assets', 't3-assets') . '/css';
-		$outputurl = JURI::root(true) . '/' . $this->getParam('t3-assets', 't3-assets') . '/css';
-		
-		if (!JFile::exists($outputpath)){
-			@JFolder::create($outputpath);
-		}
-
-		if (!is_writeable($outputpath)) {
-			return false;
-		}
-
-		$output = array();
-		$files = array();
-
-		// Limit files import into a css file (in IE7, only first 30 css files are loaded). other case, load unlimited
-		$filelimit = ($minify == 1)? 20 : 999;
-		$filecount = 0;
-		
-		$doc = JFactory::getDocument();
-
-		//======================= Group css ================= //
-		$cssgroups = array();
-		$stylesheets = array();
-
-		foreach ($doc->_styleSheets as $url => $stylesheet) {
-
-			if ($stylesheet['mime'] == 'text/css' && $this->minifiable($url)) {
-				$stylesheet['path'] = $this->fromUrlToPath($url);
-				$stylesheet['data'] = @JFile::read($stylesheet['path']);
-
-				if (preg_match('#@import\s+.+#', $stylesheet['data'])) {
-					if(count($stylesheets)){
-						$cssgroup = array();
-						$groupname = array();
-						foreach ( $stylesheets as $gurl => $gsheet ) {
-							$cssgroup[$gurl] = $gsheet;
-							$groupname[] = $gurl;
-						}
-
-						$cssgroup['groupname'] = implode('', $groupname);
-						$cssgroups[] = $cssgroup;
-					}
-
-					$stylesheets = array($url => $stylesheet); // empty - begin a new group
-				} else {
-
-					$stylesheets[$url] = $stylesheet;
-				}
-
-			} else {
-				// first get all the stylsheets up to this point, and get them into
-				// the items array
-				if(count($stylesheets)){
-					$cssgroup = array();
-					$groupname = array();
-					foreach ( $stylesheets as $gurl => $gsheet ) {
-						$cssgroup[$gurl] = $gsheet;
-						$groupname[] = $gurl;
-					}
-
-					$cssgroup['groupname'] = implode('', $groupname);
-					$cssgroups[] = $cssgroup;
-				}
-
-				//mark ignore current stylesheet
-				$cssgroup = array($url => $stylesheet, 'ignore' => true);
-				$cssgroups[] = $cssgroup;
-
-				$stylesheets = array(); // empty - begin a new group
-			}
-		}
-		
-		if(count($stylesheets)){
-			$cssgroup = array();
-			$groupname = array();
-			foreach ( $stylesheets as $gurl => $gsheet ) {
-				$cssgroup[$gurl] = $gsheet;
-				$groupname[] = $gurl;
-			}
-
-			$cssgroup['groupname'] = implode('', $groupname);
-			$cssgroups[] = $cssgroup;
-		}
-		
-		//======================= Group css ================= //
-
-		$output = array();
-		foreach ($cssgroups as $cssgroup) {
-			if(isset($cssgroup['ignore'])){
-				
-				unset($cssgroup['ignore']);
-				foreach ($cssgroup as $furl => $fsheet) {
-					$output[$furl] = $fsheet;
-				}
-
-			} else {
-
-				$groupname = 'css-' . substr(md5($cssgroup['groupname']), 0, 5) . '.css';
-				$groupfile = $outputpath . '/' . $groupname;
-				$grouptime = JFile::exists($groupfile) ? @filemtime($groupfile) : -1;
-				$rebuild = $grouptime < 0; //filemtime == -1 => rebuild
-
-				unset($cssgroup['groupname']);
-				foreach ($cssgroup as $furl => $fsheet) {
-					if(!$rebuild && @filemtime($fsheet['path']) > $grouptime){
-						$rebuild = true;
-					}
-				}
-
-				if($rebuild){
-
-					$cssdata = array();
-					foreach ($cssgroup as $furl => $fsheet) {
-						$cssdata[] = "\n\n/*===============================";
-						$cssdata[] = $furl;
-						$cssdata[] = "================================================================================*/";
-						
-						$cssmin = Minify_CSS_Compressor::process($fsheet['data']);
-						$cssmin = T3Path::updateUrl($cssmin, T3Path::relativePath($outputurl, dirname($furl)));
-
-						$cssdata[] = $cssmin;
-					}
-
-					@JFile::write($groupfile, implode("\n", $cssdata));
-				}
-
-				$output[$outputurl . '/' . $groupname] = array(
-					'mime' => 'text/css',
-					'media' => null,
-					'attribs' => array()
-					);
-			}
-		}
-
-		//apply the change make change
-		$doc->_styleSheets = $output;
-	}
-
 	/**
 	* Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
 	*/
@@ -726,7 +536,8 @@ class T3Template extends ObjectExtendable
 			$doc->_styleSheets = $stylesheets;
 
 		} else if($minify){
-			$this->optimizecss();
+			t3import ('core/minify');
+			T3Minify::optimizecss($this);
 		}
 	}
 

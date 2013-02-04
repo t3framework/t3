@@ -192,13 +192,13 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				jtab = $('.t3-admin-nav .nav li').eq(jpane.index()),
 
 			check = function(){
-				var eq = JSON.stringify(T3AdminLayout.t3getlayoutdata()) == T3AdminLayout.curconfig,
-					chretain = Math.max(0, (jgroup.data('chretain') || 0) + (eq ? -1 : 1));
+				if(!jgroup.data('chretain')){
+					var eq = JSON.stringify(T3AdminLayout.t3getlayoutdata()) == T3AdminLayout.curconfig;
 
-				jgroup.data('chretain', chretain)
-					[chretain ? 'addClass' : 'removeClass']('t3-changed');
+					jgroup[eq ? 'removeClass' : 'addClass']('t3-changed');
 
-				jtab[!eq || jpane.find('.t3-changed').length ? 'addClass' : 'removeClass']('t3-changed');
+					jtab[!eq || jpane.find('.t3-changed').length ? 'addClass' : 'removeClass']('t3-changed');
+				}
 
 				T3AdminLayout.chsid = setTimeout(check, 1500);
 			};

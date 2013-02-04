@@ -6,9 +6,6 @@
 			<field name="t3_template" type="hidden" default="1" value="1" />
 			
 			<field name="general_params_default" type="t3depend" function="@group">
-				<option for="minify" value="1">
-					t3-assets
-				</option>
 				<option for="devmode" value="0">
 					minify
 				</option>
