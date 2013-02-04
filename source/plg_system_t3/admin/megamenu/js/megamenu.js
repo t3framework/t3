@@ -401,8 +401,12 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				});
 				item['sub']['rows'] = rows;
 			}
+
 			if ($this.data('class')) {
 				item['class'] = $this.data('class');
+			}
+			if ($this.data('xicon')) {
+				item['xicon'] = $this.data('xicon');
 			}
 			if ($this.data('group')) {
 				item['group'] = $this.data('group');
@@ -482,6 +486,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					sub = liitem.find ('.nav-child:first');
 					
 				$('.toolitem-exclass').attr('value', liitem.data ('class') || '');
+				$('.toolitem-xicon').attr('value', liitem.data ('xicon') || '');
 				// toggle Submenu
 				var toggle = $('.toolitem-sub');
 				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
@@ -592,6 +597,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				}
 				item.removeClass(item.data(name) || '').addClass (value);
 				item.data (name, value);
+				break;
+
+			case 'xicon':
+				if (type == 'item') {
+					currentSelected.closest('li').data (name, value);
+					currentSelected.find('i').remove();
+					if (value) currentSelected.prepend($('<i class="'+value+'"></i>'));
+				}
 				break;
 
 			case 'position':

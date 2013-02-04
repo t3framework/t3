@@ -114,6 +114,7 @@ class T3MenuMegamenuTpl {
 			$cls .= " mega-align-{$setting['alignsub']}";
 		}
 		if (isset($setting['hidesub'])) $data .= " data-sub=\"hide\"";
+		if (isset($setting['xicon'])) $data .= " data-xicon=\"{$setting['xicon']}\"";
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
 
@@ -127,18 +128,49 @@ class T3MenuMegamenuTpl {
 	static function item ($vars) {
 		$item = $vars['item'];
 		$setting = $item->setting;
-		$attr = '';
-		$caret = '';
+
+		// Note. It is important to remove spaces between elements.
+		$vars['class'] = $item->anchor_css ? $item->anchor_css : '';
+		$vars['title'] = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
+		$vars['dropdown'] = '';
+		$vars['caret'] = '';
+		$vars['icon'] = '';
+
+		if($item->dropdown && $item->level < 2){
+			$vars['class'] .= ' dropdown-toggle';
+			$vars['dropdown'] = ' data-toggle="dropdown"';
+			$vars['caret'] = '<b class="caret"></b>';
+		}
+
+		if ($item->group) $vars['class'] .= ' mega-group-title';
+
+		if ($item->menu_image) {
+			$item->params->get('menu_text', 1 ) ?
+			$vars['linktype'] = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" /><span class="image-title">'.$item->title.'</span> ' :
+			$vars['linktype'] = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" />';
+		} else { 
+			$vars['linktype'] = $item->title;
+		}
+
+		if (isset($setting['xicon']) && $setting['xicon']) {
+			$vars['icon'] = '<i class="'.$setting['xicon'].'"></i>';
+		}
+/*		
+--------------		
+		$vars['class'] = $item->anchor_css ? $item->anchor_css : '';
+		$vars['title'] = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
+		$vars['attr'] = '';
+		$vars['caret'] = '';
 		if ($item->dropdown) {
-			$attr = ' class="dropdown-toggle" data-toggle="dropdown"';
-			$caret = '<b class="caret"></b>';
+			$vars['attr'] = ' class="dropdown-toggle" data-toggle="dropdown"';
+			$vars['caret'] = '<b class="caret"></b>';
 		}
 		if($item->browserNav > 0){
-			$attr .= ' target="blank"';
+			$vars['attr'] .= ' target="blank"';
 		}
 
-		$flink = $item->link;
-
+		$vars['flink'] = $item->link;
+*/
 		$html = '';
 		switch ($item->type)
 		{
@@ -158,6 +190,13 @@ class T3MenuMegamenuTpl {
 
 	static function item_url ($vars) {
 		$item = $vars['item'];
+		$class = $vars['class'];
+		$title = $vars['title'];
+		$dropdown = $vars['dropdown'];
+		$caret = $vars['caret'];
+		$linktype = $vars['linktype'];
+		$icon = $vars['icon'];
+/*		
 		// Note. It is important to remove spaces between elements.
 		$class = $item->anchor_css ? $item->anchor_css : '';
 		$title = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
@@ -183,6 +222,7 @@ class T3MenuMegamenuTpl {
 		} else { 
 			$linktype = $item->title;
 		}
+*/		
 		$flink = $item->flink;
 		$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 
@@ -190,16 +230,16 @@ class T3MenuMegamenuTpl {
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a $class href=\"$flink\" $title $dropdown>$linktype \n$caret</a>";
+				$link = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype \n$caret</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a $class href=\"$flink\" target=\"_blank\" $title $dropdown>$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype $caret</a>";
 				break;
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,'.$params->get('window_open');
-				$link = "<a $class href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype $caret</a>";
 				break;
 		endswitch;
 
@@ -207,63 +247,41 @@ class T3MenuMegamenuTpl {
 	}
 	static function item_separator ($vars) {
 		$item = $vars['item'];
+		$class = $vars['class'];
+		$title = $vars['title'];
+		$dropdown = $vars['dropdown'];
+		$caret = $vars['caret'];
+		$linktype = $vars['linktype'];
+		$icon = $vars['icon'];
 		// Note. It is important to remove spaces between elements.
-		$title = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
-		if ($item->menu_image) {
-			$item->params->get('menu_text', 1 ) ?
-			$linktype = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" /><span class="image-title">'.$item->title.'</span> ' :
-			$linktype = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" />';
-		}
-		else { 
-			$linktype = $item->title;
-		}
 
-		$class = "separator";
-		if ($item->group) $class .= ' mega-group-title';
+		$class .= " separator";
 
-		return "<span class=\"$class\">$title $linktype</span>";
+		return "<span class=\"$class\">$icon$title $linktype</span>";
 	}
 	static function item_component ($vars) {
 		$item = $vars['item'];
+		$class = $vars['class'];
+		$title = $vars['title'];
+		$dropdown = $vars['dropdown'];
+		$caret = $vars['caret'];
+		$linktype = $vars['linktype'];
+		$icon = $vars['icon'];
 		// Note. It is important to remove spaces between elements.
-		$class = $item->anchor_css ? $item->anchor_css : '';
-		$title = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
-		$dropdown = '';
-		$caret = '';
-
-		if($item->dropdown && $item->level){
-			$class .= ' dropdown-toggle';
-			$dropdown = ' data-toggle="dropdown"';
-			$caret = '<b class="caret"></b>';
-		}
-
-		if ($item->group) $class .= ' mega-group-title';
-
-		if(!empty($class)){
-			$class = 'class="'. trim($class) .'" ';
-		}
-
-		if ($item->menu_image) {
-			$item->params->get('menu_text', 1 ) ?
-			$linktype = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" /><span class="image-title">'.$item->title.'</span> ' :
-			$linktype = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" />';
-		} else { 
-			$linktype = $item->title;
-		}
 
 		$link = "";
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a $class href=\"{$item->flink}\" $title $dropdown>$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a $class href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret</a>";
 				break;
 			case 2:
 			// window.open
-				$link = "<a $class href=\"{$item->flink}\" onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\" $title $dropdown>$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\" onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\" $title $dropdown>$icon$linktype $caret</a>";
 				break;
 		endswitch;
 
