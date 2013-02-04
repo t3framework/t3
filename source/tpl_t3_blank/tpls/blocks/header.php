@@ -34,7 +34,7 @@ if ($logoimage) {
 
     <?php if ($this->countModules('head-search')) : ?>
     <!-- HEAD SEARCH -->
-    <div class="span4<?php $this->_c('head-search')?> head-search">     
+    <div class="span4 head-search<?php $this->_c('head-search')?>">     
       <jdoc:include type="modules" name="<?php $this->_p('head-search') ?>" style="raw" />
     </div>
     <!-- //HEAD SEARCH -->
