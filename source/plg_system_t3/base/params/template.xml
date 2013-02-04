@@ -7,7 +7,10 @@
 			
 			<field name="general_params_default" type="t3depend" function="@group">
 				<option for="minify" value="1">
-					t3assets
+					t3-assets
+				</option>
+				<option for="devmode" value="0">
+					minify
 				</option>
 			</field>
 
@@ -35,7 +38,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="minify" type="radio" class="btn-group" default="1"
+			<field name="minify" type="radio" class="btn-group" default="0"
 				global="1"
 				label="T3_GENERAL_ASSETS_MINIFY_LABEL" 
 				description="T3_GENERAL_ASSETS_MINIFY_DESC" >
