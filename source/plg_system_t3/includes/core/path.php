@@ -120,7 +120,10 @@ class T3Path extends JObject
                 : substr($matches[1], 1, strlen($matches[1]) - 2);
         }
 
-        $uri = self::cleanPath (self::$srcurl.'/'.$uri);
+		// root-relative       protocol (non-data)             data protocol
+		if ($uri[0] !== '/' && strpos($uri, '//') === false && strpos($uri, 'data:') !==  0){
+        	$uri = self::cleanPath (self::$srcurl.'/'.$uri);
+		}
 
         return $isImport
             ? "@import {$quoteChar}{$uri}{$quoteChar}"

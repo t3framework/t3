@@ -570,7 +570,28 @@ class T3Template extends ObjectExtendable
 		foreach ($doc->_styleSheets as $url => $stylesheet) {
 
 			if ($stylesheet['mime'] == 'text/css' && $this->minifiable($url)) {
-				$stylesheets[$url] = $stylesheet;
+				$stylesheet['path'] = $this->fromUrlToPath($url);
+				$stylesheet['data'] = @JFile::read($stylesheet['path']);
+
+				if (preg_match('#@import\s+.+#', $stylesheet['data'])) {
+					if(count($stylesheets)){
+						$cssgroup = array();
+						$groupname = array();
+						foreach ( $stylesheets as $gurl => $gsheet ) {
+							$cssgroup[$gurl] = $gsheet;
+							$groupname[] = $gurl;
+						}
+
+						$cssgroup['groupname'] = implode('', $groupname);
+						$cssgroups[] = $cssgroup;
+					}
+
+					$stylesheets = array($url => $stylesheet); // empty - begin a new group
+				} else {
+
+					$stylesheets[$url] = $stylesheet;
+				}
+
 			} else {
 				// first get all the stylsheets up to this point, and get them into
 				// the items array
@@ -619,15 +640,13 @@ class T3Template extends ObjectExtendable
 
 			} else {
 
-				$groupname = 'css-' . md5($cssgroup['groupname']) . '.css';
+				$groupname = 'css-' . substr(md5($cssgroup['groupname']), 0, 5) . '.css';
 				$groupfile = $outputpath . '/' . $groupname;
 				$grouptime = JFile::exists($groupfile) ? @filemtime($groupfile) : -1;
 				$rebuild = $grouptime < 0; //filemtime == -1 => rebuild
 
 				unset($cssgroup['groupname']);
-				foreach ($cssgroup as $furl => &$fsheet) {
-					$fsheet['path'] = $this->fromUrlToPath($furl);
-
+				foreach ($cssgroup as $furl => $fsheet) {
 					if(!$rebuild && @filemtime($fsheet['path']) > $grouptime){
 						$rebuild = true;
 					}
@@ -641,7 +660,7 @@ class T3Template extends ObjectExtendable
 						$cssdata[] = $furl;
 						$cssdata[] = "================================================================================*/";
 						
-						$cssmin = Minify_CSS_Compressor::process(@JFile::read($fsheet['path']));
+						$cssmin = Minify_CSS_Compressor::process($fsheet['data']);
 						$cssmin = T3Path::updateUrl($cssmin, T3Path::relativePath($outputurl, dirname($furl)));
 
 						$cssdata[] = $cssmin;
