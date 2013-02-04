@@ -27,4 +27,3 @@ defined('_JEXEC') or die;
     </ul>
   </div>
 </div>
-

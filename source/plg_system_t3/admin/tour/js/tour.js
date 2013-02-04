@@ -18,7 +18,7 @@
 		if(!options.tours.length){
 			return false;
 		}
-
+		
 		this.activeTour = null;
 		this.activated = false;
 

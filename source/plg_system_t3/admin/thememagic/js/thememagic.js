@@ -16,8 +16,6 @@ var T3Theme = window.T3Theme || {};
 
 !function ($) {
 
-
-
 	$.extend(T3Theme, {
 
 		placeholder: 'placeholder' in document.createElement('input'),

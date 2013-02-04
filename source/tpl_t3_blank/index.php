@@ -20,7 +20,6 @@ if(!defined('T3')){
 	if (JError::$legacy) {
 		JError::setErrorHandling(E_ERROR, 'die');
 		JError::raiseError(500, JText::_('T3_MISSING_T3_PLUGIN'));
-		
 		exit;
 	} else {
 		throw new Exception(JText::_('T3_MISSING_T3_PLUGIN'), 500);

@@ -221,7 +221,7 @@ class plgSystemT3 extends JPlugin
 					$id = $input->getInt('id');
 
 					//when in POST the view parameter does not set
-					if ($input->getCmd('view') == 'template') {						
+					if ($input->getCmd('view') == 'template') {
 						$query
 						->select('element')
 						->from('#__extensions')

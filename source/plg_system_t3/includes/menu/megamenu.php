@@ -11,7 +11,7 @@
  * @Link:         https://github.com/t3framework/ 
  *------------------------------------------------------------------------------
  */
- 
+
 t3import ('menu/megamenu.tpl');
 
 class T3MenuMegamenu {

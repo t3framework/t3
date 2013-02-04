@@ -16,7 +16,6 @@
 /**
  *
  * Layout helper module class
- * @author JoomlArt
  *
  */
 class T3AdminLayout

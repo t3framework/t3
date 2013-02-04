@@ -11,7 +11,7 @@
  *------------------------------------------------------------------------------
  */
 
-!function($){		
+!function($){
 	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
 
 	if(!isTouch){

@@ -52,7 +52,6 @@ defined('_JEXEC') or die;
   }
   $layout = $layout_config->$layout;
 
-  //
   $col = 0;
 ?>
 

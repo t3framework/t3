@@ -21,7 +21,7 @@ defined('_JEXEC') or die;
 
   <head>
     <jdoc:include type="head" />
-    <?php $this->loadBlock ('head') ?>  
+    <?php $this->loadBlock ('head') ?>
   </head>
 
   <body>

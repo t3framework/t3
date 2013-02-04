@@ -8,7 +8,6 @@
 defined('_JEXEC') or die;
 ?>
 
-
 <?php if ($this->checkSpotlight('spotlight-1', 'position-1, position-2, position-3, position-4')) : ?>
 <!-- SPOTLIGHT 1 -->
 <section class="container t3-sl t3-sl-1">
