@@ -45,9 +45,8 @@ class plgSystemT3 extends JPlugin
 			}
 
 			if (!JFactory::getApplication()->isAdmin()) {
-				$dev_folder = JFactory::getApplication()->getTemplate(true)->params->get ('dev_folder');
-				if (!$dev_folder) $dev_folder = 'tmp/t3-devmode';
-				define ('T3_DEV_FOLDER', $dev_folder);
+				$t3assets = JFactory::getApplication()->getTemplate(true)->params->get ('t3-assets', 't3-assets');
+				define ('T3_DEV_FOLDER', $t3assets . '/dev');
 			}
 
 			if($input->getCmd('t3lock', '')){

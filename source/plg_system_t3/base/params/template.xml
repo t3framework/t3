@@ -43,7 +43,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="t3assets" type="text" default="t3-assets"
+			<field name="t3-assets" type="text" default="t3-assets"
 				global="1"
 				label="T3_GENERAL_ASSETS_FOLDER_LABEL"
 				description="T3_GENERAL_ASSETS_FOLDER_DESC" />

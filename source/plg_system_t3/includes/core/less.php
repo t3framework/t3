@@ -62,10 +62,6 @@ class T3Less extends lessc
 		$less_lm = filemtime ($filepath);
 
 		// get css cached file
-		if(!defined('T3_DEV_FOLDER')){
-			define('T3_DEV_FOLDER', 'dev-cache');
-		}
-		
 		$cssfile = T3_DEV_FOLDER.'/'.str_replace('/', '.', $path).'.css';
 		$cssurl = JURI::base(true).'/'.$cssfile;
 		$csspath = JPATH_ROOT.'/'.$cssfile;

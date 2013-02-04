@@ -543,8 +543,8 @@ class T3Template extends ObjectExtendable
 			return false; //no optimize css
 		}
 
-		$outputpath = JPATH_ROOT . '/' . $this->getParam('t3assets', 't3-assets') . '/css';
-		$outputurl = JURI::root(true) . '/' . $this->getParam('t3assets', 't3-assets') . '/css';
+		$outputpath = JPATH_ROOT . '/' . $this->getParam('t3-assets', 't3-assets') . '/css';
+		$outputurl = JURI::root(true) . '/' . $this->getParam('t3-assets', 't3-assets') . '/css';
 		
 		if (!JFile::exists($outputpath)){
 			@JFolder::create($outputpath);
@@ -574,7 +574,7 @@ class T3Template extends ObjectExtendable
 			} else {
 				// first get all the stylsheets up to this point, and get them into
 				// the items array
-				if(count($stylsheets)){
+				if(count($stylesheets)){
 					$cssgroup = array();
 					$groupname = array();
 					foreach ( $stylesheets as $gurl => $gsheet ) {
@@ -587,7 +587,7 @@ class T3Template extends ObjectExtendable
 				}
 
 				//mark ignore current stylesheet
-				$cssgroup = array($url => $stylsheet, 'ignore' => true);
+				$cssgroup = array($url => $stylesheet, 'ignore' => true);
 				$cssgroups[] = $cssgroup;
 
 				$stylesheets = array(); // empty - begin a new group
@@ -662,8 +662,6 @@ class T3Template extends ObjectExtendable
 		$doc->_styleSheets = $output;
 	}
 
-
-
 	/**
 	* Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
 	*/
@@ -701,38 +699,7 @@ class T3Template extends ObjectExtendable
 						}
 					}
 				}
-				/*
-				if ($cssmin) {
-
-					// bypass bootstrap css
-					if (preg_match('#bootstrap(-responsive)?\.css#', $url)){
-						continue;
-					}
-
-					if (!preg_match('#\.min\.css#i', $url)) { //if this link does has minify marker
-						$trurl = preg_replace('#\.css(\?.*?)?$#', '.min.css$1' , $url);
-						$turl = preg_replace('#(\?.*|\#.*)#', '', $trurl);
-						$tfile = '';
-
-						if(substr($turl, 0, 2) === '//'){ //check and append if url is omit http
-							$turl = 'http:' . $turl; 
-						}
-
-						if(preg_match('#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu', $turl)){ //this is a full link
-							if(JURI::isInternal($turl)){ // is internal
-								$tfile = JPath::clean(JPATH_ROOT . '/' . substr($turl, strlen(JURI::base())));
-							}
-						} else {
-							//sure, should be internal
-							$tfile = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($turl, $root) == 0 ? substr($turl, strlen($root)) : $turl));
-						}
-
-						if($tfile && is_file($tfile)){
-							$url = $trurl;
-						}
-					}
-				}
-				*/
+				
 				$stylesheets[$url] = $css;
 			}
 
