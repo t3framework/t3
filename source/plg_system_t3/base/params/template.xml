@@ -5,9 +5,9 @@
 		<fieldset name="general_params" label="T3_GENERAL_LABEL" description="T3_GENERAL_DESC">
 			<field name="t3_template" type="hidden" default="1" value="1" />
 			
-			<field name="devmode_depend" type="t3depend" function="@group">
-				<option for="devmode" value="1">
-					dev_folder
+			<field name="general_params_default" type="t3depend" function="@group">
+				<option for="minify" value="1">
+					t3assets
 				</option>
 			</field>
 
@@ -18,10 +18,6 @@
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
-			<field name="dev_folder" type="text" default="tmp/t3-devmode"
-				global="1"
-				label="T3_GENERAL_DEVELOPMENT_FOLDER_LABEL"
-				description="T3_GENERAL_DEVELOPMENT_FOLDER_DESC" />
 
 			<field name="themermode" type="radio" class="btn-group" default="1" 
 				global="1"
@@ -39,13 +35,18 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="cssminify" type="radio" class="btn-group" default="1" 
+			<field name="minify" type="radio" class="btn-group" default="1"
 				global="1"
-				label="T3_GENERAL_CSSMINIFY_LABEL" 
-				description="T3_GENERAL_CSSMINIFY_DESC" >
+				label="T3_GENERAL_ASSETS_MINIFY_LABEL" 
+				description="T3_GENERAL_ASSETS_MINIFY_DESC" >
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
+
+			<field name="t3assets" type="text" default="t3-assets"
+				global="1"
+				label="T3_GENERAL_ASSETS_FOLDER_LABEL"
+				description="T3_GENERAL_ASSETS_FOLDER_DESC" />
 
 		</fieldset>
 

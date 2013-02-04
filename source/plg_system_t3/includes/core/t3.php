@@ -97,53 +97,6 @@ class T3 {
 		return new $class($tpl);
 	}
 
-	public static function cleanPath ($path) {
-		$pattern = '/\w+\/\.\.\//';
-		while(preg_match($pattern,$path)){
-		    $path = preg_replace($pattern, '', $path);
-		}
-		return $path;		
-	}
-
-	public static function relativePath($path1, $path2='') {
-		// absolute path
-		if ($path2[0] == '/') return $path2;
-		if ($path2 == '') {
-		    $path2 = $path1;
-		    $path1 = getcwd();
-		}
-
-		//Remove starting, ending, and double / in paths
-		$path1 = trim($path1,'/');
-		$path2 = trim($path2,'/');
-		while (substr_count($path1, '//')) $path1 = str_replace('//', '/', $path1);
-		while (substr_count($path2, '//')) $path2 = str_replace('//', '/', $path2);
-
-		//create arrays
-		$arr1 = explode('/', $path1);
-		if ($arr1 == array('')) $arr1 = array();
-		$arr2 = explode('/', $path2);
-		if ($arr2 == array('')) $arr2 = array();
-		$size1 = count($arr1);
-		$size2 = count($arr2);
-
-		//now the hard part :-p
-		$path='';
-		for($i=0; $i<min($size1,$size2); $i++)
-		{
-		    if ($arr1[$i] == $arr2[$i]) continue;
-		    else $path = '../'.$path.$arr2[$i].'/';
-		}
-		if ($size1 > $size2)
-		    for ($i = $size2; $i < $size1; $i++)
-		        $path = '../'.$path;
-		else if ($size2 > $size1)
-		    for ($i = $size1; $i < $size2; $i++)
-		        $path .= $arr2[$i].'/';
-
-		return rtrim ($path, '/');
-	}
-
 	public static function error($msg, $code = 500){
 		if (JError::$legacy) {
 			JError::setErrorHandling(E_ERROR, 'die');

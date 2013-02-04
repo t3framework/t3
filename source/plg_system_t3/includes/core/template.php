@@ -16,6 +16,9 @@
 defined('_JEXEC') or die();
 
 t3import ('extendable/extendable');
+t3import ('minify/csscompressor');
+t3import ('core/less');
+t3import ('core/path');
 
 /**
  * T3Template class provides extended template tools used for T3 framework
@@ -32,6 +35,13 @@ class T3Template extends ObjectExtendable
 	protected static $minspan = array( 'default' => 2, 'wide' => 2, 'normal' => 2, 'xtablet' => 3, 'tablet' => 4, 'mobile' => 6 );
 	protected static $maxgrid = 12;
 	protected static $maxcolumns = 6;
+
+	/**
+	 * 
+	 * Known Valid CSS Extension Types
+	 * @var array
+	 */
+	protected static $cssexts = array(".css", ".css1", ".css2", ".css3");
 
 	/**
 	 * Current template instance
@@ -240,19 +250,19 @@ class T3Template extends ObjectExtendable
 	}
 
 	function megamenu($menutype){
-			t3import('menu/megamenu');
+		t3import('menu/megamenu');
 
 			//$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
 			//$currentconfig = json_decode(@file_get_contents ($file), true);
-			$currentconfig = json_decode($this->getParam('mm_config', ''), true);
-			$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
-			$menu = new T3MenuMegamenu ($menutype, $mmconfig);
-			$menu->render();          
+		$currentconfig = json_decode($this->getParam('mm_config', ''), true);
+		$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
+		$menu = new T3MenuMegamenu ($menutype, $mmconfig);
+		$menu->render();          
 
 			// add core megamenu.css in plugin
-			$this->addStyleSheet(T3_URL.'/css/megamenu.css');
+		$this->addStyleSheet(T3_URL.'/css/megamenu.css');
 			// megamenu.css override in template
-			$this->addCss ('megamenu');	
+		$this->addCss ('megamenu');	
 	}
 
 	/**
@@ -347,7 +357,7 @@ class T3Template extends ObjectExtendable
 			$name = strtolower($words[$i]);
 			$words[$i] = $this->getLayoutSetting ($name, $name);
 		}
-	
+		
 		$poss = '';
 		foreach ($words as $word) {
 			if(is_string($word)){
@@ -357,7 +367,7 @@ class T3Template extends ObjectExtendable
 			}
 		}
 		$poss = trim($poss);
-	
+		
 		return $poss;
 	}
 
@@ -425,12 +435,12 @@ class T3Template extends ObjectExtendable
 	*/
 	function addCss ($name) {
 		$devmode = $this->getParam('devmode', 0);
-		$themermode = $this->getParam('themermode', 0);
+		$themermode = $this->getParam('themermode', 1);
 		if (($devmode || ($themermode && defined ('T3_THEMER'))) && ($url = T3Path::getUrl('less/'.$name.'.less', '', true))) {
 			t3import ('core/less');
 			T3Less::addStylesheet ($url);
 		} else {
-			$url = T3Path::getUrl ('css-compiled/'.$name.'.css');
+			$url = T3Path::getUrl ('css/'.$name.'.css');
 			// Add this css into template
 			if ($url) {
 				$this->addStyleSheet($url);
@@ -484,81 +494,254 @@ class T3Template extends ObjectExtendable
 		$this->addExtraAssets();
 	}
 
+	function minifiable($string) {
+		$string = preg_replace('#[?\#]+.*$#', '', $string);
+		
+		if(substr($string, 0, 2) === '//'){ //check and append if url is omit http
+			$string = 'http:' . $string; 
+		}
+
+		if (preg_match('/^https?\:/', $string)) {
+			if (! preg_match('#^' . preg_quote(JURI::base()) . '#', $string)) {
+				// External css
+				return false;
+			}
+		}
+
+		foreach ( self::$cssexts as $ext ) {
+			if (substr_compare($string, $ext, -strlen($ext), strlen($ext)) === 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	function fromUrlToPath($url){
+		$root = JURI::root(true);
+		$path = '';
+
+		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
+			$url = 'http:' . $url; 
+		}
+
+		if(preg_match('#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu', $url)){ //this is a full link
+			$path = JPath::clean(JPATH_ROOT . '/' . substr($url, strlen(JURI::base())));
+		} else {
+			$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) == 0 ? substr($url, strlen($root)) : $url));
+		}
+		
+		return $path;
+	}
+
+	function optimizecss()
+	{
+		jimport('joomla.filesystem.file');
+		
+		$minify = $this->getParam('minify', 0);
+		if (!$minify) {
+			return false; //no optimize css
+		}
+
+		$outputpath = JPATH_ROOT . '/' . $this->getParam('t3assets', 't3-assets') . '/css';
+		$outputurl = JURI::root(true) . '/' . $this->getParam('t3assets', 't3-assets') . '/css';
+		
+		if (!JFile::exists($outputpath)){
+			@JFolder::create($outputpath);
+		}
+
+		if (!is_writeable($outputpath)) {
+			return false;
+		}
+
+		$output = array();
+		$files = array();
+
+		// Limit files import into a css file (in IE7, only first 30 css files are loaded). other case, load unlimited
+		$filelimit = ($minify == 1)? 20 : 999;
+		$filecount = 0;
+		
+		$doc = JFactory::getDocument();
+
+		//======================= Group css ================= //
+		$cssgroups = array();
+		$stylesheets = array();
+
+		foreach ($doc->_styleSheets as $url => $stylesheet) {
+
+			if ($stylesheet['mime'] == 'text/css' && $this->minifiable($url)) {
+				$stylesheets[$url] = $stylesheet;
+			} else {
+				// first get all the stylsheets up to this point, and get them into
+				// the items array
+				if(count($stylsheets)){
+					$cssgroup = array();
+					$groupname = array();
+					foreach ( $stylesheets as $gurl => $gsheet ) {
+						$cssgroup[$gurl] = $gsheet;
+						$groupname[] = $gurl;
+					}
+
+					$cssgroup['groupname'] = implode('', $groupname);
+					$cssgroups[] = $cssgroup;
+				}
+
+				//mark ignore current stylesheet
+				$cssgroup = array($url => $stylsheet, 'ignore' => true);
+				$cssgroups[] = $cssgroup;
+
+				$stylesheets = array(); // empty - begin a new group
+			}
+		}
+		
+		if(count($stylesheets)){
+			$cssgroup = array();
+			$groupname = array();
+			foreach ( $stylesheets as $gurl => $gsheet ) {
+				$cssgroup[$gurl] = $gsheet;
+				$groupname[] = $gurl;
+			}
+
+			$cssgroup['groupname'] = implode('', $groupname);
+			$cssgroups[] = $cssgroup;
+		}
+		
+		//======================= Group css ================= //
+
+		$output = array();
+		foreach ($cssgroups as $cssgroup) {
+			if(isset($cssgroup['ignore'])){
+				
+				unset($cssgroup['ignore']);
+				foreach ($cssgroup as $furl => $fsheet) {
+					$output[$furl] = $fsheet;
+				}
+
+			} else {
+
+				$groupname = 'css-' . md5($cssgroup['groupname']) . '.css';
+				$groupfile = $outputpath . '/' . $groupname;
+				$grouptime = JFile::exists($groupfile) ? @filemtime($groupfile) : -1;
+				$rebuild = $grouptime < 0; //filemtime == -1 => rebuild
+
+				unset($cssgroup['groupname']);
+				foreach ($cssgroup as $furl => &$fsheet) {
+					$fsheet['path'] = $this->fromUrlToPath($furl);
+
+					if(!$rebuild && @filemtime($fsheet['path']) > $grouptime){
+						$rebuild = true;
+					}
+				}
+
+				if($rebuild){
+
+					$cssdata = array();
+					foreach ($cssgroup as $furl => $fsheet) {
+						$cssdata[] = "\n\n/*===============================";
+						$cssdata[] = $furl;
+						$cssdata[] = "================================================================================*/";
+						
+						$cssmin = Minify_CSS_Compressor::process(@JFile::read($fsheet['path']));
+						$cssmin = T3Path::updateUrl($cssmin, T3Path::relativePath($outputurl, dirname($furl)));
+
+						$cssdata[] = $cssmin;
+					}
+
+					@JFile::write($groupfile, implode("\n", $cssdata));
+				}
+
+				$output[$outputurl . '/' . $groupname] = array(
+					'mime' => 'text/css',
+					'media' => null,
+					'attribs' => array()
+					);
+			}
+		}
+
+		//apply the change make change
+		$doc->_styleSheets = $output;
+	}
+
+
+
 	/**
 	* Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
 	*/
 	function updateHead () {
 		$devmode = $this->getParam('devmode', 0);
-		$themermode = $this->getParam('themermode', 0) && defined ('T3_THEMER');
+		$themermode = $this->getParam('themermode', 1) && defined ('T3_THEMER');
 		$theme = $this->getParam('theme', '');
-		$cssmin = $this->getParam('cssminify', 1) ? '.min' : '';
+		$minify = $this->getParam('minify', 0);
 
 		// not in devmode and in default theme, do nothing
-		if (!$devmode && !$themermode && !$theme && !$cssmin){
+		if (!$devmode && !$themermode && !$theme && !$minify){
 			return;
 		}
 
-		$doc = JFactory::getDocument();
-		$root = JURI::root(true);
-		$regex = '#'.T3_TEMPLATE_URL.'/css/([^/]*)\.css((\?|\#).*)?$#i';
-		$stylesheets = array();
-		foreach ($doc->_styleSheets as $url => $css) {
-			// detect if this css in template css 
-			if (preg_match($regex, $url, $match)) {
-				$fname = $match[1];
-				if ($devmode || $themermode) {
-					if (is_file (T3_TEMPLATE_PATH.'/less/'.$fname.'.less')) {
-						if ($themermode) {
-							$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
-							$css ['mime'] = 'text/less';
-						} else {
-							$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
+		if ($devmode || $themermode) {
+			$doc = JFactory::getDocument();
+			$root = JURI::root(true);
+			$regex = '#'.T3_TEMPLATE_URL.'/css/([^/]*)\.css((\?|\#).*)?$#i';
+
+			$stylesheets = array();
+			foreach ($doc->_styleSheets as $url => $css) {
+				// detect if this css in template css 
+				if (preg_match($regex, $url, $match)) {
+					$fname = $match[1];
+					if ($devmode || $themermode) {
+						if (is_file (T3_TEMPLATE_PATH.'/less/'.$fname.'.less')) {
+							if ($themermode) {
+								$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
+								$css ['mime'] = 'text/less';
+							} else {
+								$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
+							}
+							$stylesheets[$newurl] = $css;
+							continue;
 						}
-						$stylesheets[$newurl] = $css;
+					}
+				}
+				/*
+				if ($cssmin) {
+
+					// bypass bootstrap css
+					if (preg_match('#bootstrap(-responsive)?\.css#', $url)){
 						continue;
 					}
-				} 
 
-				// check if css exists in current theme
-				if (is_file (T3_TEMPLATE_PATH.'/css/themes/'.$theme.'/'.$fname.$cssmin.'.css')) {
-					$newurl = T3_TEMPLATE_URL.'/css/themes/'.$theme.'/'.$fname.$cssmin.'.css';
-					$stylesheets[$newurl] = $css;
-					continue;
-				}
-			}
-			if ($cssmin) {
-				// bypass bootstrap css
-				if (preg_match('#bootstrap(-responsive)?\.css#', $url)){
-					continue;
-				}
+					if (!preg_match('#\.min\.css#i', $url)) { //if this link does has minify marker
+						$trurl = preg_replace('#\.css(\?.*?)?$#', '.min.css$1' , $url);
+						$turl = preg_replace('#(\?.*|\#.*)#', '', $trurl);
+						$tfile = '';
 
-				if (!preg_match('#\.min\.css#i', $url)) { //if this link does has minify marker
-					$trurl = preg_replace('#\.css(\?.*?)?$#', '.min.css$1' , $url);
-					$turl = preg_replace('#(\?.*|\#.*)#', '', $trurl);
-					$tfile = '';
-
-					if(substr($turl, 0, 2) === '//'){ //check and append if url is omit http
-						$turl = 'http:' . $turl; 
-					}
-
-					if(preg_match('#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu', $turl)){ //this is a full link
-						if(JURI::isInternal($turl)){ // is internal
-							$tfile = JPath::clean(JPATH_ROOT . '/' . substr($turl, strlen(JURI::base())));
+						if(substr($turl, 0, 2) === '//'){ //check and append if url is omit http
+							$turl = 'http:' . $turl; 
 						}
-					} else {
-						//sure, should be internal
-						$tfile = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($turl, $root) == 0 ? substr($turl, strlen($root)) : $turl));
-					}
 
-					if($tfile && is_file($tfile)){
-						$url = $trurl;
+						if(preg_match('#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu', $turl)){ //this is a full link
+							if(JURI::isInternal($turl)){ // is internal
+								$tfile = JPath::clean(JPATH_ROOT . '/' . substr($turl, strlen(JURI::base())));
+							}
+						} else {
+							//sure, should be internal
+							$tfile = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($turl, $root) == 0 ? substr($turl, strlen($root)) : $turl));
+						}
+
+						if($tfile && is_file($tfile)){
+							$url = $trurl;
+						}
 					}
 				}
+				*/
+				$stylesheets[$url] = $css;
 			}
-			$stylesheets[$url] = $css;
+
+			// update back
+			$doc->_styleSheets = $stylesheets;
+
+		} else if($minify){
+			$this->optimizecss();
 		}
-		// update back
-		$doc->_styleSheets = $stylesheets;
 	}
 
 	/**
