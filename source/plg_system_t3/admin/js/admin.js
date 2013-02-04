@@ -176,7 +176,8 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		initMarkChange: function(){
-			$(document.adminForm).on('change', ':input', function(){
+
+			$(document.adminForm).find(':input').on('change', function(){
 				var jinput = $(this),
 					oval = jinput.data('org-val'),
 					nval = (this.type == 'radio' || this.type == 'checkbox') ? jinput.prop('checked') : jinput.val(),
@@ -208,7 +209,7 @@ var T3Admin = window.T3Admin || {};
 
 				$('.t3-admin-nav .nav li').eq(jpane.index())[(!eq || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
 
-			}).find(':input').each(function(){
+			}).each(function(){
 				$(this).data('org-val', (this.type == 'radio' || this.type == 'checkbox') ? $(this).prop('checked') : $(this).val());
 			});
 		},
@@ -381,7 +382,6 @@ var T3Admin = window.T3Admin || {};
 	$(document).ready(function(){
 		T3Admin.initSystemMessage();
 		T3Admin.initT3Title();
-		T3Admin.initMarkChange();
 		T3Admin.initBuildLessBtn();
 		T3Admin.initRadioGroup();
 		T3Admin.initChosen();
@@ -390,6 +390,9 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.initChangeStyle();
 		//T3Admin.initCheckupdate();
 		T3Admin.switchTab();
+
+		//set a delay
+		setTimeout(T3Admin.initMarkChange, 500);
 	});
 	
 }(jQuery);
