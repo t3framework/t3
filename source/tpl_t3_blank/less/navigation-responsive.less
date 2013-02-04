@@ -41,89 +41,89 @@
     height: auto;
     margin-left: -20px;
     margin-right: -20px;
+
+    // Toggle Button
+    .navbar .btn-navbar {
+      margin-bottom: (@baseLineHeight / 2);
+    }
+
+
+    // COLLAPSIBLE NAVBAR
+    // ----------------------------------------------------
+
+    // The nav
+    .nav-collapse {
+      margin-top: (@baseLineHeight / 2);
+      background: #fff;
+      //#gradient > .vertical(@navbarBackground, @navbarBackgroundHighlight);
+    }
+
+    .nav-collapse .nav {
+      margin: 0;
+    }
+
+    .nav-collapse .nav > li {
+    }
+
+    .nav-collapse .nav > li > a {
+      margin-bottom: 0;
+    }
+
+
+    // Nav and dropdown links in navbar
+    // -------------------------------
+    .nav-collapse .nav > li > a,
+    .nav-collapse .dropdown-menu a {
+      border-bottom: 1px solid @hrBorder;
+      padding: (@baseLineHeight / 2) @baseLineHeight;
+      font-weight: bold;
+      //color: @navbarLinkColor;
+      text-shadow: none;
+      .border-radius(0);
+    }
+
+    .nav-collapse .dropdown-menu li + li a {
+      margin-bottom: 0;
+    }
+
+    // Hover state
+    .nav-collapse .nav > li > a:hover {
+      background-color: @dropdownLinkBackgroundHover;
+      background-image: none;
+      .reset-filter();
+    }
+
+
+    // dropdown links
+    // --------------
+    .nav-collapse .dropdown-menu a {
+      border-top: 1px solid darken(@navbarBackground, 5%);
+      border-bottom: 0;
+      font-weight: normal;
+      padding: (@baseLineHeight / 2) @baseLineHeight;
+    }
+
+
+    // Hover state
+    .nav-collapse .dropdown-menu a:hover {
+      background-color: @dropdownLinkBackgroundHover;
+      background-image: none;
+      .reset-filter();
+    }
+
+
+    // Dropdowns in the navbar
+    // -----------------------
+    .nav-collapse .dropdown-menu {
+      margin: 0;
+      padding: 0;
+      background-color: @navbarBackground;
+      border: none;
+      .border-radius(0);
+      .box-shadow(none);
+    }
+    // End
   }
-
-  // Toggle Button
-  .t3-mainnav .navbar .btn-navbar {
-    margin-bottom: (@baseLineHeight / 2);
-  }
-
-
-  // COLLAPSIBLE NAVBAR
-  // ----------------------------------------------------
-
-  // The nav
-  .t3-mainnav .nav-collapse {
-    margin-top: (@baseLineHeight / 2);
-    background: #fff;
-    //#gradient > .vertical(@navbarBackground, @navbarBackgroundHighlight);
-  }
-
-  .t3-mainnav .nav-collapse .nav {
-    margin: 0;
-  }
-
-  .t3-mainnav .nav-collapse .nav > li {
-  }
-
-  .t3-mainnav .nav-collapse .nav > li > a {
-    margin-bottom: 0;
-  }
-
-
-  // Nav and dropdown links in navbar
-  // -------------------------------
-  .t3-mainnav .nav-collapse .nav > li > a,
-  .t3-mainnav .nav-collapse .dropdown-menu a {
-    border-bottom: 1px solid @hrBorder;
-    padding: (@baseLineHeight / 2) @baseLineHeight;
-    font-weight: bold;
-    //color: @navbarLinkColor;
-    text-shadow: none;
-    .border-radius(0);
-  }
-
-  .t3-mainnav .nav-collapse .dropdown-menu li + li a {
-    margin-bottom: 0;
-  }
-
-  // Hover state
-  .t3-mainnav .nav-collapse .nav > li > a:hover {
-    background-color: @dropdownLinkBackgroundHover;
-    background-image: none;
-    .reset-filter();
-  }
-
-
-  // dropdown links
-  // --------------
-  .t3-mainnav .nav-collapse .dropdown-menu a {
-    border-top: 1px solid darken(@navbarBackground, 5%);
-    border-bottom: 0;
-    font-weight: normal;
-    padding: (@baseLineHeight / 2) @baseLineHeight;
-  }
-
-
-  // Hover state
-  .t3-mainnav .nav-collapse .dropdown-menu a:hover {
-    background-color: @dropdownLinkBackgroundHover;
-    background-image: none;
-    .reset-filter();
-  }
-
-
-  // Dropdowns in the navbar
-  // -----------------------
-  .t3-mainnav .nav-collapse .dropdown-menu {
-    margin: 0;
-    padding: 0;
-    background-color: @navbarBackground;
-    border: none;
-    .border-radius(0);
-    .box-shadow(none);
-  }
-
 
 
   // -------------------------------------------------------
