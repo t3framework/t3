@@ -61,7 +61,7 @@
 <!-- MODAL CLONE LAYOUT -->
 <div id="t3-admin-layout-clone-dlg" class="modal fade hide">
 	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<button type="button" class="close" data-dismiss="modal">×</button>
 		<h3><?php echo JTexT::_('T3_LAYOUT_ASK_ADD_LAYOUT') ?></h3>
 	</div>
 	<div class="modal-body">

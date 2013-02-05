@@ -230,6 +230,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		initModalDialog: function(){
 			$('#t3-admin-layout-clone-dlg')
 				.appendTo(document.body)
+				.prop('hide', false) //remove mootool hide function
 				.on('click', '.modal-footer button', function(e){
 					if($.isFunction(T3AdminLayout.modalCallback)){
 						T3AdminLayout.modalCallback($(this).hasClass('yes'));
