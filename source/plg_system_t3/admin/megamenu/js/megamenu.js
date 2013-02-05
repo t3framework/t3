@@ -22,14 +22,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		};
 
 		var options = $.extend(defaultOptions, options);
-		megamenu = $(this);
+		megamenu = $(this).find('.t3-megamenu');
 		nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
 		nav_subs = megamenu.find('.nav-child');
 		nav_cols = megamenu.find('[class*="span"]');
 		
 		nav_all = nav_items.add(nav_subs).add(nav_cols);
 		// hide sub 
-		nav_items.each (function () {
+		nav_items.each (function () {			
 			var a = $(this),
 				liitem = a.closest('li');
 			if (liitem.data ('sub') == 'hide') {
@@ -51,7 +51,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		// stop popup event when click in toolbox area
 		$('.t3-admin-mm-row').click (function(event) {
 			event.stopPropagation();
-			return false;
+			// return false;
 		});
 		// deselect when click outside menu
 		$(document.body).click (function(event) {
