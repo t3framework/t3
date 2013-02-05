@@ -510,37 +510,44 @@ class T3Template extends ObjectExtendable
 			return;
 		}
 
-		if ($devmode || $themermode) {
-			$doc = JFactory::getDocument();
-			$root = JURI::root(true);
-			$regex = '#'.T3_TEMPLATE_URL.'/css/([^/]*)\.css((\?|\#).*)?$#i';
+		
+		$doc = JFactory::getDocument();
+		$root = JURI::root(true);
+		$regex = '#'.T3_TEMPLATE_URL.'/css/([^/]*)\.css((\?|\#).*)?$#i';
 
-			$stylesheets = array();
-			foreach ($doc->_styleSheets as $url => $css) {
-				// detect if this css in template css 
-				if (preg_match($regex, $url, $match)) {
-					$fname = $match[1];
-					if ($devmode || $themermode) {
-						if (is_file (T3_TEMPLATE_PATH.'/less/'.$fname.'.less')) {
-							if ($themermode) {
-								$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
-								$css ['mime'] = 'text/less';
-							} else {
-								$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
-							}
-							$stylesheets[$newurl] = $css;
-							continue;
+		$stylesheets = array();
+		foreach ($doc->_styleSheets as $url => $css) {
+			// detect if this css in template css
+			if (preg_match($regex, $url, $match)) {
+				$fname = $match[1];
+				if ($devmode || $themermode) {
+					if (is_file (T3_TEMPLATE_PATH.'/less/'.$fname.'.less')) {
+						if ($themermode) {
+							$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
+							$css ['mime'] = 'text/less';
+						} else {
+							$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
 						}
+						$stylesheets[$newurl] = $css;
+						continue;
+					}
+				} else if($theme) {
+					if (is_file (T3_TEMPLATE_PATH.'/css/themes/'.$theme.'/'.$fname.'.css')) {
+						$newurl = T3_TEMPLATE_URL.'/css/themes/'.$theme.'/'.$fname.'.css';
+						$stylesheets[$newurl] = $css;
+
+						continue;
 					}
 				}
-				
-				$stylesheets[$url] = $css;
 			}
+			
+			$stylesheets[$url] = $css;
+		}
 
-			// update back
-			$doc->_styleSheets = $stylesheets;
+		// update back
+		$doc->_styleSheets = $stylesheets;
 
-		} else if($minify){
+		if($minify){
 			t3import ('core/minify');
 			T3Minify::optimizecss($this);
 		}
