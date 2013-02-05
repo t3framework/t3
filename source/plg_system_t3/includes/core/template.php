@@ -256,10 +256,14 @@ class T3Template extends ObjectExtendable
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig);
 		$menu->render();          
 
-			// add core megamenu.css in plugin
+		// add core megamenu.css in plugin
 		$this->addStyleSheet(T3_URL.'/css/megamenu.css');
-			// megamenu.css override in template
+		// megamenu.css override in template
 		$this->addCss ('megamenu');	
+		// megamenu responsive if enabled
+		if ($this->getParam('responsive', 1)) {
+			$this->addCss ('megamenu-responsive');
+		}
 	}
 
 	/**
