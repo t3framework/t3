@@ -56,13 +56,14 @@ class T3Less extends lessc
 		$app = JFactory::getApplication();
 		// get vars last-modified
 		$vars_lm = $app->getUserState('vars_last_modified', 0);
+		$theme = $app->getUserState('vars_theme', '');
 
 		// less file last-modified
 		$filepath = JPATH_ROOT.'/'.$path;
 		$less_lm = filemtime ($filepath);
 
 		// get css cached file
-		$cssfile = T3_DEV_FOLDER.'/'.str_replace('/', '.', $path).'.css';
+		$cssfile = T3_DEV_FOLDER.'/' . ($theme ? $theme . '/' : '') .str_replace('/', '.', $path).'.css';
 		$cssurl = JURI::base(true).'/'.$cssfile;
 		$csspath = JPATH_ROOT.'/'.$cssfile;
 		if (is_file ($csspath) && filemtime($csspath) > $less_lm && filemtime($csspath) > $vars_lm) {
