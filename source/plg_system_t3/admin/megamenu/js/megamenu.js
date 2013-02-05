@@ -22,14 +22,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		};
 
 		var options = $.extend(defaultOptions, options);
-		megamenu = $(this);
+		megamenu = $(this).find('.t3-megamenu');
 		nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
 		nav_subs = megamenu.find('.nav-child');
 		nav_cols = megamenu.find('[class*="span"]');
 		
 		nav_all = nav_items.add(nav_subs).add(nav_cols);
 		// hide sub 
-		nav_items.each (function () {
+		nav_items.each (function () {			
 			var a = $(this),
 				liitem = a.closest('li');
 			if (liitem.data ('sub') == 'hide') {
@@ -51,7 +51,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		// stop popup event when click in toolbox area
 		$('.t3-admin-mm-row').click (function(event) {
 			event.stopPropagation();
-			return false;
+			// return false;
 		});
 		// deselect when click outside menu
 		$(document.body).click (function(event) {
@@ -401,8 +401,12 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				});
 				item['sub']['rows'] = rows;
 			}
+
 			if ($this.data('class')) {
 				item['class'] = $this.data('class');
+			}
+			if ($this.data('xicon')) {
+				item['xicon'] = $this.data('xicon');
 			}
 			if ($this.data('group')) {
 				item['group'] = $this.data('group');
@@ -482,6 +486,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					sub = liitem.find ('.nav-child:first');
 					
 				$('.toolitem-exclass').attr('value', liitem.data ('class') || '');
+				$('.toolitem-xicon').attr('value', liitem.data ('xicon') || '');
 				// toggle Submenu
 				var toggle = $('.toolitem-sub');
 				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
@@ -592,6 +597,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				}
 				item.removeClass(item.data(name) || '').addClass (value);
 				item.data (name, value);
+				break;
+
+			case 'xicon':
+				if (type == 'item') {
+					currentSelected.closest('li').data (name, value);
+					currentSelected.find('i').remove();
+					if (value) currentSelected.prepend($('<i class="'+value+'"></i>'));
+				}
 				break;
 
 			case 'position':

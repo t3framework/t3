@@ -14,19 +14,21 @@ defined('_JEXEC') or die;
 <meta name="apple-mobile-web-app-capable" content="YES" />
 <!-- //META FOR IOS & HANDHELD -->
 
-<!-- SYSTEM CSS -->
-<link href="<?php echo JURI::base(true) ?>/templates/system/css/system.css" rel="stylesheet" />
-<!-- //SYSTEM CSS -->
+<?php 
+// SYSTEM CSS
+$this->addStyleSheet(JURI::base(true).'/templates/system/css/system.css'); 
+?>
 
-<!-- T3 BASE HEAD -->
-<?php $this->addHead(); ?>
-<!-- //T3 BASE HEAD -->
+<?php 
+// T3 BASE HEAD
+$this->addHead(); ?>
 
-<?php if(is_file(T3_TEMPLATE_PATH . '/css/custom.css')): ?>
-<!-- CUSTOM CSS -->
-<link href="<?php echo T3_TEMPLATE_URL ?>/css/custom.css" rel="stylesheet" />
-<!-- //CUSTOM CSS -->
-<?php endif; ?>
+<?php 
+// CUSTOM CSS
+if(is_file(T3_TEMPLATE_PATH . '/css/custom.css')) {
+	$this->addStyleSheet(T3_TEMPLATE_URL.'/css/custom.css'); 
+}
+?>
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>

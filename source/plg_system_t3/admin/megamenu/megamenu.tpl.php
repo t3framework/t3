@@ -75,6 +75,16 @@ $modules = $db->loadObjectList();
               </fieldset>
             </li>
           </ul>
+          <ul>
+            <li>
+              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ICON'), '::', JTexT::_('T3_NAVIGATION_MM_ICON_DESC') ?>">
+                <a href="http://twitter.github.com/bootstrap/base-css.html#icons" target="_blank"><i class="icon-search"></i><?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
+              </label>
+              <fieldset class="">
+                <input type="text" class="toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
+              </fieldset>
+            </li>
+          </ul>
         </div>
 
         <div id="t3-admin-mm-toolsub" class="admin-toolbox">
