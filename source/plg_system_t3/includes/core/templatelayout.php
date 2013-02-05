@@ -294,8 +294,8 @@ class T3TemplateLayout extends T3Template
 		//we do not really need a header here
 
 		// BOOTSTRAP CSS
-		$this->addCss ('bootstrap'); 
-		$this->addCss ('t3-admin-layout-preview'); 
+		$this->addCss ('bootstrap', false); 
+		$this->addCss ('t3-admin-layout-preview', false); 
 
 		// Add scripts
 		$this->addScript (T3_URL.'/bootstrap/js/jquery.js');

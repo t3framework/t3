@@ -260,10 +260,6 @@ class T3Template extends ObjectExtendable
 		$this->addStyleSheet(T3_URL.'/css/megamenu.css');
 		// megamenu.css override in template
 		$this->addCss ('megamenu');	
-		// megamenu responsive if enabled
-		if ($this->getParam('responsive', 1)) {
-			$this->addCss ('megamenu-responsive');
-		}
 	}
 
 	/**
@@ -434,9 +430,10 @@ class T3Template extends ObjectExtendable
 	*
 	* @return string Block content
 	*/
-	function addCss ($name) {
+	function addCss ($name, $addresponsive = true) {
 		$devmode = $this->getParam('devmode', 0);
 		$themermode = $this->getParam('themermode', 1);
+		$responsive = $addresponsive ? $this->getParam('responsive', 1) : false;
 		if (($devmode || ($themermode && defined ('T3_THEMER'))) && ($url = T3Path::getUrl('less/'.$name.'.less', '', true))) {
 			t3import ('core/less');
 			T3Less::addStylesheet ($url);
@@ -445,6 +442,19 @@ class T3Template extends ObjectExtendable
 			// Add this css into template
 			if ($url) {
 				$this->addStyleSheet($url);
+			}
+		}
+
+		if ($responsive) {
+			if (($devmode || ($themermode && defined ('T3_THEMER'))) && ($url = T3Path::getUrl('less/'.$name.'.less', '', true))) {
+				t3import ('core/less');
+				T3Less::addStylesheet ($url);
+			} else {
+				$url = T3Path::getUrl ('css/'.$name.'.css');
+				// Add this css into template
+				if ($url) {
+					$this->addStyleSheet($url);
+				}
 			}
 		}
 	}
@@ -456,9 +466,9 @@ class T3Template extends ObjectExtendable
 		$responsive = $this->getParam('responsive', 1);
 
 		// BOOTSTRAP CSS
-		$this->addCss ('bootstrap'); 
+		$this->addCss ('bootstrap', false); 
 		// TEMPLATE CSS
-		$this->addCss ('template'); 
+		$this->addCss ('template', false); 
 
 		if ($responsive) {
 		// BOOTSTRAP RESPONSIVE CSS

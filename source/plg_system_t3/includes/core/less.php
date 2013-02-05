@@ -26,6 +26,14 @@ jimport('joomla.filesystem.folder');
  */
 class T3Less extends lessc
 {
+	function getInstance () {
+		static $t3less = null;
+		if (!$t3less) {
+			$t3less = new T3Less;
+		}
+		return $t3less;
+	}
+	
 	function getCss ($path) {
 		$app = JFactory::getApplication();
 		// get vars last-modified
@@ -230,11 +238,10 @@ class T3Less extends lessc
 	public static function addStylesheet ($lesspath) {
 		// build less vars, once only
 		static $vars_built = false;
-		static $t3less = null;
+		$t3less = T3Less::getInstance();
 		if (!$vars_built) {
 			self::buildVars();
 			$vars_built = true;
-			$t3less = new T3Less;
 		}
 
 		$app = JFactory::getApplication();
