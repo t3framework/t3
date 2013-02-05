@@ -129,19 +129,19 @@ div#menu-assignment ul.menu-links {
 
 /* Modal dialog
 ---------------------------------------------------*/
-.modal-open .modal .dropdown-menu {
+.modal-open .layout-modal .dropdown-menu {
   z-index: 2050;
 }
 
-.modal-open .modal .dropdown.open {
+.modal-open .layout-modal .dropdown.open {
   *z-index: 2050;
 }
 
-.modal-open .modal .popover {
+.modal-open .layout-modal .popover {
   z-index: 2060;
 }
 
-.modal-open .modal .tooltip {
+.modal-open .layout-modal .tooltip {
   z-index: 2080;
 }
 
@@ -166,7 +166,7 @@ div#menu-assignment ul.menu-links {
 }
 
 /* Modal ---*/
-.modal {
+.layout-modal {
   font: 14px/20px sans-serif;
   color: #666;
 
@@ -186,7 +186,7 @@ div#menu-assignment ul.menu-links {
 
 }
 
-.modal.fade {
+.layout-modal.fade {
   -webkit-transition: opacity .3s linear, top .3s ease-out;
   -moz-transition: opacity .3s linear, top .3s ease-out;
   -o-transition: opacity .3s linear, top .3s ease-out;
@@ -194,7 +194,7 @@ div#menu-assignment ul.menu-links {
   top: -25%;
 }
 
-.modal.fade.in {
+.layout-modal.fade.in {
   top: 50%;
 }
 
