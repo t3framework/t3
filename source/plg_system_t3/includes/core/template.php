@@ -446,16 +446,7 @@ class T3Template extends ObjectExtendable
 		}
 
 		if ($responsive) {
-			if (($devmode || ($themermode && defined ('T3_THEMER'))) && ($url = T3Path::getUrl('less/'.$name.'.less', '', true))) {
-				t3import ('core/less');
-				T3Less::addStylesheet ($url);
-			} else {
-				$url = T3Path::getUrl ('css/'.$name.'.css');
-				// Add this css into template
-				if ($url) {
-					$this->addStyleSheet($url);
-				}
-			}
+			$this->addCss ($name.'-responsive', false);
 		}
 	}
 
