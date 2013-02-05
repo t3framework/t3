@@ -196,33 +196,7 @@ class T3MenuMegamenuTpl {
 		$caret = $vars['caret'];
 		$linktype = $vars['linktype'];
 		$icon = $vars['icon'];
-/*		
-		// Note. It is important to remove spaces between elements.
-		$class = $item->anchor_css ? $item->anchor_css : '';
-		$title = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
-		$dropdown = '';
-		$caret = '';
-
-		if($item->dropdown && $item->level < 2){
-			$class .= ' dropdown-toggle';
-			$dropdown = ' data-toggle="dropdown"';
-			$caret = '<b class="caret"></b>';
-		}
-
-		if ($item->group) $class .= ' mega-group-title';
-
-		if(!empty($class)){
-			$class = 'class="'. trim($class) .'" ';
-		}
-
-		if ($item->menu_image) {
-			$item->params->get('menu_text', 1 ) ?
-			$linktype = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" /><span class="image-title">'.$item->title.'</span> ' :
-			$linktype = '<img src="'.$item->menu_image.'" alt="'.$item->title.'" />';
-		} else { 
-			$linktype = $item->title;
-		}
-*/		
+		
 		$flink = $item->flink;
 		$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 
