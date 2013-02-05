@@ -70,7 +70,7 @@
 				stripext="true"
 				hide_none="false" />
 
-			<field name="logotype" type="list" default="text"
+			<field name="logotype" type="list" default="image"
 				label="T3_THEME_LOGOTYPE_LABEL"
 				description="T3_THEME_LOGOTYPE_DESC" >
 				<option value="text">T3_THEME_LOGOTYPE_TEXT</option>

@@ -176,42 +176,46 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		initMarkChange: function(){
+			var allinput = $(document.adminForm).find(':input')
+				.each(function(){
+					$(this).data('org-val', (this.type == 'radio' || this.type == 'checkbox') ? $(this).prop('checked') : $(this).val());
+				});
 
-			$(document.adminForm).find(':input').on('change', function(){
-				var jinput = $(this),
-					oval = jinput.data('org-val'),
-					nval = (this.type == 'radio' || this.type == 'checkbox') ? jinput.prop('checked') : jinput.val(),
-					eq = true;
+			setTimeout(function() {
+				allinput.on('change', function(){
+					var jinput = $(this),
+						oval = jinput.data('org-val'),
+						nval = (this.type == 'radio' || this.type == 'checkbox') ? jinput.prop('checked') : jinput.val(),
+						eq = true;
 
-				if(oval != nval){
-					if($.isArray(oval) && $.isArray(nval)){
-						if(oval.length != nval.length){
-							eq = false;
-						} else {
-							for(var i = 0; i < oval.length; i++){
-								if(oval[i] != nval[i]){
-									eq = false;
-									break;
+					if(oval != nval){
+						if($.isArray(oval) && $.isArray(nval)){
+							if(oval.length != nval.length){
+								eq = false;
+							} else {
+								for(var i = 0; i < oval.length; i++){
+									if(oval[i] != nval[i]){
+										eq = false;
+										break;
+									}
 								}
 							}
+						} else {
+							eq = false;
 						}
-					} else {
-						eq = false;
 					}
-				}
 
-				var jgroup = jinput.closest('.control-group'),
-					jpane = jgroup.closest('.tab-pane'),
-					chretain = Math.max(0, (jgroup.data('chretain') || 0) + (eq ? -1 : 1));
+					var jgroup = jinput.closest('.control-group'),
+						jpane = jgroup.closest('.tab-pane'),
+						chretain = Math.max(0, (jgroup.data('chretain') || 0) + (eq ? -1 : 1));
 
-				jgroup.data('chretain', chretain)
-					[chretain ? 'addClass' : 'removeClass']('t3-changed');
+					jgroup.data('chretain', chretain)
+						[chretain ? 'addClass' : 'removeClass']('t3-changed');
 
-				$('.t3-admin-nav .nav li').eq(jpane.index())[(!eq || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
+					$('.t3-admin-nav .nav li').eq(jpane.index())[(!eq || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
 
-			}).each(function(){
-				$(this).data('org-val', (this.type == 'radio' || this.type == 'checkbox') ? $(this).prop('checked') : $(this).val());
-			});
+				});
+			}, 500);
 		},
 
 		initCheckupdate: function(){
@@ -381,6 +385,7 @@ var T3Admin = window.T3Admin || {};
 	
 	$(document).ready(function(){
 		T3Admin.initSystemMessage();
+		T3Admin.initMarkChange();
 		T3Admin.initT3Title();
 		T3Admin.initBuildLessBtn();
 		T3Admin.initRadioGroup();
@@ -390,9 +395,6 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.initChangeStyle();
 		//T3Admin.initCheckupdate();
 		T3Admin.switchTab();
-
-		//set a delay
-		setTimeout(T3Admin.initMarkChange, 500);
 	});
 	
 }(jQuery);

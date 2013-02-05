@@ -51,17 +51,21 @@ class T3Path extends JObject
 	public static function cleanPath ($path) {
 		$pattern = '/\w+\/\.\.\//';
 		while(preg_match($pattern,$path)){
-		    $path = preg_replace($pattern, '', $path);
+			$path = preg_replace($pattern, '', $path);
 		}
 		return $path;		
 	}
 
 	public static function relativePath($path1, $path2='') {
-		// absolute path
-		if ($path2[0] == '/') return $path2;
+		// config params
 		if ($path2 == '') {
-		    $path2 = $path1;
-		    $path1 = getcwd();
+			$path2 = $path1;
+			$path1 = getcwd();
+		}
+
+		// absolute path 		//has protocol						//data protocol
+		if ($path2[0] === '/' || strpos($path2, '://') !== false || strpos($path2, 'data:') ===  0){
+			return $path2;
 		}
 
 		//Remove starting, ending, and double / in paths
@@ -121,7 +125,7 @@ class T3Path extends JObject
         }
 
 		// root-relative       protocol (non-data)             data protocol
-		if ($uri[0] !== '/' && strpos($uri, '//') === false && strpos($uri, 'data:') !==  0){
+		if ($uri[0] !== '/' && strpos($uri, '://') === false && strpos($uri, 'data:') !==  0){
         	$uri = self::cleanPath (self::$srcurl.'/'.$uri);
 		}
 

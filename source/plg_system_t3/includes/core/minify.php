@@ -16,8 +16,8 @@
 defined('_JEXEC') or die();
 
 jimport('joomla.filesystem.file');
-t3import ('minify/csscompressor');
-t3import ('core/path');
+t3import('minify/csscompressor');
+t3import('core/path');
 
 /**
  * T3Template class provides extended template tools used for T3 framework
@@ -42,11 +42,11 @@ class T3Minify
 		$url = preg_replace('#[?\#]+.*$#', '', $url);
 		
 		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
-			$url = 'http:' . $url; 
+			$url = JURI::getInstance()->getScheme() . ':' . $url; 
 		}
 
 		if (preg_match('/^https?\:/', $url)) {
-			if (JURI::isInternal($url)) {
+			if (strpos($url, JURI::base()) === false){
 				// External css
 				return false;
 			}
