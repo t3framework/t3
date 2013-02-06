@@ -26,7 +26,7 @@ jimport('joomla.filesystem.folder');
  */
 class T3Less extends lessc
 {
-	function getInstance () {
+	public static function getInstance () {
 		static $t3less = null;
 		if (!$t3less) {
 			$t3less = new T3Less;

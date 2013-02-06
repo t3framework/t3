@@ -547,7 +547,8 @@ class T3Template extends ObjectExtendable
 		// update back
 		$doc->_styleSheets = $stylesheets;
 
-		if($minify){
+		//only check for minify if devmode is disabled
+		if(!$devmode && $minify){
 			t3import ('core/minify');
 			T3Minify::optimizecss($this);
 		}
