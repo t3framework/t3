@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
 				if ($imagebutton) :
 					$button = '<input type="image" value="'.$button_text.'" class="button'.$moduleclass_sfx.'" src="'.$img.'" onclick="this.form.searchword.focus();"/>';
 				else :
-					$button = '<input type="submit" value="'.$button_text.'" class="button'.$moduleclass_sfx.'" onclick="this.form.searchword.focus();"/>';
+					$button = '<button class="btn" type="submit" class="button'.$moduleclass_sfx.'" onclick="this.form.searchword.focus();">'.$button_text.'</button>';
 				endif;
 			endif;
 
