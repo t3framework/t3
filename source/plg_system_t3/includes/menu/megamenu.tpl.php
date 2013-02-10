@@ -231,7 +231,7 @@ class T3MenuMegamenuTpl {
 
 		$class .= " separator";
 
-		return "<span class=\"$class\">$icon$title $linktype</span>";
+		return "<a href=\"#\" class=\"$class\">$icon$title $linktype</a>";
 	}
 	static function item_component ($vars) {
 		$item = $vars['item'];
