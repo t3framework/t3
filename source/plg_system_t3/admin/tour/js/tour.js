@@ -34,15 +34,18 @@
 	Tour.prototype = {
 		parse: function () {
 			this.tours = {};
-			for (i=0; i < this.options.tours.length; i++) {
+			for (i = 0; i < this.options.tours.length; i++) {
 				var tip = this.options.tours[i];
-				this.tours[tip.id] = tip;
-				if (tip.monitor && 0) {
-					// bind the context tip
-					this.bindContextTip (tip);
+
+				if(tip){
+					this.tours[tip.id] = tip;
+					if (tip.monitor && 0) {
+						// bind the context tip
+						this.bindContextTip (tip);
+					}
 				}
 			}
-		},		
+		},
 		/*
 		we can restart or stop the tour,
 		and also navigate through the steps

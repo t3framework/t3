@@ -401,10 +401,6 @@ defined('_JEXEC') or die;
 				}
 			};
 
-			$.each(T3Tours.tours, function(idx, tour){
-				tour.title = tour.title.replace(/T3_ADMIN_URL/g, T3Admin.t3adminurl);
-				tour.text = tour.text.replace(/T3_ADMIN_URL/g, T3Admin.t3adminurl);
-			});
 			$(document.body).t3tour(T3Tours);
 			T3Tours.init = true;
 		}
