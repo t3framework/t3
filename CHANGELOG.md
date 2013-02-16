@@ -1,16 +1,4 @@
-<h2>Version: 1.1.0 RC1 - 25/01/2013</h2>
-
-<h3>Bug Fix</h3>
-- Megamenu is now fully integrated
-- Enable selection popover menu for standard module in the Layout >> Module Positions
-- Hide/Show option for module position in Layout >> Responsive Layout
-
-<h3>Improvement</h3>
-- Removing JA prefix out of the framework name, T3 Blank template, functions & class name
-- Improve visualization for Unsaved status of any Tab.
-- Remove the popup for Quick Tour at the first use of the framework (it can be annoying for developers who use T3 for many project at the same time) 
-
-<h2>Version: 1.1.0 RC2 - 05/02/2013</h2>
+<h2>Version: 1.1.0 RC2 (05/02/2013)</h2>
 
 <h3>Improvement</h3>
 - Megamenu: Support fullwidth for first level submenu | <a href="https://github.com/t3framework/t3/commit/b0e3a746ab36680e1f3ffa4be0d9d689e09068de">Link</a> 
@@ -50,3 +38,16 @@
 - Fix ThemeMagic color transparent filter | <a href="https://github.com/t3framework/t3/commit/4300bb6d630ec430c9b9fbe391ebee086621dcde">Link</a>
 - Fix jQuery conflict | <a href="https://github.com/t3framework/t3/commit/5be36725b5edb0d9f159b338ba6d430fda258239">Link</a>
 - Single preload T3 Plugin language | <a href="https://github.com/t3framework/t3/commit/da67a5aa9d6af2b9796bcf9e8e8cfd0dae2530a9">Link</a>
+
+<h2>Version: 1.1.0 RC1 (25/01/2013)</h2>
+
+<h3>Bug Fix</h3>
+- Megamenu is now fully integrated
+- Enable selection popover menu for standard module in the Layout >> Module Positions
+- Hide/Show option for module position in Layout >> Responsive Layout
+
+<h3>Improvement</h3>
+- Removing JA prefix out of the framework name, T3 Blank template, functions & class name
+- Improve visualization for Unsaved status of any Tab.
+- Remove the popup for Quick Tour at the first use of the framework (it can be annoying for developers who use T3 for many project at the same time) 
+
