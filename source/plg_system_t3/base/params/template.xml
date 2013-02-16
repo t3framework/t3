@@ -94,7 +94,6 @@
 			<field name="layout_ajax_default" type="t3depend" function="@ajax">
 				<option 
 					for="mainlayout" 
-					site="admin"
 					query="t3action=layout&amp;t3task=display&amp;t3tp=layout"
 					func="T3AdminLayout.t3layout">
 				</option>

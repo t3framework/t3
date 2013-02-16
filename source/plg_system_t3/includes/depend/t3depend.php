@@ -339,7 +339,16 @@ class JFormFieldT3Depend extends JFormField
 			}
 
 			if (!empty($option['query'])){
-				$fparams['query'] = (string)$option['query'];
+				$fparams['query'] = (string)$option['query'];				
+			} else {
+				$fparams['query'] = '';
+			}
+			// append styleid into query
+			$input = JFactory::getApplication()->input;
+			if($input->getCmd('option') == 'com_templates' && 
+					(preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
+					){
+				$fparams['query'] .= '&styleid='.$input->getInt('id');
 			}
 
 			if (!empty($option['func'])){

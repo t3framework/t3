@@ -211,9 +211,7 @@ class plgSystemT3 extends JPlugin
 					return false;
 				}
 
-				if($tplname = $input->getCmd('t3template', '')){
-
-				} else if($input->getCmd('option') == 'com_templates' && 
+				if($input->getCmd('option') == 'com_templates' && 
 					(preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
 					){
 					$db = JFactory::getDBO();
@@ -238,7 +236,27 @@ class plgSystemT3 extends JPlugin
 				}
 
 			} else {
-				$tplname = $app->getTemplate(false);
+				if($input->getCmd ('t3action') && ($styleid = $input->getInt('styleid', ''))){
+					$db = JFactory::getDbo();
+					$query = $db->getQuery(true);
+					$query->select('template, params');
+					$query->from('#__template_styles');
+					$query->where('client_id = 0');
+					$query->where('id = '.$styleid);
+
+					$db->setQuery($query);
+					$template = $db->loadObject();
+					if ($template) {
+						$registry = new JRegistry;
+						$registry->loadString($template->params);
+						$tplname = $template->template;
+
+						// override template
+						$app->setTemplate ($tplname, $registry);
+					}
+				} else {
+					$tplname = $app->getTemplate(false);					
+				}
 			}
 
 			if ($tplname) {				
@@ -251,12 +269,7 @@ class plgSystemT3 extends JPlugin
 					}
 				}
 			}
-			if (!$t3 && $input->getCmd ('t3action')) {
-				// if t3action is call and the current url is not in a T3 template, 
-				// just return a fake T3 template to force the t3action run in T3 context
-				$t3 = 't3';
-			}
-			
+
 		}
 		return $t3;
 	}
