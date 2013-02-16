@@ -1,5 +1,9 @@
 <h2>Version: 1.1.0 RC2 (05/02/2013)</h2>
 
+<h3>New Features</h3>
+- Megamenu: Support Bootstrap Icon for menu item
+- Add option "Optimize CSS" to allow join & minify page css
+
 <h3>Improvement</h3>
 - Megamenu: Support fullwidth for first level submenu | <a href="https://github.com/t3framework/t3/commit/b0e3a746ab36680e1f3ffa4be0d9d689e09068de">Link</a> 
 - Improve performance when development mode is enabled | <a href="https://github.com/t3framework/t3/commit/e90b69a772e1a56cbfb3bd6e2a542d3eb83421c9">Link</a>
