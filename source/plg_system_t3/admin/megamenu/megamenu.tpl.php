@@ -71,7 +71,7 @@ $modules = $db->loadObjectList();
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS'), '::', JTexT::_('T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
               <fieldset class="">
-                <input type="text" class="toolitem-exclass toolbox-input" name="toolitem-exclass" data-name="class" value="" />
+                <input type="text" class="input-medium toolitem-exclass toolbox-input" name="toolitem-exclass" data-name="class" value="" />
               </fieldset>
             </li>
           </ul>
@@ -81,7 +81,7 @@ $modules = $db->loadObjectList();
                 <a href="http://twitter.github.com/bootstrap/base-css.html#icons" target="_blank"><i class="icon-search"></i><?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
               </label>
               <fieldset class="">
-                <input type="text" class="toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
+                <input type="text" class="input-medium toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
               </fieldset>
             </li>
           </ul>
