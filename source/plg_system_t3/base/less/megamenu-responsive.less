@@ -14,7 +14,7 @@
 //
 // MOBILE
 // ---------------------------------------------------------
-@media (max-width: 767px) {
+@media (max-width: @navbarCollapseWidth) {
 
   .t3-megamenu {
 
@@ -56,6 +56,10 @@
     .row-fluid [class*="span"] {
     }
 
+    // Hidden when collapse
+    .hidden-collapse {
+      display: none;
+    }
   }
 
 

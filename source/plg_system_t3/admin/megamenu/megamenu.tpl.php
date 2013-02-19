@@ -141,6 +141,17 @@ $modules = $db->loadObjectList();
           </ul>
           <ul>
             <li>
+              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE'), '::', JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
+              <fieldset class="radio btn-group toolcol-hidewhencollapse">
+                <input type="radio" id="toggleHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="toggleHideWhenCollapse" value="0" checked="checked"/>
+                <label for="toggleHideWhenCollapse0"><?php echo JTexT::_('JNO') ?></label>
+                <input type="radio" id="toggleHideWhenCollapse1" class="toolbox-toggle" data-action="hideWhenCollapse" name="toggleHideWhenCollapse" value="1"/>
+                <label for="toggleHideWhenCollapse1"><?php echo JTexT::_('JYES') ?></label>
+              </fieldset>
+            </li>
+          </ul>          
+          <ul>
+            <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_WIDTH_SPAN'), '::', JTexT::_('T3_NAVIGATION_MM_WIDTH_SPAN_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_WIDTH_SPAN') ?></label>
               <fieldset class="">
                 <select class="toolcol-width toolbox-input toolbox-select input-mini" name="toolcol-width" data-name="width">
@@ -164,7 +175,7 @@ $modules = $db->loadObjectList();
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_MODULE'), '::', JTexT::_('T3_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_MODULE') ?></label>
               <fieldset class="">
-                <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
+                <select class="toolcol-position toolbox-input toolbox-select input-medium" name="toolcol-position" data-name="position" data-placeholder="<?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
                   <option value=""></option>
                   <?php
                   foreach ($modules as $module) {
@@ -179,7 +190,7 @@ $modules = $db->loadObjectList();
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS'), '::', JTexT::_('T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
               <fieldset class="">
-                <input type="text" class="toolcol-exclass toolbox-input" name="toolcol-exclass" data-name="class" value="" />
+                <input type="text" class="input-medium toolcol-exclass toolbox-input" name="toolcol-exclass" data-name="class" value="" />
               </fieldset>
             </li>
           </ul>

@@ -32,7 +32,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		nav_items.each (function () {			
 			var a = $(this),
 				liitem = a.closest('li');
-			if (liitem.data ('sub') == 'hide') {
+			if (liitem.data ('hidesub') == 1) {
 				var sub = liitem.find('.nav-child:first');
 				// check if have menu-items in sub
 				sub.css('display','none');
@@ -113,15 +113,12 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			// add sub
 			if (sub.length == 0) {
 				sub = $('<div class="nav-child dropdown-menu mega-dropdown-menu"><div class="row-fluid"><div class="span12" data-width="12"><div class="mega-inner"></div></div></div></div>').appendTo(liitem);
-				sub.css ('width', '400');
-				sub.data('width', 400);
 				bindEvents (sub.find ('[class*="span"]'));
-				liitem.data('sub', 'extra');
 				liitem.addClass ('mega');
 			} else {
 				// sub.attr('style', '');
 				sub.css('display','');
-				liitem.data('sub', '');
+				liitem.data('hidesub', 0);
 			}
 			liitem.data('group', 0);
 			currentSelected.addClass ('dropdown-toggle').data('toggle', 'dropdown');
@@ -132,7 +129,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			// check if have menu-items in sub
 			if (liitem.find('ul.level'+liitem.data('level')).length > 0) {
 				sub.css('display','none');
-				liitem.data('sub', 'hide');
+				liitem.data('hidesub', 1);
 			} else {
 				// just remove it
 				sub.remove();
@@ -345,6 +342,18 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		show_toolbox ($(nextActiveCol));
 	}
 
+	actions.hideWhenCollapse = function () {
+		if (!currentSelected) return ;
+		if (currentSelected.data('hidewcol')) {
+			currentSelected.data('hidewcol', 0);
+			currentSelected.removeClass ('hidden-collapse');
+		} else {
+			currentSelected.data('hidewcol', 1);
+			currentSelected.addClass ('hidden-collapse');			
+		}
+		update_toolbox ();
+	}
+
 	// toggle screen
 	actions.toggleScreen = function () {
 		if ($('.toolbox-togglescreen').hasClass('t3-fullscreen-full')) {
@@ -393,8 +402,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						} else {
 							col['item'] = -1;
 						}
-						if ($(this).data('width')) col['width'] = $(this).data('width');
+						
+/*						if ($(this).data('width')) col['width'] = $(this).data('width');
 						if ($(this).data('class')) col['class'] = $(this).data('class');
+						if ($(this).data('hidewcol')) col['hidewcol'] = $(this).data('hidewcol');
+*/						for (var d in $(this).data()) {
+							if (d != 'id' && d != 'level' && d != 'position' && $(this).data(d))
+								col[d] = $(this).data(d);
+						};
 						row[j++] = col;
 					});
 					rows[i++] = row;
@@ -402,7 +417,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				item['sub']['rows'] = rows;
 			}
 
-			if ($this.data('class')) {
+/*			if ($this.data('class')) {
 				item['class'] = $this.data('class');
 			}
 			if ($this.data('xicon')) {
@@ -411,12 +426,20 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			if ($this.data('group')) {
 				item['group'] = $this.data('group');
 			}
-			if ($this.data('sub') == 'hide') {
-				item['hidesub'] = 1;
+			if ($this.data('hidesub')) {
+				item['hidesub'] = $this.data('hidesub');
 			}
 			if ($this.data('alignsub')) {
 				item['alignsub'] = $this.data('alignsub');
 			}
+			if ($this.data('hidewcol')) {
+				item['hidewcol'] = $this.data('hidewcol');
+			}*/
+
+			for (var d in $this.data()) {
+				if (d != 'id' && d != 'level' && $this.data(d)) item[d] = $this.data(d);
+			};
+
 			if (Object.keys(item).length) config[id] = item;
 		});
 
@@ -504,7 +527,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				// toggle Group
 				var toggle = $('.toolitem-group');
 				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
-				if (liitem.data('level') == 1 || sub.length == 0 || liitem.data('sub') == 'hide') {
+				if (liitem.data('level') == 1 || sub.length == 0 || liitem.data('hidesub') == 1) {
 					// disable the toggle
 					$('.toolitem-group').addClass ('disabled');
 				} else if (liitem.data('group')) {
@@ -563,6 +586,17 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				if (currentSelected.parent().children().length == 1) {
 					$('.toolcol-width').parent().addClass ('disabled');
 				}
+
+				// toggle hidewhencollapse
+				var toggle = $('.toolcol-hidewhencollapse');
+				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
+				if (currentSelected.data('hidewcol')) {
+					// toggle enable
+					update_toggle (toggle, 1);
+				} else {
+					// toggle disable
+					update_toggle (toggle, 0);
+				}	
 					
 				break;
 		}

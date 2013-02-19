@@ -50,7 +50,7 @@ class T3MenuMegamenuTpl {
 			$cls .= " span12";
 		} else {
 			if (isset($sub['width'])) {
-				$style = " style=\"width:{$sub['width']}px\"";
+				if ($item->dropdown) $style = " style=\"width:{$sub['width']}px\"";
 				$data .= " data-width=\"{$sub['width']}\"";
 			} 			
 		}
@@ -85,6 +85,10 @@ class T3MenuMegamenuTpl {
 			$cls .= " {$setting['class']}";
 			$data .= " data-class=\"{$setting['class']}\"";
 		}
+		if (isset($setting['hidewcol'])) {
+			$data .= " data-hidewcol=\"1\"";
+			$cls .= " hidden-collapse";
+		}
 
 		return "<div class=\"$cls\" $data><div class=\"mega-inner\">";
 	}
@@ -113,7 +117,7 @@ class T3MenuMegamenuTpl {
 			$data .= " data-alignsub=\"{$setting['alignsub']}\"";
 			$cls .= " mega-align-{$setting['alignsub']}";
 		}
-		if (isset($setting['hidesub'])) $data .= " data-sub=\"hide\"";
+		if (isset($setting['hidesub'])) $data .= " data-hidesub=\"1\"";
 		if (isset($setting['xicon'])) $data .= " data-xicon=\"{$setting['xicon']}\"";
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
