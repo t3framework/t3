@@ -47,11 +47,11 @@ var T3Theme = window.T3Theme || {};
 				if($(this).hasClass('active')){
 					$(this).removeClass('active');
 					$('#t3-admin-thememagic').css('left', 0);
-					$('#preview').css('left', $('#t3-admin-thememagic').outerWidth(true));
+					$('#t3-admin-tm-preview').css('left', $('#t3-admin-thememagic').outerWidth(true));
 				} else {
 					$(this).addClass('active');
 					$('#t3-admin-thememagic').css('left', - $('#t3-admin-thememagic').outerWidth(true));
-					$('#preview').css('left', 0);
+					$('#t3-admin-tm-preview').css('left', 0);
 				}
 				
 				return false;
