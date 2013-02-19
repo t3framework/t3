@@ -96,6 +96,9 @@ class T3Minify
 		//======================= Group css ================= //
 		$cssgroups = array();
 		$stylesheets = array();
+		$ielimit = 4096;
+		$selcounts = 0;
+		$regex = '/\{.+?\}|,/s'; //selector counter
 
 		foreach ($doc->_styleSheets as $url => $stylesheet) {
 
@@ -103,7 +106,13 @@ class T3Minify
 				$stylesheet['path'] = self::fromUrlToPath($url);
 				$stylesheet['data'] = @JFile::read($stylesheet['path']);
 
-				if (preg_match('#@import\s+.+#', $stylesheet['data'])) {
+				$selcount = preg_match_all($regex, $stylesheet['data'], $matched);
+				if(!$selcount) {
+					$selcount = 1; //just for sure
+				}
+
+				//if we found an @import rule or reach IE limit css selector count, break into the new group
+				if (preg_match('#@import\s+.+#', $stylesheet['data']) || $selcounts + $selcount >= $ielimit) {
 					if(count($stylesheets)){
 						$cssgroup = array();
 						$groupname = array();
@@ -117,9 +126,11 @@ class T3Minify
 					}
 
 					$stylesheets = array($url => $stylesheet); // empty - begin a new group
+					$selcounts = $selcount;
 				} else {
 
 					$stylesheets[$url] = $stylesheet;
+					$selcounts += $selcount;
 				}
 
 			} else {
