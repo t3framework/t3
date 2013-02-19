@@ -99,7 +99,7 @@
 
 			<!-- Sample for add or disable template parameters -->
 			<!--fieldset name="menu_params" label="T3_PARAMS_MEGAMENU">
-				<field name="group_disable" type="jadepend" function="@group">
+				<field name="group_disable" type="t3depend" function="@group">
 					<option for="menu_as_bg" value="no">menu_as_bg</option>
 				</field>
 			</fieldset-->
@@ -143,7 +143,7 @@
       </fieldset>
 
       <fieldset name="typo_params" label="T3_TM_TYPO">
-        <field name="typo_params_default" type="jadepend" function="@group">
+        <field name="typo_params_default" type="t3depend" function="@group">
           <option for="baseFontFamily" value="undefined">baseFontFamily_custom</option>
           <option for="headingsFontFamily" value="undefined">headingsFontFamily_custom</option>
         </field>
