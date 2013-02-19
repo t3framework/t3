@@ -96,7 +96,7 @@ class T3Minify
 		//======================= Group css ================= //
 		$cssgroups = array();
 		$stylesheets = array();
-		$ielimit = 4096;
+		$ielimit = 4095;
 		$selcounts = 0;
 		$regex = '/\{.+?\}|,/s'; //selector counter
 
