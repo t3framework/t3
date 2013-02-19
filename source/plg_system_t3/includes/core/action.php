@@ -15,7 +15,7 @@
 // No direct access
 defined('_JEXEC') or die();
 /**
- * T3Less class compile less
+ * T3Action class
  *
  * @package T3
  */
