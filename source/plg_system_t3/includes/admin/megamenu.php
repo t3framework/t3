@@ -17,11 +17,8 @@ class T3AdminMegamenu {
 		t3import('menu/megamenu');
 		$input = JFactory::getApplication()->input;
 		$menutype = $input->get ('t3menu', 'mainmenu');
-		//$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
-		//$currentconfig = json_decode(@file_get_contents ($file), true);
-		$tpl = JFactory::getApplication()->getTemplate(true);
-		$currentconfig = json_decode($tpl->params->get('mm_config', ''), true);
-
+		$tplparams = $input->get('tplparams', '', 'raw');
+		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 		$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
 		$mmconfig['editmode'] = true;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig);

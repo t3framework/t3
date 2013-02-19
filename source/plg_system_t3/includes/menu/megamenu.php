@@ -171,7 +171,7 @@ class T3MenuMegamenu {
 				}
 			}
 			if (!count($items)) return;
-		} else if ($start == 0){
+		} else if ($start === 0){
 			$pid = $pitem->id;
 			if (!isset($this->children[$pid])) return ;
 			$items = $this->children[$pid];			
@@ -265,5 +265,10 @@ class T3MenuMegamenu {
 		} else {
 			$this->menu .= "$tmpl\n";			
 		}
+	}
+
+	function get ($prop) {
+		if (isset($this->$prop)) return $this->$prop;
+		return null;
 	}
 }

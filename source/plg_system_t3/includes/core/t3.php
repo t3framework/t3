@@ -50,7 +50,33 @@ class T3 {
 	/**
 	 * Initialize T3
 	 */
-	public static function init () {
+	public static function init ($template) {
+		define ('T3_TEMPLATE', $template);
+		define ('T3_TEMPLATE_URL', JURI::root(true).'/templates/'.T3_TEMPLATE);
+		define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
+		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
+
+		//load T3 Framework language
+		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+		
+		$app = JFactory::getApplication();
+		$input = $app->input;
+		$templateobj = $app->getTemplate(true);
+
+		if ($input->getCmd('themer', 0)){
+			define ('T3_THEMER', 1);
+		}
+
+		if (!JFactory::getApplication()->isAdmin()) {
+			$t3assets = $templateobj->params->get ('t3-assets', 't3-assets');
+			define ('T3_DEV_FOLDER', $t3assets . '/dev');
+		}
+
+		if($input->getCmd('t3lock', '')){
+			JFactory::getSession()->set('T3.t3lock', $input->getCmd('t3lock', ''));
+			$input->set('t3lock', null);
+		}
+
 		// load core library
 		t3import ('core/path');
 		
@@ -75,6 +101,21 @@ class T3 {
 				if (!class_exists('JPagination', false)) t3import ('joomla25/pagination');
 			}
 		} else {
+		}
+
+		// capture for tm=1 => show theme magic
+		if ($input->getCmd('tm') == 1) {
+			$input->set('t3action', 'theme');
+			$input->set('t3task', 'thememagic');
+		}
+
+	}
+
+	public static function checkAction () {
+		// excute action by T3
+		if ($action = JFactory::getApplication()->input->getCmd ('t3action')) {
+			t3import ('core/action');
+			T3Action::run ($action);
 		}
 	}
 
@@ -107,7 +148,83 @@ class T3 {
 			throw new Exception($msg, $code);
 		}
 	}
+
+	public static function detect()
+	{
+		static $t3;
+
+		if (!isset($t3)) {
+			$t3 = false; // set false
+			$app = JFactory::getApplication();
+			$input = JFactory::getApplication()->input;
+			// get template name
+			$tplname = '';
+			if($input->getCmd ('t3action') && ($styleid = $input->getInt('styleid', ''))) {
+				$db = JFactory::getDbo();
+				$query = $db->getQuery(true);
+				$query->select('template, params');
+				$query->from('#__template_styles');
+				$query->where('client_id = 0');
+				$query->where('id = '.$styleid);
+
+				$db->setQuery($query);
+				$template = $db->loadObject();
+				if ($template) {
+					$tplname = $template->template;
+					$registry = new JRegistry;
+					$registry->loadString($template->params);					
+					$input->set ('tplparams', $registry);
+				}
+			} elseif ($app->isAdmin()) {
+				// if not login, do nothing
+				$user = JFactory::getUser();
+				if (!$user->id){
+					return false;
+				}
+
+				if($input->getCmd('option') == 'com_templates' && 
+					(preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
+					){
+					$db = JFactory::getDBO();
+					$query = $db->getQuery(true);
+					$id = $input->getInt('id');
+
+					//when in POST the view parameter does not set
+					if ($input->getCmd('view') == 'template') {
+						$query
+						->select('element')
+						->from('#__extensions')
+						->where('extension_id='.(int)$id . ' AND type=' . $db->quote('template'));
+					} else {
+						$query
+						->select('template')
+						->from('#__template_styles')
+						->where('id='.(int)$id);
+					}
+
+					$db->setQuery($query);
+					$tplname = $db->loadResult();
+				}
+
+			} else {
+				$tplname = $app->getTemplate(false);					
+			}
+
+			if ($tplname) {				
+					// parse xml
+				$filePath = JPath::clean(JPATH_ROOT.'/templates/'.$tplname.'/templateDetails.xml');
+				if (is_file ($filePath)) {
+					$xml = JInstaller::parseXMLInstallFile($filePath);
+					if (strtolower($xml['group']) == 't3') {
+						$t3 = $tplname;
+					}
+				}
+			}
+
+		}
+		return $t3;
+	}
+
 }
 
-T3::init();
 ?>
