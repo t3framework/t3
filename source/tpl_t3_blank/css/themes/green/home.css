@@ -164,6 +164,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .home .t3-sl-1 .jumbotron .btn-large:hover,
+.home .t3-sl-1 .jumbotron .btn-large:focus,
 .home .t3-sl-1 .jumbotron .btn-large:active,
 .home .t3-sl-1 .jumbotron .btn-large.active,
 .home .t3-sl-1 .jumbotron .btn-large.disabled,

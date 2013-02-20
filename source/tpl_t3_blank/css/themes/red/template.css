@@ -505,6 +505,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn:hover,
+.btn:focus,
 .btn:active,
 .btn.active,
 .btn.disabled,
@@ -574,6 +575,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-primary:hover,
+.btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .btn-primary.disabled,
@@ -603,6 +605,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-warning:hover,
+.btn-warning:focus,
 .btn-warning:active,
 .btn-warning.active,
 .btn-warning.disabled,
@@ -632,6 +635,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-danger:hover,
+.btn-danger:focus,
 .btn-danger:active,
 .btn-danger.active,
 .btn-danger.disabled,
@@ -661,6 +665,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-success:hover,
+.btn-success:focus,
 .btn-success:active,
 .btn-success.active,
 .btn-success.disabled,
@@ -690,6 +695,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-info:hover,
+.btn-info:focus,
 .btn-info:active,
 .btn-info.active,
 .btn-info.disabled,
@@ -719,6 +725,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-inverse:hover,
+.btn-inverse:focus,
 .btn-inverse:active,
 .btn-inverse.active,
 .btn-inverse.disabled,
@@ -1121,6 +1128,7 @@ label.invalid {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
 }
 .t3-mainnav .navbar .btn-navbar:hover,
+.t3-mainnav .navbar .btn-navbar:focus,
 .t3-mainnav .navbar .btn-navbar:active,
 .t3-mainnav .navbar .btn-navbar.active,
 .t3-mainnav .navbar .btn-navbar.disabled,
@@ -2252,7 +2260,7 @@ address {
 .logo-image a {
   background-image: url("../../../images/logo.png");
   background-repeat: no-repeat;
-  width: 270px;
+  width: 204px;
   height: 65px;
 }
 .logo-image span,
@@ -2283,6 +2291,7 @@ address {
 }
 .head-search form {
   margin: 0;
+  float: right;
 }
 .head-search label {
   display: none;
@@ -2374,6 +2383,7 @@ address {
 }
 .poweredby {
   float: right;
+  text-align: right;
 }
 .t3-footer {
   background: #c00;
