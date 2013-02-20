@@ -241,7 +241,9 @@
     border-top: 1px solid #eeeeee;
   }
 
-  .t3-megamenu .hidden-collapse {
+  .t3-megamenu .hidden-collapse,
+  .t3-megamenu .sub-hidden-collapse > .nav-child,
+  .t3-megamenu .sub-hidden-collapse .caret {
     display: none !important;
   }
 }

@@ -54,10 +54,6 @@ class T3MenuMegamenuTpl {
 				$data .= " data-width=\"{$sub['width']}\"";
 			} 			
 		}
-		if (isset($sub['hidewcol'])) {
-			$data .= " data-hidewcol=\"1\"";
-			$cls .= " hidden-collapse";
-		}
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
 
@@ -123,6 +119,10 @@ class T3MenuMegamenuTpl {
 		}
 		if (isset($setting['hidesub'])) $data .= " data-hidesub=\"1\"";
 		if (isset($setting['xicon'])) $data .= " data-xicon=\"{$setting['xicon']}\"";
+		if (isset($setting['hidewcol'])) {
+			$data .= " data-hidewcol=\"1\"";
+			$cls .= " sub-hidden-collapse";
+		}
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
 

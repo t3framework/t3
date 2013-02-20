@@ -26,6 +26,8 @@
   font-size: 18px;
   line-height: 20px;
 }
+
+
 /* Intro
 ---------------------*/
 #t3-admin-mm-intro {
@@ -80,6 +82,11 @@
 #t3-admin-mm-tb .admin-toolbox li > label {
   font-size: 11px;
   color: #999999;
+}
+
+#t3-admin-mm-tb .btn [class^="icon-"],
+#t3-admin-mm-tb .btn [class*=" icon-"] {
+  margin-right: 0;
 }
 
 
