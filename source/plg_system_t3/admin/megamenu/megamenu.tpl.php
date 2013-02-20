@@ -93,7 +93,7 @@ $modules = $db->loadObjectList();
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID'), '::', JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
               <fieldset class="btn-group">
-                <a href="" class="btn toolsub-addrow toolbox-action" data-action="addRow">Add Row</a>
+                <a href="" class="btn toolsub-addrow toolbox-action" data-action="addRow"><i class="icon-plus"></i></a>
               </fieldset>
             </li>
           </ul>
@@ -143,10 +143,10 @@ $modules = $db->loadObjectList();
           <h3><?php echo JTexT::_('T3_NAVIGATION_MM_COLUMN_CONF') ?></h3>
           <ul>
             <li>
-              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID'), '::', JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
+              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN'), '::', JTexT::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN') ?></label>
               <fieldset class="btn-group">
-                <a href="" class="btn toolcol-addcol toolbox-action" data-action="addColumn">Add Column</a>
-                <a href="" class="btn toolcol-removecol toolbox-action" data-action="removeColumn">Remove Column</a>
+                <a href="" class="btn toolcol-addcol toolbox-action" data-action="addColumn"><i class="icon-plus"></i></a>
+                <a href="" class="btn toolcol-removecol toolbox-action" data-action="removeColumn"><i class="icon-minus"></i></a>
               </fieldset>
             </li>
           </ul>
