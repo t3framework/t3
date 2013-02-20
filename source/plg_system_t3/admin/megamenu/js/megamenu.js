@@ -342,14 +342,26 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		show_toolbox ($(nextActiveCol));
 	}
 
-	actions.hideWhenCollapse = function () {
+	actions.hideWhenCollapse = function () {		
 		if (!currentSelected) return ;
-		if (currentSelected.data('hidewcol')) {
-			currentSelected.data('hidewcol', 0);
-			currentSelected.removeClass ('hidden-collapse');
-		} else {
-			currentSelected.data('hidewcol', 1);
-			currentSelected.addClass ('hidden-collapse');			
+		var type = toolbox_type ();
+		if (type == 'sub') {
+			var liitem = currentSelected.closest('li');
+			if (liitem.data('hidewcol')) {
+				liitem.data('hidewcol', 0);
+				liitem.removeClass ('sub-hidden-collapse');
+			} else {
+				liitem.data('hidewcol', 1);
+				liitem.addClass ('sub-hidden-collapse');
+			}			
+		} else if (type == 'col') {
+			if (currentSelected.data('hidewcol')) {
+				currentSelected.data('hidewcol', 0);
+				currentSelected.removeClass ('hidden-collapse');
+			} else {
+				currentSelected.data('hidewcol', 1);
+				currentSelected.addClass ('hidden-collapse');			
+			}			
 		}
 		update_toolbox ();
 	}
@@ -549,7 +561,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				// toggle hidewhencollapse
 				var toggle = $('.toolsub-hidewhencollapse');
 				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
-				if (currentSelected.data('hidewcol')) {
+				if (liitem.data('hidewcol')) {
 					// toggle enable
 					update_toggle (toggle, 1);
 				} else {
