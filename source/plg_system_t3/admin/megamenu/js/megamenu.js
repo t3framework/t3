@@ -377,11 +377,10 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			if ($this.hasClass ('mega')) {
 				var $sub = $this.find ('.nav-child:first');
 				item['sub'] = {};
-				if ($sub.data('width')) {
-					item['sub']['width'] = $sub.data('width');
-				}
-				if ($sub.data('class')) {
-					item['sub']['class'] = $sub.data('class');
+				
+				for (var d in $sub.data()) {
+					if (d != 'id' && d != 'level' && $sub.data(d))
+						item['sub'][d] = $sub.data(d);
 				}
 				// build row
 				var $rows = $sub.find('[class*="row"]:first').parent().children('[class*="row"]'),
@@ -403,13 +402,10 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 							col['item'] = -1;
 						}
 						
-/*						if ($(this).data('width')) col['width'] = $(this).data('width');
-						if ($(this).data('class')) col['class'] = $(this).data('class');
-						if ($(this).data('hidewcol')) col['hidewcol'] = $(this).data('hidewcol');
-*/						for (var d in $(this).data()) {
+						for (var d in $(this).data()) {
 							if (d != 'id' && d != 'level' && d != 'position' && $(this).data(d))
 								col[d] = $(this).data(d);
-						};
+						}
 						row[j++] = col;
 					});
 					rows[i++] = row;
@@ -417,28 +413,9 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				item['sub']['rows'] = rows;
 			}
 
-/*			if ($this.data('class')) {
-				item['class'] = $this.data('class');
-			}
-			if ($this.data('xicon')) {
-				item['xicon'] = $this.data('xicon');
-			}
-			if ($this.data('group')) {
-				item['group'] = $this.data('group');
-			}
-			if ($this.data('hidesub')) {
-				item['hidesub'] = $this.data('hidesub');
-			}
-			if ($this.data('alignsub')) {
-				item['alignsub'] = $this.data('alignsub');
-			}
-			if ($this.data('hidewcol')) {
-				item['hidewcol'] = $this.data('hidewcol');
-			}*/
-
 			for (var d in $this.data()) {
 				if (d != 'id' && d != 'level' && $this.data(d)) item[d] = $this.data(d);
-			};
+			}
 
 			if (Object.keys(item).length) config[id] = item;
 		});
@@ -456,7 +433,6 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		if($.isArray(curconfig) && curconfig.length == 0){
 			curconfig = {};
 		}
-
 		curconfig[menutype] = config;
 		jmmconfig.val(JSON.stringify(curconfig));
 	}
@@ -569,6 +545,17 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						}
 					}					
 				}
+
+				// toggle hidewhencollapse
+				var toggle = $('.toolsub-hidewhencollapse');
+				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
+				if (currentSelected.data('hidewcol')) {
+					// toggle enable
+					update_toggle (toggle, 1);
+				} else {
+					// toggle disable
+					update_toggle (toggle, 0);
+				}	
 
 				break;
 

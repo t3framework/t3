@@ -99,6 +99,17 @@ $modules = $db->loadObjectList();
           </ul>
           <ul>
             <li>
+              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE'), '::', JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
+              <fieldset class="radio btn-group toolsub-hidewhencollapse">
+                <input type="radio" id="togglesubHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="togglesubHideWhenCollapse" value="0" checked="checked"/>
+                <label for="togglesubHideWhenCollapse0"><?php echo JTexT::_('JNO') ?></label>
+                <input type="radio" id="togglesubHideWhenCollapse1" class="toolbox-toggle" data-action="hideWhenCollapse" name="togglesubHideWhenCollapse" value="1"/>
+                <label for="togglesubHideWhenCollapse1"><?php echo JTexT::_('JYES') ?></label>
+              </fieldset>
+            </li>
+          </ul>                    
+          <ul>
+            <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX'), '::', JTexT::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX') ?></label>
               <fieldset class="">
                 <input type="text" class="toolsub-width toolbox-input input-small" name="toolsub-width" data-name="width" value="" />
@@ -122,7 +133,7 @@ $modules = $db->loadObjectList();
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS'), '::', JTexT::_('T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
               <fieldset class="">
-                <input type="text" class="toolsub-exclass toolbox-input" name="toolsub-exclass" data-name="class" value="" />
+                <input type="text" class="toolsub-exclass toolbox-input input-medium" name="toolsub-exclass" data-name="class" value="" />
               </fieldset>
             </li>
           </ul>
