@@ -415,7 +415,7 @@ class T3Template extends ObjectExtendable
 			if($data == '"'){
 				$data = '';
 			} else {
-				$data = substr($data, 0, strrpos($data, '"'));
+				$data = ' t3respon' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 		
