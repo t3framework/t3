@@ -14,12 +14,12 @@ defined('_JEXEC') or die;
     <div class="navbar-inner">
 
       <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-  	  </button>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-  	  <div class="nav-collapse collapse">
+  	  <div class="nav-collapse collapse<?php echo $this->getParam('navigation_collapse_showsub', 1) ? ' always-show' : '' ?>">
       <?php if ($this->getParam('navigation_type') == 'megamenu') : ?>
         <?php $this->megamenu($this->getParam('mm_type', 'mainmenu')) ?>
       <?php else : ?>
