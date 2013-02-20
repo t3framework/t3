@@ -133,6 +133,14 @@
 				<option value="click">Mouse Click</option>
 			</field>
 
+			<field name="navigation_collapse_showsub" type="radio" class="btn-group" default="1"
+				global="1"
+				label="T3_NAVIGATION_COLLAPSE_LABEL"
+				description="T3_NAVIGATION_COLLAPSE_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
 			<field name="navigation_type" type="list" class="btn-group" default="default"
 				label="T3_NAVIGATION_TYPE_LABEL"
 				description="T3_NAVIGATION_TYPE_DESC">
