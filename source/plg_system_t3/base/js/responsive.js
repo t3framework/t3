@@ -15,7 +15,7 @@
 /* responsive */
 jQuery(document).ready(function($){
   var current_layout = '';
-  var responsive_elements = $('[class*="span"]');
+  var responsive_elements = $('[class*="span"], .t3respon');
   // build data & remove data attribute - make the source better view in inspector
   responsive_elements.each (function(){
     var $this = $(this);
