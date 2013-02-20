@@ -3,23 +3,28 @@
  * @package     Joomla.Site
  * @subpackage  com_contact
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-$cparams = JComponentHelper::getParams ('com_media');
+$cparams = JComponentHelper::getParams('com_media');
+
+jimport('joomla.html.html.bootstrap');
 ?>
 <div class="contact<?php echo $this->pageclass_sfx?>">
-<?php if ($this->params->get('show_page_heading')) : ?>
-<h1>
-	<?php echo $this->escape($this->params->get('page_heading')); ?>
-</h1>
-<?php endif; ?>
+	<?php if ($this->params->get('show_page_heading')) : ?>
+		<h1>
+			<?php echo $this->escape($this->params->get('page_heading')); ?>
+		</h1>
+	<?php endif; ?>
 	<?php if ($this->contact->name && $this->params->get('show_name')) : ?>
 		<div class="page-header">
 			<h2>
+				<?php if ($this->item->published == 0) : ?>
+					<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
+				<?php endif; ?>
 				<span class="contact-name"><?php echo $this->contact->name; ?></span>
 			</h2>
 		</div>
@@ -30,7 +35,7 @@ $cparams = JComponentHelper::getParams ('com_media');
 		</h3>
 	<?php endif; ?>
 	<?php if ($this->params->get('show_contact_category') == 'show_with_link') : ?>
-		<?php $contactLink = ContactHelperRoute::getCategoryRoute($this->contact->catid);?>
+		<?php $contactLink = ContactHelperRoute::getCategoryRoute($this->contact->catid); ?>
 		<h3>
 			<span class="contact-category"><a href="<?php echo $contactLink; ?>">
 				<?php echo $this->escape($this->contact->category_title); ?></a>
@@ -40,11 +45,11 @@ $cparams = JComponentHelper::getParams ('com_media');
 	<?php if ($this->params->get('show_contact_list') && count($this->contacts) > 1) : ?>
 		<form action="#" method="get" name="selectForm" id="selectForm">
 			<?php echo JText::_('COM_CONTACT_SELECT_CONTACT'); ?>
-			<?php echo JHtml::_('select.genericlist',  $this->contacts, 'id', 'class="inputbox" onchange="document.location.href = this.value"', 'link', 'name', $this->contact->link);?>
+			<?php echo JHtml::_('select.genericlist', $this->contacts, 'id', 'class="inputbox" onchange="document.location.href = this.value"', 'link', 'name', $this->contact->link);?>
 		</form>
 	<?php endif; ?>
 	
-	<?php  if ($this->params->get('presentation_style')=='sliders'):?>
+	<?php if ($this->params->get('presentation_style') == 'sliders') : ?>
 		<div class="accordion" id="accordionContact">
 			<div class="accordion-group">
 				<div class="accordion-heading">
@@ -55,9 +60,22 @@ $cparams = JComponentHelper::getParams ('com_media');
 				<div id="basic-details" class="accordion-body collapse in">
 					<div class="accordion-inner">
 	<?php endif; ?>
-	<?php if ($this->params->get('presentation_style')=='plain'):?>
+	<?php if ($this->params->get('presentation_style') == 'tabs'):?>
+		<ul class="nav nav-tabs" id="myTab">
+				<li><a data-toggle="tab" href="#basic-details"><?php echo JText::_('COM_CONTACT_DETAILS'); ?></a></li>
+				<?php if ($this->params->get('show_email_form') && ($this->contact->email_to || $this->contact->user_id)) : ?><li><a data-toggle="tab" href="#display-form"><?php echo JText::_('COM_CONTACT_EMAIL_FORM'); ?></a></li><?php endif; ?>
+				<?php if ($this->params->get('show_links')) : ?><li><a data-toggle="tab" href="#display-links"><?php echo JText::_('COM_CONTACT_LINKS'); ?></a></li><?php endif; ?>
+				<?php if ($this->params->get('show_articles') && $this->contact->user_id && $this->contact->articles) : ?><li><a data-toggle="tab" href="#display-articles"><?php echo JText::_('JGLOBAL_ARTICLES'); ?></a></li><?php endif; ?>
+				<?php if ($this->params->get('show_profile') && $this->contact->user_id && JPluginHelper::isEnabled('user', 'profile')) : ?><li><a data-toggle="tab" href="#display-profile"><?php echo JText::_('COM_CONTACT_PROFILE'); ?></a></li><?php endif; ?>
+				<?php if ($this->contact->misc && $this->params->get('show_misc')) : ?><li><a data-toggle="tab" href="#display-misc"><?php echo JText::_('COM_CONTACT_OTHER_INFORMATION'); ?></a></li><?php endif; ?>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div id="basic-details" class="tab-pane active">
+	<?php endif; ?>
+	<?php if ($this->params->get('presentation_style') == 'plain') : ?>
 		<?php  echo '<h3>'. JText::_('COM_CONTACT_DETAILS').'</h3>';  ?>
 	<?php endif; ?>
+	
 	<?php if ($this->contact->image && $this->params->get('show_image')) : ?>
 		<div class="thumbnail pull-right">
 			<?php echo JHtml::_('image', $this->contact->image, JText::_('COM_CONTACT_IMAGE_DETAILS'), array('align' => 'middle')); ?>
@@ -84,6 +102,9 @@ $cparams = JComponentHelper::getParams ('com_media');
 				</div>
 			</div>
 	<?php endif; ?>
+	<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			</div>
+	<?php endif; ?>
 	<?php if ($this->params->get('show_email_form') && ($this->contact->email_to || $this->contact->user_id)) : ?>
 
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
@@ -96,6 +117,9 @@ $cparams = JComponentHelper::getParams ('com_media');
 				<div id="display-form" class="accordion-body collapse">
 					<div class="accordion-inner">
 		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			<div id="display-form" class="tab-pane">
+		<?php endif; ?>
 		<?php if ($this->params->get('presentation_style')=='plain'):?>
 			<?php  echo '<h3>'. JText::_('COM_CONTACT_EMAIL_FORM').'</h3>';  ?>
 		<?php endif; ?>
@@ -105,6 +129,9 @@ $cparams = JComponentHelper::getParams ('com_media');
 				</div>
 			</div>
 		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			</div>
+		<?php endif; ?>
 	<?php endif; ?>
 	
 	<?php if ($this->params->get('show_links')) : ?>
@@ -112,7 +139,7 @@ $cparams = JComponentHelper::getParams ('com_media');
 	<?php endif; ?>
 		
 	<?php if ($this->params->get('show_articles') && $this->contact->user_id && $this->contact->articles) : ?>
-			<?php if ($this->params->get('presentation_style')=='sliders'):?>
+		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-articles">
@@ -121,16 +148,22 @@ $cparams = JComponentHelper::getParams ('com_media');
 				</div>
 				<div id="display-articles" class="accordion-body collapse">
 					<div class="accordion-inner">
-			<?php endif; ?>
-			<?php if  ($this->params->get('presentation_style')=='plain'):?>
+		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			<div id="display-articles" class="tab-pane">
+		<?php endif; ?>
+		<?php if  ($this->params->get('presentation_style')=='plain'):?>
 			<?php echo '<h3>'. JText::_('JGLOBAL_ARTICLES').'</h3>'; ?>
-			<?php endif; ?>
+		<?php endif; ?>
 			<?php echo $this->loadTemplate('articles'); ?>
-			<?php if ($this->params->get('presentation_style')=='sliders'):?>
+		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 					</div>
 				</div>
 			</div>
-			<?php endif; ?>
+		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			</div>
+		<?php endif; ?>
 	<?php endif; ?>
 	<?php if ($this->params->get('show_profile') && $this->contact->user_id && JPluginHelper::isEnabled('user', 'profile')) : ?>
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
@@ -143,6 +176,9 @@ $cparams = JComponentHelper::getParams ('com_media');
 				<div id="display-profile" class="accordion-body collapse">
 					<div class="accordion-inner">
 		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			<div id="display-profile" class="tab-pane">
+		<?php endif; ?>
 		<?php if ($this->params->get('presentation_style')=='plain'):?>
 			<?php echo '<h3>'. JText::_('COM_CONTACT_PROFILE').'</h3>'; ?>
 		<?php endif; ?>
@@ -150,6 +186,9 @@ $cparams = JComponentHelper::getParams ('com_media');
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 					</div>
 				</div>
+			</div>
+		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
@@ -163,6 +202,9 @@ $cparams = JComponentHelper::getParams ('com_media');
 				</div>
 				<div id="display-misc" class="accordion-body collapse">
 					<div class="accordion-inner">
+		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			<div id="display-misc" class="tab-pane">
 		<?php endif; ?>
 		<?php if ($this->params->get('presentation_style')=='plain'):?>
 			<?php echo '<h3>'. JText::_('COM_CONTACT_OTHER_INFORMATION').'</h3>'; ?>
@@ -186,8 +228,14 @@ $cparams = JComponentHelper::getParams ('com_media');
 				</div>
 			</div>
 		<?php endif; ?>
+		<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
+			</div>
+		<?php endif; ?>
 	<?php endif; ?>
 	<?php if ($this->params->get('presentation_style')=='sliders'):?>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
 		</div>
 	<?php endif; ?>
 </div>

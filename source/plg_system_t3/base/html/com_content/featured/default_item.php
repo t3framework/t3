@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,9 +12,9 @@ defined('_JEXEC') or die;
 // Create a shortcut for params.
 $params = &$this->item->params;
 $images = json_decode($this->item->images);
-$canEdit	= $this->item->params->get('access-edit');
+$canEdit = $this->item->params->get('access-edit');
+$info = $this->item->params->get('info_block_position', 0);
 ?>
-
 <?php if ($this->item->state == 0) : ?>
 <div class="system-unpublished">
 <?php endif; ?>
@@ -23,19 +23,19 @@ $canEdit	= $this->item->params->get('access-edit');
   <article>
 
 	<?php if ($params->get('show_title')) : ?>
-  <header class="article-header clearfix">
-    <h2 class="article-title">
-      <?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
-      <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>"> <?php echo $this->escape($this->item->title); ?></a>
-      <?php else : ?>
-      <?php echo $this->escape($this->item->title); ?>
-      <?php endif; ?>
-    </h2>
-  </header>
+	<header class="article-header clearfix">
+		<h2 class="article-title">
+			<?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
+			<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>"> <?php echo $this->escape($this->item->title); ?></a>
+			<?php else : ?>
+			<?php echo $this->escape($this->item->title); ?>
+			<?php endif; ?>
+		</h2>
+	</header>
 	<?php endif; ?>
   
   <!-- Aside -->
-<?php if (($params->get('show_author')) or ($params->get('show_category')) or ($params->get('show_create_date')) or ($params->get('show_publish_date')) or ($params->get('show_parent_category'))
+  <?php if (($params->get('show_author')) or ($params->get('show_category')) or ($params->get('show_create_date')) or ($params->get('show_publish_date')) or ($params->get('show_parent_category'))
           or ($params->get('show_print_icon')) or ($params->get('show_email_icon')) or ($canEdit)
           ) : ?>
   <aside class="article-aside clearfix">
@@ -98,21 +98,20 @@ $canEdit	= $this->item->params->get('access-edit');
   <?php endif; ?>
 
   <?php if ($params->get('show_print_icon') || $params->get('show_email_icon') || $canEdit) : ?>
-  <div class="btn-group pull-right">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-cog"></i><span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <?php if ($params->get('show_print_icon')) : ?>
-      <li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>
-      <?php endif; ?>
-      <?php if ($params->get('show_email_icon')) : ?>
-      <li class="email-icon"> <?php echo JHtml::_('icon.email', $this->item, $params); ?> </li>
-      <?php endif; ?>
-      <?php if ($canEdit) : ?>
-      <li class="edit-icon"> <?php echo JHtml::_('icon.edit', $this->item, $params); ?> </li>
-      <?php endif; ?>
-    </ul>
-  </div>
-  <?php endif; ?>
+<div class="btn-group pull-right"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" role="button"> <span class="icon-cog"></span><span class="caret"></span> </a>
+	<ul class="dropdown-menu">
+		<?php if ($params->get('show_print_icon')) : ?>
+		<li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>
+		<?php endif; ?>
+		<?php if ($params->get('show_email_icon')) : ?>
+		<li class="email-icon"> <?php echo JHtml::_('icon.email', $this->item, $params); ?> </li>
+		<?php endif; ?>
+		<?php if ($canEdit) : ?>
+		<li class="edit-icon"> <?php echo JHtml::_('icon.edit', $this->item, $params); ?> </li>
+		<?php endif; ?>
+	</ul>
+</div>
+<?php endif; ?>
   
   </aside>
   <?php endif; ?>
@@ -188,5 +187,4 @@ $canEdit	= $this->item->params->get('access-edit');
 <?php if ($this->item->state == 0) : ?>
 </div>
 <?php endif; ?>
-
-<?php echo $this->item->event->afterDisplayContent; ?> 
+<?php echo $this->item->event->afterDisplayContent; ?>

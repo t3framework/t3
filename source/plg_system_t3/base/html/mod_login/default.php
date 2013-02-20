@@ -1,25 +1,28 @@
 <?php
 /**
- * @version		$Id: default.php 21322 2011-05-11 01:10:29Z dextercowley $
- * @package		Joomla.Site
- * @subpackage	mod_login
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     Joomla.Site
+ * @subpackage  mod_login
+ *
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
+if(version_compare(JVERSION, '3.0', 'ge')){
+	JHtml::_('bootstrap.tooltip');
+}
 ?>
 <?php if ($type == 'logout') : ?>
 <form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" class="form-vertical">
 <?php if ($params->get('greeting')) : ?>
 	<div class="login-greeting">
 	<?php if($params->get('name') == 0) : {
-		echo JText::sprintf('MOD_LOGIN_HINAME', $user->get('name'));
+		echo JText::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('name')));
 	} else : {
-		echo JText::sprintf('MOD_LOGIN_HINAME', $user->get('username'));
+		echo JText::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('username')));
 	} endif; ?>
 	</div>
 <?php endif; ?>
@@ -41,16 +44,28 @@ JHtml::_('behavior.keepalive');
 	<fieldset class="userdata">
 	<div id="form-login-username" class="control-group">
 		<div class="controls">
-      <div class="input-prepend">
-        <span class="add-on"><i class="icon-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i></span><input id="modlgn-username" type="text" name="username" class="input" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
-      </div>
-    </div>
+		<?php if (!$params->get('usetext')) : ?>
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i></span>
+				<input id="modlgn-username" type="text" name="username" class="input" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
+			</div>
+		<?php else: ?>
+			<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
+			<input id="modlgn-username" type="text" name="username" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
+		<?php endif; ?>
+		</div>
 	</div>
 	<div id="form-login-password" class="control-group">
 		<div class="controls">
-		  <div class="input-prepend">
-		    <span class="add-on"><i class="icon-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i></span><input id="modlgn-passwd" type="password" name="password" class="input" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
-		  </div>
+		<?php if (!$params->get('usetext')) : ?>
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i></span>
+				<input id="modlgn-passwd" type="password" name="password" class="input" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
+			</div>
+		<?php else: ?>
+			<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
+			<input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
+		<?php endif; ?>
 		</div>
 	</div>
 	<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
@@ -62,24 +77,24 @@ JHtml::_('behavior.keepalive');
 		<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGIN') ?>" />
 	</div>
 
-  <ul>
-		<li>
-			<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
-			<?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
-		</li>
-		<li>
-			<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-			<?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
-		</li>
-		<?php
+	<?php
 		$usersConfig = JComponentHelper::getParams('com_users');
 		if ($usersConfig->get('allowUserRegistration')) : ?>
-		<li>
-			<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-				<?php echo JText::_('MOD_LOGIN_REGISTER'); ?></a>
-		</li>
-		<?php endif; ?>
-	</ul>
+		<ul class="unstyled">
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
+				<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
+			</li>
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
+				  <?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
+			</li>
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
+			</li>
+
+		</ul>
+	<?php endif; ?>
 
 	<input type="hidden" name="option" value="com_users" />
 	<input type="hidden" name="task" value="user.login" />

@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 JHtml::addIncludePath(T3_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
-
+JHtml::_('behavior.caption');
 ?>
 <div class="categories-list<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->get('show_page_heading')) : ?>
@@ -22,7 +22,7 @@ JHtml::addIncludePath(dirname(dirname(__FILE__)));
 <?php endif; ?>
 <?php if ($this->params->get('show_base_description')) : ?>
 	<?php 	//If there is a description in the menu parameters use that; ?>
-		<?php if($this->params->get('categories_description')) : ?>
+		<?php if ($this->params->get('categories_description')) : ?>
 			<?php echo  JHtml::_('content.prepare', $this->params->get('categories_description'), '', 'com_content.categories'); ?>
 		<?php  else: ?>
 			<?php //Otherwise get one from the database if it exists. ?>
