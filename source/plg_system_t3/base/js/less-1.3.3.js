@@ -806,7 +806,7 @@ less.Parser = function Parser(env) {
                     expect(')');
 
                     return new(tree.URL)((value.value != null || value instanceof tree.Variable)
-                                        ? value : new(tree.Anonymous)(value), env.rootpath);
+                                        ? value : new(tree.Anonymous)(value), env.paths && env.paths[0] ? env.paths[0] : env.rootpath);
                 },
 
                 //
