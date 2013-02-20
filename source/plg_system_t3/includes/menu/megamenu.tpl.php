@@ -54,6 +54,10 @@ class T3MenuMegamenuTpl {
 				$data .= " data-width=\"{$sub['width']}\"";
 			} 			
 		}
+		if (isset($sub['hidewcol'])) {
+			$data .= " data-hidewcol=\"1\"";
+			$cls .= " hidden-collapse";
+		}
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
 

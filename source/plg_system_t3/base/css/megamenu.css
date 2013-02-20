@@ -242,6 +242,6 @@
   }
 
   .t3-megamenu .hidden-collapse {
-    display: none;
+    display: none !important;
   }
 }
