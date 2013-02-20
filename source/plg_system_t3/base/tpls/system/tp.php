@@ -8,7 +8,7 @@
  * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         https://github.com/t3framework/ 
+ * @Link:         http://t3-framework.org 
  *------------------------------------------------------------------------------
  */
  
