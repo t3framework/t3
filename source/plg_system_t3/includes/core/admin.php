@@ -46,63 +46,11 @@ class T3Admin {
 		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 		JFactory::getLanguage()->load ('tpl_'.T3_TEMPLATE.'.sys', JPATH_ROOT, null, true);
 
-		/*
-		$langs = array(
-			'T3_LBL_RECOMPILE',
-			'T3_LBL_VIEWTHEMER',
-			'T3_MSG_ENABLE_THEMEMAGIC',
-		
-			'T3_LAYOUT_POPOVER_TITLE',
-			'T3_LAYOUT_POPOVER_DESC',
-			'T3_LAYOUT_RESPON_PTITLE',
-			'T3_LAYOUT_RESPON_PDESC',
-			'T3_LAYOUT_LOGO_TEXT',
-			'T3_LAYOUT_EMPTY_POSITION',
-			'T3_LAYOUT_DEFAULT_POSITION',
-		
-			'T3_LAYOUT_DVI_WIDE',
-			'T3_LAYOUT_DVI_NORMAL',
-			'T3_LAYOUT_DVI_XTABLET',
-			'T3_LAYOUT_DVI_TABLET',
-			'T3_LAYOUT_DVI_MOBILE',
-			'T3_LAYOUT_MODE_STRUCTURE',
-			'T3_LAYOUT_MODE_LAYOUT',
-			'T3_LAYOUT_RESET_ALL',
-			'T3_LAYOUT_RESET_PER_DEVICE',
-			'T3_LAYOUT_RESET_POSITION',
-		
-			'T3_LAYOUT_CONFIG_TITLE',
-			'T3_LAYOUT_CONFIG_DESC',
-			'T3_LAYOUT_UNKN_WIDTH',
-			'T3_LAYOUT_POS_WIDTH',
-			'T3_LAYOUT_POS_NAME',
-			'T3_LAYOUT_LOAD_ERROR',
-			'T3_LAYOUT_EDIT_POSITION',
-			'T3_LAYOUT_SHOW_POSITION',
-			'T3_LAYOUT_HIDE_POSITION',
-			'T3_LAYOUT_CHANGE_NUMPOS',
-			'T3_LAYOUT_DRAG_RESIZE',
-			'T3_LAYOUT_HIDDEN_POS_DESC',
-		
-			'T3_OVERVIEW_FAILED_GETLIST',
-			'T3_OVERVIEW_GO_DOWNLOAD',
-			'T3_OVERVIEW_CHECK_UPDATE',
-			'T3_OVERVIEW_CHK_UPDATE_OK',
-			'T3_OVERVIEW_TPL_NEW',
-			'T3_OVERVIEW_TPL_COMPARE'
-		);
-
-		foreach ($langs as $lkey) {
-			$this->addJSLang($lkey);
-		}
-		
-		*/
-		
-
 		$langs = array(
 			'lblCompile' => JText::_('T3_LBL_RECOMPILE'),
 			'lblThemer' => JText::_('T3_LBL_VIEWTHEMER'),
 			'enableThemeMagic' => JText::_('T3_MSG_ENABLE_THEMEMAGIC'),
+			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
 
 			'logoPresent' => JText::_('T3_LAYOUT_LOGO_TEXT'),
 			'emptyLayoutPosition' => JText::_('T3_LAYOUT_EMPTY_POSITION'),
@@ -204,6 +152,7 @@ class T3Admin {
 			T3Admin.baseurl = \'' . JURI::base(true) . '\';
 			T3Admin.rooturl = \'' . JURI::root() . '\';
 			T3Admin.template = \'' . T3_TEMPLATE . '\';
+			T3Admin.templateid = \'' . JFactory::getApplication()->input->get('id') . '\';
 			T3Admin.langs = ' . json_encode($langs) . ';
 			T3Admin.devmode = ' . $params->get('devmode', 0) . ';
 			T3Admin.themermode = ' . $params->get('themermode', 1) . ';

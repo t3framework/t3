@@ -22,7 +22,7 @@ var T3Admin = window.T3Admin || {};
 			$('#t3-admin-tb-recompile').on('click', function(){
 				var jrecompile = $(this);
 				jrecompile.addClass('loading');
-				$.get(T3Admin.adminurl, {'t3action': 'lesscall'}, function(rsp){
+				$.get(T3Admin.adminurl, {'t3action': 'lesscall', 'styleid': T3Admin.templateid }, function(rsp){
 					jrecompile.removeClass('loading');
 
 					rsp = $.trim(rsp);
@@ -36,7 +36,13 @@ var T3Admin = window.T3Admin || {};
 						}
 
 						if(json && typeof json == 'string'){
-							json = $.parseJSON(json);
+							try {
+								json = $.parseJSON(json);
+							} catch (e){
+								json = {
+									error: T3Admin.langs.unknownError
+								}
+							}
 
 							if(json && (json.error || json.successful)){
 								T3Admin.systemMessage(json.error || json.successful);

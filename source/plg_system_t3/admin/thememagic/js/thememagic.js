@@ -543,7 +543,8 @@ var T3Theme = window.T3Theme || {};
 				T3Theme.url + (T3Theme.url.indexOf('?') != -1 ? '' : '?') +
 				$.param($.extend(params, {
 					t3action: 'theme',
-					t3template: T3Theme.template
+					t3template: T3Theme.template,
+					styleid: T3Theme.templateid
 				})) , data, function(result){
 					
 				T3Theme.run = false;
@@ -555,7 +556,11 @@ var T3Theme = window.T3Theme || {};
 					return;
 				}
 				
-				result = $.parseJSON(result);
+				try {
+					result = $.parseJSON(result);
+				} catch (e) {
+					result = { error: T3Theme.langs.unknownError };
+				}
 
 				T3Theme.alert(result.error || result.success, result.error ? 'error' : (result.success ? 'success' : 'info'), result.theme);
 

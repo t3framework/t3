@@ -252,11 +252,23 @@ class T3AdminTheme
 			'themeExist' => JText::_('T3_TM_EXISTED'),
 			'saveChange' => JText::_('T3_TM_ASK_SAVE_CHANGED'),
 			'previewError' => JText::_('T3_TM_PREVIEW_ERROR'),
+			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
 			'lblCancel' => JText::_('JCANCEL'),
 			'lblOk'	=> JText::_('T3_TM_LABEL_OK'),
 			'lblNo' => JText::_('JNO'),
 			'lblYes' => JText::_('JYES')
 		);
+
+		//Keepalive
+		$config = JFactory::getConfig();
+		$lifetime = ($config->get('lifetime') * 60000);
+		$refreshTime = ($lifetime <= 60000) ? 30000 : $lifetime - 60000;
+
+		// Refresh time is 1 minute less than the liftime assined in the configuration.php file.
+		// The longest refresh period is one hour to prevent integer overflow.
+		if ($refreshTime > 3600000 || $refreshTime <= 0){
+			$refreshTime = 3600000;
+		}
 
 		$backurl = JFactory::getURI();
 		$backurl->delVar('t3action');
