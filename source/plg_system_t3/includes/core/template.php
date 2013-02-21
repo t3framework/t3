@@ -477,8 +477,9 @@ class T3Template extends ObjectExtendable
 		}
 		define('JQUERY_INCLUED', 1);
 
+
 		// As joomla 3.0 bootstrap is buggy, we will not use it
-		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');	
+		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
 		$this->addScript (T3_URL.'/js/touch.js');
 		$this->addScript (T3_URL.'/js/script.js');
 
@@ -500,6 +501,39 @@ class T3Template extends ObjectExtendable
 	* Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
 	*/
 	function updateHead () {
+
+		// As Joomla 3.0 bootstrap is buggy, we will not use it
+		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded 
+		$t3bootstrap = false;
+		$jabootstrap = false;
+		if(version_compare(JVERSION, '3.0', 'ge')){
+			$doc = JFactory::getDocument();
+			$scripts = array();
+			foreach ($doc->_scripts as $url => $script) {
+				if(strpos($url, T3_URL.'/bootstrap/js/bootstrap.js') !== false){
+					$t3bootstrap = true;
+					if($jabootstrap){ //we already have the Joomla bootstrap and we also replace to T3 bootstrap
+						continue;
+					}
+				}
+
+				if(preg_match('@media/jui/js/bootstrap(.min)?.js@', $url)){
+					if($t3bootstrap){ //we have T3 bootstrap, no need to add Joomla bootstrap
+						continue;
+					} else {
+						$scripts[T3_URL.'/bootstrap/js/bootstrap.js'] = $script;
+					}
+
+					$jabootstrap = true;
+				} else {
+					$scripts[$url] = $script;
+				}
+			}
+
+			$doc->_scripts = $scripts;
+		}
+		// end update javascript
+
 		$devmode = $this->getParam('devmode', 0);
 		$themermode = $this->getParam('themermode', 1) && defined ('T3_THEMER');
 		$theme = $this->getParam('theme', '');

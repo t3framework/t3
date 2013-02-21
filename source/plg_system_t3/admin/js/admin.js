@@ -22,32 +22,42 @@ var T3Admin = window.T3Admin || {};
 			$('#t3-admin-tb-recompile').on('click', function(){
 				var jrecompile = $(this);
 				jrecompile.addClass('loading');
-				$.get(T3Admin.adminurl, {'t3action': 'lesscall', 'styleid': T3Admin.templateid }, function(rsp){
-					jrecompile.removeClass('loading');
 
-					rsp = $.trim(rsp);
-					if(rsp){
-						var json = rsp;
-						if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
-							json = rsp.match(/{.*?}/);
-							if(json && json[0]){
-								json = json[0];
-							}
-						}
+				$.ajax({
+					url: T3Admin.adminurl,
+					data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid },
+					success: function(rsp){
+						jrecompile.removeClass('loading');
 
-						if(json && typeof json == 'string'){
-							try {
-								json = $.parseJSON(json);
-							} catch (e){
-								json = {
-									error: T3Admin.langs.unknownError
+						rsp = $.trim(rsp);
+						if(rsp){
+							var json = rsp;
+							if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
+								json = rsp.match(/{.*?}/);
+								if(json && json[0]){
+									json = json[0];
 								}
 							}
 
-							if(json && (json.error || json.successful)){
-								T3Admin.systemMessage(json.error || json.successful);
+							if(json && typeof json == 'string'){
+								try {
+									json = $.parseJSON(json);
+								} catch (e){
+									json = {
+										error: T3Admin.langs.unknownError
+									}
+								}
+
+								if(json && (json.error || json.successful)){
+									T3Admin.systemMessage(json.error || json.successful);
+								}
 							}
 						}
+					},
+
+					error: function(){
+						jrecompile.removeClass('loading');
+						T3Admin.systemMessage(T3Admin.langs.unknownError);
 					}
 				});
 				return false;
