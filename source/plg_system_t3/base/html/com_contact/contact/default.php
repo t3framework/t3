@@ -50,10 +50,10 @@ jimport('joomla.html.html.bootstrap');
 	<?php endif; ?>
 	
 	<?php if ($this->params->get('presentation_style') == 'sliders') : ?>
-		<div class="accordion" id="accordionContact">
+		<div class="accordion" id="slide-contact">
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#basic-details">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#basic-details">
 					<?php echo JText::_('COM_CONTACT_DETAILS');?>
 					</a>
 				</div>
@@ -110,7 +110,7 @@ jimport('joomla.html.html.bootstrap');
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-form">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#display-form">
 					<?php echo JText::_('COM_CONTACT_EMAIL_FORM');?>
 					</a>
 				</div>
@@ -142,7 +142,7 @@ jimport('joomla.html.html.bootstrap');
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-articles">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#display-articles">
 					<?php echo JText::_('JGLOBAL_ARTICLES');?>
 					</a>
 				</div>
@@ -169,7 +169,7 @@ jimport('joomla.html.html.bootstrap');
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-profile">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#display-profile">
 					<?php echo JText::_('COM_CONTACT_PROFILE');?>
 					</a>
 				</div>
@@ -196,7 +196,7 @@ jimport('joomla.html.html.bootstrap');
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-misc">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#display-misc">
 					<?php echo JText::_('COM_CONTACT_OTHER_INFORMATION');?>
 					</a>
 				</div>
@@ -233,6 +233,11 @@ jimport('joomla.html.html.bootstrap');
 		<?php endif; ?>
 	<?php endif; ?>
 	<?php if ($this->params->get('presentation_style')=='sliders'):?>
+			<script type="text/javascript">
+				(function($){
+					$('#slide-contact').collapse({ parent: false, toggle: true, active: 'basic-details'});
+				})(jQuery);
+			</script>
 		</div>
 	<?php endif; ?>
 	<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
