@@ -480,7 +480,6 @@ class T3Template extends ObjectExtendable
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
 		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
-		$this->addScript (T3_URL.'/js/touch.js');
 		$this->addScript (T3_URL.'/js/script.js');
 
 		//menu control script
