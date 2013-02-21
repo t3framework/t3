@@ -218,6 +218,9 @@ var T3Theme = window.T3Theme || {};
 			setTimeout(function(){
 
 				var wnd = (window.frames['t3-admin-tm-ifr-preview'] || document.getElementById('t3-admin-tm-ifr-preview').contentWindow);
+				if(wnd && wnd.tagName.toLowerCase() == 'iframe'){ //firefox 19
+					wnd = wnd.contentWindow;
+				}
 				if(wnd.location.href.indexOf('themer=') == -1){
 					var urlparts = wnd.location.href.split('#');
 					urlparts[0] += urlparts[0].indexOf('?') == -1 ? '?themer=1' : '&themer=1';

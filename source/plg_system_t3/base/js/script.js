@@ -19,7 +19,7 @@
 		}
 
 		$(document.body).on('click', '[data-toggle="dropdown"]' ,function(){
-			if(!$(this).parent().hasClass('open') && this.href && this.href != '#'){
+			if($(this).parent().hasClass('open') && this.href && this.href != '#'){
 				window.location.href = this.href;
 			}
 		});
