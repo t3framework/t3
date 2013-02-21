@@ -55,7 +55,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<ul class="category list-striped list-condensed">
 
 			<?php foreach ($this->items as $i => $item) : ?>
-				<?php if (in_array($item->access, $this->user->getAuthorisedViewLevels())) : ?>
+				<?php if (in_array($item->access, $user->getAuthorisedViewLevels())) : ?>
 					<?php if ($this->items[$i]->state == 0) : ?>
 						<li class="system-unpublished cat-list-row<?php echo $i % 2; ?>">
 					<?php else: ?>
@@ -63,7 +63,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<?php endif; ?>
 					<?php if ($this->params->get('show_link_hits', 1)) : ?>
 						<span class="list-hits badge badge-info pull-right">
-							<?php echo JText::sprintf('JGLOBAL_HITS_COUNT', $item->hits); ?>
+							<?php echo JText::_('JGLOBAL_HITS'), ': ', $item->hits; ?>
 						</span>
 					<?php endif; ?>
 
