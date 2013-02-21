@@ -12,9 +12,8 @@
 	<![CDATA[
 	<div align="center">
 		<div class="alert alert-success" style="background-color:#DFF0D8;border-color:#D6E9C6;color: #468847;padding: 1px 0;">
-               <h2>Thanks for using T3 Framework.</h2>
-				<a href="http://t3-framework.org/"><img src="http://joomlart.s3.amazonaws.com/images/jat3v3-documents/message-installation/logo.png" alt="some_text" width="400" height="132"></a>
-				<h3><a href="http://t3-framework.org/" title="">Home</a> | <a href="http://demo.t3-framework.org/j25/" title="">Demo J25</a> | <a href="http://demo.t3-framework.org/j30/" title="">Demo J30</a> | <a href="http://t3-framework.org/documentation" title="">Document</a> | <a href="https://github.com/t3framework/t3/wiki/Changelog" title="">Changelog</a></h3>
+				<a href="http://t3-framework.org/"><img src="http://joomlart.s3.amazonaws.com/images/jat3v3-documents/message-installation/logo.png" alt="some_text" width="300" height="99"></a>
+				<h4><a href="http://t3-framework.org/" title="">Home</a> | <a href="http://demo.t3-framework.org/" title="">Demo</a> | <a href="http://t3-framework.org/documentation" title="">Document</a> | <a href="https://github.com/t3framework/t3/blob/master/CHANGELOG.md" title="">Changelog</a></h4>
 		<p> </p>
 		<p>Copyright 2004 - 2013 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
 		</div>
