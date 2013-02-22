@@ -34,26 +34,47 @@
 						
 						$(document.body).addClass('hoverable');
 
-						var val = !$(this).data('noclick');
+						var jitem = $(this),
+							val = !jitem.data('noclick');
+
+						if(val){
+							var jchild = jitem.children('.dropdown-menu'),
+								hasopen = jitem.hasClass('open'),
+								style = jchild.prop('style'),
+								display = style ? style['display'] : '';
+
+							if(jchild.css('display', 'none').css('display') == 'none'){ //normal or hide when collapse
+								jchild.css('display', display);
+
+								if(!hasopen){
+									//at initial state, test if it is display: none !important, 
+									//if true, we will open this link (val = 0)
+									jitem.addClass('open');
+									val = jitem.children('.dropdown-menu').css('display') != 'none';
+									jitem.removeClass('open');
+								}
+
+							} else { //always show
+								val = 0;
+							}
+
+							jchild.css('display', display);
+						}
+
 						// reset all
 						jitems.data('noclick', 0);
-						$(this).data('noclick', val);
+						jitem.data('noclick', val);
 
-						var that =  this;
-						
 						if(val){
-							$(this)
+							$(this) //reset, sometime the mouseenter does not refire, so we reset to enable click
 								.data('rsid', setTimeout($.proxy(reset, this), 500))
-								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');
-							
+								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');							
 						}
 
 						this.focus();
 					},
 					onClick = function(e){
 						e.stopPropagation();
-
-						clearTimeout($(this).data('rsid'));
 
 						if($(this).data('noclick')){
 							e.preventDefault();
