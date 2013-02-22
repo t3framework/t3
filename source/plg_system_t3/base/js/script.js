@@ -30,7 +30,6 @@
 						$(this).data('noclick', 0);
 					},
 					onTouch = function(e){
-						e.stopPropagation();
 						
 						$(document.body).addClass('hoverable');
 
@@ -46,12 +45,15 @@
 							if(jchild.css('display', 'none').css('display') == 'none'){ //normal or hide when collapse
 								jchild.css('display', display);
 
-								if(!hasopen){
-									//at initial state, test if it is display: none !important, 
-									//if true, we will open this link (val = 0)
-									jitem.addClass('open');
+								//at initial state, test if it is display: none !important, 
+								//if true, we will open this link (val = 0)
+								if(!hasopen){	
+									//add open class, 
+									//iphone seem have buggy when we modify display property
+									//it does not trigger hover CSS
+									jitem.addClass('open'); 
+
 									val = jitem.children('.dropdown-menu').css('display') != 'none';
-									jitem.removeClass('open');
 								}
 
 							} else { //always show
@@ -70,8 +72,6 @@
 								.data('rsid', setTimeout($.proxy(reset, this), 500))
 								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');							
 						}
-
-						this.focus();
 					},
 					onClick = function(e){
 						e.stopPropagation();
@@ -79,6 +79,7 @@
 						if($(this).data('noclick')){
 							e.preventDefault();
 							jitems.removeClass('open');
+
 							$(this).addClass('open').parentsUntil('.nav').filter(itemsel).addClass('open');
 						} else {
 							var href = $(this).children('a').attr('href');
@@ -89,7 +90,7 @@
 					};
 				
 				jitems.on('mouseenter', onTouch).data('noclick', 0);
-				$(this).on('click', 'li', onClick);
+				$(this).find('li').on('click', onClick);
 
 				jallitems = jallitems.add(jitems);
 			});
