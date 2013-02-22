@@ -1,4 +1,4 @@
-<h2>Version: 1.1.0(22/02/2013)- Firs stable version</h2>
+<h2>Version: 1.1.0 (22/02/2013) - Firs stable version</h2>
 
 <h3>New Features</h3>
 - Upgrade Bootstrap 2.3.0 | <a href="https://github.com/t3framework/t3/commit/3a6807b02ed37a2c3f188964f75a9fc5e50898d4">Link</a>
