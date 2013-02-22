@@ -1,3 +1,35 @@
+<h2>Version: 1.1.0 (22/02/2013) - Firs stable version</h2>
+
+<h3>New Features</h3>
+- Upgrade Bootstrap 2.3.0 | <a href="https://github.com/t3framework/t3/commit/3a6807b02ed37a2c3f188964f75a9fc5e50898d4">Link</a>
+- Megamenu: Add toggle "hide when collapse" for column & submenu | <a href="https://github.com/t3framework/t3/commit/4b6855caada508db7a9ea0ca2c03d8ef5be3f20b">Link</a>
+- Megamenu: Add option Always show submenu when collapse | <a href="https://github.com/t3framework/t3/commit/83bcb987f34951d0666939677091d3f2c14b1a0f">Link</a>
+
+<h3>Improvement</h3>
+- Restructure code | <a href="https://github.com/t3framework/t3/commit/f573ccc1d6bfe4c8c75e090dd035d14c6538651c">Link</a>
+- Megamenu Admin: using Icon for action button | <a href="https://github.com/t3framework/t3/commit/82ecb18b73aa284f81624e659f67bc3e64227e36">Link</a>
+- Add "t3.less" and "t3-responsive.less" for various T3 stylings | <a href="https://github.com/t3framework/t3/commit/c2ca91e04f48365cea60fdcd6fe93393ac829e7e">Link</a>
+- Overwrite: Update default overwrite html for Joomla components and modules | <a href="https://github.com/t3framework/t3/commit/603556735146e4f1b9024954cbdf831702ed3d11">Link</a>
+- Update link to T3 homepage in package header | <a href="https://github.com/t3framework/t3/commit/93722feafa89ef40b7cfc443e8663daff50b371b">Link</a>
+- Use T3 Bootstrap JS library instead of Joomla Bootstrap | <a href="https://github.com/t3framework/t3/commit/cdf34df89d3f569657322543d7c0f29d3f2d3dbe">Link</a>
+
+<h3>Bug Fix</h3>
+- Image Icons not displayed properly in Megamenu configuration | <a href="https://github.com/t3framework/t3/commit/04475d5b642268bd5a808ae7fe1ea4bb69afe9fe">Link</a>
+- Megamenu configuration in admin is lost when switching template style for Home (default) page | <a href="https://github.com/t3framework/t3/commit/4c41282e523c554d09d965f41c894d185d604027">Link</a>
+- Megamenu: Error when change order of menu  | <a href="https://github.com/t3framework/t3/commit/f0da9bea81a2f0613a419327bf73e2529fdfb4bd">Link</a>
+- Megamenu-responsive.less variable @baseLineHeight is undefined | <a href="https://github.com/t3framework/t3/commit/9a6546ea16535f74e3512e431b18f1f9a261c0af">Link</a>
+- Fix searchbutton bootstrap layout | <a href="https://github.com/t3framework/t3/commit/fe05f399ecf40bb55649e8648f03cadfc1b01358">Link</a>
+- Minify: Fix IE limit 4096 css selectors | <a href="https://github.com/t3framework/t3/commit/5460efb6701ee36c4ded7cffd6d4e0b4b9d50186">Link</a>
+- ThemeMagic: Fix Minimize button behavior | <a href="https://github.com/t3framework/t3/commit/9c7101ec845bc05edf3359716535ce0ccf583cf7">Link</a>
+- ThemeMagic: Fix change jadepend => t3depend | <a href="https://github.com/t3framework/t3/commit/ad7278191818a2faff94a9fe34d70815138152c8">Link</a>
+- Responsive: Fix show/hide block | <a href="https://github.com/t3framework/t3/commit/457b705abef7b8893c88685709cb6be6623b0971">Link</a>
+- Fix mis-alignment for "Toolbar Icon" in Admin UI | <a href="https://github.com/t3framework/t3/commit/164d9be9873eff166ddbf7a29ed1c18cbd0a9140">Link</a>
+- Less: Fix Thememagic can not load menu icons | <a href="https://github.com/t3framework/t3/commit/f13edcbd402a4e26b5f330105f7dad7c23ab2ba5">Link</a>
+- AJAX: Fix t3action | <a href="https://github.com/t3framework/t3/commit/3047f53418653c03c5de5c0d151b575840ef8c87">Link</a>
+- Less: Improve UX, add error handler to handle LESS build error | <a href="https://github.com/t3framework/t3/commit/cdf34df89d3f569657322543d7c0f29d3f2d3dbe">Link</a>
+- Menu: Fix touch menu behavior | <a href="https://github.com/t3framework/t3/commit/029dd912faae0410c841cb2edacadca1fa3b26b5">Link</a>
+- Thememagic does not work in Firefox version 19.x | <a href="https://github.com/t3framework/t3/issues/40">Link</a>
+
 <h2>Version: 1.1.0 RC2 (05/02/2013)</h2>
 
 <h3>New Features</h3>
