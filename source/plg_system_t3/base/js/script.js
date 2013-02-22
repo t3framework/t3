@@ -16,6 +16,14 @@
 	
 	if(isTouch){
 		$.fn.touchmenu = function(){
+			
+			var jallitems = $();
+			$(document).on('click', function(){
+				jallitems.data('noclick', 0);
+				$(document.body).removeClass('hoverable');
+				alert(jallitems.length);
+			});
+
 			return this.each(function(){	
 				var	itemsel = $(this).has('.mega').length ? 'li.mega' : 'li.parent',
 					jitems = $(this).find(itemsel),
@@ -23,10 +31,10 @@
 						$(this).data('noclick', 0);
 					},
 					onTouch = function(e){
-						$(document.body).addClass('hoverable');
-
 						e.stopPropagation();
 						
+						$(document.body).addClass('hoverable');
+
 						var val = !$(this).data('noclick');
 						// reset all
 						jitems.data('noclick', 0);
@@ -59,16 +67,11 @@
 						}
 					};
 				
-				jitems.on('touchstart', onTouch).data('noclick', 0);
-				
-				$(this).on('touchstart', 'li', function(e){
-					e.stopPropagation();
-				}).on('click', 'li', onClick);
+				jitems.data('noclick', 0)
+					.on('mouseenter', onTouch)
+					.on('click', onClick);
 
-				$(document).on('touchstart', function(){
-					jitems.data('noclick', 0);
-					$(document.body).removeClass('hoverable');
-				});
+				jallitems = jallitems.add(jitems);
 			});
 		};
 	}
