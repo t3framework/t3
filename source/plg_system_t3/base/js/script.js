@@ -19,7 +19,7 @@
 			
 			var jallitems = $();
 			$(document).on('click', function(){
-				jallitems.data('noclick', 0);
+				jallitems.data('noclick', 0).removeClass('open');
 				$(document.body).removeClass('hoverable');
 			});
 
@@ -30,6 +30,7 @@
 						$(this).data('noclick', 0);
 					},
 					onTouch = function(e){
+						e.stopPropagation();
 						
 						$(document.body).addClass('hoverable');
 
@@ -51,9 +52,10 @@
 									//add open class, 
 									//iphone seem have buggy when we modify display property
 									//it does not trigger hover CSS
-									jitem.addClass('open'); 
+									jitems.removeClass('open');
+									jitem.addClass('open').parentsUntil('.nav').filter(itemsel).addClass('open');
 
-									val = jitem.children('.dropdown-menu').css('display') != 'none';
+									val = jchild.css('display') != 'none';
 								}
 
 							} else { //always show
@@ -79,7 +81,6 @@
 						if($(this).data('noclick')){
 							e.preventDefault();
 							jitems.removeClass('open');
-
 							$(this).addClass('open').parentsUntil('.nav').filter(itemsel).addClass('open');
 						} else {
 							var href = $(this).children('a').attr('href');
