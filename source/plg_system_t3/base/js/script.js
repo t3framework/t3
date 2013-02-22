@@ -21,7 +21,6 @@
 			$(document).on('click', function(){
 				jallitems.data('noclick', 0);
 				$(document.body).removeClass('hoverable');
-				alert(jallitems.length);
 			});
 
 			return this.each(function(){	
