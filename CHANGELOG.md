@@ -1,4 +1,4 @@
-<h2>Version: 1.1.0 (22/02/2013) - Firs stable version</h2>
+<h2>Version: 1.1.0 (22/02/2013) - First stable version</h2>
 
 <h3>New Features</h3>
 - Upgrade Bootstrap 2.3.0 | <a href="https://github.com/t3framework/t3/commit/3a6807b02ed37a2c3f188964f75a9fc5e50898d4">Link</a>
@@ -12,6 +12,7 @@
 - Overwrite: Update default overwrite html for Joomla components and modules | <a href="https://github.com/t3framework/t3/commit/603556735146e4f1b9024954cbdf831702ed3d11">Link</a>
 - Update link to T3 homepage in package header | <a href="https://github.com/t3framework/t3/commit/93722feafa89ef40b7cfc443e8663daff50b371b">Link</a>
 - Use T3 Bootstrap JS library instead of Joomla Bootstrap | <a href="https://github.com/t3framework/t3/commit/cdf34df89d3f569657322543d7c0f29d3f2d3dbe">Link</a>
+- Update Navigation Styles - Add "active state" to "open state" for better styling | <a href="https://github.com/t3framework/t3/commit/d25267d67267a8d4040ac07f743c9c9858d095ee">Link</a>
 
 <h3>Bug Fix</h3>
 - Image Icons not displayed properly in Megamenu configuration | <a href="https://github.com/t3framework/t3/commit/04475d5b642268bd5a808ae7fe1ea4bb69afe9fe">Link</a>
