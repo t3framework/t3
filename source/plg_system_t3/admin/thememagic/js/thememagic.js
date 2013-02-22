@@ -218,7 +218,7 @@ var T3Theme = window.T3Theme || {};
 			setTimeout(function(){
 
 				var wnd = (window.frames['t3-admin-tm-ifr-preview'] || document.getElementById('t3-admin-tm-ifr-preview').contentWindow);
-				if(wnd && wnd.tagName.toLowerCase() == 'iframe'){ //firefox 19
+				if(wnd && wnd.tagName && wnd.tagName.toLowerCase() == 'iframe'){ //firefox 19
 					wnd = wnd.contentWindow;
 				}
 				if(wnd.location.href.indexOf('themer=') == -1){
