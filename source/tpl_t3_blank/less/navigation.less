@@ -175,11 +175,19 @@
 
   // Open State
   // ----------
-  .nav li.dropdown.open > .dropdown-toggle,
-  .nav li.dropdown.active > .dropdown-toggle,
-  .nav li.dropdown.open.active > .dropdown-toggle {
+  .nav li.dropdown.open > .dropdown-toggle {
+    background-color: @dropdownLinkBackgroundHover;
+    color: @dropdownLinkColorActive;
   }
 
+  // Active Open
+  .nav li.dropdown.active > .dropdown-toggle,
+  .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: @dropdownLinkBackgroundActive;
+    color: @dropdownLinkColorActive;
+  }
+
+  // The Caret
   .nav li.dropdown > .dropdown-toggle .caret {
   }
 
