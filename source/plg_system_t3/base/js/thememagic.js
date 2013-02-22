@@ -37,6 +37,9 @@
 					iter.action = iter.action + (iter.action.lastIndexOf('?') != -1 ? '&' : '?') + (iter.action.lastIndexOf('themer=') == -1 ? 'themer=Y' : ''); 
 				}
 			}
+
+			//10 seconds, if the Less build not complete, we just show the page instead of blank page
+			T3Theme.sid = setTimeout(T3Theme.bodyReady, 10000);
 		},
 		applyLess: function(data){
 			if(data && typeof data == 'object'){
@@ -59,6 +62,8 @@
 		},
 
 		bodyReady: function(){
+			clearTimeout(T3Theme.sid);
+
 			if(!this.ready){
 				$(document).ready(function(){
 					T3Theme.ready = 1;
