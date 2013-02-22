@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 if ($this->params->get('presentation_style')=='sliders'):?>
 <div class="accordion-group">
 	<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-links">
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#display-links">
 		<?php echo JText::_('COM_CONTACT_LINKS');?>
 		</a>
 	</div>
