@@ -45,6 +45,7 @@
 							$(this)
 								.data('rsid', setTimeout($.proxy(reset, this), 500))
 								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');
+							
 						}
 
 						this.focus();
@@ -66,9 +67,8 @@
 						}
 					};
 				
-				jitems.data('noclick', 0)
-					.on('mouseenter', onTouch)
-					.on('click', onClick);
+				jitems.on('mouseenter', onTouch).data('noclick', 0);
+				$(this).on('click', 'li', onClick);
 
 				jallitems = jallitems.add(jitems);
 			});
