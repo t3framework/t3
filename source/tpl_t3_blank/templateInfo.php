@@ -25,18 +25,18 @@ defined('_JEXEC') or die;
 <div class="span8">
   <div class="t3-admin-overview-header">
   	<h2>
-      T3 Blank
-      <small style="display: block;">Your solid Starting Point</small>
+      <?php echo JText::_('T3_BLANK_DESC_1') ?>
+      <small style="display: block;"><?php echo JText::_('T3_BLANK_DESC_2') ?></small>
     </h2>
-    <p>T3 Blank is a blank theme for T3 Framework. With the latest improvements, features and ease of usage, you can now easily adapt it to your site. T3 is way ahead of its predecessors versions viz T3v1 and T3v2. Its more powerful, elegant, user friendly, feature rich and developed to support the latest Joomla 3.0 improvements, don't worry T3 is also available for Joomla 2.5 too.</p>
+    <p><?php echo JText::_('T3_BLANK_DESC_3') ?></p>
   </div>
   <div class="t3-admin-overview-body">
-    <h4>Resources:</h4>
+    <h4><?php echo JText::_('T3_BLANK_DESC_4') ?></h4>
     <ul class="t3-admin-overview-features">
-      <li><a href=\"http://www.joomlart.com/forums/downloads.php?do=cat&id=460\" title="">Download Link</a></li>
-      <li><a href=\"http://t3-framework.org/documentation.html\" title="">Documentation Link</a></li>
-      <li><a href=\"http://pm.joomlart.com/browse/JATCBLANK3\" title="">Changelog Link</a></li>
-      <li><a href=\"http://www.joomlart.com/forums/forumdisplay.php?411-JA-T3V3-Framework\" title="">Forum Link</a></li>
+      <li><?php echo JText::_('T3_BLANK_DESC_5') ?></li>
+      <li><?php echo JText::_('T3_BLANK_DESC_6') ?></li>
+      <li><?php echo JText::_('T3_BLANK_DESC_7') ?></li>
+      <li><?php echo JText::_('T3_BLANK_DESC_8') ?></li>
     </ul>
   </div>
 </div>

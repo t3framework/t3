@@ -139,10 +139,13 @@ var T3Admin = window.T3Admin || {};
 
 		initT3Title: function(){
 			var jptitle = $('.pagetitle');
-			if (!jptitle.length) jptitle = $('.page-title');
+			if (!jptitle.length){
+				jptitle = $('.page-title');
+			}
+
 			var titles = jptitle.html().split(':');
 
-			jptitle.html(titles[0] + '<small>' + titles[1] + '</small>');
+			jptitle.removeClass('icon-48-thememanager').html(titles[0] + '<small>' + titles[1] + '</small>');
 
 			//remove joomla title
 			$('#template-manager .tpl-desc-name').remove();
