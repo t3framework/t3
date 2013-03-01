@@ -62,6 +62,7 @@ class T3Minify
 	}
 
 	public static function fromUrlToPath($url){
+		$url = preg_replace('#[?\#]+.*$#', '', $url); //clean
 		$root = JURI::root(true);
 		$path = '';
 
