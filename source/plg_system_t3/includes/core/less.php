@@ -251,7 +251,7 @@ class T3Less extends lessc
 		$doc = JFactory::getDocument();
 		if (defined ('T3_THEMER')) {
 			// in Themer mode, using js to parse less for faster
-			$doc->addHeadLink(JURI::base(true).'/'.T3Path::cleanPath($lesspath), 'stylesheet/less');
+			$doc->addStylesheet(JURI::base(true).'/'.T3Path::cleanPath($lesspath), 'text/less');
 			// Add lessjs to process lesscss
 			$doc->addScript (T3_URL.'/js/less-1.3.3.js');
 		} else {
