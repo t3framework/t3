@@ -174,7 +174,7 @@ class T3AdminTheme
 	{
 		$app = JFactory::getApplication();
 		$isadmin = $app->isAdmin();
-		$url = $isadmin ? JUri::root(true).'/' : JUri::current();
+		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
 		$url .= (preg_match('/\?/', $url) ? '&' : '?').'themer=1';
 		// show thememagic form
 
