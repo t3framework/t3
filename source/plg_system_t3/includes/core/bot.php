@@ -87,7 +87,33 @@ class T3Bot extends JObject
 						if (isset ($setting['sub'])) {
 							$sub = &$setting['sub'];
 							$id = (int) substr($item, 5); // remove item-
-							if (!isset($children[$id]) || !count ($children[$id])) continue;
+							$modify = false;
+
+							if (!isset($children[$id]) || !count ($children[$id])){
+								//check and remove any empty row
+								for ($j=0; $j < count($sub['rows']); $j++) {
+									$remove = true;
+									for ($k=0; $k < count($sub['rows'][$j]); $k++) {
+										if (isset($sub['rows'][$j][$k]['position'])) {
+											$remove = false;
+											break;
+										}
+									}
+
+									if($remove){
+										$modify = true;
+										unset($sub['rows'][$j]);
+									}
+								}
+
+								if($modify){
+									$sub['rows'] = array_values($sub['rows']); //re-index
+									$mmconfig[$item]['sub'] = $sub;
+								}
+
+								continue;
+							}
+
 							$items = array();
 							foreach ($sub['rows'] as $row) {
 								foreach ($row as $col) {
@@ -98,24 +124,30 @@ class T3Bot extends JObject
 							}
 							// update the order of items
 							$_items = array();
+							$_itemsids = array();
 							$firstitem = 0;
 							foreach ($children[$id] as $child) {
+								$_itemsids[] = (int)$child->id;
+
 								if (!$firstitem) $firstitem = (int)$child->id;
 								if (in_array($child->id, $items)) {
 									$_items [] = (int)$child->id;
 								}
 							}
+
 							// $_items[0] = $firstitem;
-							if ($_items[0] != $firstitem) {
+							if (empty($_items) || $_items[0] != $firstitem) {
 								if (count ($_items) == count($items)) {
 									$_items[0] = $firstitem;
 								} else {
 									array_splice($_items, 0, 0, $firstitem);
 								}
 							}
+
 							// no need update config for this item
 							if ($items == $_items) continue;
 							// update back to setting
+
 							$i = 0;
 							$c = count ($_items);
 							for ($j=0; $j < count($sub['rows']); $j++) {
@@ -127,6 +159,33 @@ class T3Bot extends JObject
 									}
 								}
 							}
+
+							//update - add new rows for new items - at the first rows
+							if(!empty($_items) && count($items) == 0){
+								$modify = true;
+								array_unshift($sub['rows'], array(array('item' => $_items[0], 'width' => 12)));
+							}
+
+							//check and remove any empty row
+							for ($j=0; $j < count($sub['rows']); $j++) {
+								$remove = true;
+								for ($k=0; $k < count($sub['rows'][$j]); $k++) {
+									if (isset($sub['rows'][$j][$k]['position']) || in_array($sub['rows'][$j][$k]['item'], $_itemsids)) {
+										$remove = false;
+										break;
+									}
+								}
+
+								if($remove){
+									$modify = true;
+									unset($sub['rows'][$j]);
+								}
+							}
+
+							if($modify){
+								$sub['rows'] = array_values($sub['rows']); //re-index
+							}
+
 							$mmconfig[$item]['sub'] = $sub;
 						}
 					}
