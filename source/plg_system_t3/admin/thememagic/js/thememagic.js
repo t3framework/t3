@@ -299,10 +299,26 @@ var T3Theme = window.T3Theme || {};
 			
 			//reset form state when new data is filled
 			$(document.adminForm).find('.changed').removeClass('changed');
+			T3Theme.updateColor();
 
 			if(typeof T3Depend != 'undefined'){
 				T3Depend.update();
 			}
+		},
+
+		updateColor: function(){
+			$(document.adminForm).find('.t3tm-color').each(function(){
+				var hex = this.value;
+				if(hex == ''){
+					hex = $(this).attr('placeholder');
+				}
+
+				if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit'){
+					$(this).nextAll('.miniColors-triggerWrap').find('.miniColors-trigger').css('background-color', '#fff');
+				} else {
+					$(this).next().trigger('keyup.miniColors');
+				}
+			});
 		},
 		
 		valuesFrom: function(els){
@@ -856,10 +872,17 @@ var T3Theme = window.T3Theme || {};
 				if( e.keyCode === 9 ) {
 					this.value = $(this).next().val();
 				} else {
-					var color = T3Theme.colors[this.value.toLowerCase()];
+					var color = $.trim(this.value);
 					if(!color){
-						color = T3Theme.expandHex(this.value);	
+						color = $(this).attr('placeholder');
 					}
+
+					if(color.charAt(0) === '@' || color.toLowerCase() == 'inherit' || color.toLowerCase() == 'transparent'){
+						$(this).nextAll('.miniColors-triggerWrap').find('.miniColors-trigger').css('background-color', '#fff');
+						return;
+					}
+
+					color = T3Theme.colors[$.trim(this.value.toLowerCase())];
 					
 					if(color){
 						$(this).next().data('t3force', 1).val(color).trigger('keyup.miniColors');
