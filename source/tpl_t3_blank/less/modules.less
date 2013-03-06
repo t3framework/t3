@@ -18,7 +18,7 @@
 .t3-module {
   background: @T3moduleBackground;
   color: @T3moduleColor;
-  margin-bottom: @baseLineHeight * 2;
+  margin-bottom: @T3globalMargin * 2;
   // Module padding
   .module-inner {
     padding: @T3modulePadding;
@@ -31,7 +31,7 @@
   background: @T3moduleTitleBackground;
   color: @T3moduleTitleColor;
   line-height: 30px;
-  margin: 0 0 (@baseLineHeight / 2) 0;
+  margin: 0 0 (@T3globalMargin / 2) 0;
   padding: @T3moduleTitlePadding;
 }
 
@@ -67,7 +67,7 @@
 // Menu
 // ----
 .module_menu .nav {
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
 }
 
 .module_menu .nav > li {
@@ -112,7 +112,7 @@
 .bannerfooter {
   border-top: 1px solid @T3borderColor;
   font-size: @T3smallerFontSize;
-  padding-top: @baseLineHeight/2;
+  padding-top: @T3globalPadding / 2;
   text-align: right;
 }
 

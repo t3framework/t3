@@ -31,7 +31,7 @@
 }
 
 .items-leading .leading {
-  margin-bottom: @baseLineHeight*2;
+  margin-bottom: @T3globalMargin * 2;
 }
 
 // Article Rows
@@ -39,12 +39,12 @@
 }
 
 .items-row .item {
-  margin-bottom: @baseLineHeight * 2;
+  margin-bottom: @T3globalMargin * 2;
 }
 
 // Divider
 .divider-vertical {
-  margin: 0 0 (@baseLineHeight * 2);
+  margin: 0 0 (@T3globalMargin * 2);
   border: 0;
   border-top: 1px solid @hrBorder;
   border-bottom: 1px solid @white;
@@ -56,7 +56,7 @@
 .article-aside {
 	color: @grayLight;
 	font-size: @T3smallFontSize;
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
 }
 
 .article-info {
@@ -119,7 +119,7 @@
 .article-footer {
   color: @grayLight;
   font-size: @T3smallFontSize;
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
 }
 
 
@@ -128,13 +128,13 @@
 article img[align=left],
 .img_caption.left,
 .pull-left.item-image {
-  margin: 0 @gridGutterWidth @baseLineHeight 0;
+  margin: 0 @gridGutterWidth @T3globalMargin 0;
 }
 
 article img[align=right],
 .img_caption.right,
 .pull-right.item-image {
-  margin: 0 0 @baseLineHeight @gridGutterWidth;
+  margin: 0 0 @T3globalMargin @gridGutterWidth;
 }
 
 .img-intro-none,
@@ -154,7 +154,7 @@ article img[align=right],
 .img-fulltext-left,
 .img-fulltext-right,
 .img_caption {
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
   max-width: 100%;
 }
 
@@ -411,8 +411,8 @@ article aside .btn-group > .dropdown-toggle {
 .remind .form-validate p {
   background: @grayLighter;
   border: 1px solid @T3borderColor;
-  margin-bottom: @baseLineHeight;
-  padding: (@baseLineHeight / 2) @baseLineHeight;
+  margin-bottom: @T3globalMargin;
+  padding: (@T3globalPadding / 2) @T3globalPadding;
   .border-radius (@baseBorderRadius);
 }
 
@@ -447,17 +447,17 @@ article aside .btn-group > .dropdown-toggle {
 // Search Form
 // -----------
 #searchForm {
-  padding: (@baseLineHeight / 2) @baseLineHeight;
+  padding: (@T3globalPadding / 2) @T3globalPadding;
   border: 1px solid @T3borderColor;
   background: @grayLighter;
   .border-radius (@baseBorderRadius);
   .clearfix();
   fieldset {
-    margin: @baseLineHeight 0;
+    margin: @T3globalMargin 0;
   }
 
   legend {
-    margin-bottom: @baseLineHeight / 2;
+    margin-bottom: @T3globalMargin / 2;
   }
 
 }
@@ -479,12 +479,12 @@ article aside .btn-group > .dropdown-toggle {
 // Search Result
 // -------------
 .search-results {
-  margin-top: @baseLineHeight;
+  margin-top: @T3globalMargin;
 
   // Title
   .result-title {
     font-size: @T3biggerFontSize;
-    margin-top: @baseLineHeight;
+    margin-top: @T3globalMargin;
   }
 
   // Category
@@ -552,13 +552,13 @@ article aside .btn-group > .dropdown-toggle {
 // Sub Category List
 // -----------------
 .category-item {
-  margin-top: @baseLineHeight;
+  margin-top: @T3globalMargin;
   .clearfix();
   .page-header {
     line-height: normal;
-    padding-top: @baseLineHeight / 2;
-    padding-bottom: @baseLineHeight / 2;
-    margin-bottom: @baseLineHeight;
+    padding-top: @T3globalPadding / 2;
+    padding-bottom: @T3globalPadding / 2;
+    margin-bottom: @T3globalMargin;
   }
   // Sub Categories
   .category-item {
@@ -571,12 +571,12 @@ article aside .btn-group > .dropdown-toggle {
 // ---------------------------------------------------------
 .newsfeed > h2 {
   border-bottom: 1px solid @T3borderColor;
-  padding-bottom: @baseLineHeight;
-  margin-bottom: @baseLineHeight;
+  padding-bottom: @T3globalPadding;
+  margin-bottom: @T3globalMargin;
 }
 
 .feed-description {
-  margin-bottom: @baseLineHeight * 2;
+  margin-bottom: @T3globalMargin * 2;
 }
 
 
@@ -680,7 +680,7 @@ article aside .btn-group > .dropdown-toggle {
 
 .article-content .pagination ul li {
   float: left;
-  padding: (@baseLineHeight / 2) @baseLineHeight;
+  padding: (@T3globalPadding / 2) @T3globalPadding;
   line-height: normal;
   border: 1px solid @T3borderColor;
   border-left: 0;
@@ -703,7 +703,7 @@ article aside .btn-group > .dropdown-toggle {
 }
 
 .pagenavcounter {
-  margin: 0 0 @baseLineHeight;
+  margin: 0 0 @T3globalMargin;
   font-weight: bold;
 }
 
@@ -712,7 +712,7 @@ article aside .btn-group > .dropdown-toggle {
 // ---------------
 #article-index {
   float: right;
-  margin: 0 0 @baseLineHeight @baseLineHeight;
+  margin: 0 0 @T3globalMargin @T3globalMargin;
   padding: 10px;
   width: 30%;
   border: 1px solid @T3borderColor;
@@ -746,7 +746,7 @@ article aside .btn-group > .dropdown-toggle {
 }
 
 .pagenav li a {
-  padding: (@baseLineHeight / 2) @baseLineHeight;
+  padding: (@T3globalPadding / 2) @T3globalPadding;
   line-height: normal;
   border: 1px solid @T3borderColor;
   .border-radius (@baseBorderRadius);
@@ -762,7 +762,7 @@ article aside .btn-group > .dropdown-toggle {
 .counter {
   float: right;
   line-height: 1;
-  margin: (@baseLineHeight / 2) 0;
+  margin: (@T3globalMargin / 2) 0;
   text-align: right;
 }
 
@@ -793,11 +793,11 @@ article aside .btn-group > .dropdown-toggle {
 // Form Control
 // ------------
 .filters {
-  margin: (@baseLineHeight / 2) 0 5px;
+  margin: (@T3globalMargin / 2) 0 5px;
 }
 
 .display-limit {
-  margin: (@baseLineHeight / 2) 0 5px;
+  margin: (@T3globalMargin / 2) 0 5px;
 }
 
 .filters .filter-search,

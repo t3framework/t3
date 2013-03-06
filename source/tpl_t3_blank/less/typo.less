@@ -23,7 +23,7 @@
 // Paragraphs
 // ----------
 p {
-  margin: 0 0 @baseLineHeight / 2;
+  margin: 0 0 @T3globalMargin / 2;
   small, .small {
     font-size: @T3smallerFontSize;
     color: @grayLight;
@@ -31,7 +31,7 @@ p {
 }
 
 .lead {
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
   font-size: 20px;
   font-weight: 200;
   line-height: @baseLineHeight * 1.5;
@@ -73,7 +73,7 @@ cite {
 // ------------------------------------------------------
 
 h1, h2, h3, h4, h5, h6 {
-  margin: (@baseLineHeight / 2) 0;
+  margin: (@T3globalMargin / 2) 0;
   font-family: @headingsFontFamily;
   font-weight: @headingsFontWeight;
   line-height: 1;
@@ -140,8 +140,8 @@ h6 {
 // -----------
 .page-header {
   border-bottom: 1px solid @T3borderColor;
-  padding-bottom: @baseLineHeight;
-  margin: 0 0 (@baseLineHeight * 2);
+  padding-bottom: @T3globalPadding;
+  margin: 0 0 (@T3globalMargin * 2);
 }
 
 .page-title,
@@ -155,7 +155,7 @@ h6 {
 // --------------
 .page-subheader {
   border-bottom: 1px solid @T3borderColor;
-  margin: 0 0 @baseLineHeight;
+  margin: 0 0 @T3globalMargin;
   .clearfix();
 }
 
@@ -166,7 +166,7 @@ h6 {
 }
 
 .page-header + .page-subheader {
-  margin-top: -@baseLineHeight; //If there is page header, then omit the space before page subheader
+  margin-top: -@T3globalMargin; //If there is page header, then omit the space before page subheader
 }
 
 
@@ -177,7 +177,7 @@ h6 {
 
 .article-title,
 .article-header h1, {
-  margin: 0 0 @baseLineHeight/2 0;
+  margin: 0 0 @T3globalMargin/2 0;
   line-height: 1;
 }
 
@@ -202,7 +202,7 @@ h2.article-title,
 // ---------------------------
 ul, ol {
   padding: 0;
-  margin: 0 0 @baseLineHeight / 2 25px;
+  margin: 0 0 @T3globalMargin / 2 25px;
 }
 
 ul ul,
@@ -247,7 +247,7 @@ dt {
 }
 
 dd {
-  margin-left: @baseLineHeight / 2;
+  margin-left: @T3globalMargin / 2;
 }
 
 // Horizontal layout (like forms)
@@ -359,7 +359,7 @@ a {
 // Horizontal rules
 // ----------------
 hr {
-  margin: @baseLineHeight 0;
+  margin: @T3globalMargin 0;
   border: 0;
   border-top: 1px solid @hrBorder;
   border-bottom: 1px solid @white;
@@ -383,7 +383,7 @@ abbr.initialism {
 // -----------
 blockquote {
   padding: 0 0 0 15px;
-  margin: 0 0 @baseLineHeight;
+  margin: 0 0 @T3globalMargin;
   border-left: 5px solid @grayLighter;
   p {
     margin-bottom: 0;

@@ -22,35 +22,35 @@
 
 .jumbotron {
   position: relative;
-  padding: (@baseLineHeight * 2) 0;
+  padding: (@T3globalPadding * 2) 0;
 }
 
 .jumbotron h1 {
   font-size: @baseFontSize * 4;
   letter-spacing: -1px;
   line-height: 1;
-  margin: 0 0 (@baseLineHeight / 2) 0;
+  margin: 0 0 (@T3globalMargin / 2) 0;
 }
 
 .jumbotron p {
   font-size: @baseFontSize * 1.5;
   line-height: 1.275;
-  margin: 0 0 @baseLineHeight 0;
+  margin: 0 0 @T3globalMargin 0;
 }
 
 .jumbotron .btn {
-  margin-top: @baseLineHeight / 2;
+  margin-top: @T3globalMargin / 2;
 }
 
 .jumbotron .btn-large {
-  margin-top: @baseLineHeight;
+  margin-top: @T3globalMargin;
   font-size: @baseFontSize + 4px;
 }
 
 // Masthead
 // --------
 .masthead {
-  padding: (@baseLineHeight * 4) 0 (@baseLineHeight * 3);
+  padding: (@T3globalPadding * 4) 0 (@T3globalPadding * 3);
   text-align: center;
 }
 
@@ -85,7 +85,7 @@
 
 // Make wrapper ul behave like the grid
 .thumbnails {
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
   margin-left: -@gridGutterWidth;
   list-style: none;
   .clearfix();
@@ -100,7 +100,7 @@
 .thumbnails > li {
   float: left; // Explicity set the float since we don't require .span* classes
   position: relative;
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @T3globalMargin;
   margin-left: @gridGutterWidth;
 }
 

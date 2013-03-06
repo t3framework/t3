@@ -21,7 +21,7 @@
 
 // Make all forms have space below them
 form {
-  margin: 0 0 @baseLineHeight;
+  margin: 0 0 @T3globalMargin;
 }
 
 fieldset {
@@ -195,9 +195,9 @@ input[type="checkbox"]:focus {
 // FORM ACTIONS
 // ------------
 .form-actions {
-  padding: (@baseLineHeight - 1) 20px @baseLineHeight;
-  margin-top: @baseLineHeight;
-  margin-bottom: @baseLineHeight;
+  padding: (@T3globalPadding - 1) 20px @T3globalPadding;
+  margin-top: @T3globalMargin;
+  margin-bottom: @T3globalMargin;
   background-color: @formActionsBackground;
   border-top: 1px solid @T3borderColor;
 }
@@ -211,7 +211,7 @@ input[type="checkbox"]:focus {
 }
 
 .help-block {
-  margin-bottom: @baseLineHeight / 2;
+  margin-bottom: @T3globalMargin / 2;
 }
 
 
@@ -269,12 +269,12 @@ input[type="checkbox"]:focus {
 }
 
 .control-group {
-  margin-bottom: @baseLineHeight / 2;
+  margin-bottom: @T3globalMargin / 2;
 }
 
 // Legend collapses margin, so next element is responsible for spacing
 legend + .control-group {
-  margin-top: @baseLineHeight;
+  margin-top: @T3globalMargin;
 }
 
 
@@ -283,7 +283,7 @@ legend + .control-group {
 .form-horizontal {
 
   .control-group {
-    margin-bottom: @baseLineHeight;
+    margin-bottom: @T3globalMargin;
   }
 
   .control-label {
@@ -297,7 +297,7 @@ legend + .control-group {
   }
 
   .help-block {
-    margin-top: @baseLineHeight / 2;
+    margin-top: @T3globalMargin / 2;
     margin-bottom: 0;
   }
 
