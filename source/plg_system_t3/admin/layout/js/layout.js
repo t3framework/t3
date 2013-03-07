@@ -1207,7 +1207,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						.addClass('t3-admin-layout-posname')
 						.attr('title', T3Admin.langs.layoutPosName)
 						.each(function(){
-							var jparent = $(this).parentsUntil('.row').last(),
+							var jparent = $(this).parentsUntil('.row-fluid, .row').last(),
 								span = parseInt(jparent.prop('className').replace(/(.*?)span(\d+)(.*)/, "$2"));
 
 							if(isNaN(span)){
