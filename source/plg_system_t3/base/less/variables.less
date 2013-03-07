@@ -7,24 +7,15 @@
  * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         https://github.com/t3framework/ 
  *------------------------------------------------------------------------------
- */
+*/
 
-// VARIABLES & MIXINS
-// ------------------
+//
+// USE TO DEFINE THOSE NEWS VARIABLE WHICH WILL BE USED IN T3 CORE
+// ---------------------------------------------------------
 
-// Prevent Bootstrap Upgrading errors
-@import "../../../plugins/system/t3/base/bootstrap/less/variables.less";
 
-// Prevent T3 Upgrading errors
-@import "../../../plugins/system/t3/base/less/variables.less";
-
-// Template variables
-@import "variables.less"; // Modify this for custom colors, font-sizes, etc
-
-// Bootstrap mixins
-@import "../../../plugins/system/t3/base/bootstrap/less/mixins.less";
-
-// T3 mixins
-@import "../../../plugins/system/t3/base/less/mixins.less";
+// Global Margin/Padding
+@T3globalMargin:            @baseLineHeight;
+@T3globalPadding:           @baseLineHeight;
