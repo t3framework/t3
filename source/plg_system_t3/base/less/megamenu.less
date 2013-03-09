@@ -20,7 +20,8 @@
 // Bootstrap mixins
 @import "../bootstrap/less/mixins.less";
 
-
+// Bootstrap mixins
+@import "variables.less";
 
 // BASIC STYLE FOR MEGAMENU
 // -------------------------
@@ -185,44 +186,6 @@
     margin: 0;
     padding: 0;
   }
-
-  // Reset List Style in Module
-  .t3-module ul,
-  .t3-module .nav,
-  .dropdown-menu .nav {
-    margin: 0 0 0 15px;
-  }
-
-  .t3-module ul li,
-  .t3-module .nav li,
-  .dropdown-menu .nav li {
-    list-style: disc;
-    display: list-item;
-    float: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
-  .t3-module ul li a,
-  .t3-module .nav li a,
-  .dropdown-menu .t3-module li a {
-    display: inline;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    font-size: 100%;
-    background: none;
-    font: inherit;
-    white-space: normal;
-
-    &:hover, &:active, &:focus, &:visited {
-      background: none;
-      color: inherit;
-      font: inherit;
-    }
-  }
-
 
   // Menu alignment
   // --------------
