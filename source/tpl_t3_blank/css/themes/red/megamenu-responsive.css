@@ -1,0 +1,18 @@
+@media (max-width: 767px) {
+  .t3-megamenu .mega-inner {
+    padding: 10px 20px;
+  }
+  .t3-megamenu .row-fluid + .row-fluid {
+    border-top: 1px solid #999;
+  }
+  .t3-megamenu .span12.mega-col-nav .mega-inner {
+    padding: 0;
+  }
+  .t3-megamenu .mega-nav > li a,
+  .t3-megamenu .dropdown-menu .mega-nav > li a {
+    padding: 5px 20px;
+  }
+  .t3-megamenu .t3-module {
+    margin-bottom: 0;
+  }
+}
