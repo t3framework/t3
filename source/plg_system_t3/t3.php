@@ -49,7 +49,7 @@ class plgSystemT3 extends JPlugin
 			} else {
 				$params = $japp->getTemplate(true)->params;
 				if(defined('T3_THEMER') && $params->get('themermode', 1)){
-					t3import('admin/theme');
+					T3::import('admin/theme');
 					T3AdminTheme::addAssets();
 				}
 			}

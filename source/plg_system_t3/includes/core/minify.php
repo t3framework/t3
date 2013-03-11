@@ -16,8 +16,8 @@
 defined('_JEXEC') or die();
 
 jimport('joomla.filesystem.file');
-t3import('minify/csscompressor');
-t3import('core/path');
+T3::import('minify/csscompressor');
+T3::import('core/path');
 
 /**
  * T3Template class provides extended template tools used for T3 framework

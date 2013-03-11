@@ -45,7 +45,7 @@ class T3Action extends JObject
 	public static function lessc () {
 		$path = JFactory::getApplication()->input->getString ('s');
 
-		t3import ('core/less');
+		T3::import ('core/less');
 		$t3less = new T3Less;
 		$css = $t3less->getCss($path);
 
@@ -55,7 +55,7 @@ class T3Action extends JObject
 	}
 
 	public static function lesscall(){
-		t3import ('core/less');
+		T3::import ('core/less');
 		
 		$result = array();
 		try{
@@ -93,7 +93,7 @@ class T3Action extends JObject
 			)));
 		}
 
-		t3import('admin/theme');
+		T3::import('admin/theme');
 		
 		if(method_exists('T3AdminTheme', $action)){
 			T3AdminTheme::$action(T3_TEMPLATE_PATH);	
@@ -178,7 +178,7 @@ class T3Action extends JObject
 			}
 		}
 
-		t3import('admin/layout');
+		T3::import('admin/layout');
 		
 		if(method_exists('T3AdminLayout', $action)){
 			T3AdminLayout::$action(T3_TEMPLATE_PATH);	
@@ -214,7 +214,7 @@ class T3Action extends JObject
 			}
 		}
 
-		t3import('admin/megamenu');
+		T3::import('admin/megamenu');
 		
 		if(method_exists('T3AdminMegamenu', $action)){
 			T3AdminMegamenu::$action();	

@@ -75,7 +75,7 @@ class T3Bot extends JObject
 		if (!$app->isAdmin()) {
 			// check if need update megamenu configuration
 			if ($app->getTemplate(true)->params->get ('mm_config_needupdate')) {
-				t3import('menu/megamenu');
+				T3::import('menu/megamenu');
 				$currentconfig = json_decode($app->getTemplate(true)->params->get ('mm_config'), true);
 				if (!is_array($currentconfig)) $currentconfig = array();
 				

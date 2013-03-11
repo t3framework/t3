@@ -50,7 +50,7 @@ class T3AdminTheme
 		$file = $path . '/less/themes/' . $theme . '/variables-custom.less';
 
 		if(!class_exists('JRegistryFormatLESS')){
-			t3import('format/less');
+			T3::import('format/less');
 		}
 		$variables = new JRegistry();
 		$variables->loadObject($_POST);
@@ -85,7 +85,7 @@ class T3AdminTheme
 		}
 
 		//LessHelper::compileForTemplate(T3_TEMPLATE_PATH, $theme);
-		t3import ('core/less');
+		T3::import ('core/less');
 		T3Less::compileAll($theme);
 		return self::response($result);
 	}
@@ -125,7 +125,7 @@ class T3AdminTheme
 		}
 		
 		//LessHelper::compileForTemplate(T3_TEMPLATE_PATH , $theme);
-		t3import ('core/less');
+		T3::import ('core/less');
 		T3Less::compileAll($theme);
 		return self::response($result);
 	}

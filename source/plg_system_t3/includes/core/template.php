@@ -15,7 +15,7 @@
 // No direct access
 defined('_JEXEC') or die();
 
-t3import ('extendable/extendable');
+T3::import ('extendable/extendable');
 
 /**
  * T3Template class provides extended template tools used for T3 framework
@@ -247,7 +247,7 @@ class T3Template extends ObjectExtendable
 	}
 
 	function megamenu($menutype){
-		t3import('menu/megamenu');
+		T3::import('menu/megamenu');
 
 			//$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
 			//$currentconfig = json_decode(@file_get_contents ($file), true);
@@ -435,7 +435,7 @@ class T3Template extends ObjectExtendable
 		$themermode = $this->getParam('themermode', 1);
 		$responsive = $addresponsive ? $this->getParam('responsive', 1) : false;
 		if (($devmode || ($themermode && defined ('T3_THEMER'))) && ($url = T3Path::getUrl('less/'.$name.'.less', '', true))) {
-			t3import ('core/less');
+			T3::import ('core/less');
 			T3Less::addStylesheet ($url);
 		} else {
 			$url = T3Path::getUrl ('css/'.$name.'.css');
@@ -582,7 +582,7 @@ class T3Template extends ObjectExtendable
 
 		//only check for minify if devmode is disabled
 		if(!$devmode && $minify){
-			t3import ('core/minify');
+			T3::import ('core/minify');
 			T3Minify::optimizecss($this);
 		}
 	}

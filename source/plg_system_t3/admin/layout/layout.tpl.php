@@ -12,7 +12,7 @@
  *------------------------------------------------------------------------------
  */
 
-	t3import('admin/layout');
+	T3::import('admin/layout');
 ?>
 
 <!-- LAYOUT CONFIGURATION PANEL -->

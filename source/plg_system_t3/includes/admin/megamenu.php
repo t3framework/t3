@@ -14,7 +14,7 @@
 
 class T3AdminMegamenu {
 	public static function display () {
-		t3import('menu/megamenu');
+		T3::import('menu/megamenu');
 		$input = JFactory::getApplication()->input;
 		$menutype = $input->get ('t3menu', 'mainmenu');
 		$tplparams = $input->get('tplparams', '', 'raw');

@@ -14,8 +14,8 @@
 
 // No direct access
 defined('_JEXEC') or die();
-t3import('lessphp/lessc.inc');
-t3import('core/path');
+T3::import('lessphp/lessc.inc');
+T3::import('core/path');
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 

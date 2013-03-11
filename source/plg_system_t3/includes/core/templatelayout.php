@@ -14,7 +14,7 @@
 
 // No direct access
 defined('_JEXEC') or die();
-t3import ('core/template');
+T3::import ('core/template');
 jimport('joomla.utilities.utility');
 
 /**

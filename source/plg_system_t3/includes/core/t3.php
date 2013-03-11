@@ -14,29 +14,28 @@
 
 
 /**
- * Import T3 Library
- *
- * @param string $package    Object path that seperate by backslash (/)
- *
- * @return void
- */
-function t3import($package)
-{
-	$path = T3_ADMIN_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . strtolower($package) . '.php';
-	if (file_exists($path)) {
-		include_once $path;
-	} else {
-		trigger_error('t3import not found object: ' . $package, E_USER_ERROR);
-	}
-}
-
-/**
  * T3 Class
  * Singleton class for T3
  */
 class T3 {
 	
 	protected static $t3app = null;
+
+	/**
+	 * Import T3 Library
+	 *
+	 * @param string $package    Object path that seperate by backslash (/)
+	 *
+	 * @return void
+	 */
+	public static function import($package){
+		$path = T3_ADMIN_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . strtolower($package) . '.php';
+		if (file_exists($path)) {
+			include_once $path;
+		} else {
+			trigger_error('T3::import not found object: ' . $package, E_USER_ERROR);
+		}
+	}
 
 	public static function getApp($tpl = null){
 		if(empty(self::$t3app)){	
@@ -78,7 +77,7 @@ class T3 {
 		}
 
 		// load core library
-		t3import ('core/path');
+		T3::import ('core/path');
 		
 		$app = JFactory::getApplication();
 		if (!$app->isAdmin()) {
@@ -86,19 +85,19 @@ class T3 {
 			if($jversion->isCompatible('3.0')){
 				// override core joomla class
 				// JViewLegacy
-				if (!class_exists('JViewLegacy', false)) t3import ('joomla30/viewlegacy');
+				if (!class_exists('JViewLegacy', false)) T3::import ('joomla30/viewlegacy');
 				// JModuleHelper
-				if (!class_exists('JModuleHelper', false)) t3import ('joomla30/modulehelper');
+				if (!class_exists('JModuleHelper', false)) T3::import ('joomla30/modulehelper');
 				// JPagination
-				if (!class_exists('JPagination', false)) t3import ('joomla30/pagination');
+				if (!class_exists('JPagination', false)) T3::import ('joomla30/pagination');
 			} else {
 				// override core joomla class
 				// JViewLegacy
-				if (!class_exists('JView', false)) t3import ('joomla25/view');
+				if (!class_exists('JView', false)) T3::import ('joomla25/view');
 				// JModuleHelper
-				if (!class_exists('JModuleHelper', false)) t3import ('joomla25/modulehelper');
+				if (!class_exists('JModuleHelper', false)) T3::import ('joomla25/modulehelper');
 				// JPagination
-				if (!class_exists('JPagination', false)) t3import ('joomla25/pagination');
+				if (!class_exists('JPagination', false)) T3::import ('joomla25/pagination');
 			}
 		} else {
 		}
@@ -114,13 +113,13 @@ class T3 {
 	public static function checkAction () {
 		// excute action by T3
 		if ($action = JFactory::getApplication()->input->getCmd ('t3action')) {
-			t3import ('core/action');
+			T3::import ('core/action');
 			T3Action::run ($action);
 		}
 	}
 
 	public static function getAdmin(){
-		t3import ('core/admin');
+		T3::import ('core/admin');
 		return new T3Admin();
 	}
 
@@ -131,7 +130,7 @@ class T3 {
 		}
 
 		$type = 'Template'. JFactory::getApplication()->input->getCmd ('t3tp', '');
-		t3import ('core/'.$type);
+		T3::import ('core/'.$type);
 
 		// create global t3 template object 
 		$class = 'T3'.$type;
@@ -149,8 +148,7 @@ class T3 {
 		}
 	}
 
-	public static function detect()
-	{
+	public static function detect(){
 		static $t3;
 
 		if (!isset($t3)) {
@@ -220,11 +218,8 @@ class T3 {
 					}
 				}
 			}
-
 		}
 		return $t3;
 	}
-
 }
-
 ?>

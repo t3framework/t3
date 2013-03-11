@@ -12,7 +12,7 @@
  *------------------------------------------------------------------------------
  */
 
-t3import ('menu/megamenu.tpl');
+T3::import ('menu/megamenu.tpl');
 
 class T3MenuMegamenu {
 	protected $children = array();
