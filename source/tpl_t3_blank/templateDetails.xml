@@ -12,7 +12,11 @@
 	<authorUrl>http://www.t3-framework.org</authorUrl>
 	<copyright>Copyright (C), J.O.O.M Solutions Co., Ltd. All Rights Reserved.</copyright>
 	<license>license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
-	<group>t3</group>
+
+	<t3>
+		<base>base</base>
+	</t3>
+
 	<description>
 	<![CDATA[
 	<div align="center">

@@ -49,8 +49,26 @@ class T3 {
 	/**
 	 * Initialize T3
 	 */
-	public static function init ($template) {
-		define ('T3_TEMPLATE', $template);
+	public static function init ($xml) {
+		$app = JFactory::getApplication();
+		$input = $app->input;
+		$templateobj = $app->getTemplate(true);
+		$coretheme = isset($xml->t3) && isset($xml->t3->base) ? trim($xml->t3->base) : 'base';
+		// check coretheme in media/t3/themes folder
+		// if not exists, use default base theme in T3
+		if ($coretheme && is_dir(JPATH_ROOT.'/media/t3/themes/'.$coretheme)){
+			define ('T3', $coretheme);
+			define ('T3_URL', JURI::base(true).'/media/t3/themes/' . T3);
+			define ('T3_PATH', JPATH_ROOT . '/media/t3/themes/' . T3);
+			define ('T3_REL', 'media/t3/themes/' . T3);
+		} else {
+			define ('T3', 'base');
+			define ('T3_URL', T3_ADMIN_URL.'/'.T3);
+			define ('T3_PATH', T3_ADMIN_PATH . '/' . T3);
+			define ('T3_REL', T3_ADMIN_REL.'/'.T3);						
+		}
+
+		define ('T3_TEMPLATE', $xml->tplname);
 		define ('T3_TEMPLATE_URL', JURI::root(true).'/templates/'.T3_TEMPLATE);
 		define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
 		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
@@ -58,10 +76,6 @@ class T3 {
 		//load T3 Framework language
 		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 		
-		$app = JFactory::getApplication();
-		$input = $app->input;
-		$templateobj = $app->getTemplate(true);
-
 		if ($input->getCmd('themer', 0)){
 			define ('T3_THEMER', 1);
 		}
@@ -212,9 +226,11 @@ class T3 {
 					// parse xml
 				$filePath = JPath::clean(JPATH_ROOT.'/templates/'.$tplname.'/templateDetails.xml');
 				if (is_file ($filePath)) {
-					$xml = JInstaller::parseXMLInstallFile($filePath);
-					if (strtolower($xml['group']) == 't3') {
-						$t3 = $tplname;
+					$xml = $xml = simplexml_load_file($filePath);
+					// check t3 or group=t3 (compatible with previous definition)
+					if (isset($xml->t3) || (isset($xml->group) && strtolower($xml->group) == 't3')) {
+						$xml->tplname = $tplname;
+						$t3 = $xml;
 					}
 				}
 			}
@@ -222,4 +238,3 @@ class T3 {
 		return $t3;
 	}
 }
-?>
