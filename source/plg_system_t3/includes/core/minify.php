@@ -16,6 +16,7 @@
 defined('_JEXEC') or die();
 
 jimport('joomla.filesystem.file');
+jimport('joomla.filesystem.folder');
 T3::import('minify/csscompressor');
 T3::import('core/path');
 

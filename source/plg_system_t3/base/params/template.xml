@@ -48,6 +48,14 @@
 				label="T3_GENERAL_ASSETS_FOLDER_LABEL"
 				description="T3_GENERAL_ASSETS_FOLDER_DESC" />
 
+			<field name="t3-rmvlogo" type="radio" class="btn-group" default="1"
+				global="1"
+				label="T3_GENERAL_REMOVE_T3LOGO_LABEL" 
+				description="T3_GENERAL_REMOVE_T3LOGO_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
 		</fieldset>
 
 		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">

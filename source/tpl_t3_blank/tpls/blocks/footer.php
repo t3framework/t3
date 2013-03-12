@@ -20,12 +20,14 @@ defined('_JEXEC') or die;
   <section class="t3-copyright">
     <div class="container">
       <div class="row">
-        <div class="span8 copyright<?php $this->_c('footer')?>">
+        <div class="<?php echo $this->getParam('t3-rmvlogo', 1) ? 'span8' : 'span12' ?> copyright<?php $this->_c('footer')?>">
           <jdoc:include type="modules" name="<?php $this->_p('footer') ?>" />
         </div>
+        <?php if($this->getParam('t3-rmvlogo', 1)): ?>
         <div class="span4 poweredby">
           <small><a href="http://t3.joomlart.com" title="Powered By T3 Framework" target="_blank">Powered by <strong>T3 Framework</strong></a></small>
         </div>
+        <?php endif; ?>
       </div>
     </div>
   </section>
