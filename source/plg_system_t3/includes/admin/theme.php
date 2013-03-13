@@ -12,6 +12,9 @@
  *------------------------------------------------------------------------------
  */
 
+jimport('joomla.filesystem.file');
+jimport('joomla.filesystem.folder');
+
 /**
  *
  * Admin helper module class
