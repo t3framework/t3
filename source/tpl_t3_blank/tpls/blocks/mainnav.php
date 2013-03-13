@@ -12,11 +12,9 @@ defined('_JEXEC') or die;
 <nav id="t3-mainnav" class="wrap t3-mainnav">
   <div class="container navbar">
     <div class="navbar-inner">
-
+    
       <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <i class="icon-reorder"></i>
       </button>
 
   	  <div class="nav-collapse collapse<?php echo $this->getParam('navigation_collapse_showsub', 1) ? ' always-show' : '' ?>">
@@ -29,4 +27,22 @@ defined('_JEXEC') or die;
     </div>
   </div>
 </nav>
+<?php if ($this->getParam('navigation_collapse_type') == 'off-canvas') : ?>
+<script type="text/javascript">
+  jQuery('html').addClass ('off-canvas');
+  jQuery('.btn-navbar').click (function(){
+    var $this = jQuery(this);
+    if ($this.data('off-canvas') == 'show') {
+      $this.data('off-canvas', 'hide');
+      jQuery('html').removeClass ('off-canvas-on');
+      console.log ('hide');
+    } else {
+      $this.data('off-canvas', 'show');
+      jQuery('html').addClass ('off-canvas-on');
+      console.log ('show');
+    }
+    return false;
+  });
+</script>
+<?php endif ?>
 <!-- //MAIN NAVIGATION -->
