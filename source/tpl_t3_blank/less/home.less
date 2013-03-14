@@ -105,7 +105,7 @@
 
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid @hrBorder;
+  border-top: 1px solid @T3borderColor;
   text-align: center;
 
   p {
@@ -184,68 +184,4 @@
 // Calling the styles
 .home .t3-sl-5 {
   .T3HomeSpotlight5
-}
-
-
-
-// ---------------------------------------------------------
-// MISC.
-// ---------------------------------------------------------
-
-// T3 Signup Modal
-// ---------------
-.modal-t3-signup {
-  .border-radius (@baseBorderRadius);
-}
-
-.modal-t3-signup .modal-header {
-  border-bottom: none;
-  padding: 0 (@T3globalPadding * 2);
-}
-
-.modal-t3-signup .modal-header h3 {
-  display: none;
-}
-
-.modal-t3-signup .modal-header .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #eee;
-  .border-bottom-left-radius(@baseBorderRadius);
-}
-
-.modal-t3-signup .modal-body {
-  padding: @T3globalPadding (@T3globalPadding * 2) (@T3globalPadding * 2);
-}
-
-.modal-t3-signup .modal-body p,
-.modal-t3-signup .modal-body input,
-.modal-t3-signup .modal-body .add-on,
-.modal-t3-signup .modal-body button {
-  font-size: @T3biggerFontSize;
-}
-
-.modal-t3-signup .modal-body p {
-  line-height: 24px;
-}
-
-.modal-t3-signup .form-t3-signup {
-  margin-top: @T3globalMargin * 2;
-}
-
-.modal-t3-signup .modal-body input {
-  padding: 9px 25px 8px 15px;
-}
-
-.modal-t3-signup .modal-body .add-on {
-  padding: 9px 9px 8px;
-}
-
-.modal-t3-signup .btn-large {
-  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.15)");
 }
