@@ -62,7 +62,7 @@ $iswritable = is_writable('t3test.txt');
 				</div>
 				<div class="controls t3-controls">
 					<?php echo $form->getInput('client_id'); ?>
-					<input type="text" size="35" value="<?php echo $form->getValue('client_id') == 0 ? JText::_('JSITE') : JText::_('JADMINISTRATOR'); ?>	" class="inputbox readonly" readonly="readonly" />
+					<input type="text" size="35" value="<?php echo $form->getValue('client_id') == 0 ? JText::_('JSITE') : JText::_('JADMINISTRATOR'); ?>	" class="input readonly" readonly="readonly" />
 				</div>
 			</div>
 			<div class="control-group t3-control-group">

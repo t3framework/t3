@@ -501,7 +501,8 @@ select, input[type="file"] {
   background: none;
 }
 
-.t3-admin-form .form-horizontal .t3-admin-header .inputbox {
+.t3-admin-form .form-horizontal .t3-admin-header .inputbox,
+.t3-admin-form .form-horizontal .t3-admin-header .input {
   width: 250px;
   font-weight: bold;
 }

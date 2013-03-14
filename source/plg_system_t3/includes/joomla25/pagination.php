@@ -448,7 +448,7 @@ class JPagination extends JObject
 				'select.genericlist',
 				$limits,
 				$this->prefix . 'limit',
-				'class="inputbox" size="1" onchange="Joomla.submitform();"',
+				'class="input" size="1" onchange="Joomla.submitform();"',
 				'value',
 				'text',
 				$selected
@@ -460,7 +460,7 @@ class JPagination extends JObject
 				'select.genericlist',
 				$limits,
 				$this->prefix . 'limit',
-				'class="inputbox" size="1" onchange="this.form.submit()"',
+				'class="input" size="1" onchange="this.form.submit()"',
 				'value',
 				'text',
 				$selected

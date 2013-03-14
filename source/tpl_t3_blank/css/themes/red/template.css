@@ -1496,12 +1496,12 @@ article aside .btn-group > .dropdown-toggle {
 .login-fields {
   margin: 0 0 10px;
 }
-.login_form .inputbox,
+.login_form .input,
 .login-fields .required {
   margin-left: 10px;
   width: 150px;
 }
-.login_form .remember .inputbox {
+.login_form .remember .input {
   width: 20px;
 }
 .form-register fieldset {
@@ -1520,7 +1520,7 @@ article aside .btn-group > .dropdown-toggle {
   text-align: right;
   width: 130px;
 }
-.form-register .inputbox {
+.form-register .input {
   margin-left: 10px;
   width: 200px;
 }
@@ -1581,7 +1581,7 @@ article aside .btn-group > .dropdown-toggle {
 #mailtoForm p {
   margin-top: 20px;
 }
-#mailtoForm .inputbox {
+#mailtoForm .input {
   width: 70%;
 }
 #mailtoForm .button {
@@ -1600,7 +1600,7 @@ article aside .btn-group > .dropdown-toggle {
   text-align: right;
   width: 130px;
 }
-.user-details .inputbox {
+.user-details .input {
   margin-left: 10px;
   width: 200px;
 }
