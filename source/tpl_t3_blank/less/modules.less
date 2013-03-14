@@ -66,34 +66,36 @@
 
 // Menu
 // ----
-.module_menu .nav {
-  margin-bottom: @T3globalMargin;
-}
-
-.module_menu .nav > li {
-  border-top: 1px solid @hrBorder;
-}
-
-.module_menu .nav > li > a {
-  padding: 5px;
-}
-
-// No top border
-.module_menu .nav > li:first-child {
-  border-top: 0;
-}
-
-.module_menu .nav > li:first-child > a {
-  padding-top: 0;
-  border-top: 0;
-}
-
-// Hover state
-.module_menu .nav > li > a:hover {
-}
-
-// Active state
-.module_menu .nav > li.active > a {
+.module_menu {
+  .nav {
+    margin-bottom: @T3globalMargin;
+  }
+  
+  .nav > li {
+    border-top: 1px solid @hrBorder;
+  }
+  
+  .nav > li > a {
+    padding: 5px;
+  }
+  
+  // No top border
+  .nav > li:first-child {
+    border-top: 0;
+  }
+  
+  .nav > li:first-child > a {
+    padding-top: 0;
+    border-top: 0;
+  }
+  
+  // Hover state
+  .nav > li > a:hover {
+  }
+  
+  // Active state
+  .nav > li.active > a {
+  }
 }
 
 
@@ -121,7 +123,19 @@
 // ----------
 .categories-module, ul.categories-module,
 .category-module, ul.category-module {
-  li {}
+  margin: 0;
+  
+  li {
+    list-style: none;
+    padding: (@baseLineHeight / 2) 0;
+    border-top: 1px solid @T3borderColor;
+    // Remove border for first item
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+  
   h4 {
     font-size: @baseFontSize;
     font-weight: normal;

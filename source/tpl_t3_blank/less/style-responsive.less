@@ -17,53 +17,58 @@
 // -------------------------------------------------------------
 @media (max-width: 767px) {
 
-  /* HEADER
-  --------------------------------------------------------- */
-  /* Logo ---*/
+  // HEADER
+  // ---------------------------------------------------------
+  // Logo
+  // ----
   .logo {
     float: left !important;
     text-align: center;
     width: 100% !important;
   }
 
-  /* Head Search --- */
+  // Head Search
+  // -----------
   .head-search {
     float: left !important;
     margin-top: @T3globalMargin;
     margin-left: 0 !important;
     width: 100% !important;
+
+    form {
+      float: none;
+    }
+  
+    .input {
+      width: 100%;
+      .box-sizing(border-box);
+      height: 30px;
+      // focus state
+      &:focus {
+        width: 100%;
+      }
+    }
+  
   }
 
-  .head-search form {
-    float: none;
-  }
 
-  .head-search .input {
-    width: 100%;
-    .box-sizing(border-box);
-    height: 30px;
-  }
-
-  /* focus state */
-  .head-search .input:focus {
-    width: 100%;
-  }
-
-  /* SPOTLIGHTS
-  --------------------------------------------------------- */
+  // SPOTLIGHTS
+  // ---------------------------------------------------------
   .t3-sl {
     padding-bottom: @T3globalPadding;
     padding-top: @T3globalPadding;
   }
 
-  /* FOOTER
-  --------------------------------------------------------- */
+
+  // FOOTER
+  // ---------------------------------------------------------
   .t3-footer {
     margin-left: -20px;
     margin-right: -20px;
   }
 
-  /* Footnav ---*/
+  // Footnav
+  // -------
   .t3-footnav {
     padding: @T3globalPadding 20px 0;
     font-size: @T3smallerFontSize;
@@ -74,7 +79,8 @@
     font-weight: bold;
   }
 
-  /* Copyright ---*/
+  // Copyright
+  // ---------
   .t3-copyright {
     padding: @T3globalPadding 20px (@T3globalPadding * 2);
     .clearfix();
@@ -89,5 +95,6 @@
   .poweredby {
     margin-top: @T3globalMargin / 2;
   }
+  //End
 
 }
