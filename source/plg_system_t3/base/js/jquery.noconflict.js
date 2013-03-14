@@ -18,4 +18,7 @@ if(typeof jQuery != 'undefined'){
 		window.jQuery = window._jQuery;
 		window._jQuery = null;
 	}
+
+	//backup for T3
+	window.$T3 = jQuery.noConflict();
 }

@@ -16,6 +16,39 @@
 // ---------------------------------------------------------
 
 
-// Global Margin/Padding
+
+// T3 GLOBAL STYLES
+// --------------------------------------------------
+
+// Module Styles
+// -------------------------
+// Module General
+@T3moduleBackground:            transparent;
+@T3moduleColor:                 inherit;
+@T3modulePadding:               0;
+@T3moduleBorder:                1px solid @T3borderColor;
+
+// Module Title
+@T3moduleTitleBackground:       inherit; // inherit from @moduleBackground
+@T3moduleTitleColor:            @headingsColor; // inherit from @moduleColor
+@T3moduleTitlePadding:          0;
+
+// Module Content
+@T3moduleContentBackground:     inherit; // inherit from @moduleBackground
+@T3moduleContentColor:          inherit; // inherit from @moduleColor
+@T3moduleContentPadding:        0;
+
+
+// Global Margin& Padding
+// -------------------------
 @T3globalMargin:            @baseLineHeight;
 @T3globalPadding:           @baseLineHeight;
+
+
+// Typography
+// -------------------------
+@T3bigFontSize:         @baseFontSize + 1px;
+@T3biggerFontSize:      @baseFontSize + 2px;
+
+@T3smallFontSize:       @baseFontSize - 1px;
+@T3smallerFontSize:     @baseFontSize - 2px;
