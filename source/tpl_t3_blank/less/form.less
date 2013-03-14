@@ -195,7 +195,7 @@ input[type="checkbox"]:focus {
 // FORM ACTIONS
 // ------------
 .form-actions {
-  padding: (@T3globalPadding - 1) 20px @T3globalPadding;
+  padding: (@T3globalPadding - 1px) 20px @T3globalPadding;
   margin-top: @T3globalMargin;
   margin-bottom: @T3globalMargin;
   background-color: @formActionsBackground;
@@ -381,25 +381,31 @@ legend + .control-group {
   border-color: #c5c5c5;
   border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
 }
+
 .btn-primary {
   .buttonBackground(@btnPrimaryBackgroundHighlight, @btnPrimaryBackground);
 }
+
 // Warning appears are orange
 .btn-warning {
   .buttonBackground(@btnWarningBackgroundHighlight, @btnWarningBackground);
 }
+
 // Danger and error appear as red
 .btn-danger {
   .buttonBackground(@btnDangerBackgroundHighlight, @btnDangerBackground);
 }
+
 // Success appears as green
 .btn-success {
   .buttonBackground(@btnSuccessBackgroundHighlight, @btnSuccessBackground);
 }
+
 // Info appears as a neutral blue
 .btn-info {
   .buttonBackground(@btnInfoBackgroundHighlight, @btnInfoBackground);
 }
+
 // Inverse appears as dark gray
 .btn-inverse {
   .buttonBackground(@btnInverseBackgroundHighlight, @btnInverseBackground);

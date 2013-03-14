@@ -34,12 +34,13 @@ body {
 a {
   color: @linkColor;
   text-decoration: none;
+  // Hover state
+  &:hover {
+    color: @linkColorHover;
+    text-decoration: underline;
+  }
 }
 
-a:hover {
-  color: @linkColorHover;
-  text-decoration: underline;
-}
 
 
 // IMAGES
@@ -67,7 +68,7 @@ img {
 
 
 // TABLES
--------------------------------------------------------
+// -------------------------------------------------------
 table {
   background-color: @tableBackground;
   border-collapse: collapse;
@@ -100,12 +101,10 @@ th td {
 
 th a {
   color: @grayLighter;
-}
-
-th a:hover,
-th a:focus,
-th a:active {
-  color: @white;
+  // Link states
+  &:hover, &:focus, &:active {
+    color: @white;
+  }
 }
 
 .cat-list-row0,

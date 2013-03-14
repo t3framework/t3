@@ -61,10 +61,6 @@
 		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">
 
 			<field name="theme_params_default" type="t3depend" function="@group">
-				<option for="logotype" value="text">
-					sitename,
-					slogan
-				</option>
 				<option for="logotype" value="image">
 					logoimage
 				</option>
@@ -139,6 +135,14 @@
 				description="T3_NAVIGATION_TRIGGER_DESC">
 				<option value="hover">Mouse Hover</option>
 				<option value="click">Mouse Click</option>
+			</field>
+
+			<field name="navigation_collapse_type" type="list" class="btn-group" default="dropdown"
+				global="1"
+				label="T3_NAVIGATION_COLLAPSE_TYPE"
+				description="T3_NAVIGATION_COLLAPSE_TYPE_DESC">
+				<option value="dropdown">Dropdown</option>
+				<option value="off-canvas">Off Canvas</option>
 			</field>
 
 			<field name="navigation_collapse_showsub" type="radio" class="btn-group" default="1"
