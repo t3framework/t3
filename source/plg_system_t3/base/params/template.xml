@@ -61,10 +61,6 @@
 		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">
 
 			<field name="theme_params_default" type="t3depend" function="@group">
-				<option for="logotype" value="text">
-					sitename,
-					slogan
-				</option>
 				<option for="logotype" value="image">
 					logoimage
 				</option>
