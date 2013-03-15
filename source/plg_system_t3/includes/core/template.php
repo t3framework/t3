@@ -73,6 +73,11 @@ class T3Template extends ObjectExtendable
 				$this->_layoutsettings->loadString (JFile::read($fconfig), 'INI', array('processSections' => true));
 			}
 		}
+
+		// disable responsive for component view
+		if (JFactory::getApplication()->input->getCmd('tmpl') == 'component') {
+			$this->setParam('responsive', 0);
+		}
 	}
 
 	/**
@@ -643,7 +648,14 @@ class T3Template extends ObjectExtendable
 					}
 				}
 			}
-		}		
+		}
+
+		// add css/js for off-canvas
+		if ($this->getParam('navigation_collapse_offcanvas')) {
+			$this->addCss ('off-canvas', false);
+			$this->addScript (T3_URL.'/js/off-canvas.js', false);
+		}
+
 	}
 
 	function paramToStyle($style, $paramname = '', $isurl = false){

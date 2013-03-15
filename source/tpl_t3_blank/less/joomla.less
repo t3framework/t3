@@ -244,49 +244,56 @@ article aside .btn-group {
 }
 
 .login_form .input,
+.login_form .inputbox,
 .login-fields .required {
   margin-left: 10px;
   width: 150px;
 }
 
-.login_form .remember .input {
+.login_form .remember .input,
+.login_form .remember .inputbox {
   width: 20px;
 }
 
 .login_form .btn,
+.login_form .button,
 .login button {
 }
 
 
 // Register
 // ---------------------------------------------------------
-.form-register fieldset {
-  padding: 0 0 10px;
-}
+.form-register {
+  fieldset {
+    padding: 0 0 10px;
+  }
 
-.form-register p {
-  margin: 0 0 5px;
-}
+  p {
+    margin: 0 0 5px;
+  }
 
-.form-register p.form-des {
-  margin: 15px 0;
-}
+  p.form-des {
+    margin: 15px 0;
+  }
 
-.form-register label {
-  display: block;
-  float: left;
-  font-weight: bold;
-  text-align: right;
-  width: 130px;
-}
+  label {
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: right;
+    width: 130px;
+  }
 
-.form-register .input {
-  margin-left: 10px;
-  width: 200px;
-}
+  .input,
+  .inputbox {
+    margin-left: 10px;
+    width: 200px;
+  }
 
-.form-register .button {
-  margin-left: 140px;
+  .btn,
+  .button {
+    margin-left: 140px;
+  }
 }
 
 .registration fieldset dt {
@@ -345,7 +352,7 @@ article aside .btn-group {
     overflow: hidden;
   }
   
-  #mailtoForm .formelm label {
+  .formelm label {
     display: block;
     float: left;
     font-weight: bold;
@@ -353,16 +360,18 @@ article aside .btn-group {
     width: 100px;
   }
   
-  #mailtoForm p {
+  p {
     margin-top: 20px;
   }
   
-  #mailtoForm .input {
+  .input,
+  .inputbox {
     width: 70%;
   }
   
-  #mailtoForm .btn,
-  #mailtoForm button {
+  .btn,
+  .button,
+  button {
     margin-right: 5px;
   }
 }
@@ -385,7 +394,8 @@ article aside .btn-group {
     width: 130px;
   }
   
-  .input {
+  .input,
+  .inputbox {
     margin-left: 10px;
     width: 200px;
   }

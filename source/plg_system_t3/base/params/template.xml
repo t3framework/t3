@@ -137,12 +137,12 @@
 				<option value="click">Mouse Click</option>
 			</field>
 
-			<field name="navigation_collapse_type" type="list" class="btn-group" default="dropdown"
+			<field name="navigation_collapse_offcanvas" type="radio" class="btn-group" default="0"
 				global="1"
-				label="T3_NAVIGATION_COLLAPSE_TYPE"
-				description="T3_NAVIGATION_COLLAPSE_TYPE_DESC">
-				<option value="dropdown">Dropdown</option>
-				<option value="off-canvas">Off Canvas</option>
+				label="T3_NAVIGATION_COLLAPSE_OFFCANVAS"
+				description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="navigation_collapse_showsub" type="radio" class="btn-group" default="1"
