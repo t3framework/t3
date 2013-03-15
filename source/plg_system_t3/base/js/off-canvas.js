@@ -19,10 +19,10 @@
 	      var $this = $(this);
 	      if ($this.data('off-canvas') == 'show') {
 	        $this.data('off-canvas', 'hide');
-	        $('html').removeClass ('off-canvas-on');
+	        $('html').removeClass ('off-canvas-enabled');
 	      } else {
 	        $this.data('off-canvas', 'show');
-	        $('html').addClass ('off-canvas-on');
+	        $('html').addClass ('off-canvas-enabled');
 	      }
 	      return false;
 	    });
