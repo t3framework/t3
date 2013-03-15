@@ -14,7 +14,7 @@
 
 /* -------------------------------------------------*/
 /* T3 ADMIN STYLE
----------------------------------------------------*/
+----------------------------------------------------*/
 
 @import "../fonts/font-awesome/css/font-awesome.css";
 
@@ -588,6 +588,7 @@ button.btn-primary:active {
   right: 0;
   padding: 20px !important;
   margin: 0 !important;
+  z-index: 10;
 }
 
 /* USERS INTERACTION ELEMENTS
