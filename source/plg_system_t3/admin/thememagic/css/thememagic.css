@@ -153,11 +153,11 @@ input, select {
 /* Variables Form ---*/
 #t3-admin-tm-variable-form {
 	position: absolute;
-	top: 180px;
+	top: 190px;
 	bottom: 0;
 	overflow: auto;
 	margin-bottom: 0;
-  padding: 2px 0 0;
+  padding: 0;
   width: 100%;
   background: url(../images/dot.png) repeat-x top;
   margin-right: -1px;

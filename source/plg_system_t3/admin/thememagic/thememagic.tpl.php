@@ -43,7 +43,6 @@ defined('_JEXEC') or die;
 					  <?php
 						echo JHTML::_('select.genericlist', $themes, 't3-admin-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
 					  ?>
-					 
 					  <div class="btn-group">
 						<button id="t3-admin-tm-pvbtn" class="btn btn-primary"><?php echo JText::_('T3_TM_PREVIEW') ?></button>
 						<?php if( $isadmin) : ?>
@@ -57,13 +56,12 @@ defined('_JEXEC') or die;
 					  </div>
 					</div>
 				  </form>
+				  <div id="t3-admin-tm-recss-progress" class="progress progress-striped active fade invisible">
+						<div class="bar"></div>
+					</div>
 				</div>
 	
 				<form id="t3-admin-tm-variable-form" name="adminForm" class="form-validate">
-					<div id="t3-admin-tm-recss-progress" class="progress progress-striped active fade invisible">
-						<div class="bar"></div>
-					</div>
-
 					<div class="accordion" id="t3-admin-tm-accord">
 						<?php
 						$i = 0;
