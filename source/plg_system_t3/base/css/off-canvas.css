@@ -1,0 +1,72 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         https://github.com/t3framework/ 
+ *------------------------------------------------------------------------------
+*/
+@media (max-width: 979px) {
+  .off-canvas {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+  .off-canvas body {
+    left: 0 !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 500ms ease;
+    -moz-transition: -moz-transform 500ms ease;
+    -o-transition: -o-transform 500ms ease;
+    transition: transform 500ms ease;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .off-canvas .nav-collapse {
+    position: absolute;
+    overflow: visible !important;
+    width: 70%;
+    left: -70%;
+    top: 0;
+    margin: 0;
+  }
+  .off-canvas-enabled body {
+    -webkit-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+    -moz-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+    -ms-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+    -o-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+  }
+  .off-canvas-enabled .nav-collapse {
+    left: -70%;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
