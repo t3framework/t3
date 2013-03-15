@@ -116,20 +116,6 @@
 				<field name="textColor" type="color" class="t3tm-color" default="" label="T3_TM_VARS_TEXT_COLOR_LABEL" description="T3_TM_VARS_TEXT_COLOR_DESC" />
 				<field name="linkColor" type="color" class="t3tm-color" default="" label="T3_TM_VARS_LINK_COLOR_LABEL" description="T3_TM_VARS_LINK_COLOR_DESC" />
 
-				<!-- Grid -->
-				<field name="T3gridWidth1200" type="text" default="1200px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_WIDE_WIDTH_LABEL" description="T3_TM_VARS_SCFD_WIDE_WIDTH_DESC" />
-				<field name="gridGutterWidth1200" type="text" default="40px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_WIDE_GUTTER_LABEL" description="T3_TM_VARS_SCFD_WIDE_GUTTER_DESC" />
-
-				<field name="T3gridWidth" type="text" default="940px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_NORMAL_WIDTH_LABEL" description="T3_TM_VARS_SCFD_NORMAL_WIDTH_DESC" />
-				<field name="gridGutterWidth" type="text" default="40px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_NORMAL_GUTTER_LABEL" description="T3_TM_VARS_SCFD_NORMAL_GUTTER_DESC" />
-
-				<field name="T3gridWidth980" type="text" default="940px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_XTABLET_WIDTH_LABEL" description="T3_TM_VARS_SCFD_XTABLET_WIDTH_DESC" />
-				<field name="gridGutterWidth980" type="text" default="40px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_XTABLET_GUTTER_LABEL" description="T3_TM_VARS_SCFD_XTABLET_GUTTER_DESC" />
-
-				<field name="T3gridWidth768" type="text" default="740px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_TABLET_WIDTH_LABEL" description="T3_TM_VARS_SCFD_TABLET_WIDTH_DESC" />
-				<field name="gridGutterWidth768" type="text" default="20px" class="input-tiny t3tm-dimension" label="T3_TM_VARS_SCFD_TABLET_GUTTER_LABEL" description="T3_TM_VARS_SCFD_TABLET_GUTTER_DESC" />
-				<!-- End Grid -->
-
 			</fieldset>
 			<fieldset name="visual_params" label="T3_TM_VISUAL">
 

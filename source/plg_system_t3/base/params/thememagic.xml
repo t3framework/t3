@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fields name="thememagic" addfieldpath="/plugins/system/t3/includes/depend">   
-	
+
+	<fields name="thememagic" addfieldpath="/plugins/system/t3/includes/depend">
+		<fieldset name="grid_params" label="T3_TM_GRID">
+			<!-- Grid -->
+			<field name="T3gridWidth1200" type="text" default="1200px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_WIDE_WIDTH_LABEL" description="T3_TM_VARS_SCFD_WIDE_WIDTH_DESC" />
+			<field name="gridGutterWidth1200" type="text" default="40px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_WIDE_GUTTER_LABEL" description="T3_TM_VARS_SCFD_WIDE_GUTTER_DESC" />
+
+			<field name="T3gridWidth" type="text" default="940px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_NORMAL_WIDTH_LABEL" description="T3_TM_VARS_SCFD_NORMAL_WIDTH_DESC" />
+			<field name="gridGutterWidth" type="text" default="40px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_NORMAL_GUTTER_LABEL" description="T3_TM_VARS_SCFD_NORMAL_GUTTER_DESC" />
+
+			<field name="T3gridWidth980" type="text" default="940px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_XTABLET_WIDTH_LABEL" description="T3_TM_VARS_SCFD_XTABLET_WIDTH_DESC" />
+			<field name="gridGutterWidth980" type="text" default="40px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_XTABLET_GUTTER_LABEL" description="T3_TM_VARS_SCFD_XTABLET_GUTTER_DESC" />
+
+			<field name="T3gridWidth768" type="text" default="740px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_TABLET_WIDTH_LABEL" description="T3_TM_VARS_SCFD_TABLET_WIDTH_DESC" />
+			<field name="gridGutterWidth768" type="text" default="20px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_TABLET_GUTTER_LABEL" description="T3_TM_VARS_SCFD_TABLET_GUTTER_DESC" />
+			<!-- End Grid -->
+		</fieldset>
 	</fields>
 </form>
