@@ -303,6 +303,53 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
+	* Get layout column class
+	*
+	* @param $layout object
+	*     Layout configuration
+	* @param $col int
+	*     Column number, start from 0
+	*
+	* @return string Block content
+	*/
+	function getDocClass () {
+		$input = JFactory::getApplication()->input;
+		if($input->getCmd('option', '')){
+			$classes[] = $input->getCmd('option', '');
+		}
+		if($input->getCmd('view', '')){
+			$classes[] = 'view-' . $input->getCmd('view', '');
+		}
+		if($input->getCmd('layout', '')){
+			$classes[] = 'layout-' . $input->getCmd('layout', '');
+		}
+		if($input->getCmd('task', '')){
+			$classes[] = 'task-' . $input->getCmd('task', '');
+		}
+		if($input->getCmd('Itemid', '')){
+			$classes[] = 'Itemid-' . $input->getCmd('Itemid', '');
+		}
+
+		$menu = JFactory::getApplication()->getMenu();
+		if($menu){
+			$active = $menu->getActive();
+			$default = $menu->getDefault();
+
+			if ($active) {
+				if($default && $active->id == $default->id){
+					$classes[] = 'home';
+				}
+
+				if ($active->params && $active->params->get('pageclass_sfx')) {
+					$classes[] = $active->params->get('pageclass_sfx');
+				}
+			}
+		}
+
+		return implode(' ', $classes);
+	}
+
+	/**
 	 * Wrap of document countModules function, get position from configuration before calculate
 	 */
 	function countModules($positions)
