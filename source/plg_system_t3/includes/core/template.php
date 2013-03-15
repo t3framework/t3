@@ -73,6 +73,11 @@ class T3Template extends ObjectExtendable
 				$this->_layoutsettings->loadString (JFile::read($fconfig), 'INI', array('processSections' => true));
 			}
 		}
+
+		// disable responsive for component view
+		if (JFactory::getApplication()->input->getCmd('tmpl') == 'component') {
+			$this->setParam('responsive', 0);
+		}
 	}
 
 	/**
