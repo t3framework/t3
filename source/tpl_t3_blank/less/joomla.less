@@ -315,7 +315,6 @@ article aside .btn-group {
   position: relative;
 
   h2 {
-    font-size: 150%;
     margin-top: 0;
     margin-bottom: 20px;
   }
@@ -585,14 +584,49 @@ article aside .btn-group {
 
 // News Feeds
 // ---------------------------------------------------------
-.newsfeed > h2 {
-  border-bottom: 1px solid @T3borderColor;
-  padding-bottom: @T3globalPadding;
-  margin-bottom: @T3globalMargin;
+// Feed categories
+.newsfeed-category,
+.newsfeed {
+  > h2 {
+    border-bottom: 1px solid @T3borderColor;
+    padding-bottom: @T3globalPadding;
+    margin-bottom: @T3globalMargin;
+    margin-top: 0;
+  }
+
+  .category-desc {
+    margin-bottom: @T3globalMargin;
+  }
+  
+  .category {
+    li {
+      .clearfix();
+    }
+  }
 }
 
-.feed-description {
-  margin-bottom: @T3globalMargin * 2;
+// Feeds item
+.newsfeed {
+  > h2 {
+    border-bottom: 1px solid @T3borderColor;
+    padding-bottom: @T3globalPadding;
+    margin-bottom: @T3globalMargin;
+    margin-top: 0;
+  }
+
+  .feed-description {
+    margin-bottom: @T3globalMargin;
+    font-size: @T3biggerFontSize;
+  }
+  
+  .feed-item-description .feed-description {
+    font-size: @baseFontSize;
+  }
+  
+  ol li > a {
+    font-weight: bold;
+    font-size: @T3biggerFontSize;
+  }
 }
 
 
