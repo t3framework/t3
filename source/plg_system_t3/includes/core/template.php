@@ -303,16 +303,9 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
-	* Get layout column class
-	*
-	* @param $layout object
-	*     Layout configuration
-	* @param $col int
-	*     Column number, start from 0
-	*
-	* @return string Block content
+	* Render page class
 	*/
-	function getDocClass () {
+	function bodyClass () {
 		$input = JFactory::getApplication()->input;
 		if($input->getCmd('option', '')){
 			$classes[] = $input->getCmd('option', '');
@@ -327,7 +320,7 @@ class T3Template extends ObjectExtendable
 			$classes[] = 'task-' . $input->getCmd('task', '');
 		}
 		if($input->getCmd('Itemid', '')){
-			$classes[] = 'Itemid-' . $input->getCmd('Itemid', '');
+			$classes[] = 'itemid-' . $input->getCmd('Itemid', '');
 		}
 
 		$menu = JFactory::getApplication()->getMenu();
@@ -346,7 +339,7 @@ class T3Template extends ObjectExtendable
 			}
 		}
 
-		return implode(' ', $classes);
+		echo implode(' ', $classes);
 	}
 
 	/**
