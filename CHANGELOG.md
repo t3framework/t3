@@ -1,3 +1,31 @@
+<h2>Version: 1.2.0 (15/03/2013)</h2>
+
+<h3>New Features</h3>
+- Ability to have multiple base HTML override packages | <a href="https://github.com/t3framework/t3/commit/57d8030e6dddbe5a3490dc08e8fa2a70a46efb5b">Link</a>
+- Off-canvas style for collapsed menu on small screen | <a href="https://github.com/t3framework/t3/commit/ed951582b0c715d115e458dd3ef66e4f2cb92859">Link</a>
+
+<h3>Improvements</h3>
+- Style: update style for article | <a href="https://github.com/t3framework/t3/commit/712ad2a761d2d692c259fde1022049a32befeabe">Link</a>
+- HTML5: Add support http and https | <a href="https://github.com/t3framework/t3/commit/834ecacb138f051ed7dfa5a68551dbbd4bebb458">Link</a>
+- T3 Blank: Add languages for templateInfo | <a href="https://github.com/t3framework/t3/commit/60d520ee352cbcaf518edfef4170f1065bca0c67">Link</a>
+- Styles: Refine style param | <a href="https://github.com/t3framework/t3/commit/3eb1ab79fe95b70a7d8a64b3cb56ecfe99cb2a76">Link</a>
+- Theme Magic: Add Width configuration | <a href="https://github.com/t3framework/t3/commit/ab1bdc6cf04e63a9afb45bf8c2215c0d8cc7346b">Link</a>
+- Allow edit Site Name & Slogan when logo is image | <a href="https://github.com/t3framework/t3/commit/645165f8dd08d57e23acf774bb4369379f3d0a22">Link</a>
+- T3Logo: Add option to remove T3 Logo in footer | <a href="https://github.com/t3framework/t3/commit/b9967afd90676d1f36bc6ce1d02b762bf7dff98c">Link</a>
+- T3 Re-structure: Change t3import => T3::import | <a href="https://github.com/t3framework/t3/commit/e7aba9fa68eaa4bbd123e2130958519f3cdc35f0">Link</a>
+- Bootstrap: Upgrade button to v2.3.1 | <a href="https://github.com/t3framework/t3/commit/65453c55a9a82b4ed91ba211cf15e7d0dd45a286">Link</a>
+- LESS Styles refinement: Move HR style to "core.less", Add List Styles in "core.less", Add basic .category-module Style in "modules.less", Add Megamenu Module List's Styles Reset to "megamenu.less", Cleaning and refining JOOMLA 3.0 EXTENDING BOOTSTRAP | <a href="https://github.com/t3framework/t3/commit/98635a467ac7095aa31e08eca05fda56dbcf265a">Link</a>
+- Megamenu: Remove reset module css from base | <a href="https://github.com/t3framework/t3/commit/7cdfde5a56ad4b48e4b433368af9f6df37605653">Link</a>
+
+<h3>Bugs Fix</h3>
+- Megamenu: simple fix for sync error | <a href="https://github.com/t3framework/t3/commit/6925d29a5264d479594d611a38d65edf6064de32">Link</a>
+- Megamenu: Remove megamenu-responsive.less in megamenu.less file | <a href="https://github.com/t3framework/t3/commit/931a74989aac2cd4e54267983e5532cd681f384b">Link</a>
+- ThemeMagic: correct order of LESS and CSS file  | <a href="https://github.com/t3framework/t3/commit/73a90ad39ac074dfba88e694a2b2c4773dd25da0">Link</a>
+- Minify: correct convert url to filepath | <a href="https://github.com/t3framework/t3/commit/194bb0fed1f6697921364b9b6a697d4e7bd3ac30">Link</a>
+- Overwrite: Fix articles-categories layout | <a href="https://github.com/t3framework/t3/commit/35f2260729ac53c43105b28c889011bab3ea461f">Link</a>
+- Layout: Fix span width detect for row-fluid | <a href="https://github.com/t3framework/t3/commit/d696fe4b56275275ddc6efcb7c0255b88f63bf20">Link</a>
+- Refine "Newsfeed Style" in joomla.less | <a href="https://github.com/t3framework/t3/commit/84cc3e5622e5f80e5fd1ba223678138dc5d09775">Link</a>
+
 <h2>Version: 1.1.0 Stable (22/02/2013)</h2>
 
 <h3>New Features</h3>
@@ -87,4 +115,3 @@
 - Removing JA prefix out of the framework name, T3 Blank template, functions & class name
 - Improve visualization for Unsaved status of any Tab.
 - Remove the popup for Quick Tour at the first use of the framework (it can be annoying for developers who use T3 for many project at the same time) 
-
