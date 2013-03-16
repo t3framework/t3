@@ -1,4 +1,4 @@
-<h2>Version: 1.2.0 (15/03/2013)</h2>
+<h2>Version: 1.2.0 (16/03/2013)</h2>
 
 <h3>New Features</h3>
 - Ability to have multiple base HTML override packages | <a href="https://github.com/t3framework/t3/commit/57d8030e6dddbe5a3490dc08e8fa2a70a46efb5b">Link</a>
