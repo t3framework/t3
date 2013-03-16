@@ -6,7 +6,7 @@
 	method="upgrade" client="site">
 	<name>t3_blank</name>
 	<version>1.2.0</version>
-	<creationDate>15 March 2013</creationDate>
+	<creationDate>16 March 2013</creationDate>
 	<author>JoomlArt.com</author>
 	<authorEmail>webmaster@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
