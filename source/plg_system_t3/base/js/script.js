@@ -23,6 +23,12 @@
 					$(document).removeClass('hoverable')
 						.data('touchitems').data('noclick', 0).removeClass('open');
 				});
+
+				if (navigator.userAgent.match(/(iPad|iPhone);.*CPU.*OS 6_\d/i)){ 
+					$(document.body).children(':not(.nav)').on('click', function(){
+						$(document).trigger('hidesub');
+					});
+				}
 			}
 
 			return this.each(function(){	
