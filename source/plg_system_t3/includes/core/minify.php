@@ -87,7 +87,7 @@ class T3Minify
 		$outputurl = JURI::root(true) . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/css';
 		
 		if (!JFile::exists($outputpath)){
-			@JFolder::create($outputpath);
+			JFolder::create($outputpath);
 		}
 
 		if (!is_writeable($outputpath)) {
@@ -107,7 +107,7 @@ class T3Minify
 
 			if ($stylesheet['mime'] == 'text/css' && self::minifiable($url)) {
 				$stylesheet['path'] = self::fromUrlToPath($url);
-				$stylesheet['data'] = @JFile::read($stylesheet['path']);
+				$stylesheet['data'] = JFile::read($stylesheet['path']);
 
 				$selcount = preg_match_all($regex, $stylesheet['data'], $matched);
 				if(!$selcount) {
@@ -210,7 +210,7 @@ class T3Minify
 						$cssdata[] = $cssmin;
 					}
 
-					@JFile::write($groupfile, implode("\n", $cssdata));
+					JFile::write($groupfile, implode("\n", $cssdata));
 				}
 
 				$output[$outputurl . '/' . $groupname] = array(

@@ -15,13 +15,15 @@
 	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
 	
 	if(isTouch){
+
 		$.fn.touchmenu = function(){
 			
-			var jallitems = $();
-			$(document).on('click', function(){
-				jallitems.data('noclick', 0).removeClass('open');
-				$(document.body).removeClass('hoverable');
-			});
+			if(!$(document).data('touchmenu')){
+				$(document).data('touchmenu', 1).data('touchitems', $()).on('hidesub', function(){
+					$(document).removeClass('hoverable')
+						.data('touchitems').data('noclick', 0).removeClass('open');
+				});
+			}
 
 			return this.each(function(){	
 				var	itemsel = $(this).has('.mega').length ? 'li.mega' : 'li.parent',
@@ -52,7 +54,7 @@
 									//add open class, 
 									//iphone seem have buggy when we modify display property
 									//it does not trigger hover CSS
-									jitems.removeClass('open');
+									$(document).data('touchitems').removeClass('open');
 									jitem.addClass('open').parentsUntil('.nav').filter(itemsel).addClass('open');
 
 									val = jchild.css('display') != 'none';
@@ -93,7 +95,7 @@
 				jitems.on('mouseenter', onTouch).data('noclick', 0);
 				$(this).find('li').on('click', onClick);
 
-				jallitems = jallitems.add(jitems);
+				$(document).data('touchitems', $(document).data('touchitems').add(jitems));
 			});
 		};
 	}
