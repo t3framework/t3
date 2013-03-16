@@ -19,7 +19,7 @@
 		$.fn.touchmenu = function(){
 			
 			if(!$(document).data('touchmenu')){
-				$(document).data('touchmenu', 1).data('touchitems', $()).on('hidesub', function(){
+				$(document).data('touchmenu', 1).data('touchitems', $()).on('click hidesub', function(){
 					$(document).removeClass('hoverable')
 						.data('touchitems').data('noclick', 0).removeClass('open');
 				});
