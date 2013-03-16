@@ -528,7 +528,7 @@ class T3Template extends ObjectExtendable
 		$this->addScript (T3_URL.'/js/script.js');
 
 		//menu control script
-		if ($this->getParam ('navigation_trigger') == 'hover'){
+		if ($this->getParam ('navigation_trigger', 'hover') == 'hover'){
 			$this->addScript (T3_URL.'/js/menu.js');
 		}
 
