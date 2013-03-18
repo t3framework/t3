@@ -172,7 +172,11 @@ class T3Less extends lessc
 			if (!is_dir (dirname($tofile))) {
 				JFolder::create (dirname($tofile));
 			}
-			return JFile::write($tofile, $output);
+			
+			$ret = JFile::write($tofile, $output);
+			@chmod($tofile, 0644);
+
+			return $ret;
 		}
 
 		return $output;

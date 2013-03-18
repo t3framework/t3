@@ -92,9 +92,6 @@ class T3AdminLayout
 		}
 		
 		$file = JPATH_ROOT . '/templates/' . $template . '/etc/layout/' . $layout . '.ini';
-		if (JFile::exists($file)) {
-			@chmod($file, 0777);
-		}
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);
