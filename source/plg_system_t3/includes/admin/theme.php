@@ -295,10 +295,18 @@ class T3AdminTheme
 
 	public static function addAssets(){
 		$japp = JFactory::getApplication();
+		$user = JFactory::getUser();
+
+		//do nothing when site is offline and user has not login (the offline page is only show login form)
+		if ($japp->getCfg('offline') && !$user->authorise('core.login.offline')) {
+			return;
+		}
+
 		$jdoc = JFactory::getDocument();
 		$params = $japp->getTemplate(true)->params;
+		
 		if(defined('T3_THEMER') && $params->get('themermode', 1)){
-			
+
 			$jdoc->addStyleSheet(T3_URL.'/css/thememagic.css');
 			$jdoc->addScript(T3_URL.'/js/thememagic.js');
 			

@@ -517,8 +517,21 @@ class T3Template extends ObjectExtendable
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			JHtml::_('jquery.framework');
 		} else {
-			$this->addScript (T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
-			$this->addScript (T3_URL.'/js/jquery.noconflict.js');
+			$scripts = @$this->_scripts;
+			$jqueryIncluded = 0;
+			if(is_array($scripts) && count($scripts)) {
+				$pattern = '/jquery([-_]*\d+(\.\d+)+)?(\.min)?\.js/i';//is jquery core
+				foreach ($scripts as $script => $opts) {
+					if(preg_match($pattern, $script)) {
+						$jqueryIncluded = 1;
+					}
+				}
+			}
+			
+			if(!$jqueryIncluded) {
+				$this->addScript (T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
+				$this->addScript (T3_URL.'/js/jquery.noconflict.js');
+			}
 		}
 		define('JQUERY_INCLUED', 1);
 
