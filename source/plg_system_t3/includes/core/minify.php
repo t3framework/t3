@@ -75,7 +75,7 @@ class T3Minify
 		if(preg_match('/^https?\:/', $url)){ //this is a full link
 			$path = JPath::clean(JPATH_ROOT . '/' . substr($url, strlen(JURI::base())));
 		} else {
-			$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) == 0 ? substr($url, strlen($root)) : $url));
+			$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) === 0 ? substr($url, strlen($root)) : $url));
 		}
 		
 		return $path;
