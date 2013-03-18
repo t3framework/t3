@@ -137,7 +137,7 @@
 				<option value="click">Mouse Click</option>
 			</field>
 
-			<field name="navigation_collapse_offcanvas" type="radio" class="btn-group" default="0"
+			<field name="navigation_collapse_offcanvas" type="radio" class="btn-group" default="1"
 				global="1"
 				label="T3_NAVIGATION_COLLAPSE_OFFCANVAS"
 				description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
