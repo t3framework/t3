@@ -704,11 +704,10 @@ class T3Template extends ObjectExtendable
 		}
 
 		// add css/js for off-canvas
-		if ($this->getParam('navigation_collapse_offcanvas')) {
+		if ($this->getParam('navigation_collapse_offcanvas', 1)) {
 			$this->addCss ('off-canvas', false);
 			$this->addScript (T3_URL.'/js/off-canvas.js', false);
 		}
-
 	}
 
 	function paramToStyle($style, $paramname = '', $isurl = false){
