@@ -129,9 +129,6 @@ class T3AdminLayout
 
 		$confpath = JPATH_ROOT . '/templates/' . $template . '/etc/layout/';
 		$confdest = $confpath . $layout . '.ini';
-		if (JFile::exists($confdest)) {
-			@chmod($confdest, 0777);
-		}
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);

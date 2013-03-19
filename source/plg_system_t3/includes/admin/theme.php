@@ -61,7 +61,6 @@ class T3AdminTheme
 		$data = $variables->toString('LESS');
 		$type = 'new';
 		if (JFile::exists($file)) {
-			@chmod($file, 0777);
 			$type = 'overwrite';
 		} else {
 

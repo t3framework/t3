@@ -34,12 +34,12 @@ $db->setQuery($query);
 $results = $db->loadObjectList('element');
 
 if(count($results)){
-  if(isset($results[$telem])){
+  if(isset($results[$telem]) && (int)$results[$telem]->version > (int)$ctversion){
     $thasnew = true;
     $ntversion = $results[$telem]->version;
   }
   
-  if(isset($results[$felem])){
+  if(isset($results[$felem]) && (int)$results[$felem]->version > (int)$cfversion){
     $fhasnew = true;
     $nfversion = $results[$felem]->version;
   }
