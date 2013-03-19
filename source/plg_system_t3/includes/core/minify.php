@@ -66,7 +66,7 @@ class T3Minify
 				}
 
 				$path = JPath::clean(JPATH_ROOT . '/' . substr($url, strlen($base)));
-			} {
+			} else {
 				$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) === 0 ? substr($url, strlen($root)) : $url));
 			}
 
