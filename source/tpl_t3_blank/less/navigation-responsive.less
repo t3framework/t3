@@ -126,29 +126,17 @@
       .border-radius(0);
       .box-shadow(none);
     }
-
-
+    
+    
+    // Full width when fixed
+    // ---------------------
+    &.navbar-collapse-fixed-top {
+      margin-left: 0;
+      margin-right: 0;
+    }
     // End
   }
 
-  // ------------------------------------------------------
-  // Support fixed navbar when collapsed
-  // -------------------------------------------------------
-  .navbar-collapse-fixed-top,
-  .navbar-collapse-fixed-bottom {
-    margin-left: 0;
-    margin-right: 0;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-
-  .navbar-collapse-fixed-bottom {
-    bottom: 0;
-    top: auto;
-  }
 
   // -------------------------------------------------------
   //  JA MAIN MENU (Inverted)
