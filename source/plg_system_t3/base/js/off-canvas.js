@@ -29,16 +29,15 @@
 			});
 
 			// hide when click on off-canvas-nav
-			$('#off-canvas-nav').click (function (e) {
-				var btn = $('.btn-navbar');
-				if (btn.data('off-canvas') == 'show') {
-					btn.data('off-canvas', 'hide');
-					$('html').removeClass ('off-canvas-enabled');
+			$('#off-canvas-nav').bind ('touchstart', function (e) {
+				if (e.target == this) {
+					var btn = $('.btn-navbar');
+					if (btn.data('off-canvas') == 'show') {
+						btn.data('off-canvas', 'hide');
+						$('html').removeClass ('off-canvas-enabled');
+					}
+					return false;
 				}
-			});
-
-			$('#off-canvas-nav').bind ('touchmove', function (e) {
-				if (e.target == this) return false;
 			});
 
 		})
