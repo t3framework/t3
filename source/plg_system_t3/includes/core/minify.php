@@ -76,6 +76,10 @@ class T3Minify
 		return false;
 	}
 
+	public static function fixUrl($url = ''){
+		return ($url[0] === '/' || strpos($url, '://') !== false) ? $url : JURI::base(true) . '/' . $url;
+	}
+
 	public static function optimizecss($tpl)
 	{
 		$outputpath = JPATH_ROOT . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/css';
@@ -101,6 +105,8 @@ class T3Minify
 		$csspath = '';
 
 		foreach ($doc->_styleSheets as $url => $stylesheet) {
+
+			$url = self::fixUrl($url);
 
 			if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
 				$stylesheet['path'] = $csspath;
