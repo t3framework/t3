@@ -29,7 +29,7 @@
 			});
 
 			// hide when click on off-canvas-nav
-			$('#off-canvas-nav').bind ('touchstart', function (e) {
+			$('#off-canvas-nav').bind ('touchstart click', function (e) {
 				if (e.target == this) {
 					var btn = $('.btn-navbar');
 					if (btn.data('off-canvas') == 'show') {
