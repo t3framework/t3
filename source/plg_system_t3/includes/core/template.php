@@ -533,6 +533,13 @@ class T3Template extends ObjectExtendable
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
 		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
+
+		// add css/js for off-canvas
+		if ($this->getParam('navigation_collapse_offcanvas', 1)) {
+			$this->addCss ('off-canvas', false);
+			$this->addScript (T3_URL.'/js/off-canvas.js', false);
+		}
+		
 		$this->addScript (T3_URL.'/js/script.js');
 
 		//menu control script
@@ -698,11 +705,7 @@ class T3Template extends ObjectExtendable
 			}
 		}
 
-		// add css/js for off-canvas
-		if ($this->getParam('navigation_collapse_offcanvas', 1)) {
-			$this->addCss ('off-canvas', false);
-			$this->addScript (T3_URL.'/js/off-canvas.js', false);
-		}
+		
 	}
 
 	function paramToStyle($style, $paramname = '', $isurl = false){
