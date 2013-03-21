@@ -118,7 +118,9 @@
 			$('ul.nav').has('.dropdown-menu').touchmenu();
 		} else {
 			$(document.body).on('click', '[data-toggle="dropdown"]' ,function(){
-				if($(this).parent().hasClass('open') && this.href && this.href != '#'){
+				//if this link has 'open' (second click) class or when we are in collapsed menu and have always-show
+				if($(this).parent().hasClass('open') && this.href && this.href != '#' || 
+					($('.btn-navbar').is(':visible') && $(this).closest('.always-show').length)){
 					window.location.href = this.href;
 				}
 			});
