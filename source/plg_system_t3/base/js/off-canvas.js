@@ -14,7 +14,9 @@
 !function($){
 	if (!$.browser.msie || $.browser.version >= 10) {
 		$(document).ready(function(){
-			$('#t3-mainnav .nav-collapse').clone().appendTo ($('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo($('body'))));
+			var $btn = $('.btn-navbar');
+			if (!$btn.length) return ;
+			$($btn.data('target')).clone().appendTo ($('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo($('body'))));
 			$('html').addClass ('off-canvas');
 			$('.btn-navbar').click (function(e){
 				var $this = $(this);
