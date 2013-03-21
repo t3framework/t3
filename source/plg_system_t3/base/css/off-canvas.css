@@ -11,31 +11,31 @@
  *------------------------------------------------------------------------------
  */
 
-/** 
- *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
- *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         https://github.com/t3framework/ 
- *------------------------------------------------------------------------------
-*/
-@media (max-width: 979px) {
+#off-canvas-nav {
+  display: none;
+}
+@media (max-width: 767px) {
   .off-canvas {
+    width: 100%;
     overflow-x: hidden;
     position: relative;
-    width: 100%;
   }
   .off-canvas body {
-    left: 0 !important;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    height: 100%;
+    overflow-x: hidden;
+    width: 100%;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+  .off-canvas body > * {
+    left: 0;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
     -webkit-transition: -webkit-transform 500ms ease;
     -moz-transition: -moz-transform 500ms ease;
     -o-transition: -o-transform 500ms ease;
@@ -46,27 +46,45 @@
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  .off-canvas .nav-collapse {
-    position: absolute;
-    overflow: visible !important;
-    width: 70%;
-    left: -70%;
+  .off-canvas #t3-mainnav .nav-collapse {
+    display: none;
+  }
+  .off-canvas #off-canvas-nav {
+    display: block;
+    position: fixed;
     top: 0;
-    margin: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background: none;
+    filter: alpha(opacity=0);
+    pointer-events: none;
   }
-  .off-canvas-enabled body {
-    -webkit-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-    -moz-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-    -ms-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-    -o-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-    transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+  .off-canvas #off-canvas-nav .t3-mainnav {
+    width: 270px;
+    height: 100%;
+    left: -270px;
+    margin-left: 0;
+    overflow-y: auto;
+    position: absolute;
   }
-  .off-canvas-enabled .nav-collapse {
-    left: -70%;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
+  .off-canvas #off-canvas-nav .t3-mainnav .nav-collapse {
+    height: auto;
+    overflow: visible;
+    padding-left: 20px;
+    padding-bottom: 50px;
+    background: none;
+  }
+  .off-canvas-enabled body > * {
+    -webkit-transform: translateX(250px);
+    -moz-transform: translateX(250px);
+    -ms-transform: translateX(250px);
+    -o-transform: translateX(250px);
+    transform: translateX(250px);
+  }
+  .off-canvas-enabled #off-canvas-nav {
+    z-index: 1001;
+    pointer-events: auto;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 }

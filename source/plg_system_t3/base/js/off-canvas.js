@@ -14,27 +14,33 @@
 !function($){
 	if (!$.browser.msie || $.browser.version >= 10) {
 		$(document).ready(function(){
+			$('#t3-mainnav .nav-collapse').clone().appendTo ($('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo($('body'))));
 			$('html').addClass ('off-canvas');
-			$('.btn-navbar').click (function(){
+			$('.btn-navbar').click (function(e){
 				var $this = $(this);
 				if ($this.data('off-canvas') == 'show') {
 					$this.data('off-canvas', 'hide');
-					if(window.pageXOffset && window.pageXOffset > 0){
-						$('html, body').stop(true).animate({
-							scrollLeft: 0
-						}, 500, function(){
-							$('html').removeClass ('off-canvas-enabled');							
-						})
-					} else {
-						$('html').removeClass ('off-canvas-enabled');
-					}
-
+					$('html').removeClass ('off-canvas-enabled');
 				} else {
 					$this.data('off-canvas', 'show');
 					$('html').addClass ('off-canvas-enabled');
 				}
 				return false;
 			});
+
+			// hide when click on off-canvas-nav
+			$('#off-canvas-nav').click (function (e) {
+				var btn = $('.btn-navbar');
+				if (btn.data('off-canvas') == 'show') {
+					btn.data('off-canvas', 'hide');
+					$('html').removeClass ('off-canvas-enabled');
+				}
+			});
+
+			$('#off-canvas-nav').bind ('touchmove', function (e) {
+				if (e.target == this) return false;
+			});
+
 		})
 	}
 }(jQuery);

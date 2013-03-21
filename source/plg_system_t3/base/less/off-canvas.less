@@ -25,19 +25,32 @@
 // -------------------------------------------------------
 // OFF-CANVAS NAVIGATIONS ELEMENTS
 // -------------------------------------------------------
+#off-canvas-nav {
+  display: none;
+}
 @media (max-width: @navbarCollapseWidth) {
   .off-canvas {
+    width: 100%;
     overflow-x: hidden;
     position: relative;
-    width: 100%;
-    
+
     body {
-      left: 0 !important;
-      -webkit-transform: translate3d(0, 0, 0);
-      -moz-transform: translate3d(0, 0, 0);
-      -ms-transform: translate3d(0, 0, 0);
-      -o-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      height: 100%;
+      overflow-x: hidden;
+      width: 100%;
+      -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    }
+
+    body > * {
+      left: 0;
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+      transform: translateX(0);
       -webkit-transition: -webkit-transform 500ms ease;
       -moz-transition: -moz-transform 500ms ease;
       -o-transition: -o-transform 500ms ease;
@@ -49,38 +62,60 @@
       backface-visibility: hidden;
     }
     
-    .nav-collapse {
-      position: absolute;
-      overflow: visible !important;
-      width: 70%;
-      left: -70%;
-      top: 0;
-      margin: 0;
+    #t3-mainnav .nav-collapse {
+      display: none;
     }
+
+    #off-canvas-nav {
+      display: block;
+      position: fixed;
+      top: 0;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      background: none;
+      filter:Alpha(opacity=0);
+      pointer-events: none;
+
+      .t3-mainnav {
+        width: (@T3OffCanvasWidth + 20);
+        height: 100%;
+        left: -(@T3OffCanvasWidth + 20);
+        margin-left: 0;
+        overflow-y: auto;
+        position: absolute;
+        .nav-collapse {
+          height: auto;
+          overflow: visible;
+          padding-left: 20px;
+          padding-bottom: 50px;
+          background: none;
+        }
+      }
+    }
+
   }
   
   
   // On stage
   // --------
   .off-canvas-enabled {
-    
-    body {
-      -webkit-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-      -moz-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-      -ms-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-      -o-transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
-      transform: translate3d(70%, 0, 0) scale3d(1, 1, 1);
+
+    body > * {
+      -webkit-transform: translateX(@T3OffCanvasWidth);
+      -moz-transform: translateX(@T3OffCanvasWidth);
+      -ms-transform: translateX(@T3OffCanvasWidth);
+      -o-transform: translateX(@T3OffCanvasWidth);
+      transform: translateX(@T3OffCanvasWidth);
     }
-    
-    .nav-collapse {
-      left: -70%;
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-      -o-backface-visibility: hidden;
-      backface-visibility: hidden;
+
+    #off-canvas-nav {
+      z-index: 1001;
+      pointer-events: auto;
+      background-color: rgba(255, 255, 255, 0.3);
     }
     //End
   }
   // End Responsive
+
 }

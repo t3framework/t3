@@ -47,6 +47,10 @@
       margin-bottom: (@T3globalMargin / 2);
     }
 
+    .navbar .btn-navbar:hover {
+      cursor: pointer;
+    }
+
 
     // COLLAPSIBLE NAVBAR
     // ----------------------------------------------------
@@ -122,9 +126,29 @@
       .border-radius(0);
       .box-shadow(none);
     }
+
+
     // End
   }
 
+  // ------------------------------------------------------
+  // Support fixed navbar when collapsed
+  // -------------------------------------------------------
+  .navbar-collapse-fixed-top,
+  .navbar-collapse-fixed-bottom {
+    margin-left: 0;
+    margin-right: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .navbar-collapse-fixed-bottom {
+    bottom: 0;
+    top: auto;
+  }
 
   // -------------------------------------------------------
   //  JA MAIN MENU (Inverted)
