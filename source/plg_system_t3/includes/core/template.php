@@ -257,7 +257,11 @@ class T3Template extends ObjectExtendable
 		$menu->render();          
 
 		// add core megamenu.css in plugin
+		// deprecated - will extend the core style into template megamenu.less & megamenu-responsive.less
+		// to use variable overridden in template
 		$this->addStyleSheet(T3_URL.'/css/megamenu.css');
+		if ($this->getParam('responsive', 1)) $this->addStyleSheet(T3_URL.'/css/megamenu-responsive.css');
+		
 		// megamenu.css override in template
 		$this->addCss ('megamenu');	
 	}

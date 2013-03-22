@@ -2,6 +2,36 @@
   .t3-megamenu .mega-inner {
     padding: 10px 20px;
   }
+  .t3-megamenu .row-fluid,
+  .t3-megamenu .mega-dropdown-menu,
+  .t3-megamenu .row-fluid [class*="span"] {
+    width: 100% !important;
+    min-width: 100% !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+  }
+  .t3-megamenu .row-fluid + .row-fluid {
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+  }
+  .t3-megamenu .hidden-collapse,
+  .t3-megamenu .always-show  .caret,
+  .t3-megamenu .sub-hidden-collapse > .nav-child,
+  .t3-megamenu .sub-hidden-collapse .caret,
+  .t3-megamenu .sub-hidden-collapse > a:after,
+  .t3-megamenu .always-show .dropdown-submenu > a:after {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  .t3-megamenu .mega-inner {
+    padding: 10px 20px;
+  }
   .t3-megamenu .row-fluid + .row-fluid {
     border-top: 1px solid #999;
   }

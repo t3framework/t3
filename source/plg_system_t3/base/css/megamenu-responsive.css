@@ -1,3 +1,16 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
 @media (max-width: 767px) {
   .t3-megamenu .mega-inner {
     padding: 10px 20px;
@@ -17,32 +30,14 @@
   }
   .t3-megamenu .row-fluid + .row-fluid {
     padding-top: 10px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eeeeee;
   }
   .t3-megamenu .hidden-collapse,
-  .t3-megamenu .always-show  .caret,
+  .t3-megamenu .always-show .caret,
   .t3-megamenu .sub-hidden-collapse > .nav-child,
   .t3-megamenu .sub-hidden-collapse .caret,
   .t3-megamenu .sub-hidden-collapse > a:after,
   .t3-megamenu .always-show .dropdown-submenu > a:after {
     display: none !important;
-  }
-}
-@media (max-width: 767px) {
-  .t3-megamenu .mega-inner {
-    padding: 10px 20px;
-  }
-  .t3-megamenu .row-fluid + .row-fluid {
-    border-top: 1px solid #999;
-  }
-  .t3-megamenu .span12.mega-col-nav .mega-inner {
-    padding: 0;
-  }
-  .t3-megamenu .mega-nav > li a,
-  .t3-megamenu .dropdown-menu .mega-nav > li a {
-    padding: 5px 20px;
-  }
-  .t3-megamenu .t3-module {
-    margin-bottom: 0;
   }
 }

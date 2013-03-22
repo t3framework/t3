@@ -1,4 +1,156 @@
 .t3-megamenu .mega-inner {
+  padding: 10px;
+  *zoom: 1;
+}
+.t3-megamenu .mega-inner:before,
+.t3-megamenu .mega-inner:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-inner:after {
+  clear: both;
+}
+.t3-megamenu .row-fluid + .row-fluid {
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+.t3-megamenu .mega > .mega-dropdown-menu {
+  min-width: 200px;
+  display: none;
+}
+.t3-megamenu .mega.open > .mega-dropdown-menu,
+.t3-megamenu .mega.dropdown-submenu:hover > .mega-dropdown-menu {
+  display: block;
+}
+.t3-megamenu .mega-group {
+  *zoom: 1;
+}
+.t3-megamenu .mega-group:before,
+.t3-megamenu .mega-group:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-group:after {
+  clear: both;
+}
+.t3-megamenu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
+  background: inherit;
+  color: inherit;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:focus {
+  background: inherit;
+  color: inherit;
+}
+.t3-megamenu .mega-group-ct {
+  margin: 0;
+  padding: 0;
+  *zoom: 1;
+}
+.t3-megamenu .mega-group-ct:before,
+.t3-megamenu .mega-group-ct:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-group-ct:after {
+  clear: both;
+}
+.t3-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+  padding: 0;
+}
+.t3-megamenu .span12.mega-col-nav .mega-inner {
+  padding: 5px;
+}
+.t3-megamenu .mega-nav,
+.t3-megamenu .dropdown-menu .mega-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.t3-megamenu .mega-nav > li,
+.t3-megamenu .dropdown-menu .mega-nav > li {
+  list-style: none;
+  margin-left: 0;
+}
+.t3-megamenu .mega-nav > li a,
+.t3-megamenu .dropdown-menu .mega-nav > li a {
+  white-space: normal;
+}
+.t3-megamenu .mega-group > .mega-nav,
+.t3-megamenu .dropdown-menu .mega-group > .mega-nav {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.t3-megamenu .mega-nav .dropdown-submenu > a::after {
+  margin-right: 5px;
+}
+.t3-megamenu .t3-module {
+  margin-bottom: 10px;
+}
+.t3-megamenu .t3-module .module-title {
+  margin-bottom: 0;
+}
+.t3-megamenu .t3-module .module-ct {
+  margin: 0;
+  padding: 0;
+}
+.t3-megamenu .mega-align-left > .dropdown-menu {
+  left: 0;
+}
+.t3-megamenu .mega-align-right > .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.t3-megamenu .mega-align-center > .dropdown-menu {
+  left: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+}
+.t3-megamenu .dropdown-submenu.mega-align-left > .dropdown-menu {
+  left: 100%;
+}
+.t3-megamenu .dropdown-submenu.mega-align-right > .dropdown-menu {
+  left: auto;
+  right: 100%;
+}
+.t3-megamenu .mega-align-justify {
+  position: static;
+}
+.t3-megamenu .mega-align-justify > .dropdown-menu {
+  left: 0;
+  margin-left: 0;
+}
+.t3-megamenu .nav .caret,
+.t3-megamenu .dropdown-submenu .caret,
+.t3-megamenu .mega-menu .caret {
+  display: none;
+}
+.t3-megamenu .nav > .dropdown > .dropdown-toggle .caret {
+  display: inline-block;
+}
+.t3-megamenu .nav [class^="icon-"],
+.t3-megamenu .nav [class*=" icon-"] {
+  margin-right: 5px;
+}
+.t3-megamenu .mega-inner {
   padding: 20px;
 }
 .t3-megamenu .row-fluid + .row-fluid {
