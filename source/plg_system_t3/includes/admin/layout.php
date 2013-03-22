@@ -32,6 +32,9 @@ class T3AdminLayout
 
 	public static function display(){
 		
+		//load language for template
+		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
+
 		$japp = JFactory::getApplication();
 		if(!$japp->isAdmin()){
 			$tpl = $japp->getTemplate(true);
