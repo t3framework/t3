@@ -15,10 +15,15 @@
 // ------------------
 @import "vars.less"; // Include Variables and Mixins
 
+
+// EXTEND STYLE IN BASE
+// --------------------
+@import "../../../plugins/system/t3/base/less/megamenu-responsive.less";
+
 //
 // MOBILE
 // -------------------------------------------------------------
-@media (max-width: 767px) {
+@media (max-width: @navbarCollapseWidth) {
 
   .t3-megamenu {
 
