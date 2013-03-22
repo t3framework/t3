@@ -1,4 +1,27 @@
-<h2>Version: 1.2.0 (16/03/2013)</h2>
+<h2>Version: 1.2.1 (22/03/2013)</h2>
+
+<h3>New Features</h3>
+- Add 2 classes: navbar-collapse-fixed-top and navbar-collapse-fixed-bottom | <a href="https://github.com/t3framework/t3/commit/c5ceef1414e5b9ebda9423780ebeca66402e5ff3">Link</a>
+
+<h3>Improvements</h3>
+- Enable off-canvas for collapsed menu by default | <a href="https://github.com/t3framework/t3/commit/9d92103a266c312df4fd55fe77d32bdbee5b2e5f">Link</a>
+- Minify: Optimize code | <a href="https://github.com/t3framework/t3/commit/f3ae9aceafdb8666a695f76948f00e3318484765">Link</a>
+- TouchMenu: Add workaround for iOS6 | <a href="https://github.com/t3framework/t3/commit/7982b00fb522e80704ed0d3873600ffeac052647">Link</a>
+- Sticky off-canvas menu on the left screen | <a href="https://github.com/t3framework/t3/commit/511c847ce37bc9719530177a74e413f9a798cfc9">Link</a>
+- Touch outside off-canvas menu to close | <a href="https://github.com/t3framework/t3/commit/b47304823592d8fae1c3045abcda3b9cc943ce44">Link</a>
+- Re-organize less/css for megamenu | <a href="https://github.com/t3framework/t3/commit/0c1a89a2e7e930e6c8410b915bfc8927b003298f">Link</a>
+
+<h3>Bugs Fix</h3>
+- T3Admin: Fix version compare on overview page | <a href="https://github.com/t3framework/t3/commit/4b6da1c94f5e19ebccadb11ad262ac1178bf5fd6">Link</a>
+- ThemeMagic: Fix site offline login form not visible | <a href="https://github.com/t3framework/t3/commit/a6ffc3a75dd1b2167a619cdc81caf9b86fb418f7">Link</a>
+- Remove custom.css from t3 blank  | <a href="https://github.com/t3framework/t3/issues/63">Link</a>
+- Menu: Fix nav collapse click 2 times on no-touch device | <a href="https://github.com/t3framework/t3/commit/0b09ec446c609a7bd85b317773682fa6b69b396a">Link</a>
+- Menu: Move re-order off-canvas.js and script.js | <a href="https://github.com/t3framework/t3/commit/8bcc2fc3be39114abb15c222a2ee1e2ee3c0560b">Link</a>
+- Minify: add small fix for relative path | <a href="https://github.com/t3framework/t3/commit/45608ac76198e6cef6b43e91477495b1131a30e1">Link</a>
+- Normal collapsed menu cannot scroll down when navbar is fixed | <a href="https://github.com/t3framework/t3/commit/42205393be23207f181b444d3373b97f8b4dbfdf">Link</a>
+- T3Layout: Add load language for current template layout | <a href="https://github.com/t3framework/t3/commit/ad3daf61ae34f059c768ae89feb836e625c3107d">Link</a>
+
+<h2>Version: 1.2.0 (15/03/2013)</h2>
 
 <h3>New Features</h3>
 - Ability to have multiple base HTML override packages | <a href="https://github.com/t3framework/t3/commit/57d8030e6dddbe5a3490dc08e8fa2a70a46efb5b">Link</a>
