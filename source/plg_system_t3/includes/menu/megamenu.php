@@ -207,20 +207,27 @@ class T3MenuMegamenu {
 		$key = 'item-'.$item->id;
 		$setting = $item->setting;
 		$sub = $setting['sub'];
+		$items = isset($this->children[$item->id]) ? $this->children[$item->id] : array();
+		$firstitem = count($items) ? $items[0]->id : 0;
 
 		$this->_('beginmega', array ('item'=>$item));
 		$endItems = array();
-		$k = 0;
+		$k1 = $k2 = 0;
 		foreach ($sub['rows'] as $row) {
 			foreach ($row as $col) {
 				if (!isset($col['position'])) {
-					if ($k) $endItems[$k] = $col['item'];
-					$k = $col['item'];
+					if ($k1) {
+						$k2 = $col['item'];						
+						if (!isset($this->_items[$k2]) || $this->_items[$k2]->parent_id != $item->id) break;
+						$endItems[$k1] = $k2;
+					}
+					$k1 = $col['item'];
 				}
 			}
 		}
-		$endItems[$k] = 0;
+		$endItems[$k1] = 0;
 
+		$firstitemscol = true;
 		foreach ($sub['rows'] as $row) {
 			$this->_('beginrow');
 			foreach ($row as $col) {
@@ -228,8 +235,11 @@ class T3MenuMegamenu {
 				if (isset($col['position'])) {
 					$this->module ($col['position']);
 				} else {
+					if (!isset($endItems[$col['item']])) continue;
 					$toitem = $endItems[$col['item']];
-					$this->nav ($item, $col['item'], $toitem);
+					$startitem = $firstitemscol ? $firstitem : $col['item'];
+					$this->nav ($item, $startitem, $toitem);
+					$firstitemscol = false;
 				}
 				$this->_('endcol');
 			}
