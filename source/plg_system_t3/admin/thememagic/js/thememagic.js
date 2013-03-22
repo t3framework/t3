@@ -172,7 +172,7 @@ var T3Theme = window.T3Theme || {};
 				T3Theme.fillData();
 			}
 
-			$('#t3-admin-tm-save, #t3-admin-tm-delete')[($('#t3-admin-theme-list').val() == 'base' ? 'addClass' : 'removeClass')]('disabled');
+			$('#t3-admin-tm-save, #t3-admin-tm-delete').parent().toggle($('#t3-admin-theme-list').val() != 'base');
 		},
 
 		initModalDialog: function(){
@@ -251,8 +251,8 @@ var T3Theme = window.T3Theme || {};
 			}
 			
 			//enable or disable control buttons
-			$('#t3-admin-tm-save, #t3-admin-tm-delete')[(theme == 'base' ? 'addClass' : 'removeClass')]('disabled');
-			
+			$('#t3-admin-tm-save, #t3-admin-tm-delete').parent().toggle(theme != 'base');
+
 			T3Theme.active = theme;	//store the current theme
 			T3Theme.changed = false;
 
