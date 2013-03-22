@@ -31,11 +31,26 @@
     top: 0;
     width: 100%;
     z-index: 1000;
+    // style for normal collapsed menu
+    .nav-collapse.in {
+      position: fixed;
+      width: 100%;
+      overflow-y: auto;
+      top: @navbarHeight;
+      bottom: 0;
+      > * {
+        padding-bottom: 50px;
+      }
+    }
   }
 
   .navbar-collapse-fixed-bottom {
     bottom: 0;
     top: auto;
+    .nav-collapse.in {
+      top: 0;
+      bottom: @navbarHeight;
+    }
   }
 
 }
