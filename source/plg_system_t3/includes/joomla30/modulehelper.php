@@ -526,6 +526,11 @@ abstract class JModuleHelper
 			$cacheparams->modeparams = null;
 		}
 
+		// Add module ID to fix problem of cache for modules with the same type
+		if ($cacheparams->modeparams && is_string($cacheparams->modeparams)) {
+			$cacheparams->modeparams .= ":".$module->id;
+		}
+
 		if (!isset($cacheparams->cachegroup))
 		{
 			$cacheparams->cachegroup = $module->module;
