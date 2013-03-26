@@ -31,7 +31,7 @@ class T3Admin {
 			$this->loadParams();
 			$buffer = ob_get_clean();
 
-			$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>?.*?</form>@siu', $buffer, $body);
+			$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>([\w|\W]*)</form>@msu', $buffer, $body);
 		}
 
 		$body = $this->replaceToolbar($body);
