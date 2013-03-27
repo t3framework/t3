@@ -250,6 +250,7 @@ class T3AdminTheme
 		$langs = array (
 			'addTheme' => JText::_('T3_TM_ASK_ADD_THEME'),
 			'delTheme' => JText::_('T3_TM_ASK_DEL_THEME'),
+			'overwriteTheme' => JText::_('T3_TM_ASK_OVERWRITE_THEME'),
 			'correctName' => JText::_('T3_TM_ASK_CORRECT_NAME'),
 			'themeExist' => JText::_('T3_TM_EXISTED'),
 			'saveChange' => JText::_('T3_TM_ASK_SAVE_CHANGED'),
@@ -258,7 +259,8 @@ class T3AdminTheme
 			'lblCancel' => JText::_('JCANCEL'),
 			'lblOk'	=> JText::_('T3_TM_LABEL_OK'),
 			'lblNo' => JText::_('JNO'),
-			'lblYes' => JText::_('JYES')
+			'lblYes' => JText::_('JYES'),
+			'lblDefault' => JText::_('JDEFAULT')
 		);
 
 		//Keepalive

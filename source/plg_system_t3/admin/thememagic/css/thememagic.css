@@ -183,6 +183,23 @@ input, select {
   left: 5px;
 }
 
+/* CHANGED INDICATOR
+-------------------- */
+.t3-controls::before {
+  content: "\f071"; 
+  font-family: "FontAwesome";
+  font-size: 12px;
+  vertical-align: middle;
+  color: #ffbb00;
+  display: none;
+  float: right;
+  margin-top: 7px;
+}
+
+.t3-changed .t3-controls::before {
+  display: inline-block;
+}
+
 
 /* Arcodion
 ----------- */
@@ -339,6 +356,13 @@ a.themer-minimize.active span {
 .progress {
   margin: 0;
   border-radius: 0;
+}
+
+.progress.invisible {
+  -webkit-transition-duration: 0;
+     -moz-transition-duration: 0;
+       -o-transition-duration: 0;
+          transition-duration: 0;
 }
 
 /* Radio Button Groups ---*/
