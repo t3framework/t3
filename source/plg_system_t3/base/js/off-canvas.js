@@ -48,7 +48,6 @@
 						// hide when click on off-canvas-nav
 						$('#off-canvas-nav').bind ('click', function (e) {
 							e.stopPropagation();
-							return false;
 						});
 						$('body').bind ('click', function (e) {
 							e.preventDefault();
