@@ -623,7 +623,7 @@ class T3Template extends ObjectExtendable
 							$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
 							$css ['mime'] = 'text/less';
 						} else {
-							$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
+							$newurl = JURI::current().'?t3action=lessc&amp;s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
 						}
 						$stylesheets[$newurl] = $css;
 						continue;
