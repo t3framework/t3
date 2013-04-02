@@ -70,6 +70,7 @@ class T3Template extends ObjectExtendable
 			}
 			$fconfig = JPATH_ROOT . '/templates/' . $template->template . '/etc/layout/' . $layout . '.ini';		
 			if(is_file($fconfig)){
+				jimport('joomla.filesystem.file');
 				$this->_layoutsettings->loadString (JFile::read($fconfig), 'INI', array('processSections' => true));
 			}
 		}
