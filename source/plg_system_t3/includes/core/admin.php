@@ -190,8 +190,8 @@ class T3Admin {
 			
 			//remove all fields from group 'params' and reload them again in right other base on template.xml
 			$form->removeGroup('params');
-			$form->loadFile(T3_PATH . '/params/' . 'template.xml');
-			$form->loadFile(T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . 'templateDetails.xml', true, '//config');
+			$form->loadFile(T3_PATH . '/params/template.xml');
+			$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 			
 			$xml = JFactory::getXML($tplXml);
 			$fxml = JFactory::getXML($frwXml);

@@ -284,8 +284,8 @@ class T3AdminTheme
 		}
 
 		$form = new JForm('thememagic.themer', array('control' => 't3form'));
-		$form->load(JFile::read(T3_PATH . DIRECTORY_SEPARATOR . 'params' . DIRECTORY_SEPARATOR . 'thememagic.xml'));
-		$form->loadFile(T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . 'templateDetails.xml', false, '//config');
+		$form->load(JFile::read(JFile::exists(T3_TEMPLATE_PATH . '/thememagic.xml') ? T3_TEMPLATE_PATH . '/thememagic.xml' : T3_PATH . '/params/thememagic.xml'));
+		$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', false, '//config');
 
 		$fieldSets = $form->getFieldsets('thememagic');
 
