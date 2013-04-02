@@ -287,7 +287,18 @@ class T3AdminTheme
 		$form->load(JFile::read(JFile::exists(T3_TEMPLATE_PATH . '/thememagic.xml') ? T3_TEMPLATE_PATH . '/thememagic.xml' : T3_PATH . '/params/thememagic.xml'));
 		$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 
+		$tplform = new JForm('thememagic.overwrite', array('control' => 't3form'));
+		$tplform->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
+
 		$fieldSets = $form->getFieldsets('thememagic');
+		$tplFieldSets = $tplform->getFieldsets('thememagic');
+
+		$disabledFieldSets = array();
+		foreach ($tplFieldSets as $name => $fieldSet){
+			if(isset($fieldSet->disabled)){
+				$disabledFieldSets[] = $name;
+			}
+		}
 
 		include T3_ADMIN_PATH.'/admin/thememagic/thememagic.tpl.php';
 		

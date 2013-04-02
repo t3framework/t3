@@ -66,7 +66,11 @@ defined('_JEXEC') or die;
 						<?php
 						$i = 0;
 						foreach ($fieldSets as $name => $fieldSet) :
-							$label = !empty($fieldSet->label) ? $fieldSet->label : 'T3T3'.$name.'_FIELDSET_LABEL';
+							$label = !empty($fieldSet->label) ? $fieldSet->label : 'T3_TM_'.$name.'_FIELDSET_LABEL';
+
+							if(in_array($name, $disabledFieldSets)){
+								continue;
+							}
 						?>
 							
 						<div class="accordion-group<?php echo $i == 0?' active':'' ?>">
