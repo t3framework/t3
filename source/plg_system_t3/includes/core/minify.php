@@ -213,7 +213,7 @@ class T3Minify
 						$cssdata[] = $cssmin;
 					}
 
-					$cssdata = implode("\n", $cssdata)
+					$cssdata = implode("\n", $cssdata);
 					JFile::write($groupfile, $cssdata);
 					@chmod($groupfile, 0644);
 				}
