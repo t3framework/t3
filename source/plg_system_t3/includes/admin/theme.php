@@ -285,7 +285,7 @@ class T3AdminTheme
 
 		$form = new JForm('thememagic.themer', array('control' => 't3form'));
 		$form->load(JFile::read(JFile::exists(T3_TEMPLATE_PATH . '/thememagic.xml') ? T3_TEMPLATE_PATH . '/thememagic.xml' : T3_PATH . '/params/thememagic.xml'));
-		$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', false, '//config');
+		$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 
 		$fieldSets = $form->getFieldsets('thememagic');
 
