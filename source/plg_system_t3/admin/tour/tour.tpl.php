@@ -51,6 +51,11 @@ defined('_JEXEC') or die;
 </div>
 
 <script type="text/javascript">
+	//Remove mootools
+	if(typeof Element != 'undefined' && Element.implement){
+		Element.implement({show: null, hide: null})
+	}
+
 	var T3Tours = {};
 
 	T3Tours.tours = [
@@ -389,7 +394,6 @@ defined('_JEXEC') or die;
 			/*intro	: <?php echo json_encode(JText::_('T3_TOUR_INTRO_TOUR4')) ?>*/
 		},
 	];
-
 
 	// init tours
 	jQuery(document).ready(function($) {

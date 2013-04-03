@@ -251,6 +251,8 @@
 				if ($this.hasClass ('t3-admin-tour-prevtourstep')) {
 					self.prevStep();
 				}
+
+				return false;
 			});
 
 			$(document).keydown(function (e) {
