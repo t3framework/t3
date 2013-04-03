@@ -274,15 +274,27 @@ class T3Template extends ObjectExtendable
 	*     Layout configuration
 	* @param $col int
 	*     Column number, start from 0
+	* @param $array boolean
+	*     return array or string
 	*
 	* @return string Block content
 	*/
-	function getData ($layout, $col) {
-		$data = '';
-		foreach ($layout as $device => $width) {
-			if (!isset ($width[$col]) || !$width[$col]) continue;
-			$data .= " data-$device=\"{$width[$col]}\"";
+	function getData ($layout, $col, $array) {
+		if($array){
+			$data = array();
+			foreach ($layout as $device => $width) {
+				if (!isset ($width[$col]) || !$width[$col]) continue;
+				$data[$device] = $width[$col];
+			}
+
+		} else {
+			$data = '';
+			foreach ($layout as $device => $width) {
+				if (!isset ($width[$col]) || !$width[$col]) continue;
+				$data .= " data-$device=\"{$width[$col]}\"";
+			}	
 		}
+		
 		return $data;
 	}
 
@@ -460,7 +472,7 @@ class T3Template extends ObjectExtendable
 			if($data == '"'){
 				$data = '';
 			} else {
-				$data = ' t3respon' . substr($data, 0, strrpos($data, '"'));
+				$data = (isset($param->default) ? ' ' . $param->default : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 		
