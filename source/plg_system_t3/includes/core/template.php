@@ -279,7 +279,7 @@ class T3Template extends ObjectExtendable
 	*
 	* @return string Block content
 	*/
-	function getData ($layout, $col, $array) {
+	function getData ($layout, $col, $array = false) {
 		if($array){
 			$data = array();
 			foreach ($layout as $device => $width) {
