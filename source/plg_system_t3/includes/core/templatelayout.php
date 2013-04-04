@@ -324,11 +324,6 @@ class T3TemplateLayout extends T3Template
 		} else {
 			$posinfo = is_array($posinfo) ? $posinfo : get_object_vars($posinfo);
 		}
-
-		//$posinfo = array(
-		//	'normal' => "span4 spanfirst pull-right hidden otherclass",
-		//	'wide' => "span4 spanfirst pull-right hidden offset4"	
-		//)
 		
 		$result = array(
 			'default' => array(),
@@ -399,6 +394,8 @@ class T3TemplateLayout extends T3Template
 	*		'wide' => 'span3 spanfirst'
 	*		'mobile' => 'span50 hidden'
 	*	)
+	*
+	*  We focus on visibility value only, other information will be placed in others
 	**/
 	function parseVisibility($posinfo = array()){
 		
@@ -418,16 +415,9 @@ class T3TemplateLayout extends T3Template
 			'mobile' => array()
 		);
 
-		$defcls = isset($posinfo['default']) ? $posinfo['default'] : '';
-
 		foreach ($result as $device => &$info) {
 			//class presentation string
 			$cls = isset($posinfo[$device]) ? $posinfo[$device] : '';
-
-			//extend other device
-			if(!empty($defcls) && $device != 'default'){
-				$cls = $this->addclass($cls, $defcls);
-			}
 
 			//if isset
 			if(!empty($cls)){
