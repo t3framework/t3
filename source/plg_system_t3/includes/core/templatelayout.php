@@ -233,13 +233,13 @@ class T3TemplateLayout extends T3Template
 		return parent::getPosname ($condition) . '" data-original="'.$condition;
 	}
 
-	function _c ($name, $cls = array()) {
+	function _c($name, $cls = array()) {
 		
 		$posparams = $this->getLayoutSetting($name, '');
 
-		$cinfo = $oinfo = $this->parseInfo($cls);
+		$cinfo = $oinfo = $this->parseVisibility($cls);
 		if(!empty($posparams)){
-			$cinfo = $this->parseInfo($posparams);
+			$cinfo = $this->parseVisibility($posparams);
 		}
 
 		$visible = array(
@@ -248,7 +248,7 @@ class T3TemplateLayout extends T3Template
 			'deft' => $this->extractKey(array($oinfo), 'hidden')
 		);
 
-		echo '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
+		echo parent::_c($name, $cls) . '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
 	}
 
 	protected function _parse($html) {
@@ -391,6 +391,67 @@ class T3TemplateLayout extends T3Template
 	}
 
 	/**
+	*  Parse visibility information
+	*  @var 
+	*  posinfo should be an object in setting file
+	*  $posinfo = array(
+	*		'normal' => 'span4 spanfirst'
+	*		'wide' => 'span3 spanfirst'
+	*		'mobile' => 'span50 hidden'
+	*	)
+	**/
+	function parseVisibility($posinfo = array()){
+		
+		//convert to array
+		if(empty($posinfo)){
+			$posinfo = array();
+		} else {
+			$posinfo = is_array($posinfo) ? $posinfo : get_object_vars($posinfo);
+		}
+
+		$result = array(
+			'default' => array(),
+			'normal' => array(),
+			'wide' => array(),
+			'xtablet' => array(),
+			'tablet' => array(),
+			'mobile' => array()
+		);
+
+		$defcls = isset($posinfo['default']) ? $posinfo['default'] : '';
+
+		foreach ($result as $device => &$info) {
+			//class presentation string
+			$cls = isset($posinfo[$device]) ? $posinfo[$device] : '';
+
+			//extend other device
+			if(!empty($defcls) && $device != 'default'){
+				$cls = $this->addclass($cls, $defcls);
+			}
+
+			//if isset
+			if(!empty($cls)){
+				//check if this position is hidden
+				$hidden = $this->hasclass($cls, 'hidden');
+				if($hidden){
+					$cls = $this->removeclass($cls, 'hidden');
+				}
+
+				//other class
+				$others = trim($cls);
+			} else {
+				$hidden = 0;
+				$others = '';
+			}
+
+			$info['hidden'] = $hidden;
+			$info['others'] = $others;
+		}
+
+		return $result;
+	}
+
+	/**
 	*  Extract a value key from object
 	**/
 	function extractKey($infos, $key){
@@ -432,6 +493,7 @@ class T3TemplateLayout extends T3Template
 
 		return $result;
 	}
+
 
 	/**
 	*  Optimize width of a spotlight
