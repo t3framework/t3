@@ -31,7 +31,16 @@
 				return false;
 			});
 
+			posNav = function () {
+				var t = $(window).scrollTop();
+				if (t < $nav.position().top) $nav[0].style.top = t+'px';
+			};
 
+			bdHideNav = function (e) {
+				e.preventDefault();
+				hideNav();
+				return false;
+			};
 
 			showNav = function () {
 				var t = $(window).scrollTop(),
@@ -41,19 +50,13 @@
 				setTimeout (function(){	
 						$('.btn-navbar').data('off-canvas', 'show');
 						$('html').addClass ('off-canvas-enabled');
-						$(window).bind('scroll touchmove', function () {
-							var t = $(window).scrollTop();
-							if (t < $nav.position().top) $nav[0].style.top = t+'px';
-						});
+						$(window).bind('scroll touchmove', posNav);
 						// hide when click on off-canvas-nav
 						$('#off-canvas-nav').bind ('click', function (e) {
 							e.stopPropagation();
 						});
-						$('body').bind ('click', function (e) {
-							e.preventDefault();
-							hideNav();
-							return false;
-						});
+						$('#off-canvas-nav a').bind ('click', hideNav);
+						$('body').bind ('click', bdHideNav);
 					}, 50);
 				setTimeout (function(){
 					wpfix(2);
@@ -61,9 +64,11 @@
 			};
 
 			hideNav = function () {				
-				$(window).unbind('scroll touchmove');
+				$(window).unbind('scroll touchmove', posNav);
 				$('#off-canvas-nav').unbind ('click');
-				$('body').unbind ('click');
+				$('body').unbind ('click', bdHideNav);
+				$('#off-canvas-nav a').unbind ('click', hideNav);
+				
 				$('html').removeClass ('off-canvas-enabled');
 				$('.btn-navbar').data('off-canvas', 'hide');
 				setTimeout (function(){
