@@ -653,7 +653,7 @@ var T3Theme = window.T3Theme || {};
 				if(result.theme){
 					
 					var jel = T3Theme.jel;
-					
+
 					switch (result.type){	
 						
 						case 'new':
@@ -679,6 +679,10 @@ var T3Theme = window.T3Theme || {};
 							
 							jel.options[0].selected = true;					
 							T3Theme.changeTheme(jel.options[0].value);
+						break;
+
+						case 'overwrite':
+							$(document.adminForm).find('.t3-changed').removeClass('t3-changed');
 						break;
 						
 						default:
