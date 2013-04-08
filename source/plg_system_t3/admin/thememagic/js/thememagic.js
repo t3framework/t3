@@ -340,10 +340,10 @@ var T3Theme = window.T3Theme || {};
 					hex = $(this).attr('placeholder');
 				}
 
-				if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit'){
+				if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || hex.match(/[\(\){}]/)){
 					$(this).nextAll('.miniColors-triggerWrap').find('.miniColors-trigger').css('background-color', '#fff');
 				} else {
-					$(this).next().trigger('keyup.miniColors');
+					$(this).next().val(hex).trigger('keyup.miniColors');
 				}
 			});
 		},
@@ -433,7 +433,7 @@ var T3Theme = window.T3Theme || {};
 		},
 
 		filtercolor: function(hex){
-			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || T3Theme.colors[hex.toLowerCase()]){
+			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || T3Theme.colors[hex.toLowerCase()] || hex.match(/[\(\){}]/)){
 				return hex;
 			}
 
@@ -932,12 +932,16 @@ var T3Theme = window.T3Theme || {};
 						color = $(this).attr('placeholder');
 					}
 
-					if(color.charAt(0) === '@' || color.toLowerCase() == 'inherit' || color.toLowerCase() == 'transparent'){
+					if(color.charAt(0) === '@' || color.toLowerCase() == 'inherit' || color.toLowerCase() == 'transparent' || color.match(/[\(\){}]/)){
 						$(this).nextAll('.miniColors-triggerWrap').find('.miniColors-trigger').css('background-color', '#fff');
 						return;
 					}
 
 					color = T3Theme.colors[$.trim(this.value.toLowerCase())];
+
+					if(!color){
+						color = T3Theme.expandHex(this.value);
+					}
 					
 					if(color){
 						$(this).next().data('t3force', 1).val(color).trigger('keyup.miniColors');

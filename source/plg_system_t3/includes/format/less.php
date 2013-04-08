@@ -80,7 +80,7 @@ class JRegistryFormatLESS
 			$line = trim($line);
 
 			// Ignore empty lines and comments.
-			if (empty($line) || (substr($line, 0, 2) == '//'))
+			if (empty($line) || (substr($line, 0, 1) == '/') || (substr($line, 0, 1) == '*'))
 			{
 				continue;
 			}
@@ -103,11 +103,11 @@ class JRegistryFormatLESS
 			}
 
 			// Validate the value.
-			if (preg_match('/[^A-Z0-9_-];$/i', $value))
-			{
+			//if (preg_match('/[^\(\)A-Z0-9_-];$/i', $value))
+			//{
 				// Maybe throw exception?
-				continue;
-			}
+			//	continue;
+			//}
 			
 			// If the value is quoted then we assume it is a string.
 			
