@@ -687,12 +687,12 @@ var T3Theme = window.T3Theme || {};
 							T3Theme.changeTheme(jel.options[0].value);
 						break;
 
-						case 'overwrite':
-							$(document.adminForm).find('.t3-changed').removeClass('t3-changed');
-						break;
-						
 						default:
 						break;
+					}
+
+					if(result.type != 'delete'){
+						$(document.adminForm).find('.t3-changed').removeClass('t3-changed');
 					}
 				}
 			});
@@ -748,7 +748,7 @@ var T3Theme = window.T3Theme || {};
 
 		prompt: function(msg, callback){
 			T3Theme.modalCallback = callback;
-			
+
 			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show().find('span').html(msg);
