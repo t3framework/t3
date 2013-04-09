@@ -1,3 +1,39 @@
+<h2>Version: 1.2.2 (09/04/2013)</h2>
+
+<h3>Improvements</h3>
+- Improve off-canvas menu for mobile | <a href="https://github.com/t3framework/t3/commit/ff0d587e13e29fd6e99fa45897c81ffc9fdf88ac">Link</a>
+- ThemeMagic: Optimize theme magic | <a href="https://github.com/t3framework/t3/commit/503ed0f6ef73894e6cda7c5bfcc1f948edc68289">Link</a>
+- ThemeMagic: Allow overwrite thememagic.xml | <a href="https://github.com/t3framework/t3/commit/56639424e37650f23b7a68c5292ad0bcbf8aaf14">Link</a>
+- ThemeMagic: Enable overwrite disabled a whole group | <a href="https://github.com/t3framework/t3/commit/7814dda77ea9ce8ea7ffa3cfb3061eeab4c86d5b">Link</a>
+- Extend T3Template getData function to use in _c function | <a href="https://github.com/t3framework/t3/commit/04730085f9ee284be097b65e952318fb090f5576">Link</a>
+
+<h3>Bugs Fix</h3>
+- problem of cache for modules with the same type | <a href="https://github.com/t3framework/t3/commit/50015ff789ea86e99df294f1d93876ff32e59685">Link</a>
+- T3Admin: Fix depend.js | <a href="https://github.com/t3framework/t3/commit/0d5e018cfaedeaed9a3ce10d9f088d827c9511c1">Link</a>
+- T3Admin: Fix regular expression | <a href="https://github.com/t3framework/t3/commit/485f42108dae4f24dffc1e7c725ad369039c0fc8">Link</a>
+- Small fix for W3 Validator | <a href="https://github.com/t3framework/t3/commit/cc517c7f9d44232bcec1f358d167ee7db0b3a77e">Link</a>
+- Fix mime type for off-canvas.js | <a href="https://github.com/t3framework/t3/commit/539765e80c6f0d3f6ddc143972b048aa38472a8d">Link</a>
+- Language: Fix language error file on J2.5 | <a href="https://github.com/t3framework/t3/commit/eb40aa732d06195f0aa11b38934489653ba4e75d">Link</a>
+- Class 'JFile' not found in line 73 (now 74) (J2.5!) error. | <a href="https://github.com/t3framework/t3/commit/ced1c80a3497a1c6ca7e1e0d36fdb530b0b7cddc">Link</a>
+- Fix: Strict Standards error on JFile::write | <a href="https://github.com/t3framework/t3/commit/6c824df663190c0efd71dee92db81d046500c626">Link</a>
+- Language: Fix language error | <a href="https://github.com/t3framework/t3/commit/b2003db3ed7494e950fca4f8174a23e512ef8761">Link</a>
+- T3FormField: Fix t3folderlist when the folder does not exist | <a href="https://github.com/t3framework/t3/commit/5808a0bf780955523208a7c94405c28fa598d8c7">Link</a>
+- T3Tour: Fix new bootstrap compatible with Mootools show/hide function | <a href="https://github.com/t3framework/t3/commit/4392087232a267741ff9e94da8c4b633420a0344">Link</a>
+- T3Layout: Refine show/hide function in T3 Layout | <a href="https://github.com/t3framework/t3/commit/068447ba1ff81de1f2cd44ff8d92998c5220548f">Link</a>
+- Document: Update changelog link | <a href="https://github.com/t3framework/t3/commit/2f3b989c892b9444df43170aed333d9a7db2ec01">Link</a>
+- T3Info: Fix compare version by using php version_compare | <a href="https://github.com/t3framework/t3/commit/86b898cc1c0e0924c8b397651c872f3906504081">Link</a>
+- off-canvas menu is not closed when click on menu item  | <a href="https://github.com/t3framework/t3/commit/b61967562d9ead35a0de557081970d813ede91d8">Link</a>
+- Optimize equalheight code | <a href="https://github.com/t3framework/t3/commit/4dfe12288029c2feb4ac71744a3543606d4abcff">Link</a>
+- ThemeMagic: Fix clear mark changed when saved theme | <a href="https://github.com/t3framework/t3/commit/6960e37e5589eb2d2fedc7e0b0edfbd74c08d09e">Link</a>
+- ThemeMagic: Fix can not open theme magic in J3.1beta | <a href="https://github.com/t3framework/t3/commit/0a629c07dcb3cda5db7ad5e5b191bef1d3aeab93">Link</a>
+- ThemeMagic: temporary remove validate for LESS (complex) variables | <a href="https://github.com/t3framework/t3/commit/6c58f6e4edb12123bf3500799b3ae9fc42cf3aab">Link</a>
+- ThemeMagic: Fix language | <a href="https://github.com/t3framework/t3/commit/ddf9ae6700c36f7975a3a0d7470e991967ffe285">Link</a>
+- Adds Joomla version to Body Class | <a href="https://github.com/t3framework/t3/commit/d97e9683f57da24bcfd181684d2dd02824ea8ab7">Link</a>
+- ThemeMagic: Fix dialog show validate message when enter empty name | <a href="https://github.com/t3framework/t3/commit/9eb68cc538a13e6cf1409869f9f50525f692ba45">Link</a>
+- ThemeMagic: Fix show placeholder value when go thememagic on frontend… | <a href="https://github.com/t3framework/t3/commit/7347b7461b60942a94da3d158f632c032e5edb7f">Link</a>
+- ThemeMagic: Remove default proerty in thememagic xml to get default value | <a href="https://github.com/t3framework/t3/commit/97fcd3e85262876677191d224ad03873b6153b06">Link</a>
+
+
 <h2>Version: 1.2.1 (22/03/2013)</h2>
 
 <h3>New Features</h3>
