@@ -537,38 +537,42 @@ var T3Theme = window.T3Theme || {};
 		saveThemeAs: function(callback){
 			T3Theme.prompt(T3Theme.langs.addTheme, function(option){
 				if(option){
-					var nname = $('#theme-name').val();
-					if(nname){
-						nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
-						if(nname == ''){
-							T3Theme.alert('warning', T3Theme.langs.correctName);
-							return T3Theme.saveThemeAs(callback);
-						} else if(T3Theme.themes && T3Theme.themes[nname] && nname != T3Theme.active){
-							return T3Theme.confirm(T3Theme.langs.overwriteTheme.replace('%THEME%', nname), function(option){
-								if(option){
-									
-									$('#t3-admin-thememagic-dlg').modal('hide');
 
-									T3Theme.active = nname;
-									T3Theme.saveTheme();
-									$(T3Theme.jel).val(nname);
+					var nname = $('#theme-name').val() || '';
+					nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
 
-									if($.isFunction(callback)){
-										callback();
-									}
-								}
-							});
-						}
+					if(nname == ''){
+
+						T3Theme.saveThemeAs(callback);
+						T3Theme.showMsg(T3Theme.langs.correctName);
 						
-						T3Theme.data[nname] = T3Theme.rebuildData();
-						T3Theme.themes[nname] = $.extend({}, T3Theme.themes[T3Theme.active]);
+						return false;
+					} else if(T3Theme.themes && T3Theme.themes[nname] && nname != T3Theme.active){
+						return T3Theme.confirm(T3Theme.langs.overwriteTheme.replace('%THEME%', nname), function(option){
+							if(option){
+								
+								$('#t3-admin-thememagic-dlg').modal('hide');
 
-						T3Theme.submitForm({
-							t3task: 'save',
-							theme: nname,
-							from: T3Theme.active
-						}, T3Theme.data[nname]);
+								T3Theme.active = nname;
+								T3Theme.saveTheme();
+								$(T3Theme.jel).val(nname);
+
+								if($.isFunction(callback)){
+									callback();
+								}
+							}
+						});
 					}
+					
+					T3Theme.data[nname] = T3Theme.rebuildData();
+					T3Theme.themes[nname] = $.extend({}, T3Theme.themes[T3Theme.active]);
+
+					T3Theme.submitForm({
+						t3task: 'save',
+						theme: nname,
+						from: T3Theme.active
+					}, T3Theme.data[nname]);
+				
 
 					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
@@ -718,12 +722,22 @@ var T3Theme = window.T3Theme || {};
 			}, 10000);
 		},
 
+		showMsg: function(msg, type, hideprompt){
+			var jdialog = $('#t3-admin-thememagic-dlg');
+
+			jdialog.find('.message-block').show().html('<div class="alert fade in">' + msg + '</div>');
+			if(hideprompt){
+				jdialog.find('.prompt-block').hide();
+			}
+			jdialog.modal('show');
+		},
+
 		confirm: function(msg, callback){
 			T3Theme.modalCallback = callback;
 
 			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.prompt-block').hide();
-			jdialog.find('.message-block').show().find('p').html(msg);
+			jdialog.find('.message-block').show().html(msg);
 			jdialog.find('.cancel').html(T3Theme.langs.lblNo);
 			jdialog.find('.btn-primary').html(T3Theme.langs.lblYes);
 
@@ -734,6 +748,7 @@ var T3Theme = window.T3Theme || {};
 
 		prompt: function(msg, callback){
 			T3Theme.modalCallback = callback;
+			
 			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show().find('span').html(msg);

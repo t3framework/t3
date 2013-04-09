@@ -177,14 +177,15 @@ defined('_JEXEC') or die;
 				<h3><?php echo JText::_('T3_TM_THEME_MAGIC') ?></h3>
 			</div>
 			<div class="modal-body">
-				<form id="prompt-form" name="prompt-form" class="form-horizontal prompt-block">
-					<span class="help-block"><?php echo JText::_('T3_TM_ASK_ADD_THEME') ?></span>
-					<p>
-						<input type="text" id="theme-name" placeholder="<?php echo JText::_('T3_TM_THEME_NAME') ?>" style="width: 90%; margin-top: 10px;">
-					</p>
-				</form>
-				<div class="message-block">
-					<p></p>
+				<div class="row-fluid">
+					<form id="prompt-form" name="prompt-form" class="form-horizontal prompt-block">
+						<span class="help-block"><?php echo JText::_('T3_TM_ASK_ADD_THEME') ?></span>
+						<p>
+							<input type="text" id="theme-name" class="span12" placeholder="<?php echo JText::_('T3_TM_THEME_NAME') ?>">
+						</p>
+					</form>
+					<div class="message-block">
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
