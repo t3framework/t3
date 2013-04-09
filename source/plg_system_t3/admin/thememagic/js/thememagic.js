@@ -192,12 +192,14 @@ var T3Theme = window.T3Theme || {};
 					}
 
 					jinput.closest('.control-group')[eq ? 'removeClass' : 'addClass']('t3-changed');
-				}).each(function() {
-					if(!$(this).attr('placeholder')){
-						$(this).attr('placeholder', T3Theme.data.base[T3Theme.getName(this)]);
-					}
 				});
 			}
+
+			$(this.serializeArray()).each(function() {
+				if(!$(this).attr('placeholder')){
+					$(this).attr('placeholder', T3Theme.data.base[T3Theme.getName(this)]);
+				}
+			});
 
 			if(T3Theme.active != -1){
 				T3Theme.fillData();
