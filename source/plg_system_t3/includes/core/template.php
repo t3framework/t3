@@ -350,6 +350,8 @@ class T3Template extends ObjectExtendable
 				}
 			}
 		}
+		
+		$classes[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
 
 		echo implode(' ', $classes);
 	}
