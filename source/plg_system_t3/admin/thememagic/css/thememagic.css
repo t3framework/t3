@@ -157,6 +157,10 @@ input, select {
   cursor: not-allowed !important;
 }
 
+#theme-name {
+  margin-top: 10px;
+}
+
 /* Variables Form ---*/
 #t3-admin-tm-variable-form {
 	position: absolute;

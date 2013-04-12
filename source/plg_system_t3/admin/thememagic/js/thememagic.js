@@ -192,12 +192,14 @@ var T3Theme = window.T3Theme || {};
 					}
 
 					jinput.closest('.control-group')[eq ? 'removeClass' : 'addClass']('t3-changed');
-				}).each(function() {
-					if(!$(this).attr('placeholder')){
-						$(this).attr('placeholder', T3Theme.data.base[T3Theme.getName(this)]);
-					}
 				});
 			}
+
+			$(this.serializeArray()).each(function() {
+				if(!$(this).attr('placeholder')){
+					$(this).attr('placeholder', T3Theme.data.base[T3Theme.getName(this)]);
+				}
+			});
 
 			if(T3Theme.active != -1){
 				T3Theme.fillData();
@@ -340,10 +342,10 @@ var T3Theme = window.T3Theme || {};
 					hex = $(this).attr('placeholder');
 				}
 
-				if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit'){
+				if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || hex.match(/[\(\){}]/)){
 					$(this).nextAll('.miniColors-triggerWrap').find('.miniColors-trigger').css('background-color', '#fff');
 				} else {
-					$(this).next().trigger('keyup.miniColors');
+					$(this).next().val(hex).trigger('keyup.miniColors');
 				}
 			});
 		},
@@ -433,7 +435,7 @@ var T3Theme = window.T3Theme || {};
 		},
 
 		filtercolor: function(hex){
-			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || T3Theme.colors[hex.toLowerCase()]){
+			if(hex.charAt(0) === '@' || hex.toLowerCase() == 'inherit' || hex.toLowerCase() == 'transparent' || T3Theme.colors[hex.toLowerCase()] || hex.match(/[\(\){}]/)){
 				return hex;
 			}
 
@@ -535,38 +537,42 @@ var T3Theme = window.T3Theme || {};
 		saveThemeAs: function(callback){
 			T3Theme.prompt(T3Theme.langs.addTheme, function(option){
 				if(option){
-					var nname = $('#theme-name').val();
-					if(nname){
-						nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
-						if(nname == ''){
-							T3Theme.alert('warning', T3Theme.langs.correctName);
-							return T3Theme.saveThemeAs(callback);
-						} else if(T3Theme.themes && T3Theme.themes[nname] && nname != T3Theme.active){
-							return T3Theme.confirm(T3Theme.langs.overwriteTheme.replace('%THEME%', nname), function(option){
-								if(option){
-									
-									$('#t3-admin-thememagic-dlg').modal('hide');
 
-									T3Theme.active = nname;
-									T3Theme.saveTheme();
-									$(T3Theme.jel).val(nname);
+					var nname = $('#theme-name').val() || '';
+					nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
 
-									if($.isFunction(callback)){
-										callback();
-									}
-								}
-							});
-						}
+					if(nname == ''){
+
+						T3Theme.saveThemeAs(callback);
+						T3Theme.showMsg(T3Theme.langs.correctName);
 						
-						T3Theme.data[nname] = T3Theme.rebuildData();
-						T3Theme.themes[nname] = $.extend({}, T3Theme.themes[T3Theme.active]);
+						return false;
+					} else if(T3Theme.themes && T3Theme.themes[nname] && nname != T3Theme.active){
+						return T3Theme.confirm(T3Theme.langs.overwriteTheme.replace('%THEME%', nname), function(option){
+							if(option){
+								
+								$('#t3-admin-thememagic-dlg').modal('hide');
 
-						T3Theme.submitForm({
-							t3task: 'save',
-							theme: nname,
-							from: T3Theme.active
-						}, T3Theme.data[nname]);
+								T3Theme.active = nname;
+								T3Theme.saveTheme();
+								$(T3Theme.jel).val(nname);
+
+								if($.isFunction(callback)){
+									callback();
+								}
+							}
+						});
 					}
+					
+					T3Theme.data[nname] = T3Theme.rebuildData();
+					T3Theme.themes[nname] = $.extend({}, T3Theme.themes[T3Theme.active]);
+
+					T3Theme.submitForm({
+						t3task: 'save',
+						theme: nname,
+						from: T3Theme.active
+					}, T3Theme.data[nname]);
+				
 
 					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
@@ -653,7 +659,7 @@ var T3Theme = window.T3Theme || {};
 				if(result.theme){
 					
 					var jel = T3Theme.jel;
-					
+
 					switch (result.type){	
 						
 						case 'new':
@@ -680,9 +686,13 @@ var T3Theme = window.T3Theme || {};
 							jel.options[0].selected = true;					
 							T3Theme.changeTheme(jel.options[0].value);
 						break;
-						
+
 						default:
 						break;
+					}
+
+					if(result.type != 'delete'){
+						$(document.adminForm).find('.t3-changed').removeClass('t3-changed');
 					}
 				}
 			});
@@ -712,12 +722,22 @@ var T3Theme = window.T3Theme || {};
 			}, 10000);
 		},
 
+		showMsg: function(msg, type, hideprompt){
+			var jdialog = $('#t3-admin-thememagic-dlg');
+
+			jdialog.find('.message-block').show().html('<div class="alert fade in">' + msg + '</div>');
+			if(hideprompt){
+				jdialog.find('.prompt-block').hide();
+			}
+			jdialog.modal('show');
+		},
+
 		confirm: function(msg, callback){
 			T3Theme.modalCallback = callback;
 
 			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.prompt-block').hide();
-			jdialog.find('.message-block').show().find('p').html(msg);
+			jdialog.find('.message-block').show().html(msg);
 			jdialog.find('.cancel').html(T3Theme.langs.lblNo);
 			jdialog.find('.btn-primary').html(T3Theme.langs.lblYes);
 
@@ -728,6 +748,7 @@ var T3Theme = window.T3Theme || {};
 
 		prompt: function(msg, callback){
 			T3Theme.modalCallback = callback;
+
 			var jdialog = $('#t3-admin-thememagic-dlg');
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show().find('span').html(msg);
@@ -928,12 +949,16 @@ var T3Theme = window.T3Theme || {};
 						color = $(this).attr('placeholder');
 					}
 
-					if(color.charAt(0) === '@' || color.toLowerCase() == 'inherit' || color.toLowerCase() == 'transparent'){
+					if(color.charAt(0) === '@' || color.toLowerCase() == 'inherit' || color.toLowerCase() == 'transparent' || color.match(/[\(\){}]/)){
 						$(this).nextAll('.miniColors-triggerWrap').find('.miniColors-trigger').css('background-color', '#fff');
 						return;
 					}
 
 					color = T3Theme.colors[$.trim(this.value.toLowerCase())];
+
+					if(!color){
+						color = T3Theme.expandHex(this.value);
+					}
 					
 					if(color){
 						$(this).next().data('t3force', 1).val(color).trigger('keyup.miniColors');

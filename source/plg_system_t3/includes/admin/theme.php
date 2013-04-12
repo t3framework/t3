@@ -181,7 +181,7 @@ class T3AdminTheme
 		// show thememagic form
 
 		//todo: Need to optimize here
-		$tplparams = JApplication::getInstance('site')->getTemplate(true)->params;
+		$tplparams = JFactory::getApplication('site')->getTemplate(true)->params;
 
 		$assetspath = T3_TEMPLATE_PATH;
 		$themepath = $assetspath . '/less/themes';

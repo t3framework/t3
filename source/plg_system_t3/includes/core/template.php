@@ -350,6 +350,8 @@ class T3Template extends ObjectExtendable
 				}
 			}
 		}
+		
+		$classes[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
 
 		echo implode(' ', $classes);
 	}
@@ -552,7 +554,7 @@ class T3Template extends ObjectExtendable
 		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
 
 		// add css/js for off-canvas
-		if ($this->getParam('navigation_collapse_offcanvas', 1)) {
+		if ($this->getParam('navigation_collapse_offcanvas', 1) && $this->getParam('responsive', 1)) {
 			$this->addCss ('off-canvas', false);
 			$this->addScript (T3_URL.'/js/off-canvas.js');
 		}

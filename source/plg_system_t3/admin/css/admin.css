@@ -1157,6 +1157,11 @@ button.btn-primary:active {
   font-family: "FontAwesome";
 }
 
+.icon-eye-open:before,
+.icon-eye:before {
+  content: "\f06e";
+}
+
 
 /* -------------------------------------------------
 /* Responsive
