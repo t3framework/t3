@@ -7,11 +7,9 @@
  * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         https://github.com/t3framework/ 
  *------------------------------------------------------------------------------
- */
-
-
+*/
 .t3-megamenu .mega-inner {
   padding: 10px;
   *zoom: 1;
@@ -151,6 +149,10 @@
 .t3-megamenu .mega-align-justify > .dropdown-menu {
   left: 0;
   margin-left: 0;
+}
+.t3-megamenu .mega-caption {
+  display: block;
+  white-space: nowrap;
 }
 .t3-megamenu .nav .caret,
 .t3-megamenu .dropdown-submenu .caret,

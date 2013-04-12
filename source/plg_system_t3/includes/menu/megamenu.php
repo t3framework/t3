@@ -18,11 +18,13 @@ class T3MenuMegamenu {
 	protected $children = array();
 	protected $_items = array();
 	protected $settings = null;
+	protected $params = null;
 	protected $menu = '';
 	protected $active_id = 0;
 	protected $active_tree = array();
+	protected $top_level_caption = false;
 
-	function __construct ($menutype='mainmenu', $settings=array()) {
+	function __construct ($menutype='mainmenu', $settings=array(), $params=null) {
 		$app = JFactory::getApplication();
 		$menu = $app->getMenu('site');
 		$items = $menu->getItems('menutype', $menutype);
@@ -32,6 +34,7 @@ class T3MenuMegamenu {
 		$this->active_tree = $active->tree;
 
 		$this->settings = $settings;
+		$this->params = $params;
 		$this->editmode = isset ($settings['editmode']);
 		foreach ($items as &$item) {
 			$parent = isset($this->children[$item->parent_id]) ? $this->children[$item->parent_id] : array();
@@ -43,6 +46,10 @@ class T3MenuMegamenu {
 			// bind setting for this item
 			$key = 'item-'.$item->id;
 			$setting = isset($this->settings[$key]) ? $this->settings[$key] : array();
+
+			// decode html tag
+			if (isset($setting['caption']) && $setting['caption']) $setting['caption'] = str_replace(array('[lt]','[gt]'), array('<','>'), $setting['caption']);
+			if ($item->level == 1 && isset($setting['caption']) && $setting['caption']) $this->top_level_caption = true;
 
 			// active - current
 			$class = '';
@@ -270,6 +277,7 @@ class T3MenuMegamenu {
 	}
 
 	function _ ($tmpl, $vars = array()) {
+		$vars ['menu'] = $this;
 		if (method_exists('T3MenuMegamenuTpl', $tmpl)) {			
 			$this->menu .= T3MenuMegamenuTpl::$tmpl($vars)."\n";
 		} else {
@@ -280,5 +288,10 @@ class T3MenuMegamenu {
 	function get ($prop) {
 		if (isset($this->$prop)) return $this->$prop;
 		return null;
+	}
+	
+	function getParam ($name, $default=null) {
+		if (!$this->params) return $default;
+		return $this->params->get($name, $default);
 	}
 }

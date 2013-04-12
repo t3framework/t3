@@ -426,7 +426,13 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			}
 
 			for (var d in $this.data()) {
-				if (d != 'id' && d != 'level' && $this.data(d)) item[d] = $this.data(d);
+				if (d != 'id' && d != 'level' && $this.data(d)) {
+					if (d == 'caption') {
+						item[d] = $this.data(d).replace(/</g, "[lt]").replace(/>/g, "[gt]");
+					}
+					else 
+						item[d] = $this.data(d);
+				}
 			}
 
 			if (Object.keys(item).length) config[id] = item;
@@ -498,6 +504,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					
 				$('.toolitem-exclass').attr('value', liitem.data ('class') || '');
 				$('.toolitem-xicon').attr('value', liitem.data ('xicon') || '');
+				$('.toolitem-caption').attr('value', liitem.data ('caption') || '');
 				// toggle Submenu
 				var toggle = $('.toolitem-sub');
 				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
@@ -637,6 +644,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					currentSelected.closest('li').data (name, value);
 					currentSelected.find('i').remove();
 					if (value) currentSelected.prepend($('<i class="'+value+'"></i>'));
+				}
+				break;
+
+			case 'caption':
+				if (type == 'item') {
+					currentSelected.closest('li').data (name, value);
+					currentSelected.find('span.mega-caption').remove();
+					if (value) currentSelected.append($('<span class="mega-caption">'+value+'</span>'));
 				}
 				break;
 

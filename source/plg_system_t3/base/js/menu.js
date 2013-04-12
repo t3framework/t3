@@ -18,11 +18,21 @@
 		$(document).ready(function($){
 			$('.nav > li').hover(function(event) {
 				var $this = $(this);
+
+				// add class animate
+				//$this.addClass ('animate');
+				setTimeout(function(){$this.removeClass ('animate')}, 500);
+
 				clearTimeout ($this.data('hoverTimeout'));
-				$this.addClass ('open');
+				$this.data('hoverTimeout', 
+					setTimeout(function(){$this.addClass ('open')}, 100));
+				//$this.addClass ('open');
 			},
 			function(event) {
 				var $this = $(this);
+				//$this.addClass ('animate');
+				setTimeout(function(){$this.removeClass ('animate')}, 500);
+				clearTimeout ($this.data('hoverTimeout'));
 				$this.data('hoverTimeout', 
 					setTimeout(function(){$this.removeClass ('open')}, 100));
 			});

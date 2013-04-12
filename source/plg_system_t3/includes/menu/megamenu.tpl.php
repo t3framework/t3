@@ -57,10 +57,10 @@ class T3MenuMegamenuTpl {
 
 		if ($cls) $cls = 'class="'.trim($cls).'"';
 
-		return "<div $cls $style $data>";
+		return "<div $cls $style $data><div class=\"mega-dropdown-inner\">";
 	}
 	static function endmega ($vars) {
-		return '</div>';
+		return '</div></div>';
 	}
 
 	static function beginrow ($vars) {
@@ -119,6 +119,7 @@ class T3MenuMegamenuTpl {
 		}
 		if (isset($setting['hidesub'])) $data .= " data-hidesub=\"1\"";
 		if (isset($setting['xicon'])) $data .= " data-xicon=\"{$setting['xicon']}\"";
+		if (isset($setting['caption'])) $data .= " data-caption=\"".htmlspecialchars($setting['caption'])."\"";
 		if (isset($setting['hidewcol'])) {
 			$data .= " data-hidewcol=\"1\"";
 			$cls .= " sub-hidden-collapse";
@@ -143,6 +144,7 @@ class T3MenuMegamenuTpl {
 		$vars['dropdown'] = '';
 		$vars['caret'] = '';
 		$vars['icon'] = '';
+		$vars['caption'] = '';
 
 		if($item->dropdown && $item->level < 2){
 			$vars['class'] .= ' dropdown-toggle';
@@ -163,22 +165,12 @@ class T3MenuMegamenuTpl {
 		if (isset($setting['xicon']) && $setting['xicon']) {
 			$vars['icon'] = '<i class="'.$setting['xicon'].'"></i>';
 		}
-/*		
---------------		
-		$vars['class'] = $item->anchor_css ? $item->anchor_css : '';
-		$vars['title'] = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
-		$vars['attr'] = '';
-		$vars['caret'] = '';
-		if ($item->dropdown) {
-			$vars['attr'] = ' class="dropdown-toggle" data-toggle="dropdown"';
-			$vars['caret'] = '<b class="caret"></b>';
-		}
-		if($item->browserNav > 0){
-			$vars['attr'] .= ' target="blank"';
+		if (isset($setting['caption']) && $setting['caption']) {
+			$vars['caption'] = '<span class="mega-caption">'.$setting['caption'].'</span>';
+		} else if ($item->level==1 && $vars['menu']->get('top_level_caption')) {
+			$vars['caption'] = '<span class="mega-caption mega-caption-empty">&nbsp;</span>';
 		}
 
-		$vars['flink'] = $item->link;
-*/
 		$html = '';
 		switch ($item->type)
 		{
@@ -204,6 +196,7 @@ class T3MenuMegamenuTpl {
 		$caret = $vars['caret'];
 		$linktype = $vars['linktype'];
 		$icon = $vars['icon'];
+		$caption = $vars['caption'];
 		
 		$flink = $item->flink;
 		$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
@@ -212,16 +205,16 @@ class T3MenuMegamenuTpl {
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype \n$caret</a>";
+				$link = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,'.$params->get('window_open');
-				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 
@@ -235,11 +228,12 @@ class T3MenuMegamenuTpl {
 		$caret = $vars['caret'];
 		$linktype = $vars['linktype'];
 		$icon = $vars['icon'];
+		$caption = $vars['caption'];
 		// Note. It is important to remove spaces between elements.
 
 		$class .= " separator";
 
-		return "<span class=\"$class\">$icon$title $linktype</span>";
+		return "<span class=\"$class\">$icon$title $linktype$caption</span>";
 	}
 	static function item_component ($vars) {
 		$item = $vars['item'];
@@ -249,21 +243,22 @@ class T3MenuMegamenuTpl {
 		$caret = $vars['caret'];
 		$linktype = $vars['linktype'];
 		$icon = $vars['icon'];
+		$caption = $vars['caption'];
 		// Note. It is important to remove spaces between elements.
 
 		$link = "";
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 			case 2:
 			// window.open
-				$link = "<a class=\"$class\" href=\"{$item->flink}\" onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\" $title $dropdown>$icon$linktype $caret</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\" onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 		endswitch;
 

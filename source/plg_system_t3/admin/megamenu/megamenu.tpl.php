@@ -85,6 +85,16 @@ $modules = $db->loadObjectList();
               </fieldset>
             </li>
           </ul>
+          <ul>
+            <li>
+              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_CAPTION'), '::', JTexT::_('T3_NAVIGATION_MM_CAPTION_DESC') ?>">
+                <?php echo JTexT::_('T3_NAVIGATION_MM_CAPTION') ?>
+              </label>
+              <fieldset class="">
+                <input type="text" class="input-large toolitem-caption toolbox-input" name="toolitem-caption" data-name="caption" value="" />
+              </fieldset>
+            </li>
+          </ul>
         </div>
 
         <div id="t3-admin-mm-toolsub" class="admin-toolbox">

@@ -254,7 +254,7 @@ class T3Template extends ObjectExtendable
 			//$currentconfig = json_decode(@file_get_contents ($file), true);
 		$currentconfig = json_decode($this->getParam('mm_config', ''), true);
 		$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
-		$menu = new T3MenuMegamenu ($menutype, $mmconfig);
+		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $this->_tpl->params);
 		$menu->render();          
 
 		// add core megamenu.css in plugin
