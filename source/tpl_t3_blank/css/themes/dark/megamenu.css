@@ -138,6 +138,10 @@
   left: 0;
   margin-left: 0;
 }
+.t3-megamenu .mega-caption {
+  display: block;
+  white-space: nowrap;
+}
 .t3-megamenu .nav .caret,
 .t3-megamenu .dropdown-submenu .caret,
 .t3-megamenu .mega-menu .caret {
@@ -224,4 +228,10 @@
   background: none;
   color: inherit;
   font: inherit;
+}
+.t3-megamenu .mega-caption {
+  color: #999;
+  font-size: 12px;
+  margin-top: 3px;
+  font-weight: normal;
 }

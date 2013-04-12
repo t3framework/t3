@@ -27,6 +27,9 @@
   .t3-megamenu .always-show .dropdown-submenu > a:after {
     display: none !important;
   }
+  .t3-megamenu .mega-caption {
+    display: none !important;
+  }
 }
 @media (max-width: 767px) {
   .t3-megamenu .mega-inner {

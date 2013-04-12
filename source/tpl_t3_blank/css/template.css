@@ -1212,7 +1212,6 @@ input.invalid {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe5e5e5', GradientType=0);
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #cccccc;
-  height: 40px;
 }
 .t3-mainnav .navbar {
   color: #666;
@@ -2557,7 +2556,7 @@ address {
   display: none;
 }
 .head-search .input {
-  background: url(../images/ico/search-invert.png) no-repeat 8px center;
+  background: url("../images/ico/search-invert.png") no-repeat 8px center;
   width: 120px;
   padding-left: 26px;
 }

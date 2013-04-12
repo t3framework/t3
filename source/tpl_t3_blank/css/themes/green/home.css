@@ -73,7 +73,7 @@
   padding: 18px 44.5px;
 }
 .home .t3-sl-5 .section-arrow-alt {
-  background: url(../../../images/arrow-section-alt.png) no-repeat center -1px #eee;
+  background: url("../../../images/arrow-section-alt.png") no-repeat center -1px #eee;
   width: 37px;
   height: 19px;
   position: absolute;
