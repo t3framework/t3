@@ -940,7 +940,7 @@ var T3Theme = window.T3Theme || {};
 				}
 			});
 
-			$('.input-colorpicker').on('keyup.t3color paste.t3color', function(e){
+			$('.input-colorpicker, .minicolors, .t3tm-color').on('keyup.t3color paste.t3color', function(e){
 				if( e.keyCode === 9 ) {
 					this.value = $(this).next().val();
 				} else {
