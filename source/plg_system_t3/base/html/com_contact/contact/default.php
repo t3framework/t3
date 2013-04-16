@@ -48,7 +48,11 @@ jimport('joomla.html.html.bootstrap');
 			<?php echo JHtml::_('select.genericlist', $this->contacts, 'id', 'class="input" onchange="document.location.href = this.value"', 'link', 'name', $this->contact->link);?>
 		</form>
 	<?php endif; ?>
-	
+
+	<?php if ($this->params->get('show_tags', 1) && !empty($this->item->tags)) : ?>
+		<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
+		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
+	<?php endif; ?>
 	<?php if ($this->params->get('presentation_style') == 'sliders') : ?>
 		<div class="accordion" id="slide-contact">
 			<div class="accordion-group">
