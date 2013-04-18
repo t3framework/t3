@@ -1,3 +1,20 @@
+<h2>Version: 1.2.3 (18/04/2013)</h2>
+
+<h3>New features</h3>
+- Caption for Menu Item | <a href="https://github.com/t3framework/t3/commit/9c29cc55e09ae86de8b71f78b6ce2db7d3d99822">Link</a>
+
+<h3>Improvements</h3>
+- ThemeMagic: Change Input type color class to compatible with J3.1 | <a href="https://github.com/t3framework/t3/commit/90509a5dbb575522d044452fc07f6e097575eb68">Link</a>
+- Overwrite: Add support com_tag | <a href="https://github.com/t3framework/t3/commit/ea4cd90b384ae8e1c2a9428958706a9ace5559f3">Link</a>
+
+<h3>Bugs Fix</h3>
+- Responsive: Enable zoom on touch device when disable responsive | <a href="https://github.com/t3framework/t3/commit/b31a298a08f2ae90b0e5294551e8ca32f2d369d7">Link</a>
+- Admin UI: Fix Icon-Eye bug with FontAwesome | <a href="https://github.com/t3framework/t3/commit/aabdf80a03a55d8afe4ef1cab430e67e100a9777">Link</a>
+- Less: Add T3ImagePath and T3ThemeImagePath for image folder | <a href="https://github.com/t3framework/t3/commit/0ae91dd297aa2a37da237c8116976a565377d9f4">Link</a>
+- Megamenu: Justify align cause submenu show over the menu | <a href="https://github.com/t3framework/t3/commit/7e154b2dc9fae664293472a3c087f86eb6e7c56e">Link</a>
+- Overwrite: Correct check for when render tags | <a href="https://github.com/t3framework/t3/commit/997d90c2f8def40b6c7a470fc672cf35c692a625">Link</a>
+- Off-canvas: Remove off-canvas when disabled responsive | <a href="https://github.com/t3framework/t3/commit/74798ba4075c292cd6d22ef1c76386d57fe21dfc">Link</a>
+
 <h2>Version: 1.2.2 (09/04/2013)</h2>
 
 <h3>Improvements</h3>
