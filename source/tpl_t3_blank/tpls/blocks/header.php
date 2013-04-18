@@ -22,12 +22,16 @@ if ($logoimage) {
     <!-- LOGO -->
     <div class="span8 logo">
       <div class="logo-<?php echo $logotype ?>">
-        <h1>
-          <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>"<?php echo $logoimage ?>>
-            <span><?php echo $sitename ?></span>
-          </a>
-          <small class="site-slogan hidden-phone"><?php echo $slogan ?></small>
-        </h1>
+      	<?php if($logotype !=="none") { ?>
+	        <h1>
+	          <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>"<?php echo $logoimage ?>>
+	            <span><?php echo $sitename ?></span>
+	          </a>
+	          <small class="site-slogan hidden-phone"><?php echo $slogan ?></small>
+	        </h1>
+	    <?php } else { ?>
+	    	<jdoc:include type="modules" name="<?php $this->_p('logo') ?>" />
+	    <?php } ?>
       </div>
     </div>
     <!-- //LOGO -->
