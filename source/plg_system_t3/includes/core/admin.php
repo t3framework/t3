@@ -181,6 +181,7 @@ class T3Admin {
 	function loadParams(){
 		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
+		$tplXmlOverride = T3_TEMPLATE_PATH . '/template.xml';
 		$jtpl = T3_ADMIN_PATH . '/admin/tpls/default.php';
 		
 		if(file_exists($tplXml) && file_exists($jtpl)){
@@ -190,7 +191,12 @@ class T3Admin {
 			
 			//remove all fields from group 'params' and reload them again in right other base on template.xml
 			$form->removeGroup('params');
-			$form->loadFile(T3_PATH . '/params/template.xml');
+			if(file_exists($tplXmlOverride)) {
+				$form->loadFile(T3_TEMPLATE_PATH . '/template.xml');
+			}
+			else {
+				$form->loadFile(T3_PATH . '/params/template.xml');
+			}
 			$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 			
 			$xml = JFactory::getXML($tplXml);
