@@ -61,14 +61,9 @@
 		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">
 
 			<field name="theme_params_default" type="t3depend" function="@group">
-				<field name="theme_params_default" type="t3depend" function="@group">
-					<option for="logotype" value="image">
-						logoimage,slogan
-					</option>
-					<option for="logotype" value="text">
-						sitename,slogan
-					</option>
-				</field>
+				<option for="logotype" value="image">
+					logoimage
+				</option>
 			</field>
 
 			<field name="theme" type="t3folderlist" default=""
@@ -84,7 +79,6 @@
 				description="T3_THEME_LOGOTYPE_DESC" >
 				<option value="text">T3_THEME_LOGOTYPE_TEXT</option>
 				<option value="image">T3_THEME_LOGOTYPE_IMAGE</option>
-				<option value="none">T3_THEME_LOGOTYPE_NONE</option>
 			</field>
 
 			<field name="sitename" type="text" default="" filter="RAW" size="50"
