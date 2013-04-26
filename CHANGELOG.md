@@ -1,4 +1,4 @@
-<h2>Version: 1.2.3 (18/04/2013)</h2>
+<h2>Version: 1.2.4 (26/04/2013)</h2>
 
 <h3>Bugs Fix</h3>
 - Overwrite: Add com_tag fix on Joomla 3.1 beta 5 | <a href="https://github.com/t3framework/t3/commit/30b7586935d06605b0aba6d87ddae948b96c6df8">Link</a>
