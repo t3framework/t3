@@ -5,8 +5,8 @@
 	type="template"
 	method="upgrade" client="site">
 	<name>t3_blank</name>
-	<version>1.2.3</version>
-	<creationDate>18 April 2013</creationDate>
+	<version>1.2.4</version>
+	<creationDate>26 April 2013</creationDate>
 	<author>JoomlArt.com</author>
 	<authorEmail>webmaster@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>

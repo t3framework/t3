@@ -1,5 +1,12 @@
 <h2>Version: 1.2.3 (18/04/2013)</h2>
 
+<h3>Bugs Fix</h3>
+- Overwrite: Add com_tag fix on Joomla 3.1 beta 5 | <a href="https://github.com/t3framework/t3/commit/30b7586935d06605b0aba6d87ddae948b96c6df8">Link</a>
+- Overwrite: Add tag support for editing article layout | <a href="https://github.com/t3framework/t3/commit/dffaa0079d599f9840b36a54132125d5d9d7b2de">Link</a>
+
+
+<h2>Version: 1.2.3 (18/04/2013)</h2>
+
 <h3>New features</h3>
 - Caption for Menu Item | <a href="https://github.com/t3framework/t3/commit/9c29cc55e09ae86de8b71f78b6ce2db7d3d99822">Link</a>
 
