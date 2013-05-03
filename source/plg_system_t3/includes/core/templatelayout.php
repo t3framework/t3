@@ -237,18 +237,46 @@ class T3TemplateLayout extends T3Template
 		
 		$posparams = $this->getLayoutSetting($name, '');
 
-		$cinfo = $oinfo = $this->parseVisibility($cls);
+		$cinfo = $oinfo = $this->parseVisibility(is_string($cls) ? array('default' => $cls) : (is_array($cls) ? $cls : array()));
 		if(!empty($posparams)){
 			$cinfo = $this->parseVisibility($posparams);
 		}
 
+		$data = '';
 		$visible = array(
 			'name' => $name,
 			'vals' => $this->extractKey(array($cinfo), 'hidden'),
 			'deft' => $this->extractKey(array($oinfo), 'hidden')
 		);
 
-		echo parent::_c($name, $cls) . '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
+		if(empty($posparams)){
+			if(is_string($cls)){
+				$data = ' ' . $cls;
+			} else if (is_array($cls)){
+				$posparams = (object)$cls;
+			}
+		}
+
+		if(!empty($posparams)){
+
+			$data = '"';
+			$data .= isset($posparams->default) ? ' data-default="' . $posparams->default . '"' : '';
+			$data .= isset($posparams->normal) ? ' data-normal="' . $posparams->normal . '"' : '';
+			$data .= isset($posparams->wide) ? ' data-wide="' . $posparams->wide . '"' : '';
+			$data .= isset($posparams->xtablet) ? ' data-xtablet="' . $posparams->xtablet . '"' : '';
+			$data .= isset($posparams->tablet) ? ' data-tablet="' . $posparams->tablet . '"' : '';
+			$data .= isset($posparams->mobile) ? ' data-mobile="' . $posparams->mobile . '"' : '';
+
+			if($data == '"'){
+				$data = '';
+			} else {
+				$data = (isset($posparams->default) ? ' ' . $posparams->default : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
+			}
+		}
+
+		$data = preg_replace('@("|\s)?hidden(\s|")?@iU', '$1$2', $data);
+
+		echo $data . '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
 	}
 
 	protected function _parse($html) {

@@ -66,8 +66,9 @@ class T3Template extends ObjectExtendable
 			
 			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
 			if(empty($layout)){
-				$layout = $template->params->get('mainlayout', 'default-joomla-3.x');
+				$layout = $template->params->get('mainlayout', 'default');
 			}
+			
 			$fconfig = JPATH_ROOT . '/templates/' . $template->template . '/etc/layout/' . $layout . '.ini';		
 			if(is_file($fconfig)){
 				jimport('joomla.filesystem.file');
@@ -98,7 +99,7 @@ class T3Template extends ObjectExtendable
 	* @return string Layout name
 	*/
 	public function getLayout () {
-		return JFactory::getApplication()->input->getCmd ('tmpl') ? JFactory::getApplication()->input->getCmd ('tmpl') : $this->getParam('mainlayout');
+		return JFactory::getApplication()->input->getCmd ('tmpl') ? JFactory::getApplication()->input->getCmd ('tmpl') : $this->getParam('mainlayout', 'default');
 	}
 
 	/**
@@ -456,12 +457,15 @@ class T3Template extends ObjectExtendable
 		$data = '';
 		$param = $this->getLayoutSetting($name, '');
 
-		if(empty($param) && is_string($cls)){
-			$data = ' ' . $cls;
-		} else if (is_array($cls)){
-			if(empty($param)){
+		if(empty($param)){
+			if(is_string($cls)){
+				$data = ' ' . $cls;
+			} else if (is_array($cls)){
 				$param = (object)$cls;
 			}
+		}
+
+		if(!empty($param)){
 
 			$data = '"';
 			$data .= isset($param->default) ? ' data-default="' . $param->default . '"' : '';
