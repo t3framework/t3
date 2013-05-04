@@ -45,6 +45,7 @@ class T3Minify
 		$base = JURI::base();
 		$root = JURI::root(true);
 		$path = false;
+		$ret = false;
 
 		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
 			$url = JURI::getInstance()->getScheme() . ':' . $url; 
