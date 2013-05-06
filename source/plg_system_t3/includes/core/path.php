@@ -48,27 +48,46 @@ class T3Path extends JObject
 		return $return;
 	}
 
+	/**
+	 * Asbjorn Grandt
+	 * Clean file name paths removing redundant elements
+	 */
 	public static function cleanPath($path) {
-		$path = explode('/', preg_replace('#(/+)#', '/', $path));
+		
+		$path = preg_replace('#/+\.?/+#', '/', str_replace("\\", '/', $path));
+		$dirs = explode('/', rtrim(preg_replace('#^(\./)+#', '', $path), '/'));
+				
+		$offset = 0;
+		$sub = 0;
+		$subOffset = 0;
+		$root = '';
 
-		for ($i = 0, $n = count($path); $i < $n; $i++) {
-			if ($path[$i] == '.' || $path[$i] == '..') {
-				if (($path[$i] == '.') || ($path[$i] == '..' && $i == 1 && $path[0] == '')) {
-					unset($path[$i]);
-					$path = array_values($path);
-					$i--;
-					$n--;
-				} elseif ($path[$i] == '..' && ($i > 1 || ($i == 1 && $path[0] != ''))) {
-					unset($path[$i]);
-					unset($path[$i - 1]);
-					$path = array_values($path);
-					$i -= 2;
-					$n -= 2;
+		if (empty($dirs[0])) {
+			$root = '/';
+			$dirs = array_splice($dirs, 1);
+		} 
+
+		$newDirs = array();
+		foreach($dirs as $dir) {
+			if ($dir !== '..') {
+				$subOffset--;	
+				$newDirs[++$offset] = $dir;
+			} else {
+				$subOffset++;
+				if (--$offset < 0) {
+					$offset = 0;
+					if ($subOffset > $sub) {
+						$sub++;
+					} 
 				}
 			}
 		}
 
-		return implode('/', $path);
+		if (empty($root)) {
+			$root = str_repeat('../', $sub);
+		}
+
+		return $root . implode('/', array_slice($newDirs, 0, $offset));
 	}
 
 	public static function relativePath($path1, $path2='') {
