@@ -274,6 +274,7 @@ class T3TemplateLayout extends T3Template
 			}
 		}
 
+		//remove hidden class
 		$data = preg_replace('@("|\s)?hidden(\s|")?@iU', '$1$2', $data);
 
 		echo $data . '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));

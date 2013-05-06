@@ -121,7 +121,6 @@ class T3 {
 			$input->set('t3action', 'theme');
 			$input->set('t3task', 'thememagic');
 		}
-
 	}
 
 	public static function checkAction () {
@@ -129,6 +128,20 @@ class T3 {
 		if ($action = JFactory::getApplication()->input->getCmd ('t3action')) {
 			T3::import ('core/action');
 			T3Action::run ($action);
+		}
+	}
+
+	public static function checkAjax () {
+		// excute action by T3
+		$input = JFactory::getApplication()->input;
+
+		if ($input->getCmd ('t3ajax')) {
+			T3::import('core/ajax');
+			T3::import('renderer/t3ajax');
+
+			//T3Ajax::processAjaxRule();
+
+			JFactory::getApplication()->getTemplate(true)->params->set('mainlayout', 'ajax.' . $input->getCmd('f', 'html'));	
 		}
 	}
 
