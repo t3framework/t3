@@ -185,8 +185,13 @@ class T3Admin {
 		
 		if(file_exists($tplXml) && file_exists($jtpl)){
 			
+			T3::import('depend/t3form');
+
 			//get the current joomla default instance
 			$form = JForm::getInstance('com_templates.style', 'style', array('control' => 'jform', 'load_data' => true));
+
+			//wrap
+			$form = new T3Form($form);
 			
 			//remove all fields from group 'params' and reload them again in right other base on template.xml
 			$form->removeGroup('params');

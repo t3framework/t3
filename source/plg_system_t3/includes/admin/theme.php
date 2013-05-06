@@ -283,11 +283,13 @@ class T3AdminTheme
 			$backurl->delVar('themer');
 		}
 
-		$form = new JForm('thememagic.themer', array('control' => 't3form'));
+		T3::import('depend/t3form');
+
+		$form = new T3Form('thememagic.themer', array('control' => 't3form'));
 		$form->load(JFile::read(JFile::exists(T3_TEMPLATE_PATH . '/thememagic.xml') ? T3_TEMPLATE_PATH . '/thememagic.xml' : T3_PATH . '/params/thememagic.xml'));
 		$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 
-		$tplform = new JForm('thememagic.overwrite', array('control' => 't3form'));
+		$tplform = new T3Form('thememagic.overwrite', array('control' => 't3form'));
 		$tplform->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 
 		$fieldSets = $form->getFieldsets('thememagic');
