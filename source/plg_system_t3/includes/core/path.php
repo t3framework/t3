@@ -54,7 +54,6 @@ class T3Path extends JObject
 	 */
 	public static function cleanPath($path) {
 		
-		$path = preg_replace('#/+\.?/+#', '/', str_replace("\\", '/', $path));
 		$dirs = explode('/', rtrim(preg_replace('#^(\./)+#', '', $path), '/'));
 				
 		$offset = 0;
