@@ -118,7 +118,11 @@
 		<fieldset name="navigation_params" label="T3_NAVIGATION_LABEL" description="T3_NAVIGATION_DESC">
 			<field name="navigation_group_default" type="t3depend" function="@group">
 				<option for="navigation_type" value="megamenu">
-					mm_type
+					mm_type,navigation_animation,navigation_animation_duration
+				</option>
+				<option 
+					for="navigation_trigger" value="hover">
+					navigation_animation,navigation_animation_duration
 				</option>
 			</field>
 			<field name="navigation_ajax_default" type="t3depend" function="@ajax">
@@ -159,6 +163,21 @@
 				<option value="joomla">Joomla Module</option>
 				<option value="megamenu">Megamenu</option>
 			</field>
+
+			<field name="navigation_animation" type="list" default=""
+				global="1"
+				label="T3_NAVIGATION_ANIMATION_LABEL"
+				description="T3_NAVIGATION_ANIMATION_DESC">
+				<option value="">None</option>
+				<option value="fading">Fading</option>
+				<option value="slide">Slide</option>
+				<option value="zoom">Zoom</option>
+				<option value="elastic">Elastic</option>
+			</field>
+			<field name="navigation_animation_duration" type="text" default="400"
+				global="1"
+				label="T3_NAVIGATION_ANIMATION_DURATION_LABEL"
+				description="T3_NAVIGATION_ANIMATION_DURATION_DESC" />
 
 			<field name="mm_type" type="menu" default="mainmenu"
 				label="T3_NAVIGATION_MM_TYPE_LABEL"

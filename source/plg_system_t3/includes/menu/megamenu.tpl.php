@@ -14,8 +14,14 @@
 
 class T3MenuMegamenuTpl {
 	static function beginmenu ($vars) {
-		return '<div class="t3-megamenu">';
+		$menu = $vars['menu'];
+		$animation = $menu->getParam ('navigation_animation', '');
+		$animation_duration = $menu->getParam ('navigation_animation_duration', 0);
+		$cls = ' class="t3-megamenu'.($animation ? ' animate '.$animation : '').'"';
+		$data = $animation && $animation_duration ? ' data-duration="'.$animation_duration.'"' : '';
+		return "<div$cls$data>";
 	}
+
 	static function endmenu ($vars) {
 		return '</div>';
 	}
