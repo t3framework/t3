@@ -19,7 +19,6 @@
   #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
   border-top: 1px solid @navbarBackground;
   border-bottom: 1px solid darken(@navbarBackground, 10%);
-  height: @navbarHeight;
 
   .navbar {
     color: @navbarText;
@@ -72,7 +71,7 @@
     color: @navbarLinkColorActive;
     text-shadow: none;
     #gradient > .vertical(lighten(@navbarLinkBackgroundActive, 10%), @navbarLinkBackgroundActive);
-    .box-shadow(none );
+    .box-shadow (none);
     outline: none;
   }
 
@@ -83,8 +82,8 @@
   // These definitions need to come after '.navbar .btn'
   .navbar .btn-navbar {
     float: left;
-    padding: 7px 10px;
-    margin: 7px 20px 0;
+    padding: 5px 10px;
+    margin: 5px 20px 0;
     .buttonBackground(darken(@navbarBackgroundHighlight, 5%), darken(@navbarBackground, 5%));
     .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)");
     
@@ -172,7 +171,7 @@
   // ----------
   .nav li.dropdown.open > .dropdown-toggle {
     background-color: @dropdownLinkBackgroundHover;
-    color: @dropdownLinkColorActive;
+    color: @dropdownLinkColorHover;
   }
 
   // Active Open
@@ -285,3 +284,4 @@
 .t3-mainnav {
   .T3Navbar();
 }
+

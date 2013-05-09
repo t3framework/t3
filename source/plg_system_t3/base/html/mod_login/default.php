@@ -70,7 +70,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 	</div>
 	<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
 	<div id="form-login-remember" class="control-group">
-		<label for="modlgn-remember" class="checkbox"><input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/> <?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?></label>
+		<label for="modlgn-remember" class="checkbox"><input id="modlgn-remember" type="checkbox" name="remember" class="input" value="yes"/> <?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?></label>
 	</div>
 	<?php endif; ?>
 	<div class="control-group">

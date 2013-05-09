@@ -143,6 +143,10 @@ var T3Admin = window.T3Admin || {};
 				jptitle = $('.page-title');
 			}
 
+			if(!jptitle.length){
+				return;
+			}
+
 			var titles = jptitle.html().split(':');
 
 			jptitle.removeClass('icon-48-thememanager').html(titles[0] + '<small>' + titles[1] + '</small>');

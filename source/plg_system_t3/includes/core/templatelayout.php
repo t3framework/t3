@@ -233,22 +233,51 @@ class T3TemplateLayout extends T3Template
 		return parent::getPosname ($condition) . '" data-original="'.$condition;
 	}
 
-	function _c ($name, $cls = array()) {
+	function _c($name, $cls = array()) {
 		
 		$posparams = $this->getLayoutSetting($name, '');
 
-		$cinfo = $oinfo = $this->parseInfo($cls);
+		$cinfo = $oinfo = $this->parseVisibility(is_string($cls) ? array('default' => $cls) : (is_array($cls) ? $cls : array()));
 		if(!empty($posparams)){
-			$cinfo = $this->parseInfo($posparams);
+			$cinfo = $this->parseVisibility($posparams);
 		}
 
+		$data = '';
 		$visible = array(
 			'name' => $name,
 			'vals' => $this->extractKey(array($cinfo), 'hidden'),
 			'deft' => $this->extractKey(array($oinfo), 'hidden')
 		);
 
-		echo '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
+		if(empty($posparams)){
+			if(is_string($cls)){
+				$data = ' ' . $cls;
+			} else if (is_array($cls)){
+				$posparams = (object)$cls;
+			}
+		}
+
+		if(!empty($posparams)){
+
+			$data = '"';
+			$data .= isset($posparams->default) ? ' data-default="' . $posparams->default . '"' : '';
+			$data .= isset($posparams->normal) ? ' data-normal="' . $posparams->normal . '"' : '';
+			$data .= isset($posparams->wide) ? ' data-wide="' . $posparams->wide . '"' : '';
+			$data .= isset($posparams->xtablet) ? ' data-xtablet="' . $posparams->xtablet . '"' : '';
+			$data .= isset($posparams->tablet) ? ' data-tablet="' . $posparams->tablet . '"' : '';
+			$data .= isset($posparams->mobile) ? ' data-mobile="' . $posparams->mobile . '"' : '';
+
+			if($data == '"'){
+				$data = '';
+			} else {
+				$data = (isset($posparams->default) ? ' ' . $posparams->default : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
+			}
+		}
+
+		//remove hidden class
+		$data = preg_replace('@("|\s)?hidden(\s|")?@iU', '$1$2', $data);
+
+		echo $data . '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
 	}
 
 	protected function _parse($html) {
@@ -324,11 +353,6 @@ class T3TemplateLayout extends T3Template
 		} else {
 			$posinfo = is_array($posinfo) ? $posinfo : get_object_vars($posinfo);
 		}
-
-		//$posinfo = array(
-		//	'normal' => "span4 spanfirst pull-right hidden otherclass",
-		//	'wide' => "span4 spanfirst pull-right hidden offset4"	
-		//)
 		
 		$result = array(
 			'default' => array(),
@@ -391,6 +415,62 @@ class T3TemplateLayout extends T3Template
 	}
 
 	/**
+	*  Parse visibility information
+	*  @var 
+	*  posinfo should be an object in setting file
+	*  $posinfo = array(
+	*		'normal' => 'span4 spanfirst'
+	*		'wide' => 'span3 spanfirst'
+	*		'mobile' => 'span50 hidden'
+	*	)
+	*
+	*  We focus on visibility value only, other information will be placed in others
+	**/
+	function parseVisibility($posinfo = array()){
+		
+		//convert to array
+		if(empty($posinfo)){
+			$posinfo = array();
+		} else {
+			$posinfo = is_array($posinfo) ? $posinfo : get_object_vars($posinfo);
+		}
+
+		$result = array(
+			'default' => array(),
+			'normal' => array(),
+			'wide' => array(),
+			'xtablet' => array(),
+			'tablet' => array(),
+			'mobile' => array()
+		);
+
+		foreach ($result as $device => &$info) {
+			//class presentation string
+			$cls = isset($posinfo[$device]) ? $posinfo[$device] : '';
+
+			//if isset
+			if(!empty($cls)){
+				//check if this position is hidden
+				$hidden = $this->hasclass($cls, 'hidden');
+				if($hidden){
+					$cls = $this->removeclass($cls, 'hidden');
+				}
+
+				//other class
+				$others = trim($cls);
+			} else {
+				$hidden = 0;
+				$others = '';
+			}
+
+			$info['hidden'] = $hidden;
+			$info['others'] = $others;
+		}
+
+		return $result;
+	}
+
+	/**
 	*  Extract a value key from object
 	**/
 	function extractKey($infos, $key){
@@ -432,6 +512,7 @@ class T3TemplateLayout extends T3Template
 
 		return $result;
 	}
+
 
 	/**
 	*  Optimize width of a spotlight

@@ -16,17 +16,55 @@
 
 	if(!isTouch){
 		$(document).ready(function($){
-			$('.nav > li').hover(function(event) {
+			// detect animation duration
+			var mm_duration = 0;
+			$('.t3-megamenu').each (function(){
+				if ($(this).data('duration')) mm_duration = $(this).data('duration');
+			});
+			if (mm_duration) {
+				var style = '.t3-megamenu.animate .mega > .mega-dropdown-menu, .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {';
+				style += 'transition-duration: ' + mm_duration + 'ms;';
+				style += '-webkit-transition-duration: ' + mm_duration + 'ms;';
+				style += '-ms-transition-duration: ' + mm_duration + 'ms;';
+				style += '-o-transition-duration: ' + mm_duration + 'ms;';
+				style += '}';
+				$('<style type="text/css">'+style+'</style>').appendTo ('head');
+			}
+
+			var mm_timeout = mm_duration ? 100 + mm_duration : 500;
+
+			$('.nav > li, li.mega').hover(function(event) {
 				var $this = $(this);
-				clearTimeout ($this.data('hoverTimeout'));
-				$this.addClass ('open');
+				if ($this.hasClass ('mega')) {
+					// add class animate
+					$this.addClass ('animating');
+					setTimeout(function(){$this.removeClass ('animating')}, mm_timeout);
+
+					clearTimeout ($this.data('hoverTimeout'));
+					$this.data('hoverTimeout', 
+						setTimeout(function(){$this.addClass ('open')}, 100));
+				} else {
+					clearTimeout ($this.data('hoverTimeout'));
+					$this.data('hoverTimeout', 
+						setTimeout(function(){$this.addClass ('open')}, 100));
+				}
 			},
 			function(event) {
 				var $this = $(this);
-				$this.data('hoverTimeout', 
-					setTimeout(function(){$this.removeClass ('open')}, 100));
+				if ($this.hasClass ('mega')) {
+					$this.addClass ('animating');
+					setTimeout(function(){$this.removeClass ('animating')}, mm_timeout);
+					clearTimeout ($this.data('hoverTimeout'));
+					$this.data('hoverTimeout', 
+						setTimeout(function(){$this.removeClass ('open')}, 100));
+				} else {
+					clearTimeout ($this.data('hoverTimeout'));
+					$this.data('hoverTimeout', 
+						setTimeout(function(){$this.removeClass ('open')}, 100));
+				}
 			});
 		});
+
 	}
 	
 }(jQuery);

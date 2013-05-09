@@ -37,48 +37,48 @@ class T3Minify
 
 	/**
 	 * 
-	 * Check if a css url can be minify or not
-	 * @var array
+	 * Check and convert to css real path
+	 * @var url
 	 */
-	public static function minifiable($url) {
+	public static function cssPath($url = '') {
 		$url = preg_replace('#[?\#]+.*$#', '', $url);
-		
+		$base = JURI::base();
+		$root = JURI::root(true);
+		$path = false;
+		$ret = false;
+
 		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
 			$url = JURI::getInstance()->getScheme() . ':' . $url; 
 		}
 
-		if (preg_match('/^https?\:/', $url)) {
-			if (strpos($url, JURI::base()) === false){
-				// External css
-				return false;
+		//check for css file extensions
+		foreach ( self::$cssexts as $ext ) {
+			if (substr_compare($url, $ext, -strlen($ext), strlen($ext)) === 0) {
+				$ret = true;
+				break;
 			}
 		}
 
-		foreach ( self::$cssexts as $ext ) {
-			if (substr_compare($url, $ext, -strlen($ext), strlen($ext)) === 0) {
-				return true;
+		if($ret){
+			if (preg_match('/^https?\:/', $url)) { //is full link
+				if (strpos($url, $base) === false){
+					// external css
+					return false;
+				}
+
+				$path = JPath::clean(JPATH_ROOT . '/' . substr($url, strlen($base)));
+			} else {
+				$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) === 0 ? substr($url, strlen($root)) : $url));
 			}
+
+			return is_file($path) ? $path : false;
 		}
 
 		return false;
 	}
 
-	public static function fromUrlToPath($url){
-		$url = preg_replace('#[?\#]+.*$#', '', $url); //clean
-		$root = JURI::root(true);
-		$path = '';
-
-		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
-			$url = 'http:' . $url; 
-		}
-
-		if(preg_match('/^https?\:/', $url)){ //this is a full link
-			$path = JPath::clean(JPATH_ROOT . '/' . substr($url, strlen(JURI::base())));
-		} else {
-			$path = JPath::clean(JPATH_ROOT . '/' . ($root && strpos($url, $root) == 0 ? substr($url, strlen($root)) : $url));
-		}
-		
-		return $path;
+	public static function fixUrl($url = ''){
+		return ($url[0] === '/' || strpos($url, '://') !== false) ? $url : JURI::base(true) . '/' . $url;
 	}
 
 	public static function optimizecss($tpl)
@@ -87,7 +87,8 @@ class T3Minify
 		$outputurl = JURI::root(true) . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/css';
 		
 		if (!JFile::exists($outputpath)){
-			@JFolder::create($outputpath);
+			JFolder::create($outputpath);
+			@chmod($outputpath, 0755);
 		}
 
 		if (!is_writeable($outputpath)) {
@@ -102,12 +103,15 @@ class T3Minify
 		$ielimit = 4095;
 		$selcounts = 0;
 		$regex = '/\{.+?\}|,/s'; //selector counter
+		$csspath = '';
 
 		foreach ($doc->_styleSheets as $url => $stylesheet) {
 
-			if ($stylesheet['mime'] == 'text/css' && self::minifiable($url)) {
-				$stylesheet['path'] = self::fromUrlToPath($url);
-				$stylesheet['data'] = @JFile::read($stylesheet['path']);
+			$url = self::fixUrl($url);
+
+			if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
+				$stylesheet['path'] = $csspath;
+				$stylesheet['data'] = JFile::read($csspath);
 
 				$selcount = preg_match_all($regex, $stylesheet['data'], $matched);
 				if(!$selcount) {
@@ -210,7 +214,9 @@ class T3Minify
 						$cssdata[] = $cssmin;
 					}
 
-					@JFile::write($groupfile, implode("\n", $cssdata));
+					$cssdata = implode("\n", $cssdata);
+					JFile::write($groupfile, $cssdata);
+					@chmod($groupfile, 0644);
 				}
 
 				$output[$outputurl . '/' . $groupname] = array(

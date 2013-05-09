@@ -13,6 +13,7 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.calendar');
 JHtml::_('behavior.formvalidation');
+JHtml::_('formbehavior.chosen', 'select');
 
 // Create shortcut to parameters.
 $params = $this->state->get('params');
@@ -28,12 +29,12 @@ if (!$editoroptions)
 ?>
 
 <script type="text/javascript">
-	Joomla.submitbutton = function(task) {
-		if (task == 'article.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+	Joomla.submitbutton = function(task)
+	{
+		if (task == 'article.cancel' || document.formvalidator.isValid(document.id('adminForm')))
+		{
 			<?php echo $this->form->getField('articletext')->save(); ?>
 			Joomla.submitform(task);
-		} else {
-			alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 		}
 	}
 </script>
@@ -82,7 +83,7 @@ if (!$editoroptions)
 
 					<?php echo $this->form->getInput('articletext'); ?>
 				</div>
-				<?php if ($params->get('show_urls_images_frontend')) : ?>
+				<?php if ($params->get('show_urls_images_frontend')): ?>
 				<div class="tab-pane" id="images">
 					<div class="control-group">
 						<div class="control-label">
@@ -222,6 +223,15 @@ if (!$editoroptions)
 					</div>
 					<div class="control-group">
 						<div class="control-label">
+							<?php echo $this->form->getLabel('tags', 'metadata'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('tags', 'metadata'); ?>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="control-label">
 							<?php echo $this->form->getLabel('created_by_alias'); ?>
 						</div>
 						<div class="controls">
@@ -320,7 +330,7 @@ if (!$editoroptions)
 					<span class="icon-ok"></span>&#160;<?php echo JText::_('JSAVE') ?>
 				</button>
 				<button type="button" class="btn" onclick="Joomla.submitbutton('article.cancel')">
-					<span class="icon-cancel"></span>&#160;<?php echo JText::_('JCANCEL') ?>
+					<span class="icon-remove-sign"></span>&#160;<?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
 			<?php echo JHtml::_('form.token'); ?>

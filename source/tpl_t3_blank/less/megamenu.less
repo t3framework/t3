@@ -17,6 +17,11 @@
 @import "vars.less"; // Include Variables and Mixins
 
 
+// EXTEND STYLE IN BASE
+// --------------------
+@import "../../../plugins/system/t3/base/less/megamenu.less";
+
+
 // BASIC STYLE FOR MEGAMENU
 // -------------------------
 .t3-megamenu {
@@ -160,20 +165,61 @@
   }
 
   // List in Module
-  .t3-module ul {
-    margin: 0 0 0 @T3globalMargin;
+  // Reset List Style in Module
+  .t3-module ul,
+  .t3-module .nav {
+    margin: 0 0 0 15px;
   }
 
-  .t3-module li {
+  .t3-module ul li,
+  .t3-module .nav li {
+    list-style: disc;
+    display: list-item;
+    float: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 
-  .t3-module ul li a {
+  .t3-module ul li a,
+  .t3-module .nav li a {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 100%;
+    background: none;
+    font: inherit;
+    white-space: normal;
+    // Link states
+    &:hover, &:focus, &:active {
+      background: none;
+      color: inherit;
+      font: inherit;
+    }
+  }
+  
+  // Nav in Module
+  .dropdown-menu .t3-module .nav {
   }
 
-  .t3-module ul li a:hover,
-  .t3-module ul li a:active,
-  .t3-module ul li a:focus,
-  .t3-module ul li a:visited {
+  .dropdown-menu .t3-module .nav li {
+  }
+
+  .dropdown-menu .t3-module .t3-module li a {
+    // Link states
+    &:hover, &:focus, &:active {
+    }
+  }
+  
+
+  // The caption
+  // -----------
+  .mega-caption {
+    color: @grayLight;
+    font-size: @T3smallerFontSize;
+    margin-top: 3px;
+    font-weight: normal;
   }
 
   // End
@@ -192,7 +238,7 @@
   .mega-nav .mega-group > span,
   .dropdown-menu .mega-nav .mega-group > span {
     color: @white;
-
+    // Link states
     &:hover, &:active, &:focus {
       color: @white;
     }

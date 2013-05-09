@@ -43,7 +43,6 @@ defined('_JEXEC') or die;
 					  <?php
 						echo JHTML::_('select.genericlist', $themes, 't3-admin-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
 					  ?>
-					 
 					  <div class="btn-group">
 						<button id="t3-admin-tm-pvbtn" class="btn btn-primary"><?php echo JText::_('T3_TM_PREVIEW') ?></button>
 						<?php if( $isadmin) : ?>
@@ -57,18 +56,21 @@ defined('_JEXEC') or die;
 					  </div>
 					</div>
 				  </form>
+				  <div id="t3-admin-tm-recss-progress" class="progress progress-striped active fade invisible">
+						<div class="bar"></div>
+					</div>
 				</div>
 	
 				<form id="t3-admin-tm-variable-form" name="adminForm" class="form-validate">
-					<div id="t3-admin-tm-recss-progress" class="progress progress-striped active fade invisible">
-						<div class="bar"></div>
-					</div>
-
 					<div class="accordion" id="t3-admin-tm-accord">
 						<?php
 						$i = 0;
 						foreach ($fieldSets as $name => $fieldSet) :
-							$label = !empty($fieldSet->label) ? $fieldSet->label : 'T3T3'.$name.'_FIELDSET_LABEL';
+							$label = !empty($fieldSet->label) ? $fieldSet->label : 'T3_TM_'.$name.'_FIELDSET_LABEL';
+
+							if(in_array($name, $disabledFieldSets)){
+								continue;
+							}
 						?>
 							
 						<div class="accordion-group<?php echo $i == 0?' active':'' ?>">
@@ -111,9 +113,15 @@ defined('_JEXEC') or die;
 
 									foreach ($forders as $field) :
 										$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
+										$textinput = $field->input;
+
 										// add placeholder to Text input
-										if ($field->type == 'Text') {
-											$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group).'"/>', $field->input);
+										if ($field->type == 'Text' || $field->type == 'Color') {
+											$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group).'"/>', $textinput);
+
+											if($field->type == 'Color'){
+												$textinput = str_replace('value="#000000"', 'value=""', $textinput);
+											}
 										}
 									?>
 										<div class="control-group t3-control-group<?php echo $hide ? ' hide' : ''?>">
@@ -123,7 +131,7 @@ defined('_JEXEC') or die;
 											</div>
 										<?php endif; ?>
 											<div class="controls t3-controls">
-												<?php echo $field->type == 'Text'? $textinput : str_replace('value="#000000"', 'value=""', $field->input); ?>
+												<?php echo $textinput ?>
 											</div>
 										</div>
 									<?php
@@ -166,17 +174,18 @@ defined('_JEXEC') or die;
 		<div id="t3-admin-thememagic-dlg" class="modal hide fade">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3>Save this theme as...</h3>
+				<h3><?php echo JText::_('T3_TM_THEME_MAGIC') ?></h3>
 			</div>
 			<div class="modal-body">
-				<form id="prompt-form" name="prompt-form" class="form-horizontal prompt-block">
-					<span class="help-block"><?php echo JText::_('T3_THEME_ASK_ADD_THEME') ?></span>
-					<p>
-						<input type="text" id="theme-name" placeholder="Theme name" style="width: 90%; margin-top: 10px;">
-					</p>
-				</form>
-				<div class="message-block">
-					<p></p>
+				<div class="row-fluid">
+					<form id="prompt-form" name="prompt-form" class="form-horizontal prompt-block">
+						<span class="help-block"><?php echo JText::_('T3_TM_ASK_ADD_THEME') ?></span>
+						<p>
+							<input type="text" id="theme-name" class="span12" placeholder="<?php echo JText::_('T3_TM_THEME_NAME') ?>">
+						</p>
+					</form>
+					<div class="message-block">
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">

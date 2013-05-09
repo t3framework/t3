@@ -146,6 +146,12 @@ $exAction	= ($canEdit ||  $params->get('show_print_icon') || $params->get('show_
 			<?php echo $this->item->toc; ?>
 		<?php endif; ?>
 
+		<?php if ($params->get('show_tags', 1) && !empty($this->item->tags)) : ?>
+			<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
+
+			<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
+		<?php endif; ?>
+
 		<?php if (!$params->get('show_intro')) : ?>
 			<?php echo $this->item->event->afterDisplayTitle; ?>
 		<?php endif; ?>

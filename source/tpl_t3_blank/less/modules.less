@@ -46,16 +46,18 @@
 
 // Module List
 // -----------
-.t3-module ul,
-.t3-module ol {
-  margin-left: 20px;
-}
-
-.t3-module ul.unstyled,
-.t3-module ol.unstyled,
-.t3-module ul.nav,
-.t3-module ol.nav {
-  margin-left: 0;
+.t3-module {
+  ul,
+  ol {
+    margin-left: 20px;
+  }
+  
+  ul.unstyled,
+  ol.unstyled,
+  ul.nav,
+  ol.nav {
+    margin-left: 0;
+  }
 }
 
 
@@ -66,36 +68,64 @@
 
 // Menu
 // ----
-.module_menu .nav {
-  margin-bottom: @T3globalMargin;
+.module_menu {
+  .nav {
+    margin-bottom: @T3globalMargin;
+  }
+  
+  .nav > li {
+    border-top: 1px solid @hrBorder;
+  }
+  
+  .nav > li > a {
+    padding: 5px;
+  }
+  
+  // No top border
+  .nav > li:first-child {
+    border-top: 0;
+  }
+  
+  .nav > li:first-child > a {
+    padding-top: 0;
+    border-top: 0;
+  }
+  
+  // Hover state
+  .nav > li > a:hover {
+  }
+  
+  // Active state
+  .nav > li.active > a {
+  }
 }
 
-.module_menu .nav > li {
-  border-top: 1px solid @hrBorder;
-}
 
-.module_menu .nav > li > a {
-  padding: 5px;
-}
+// Login Form
+// ----------
+#login-form {
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 90%;
+  }
+  
+  .btn-primary {
+  }
+  
+  ul.unstyled {
+  }
 
-// No top border
-.module_menu .nav > li:first-child {
-  border-top: 0;
-}
+  #form-login-username {
+  }
+  
+  #form-login-password {
+  }
+  
+  #form-login-remember {
+  }
 
-.module_menu .nav > li:first-child > a {
-  padding-top: 0;
-  border-top: 0;
 }
-
-// Hover state
-.module_menu .nav > li > a:hover {
-}
-
-// Active state
-.module_menu .nav > li.active > a {
-}
-
 
 // Advertisement
 // -------------
@@ -103,10 +133,9 @@
 }
 
 .banneritem {
-}
-
-.banneritem a {
-  font-weight: bold;
+  a {
+    font-weight: bold;
+  }
 }
 
 .bannerfooter {
@@ -121,7 +150,19 @@
 // ----------
 .categories-module, ul.categories-module,
 .category-module, ul.category-module {
-  li {}
+  margin: 0;
+  
+  li {
+    list-style: none;
+    padding: (@baseLineHeight / 2) 0;
+    border-top: 1px solid @T3borderColor;
+    // Remove border for first item
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+  
   h4 {
     font-size: @baseFontSize;
     font-weight: normal;
@@ -181,4 +222,57 @@ ul.latestusers {
   dd {
     width: 60%;
   }
+}
+
+// Popular Tags
+div.tagspopular ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+div.tagspopular ul li {
+  color: @gray;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+}
+
+div.tagspopular ul li a {
+  background: @grayLighter;
+  border-radius: 3px;
+  color: @gray;
+  display: block;
+  padding: 2px 5px;
+}
+
+div.tagspopular ul li a:hover,
+div.tagspopular ul li a:focus,
+div.tagspopular ul li a:active {
+  background: @linkColorHover;
+  color: @white;
+  text-decoration: none;
+}
+
+// Similar tags
+div.tagssimilar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+div.tagssimilar ul li {
+  border-bottom: 1px solid @grayLighter;
+  padding: 8px 0;
+}
+
+div.tagssimilar ul li a {
+  color: @gray;
+}
+
+div.tagssimilar ul li a:hover,
+div.tagssimilar ul li a:focus,
+div.tagssimilar ul li a:active {
+  color: @linkColorHover;
 }

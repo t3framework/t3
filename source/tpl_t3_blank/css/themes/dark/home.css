@@ -87,7 +87,7 @@
   padding: 18px 44.5px;
 }
 .home .t3-sl-5 .section-arrow-alt {
-  background: url(../../../images/arrow-section-alt.png) no-repeat center -1px #eee;
+  background: url("../../../images/arrow-section-alt.png") no-repeat center -1px #eee;
   width: 37px;
   height: 19px;
   position: absolute;
@@ -102,55 +102,4 @@
 }
 .home .t3-sl-5 .section-arrow-alt {
   display: none;
-}
-.modal-t3-signup {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-.modal-t3-signup .modal-header {
-  border-bottom: none;
-  padding: 0 40px;
-}
-.modal-t3-signup .modal-header h3 {
-  display: none;
-}
-.modal-t3-signup .modal-header .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #eee;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  border-bottom-left-radius: 4px;
-}
-.modal-t3-signup .modal-body {
-  padding: 20px 40px 40px;
-}
-.modal-t3-signup .modal-body p,
-.modal-t3-signup .modal-body input,
-.modal-t3-signup .modal-body .add-on,
-.modal-t3-signup .modal-body button {
-  font-size: 16px;
-}
-.modal-t3-signup .modal-body p {
-  line-height: 24px;
-}
-.modal-t3-signup .form-t3-signup {
-  margin-top: 40px;
-}
-.modal-t3-signup .modal-body input {
-  padding: 9px 25px 8px 15px;
-}
-.modal-t3-signup .modal-body .add-on {
-  padding: 9px 9px 8px;
-}
-.modal-t3-signup .btn-large {
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.15);
 }

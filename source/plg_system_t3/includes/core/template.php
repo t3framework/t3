@@ -66,10 +66,12 @@ class T3Template extends ObjectExtendable
 			
 			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
 			if(empty($layout)){
-				$layout = $template->params->get('mainlayout', 'default-joomla-3.x');
+				$layout = $template->params->get('mainlayout', 'default');
 			}
+			
 			$fconfig = JPATH_ROOT . '/templates/' . $template->template . '/etc/layout/' . $layout . '.ini';		
 			if(is_file($fconfig)){
+				jimport('joomla.filesystem.file');
 				$this->_layoutsettings->loadString (JFile::read($fconfig), 'INI', array('processSections' => true));
 			}
 		}
@@ -97,7 +99,7 @@ class T3Template extends ObjectExtendable
 	* @return string Layout name
 	*/
 	public function getLayout () {
-		return JFactory::getApplication()->input->getCmd ('tmpl') ? JFactory::getApplication()->input->getCmd ('tmpl') : $this->getParam('mainlayout');
+		return JFactory::getApplication()->input->getCmd ('tmpl') ? JFactory::getApplication()->input->getCmd ('tmpl') : $this->getParam('mainlayout', 'default');
 	}
 
 	/**
@@ -253,11 +255,15 @@ class T3Template extends ObjectExtendable
 			//$currentconfig = json_decode(@file_get_contents ($file), true);
 		$currentconfig = json_decode($this->getParam('mm_config', ''), true);
 		$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
-		$menu = new T3MenuMegamenu ($menutype, $mmconfig);
+		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $this->_tpl->params);
 		$menu->render();          
 
 		// add core megamenu.css in plugin
+		// deprecated - will extend the core style into template megamenu.less & megamenu-responsive.less
+		// to use variable overridden in template
 		$this->addStyleSheet(T3_URL.'/css/megamenu.css');
+		if ($this->getParam('responsive', 1)) $this->addStyleSheet(T3_URL.'/css/megamenu-responsive.css');
+		
 		// megamenu.css override in template
 		$this->addCss ('megamenu');	
 	}
@@ -269,15 +275,27 @@ class T3Template extends ObjectExtendable
 	*     Layout configuration
 	* @param $col int
 	*     Column number, start from 0
+	* @param $array boolean
+	*     return array or string
 	*
 	* @return string Block content
 	*/
-	function getData ($layout, $col) {
-		$data = '';
-		foreach ($layout as $device => $width) {
-			if (!isset ($width[$col]) || !$width[$col]) continue;
-			$data .= " data-$device=\"{$width[$col]}\"";
+	function getData ($layout, $col, $array = false) {
+		if($array){
+			$data = array();
+			foreach ($layout as $device => $width) {
+				if (!isset ($width[$col]) || !$width[$col]) continue;
+				$data[$device] = $width[$col];
+			}
+
+		} else {
+			$data = '';
+			foreach ($layout as $device => $width) {
+				if (!isset ($width[$col]) || !$width[$col]) continue;
+				$data .= " data-$device=\"{$width[$col]}\"";
+			}	
 		}
+		
 		return $data;
 	}
 
@@ -295,6 +313,48 @@ class T3Template extends ObjectExtendable
 		$width = $layout->default;
 		if (!isset ($width[$col]) || !$width[$col]) return "";
 		return $width[$col];
+	}
+
+	/**
+	* Render page class
+	*/
+	function bodyClass () {
+		$input = JFactory::getApplication()->input;
+		if($input->getCmd('option', '')){
+			$classes[] = $input->getCmd('option', '');
+		}
+		if($input->getCmd('view', '')){
+			$classes[] = 'view-' . $input->getCmd('view', '');
+		}
+		if($input->getCmd('layout', '')){
+			$classes[] = 'layout-' . $input->getCmd('layout', '');
+		}
+		if($input->getCmd('task', '')){
+			$classes[] = 'task-' . $input->getCmd('task', '');
+		}
+		if($input->getCmd('Itemid', '')){
+			$classes[] = 'itemid-' . $input->getCmd('Itemid', '');
+		}
+
+		$menu = JFactory::getApplication()->getMenu();
+		if($menu){
+			$active = $menu->getActive();
+			$default = $menu->getDefault();
+
+			if ($active) {
+				if($default && $active->id == $default->id){
+					$classes[] = 'home';
+				}
+
+				if ($active->params && $active->params->get('pageclass_sfx')) {
+					$classes[] = $active->params->get('pageclass_sfx');
+				}
+			}
+		}
+		
+		$classes[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
+
+		echo implode(' ', $classes);
 	}
 
 	/**
@@ -397,12 +457,15 @@ class T3Template extends ObjectExtendable
 		$data = '';
 		$param = $this->getLayoutSetting($name, '');
 
-		if(empty($param) && is_string($cls)){
-			$data = ' ' . $cls;
-		} else if (is_array($cls)){
-			if(empty($param)){
+		if(empty($param)){
+			if(is_string($cls)){
+				$data = ' ' . $cls;
+			} else if (is_array($cls)){
 				$param = (object)$cls;
 			}
+		}
+
+		if(!empty($param)){
 
 			$data = '"';
 			$data .= isset($param->default) ? ' data-default="' . $param->default . '"' : '';
@@ -415,7 +478,7 @@ class T3Template extends ObjectExtendable
 			if($data == '"'){
 				$data = '';
 			} else {
-				$data = ' t3respon' . substr($data, 0, strrpos($data, '"'));
+				$data = (isset($param->default) ? ' ' . $param->default : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 		
@@ -472,18 +535,38 @@ class T3Template extends ObjectExtendable
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			JHtml::_('jquery.framework');
 		} else {
-			$this->addScript (T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
-			$this->addScript (T3_URL.'/js/jquery.noconflict.js');
+			$scripts = @$this->_scripts;
+			$jqueryIncluded = 0;
+			if(is_array($scripts) && count($scripts)) {
+				$pattern = '/jquery([-_]*\d+(\.\d+)+)?(\.min)?\.js/i';//is jquery core
+				foreach ($scripts as $script => $opts) {
+					if(preg_match($pattern, $script)) {
+						$jqueryIncluded = 1;
+					}
+				}
+			}
+			
+			if(!$jqueryIncluded) {
+				$this->addScript (T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
+				$this->addScript (T3_URL.'/js/jquery.noconflict.js');
+			}
 		}
 		define('JQUERY_INCLUED', 1);
 
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
 		$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
+
+		// add css/js for off-canvas
+		if ($this->getParam('navigation_collapse_offcanvas', 1) && $this->getParam('responsive', 1)) {
+			$this->addCss ('off-canvas', false);
+			$this->addScript (T3_URL.'/js/off-canvas.js');
+		}
+		
 		$this->addScript (T3_URL.'/js/script.js');
 
 		//menu control script
-		if ($this->getParam ('navigation_trigger') == 'hover'){
+		if ($this->getParam ('navigation_trigger', 'hover') == 'hover'){
 			$this->addScript (T3_URL.'/js/menu.js');
 		}
 
@@ -559,7 +642,7 @@ class T3Template extends ObjectExtendable
 							$newurl = T3_TEMPLATE_URL.'/less/'.$fname.'.less';
 							$css ['mime'] = 'text/less';
 						} else {
-							$newurl = JURI::current().'?t3action=lessc&s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
+							$newurl = JURI::current().'?t3action=lessc&amp;s=templates/'.T3_TEMPLATE.'/less/'.$fname.'.less';
 						}
 						$stylesheets[$newurl] = $css;
 						continue;
@@ -643,7 +726,9 @@ class T3Template extends ObjectExtendable
 					}
 				}
 			}
-		}		
+		}
+
+		
 	}
 
 	function paramToStyle($style, $paramname = '', $isurl = false){

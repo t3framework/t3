@@ -13,17 +13,25 @@
 
 ;(function ($) {
 	$.fn.equalHeight = function (options){
-		var tallest = 0;
-		$(this).each(function() {
-			$(this).css({height:"", "min-height":""});
-			var thisHeight = $(this).height();
-			if(thisHeight > tallest) {
-				tallest = thisHeight;
-			}
-		});
 
-		$(this).each(function() {
-			$(this).css( "min-height", tallest );
-		});
+		//only set min-height if we have more than 1 element
+		if(this.length > 1 || (options && options.force)){
+			
+			var tallest = 0;
+			this.each(function() {
+
+				var height = $(this).css({height: '', 'min-height': ''}).height();
+
+				if(height > tallest) {
+					tallest = height;
+				}
+			});
+
+			this.each(function() {
+				$(this).css('min-height', tallest);
+			});
+		}
+
+		return this;
 	}
 })(jQuery);

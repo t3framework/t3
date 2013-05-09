@@ -14,7 +14,7 @@
 
 /* -------------------------------------------------*/
 /* T3 ADMIN STYLE
----------------------------------------------------*/
+----------------------------------------------------*/
 
 @import "../fonts/font-awesome/css/font-awesome.css";
 
@@ -501,7 +501,8 @@ select, input[type="file"] {
   background: none;
 }
 
-.t3-admin-form .form-horizontal .t3-admin-header .inputbox {
+.t3-admin-form .form-horizontal .t3-admin-header .inputbox,
+.t3-admin-form .form-horizontal .t3-admin-header .input {
   width: 250px;
   font-weight: bold;
 }
@@ -587,6 +588,7 @@ button.btn-primary:active {
   right: 0;
   padding: 20px !important;
   margin: 0 !important;
+  z-index: 10;
 }
 
 /* USERS INTERACTION ELEMENTS
@@ -1153,6 +1155,11 @@ button.btn-primary:active {
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: "FontAwesome";
+}
+
+.icon-eye-open:before,
+.icon-eye:before {
+  content: "\f06e";
 }
 
 

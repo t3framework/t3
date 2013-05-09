@@ -15,13 +15,21 @@
 	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
 	
 	if(isTouch){
+
 		$.fn.touchmenu = function(){
 			
-			var jallitems = $();
-			$(document).on('click', function(){
-				jallitems.data('noclick', 0).removeClass('open');
-				$(document.body).removeClass('hoverable');
-			});
+			if(!$(document).data('touchmenu')){
+				$(document).data('touchmenu', 1).data('touchitems', $()).on('click hidesub', function(){
+					$(document).removeClass('hoverable')
+						.data('touchitems').data('noclick', 0).removeClass('open');
+				});
+
+				if (navigator.userAgent.match(/(iPad|iPhone);.*CPU.*OS 6_\d/i)){ 
+					$(document.body).children(':not(.nav)').on('click', function(){
+						$(document).trigger('hidesub');
+					});
+				}
+			}
 
 			return this.each(function(){	
 				var	itemsel = $(this).has('.mega').length ? 'li.mega' : 'li.parent',
@@ -52,7 +60,7 @@
 									//add open class, 
 									//iphone seem have buggy when we modify display property
 									//it does not trigger hover CSS
-									jitems.removeClass('open');
+									$(document).data('touchitems').removeClass('open');
 									jitem.addClass('open').parentsUntil('.nav').filter(itemsel).addClass('open');
 
 									val = jchild.css('display') != 'none';
@@ -93,7 +101,7 @@
 				jitems.on('mouseenter', onTouch).data('noclick', 0);
 				$(this).find('li').on('click', onClick);
 
-				jallitems = jallitems.add(jitems);
+				$(document).data('touchitems', $(document).data('touchitems').add(jitems));
 			});
 		};
 	}
@@ -110,7 +118,9 @@
 			$('ul.nav').has('.dropdown-menu').touchmenu();
 		} else {
 			$(document.body).on('click', '[data-toggle="dropdown"]' ,function(){
-				if($(this).parent().hasClass('open') && this.href && this.href != '#'){
+				//if this link has 'open' (second click) class or when we are in collapsed menu and have always-show
+				if($(this).parent().hasClass('open') && this.href && this.href != '#' || 
+					($('.btn-navbar').is(':visible') && $(this).closest('.always-show').length)){
 					window.location.href = this.href;
 				}
 			});

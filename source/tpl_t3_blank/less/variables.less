@@ -18,7 +18,7 @@
 
 // Global values
 // --------------------------------------------------
-
+@T3ImagePath:           "../images";
 
 // Grays
 // -------------------------
@@ -44,6 +44,13 @@
 @purple:                #8b08ae;
 
 
+// T3 Main colors
+// -------------------------
+@T3primaryColor:        @blue;
+@T3secondaryColor:      @green;
+
+
+
 // Scaffolding
 // -------------------------
 @bodyBackground:        @white;
@@ -52,7 +59,7 @@
 
 // Links
 // -------------------------
-@linkColor:             @blue;
+@linkColor:             @T3primaryColor;
 @linkColorHover:        darken(@linkColor, 15%);
 
 
@@ -336,7 +343,7 @@
 @T3borderColor:             #ddd;
 @T3bodyBackgroundImage:     none;
 
-// Global Margin
+// Global Margin & Padding
 @T3globalMargin:            @baseLineHeight;
 @T3globalPadding:           @baseLineHeight;
 
@@ -354,7 +361,7 @@
 @T3logoWidth:               204px;
 @T3logoHeight:              65px;
 
-@T3LogoImage:               "../images/logo.png";
+@T3LogoImage:               "@{T3ImagePath}/logo.png";
 
 
 

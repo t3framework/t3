@@ -35,7 +35,12 @@ class plgSystemT3 extends JPlugin
 			T3Bot::beforeInit();
 			T3::init($template);
 			T3Bot::afterInit();
+			
+			//check and execute the t3action
 			T3::checkAction();
+			
+			//check and change template for ajax
+			T3::checkAjax();
 		}
 	}
 	
@@ -51,6 +56,11 @@ class plgSystemT3 extends JPlugin
 				if(defined('T3_THEMER') && $params->get('themermode', 1)){
 					T3::import('admin/theme');
 					T3AdminTheme::addAssets();
+				}
+
+				//check for ajax action and render t3ajax type to before head type
+				if(class_exists('T3Ajax')){
+					T3Ajax::render();
 				}
 			}
 		}

@@ -44,7 +44,7 @@
 
 				
 			if(!ctrls){
-				ctrls = controls[ctrlelm.name.substr(ctrlelm.name.length - 2)];
+				ctrls = controls[ctrlelm.name.substr(0, ctrlelm.name.length - 2)];
 			}
 			
 			if(!ctrls){
@@ -123,12 +123,12 @@
 		
 		enable: function (el) {
 			el._disabled = false; //selector 'li' is J2.5 compactible
-			$(el).closest('li, div.control-group').css('display', 'block');
+			$(el).closest('.adminformlist > li, div.control-group').css('display', 'block');
 		},
 		
 		disable: function (el) {
 			el._disabled = true; //selector 'li' is J2.5 compactible
-			$(el).closest('li, div.control-group').css('display', 'none');
+			$(el).closest('.adminformlist > li, div.control-group').css('display', 'none');
 		},
 		
 		elmsFrom: function(name){
@@ -198,7 +198,7 @@
 				form = this;
 
 			if(!ctrl){
-				ctrl = ajaxs[name.substr(name.length - 2)];
+				ctrl = ajaxs[name.substr(0, name.length - 2)];
 			}
 			
 			if(!ctrl){

@@ -32,6 +32,9 @@ class T3AdminLayout
 
 	public static function display(){
 		
+		//load language for template
+		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
+
 		$japp = JFactory::getApplication();
 		if(!$japp->isAdmin()){
 			$tpl = $japp->getTemplate(true);
@@ -92,9 +95,6 @@ class T3AdminLayout
 		}
 		
 		$file = JPATH_ROOT . '/templates/' . $template . '/etc/layout/' . $layout . '.ini';
-		if (JFile::exists($file)) {
-			@chmod($file, 0777);
-		}
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);
@@ -132,9 +132,6 @@ class T3AdminLayout
 
 		$confpath = JPATH_ROOT . '/templates/' . $template . '/etc/layout/';
 		$confdest = $confpath . $layout . '.ini';
-		if (JFile::exists($confdest)) {
-			@chmod($confdest, 0777);
-		}
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);

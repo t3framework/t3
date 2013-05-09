@@ -60,9 +60,7 @@ defined('_JEXEC') or die;
     
     <!-- MAIN CONTENT -->
     <div id="t3-content" class="t3-content <?php echo $this->getClass($layout, $col) ?>" <?php echo $this->getData ($layout, $col++) ?>>
-      <?php if($this->hasMessage()):?>
       <jdoc:include type="message" />
-      <?php endif; ?>
       <jdoc:include type="component" />
     </div>
     <!-- //MAIN CONTENT -->

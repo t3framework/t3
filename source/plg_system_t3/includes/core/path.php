@@ -48,12 +48,45 @@ class T3Path extends JObject
 		return $return;
 	}
 
-	public static function cleanPath ($path) {
-		$pattern = '/\w+\/\.\.\//';
-		while(preg_match($pattern,$path)){
-			$path = preg_replace($pattern, '', $path);
+	/**
+	 * Asbjorn Grandt
+	 * Clean file name paths removing redundant elements
+	 */
+	public static function cleanPath($path) {
+		
+		$dirs = explode('/', rtrim(preg_replace('#^(\./)+#', '', $path), '/'));
+				
+		$offset = 0;
+		$sub = 0;
+		$subOffset = 0;
+		$root = '';
+
+		if (empty($dirs[0])) {
+			$root = '/';
+			$dirs = array_splice($dirs, 1);
+		} 
+
+		$newDirs = array();
+		foreach($dirs as $dir) {
+			if ($dir !== '..') {
+				$subOffset--;	
+				$newDirs[++$offset] = $dir;
+			} else {
+				$subOffset++;
+				if (--$offset < 0) {
+					$offset = 0;
+					if ($subOffset > $sub) {
+						$sub++;
+					} 
+				}
+			}
 		}
-		return $path;		
+
+		if (empty($root)) {
+			$root = str_repeat('../', $sub);
+		}
+
+		return $root . implode('/', array_slice($newDirs, 0, $offset));
 	}
 
 	public static function relativePath($path1, $path2='') {

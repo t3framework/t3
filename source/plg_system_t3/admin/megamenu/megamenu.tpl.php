@@ -78,10 +78,20 @@ $modules = $db->loadObjectList();
           <ul>
             <li>
               <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ICON'), '::', JTexT::_('T3_NAVIGATION_MM_ICON_DESC') ?>">
-                <a href="http://twitter.github.com/bootstrap/base-css.html#icons" target="_blank"><i class="icon-search"></i><?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
+                <a href="http://fortawesome.github.io/Font-Awesome/#icons-web-app" target="_blank"><i class="icon-search"></i><?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
               </label>
               <fieldset class="">
                 <input type="text" class="input-medium toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
+              </fieldset>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_CAPTION'), '::', JTexT::_('T3_NAVIGATION_MM_CAPTION_DESC') ?>">
+                <?php echo JTexT::_('T3_NAVIGATION_MM_CAPTION') ?>
+              </label>
+              <fieldset class="">
+                <input type="text" class="input-large toolitem-caption toolbox-input" name="toolitem-caption" data-name="caption" value="" />
               </fieldset>
             </li>
           </ul>

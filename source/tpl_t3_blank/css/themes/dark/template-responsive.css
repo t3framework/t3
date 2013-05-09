@@ -925,6 +925,7 @@
   }
   .spanfirst {
     margin-left: 0 !important;
+    clear: left;
   }
 }
 .row .span50,
@@ -1011,6 +1012,34 @@
   .always-show .dropdown-menu {
     display: block !important;
   }
+  .navbar-collapse-fixed-top,
+  .navbar-collapse-fixed-bottom {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  .navbar-collapse-fixed-top .nav-collapse.in,
+  .navbar-collapse-fixed-bottom .nav-collapse.in {
+    position: fixed;
+    width: 100%;
+    overflow-y: auto;
+    top: 40px;
+    bottom: 0;
+  }
+  .navbar-collapse-fixed-top .nav-collapse.in > *,
+  .navbar-collapse-fixed-bottom .nav-collapse.in > * {
+    padding-bottom: 50px;
+  }
+  .navbar-collapse-fixed-bottom {
+    bottom: 0;
+    top: auto;
+  }
+  .navbar-collapse-fixed-bottom .nav-collapse.in {
+    top: 0;
+    bottom: 40px;
+  }
 }
 @media (max-width: 767px) {
   .t3-navhelper {
@@ -1026,6 +1055,9 @@
   }
   .t3-mainnav .navbar .btn-navbar {
     margin-bottom: 10px;
+  }
+  .t3-mainnav .navbar .btn-navbar:hover {
+    cursor: pointer;
   }
   .t3-mainnav .nav-collapse {
     margin-top: 10px;
@@ -1077,6 +1109,10 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+  }
+  .t3-mainnav.navbar-collapse-fixed-top {
+    margin-left: 0;
+    margin-right: 0;
   }
   .t3-mainnav {
     background: #444;
@@ -1158,6 +1194,11 @@
   h5 small,
   h6 small {
     font-size: 14px -2px;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 50px;
   }
 }
 @media (max-width: 767px) {
