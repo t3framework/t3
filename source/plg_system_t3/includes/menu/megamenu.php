@@ -14,8 +14,6 @@
 
 T3::import ('menu/megamenu.tpl');
 
-JLoader::register('MenusHelper', JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
-
 class T3MenuMegamenu {
 	protected $children = array();
 	protected $_items = array();
