@@ -14,8 +14,6 @@
 
 T3::import ('menu/megamenu.tpl');
 
-JLoader::register('MenusHelper', JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
-
 class T3MenuMegamenu {
 	protected $children = array();
 	protected $_items = array();
@@ -28,13 +26,8 @@ class T3MenuMegamenu {
 
 	function __construct ($menutype='mainmenu', $settings=array(), $params=null) {
 		$app = JFactory::getApplication();
-
-		// get all content language codes, to display all menus
-		$lang_codes = array_keys(JLanguageHelper::getLanguages('lang_code'));
-		$lang_codes[] = '*';
-
 		$menu = $app->getMenu('site');
-		$items = $menu->getItems(array('menutype', 'language'), array($menutype, $lang_codes));
+		$items = $menu->getItems('menutype', $menutype);
 
 		$active = ($menu->getActive()) ? $menu->getActive() : $menu->getDefault();
 		$this->active_id = $active ? $active->id : 0;
