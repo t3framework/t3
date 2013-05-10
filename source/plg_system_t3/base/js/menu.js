@@ -38,7 +38,9 @@
 				if ($this.hasClass ('mega')) {
 					// add class animate
 					$this.addClass ('animating');
-					setTimeout(function(){$this.removeClass ('animating')}, mm_timeout);
+					clearTimeout ($this.data('animatingTimeout'));
+					$this.data('animatingTimeout', 
+						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
 
 					clearTimeout ($this.data('hoverTimeout'));
 					$this.data('hoverTimeout', 
@@ -53,7 +55,9 @@
 				var $this = $(this);
 				if ($this.hasClass ('mega')) {
 					$this.addClass ('animating');
-					setTimeout(function(){$this.removeClass ('animating')}, mm_timeout);
+					clearTimeout ($this.data('animatingTimeout'));
+					$this.data('animatingTimeout', 
+						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
 					clearTimeout ($this.data('hoverTimeout'));
 					$this.data('hoverTimeout', 
 						setTimeout(function(){$this.removeClass ('open')}, 100));
