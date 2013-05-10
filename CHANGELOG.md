@@ -1,3 +1,23 @@
+<h2>Version: 1.2.5 (10/05/2013)</h2>
+
+<h3>New features</h3>
+- T3Ajax: Add new ajax feature | <a href="https://github.com/t3framework/t3/commit/fec48599026b890fba631931e04b82643adabafb">Link</a>
+"Add animation for megamenu dropdown
+- Support animation type: fading, slide, zoom, elastic
+  Allow configure animation duration
+  CSS3 animation, support for browsers: IE10, Chrome, FF, Opera, Safari" | <a href="https://github.com/t3framework/t3/commit/65289ff9519ff6b4b9398ed7ade279f1399f8c1a">Link</a>
+
+<h3>Improvement</h3>
+- LESSPHP: Upgrade Lessphp to latest version v0.3.9 | <a href="https://github.com/t3framework/t3/commit/155ae32a39c3b3119df727acd3c0a18bf3ebbf0c">Link</a>
+- T3Form: Add extend T3Form from JForm to allow overwrite list parameter | <a href="https://github.com/t3framework/t3/commit/69822da283fff172b872dc5fcd7cdd0d850773a1">Link</a>
+
+<h3>Fix bugs</h3>
+- T3Layout: Fix show/hide function | <a href="https://github.com/t3framework/t3/commit/e39795b58b6de0eec0d712d584552d35d8d7d7e3">Link</a>
+- T3Admin: Fix js error when turn off header of backend template | <a href="https://github.com/t3framework/t3/commit/0afbeb178d448e6b6cb56706ab1e9e1980bfda41">Link</a>
+- Megamenu: Correct link to font awesome instead of bootstrap font | <a href="https://github.com/t3framework/t3/commit/ebb40dd035eef50b90c617f3ecbeb2a9030b779c">Link</a>
+- T3Minify: Fix error Undefined variable: ret | <a href="https://github.com/t3framework/t3/commit/d186e819d0d367cfe13eeab8ccc793bbe20de902">Link</a>
+- T3Path: Fix clean url path | <a href="https://github.com/t3framework/t3/commit/98de029f3f8257732f2750a941fff14eed67f8cc">Link</a>
+
 <h2>Version: 1.2.4 (26/04/2013)</h2>
 
 <h3>Bugs Fix</h3>
