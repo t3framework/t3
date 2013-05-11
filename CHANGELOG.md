@@ -2,10 +2,10 @@
 
 <h3>New features</h3>
 - T3Ajax: Add new ajax feature | <a href="https://github.com/t3framework/t3/commit/fec48599026b890fba631931e04b82643adabafb">Link</a>
-"Add animation for megamenu dropdown
-- Support animation type: fading, slide, zoom, elastic
+- Add animation for megamenu dropdown
+  Support animation type: fading, slide, zoom, elastic
   Allow configure animation duration
-  CSS3 animation, support for browsers: IE10, Chrome, FF, Opera, Safari" | <a href="https://github.com/t3framework/t3/commit/65289ff9519ff6b4b9398ed7ade279f1399f8c1a">Link</a>
+  CSS3 animation, support for browsers: IE10, Chrome, FF, Opera, Safari | <a href="https://github.com/t3framework/t3/commit/65289ff9519ff6b4b9398ed7ade279f1399f8c1a">Link</a>
 
 <h3>Improvement</h3>
 - LESSPHP: Upgrade Lessphp to latest version v0.3.9 | <a href="https://github.com/t3framework/t3/commit/155ae32a39c3b3119df727acd3c0a18bf3ebbf0c">Link</a>
