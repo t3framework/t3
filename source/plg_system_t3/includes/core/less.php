@@ -18,7 +18,7 @@ defined('_JEXEC') or die();
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
-if(!class_exists(lessc)) {
+if(!class_exists('lessc')) {
 	T3::import('lessphp/lessc.inc');
 }
 T3::import('core/path');
