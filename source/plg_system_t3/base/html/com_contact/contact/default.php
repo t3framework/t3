@@ -53,6 +53,7 @@ jimport('joomla.html.html.bootstrap');
 		<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
 		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
 	<?php endif; ?>
+	
 	<?php if ($this->params->get('presentation_style') == 'sliders') : ?>
 		<div class="accordion" id="slide-contact">
 			<div class="accordion-group">

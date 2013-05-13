@@ -250,4 +250,27 @@ class T3 {
 		}
 		return $t3;
 	}
+
+	public static function getDefaultTemplate(){
+		static $defaultTemplate;
+
+		if (!isset($defaultTemplate)) {
+
+			$db = JFactory::getDbo();
+			$query = $db->getQuery(true);
+			$query->select('id, template, s.params');
+			$query->from('#__template_styles as s');
+			$query->where('s.client_id = 0');
+			$query->where('s.home = 1');
+			$query->where('e.enabled = 1');
+			$query->leftJoin('#__extensions as e ON e.element=s.template AND e.type='.$db->quote('template').' AND e.client_id=s.client_id');
+
+			$db->setQuery($query);
+			$result = $db->loadObject();
+
+			$defaultTemplate = !empty($result) ? $result->template : false;
+		}
+
+		return $defaultTemplate;
+	}
 }

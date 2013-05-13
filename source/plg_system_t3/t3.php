@@ -98,25 +98,23 @@ class plgSystemT3 extends JPlugin
 	 */
 	function onContentPrepareForm($form, $data)
 	{
-		// extra option for menu item
-		/*if ($form->getName() == 'com_menus.item') {
-			$this->loadLanguage();
-			JForm::addFormPath(T3_PATH . DIRECTORY_SEPARATOR . 'params');
-			$form->loadFile('megaitem', false);
-
-			$jversion = new JVersion;
-			if(!$jversion->isCompatible('3.0')){
-				$jdoc = JFactory::getDocument();
-				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
-				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
-			}
-
-		} else 
-		*/
 		if(T3::detect() && $form->getName() == 'com_templates.style'){
 			$this->loadLanguage();
 			JForm::addFormPath(T3_PATH . DIRECTORY_SEPARATOR . 'params');
 			$form->loadFile('template', false);
+		}
+	
+		$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
+	
+		if($tmpl){
+			$extended = JPATH_ROOT . '/templates/' . $tmpl . '/etc/form/' . $form->getName() . '.xml';
+			
+			if(is_file($extended)){
+				JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
+				
+				JForm::addFormPath(dirname($extended));
+				$form->loadFile($form->getName(), false);
+			}
 		}
 	}
 	
