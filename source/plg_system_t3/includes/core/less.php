@@ -120,7 +120,9 @@ class T3Less extends lessc
 		$vars = $this->getVars();
 
 		// add vars
-		$this->setImportDir (array(dirname($realpath), T3_TEMPLATE_PATH.'/less/'));
+		//$this->setImportDir (array(dirname($realpath), T3_TEMPLATE_PATH.'/less/'));
+
+		$importdirs = array();
 
 		// compile chuck
 		$import = false;
@@ -133,6 +135,10 @@ class T3Less extends lessc
 				$url = T3Path::cleanPath (dirname ($path).'/'.$s);
 				$importcontent = JFile::read(JPATH_ROOT.'/'.$url);
 
+				if(preg_match('#^\s*@import\s+"([^"]*)"\s*;#im', $importcontent)){
+					$importdirs[] = dirname(JPATH_ROOT.'/'.$url);
+				}
+
 				$output .= "#less-file-path{content: \"$url\";}\n".$importcontent . "\n\n";
 			} else {
 				$import = true;
@@ -142,6 +148,10 @@ class T3Less extends lessc
 				}
 			}
 		}
+
+		$importdirs[] = dirname($realpath);
+		$importdirs[] = T3_TEMPLATE_PATH.'/less/';
+		$this->setImportDir ($importdirs);
 
 		$output = $this->compile ($vars ."\n" . $output);
 
