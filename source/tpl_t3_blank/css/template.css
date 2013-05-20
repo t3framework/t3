@@ -1490,6 +1490,49 @@ ul.latestusers li {
 .stats-module dd {
   width: 60%;
 }
+div.tagspopular ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+div.tagspopular ul li {
+  color: #666;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+}
+div.tagspopular ul li a {
+  background: #eee;
+  border-radius: 3px;
+  color: #666;
+  display: block;
+  padding: 2px 5px;
+}
+div.tagspopular ul li a:hover,
+div.tagspopular ul li a:focus,
+div.tagspopular ul li a:active {
+  background: #00466f;
+  color: #fff;
+  text-decoration: none;
+}
+div.tagssimilar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+div.tagssimilar ul li {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+div.tagssimilar ul li a {
+  color: #666;
+}
+div.tagssimilar ul li a:hover,
+div.tagssimilar ul li a:focus,
+div.tagssimilar ul li a:active {
+  color: #00466f;
+}
 .items-leading .leading {
   margin-bottom: 40px;
 }
@@ -2643,48 +2686,4 @@ address {
 .poweredby {
   float: right;
   text-align: right;
-}
-
-div.tagspopular ul {
-  display: block;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-}
-div.tagspopular ul li {
-  color: #666;
-  display: inline-block;
-  margin: 0 5px 5px 0;
-}
-div.tagspopular ul li a {
-  background: #eee;
-  border-radius: 3px;
-  color: #666;
-  display: block;
-  padding: 2px 5px;
-}
-div.tagspopular ul li a:hover,
-div.tagspopular ul li a:focus,
-div.tagspopular ul li a:active {
-  background: #1ba1e2;
-  color: #fff;
-  text-decoration: none;
-}
-div.tagssimilar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-div.tagssimilar ul li {
-  border-bottom: 1px solid #eee;
-  padding: 8px 0;
-}
-div.tagssimilar ul li a {
-  color: #666;
-}
-div.tagssimilar ul li a:hover,
-div.tagssimilar ul li a:focus,
-div.tagssimilar ul li a:active {
-  color: #1ba1e2;
 }
