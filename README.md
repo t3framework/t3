@@ -2,9 +2,9 @@ T3v3 - Joomla Responsive Template Framework, built with Bootstrap & LESS
 ==============
 
 The 3rd generation of T3 Framework - re-written from the scratch to support Bootstrap & LESS.  
-Visit the Google Group for lastest update: 
+- Visit the Google Group for lastest update: 
 https://groups.google.com/forum/#!forum/t3fw
-Visit our Discussion Chanel: http://t3-framework.org/discussions.html
+- Visit our Discussion Chanel: http://t3-framework.org/discussions.html
 
 Why?
 - No longer the Mobile layout/view but the rise of Responsive Design
