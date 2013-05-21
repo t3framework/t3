@@ -1,35 +1,40 @@
 T3v3 - Joomla Responsive Template Framework, built with Bootstrap & LESS
 ==============
 
-The 3rd generation of JA T3 Framework - re-written from the scratch to support Bootstrap & LESS.  
+The 3rd generation of T3 Framework - re-written from the scratch to support Bootstrap & LESS.  
 Visit the Google Group for lastest update: 
 https://groups.google.com/forum/#!forum/t3fw
+Visit our Discussion Chanel: http://t3-framework.org/discussions.html
 
 Why?
 - No longer the Mobile layout/view but the rise of Responsive Design
 - Bootstrap integration into Joomla 3.x 
 - LESS development 
+- Support Megamenu, Offcanvas, and Sticky menu
+- ThemeMagic ( lets you customize themes without having to search for the right file or without diving into the code )
 
-These 3 things have opened a whole new way of how a Joomla template should be developed. 
+These things have opened a whole new way of how a Joomla template should be developed. 
 
 Download 
 --------
-- Stable version: http://www.joomlart.com/forums/downloads.php?do=cat&id=460
+- All packages: http://t3-framework.org/downloads.html
 - Lastest Builds: https://github.com/t3framework/t3/tags 
 
 
 Demo (Frontend & Backend)
 --------
-- Joomla 3.0 http://demo.t3.joomlart.com/joomla30/
-- Joomla 2.5 http://demo.t3.joomlart.com/joomla25/
+- Joomla 3.0 http://demo.t3-framework.org/joomla30/
+- Joomla 2.5 http://demo.t3-framework.org/joomla25/
 
 Backend Admin Login: username=demo, password=demo
 
 Help & Userguide
 ------------
 - Document: http://t3-framework.org/documentation.html
-- Youtube Playlist T3v3 Feature Tour: http://www.youtube.com/playlist?list=PL4BjMzuBkvR9BLKw6MfLl1m4Q6D7HN0br
+- Youtube Playlist T3 Feature Tour: http://www.youtube.com/playlist?list=PL4BjMzuBkvR9BLKw6MfLl1m4Q6D7HN0br
+- Youtube Playlist T3 Video Tutorials: http://www.youtube.com/playlist?list=PL4BjMzuBkvR_N6gu53rkcXEAh7c9iOd77
 - Google Groups for question/discussion: https://groups.google.com/forum/#!forum/t3fw
+- Discussion Chanel: http://t3-framework.org/discussions.html
 
 
 
