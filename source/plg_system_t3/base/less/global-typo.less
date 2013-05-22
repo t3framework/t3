@@ -78,8 +78,10 @@
 }
 
 
-/* THUMBNAILS
--------------------------------------------------- */
+
+// ---------------------------------------------------------
+// THUMBNAILS
+// ---------------------------------------------------------
 
 // Note: `.thumbnails` and `.thumbnails > li` are overriden in responsive files
 
@@ -114,6 +116,7 @@
   .box-shadow(0 1px 3px rgba(0,0,0,.055));
   .transition(all .2s ease-in-out);
 }
+
 // Add a hover state for linked versions only
 a.thumbnail:hover {
   border-color: @linkColor;
@@ -133,9 +136,11 @@ a.thumbnail:hover {
   color: @gray;
 }
 
+
 // Thumbnail Styles
 // ------------------
-/* Paper Style ---*/
+
+// Paper Style
 .thumbnails.paper > li:before,
 .thumbnails.paper > li:after {
   content: '';
@@ -172,3 +177,57 @@ a.thumbnail:hover {
 .thumbnails.paper a.thumbnail.paper:hover {
   .box-shadow(none);
 }
+
+
+// ---------------------------------------------------------
+// T3 Logo
+// ---------------------------------------------------------
+.t3-logo,
+.t3-logo-small {
+  display: block;
+  text-decoration: none;
+  text-indent: -9999em;
+  text-align: left;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+// Sizes
+.t3-logo {
+  width: 182px;
+  height: 50px;
+}
+
+.t3-logo-small {
+  width: 60px;
+  height: 30px;
+}
+
+// Styles
+.t3-logo,
+.t3-logo-color {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-color.png");
+}
+
+.t3-logo-small,
+.t3-logo-small.t3-logo-color {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-color.png");
+}
+
+.t3-logo-dark {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-dark.png");
+}
+
+.t3-logo-small.t3-logo-dark {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-dark.png");
+}
+
+.t3-logo-light {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-light.png");
+}
+
+.t3-logo-small.t3-logo-light {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-light.png");
+}
+
+

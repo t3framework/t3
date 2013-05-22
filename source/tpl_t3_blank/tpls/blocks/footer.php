@@ -25,7 +25,7 @@ defined('_JEXEC') or die;
         </div>
         <?php if($this->getParam('t3-rmvlogo', 1)): ?>
         <div class="span4 poweredby">
-          <small><a href="http://t3-framework.org" title="Powered By T3 Framework" target="_blank">Powered by <strong>T3 Framework</strong></a></small>
+          <a class="t3-logo t3-logo-light" href="http://t3-framework.org" title="Powered By T3 Framework" target="_blank">Powered by <strong>T3 Framework</strong></a>
         </div>
         <?php endif; ?>
       </div>
