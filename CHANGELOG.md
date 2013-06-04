@@ -1,3 +1,21 @@
+<h2>Version: 1.2.6 (04/06/2013)</h2>
+
+<h3>New features</h3>
+- T3Blank: Update Font Awesone to version 3.1.1 | <a href="https://github.com/t3framework/t3/commit/ce9521cd380389cc4299dee94a78695f07ee2263">Link</a>
+- Bootstrap: Update to version v2.3.2 | <a href="https://github.com/t3framework/t3/commit/16729bff791413e109b691688290ebf0dd838697">Link</a>
+
+<h3>Improvement</h3>
+- Removes designed by Joomlart link in mod_footer override | <a href="https://github.com/t3framework/t3/commit/1e51786edea07ec0130e7175809aad90d557407a">Link</a>
+- Overwrite: Add support hook to joomla content parameters | <a href="https://github.com/t3framework/t3/commit/4b942faa3708a9c8ba92a80d6b3aebfdbcbf86bf">Link</a>
+- Module chrome - adds new module chrome to replicate core Bootstrap | <a href="https://github.com/t3framework/t3/commit/45bf03c936059759fe356301871673faeaab4027">Link</a>
+- Update T3 Logo | <a href="https://github.com/t3framework/t3/commit/0669d3f5c5b94d3045421d37f9df328e3ca447e2">Link</a>
+
+<h3>Fix bugs</h3>
+- fixes t3framework/t3#92 and prevents loading lessphp twice if multiple Joomla! Plugins use it. | <a href="https://github.com/t3framework/t3/commit/8a73e71cb762cdda966b95b385c85d3d1bd9f59e">Link</a>
+- Overwrite: Fix overwrite edit form J2.5 compatible | <a href="https://github.com/t3framework/t3/commit/db1f7dc178bf08a92334e47c643b672afab06646">Link</a>
+- T3Less: Fix compile font-awesone v3.1 | <a href="https://github.com/t3framework/t3/commit/f2774854693809471bc83951d5ad718673240f3e">Link</a>
+- Language: Add language for Overview tab | <a href="https://github.com/t3framework/t3/commit/adcf0ad39967166fbb981e2b43cdc071066dacc6">Link</a>
+
 <h2>Version: 1.2.5 (10/05/2013)</h2>
 
 <h3>New features</h3>
