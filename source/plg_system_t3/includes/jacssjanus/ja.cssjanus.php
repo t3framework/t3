@@ -420,7 +420,7 @@ class JACSSJanus {
 	  # Remove any piece which may be 'None'
 	  $part = array();
 	  foreach ($ps as $p) {
-	  	if ($p) $part[] = $p;
+	  	if ($p != '') $part[] = $p;
 	  }
 	  
 	  if (count($part) == 4) {
