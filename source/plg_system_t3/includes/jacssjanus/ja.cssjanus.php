@@ -75,7 +75,7 @@ class JACSSJanus {
 		# read literally, it says ignore cases where the word left, for instance, is
 		# directly followed by valid classname characters and a curly brace.
 		# ex: .column-left {float: left} will become .column-left {float: right}
-		$patterns['lookahead_not_open_brace'] = sprintf('(?!(?:%s|%s|%s|#|\:|\.|\,|\+|>)*?(\,|{))',
+		$patterns['lookahead_not_open_brace'] = sprintf('(?!(?:%s|%s|%s|#|\:|\.|\,|\+|]|=|>)*?(\,|{))',
 		                            $csslex->nmchar, $patterns['token_lines'], $csslex->space);
 
 
