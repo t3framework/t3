@@ -1,0 +1,394 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.t3-megamenu .mega-inner {
+  padding: 10px;
+  *zoom: 1;
+  *zoom: 1;
+}
+.t3-megamenu .mega-inner:before,
+.t3-megamenu .mega-inner:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-inner:after {
+  clear: both;
+}
+.t3-megamenu .mega-inner:before,
+.t3-megamenu .mega-inner:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-inner:after {
+  clear: both;
+}
+.t3-megamenu .row-fluid + .row-fluid {
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+.t3-megamenu .mega > .mega-dropdown-menu {
+  min-width: 200px;
+  display: none;
+}
+.t3-megamenu .mega.open > .mega-dropdown-menu,
+.t3-megamenu .mega.dropdown-submenu:hover > .mega-dropdown-menu {
+  display: block;
+}
+.t3-megamenu .mega-group {
+  *zoom: 1;
+  *zoom: 1;
+}
+.t3-megamenu .mega-group:before,
+.t3-megamenu .mega-group:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-group:after {
+  clear: both;
+}
+.t3-megamenu .mega-group:before,
+.t3-megamenu .mega-group:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-group:after {
+  clear: both;
+}
+.t3-megamenu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
+  background: inherit;
+  color: inherit;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:focus {
+  background: inherit;
+  color: inherit;
+}
+.t3-megamenu .mega-group-ct {
+  margin: 0;
+  padding: 0;
+  *zoom: 1;
+  *zoom: 1;
+}
+.t3-megamenu .mega-group-ct:before,
+.t3-megamenu .mega-group-ct:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-group-ct:after {
+  clear: both;
+}
+.t3-megamenu .mega-group-ct:before,
+.t3-megamenu .mega-group-ct:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.t3-megamenu .mega-group-ct:after {
+  clear: both;
+}
+.t3-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+  padding: 0;
+}
+.t3-megamenu .span12.mega-col-nav .mega-inner {
+  padding: 5px;
+}
+.t3-megamenu .mega-nav,
+.t3-megamenu .dropdown-menu .mega-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.t3-megamenu .mega-nav > li,
+.t3-megamenu .dropdown-menu .mega-nav > li {
+  list-style: none;
+  margin-right: 0;
+}
+.t3-megamenu .mega-nav > li a,
+.t3-megamenu .dropdown-menu .mega-nav > li a {
+  white-space: normal;
+}
+.t3-megamenu .mega-group > .mega-nav,
+.t3-megamenu .dropdown-menu .mega-group > .mega-nav {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+.t3-megamenu .mega-nav .dropdown-submenu > a::after {
+  margin-left: 5px;
+}
+.t3-megamenu .t3-module {
+  margin-bottom: 10px;
+}
+.t3-megamenu .t3-module .module-title {
+  margin-bottom: 0;
+}
+.t3-megamenu .t3-module .module-ct {
+  margin: 0;
+  padding: 0;
+}
+.t3-megamenu .mega-align-left > .dropdown-menu {
+  right: 0;
+}
+.t3-megamenu .mega-align-right > .dropdown-menu {
+  right: auto;
+  left: 0;
+}
+.t3-megamenu .mega-align-center > .dropdown-menu {
+  right: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+}
+.t3-megamenu .dropdown-submenu.mega-align-left > .dropdown-menu {
+  right: 100%;
+}
+.t3-megamenu .dropdown-submenu.mega-align-right > .dropdown-menu {
+  right: auto;
+  left: 100%;
+}
+.t3-megamenu .mega-align-justify {
+  position: static;
+}
+.t3-megamenu .mega-align-justify > .dropdown-menu {
+  right: 0;
+  margin-right: 0;
+  top: auto;
+}
+.t3-megamenu .mega-caption {
+  display: block;
+  white-space: nowrap;
+}
+.t3-megamenu .nav .caret,
+.t3-megamenu .dropdown-submenu .caret,
+.t3-megamenu .mega-menu .caret {
+  display: none;
+}
+.t3-megamenu .nav > .dropdown > .dropdown-toggle .caret {
+  display: inline-block;
+}
+.t3-megamenu .nav [class^="icon-"],
+.t3-megamenu .nav [class*=" icon-"] {
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  .t3-megamenu.animate .mega > .mega-dropdown-menu {
+    transition: all 400ms;
+    -webkit-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    opacity: 0;
+  }
+  .t3-megamenu.animate .mega.animating > .mega-dropdown-menu {
+    display: block !important;
+  }
+  .t3-megamenu.animate .mega.open > .mega-dropdown-menu,
+  .t3-megamenu.animate .mega.animating.open > .mega-dropdown-menu {
+    opacity: 1;
+  }
+  .t3-megamenu.animate.zoom .mega > .mega-dropdown-menu {
+    transform: scale(0,0);
+    transform-origin: 20% 20%;
+    -webkit-transform: scale(0,0);
+    -webkit-transform-origin: 20% 20%;
+    -ms-transform: scale(0,0);
+    -ms-transform-origin: 20% 20%;
+    -o-transform: scale(0,0);
+    -o-transform-origin: 20% 20%;
+  }
+  .t3-megamenu.animate.zoom .mega.open > .mega-dropdown-menu {
+    transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    -o-transform: scale(1,1);
+  }
+  .t3-megamenu.animate.elastic .level0 > .mega > .mega-dropdown-menu {
+    transform: scale(1,0);
+    -webkit-transform: scale(1,0);
+    -ms-transform: scale(1,0);
+    -o-transform: scale(1,0);
+  }
+  .t3-megamenu.animate.elastic .mega > .mega-dropdown-menu {
+    transform: scale(0,1);
+    transform-origin: 10% 0;
+    -webkit-transform: scale(0,1);
+    -webkit-transform-origin: 10% 0;
+    -ms-transform: scale(0,1);
+    -ms-transform-origin: 10% 0;
+    -o-transform: scale(0,1);
+    -o-transform-origin: 10% 0;
+  }
+  .t3-megamenu.animate.elastic .mega.open > .mega-dropdown-menu {
+    transform: scale(1,1);
+    -webkit-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    -o-transform: scale(1,1);
+  }
+  .t3-megamenu.animate.slide .mega.animating > .mega-dropdown-menu {
+    overflow: hidden;
+  }
+  .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {
+    transition: all 400ms;
+    -webkit-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    margin-top: -100%;
+  }
+  .t3-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div {
+    margin-top: 0%;
+  }
+  .t3-megamenu.animate.slide .mega .mega > .mega-dropdown-menu {
+    min-width: 0;
+  }
+  .t3-megamenu.animate.slide .mega .mega > .mega-dropdown-menu > div {
+    min-width: 200px;
+    margin-top: 0;
+    margin-right: -500px;
+  }
+  .t3-megamenu.animate.slide .mega .mega.open > .mega-dropdown-menu > div {
+    margin-right: 0;
+  }
+}
+.t3-megamenu .mega-inner {
+  padding: 20px;
+}
+.t3-megamenu .row-fluid + .row-fluid {
+  border-top: 1px solid #ddd;
+}
+.t3-megamenu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
+  background: inherit;
+  color: #222;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:focus,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:hover,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:active,
+.t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title:focus {
+  background: inherit;
+  color: #222;
+}
+.t3-megamenu .mega-nav > li a,
+.t3-megamenu .dropdown-menu .mega-nav > li a {
+  padding: 5px 10px;
+}
+.t3-megamenu .mega-nav .dropdown-submenu > a::after {
+  margin-left: 0;
+}
+.t3-megamenu .t3-module .module-title {
+  font-size: 16px;
+  color: #222;
+  display: block;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+.t3-megamenu .t3-module ul,
+.t3-megamenu .t3-module .nav {
+  margin: 0 15px 0 0;
+}
+.t3-megamenu .t3-module ul li,
+.t3-megamenu .t3-module .nav li {
+  list-style: disc;
+  display: list-item;
+  float: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.t3-megamenu .t3-module ul li a,
+.t3-megamenu .t3-module .nav li a {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  background: none;
+  font: inherit;
+  white-space: normal;
+}
+.t3-megamenu .t3-module ul li a:hover,
+.t3-megamenu .t3-module ul li a:focus,
+.t3-megamenu .t3-module ul li a:active,
+.t3-megamenu .t3-module .nav li a:hover,
+.t3-megamenu .t3-module .nav li a:focus,
+.t3-megamenu .t3-module .nav li a:active {
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+.t3-megamenu .mega-caption {
+  color: #999;
+  font-size: 12px;
+  margin-top: 3px;
+  font-weight: normal;
+}
+#less-file-path-rtl {
+  content: "plugins/system/t3/base/less/rtl/megamenu.less";
+}
+.t3-megamenu .mega-align-center > .dropdown-menu {
+  transform: translate(50%);
+  -webkit-transform: translate(50%);
+  -moz-transform: translate(50%);
+  -ms-transform: translate(50%);
+  -o-transform: translate(50%);
+}
