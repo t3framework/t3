@@ -131,6 +131,9 @@ class T3Admin {
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout-preview.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout.css');
+		if(file_exists(T3_TEMPLATE_PATH . '/admin/layout-custom.css')) {
+			$jdoc->addStyleSheet(T3_TEMPLATE_URL . '/admin/layout-custom.css');
+		}
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin.css');
 		if(!$jversion->isCompatible('3.0')){
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j25.css');
