@@ -22,8 +22,7 @@
 
 			$nav = $('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo(document.body));
 			$($btn.data('target')).clone().appendTo($nav);
-			$('html').addClass ('off-canvas');
-
+			
 			$btn.click (function(e){
 				if ($(this).data('off-canvas') == 'show') {
 					hideNav();
@@ -46,6 +45,8 @@
 			};
 
 			showNav = function () {
+				$('html').addClass ('off-canvas');
+
 				$nav.css('top', $(window).scrollTop());
 				wpfix(1);
 				
@@ -78,7 +79,8 @@
 				$btn.data('off-canvas', 'hide');
 
 				setTimeout (function(){
-				}, 1000);
+					$('html').removeClass ('off-canvas');
+				}, 600);
 			};
 
 			wpfix = function (step) {

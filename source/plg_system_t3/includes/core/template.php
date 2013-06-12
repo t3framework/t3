@@ -583,7 +583,6 @@ class T3Template extends ObjectExtendable
 	* Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
 	*/
 	function updateHead () {
-
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded 
 		$t3bootstrap = false;
@@ -620,9 +619,14 @@ class T3Template extends ObjectExtendable
 		$themermode = $this->getParam('themermode', 1) && defined ('T3_THEMER');
 		$theme = $this->getParam('theme', '');
 		$minify = $this->getParam('minify', 0);
+		
+		// detect RTL
+		$doc = JFactory::getDocument();
+		$dir = $doc->direction;
+		$is_rtl = ($dir == 'rtl');
 
 		// not in devmode and in default theme, do nothing
-		if (!$devmode && !$themermode && !$theme && !$minify){
+		if (!$devmode && !$themermode && !$theme && !$minify && !$is_rtl){
 			return;
 		}
 
@@ -647,11 +651,11 @@ class T3Template extends ObjectExtendable
 						$stylesheets[$newurl] = $css;
 						continue;
 					}
-				} else if($theme) {
-					if (is_file (T3_TEMPLATE_PATH.'/css/themes/'.$theme.'/'.$fname.'.css')) {
-						$newurl = T3_TEMPLATE_URL.'/css/themes/'.$theme.'/'.$fname.'.css';
+				} else {
+					$subpath = $is_rtl ? 'rtl/'.($theme?$theme.'/':'') : ($theme ? 'themes/'.$theme.'/' : '');
+					if ($subpath && is_file (T3_TEMPLATE_PATH.'/css/'.$subpath.$fname.'.css')) {
+						$newurl = T3_TEMPLATE_URL.'/css/'.$subpath.$fname.'.css';
 						$stylesheets[$newurl] = $css;
-
 						continue;
 					}
 				}
@@ -659,7 +663,6 @@ class T3Template extends ObjectExtendable
 			
 			$stylesheets[$url] = $css;
 		}
-
 		// update back
 		$doc->_styleSheets = $stylesheets;
 
