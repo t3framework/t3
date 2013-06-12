@@ -815,7 +815,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		// apply the visibility value for current device - trigger when change device
-		t3updatevisible: function(idx, item){
+		t3updatevisible: function(index, item){
 			var jvis = $(item),
 				jpos = jvis.parent(),
 				jdata = jvis.closest('[data-vis]'),

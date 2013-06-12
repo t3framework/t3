@@ -339,13 +339,16 @@ class T3Less extends lessc
 			// get themes
 			$themes = JFolder::folders (JPATH_ROOT.'/'.$lesspath.'/themes');
 		} else {
-			$themes = (array) ($theme);
+			$themes = (array)($theme);
 		}
-		foreach ($themes as $t) {
-			self::buildVars($t);
-			// compile
-			foreach ($files as $file) {
-				$less->compileCss ($lesspath.$file.'.less', $csspath.'themes/'.$t.'/'.$file.'.css');
+
+		if(is_array($themes)){
+			foreach ($themes as $t) {
+				self::buildVars($t);
+				// compile
+				foreach ($files as $file) {
+					$less->compileCss ($lesspath.$file.'.less', $csspath.'themes/'.$t.'/'.$file.'.css');
+				}
 			}
 		}
 	}

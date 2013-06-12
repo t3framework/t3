@@ -31,7 +31,26 @@ class T3Admin {
 			$this->loadParams();
 			$buffer = ob_get_clean();
 
-			$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>(.*)</form>@msU', $buffer, $body);
+			//this cause backtrack_limit in some server
+			//$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>(.*)</form>@msU', $buffer, $body);
+			$opentags = explode('<form', $body);
+			$endtags = explode('</form>', $body);
+			$open = array_shift($opentags);
+			$close = array_pop($endtags);
+
+			//should not happend
+			if(count($opentags) > 1){
+				foreach ($opentags as $index => $value) {
+					if(strpos($value, 'name="adminForm"') !== false){
+						break;
+					}
+
+					$open = $open . '<form' . $value;
+					$close = array_pop($endtags) . '</form>' . $close;
+				}
+			}
+
+			$body = $open . $buffer . $close;
 		}
 
 		$body = $this->replaceToolbar($body);
