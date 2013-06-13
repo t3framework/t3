@@ -13,6 +13,8 @@ defined('_JEXEC') or die;
 $params = &$this->item->params;
 $images = json_decode($this->item->images);
 $canEdit = $this->item->params->get('access-edit');
+$hasInfo = (($params->get('show_author') && !empty($this->item->author )) or ($params->get('show_category')) or ($params->get('show_create_date')) or $params->get('show_publish_date') or ($params->get('show_parent_category')));
+$hasCtrl = ($params->get('show_print_icon') || $params->get('show_email_icon') || $canEdit);
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $info = $this->item->params->get('info_block_position', 0);
 JHtml::_('behavior.tooltip');
@@ -39,10 +41,11 @@ JHtml::_('behavior.framework');
 	<?php endif; ?>
 	
 	<!-- Aside -->
+  <?php if ($hasInfo || $hasCtrl) : ?>
   <aside class="article-aside clearfix">
 	
   	<?php // to do not that elegant would be nice to group the params ?>
-  	<?php if (($params->get('show_author') && !empty($this->item->author )) or ($params->get('show_category')) or ($params->get('show_create_date')) or $params->get('show_publish_date') or ($params->get('show_parent_category'))) : ?>
+  	<?php if ($hasInfo) : ?>
   	<dl class="article-info pull-left">
 
   		<?php if ($params->get('show_author') && !empty($this->item->author )) : ?>
@@ -97,23 +100,27 @@ JHtml::_('behavior.framework');
   	</dl>
   	<?php endif; ?>
 
-    <?php if ($params->get('show_print_icon') || $params->get('show_email_icon') || $canEdit) : ?>
+    <?php if ($hasCtrl) : ?>
     <div class="btn-group pull-right"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-cog"></i> <span class="caret"></span> </a>
       <ul class="dropdown-menu">
+       
         <?php if ($params->get('show_print_icon')) : ?>
         <li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>
         <?php endif; ?>
+       
         <?php if ($params->get('show_email_icon')) : ?>
         <li class="email-icon"> <?php echo JHtml::_('icon.email', $this->item, $params); ?> </li>
         <?php endif; ?>
+       
         <?php if ($canEdit) : ?>
         <li class="edit-icon"> <?php echo JHtml::_('icon.edit', $this->item, $params); ?> </li>
         <?php endif; ?>
+     
       </ul>
     </div>
     <?php endif; ?>
-
   </aside>
+  <?php endif; ?>
   <!-- //Aside -->
 
   <section class="article-intro clearfix">

@@ -378,15 +378,19 @@ class T3AdminTheme
 				T3Theme.vars = ' . json_encode($params->toArray()) . ';
 				T3Theme.others = ' . json_encode($themeinfo) . ';
 				T3Theme.theme = \'' . $theme . '\';
+				T3Theme.template = \'' . T3_TEMPLATE . '\';
 				T3Theme.base = \'' . JURI::base() . '\';
 				if(typeof less != \'undefined\'){
 					
 					//we need to build one - cause the js will have unexpected behavior
-					
-					if(window.parent.T3Theme && window.parent.T3Theme.applyLess){
-						window.parent.T3Theme.applyLess(true);
-					} else {
-						less.refresh();
+					try{
+						if(window.parent != window && window.parent.T3Theme && window.parent.T3Theme.applyLess){
+							window.parent.T3Theme.applyLess(true);
+						} else {
+							less.refresh();
+						}
+					} catch(e){
+
 					}
 				}'
 			);
