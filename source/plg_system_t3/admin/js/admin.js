@@ -403,6 +403,89 @@ var T3Admin = window.T3Admin || {};
 					$('ul.nav-tabs li:first a').tab ('show');
 				}
 			}
+		},
+
+		fixValidate: function(){
+			if(typeof JFormValidator != 'undefined'){
+				
+				//overwrite
+				JFormValidator.prototype.isValid = function (form) {
+					
+					var valid = true;
+
+					// Precompute label-field associations
+					var labels = document.getElementsByTagName('label');
+					for (var i = 0; i < labels.length; i++) {
+						if (labels[i].htmlFor != '') {
+							var element = document.getElementById(labels[i].htmlFor);
+							if (element) {
+								element.labelref = labels[i];
+							}
+						}
+					}
+
+					// Validate form fields
+					var elements = form.getElements('fieldset').concat(Array.from(form.elements));
+					for (var i = 0; i < elements.length; i++) {
+						if (this.validate(elements[i]) == false) {
+							valid = false;
+						}
+					}
+
+					// Run custom form validators if present
+					new Hash(this.custom).each(function (validator) {
+						if (validator.exec() != true) {
+							valid = false;
+						}
+					});
+
+					if (!valid) {
+						var message = Joomla.JText._('JLIB_FORM_FIELD_INVALID');
+						var errors = jQuery("label.invalid");
+						var error = new Object();
+						error.error = new Array();
+						for (var i=0;i < errors.length; i++) {
+							var label = jQuery(errors[i]).text();
+							if (label != 'undefined') {
+								error.error[i] = message+label.replace("*", "");
+							}
+						}
+						Joomla.renderMessages(error);
+					}
+
+					return valid;
+				};
+
+				JFormValidator.prototype.handleResponse = function(state, el){
+					// Find the label object for the given field if it exists
+					//if (!(el.labelref)) {
+					//	var labels = $$('label');
+					//	labels.each(function(label){
+					//		if (label.get('for') == el.get('id')) {
+					//			el.labelref = label;
+					//		}
+					//	});
+					//}
+
+					// Set the element and its label (if exists) invalid state
+					if (state == false) {
+						el.addClass('invalid');
+						el.set('aria-invalid', 'true');
+						if (el.labelref) {
+							document.id(el.labelref).addClass('invalid');
+							document.id(el.labelref).set('aria-invalid', 'true');
+						}
+					} else {
+						el.removeClass('invalid');
+						el.set('aria-invalid', 'false');
+						if (el.labelref) {
+							document.id(el.labelref).removeClass('invalid');
+							document.id(el.labelref).set('aria-invalid', 'false');
+						}
+					}
+				};
+
+			}
 		}
 	});
 	
@@ -418,6 +501,7 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.initChangeStyle();
 		//T3Admin.initCheckupdate();
 		T3Admin.switchTab();
+		T3Admin.fixValidate();
 	});
 	
 }(jQuery);
