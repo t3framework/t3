@@ -444,11 +444,14 @@ class T3Less extends lessc
 		} else {
 			$themes = $theme != 'default' ? (array) ($theme) : array();
 		}
-		foreach ($themes as $t) {
+
+		if(is_array($themes)){
+			foreach ($themes as $t) {
 			self::buildVars($t, 'ltr');
-			// compile
-			foreach ($files as $file) {
-				$less->compileCss ($lesspath.$file.'.less', $csspath.'themes/'.$t.'/'.$file.'.css');
+				// compile
+				foreach ($files as $file) {
+					$less->compileCss ($lesspath.$file.'.less', $csspath.'themes/'.$t.'/'.$file.'.css');
+				}
 			}
 		}
 
@@ -460,14 +463,16 @@ class T3Less extends lessc
 				$less->compileCss ($lesspath.$file.'.less', $csspath.'rtl/'.$file.'.css');
 			}
 		}
-		// rtl for themes
-		foreach ($themes as $t) {
-			self::buildVars($t, 'rtl');
-			// compile
-			foreach ($files as $file) {
-				$less->compileCss ($lesspath.$file.'.less', $csspath.'rtl/'.$t.'/'.$file.'.css');
+		
+		if(is_array($themes)){
+			// rtl for themes
+			foreach ($themes as $t) {
+				self::buildVars($t, 'rtl');
+				// compile
+				foreach ($files as $file) {
+					$less->compileCss ($lesspath.$file.'.less', $csspath.'rtl/'.$t.'/'.$file.'.css');
+				}
 			}
 		}
-
 	}
 }

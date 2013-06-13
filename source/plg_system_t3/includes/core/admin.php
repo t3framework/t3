@@ -31,7 +31,26 @@ class T3Admin {
 			$this->loadParams();
 			$buffer = ob_get_clean();
 
-			$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>(.*)</form>@msU', $buffer, $body);
+			//this cause backtrack_limit in some server
+			//$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>(.*)</form>@msU', $buffer, $body);
+			$opentags = explode('<form', $body);
+			$endtags = explode('</form>', $body);
+			$open = array_shift($opentags);
+			$close = array_pop($endtags);
+
+			//should not happend
+			if(count($opentags) > 1){
+				foreach ($opentags as $index => $value) {
+					if(strpos($value, 'name="adminForm"') !== false){
+						break;
+					}
+
+					$open = $open . '<form' . $value;
+					$close = array_pop($endtags) . '</form>' . $close;
+				}
+			}
+
+			$body = $open . $buffer . $close;
 		}
 
 		$body = $this->replaceToolbar($body);
@@ -131,6 +150,9 @@ class T3Admin {
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout-preview.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout.css');
+		if(file_exists(T3_TEMPLATE_PATH . '/admin/layout-custom.css')) {
+			$jdoc->addStyleSheet(T3_TEMPLATE_URL . '/admin/layout-custom.css');
+		}
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin.css');
 		if(!$jversion->isCompatible('3.0')){
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j25.css');

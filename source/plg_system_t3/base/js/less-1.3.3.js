@@ -4348,7 +4348,13 @@ function xhr(url, type, callback, errback) {
         var res = {'data': xhr.responseText, 'lastModified': xhr.getResponseHeader ? xhr.getResponseHeader("Last-Modified") : new Date().toString()};
         
         var fname = t3Filename(url);
-        if(window.T3Theme && T3Theme.others[fname] && url.indexOf('themes/' + T3Theme.theme + '/' + fname) == -1 && url.indexOf('t3/base') == -1){
+        if(
+            window.T3Theme &&                                               //must be in thememagic mode
+            T3Theme.others[fname] &&                                        //must have the same file in theme folder
+            url.indexOf(T3Theme.template + '/less/') != -1 &&               //this file must be from templete 'less' folder
+            url.indexOf('themes/' + T3Theme.theme + '/' + fname) == -1 &&   //this file must not be in theme folder
+            url.indexOf('t3/base') == -1                                    //this file must not be in t3/base folder
+            ){
            res.data = res.data + "\n" + '@import "themes/' + T3Theme.theme + '/' + fname + '";' + "\n";
         }
 

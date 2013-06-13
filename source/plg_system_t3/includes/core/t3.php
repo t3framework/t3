@@ -197,7 +197,7 @@ class T3 {
 				if ($template) {
 					$tplname = $template->template;
 					$registry = new JRegistry;
-					$registry->loadString($template->params);					
+					$registry->loadString($template->params);
 					$input->set ('tplparams', $registry);
 				}
 			} elseif ($app->isAdmin()) {
