@@ -101,7 +101,7 @@
 					depends[elm][name] = [];
 				}
 				
-				depends[elm][name].push(info.val);
+				depends[elm][name] = depends[elm][name].concat(info.vals.split(','));
 				
 				form.register(name, elm);
 				
