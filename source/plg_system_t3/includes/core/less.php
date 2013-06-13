@@ -149,11 +149,13 @@ class T3Less extends lessc
 		foreach ($arr as $s) {
 			if ($import) {
 				$import = false;
-				if ($s == 'vars.less') continue;
+				// ignore variables.less | vars.less
+				if (preg_match ('/(vars|variables)\.less/', $s)) continue;
 				// process import file
 				$url = T3Path::cleanPath (dirname ($path).'/'.$s);
 				$importcontent = JFile::read(JPATH_ROOT.'/'.$url);
-
+				// ignore variables.less | vars.less
+				$importcontent = preg_replace ('#^\s*@import\s+".*(variables|vars)\.less"\s*;#im', '', $importcontent);
 				if(preg_match('#^\s*@import\s+"([^"]*)"\s*;#im', $importcontent)){
 					$importdirs[] = dirname(JPATH_ROOT.'/'.$url);
 				}
@@ -215,7 +217,6 @@ class T3Less extends lessc
 		}
 
 		$source = $vars ."\n/**** Content ****/\n" . $output;
-
 		// compile less to css using lessphp
 		$output = $this->compile ($source);
 
