@@ -124,6 +124,10 @@
 					for="navigation_trigger" value="hover">
 					navigation_animation,navigation_animation_duration
 				</option>
+				<option 
+					for="navigation_animation" value="fading,slide,zoom,elastic">
+					navigation_animation_duration
+				</option>
 			</field>
 			<field name="navigation_ajax_default" type="t3depend" function="@ajax">
 				<option 

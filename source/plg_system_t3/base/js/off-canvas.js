@@ -12,7 +12,9 @@
  */
 
 !function($){
-	if (!$.browser.msie || $.browser.version >= 9) {
+	
+	//inherit from bootstrap (http://www.modernizr.com/)
+	if ($.support.transition) {
 		$(document).ready(function(){
 			var $btn = $('.btn-navbar'),
 				$nav = null,

@@ -217,11 +217,11 @@ if(jQuery) (function($) {
 				selector.on('selectstart', function() { return false; });
 				
 				// Hide on resize (IE7/8 trigger this when any element is resized...)
-				if( !$.browser.msie || ($.browser.msie && $.browser.version >= 9) ) {
+				//if( !$.browser.msie || ($.browser.msie && $.browser.version >= 9) ) {
 					$(window).on('resize.miniColors', function(event) {
 						hide(input);
 					});
-				}
+				//}
 				
 				$(document)
 					.on('mousedown.miniColors touchstart.miniColors', function(event) {

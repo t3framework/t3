@@ -552,8 +552,6 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3equalheight: function(){
-			var property = ($.browser.msie && $.browser.version < 7) ? 'height' : 'min-height';
-
 			// Store the tallest element's height
 			$(T3AdminLayout.jelms.find('.row, .row-fluid').not('.t3-spotlight').get().reverse()).each(function(){
 				var jrow = $(this),
@@ -568,7 +566,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				});
 
 				if(T3AdminLayout.layout.clayout != 'mobile'){
-					jchilds.css(property, maxHeight);
+					jchilds.css('min-height', maxHeight);
 				}
 			});
 		},

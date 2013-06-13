@@ -766,7 +766,7 @@ button.btn-primary:active {
   border: 1px solid #aaa;
   border-top: 0;
   top: 29px;
-  left: 0;
+  /*left: 0;*/
   box-shadow: 0 4px 5px rgba(0,0,0,.15);
 }
 /* @end */
@@ -801,7 +801,7 @@ button.btn-primary:active {
 }
 
 .chzn-container-single .chzn-single div b {
-  background-position: 0 4px;
+  background-position: 0 6px;
 }
 
 .chzn-container-single .chzn-search {
@@ -916,7 +916,8 @@ button.btn-primary:active {
   border-bottom-right-radius: 0;
 }
 
-.chzn-container-active .chzn-single-with-drop div b {
+.chzn-container-active .chzn-single-with-drop div b,
+.chzn-container-active.chzn-with-drop .chzn-single div b {
   background-position: -18px 5px;
 }
 
