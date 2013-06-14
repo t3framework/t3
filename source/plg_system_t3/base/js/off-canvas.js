@@ -13,9 +13,11 @@
 
 !function($){
 	
-	//inherit from bootstrap (http://www.modernizr.com/)
-	if ($.support.transition) {
-		$(document).ready(function(){
+	$(document).ready(function(){
+		
+		//inherit from bootstrap (http://www.modernizr.com/)
+		if ($.support.transition) {
+
 			var $btn = $('.btn-navbar'),
 				$nav = null,
 				$fixeditems = null;
@@ -102,7 +104,7 @@
 					$fixeditems.css({'position': '', 'top': ''});
 				}
 			}
+		}
+	})
 
-		})
-	}
 }(jQuery);
