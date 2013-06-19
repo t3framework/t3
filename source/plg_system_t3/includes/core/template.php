@@ -251,12 +251,68 @@ class T3Template extends ObjectExtendable
 	function megamenu($menutype){
 		T3::import('menu/megamenu');
 
-			//$file = T3_TEMPLATE_PATH.'/etc/megamenu.ini';
-			//$currentconfig = json_decode(@file_get_contents ($file), true);
-		$currentconfig = json_decode($this->getParam('mm_config', ''), true);
-		$mmconfig = ($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array();
+		//we will check from configuration files
+		$file = T3_TEMPLATE_PATH . '/etc/megamenu.ini';
+		$currentconfig = json_decode(@file_get_contents ($file), true);
+		if(!$currentconfig){ //just for compatible
+			$currentconfig = json_decode($this->getParam('mm_config', ''), true);
+		}
+
+		//force to array
+		if(!is_array($currentconfig)){
+			$currentconfig = (array)$currentconfig;
+		}
+
+		//get user access levels
+		$viewLevels = JFactory::getUser()->getAuthorisedViewLevels();
+		$viewLevels = array_unique($viewLevels);
+		sort($viewLevels);
+
+		if(is_array($viewLevels) && count($viewLevels)){
+
+			//retrieve menu configuration list for current menu type
+			$allMenus = array_keys($currentconfig);
+			$lookupMenus = array();
+			$mmkey = $menutype;
+
+			//get the current list
+			foreach ($allMenus as $avaiMenu) {
+				if(strpos($avaiMenu, $menutype) !== false){
+					$avaiMenu = str_replace($menutype, '', $avaiMenu);
+					$avaiMenu = explode('-', $avaiMenu);
+
+					$lookupMenus[] = $avaiMenu;
+				}
+			}
+
+			//sort by priority
+			usort($lookupMenus, array('T3Template', 'menupriority'));
+
+			//find the best fit for access level
+			foreach ($lookupMenus as $lookupMenu) {
+				$isSub = true;
+				foreach ($lookupMenu as $lkvalue) {
+					if(!in_array($lkvalue, $viewLevels)){
+						$isSub = false;
+						break;
+					}
+				}
+
+				if($isSub){
+					$mmkey = $menutype . implode('-', $lookupMenu);
+					break;
+				}
+			}
+		} else {
+			
+			$mmkey = $menutype;
+		}
+
+		$mmconfig = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : array();
+		
+		$mmconfig['access'] = $viewLevels;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $this->_tpl->params);
-		$menu->render();          
+		$menu->render();        
 
 		// add core megamenu.css in plugin
 		// deprecated - will extend the core style into template megamenu.less & megamenu-responsive.less
@@ -538,7 +594,8 @@ class T3Template extends ObjectExtendable
 			$scripts = @$this->_scripts;
 			$jqueryIncluded = 0;
 			if(is_array($scripts) && count($scripts)) {
-				$pattern = '/jquery([-_]*\d+(\.\d+)+)?(\.min)?\.js/i';//is jquery core
+				//simple detect for jquery library. It will work for most of cases
+				$pattern = '/(^|\/)jquery([-_]*\d+(\.\d+)+)?(\.min)?\.js/i';
 				foreach ($scripts as $script => $opts) {
 					if(preg_match($pattern, $script)) {
 						$jqueryIncluded = 1;
@@ -794,6 +851,21 @@ class T3Template extends ObjectExtendable
 		}
 		
 		return $result;
+	}
+
+
+	/**
+	* Compare function for sorting the menu match order
+	*/
+	public static function menupriority($a, $b){
+		$ca = count($a);
+		$cb = count($b);
+
+		if ($ca == $cb) {
+			return 0;
+		}
+
+		return ($ca < $cb) ? 1 : -1;
 	}
 }
 ?>

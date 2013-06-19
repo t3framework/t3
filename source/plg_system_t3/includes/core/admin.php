@@ -182,9 +182,11 @@ class T3Admin {
 			T3Admin.telement = \'' . T3_TEMPLATE . '\';
 			T3Admin.felement = \'' . T3_ADMIN . '\';
 			T3Admin.themerUrl = \'' . JFactory::getURI()->toString() . '&t3action=theme&t3task=thememagic' . '\';
+			T3Admin.megamenuUrl = \'' . JFactory::getURI()->toString() . '&t3action=megamenu&t3task=megamenu' . '\';
 			T3Admin.t3updateurl = \'' . JURI::base() . 'index.php?option=com_installer&view=update&task=update.ajax' . '\';
 			T3Admin.t3layouturl = \'' . JURI::base() . 'index.php?t3action=layout' . '\';
 			T3Admin.jupdateUrl = \'' . JURI::base() . 'index.php?option=com_installer&view=update' . '\';'
+			
 		);
 	}
 

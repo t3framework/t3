@@ -21,7 +21,7 @@ defined('_JEXEC') or die;
 	if($input->getCmd('view') == 'style'):
 	?>
   <div id="t3-admin-tb-save" class="btn-group">
-    <button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i>Save</button>
+    <button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i><?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
     <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
       <span class="caret"></span>&nbsp;
     </button>
@@ -40,6 +40,10 @@ defined('_JEXEC') or die;
 
 	<div id="t3-admin-tb-themer" class="btn-group">
 		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_THEMER') ?>::<?php echo JText::_('T3_TOOLBAR_THEMER_DESC') ?>"><i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?></button>
+	</div>
+
+	<div id="t3-admin-tb-megamenu" class="btn-group">
+		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>::<?php echo JText::_('T3_TOOLBAR_MEGAMENU_DESC') ?>"><i class="icon-sitemap"></i><?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?></button>
 	</div>
 
 	<div id="t3-admin-tb-close" class="btn-group <?php echo $input->getCmd('view') ?>">

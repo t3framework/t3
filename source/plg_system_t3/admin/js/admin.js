@@ -33,13 +33,17 @@ var T3Admin = window.T3Admin || {};
 						if(rsp){
 							var json = rsp;
 							if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
-								json = rsp.match(/{.*?}/);
+								json = rsp.match(new RegExp('{[\["].*}'));
 								if(json && json[0]){
 									json = json[0];
 								}
 							}
 
+
 							if(json && typeof json == 'string'){
+								
+								rsp = rsp.replace(json, '');
+
 								try {
 									json = $.parseJSON(json);
 								} catch (e){
@@ -47,11 +51,9 @@ var T3Admin = window.T3Admin || {};
 										error: T3Admin.langs.unknownError
 									}
 								}
-
-								if(json && (json.error || json.successful)){
-									T3Admin.systemMessage(json.error || json.successful);
-								}
 							}
+
+							T3Admin.systemMessage(rsp || json.error || json.successful);
 						}
 					},
 
@@ -69,6 +71,13 @@ var T3Admin = window.T3Admin || {};
 				} else {
 					window.location.href = T3Admin.themerUrl;
 				}
+				return false;
+			});
+
+			$('#t3-admin-tb-megamenu').on('click', function(){
+				
+				window.location.href = T3Admin.megamenuUrl;
+				
 				return false;
 			});
 

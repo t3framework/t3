@@ -15,7 +15,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 !function ($) {
 	var currentSelected = null,
-	megamenu, nav_items, nav_subs, nav_cols, nav_all;
+		megamenu, nav_items, nav_subs, nav_cols, nav_all;
 
 	$.fn.megamenuAdmin = function (options) {
 		var defaultOptions = {
@@ -380,6 +380,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	}
 
 	actions.saveConfig = function (e) {
+		
+		//blocking
+		var savebtn = $(this);
+		if(savebtn.hasClass('loading')){
+			return false;
+		}
+		savebtn.addClass('loading');
+
 		var config = {},
 		items = megamenu.find('ul[class*="level"] > li');
 		items.each (function(){
@@ -435,24 +443,62 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				}
 			}
 
-			if (Object.keys(item).length) config[id] = item;
+			if (!$.isEmptyObject(item)){
+				config[id] = item;
+			}
 		});
 
 		var menutype = $('#jform_params_mm_type').val(),
-			jmmconfig = $('#jform_params_mm_config'),
-			curconfig = null;
+			//jmmconfig = $('#jform_params_mm_config'),
+			curconfig = T3AdminMegamenu.config;
 
-		try {
-			curconfig = jmmconfig.val() ? $.parseJSON(jmmconfig.val()) : {};
-		} catch(e){
-			curconfig = {};
-		}
+		//try {
+			//curconfig = jmmconfig.val() ? $.parseJSON(jmmconfig.val()) : {};
+		//} catch(e){
+		//	curconfig = {};
+		//}
 
 		if($.isArray(curconfig) && curconfig.length == 0){
 			curconfig = {};
 		}
+
 		curconfig[menutype] = config;
-		jmmconfig.val(JSON.stringify(curconfig));
+		//jmmconfig.val(JSON.stringify(curconfig));
+
+		$.ajax({
+			url: T3AdminMegamenu.referer,
+			type: 'post',
+			data: {
+				t3action: 'megamenu',
+				t3task: 'save',
+				
+				mmkey: $('#megamenu-key').val(),
+				config: JSON.stringify(config)
+			}
+		}).done(function(rsp){
+
+			try {
+				rsp = $.parseJSON(rsp);
+			} catch(e){
+				rsp = false;
+			}
+
+			if(rsp){
+				clearTimeout($('#ajax-message').data('sid'));
+				$('#ajax-message')
+					.removeClass('alert-error alert-success')
+					.addClass(rsp.status ? 'alert-success' : 'alert-error')
+					.addClass('in')
+					.data('sid', setTimeout(function(){
+							$('#ajax-message').removeClass('in')
+						}, 5000))
+					.find('strong')
+						.html(rsp.message);
+			}
+			
+		}).always(function(){
+			savebtn.removeClass('loading')
+		})
 	}
 
 	toolbox_type = function () {
@@ -661,8 +707,11 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					// get module content
 					if (value) {
 						$.ajax({
-							url: T3Admin.rooturl,
-							data:{'t3action':'module', 'mid': value}
+							url: T3AdminMegamenu.referer,
+							data: {
+								t3action: 'module',
+								mid: value
+							}
 						}).done(function ( data ) {
 							currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
 						});
@@ -726,53 +775,12 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 !function($){
 	$.extend(T3AdminMegamenu, {
 		// put megamenu admin panel into right place
-		prepare: function(){
-			// var panel = $('#jform_params_mm_panel-lbl').closest ('.control-group').find('.controls');
-			var panel = $('#jform_params_mm_type').closest ('.controls');
-			panel.append ($('#t3-admin-megamenu').removeClass('hidden'));
-
-			// first load
-			if ($('#jform_params_navigation_type').val() == 'megamenu') {
-				setTimeout(function(){ //wait for page ready
-					$('#jform_params_mm_type').trigger('change.less');
-				}, 500);
-			} else {
-
-				// handle event for enable megamenu
-				$('#jform_params_navigation_type').on('change', function(e) {
-					if ($(this).val() == 'megamenu'){
-						$('#jform_params_mm_type').trigger('change.less');
-					}
-				});
-			}
-		},
-
-		t3megamenu: function(form, ctrlelm, ctrl, rsp){
+		
+		t3megamenu: function(rsp){
 			$('#t3-admin-mm-container').html(rsp).megamenuAdmin().find(':input').removeAttr('name');
 		},
 
-		initPanel: function(){
-			$('#jform_params_mm_panel').hide();
-		},
-
-		initPreSubmit: function(){
-
-			var form = document.adminForm;
-			if(!form){
-				return false;
-			}
-
-			var onsubmit = form.onsubmit;
-
-			form.onsubmit = function(e){
-				$('.toolbox-saveConfig').trigger('click');
-				if($.isFunction(onsubmit)){
-					onsubmit();
-				}
-			};
-		},
-
-		initRadioGroup: function(){
+		initCustomForm: function(){
 			//copy from J3.0
 			// Turn radios into btn-group
 			if(typeof T3Admin != 'undefined'){
@@ -816,17 +824,77 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-success');
 				}
 			});
+
+
+			//init chosen
+			$('select').chosen({
+				allow_single_deselect: true,
+				disable_search_threshold : 10
+			});
+
+			$('#access-level').val(1).trigger('liszt:updated');
+		},
+
+		initAjaxmenu: function(){
+
+			var ajax = null,
+				ajaxing = false,
+				doajax = function(){
+
+					if(ajaxing && ajax){
+						ajax.abort();
+					}
+
+					ajax = $.ajax({
+						url: T3AdminMegamenu.referer,
+						data: {
+							t3action: 'megamenu',
+							t3task: 'display',
+							t3menu: $('#menu-type').val(),
+							t3acl: $('#access-level').val(),
+							t3lang: $('#menu-type :selected').attr('data-language') || '*'
+						},
+
+						beforeSend: function(){
+							$('#t3-admin-megamenu').addClass('loading');
+						}
+					}).done(function(rsp){
+						T3AdminMegamenu.t3megamenu(rsp);
+					}).fail(function(){
+
+					}).always(function(){
+						$('#t3-admin-megamenu').removeClass('loading');;
+					})
+				};
+
+			$('#menu-type, #access-level').on('change.mm', doajax);
+
+			//init once
+			doajax();
+		},
+
+		initToolbar: function(){
+			$('#t3-admin-mm-save').off('click.mm').on('click.mm', function(){
+				$('.toolbox-saveConfig').trigger('click');
+			});
+
+			$('#t3-admin-mm-close').off('click.mm').on('click.mm', function(){
+				window.location.href = T3AdminMegamenu.referer;
+			});
+		},
+
+		initAjaxMessage: function(){
+			$('#ajax-message').on('click', '.close', function(){
+				clearTimeout($('#ajax-message').removeClass('in').data('sid'));
+			});
 		}
 	});
 
-	$(window).load(function(){
-		T3AdminMegamenu.prepare();
-	});
-
 	$(document).ready(function(){
-		T3AdminMegamenu.initPanel();
-		T3AdminMegamenu.initPreSubmit();
-		T3AdminMegamenu.initRadioGroup();
+		T3AdminMegamenu.initCustomForm();
+		T3AdminMegamenu.initToolbar();
+		T3AdminMegamenu.initAjaxmenu();
+		T3AdminMegamenu.initAjaxMessage();
 	});
 
 }(jQuery);

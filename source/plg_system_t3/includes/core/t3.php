@@ -65,7 +65,7 @@ class T3 {
 			define ('T3', 'base');
 			define ('T3_URL', T3_ADMIN_URL.'/'.T3);
 			define ('T3_PATH', T3_ADMIN_PATH . '/' . T3);
-			define ('T3_REL', T3_ADMIN_REL.'/'.T3);						
+			define ('T3_REL', T3_ADMIN_REL.'/'.T3);
 		}
 
 		define ('T3_TEMPLATE', $xml->tplname);
@@ -233,7 +233,7 @@ class T3 {
 				}
 
 			} else {
-				$tplname = $app->getTemplate(false);					
+				$tplname = $app->getTemplate(false);
 			}
 
 			if ($tplname) {				
@@ -259,12 +259,13 @@ class T3 {
 
 			$db = JFactory::getDbo();
 			$query = $db->getQuery(true);
-			$query->select('id, template, s.params');
-			$query->from('#__template_styles as s');
-			$query->where('s.client_id = 0');
-			$query->where('s.home = 1');
-			$query->where('e.enabled = 1');
-			$query->leftJoin('#__extensions as e ON e.element=s.template AND e.type='.$db->quote('template').' AND e.client_id=s.client_id');
+			$query
+				->select('id, template, s.params')
+				->from('#__template_styles as s')
+				->where('s.client_id = 0')
+				->where('s.home = 1')
+				->where('e.enabled = 1')
+				->leftJoin('#__extensions as e ON e.element=s.template AND e.type='.$db->quote('template').' AND e.client_id=s.client_id');
 
 			$db->setQuery($query);
 			$result = $db->loadObject();

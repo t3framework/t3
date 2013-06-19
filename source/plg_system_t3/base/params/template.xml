@@ -129,14 +129,7 @@
 					navigation_animation_duration
 				</option>
 			</field>
-			<field name="navigation_ajax_default" type="t3depend" function="@ajax">
-				<option 
-					for="mm_type" 
-					query="t3action=megamenu&amp;t3task=display"
-					func="T3AdminMegamenu.t3megamenu">
-				</option>
-			</field>
-
+			
 			<field name="navigation_trigger" type="list" default="hover"
 				global="1"
 				label="T3_NAVIGATION_TRIGGER_LABEL"
@@ -188,11 +181,6 @@
 				description="T3_NAVIGATION_MM_TYPE_DESC"
 				 />
 
-			<field name="mm_config" type="t3megamenu" hide="true" global="1"
-				label=""
-				description=""
-				 />
-			
 		</fieldset>	
 	</fields>
 </form>

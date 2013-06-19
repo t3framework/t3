@@ -19,12 +19,17 @@
 #t3-admin-megamenu {
   min-height: 800px;
   background: url(../images/grid-bg.jpg) top left;
-  margin: 0 -20px;
+  /*margin: 0 -20px;*/
+  position: relative;
 }
 
 .admin-inline-toolbox h3 {
   font-size: 18px;
   line-height: 20px;
+}
+
+.t3-admin-header .btn-toolbar {
+  margin: 15px 0;
 }
 
 
@@ -57,11 +62,11 @@
 }
 
 #t3-admin-megamenu .admin-inline-toolbox {
-  height: 119px;
+  height: 128px;
 }
 
 #t3-admin-mm-tb .admin-toolbox {
-  height: 119px;
+  height: 128px;
   padding: 20px;
   display: none;
   box-sizing: border-box;
@@ -92,9 +97,9 @@
 
 /* Toolbox Actions ---- */
 .t3-admin-mm-row .toolbox-actions-group {
-  height: 100px;
   position: absolute;
   right: 20px;
+  top: 20px;
 }
 
 .t3-admin-mm-row .toolbox-actions-group button {
@@ -113,7 +118,11 @@
 ---------------------*/
 #t3-admin-mm-container {
   float: left;
-  margin-left: 20px;
+  transition: opacity .4s ease-out;
+  -o-transition: opacity .4s ease-out;
+  -moz-transition: opacity .4s ease-out;
+  -webkit-transition: opacity .4s ease-out;
+  /*margin-left: 20px;*/
 }
 
 
@@ -422,6 +431,10 @@
   float: none;
 }
 
+.chzn-container-multi .chzn-choices {
+  padding: 1px 0;
+}
+
 /* Fix submenu auto open on hover */
 #t3-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
   display: none;
@@ -429,4 +442,90 @@
 
 #t3-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
   display: block;
+}
+
+
+/* Header Form Control ---*/ 
+.t3-admin-header .control-group {
+  width: auto !important;
+  display: block;
+  float: left;
+  margin: 15px 40px 15px 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  min-height: 30px;
+}
+
+.t3-admin-header .control-group.hide {
+  display: none;
+}
+
+.t3-admin-header .control-label {
+  width: auto !important;
+  display: block;
+  float: left;
+  padding: 8px 0 0 0;
+}
+
+.t3-admin-header .controls {
+  margin: 0 0 0 10px;
+  width: auto !important;
+  display: block;
+  float: left;
+  padding: 0;
+  background: none;
+}
+
+.t3-admin-header .inputbox,
+.t3-admin-header .input {
+  width: 250px;
+  font-weight: bold;
+}
+
+
+/* Ajax loader ---*/
+#t3-admin-megamenu .ajaxloader {
+  width: 72px;
+  height: 72px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -36px;
+  background: white url(../images/ajaxloader.gif) 50% 50% no-repeat;
+  border-radius: 3px;
+  display: none;
+}
+
+#t3-admin-megamenu.loading .ajaxloader {
+  display: block;
+}
+
+#t3-admin-megamenu.loading #t3-admin-mm-container {
+  opacity: 0.4;
+}
+
+/* Modal ---*/
+.ajax-message {
+  position: fixed;
+  top: -100px;
+  opacity: 0;
+  left: 50%;
+  z-index: 1050;
+  overflow: auto;
+  width: 400px;
+  margin-left: -200px;
+  background-color: #fff;
+  border-radius: 3px;
+  
+  transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -o-transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -moz-transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -webkit-transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+.ajax-message.in {
+  top: 100px;
+  opacity: 1;
 }
