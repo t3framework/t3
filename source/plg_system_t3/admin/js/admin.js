@@ -39,7 +39,6 @@ var T3Admin = window.T3Admin || {};
 								}
 							}
 
-
 							if(json && typeof json == 'string'){
 								
 								rsp = rsp.replace(json, '');
