@@ -34,9 +34,11 @@ defined('_JEXEC') or die;
   <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/megamenu/js/megamenu.js"></script>
 
 </head>
-<body>
+<body class="bd">
   <div id="wrapper" class="container-main">
-
+    <div class="header">
+      <h1><?php echo JText::_('T3_NAVIGATION_MM_TITLE'); ?></h1>
+    </div>
     <div class="t3-admin-header clearfix">
       <div class="controls-row">
         <div class="control-group t3-control-group">

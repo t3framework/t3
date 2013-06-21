@@ -16,9 +16,13 @@
 /* T3 MEGAMENU ADMIN UI
 ---------------------------------------------------*/
 
+body.bd {
+  padding: 20px;
+  background: url(../images/grid-bg.jpg) top left;
+}
+
 #t3-admin-megamenu {
   min-height: 800px;
-  background: url(../images/grid-bg.jpg) top left;
   /*margin: 0 -20px;*/
   position: relative;
 }
@@ -26,6 +30,10 @@
 .admin-inline-toolbox h3 {
   font-size: 18px;
   line-height: 20px;
+}
+
+.bd .t3-admin-header {
+  border: 1px solid #e6e6e6;
 }
 
 .t3-admin-header .btn-toolbar {
@@ -63,6 +71,7 @@
 
 #t3-admin-megamenu .admin-inline-toolbox {
   height: 128px;
+  border: 1px solid #e6e6e6;
 }
 
 #t3-admin-mm-tb .admin-toolbox {
