@@ -471,7 +471,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			data: {
 				t3action: 'megamenu',
 				t3task: 'save',
-				
+				template: T3AdminMegamenu.template,
+
 				mmkey: $('#megamenu-key').val(),
 				config: JSON.stringify(config)
 			}

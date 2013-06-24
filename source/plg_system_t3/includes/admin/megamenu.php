@@ -21,6 +21,9 @@ class T3AdminMegamenu
 		
 		//params
 		$tplparams = $input->get('tplparams', '', 'raw');
+		if(!$tplparams){
+			$tplparams = self::getparams();
+		}
 		
 		//menu type
 		$menutype = $input->get('t3menu', 'mainmenu');
@@ -40,12 +43,7 @@ class T3AdminMegamenu
 		}
 		
 		//check config
-		$file          = T3_TEMPLATE_PATH . '/etc/megamenu.ini';
-		$currentconfig = json_decode(@file_get_contents ($file), true);
-		if(!$currentconfig){ //just for compatible
-			$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
-		}
-		
+		$currentconfig        = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 		$mmkey                = $menutype . (empty($viewLevels) ? '' : implode('-', $viewLevels)); //just for compatible
 		$mmconfig             = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : array();
 		$mmconfig['editmode'] = true;
@@ -78,18 +76,52 @@ class T3AdminMegamenu
 	public static function save()
 	{
 		$input         = JFactory::getApplication()->input;
+		$template      = $input->get('template');
 		$mmconfig      = $input->getString('config');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$file          = T3_TEMPLATE_PATH . '/etc/megamenu.ini';
-		$currentconfig = json_decode(@file_get_contents($file), true);
+		$tplparams     = $input->get('tplparams', '', 'raw');
+
+		if(!$tplparams){
+			$tplparams = self::getparams();
+		}
 		
+		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
+
 		if (!$currentconfig) {
 			$currentconfig = array();
 		}
 
 		$currentconfig[$mmkey] = json_decode($mmconfig, true);
 		$currentconfig         = json_encode($currentconfig);
-		$return                = JFile::write($file, $currentconfig);
+		
+		//get all other styles that have the same template
+		$db    = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		$query
+			->select('*')
+			->from('#__template_styles')
+			->where('template=' . $db->quote($template));
+
+		$db->setQuery($query);
+		$themes = $db->loadObjectList();
+		$return = true;
+		
+		foreach($themes as $theme){
+			$registry = new JRegistry;
+			$registry->loadString($theme->params);
+
+			//overwrite with new value
+			$registry->set('mm_config', $currentconfig);
+
+			$query = $db->getQuery(true);
+			$query
+				->update('#__template_styles')
+				->set('params =' . $db->quote($registry->toString()))
+				->where('id =' . (int)$theme->id);
+
+			$db->setQuery($query);
+			$return = $db->execute() && $return;
+		}
 
 		die(json_encode(array(
 					'status' => $return,
@@ -192,7 +224,6 @@ class T3AdminMegamenu
 		$url->delVar('t3task');
 		$referer = $url->toString();
 		
-		
 		//Keepalive
 		$config      = JFactory::getConfig();
 		$lifetime    = ($config->get('lifetime') * 60000);
@@ -205,30 +236,10 @@ class T3AdminMegamenu
 		}
 
 		//check config
-		$file          = T3_TEMPLATE_PATH . '/etc/megamenu.ini';
-		$currentconfig = @file_get_contents ($file);
-		if(!$currentconfig){ //just for compatible
-			$currentconfig = $tplparams instanceof JRegistry ? $tplparams->get('mm_config', '') : null;
-		}
+		$currentconfig = ($tplparams && $tplparams instanceof JRegistry) ? $tplparams->get('mm_config', '') : null;
 		if(!$currentconfig){
 			$currentconfig = '"{}"';
 		}
-		
-		$langs = array(
-			'addTheme' => JText::_('T3_TM_ASK_ADD_THEME'),
-			'delTheme' => JText::_('T3_TM_ASK_DEL_THEME'),
-			'overwriteTheme' => JText::_('T3_TM_ASK_OVERWRITE_THEME'),
-			'correctName' => JText::_('T3_TM_ASK_CORRECT_NAME'),
-			'themeExist' => JText::_('T3_TM_EXISTED'),
-			'saveChange' => JText::_('T3_TM_ASK_SAVE_CHANGED'),
-			'previewError' => JText::_('T3_TM_PREVIEW_ERROR'),
-			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
-			'lblCancel' => JText::_('JCANCEL'),
-			'lblOk' => JText::_('T3_TM_LABEL_OK'),
-			'lblNo' => JText::_('JNO'),
-			'lblYes' => JText::_('JYES'),
-			'lblDefault' => JText::_('JDEFAULT')
-		);
 		
 		include T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
 		exit;

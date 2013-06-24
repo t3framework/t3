@@ -251,13 +251,9 @@ class T3Template extends ObjectExtendable
 	function megamenu($menutype){
 		T3::import('menu/megamenu');
 
-		//we will check from configuration files
-		$file = T3_TEMPLATE_PATH . '/etc/megamenu.ini';
-		$currentconfig = json_decode(@file_get_contents ($file), true);
-		if(!$currentconfig){ //just for compatible
-			$currentconfig = json_decode($this->getParam('mm_config', ''), true);
-		}
-
+		//we will check from params
+		$currentconfig = json_decode($this->getParam('mm_config', ''), true);
+		
 		//force to array
 		if(!is_array($currentconfig)){
 			$currentconfig = (array)$currentconfig;
