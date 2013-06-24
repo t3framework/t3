@@ -181,6 +181,11 @@
 				description="T3_NAVIGATION_MM_TYPE_DESC"
 				 />
 
+			<field name="mm_config" type="hidden" hide="true" global="1"
+				label=""
+				description=""
+				 />
+			
 		</fieldset>	
 	</fields>
 </form>
