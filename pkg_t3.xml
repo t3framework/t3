@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" version="2.5" method="upgrade">
     <name>T3 Framework Package</name>
-    <packagename>T3</packagename>
+    <packagename>t3</packagename>
     <version>1.2.4</version>
     <url>http://www.t3-framework.org</url>
     <creationDate>26 April 2013</creationDate>
@@ -26,8 +26,8 @@
 		]]>
 	</description>
     <files folder="source">
-        <file type="plugin" id="plg_system_t3" group="system">plg_system_t3</file>
-        <file type="template" id="tpl_t3_blank" client="site">tpl_t3_blank</file>
+        <file type="plugin" id="t3" group="system">plg_system_t3</file>
+        <file type="template" id="t3_blank" client="site">tpl_t3_blank</file>
     </files>
     <updateservers>
         <server type="extension" priority="1" name="T3 Framework Update"><![CDATA[http://www.t3-framework.org/update.xml]]></server>
