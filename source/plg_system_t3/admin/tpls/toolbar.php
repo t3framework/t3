@@ -17,22 +17,18 @@ defined('_JEXEC') or die;
 
 <div id="t3-admin-toolbar" class="btn-toolbar">
 
-	<?php
-	if($input->getCmd('view') == 'style'):
-	?>
-  <div id="t3-admin-tb-save" class="btn-group">
-    <button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i><?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
-    <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>&nbsp;
-    </button>
-    <ul class="dropdown-menu">
-      <li id="t3-admin-tb-style-save-close"><a href="#"><?php echo JText::_('T3_TOOLBAR_SAVECLOSE') ?></a></li>
-      <li id="t3-admin-tb-style-save-clone"><a href="#"><?php echo JText::_('T3_TOOLBAR_SAVE_AS_CLONE') ?></a></li>
-    </ul>
-  </div>
-  <?php 
-  endif;
-  ?>
+	<?php if($input->getCmd('view') == 'style'): ?>
+	<div id="t3-admin-tb-save" class="btn-group">
+		<button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i><?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
+		<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>&nbsp;
+		</button>
+		<ul class="dropdown-menu">
+			<li id="t3-admin-tb-style-save-close"><a href="#"><?php echo JText::_('T3_TOOLBAR_SAVECLOSE') ?></a></li>
+			<li id="t3-admin-tb-style-save-clone"><a href="#"><?php echo JText::_('T3_TOOLBAR_SAVE_AS_CLONE') ?></a></li>
+		</ul>
+	</div>
+	<?php endif; ?>
 
 	<div id="t3-admin-tb-recompile" class="btn-group">
 		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i><i class="icon-loading"></i><?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
@@ -45,6 +41,12 @@ defined('_JEXEC') or die;
 	<div id="t3-admin-tb-megamenu" class="btn-group">
 		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>::<?php echo JText::_('T3_TOOLBAR_MEGAMENU_DESC') ?>"><i class="icon-sitemap"></i><?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?></button>
 	</div>
+	
+	<?php if(version_compare(JVERSION, '3.0', 'ge') && $input->getCmd('view') == 'template'): ?>
+	<div id="t3-admin-tb-copy" class="btn-group <?php echo $input->getCmd('view') ?>" data-toggle="modal" data-target="#collapseModal">
+		<button class="btn"><i class="icon-copy"></i><?php echo JText::_('T3_TOOLBAR_COPY') ?></button>
+	</div>
+	<?php endif; ?>
 
 	<div id="t3-admin-tb-close" class="btn-group <?php echo $input->getCmd('view') ?>">
 		<button class="btn"><i class="icon-remove"></i><?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>

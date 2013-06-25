@@ -14,11 +14,10 @@
 
 /* -------------------------------------------------*/
 /* T3 ADMIN STYLE
----------------------------------------------------*/
-
+----------------------------------------------------*/
 
 /* Menu Assignment
----------------------------------------------------*/
+----------------------------------------------------*/
 .t3-admin-assignment .thumbnail {
   padding: 10px;
 }
@@ -30,11 +29,36 @@
 
 
 /* Responsive
----------------------------------------------------*/
+----------------------------------------------------*/
 @media (max-width: 767px) {
   .t3-admin-form {
     margin-left: -20px;
     margin-right: -20px;
   }
 
+}
+
+
+/* -------------------------------------------------*/
+/* T3 TEMPLATE MANAGER
+----------------------------------------------------*/
+#template-manager {
+	padding: 20px;
+}
+
+#template-manager .pull-left {
+	padding-top: 30px;
+}
+
+#template-manager div[align=center],
+#template-manager h2 {
+	margin-left: 230px;
+	text-align: left;
+	padding: 10px;
+}
+
+#template-manager div.alert-success {
+	background-color:transparent !important;
+	border-color: transparent !important;
+	color: #468847;
 }

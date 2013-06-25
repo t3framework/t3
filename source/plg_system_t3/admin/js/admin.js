@@ -395,7 +395,7 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		switchTab: function () {
-			$('a[data-toggle="tab"]').on('shown', function (e) {
+			$('.t3-admin-nav a[data-toggle="tab"]').on('shown', function (e) {
 				var url = e.target.href;
 			  	window.location.hash = url.substring(url.indexOf('#')).replace ('_params', '');
 			});
@@ -404,11 +404,11 @@ var T3Admin = window.T3Admin || {};
 			if (hash) {
 				$('a[href="' + hash + '_params' + '"]').tab ('show');
 			} else {
-				var url = $('ul.nav-tabs li.active a').attr('href');
+				var url = $('.t3-admin-nav .nav-tabs li.active a').attr('href');
 				if (url) {
 			  		window.location.hash = url.substring(url.indexOf('#')).replace ('_params', '');
 				} else {
-					$('ul.nav-tabs li:first a').tab ('show');
+					$('.t3-admin-nav .nav-tabs li:first a').tab ('show');
 				}
 			}
 		},
