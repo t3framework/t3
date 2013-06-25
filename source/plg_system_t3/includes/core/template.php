@@ -410,6 +410,39 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
+	* Render snippet
+	*/
+	function snippet (){
+
+		$places = array();
+		$contents = array();
+
+		if(($openhead = $this->getParam('snippet_open_head', ''))){
+			$places[] = '<head>';
+			$contents[] = "<head>\n" . $openhead;
+		}
+		if(($closehead = $this->getParam('snippet_close_head', ''))){
+			$places[] = '</head>';
+			$contents[] = $closehead . "\n</head>";
+		}
+		if(($openbody = $this->getParam('snippet_open_body', ''))){
+			$places[] = '<body>';
+			$contents[] = "<body>\n" . $openbody;
+		}
+		if(($closebody = $this->getParam('snippet_close_body', ''))){
+			$places[] = '</body>';
+			$contents[] = $closebody . "\n</body>";
+		}
+
+		if(count($places)){
+			$body = JResponse::getBody();
+			$body = str_replace($places, $contents, $body);
+
+			JResponse::setBody($body);
+		}
+	}
+
+	/**
 	 * Wrap of document countModules function, get position from configuration before calculate
 	 */
 	function countModules($positions)

@@ -27,6 +27,7 @@ class T3Admin {
 		$body = JResponse::getBody();
 		$layout = T3_ADMIN_PATH . '/admin/tpls/default.php';
 		if(file_exists($layout) && JFactory::getApplication()->input->getCmd('view') == 'style'){
+			
 			ob_start();
 			$this->loadParams();
 			$buffer = ob_get_clean();
@@ -219,7 +220,9 @@ class T3Admin {
 			
 			//remove all fields from group 'params' and reload them again in right other base on template.xml
 			$form->removeGroup('params');
+			//load the template
 			$form->loadFile(T3_PATH . '/params/template.xml');
+			//overwrite / extend with params of template
 			$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 			
 			$xml = JFactory::getXML($tplXml);

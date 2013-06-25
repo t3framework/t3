@@ -16,10 +16,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Joomla! P3P Header Plugin
+ * T3 plugin class
  *
- * @package		Joomla.Plugin
- * @subpackage	System.p3p
+ * @package		T3
  */
 
 class plgSystemT3 extends JPlugin
@@ -79,11 +78,13 @@ class plgSystemT3 extends JPlugin
 
 	function onAfterRender ()
 	{
-		$japp = JFactory::getApplication();
-		if($japp->isAdmin()){
-			if(T3::detect()){
-				$t3app = T3::getApp();
+		if(T3::detect()){
+			$t3app = T3::getApp();
+
+			if(JFactory::getApplication()->isAdmin()){
 				$t3app->render();
+			} else {
+				$t3app->snippet();
 			}
 		}
 	}
@@ -165,7 +166,7 @@ class plgSystemT3 extends JPlugin
 						->where('id <>' . (int)$data->id);
 
 					$db->setQuery($query);
-					$db->query();
+					$db->execute();
 				}
 			}
 		}

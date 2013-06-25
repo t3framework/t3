@@ -56,7 +56,7 @@ class T3Bot extends JObject
 					->where('id =' . (int)$theme->id);
 
 				$db->setQuery($query);
-				$db->query();
+				$db->execute();
 			}
 			// force reload cache template
 			$cache = JFactory::getCache('com_templates', '');
@@ -230,7 +230,7 @@ class T3Bot extends JObject
 						->where('id =' . (int)$theme->id);
 
 					$db->setQuery($query);
-					$db->query();
+					$db->execute();
 				}
 				// force reload cache template
 				$cache = JFactory::getCache('com_templates', '');

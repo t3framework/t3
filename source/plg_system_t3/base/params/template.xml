@@ -187,5 +187,46 @@
 				 />
 			
 		</fieldset>	
+
+		<fieldset name="injection_params" label="T3_INJECTION_LABEL" description="T3_INJECTION_DESC">
+			
+			<field name="snippet_open_head" type="textarea"
+				class="t3-admin-textarea"
+				global="1"
+				filter="raw"
+				default=""
+				label="T3_INJECTION_OPEN_HEAD_LABEL"
+				description="T3_INJECTION_OPEN_HEAD_DESC"
+				/>
+			
+			<field name="snippet_close_head" type="textarea"
+				class="t3-admin-textarea"
+				global="1"
+				filter="raw"
+				default=""
+				label="T3_INJECTION_CLOSE_HEAD_LABEL"
+				description="T3_INJECTION_CLOSE_HEAD_DESC"
+				/>
+
+			<field name="snippet_open_body" type="textarea"
+				class="t3-admin-textarea"
+				global="1"
+				filter="raw"
+				default=""
+				label="T3_INJECTION_OPEN_BODY_LABEL"
+				description="T3_INJECTION_OPEN_BODY_DESC"
+				/>
+
+			<field name="snippet_close_body" type="textarea"
+				class="t3-admin-textarea"
+				global="1"
+				filter="raw"
+				default=""
+				label="T3_INJECTION_CLOSE_BODY_LABEL"
+				description="T3_INJECTION_CLOSE_BODY_DESC"
+				/>
+
+		</fieldset>
+
 	</fields>
 </form>

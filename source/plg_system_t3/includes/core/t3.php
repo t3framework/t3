@@ -12,11 +12,15 @@
  *------------------------------------------------------------------------------
  */
 
+// no direct access
+defined('_JEXEC') or die('Restricted access');
 
 /**
- * T3 Class
+ * T3 class
  * Singleton class for T3
+ * @package		T3
  */
+
 class T3 {
 	
 	protected static $t3app = null;
@@ -95,23 +99,23 @@ class T3 {
 		
 		$app = JFactory::getApplication();
 		if (!$app->isAdmin()) {
-			$jversion  = new JVersion;
-			if($jversion->isCompatible('3.0')){
+			
+			if(version_compare(JVERSION, '3.0', 'ge')){
 				// override core joomla class
 				// JViewLegacy
-				JLoader::register('JViewLegacy', T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');
+				if (!class_exists('JViewLegacy', false)) T3::import ('joomla30/viewlegacy');
 				// JModuleHelper
-				JLoader::register('JModuleHelper', T3_ADMIN_PATH . '/includes/joomla30/modulehelper.php');
+				if (!class_exists('JModuleHelper', false)) T3::import ('joomla30/modulehelper');
 				// JPagination
-				JLoader::register('JPagination', T3_ADMIN_PATH . '/includes/joomla30/pagination.php');
+				if (!class_exists('JPagination', false)) T3::import ('joomla30/pagination');
 			} else {
 				// override core joomla class
-				// JViewLegacy
-				JLoader::register('JView', T3_ADMIN_PATH . '/includes/joomla25/view.php');
+				// JView
+				if (!class_exists('JView', false)) T3::import ('joomla25/view');
 				// JModuleHelper
-				JLoader::register('JModuleHelper', T3_ADMIN_PATH . '/includes/joomla25/modulehelper.php');
+				if (!class_exists('JModuleHelper', false)) T3::import ('joomla25/modulehelper');
 				// JPagination
-				JLoader::register('JPagination', T3_ADMIN_PATH . '/includes/joomla25/pagination.php');
+				if (!class_exists('JPagination', false)) T3::import ('joomla25/pagination');
 			}
 		} else {
 		}

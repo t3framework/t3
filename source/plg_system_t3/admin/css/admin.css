@@ -569,14 +569,19 @@ button.btn-primary:active {
   border-color: #479047;
 }
 
+/* Textarea 
+------------*/
+.t3-admin-form .form-horizontal textarea {
+  width: 440px;
+  height: 80px;
+}
+
+
 /* Misc
 ------- */
 .t3-admin-form .form-horizontal .media-preview .hasTipPreview {
   position: relative;
   z-index: 10;
-}
-
-.t3-changed {
 }
 
 /* Fixed control for fullscreen

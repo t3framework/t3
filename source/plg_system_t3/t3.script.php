@@ -26,7 +26,7 @@ class plgSystemT3InstallerScript
         $query = $db->getQuery(true);
         $query->update('#__extensions')->set("`enabled`='1'")->where("`type`='plugin'")->where("`folder`='system'")->where("`element`='t3'");
         $db->setQuery($query);
-        $db->query();
+        $db->execute();
         return true;
     }
 }
