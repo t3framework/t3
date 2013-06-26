@@ -81,10 +81,12 @@ class plgSystemT3 extends JPlugin
 		if(T3::detect()){
 			$t3app = T3::getApp();
 
-			if(JFactory::getApplication()->isAdmin()){
-				$t3app->render();
-			} else {
-				$t3app->snippet();
+			if($t3app){
+				if(JFactory::getApplication()->isAdmin()){
+					$t3app->render();
+				} else {
+					$t3app->snippet();
+				}
 			}
 		}
 	}

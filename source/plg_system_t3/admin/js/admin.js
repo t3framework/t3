@@ -145,7 +145,7 @@ var T3Admin = window.T3Admin || {};
 			});
 		},
 
-		initT3Title: function(){
+		improveMarkup: function(){
 			var jptitle = $('.pagetitle');
 			if (!jptitle.length){
 				jptitle = $('.page-title');
@@ -161,6 +161,11 @@ var T3Admin = window.T3Admin || {};
 
 			//remove joomla title
 			$('#template-manager .tpl-desc-name').remove();
+
+			//template manager - J2.5
+			$('#template-manager-css')
+				.closest('form').addClass('form-inline')
+				.find('button[type=submit]').addClass('btn');
 		},
 
 		hideDisabled: function(){
@@ -499,8 +504,8 @@ var T3Admin = window.T3Admin || {};
 	
 	$(document).ready(function(){
 		T3Admin.initSystemMessage();
+		T3Admin.improveMarkup();
 		T3Admin.initMarkChange();
-		T3Admin.initT3Title();
 		T3Admin.initBuildLessBtn();
 		T3Admin.initRadioGroup();
 		T3Admin.initChosen();
