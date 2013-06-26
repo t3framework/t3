@@ -18,11 +18,13 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		megamenu, nav_items, nav_subs, nav_cols, nav_all;
 
 	$.fn.megamenuAdmin = function (options) {
-		var defaultOptions = {
-		};
+		
+		options = $.extend({}, $.fn.megamenuAdmin.defaults, options);
+		
+		//get the first (top most megamenu)
+		megamenu = $(this).find('.t3-megamenu:first');
 
-		var options = $.extend(defaultOptions, options);
-		megamenu = $(this).find('.t3-megamenu');
+		//find all class
 		nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
 		nav_subs = megamenu.find('.nav-child');
 		nav_cols = megamenu.find('[class*="span"]');
@@ -99,6 +101,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 		return this;
 	};
+
+	$.fn.megamenuAdmin.defaults = {};
 
 	// Actions
 	var actions = {};
@@ -708,7 +712,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					// get module content
 					if (value) {
 						$.ajax({
-							url: T3AdminMegamenu.referer,
+							url: T3AdminMegamenu.site,
 							data: {
 								t3action: 'module',
 								mid: value

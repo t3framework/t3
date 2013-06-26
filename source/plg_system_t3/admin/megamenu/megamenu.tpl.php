@@ -290,6 +290,7 @@ defined('_JEXEC') or die;
 
     var T3AdminMegamenu = window.T3AdminMegamenu || {};
     T3AdminMegamenu.referer = '<?php echo $referer; ?>';
+    T3AdminMegamenu.site = '<?php echo JUri::root(true); ?>';
     T3AdminMegamenu.config = <?php echo $currentconfig ?>;
     T3AdminMegamenu.template = '<?php echo T3_TEMPLATE ?>';
 
