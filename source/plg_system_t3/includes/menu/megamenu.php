@@ -28,9 +28,14 @@ class T3MenuMegamenu {
 		$app   = JFactory::getApplication();
 		$menu  = $app->getMenu('site');
 
-		$attributes = array('menutype', 'access');
-		$values     = array($menutype, $settings['access']);
+		$attributes = array('menutype');
+		$values     = array($menutype);
 
+		if(isset($settings['access'])){
+			$attributes[] = 'access';
+			$values[]     = $settings['access'];
+		}
+		
 		if(isset($settings['language'])){
 			$attributes[] = 'language';
 			$values[]     = $settings['language'];
