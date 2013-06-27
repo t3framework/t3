@@ -475,6 +475,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			data: {
 				t3action: 'megamenu',
 				t3task: 'save',
+				styleid: T3AdminMegamenu.styleid,
 				template: T3AdminMegamenu.template,
 
 				mmkey: $('#megamenu-key').val(),
@@ -851,10 +852,13 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					}
 
 					ajax = $.ajax({
-						url: T3AdminMegamenu.referer,
+						url: T3AdminMegamenu.site,
 						data: {
 							t3action: 'megamenu',
 							t3task: 'display',
+							styleid: T3AdminMegamenu.styleid,
+							template: T3AdminMegamenu.template,
+
 							t3menu: $('#menu-type').val(),
 							t3acl: $('#access-level').val(),
 							t3lang: $('#menu-type :selected').attr('data-language') || '*'
@@ -881,10 +885,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		initToolbar: function(){
 			$('#t3-admin-mm-save').off('click.mm').on('click.mm', function(){
 				$('.toolbox-saveConfig').trigger('click');
+
+				return false;
 			});
 
 			$('#t3-admin-mm-close').off('click.mm').on('click.mm', function(){
 				window.location.href = T3AdminMegamenu.referer;
+
+				return false;
 			});
 		},
 

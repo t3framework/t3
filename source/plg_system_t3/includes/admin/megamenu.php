@@ -222,7 +222,9 @@ class T3AdminMegamenu
 		$url = JFactory::getURI();
 		$url->delVar('t3action');
 		$url->delVar('t3task');
-		$referer = $url->toString();
+		$referer  = $url->toString();
+		$template = T3_TEMPLATE;
+		$styleid  = JFactory::getApplication()->input->getCmd('id');
 		
 		//Keepalive
 		$config      = JFactory::getConfig();

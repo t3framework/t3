@@ -292,11 +292,12 @@ defined('_JEXEC') or die;
     T3AdminMegamenu.referer = '<?php echo $referer; ?>';
     T3AdminMegamenu.site = '<?php echo JUri::root(true); ?>';
     T3AdminMegamenu.config = <?php echo $currentconfig ?>;
-    T3AdminMegamenu.template = '<?php echo T3_TEMPLATE ?>';
+    T3AdminMegamenu.template = '<?php echo $template ?>';
+    T3AdminMegamenu.styleid = '<?php echo $styleid ?>';
 
     //Keepalive
     setInterval(function(){
-    $.get('index.php');
+      $.get('index.php');
     }, <?php echo $refreshTime; ?>);
 
     //]]>
