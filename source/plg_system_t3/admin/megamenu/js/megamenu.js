@@ -843,7 +843,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 		initAjaxmenu: function(){
 
-			var ajax = null,
+			var	lid = null,
+				ajax = null,
 				ajaxing = false,
 				doajax = function(){
 
@@ -865,6 +866,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						},
 
 						beforeSend: function(){
+							clearTimeout(lid);
 							$('#t3-admin-megamenu').addClass('loading');
 						}
 					}).done(function(rsp){
@@ -872,7 +874,10 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					}).fail(function(){
 
 					}).always(function(){
-						$('#t3-admin-megamenu').removeClass('loading');;
+						clearTimeout(lid);
+						lid = setTimeout(function(){
+							$('#t3-admin-megamenu').removeClass('loading');
+						}, 500);
 					})
 				};
 

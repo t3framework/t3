@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
           <div class="controls t3-controls">
             <select id="menu-type" name="menu-type">
               <?php foreach (self::menus() as $menu) : ?>
-                <option value="<?php echo $menu->value ?>" data-language="<?php echo $menu->language?>"><?php echo $menu->text ?></option>
+                <option value="<?php echo $menu->value ?>" data-language="<?php echo $menu->language?>"<?php echo ($mm_type && $mm_type == $menu->value) ? ' selected' : '' ?>><?php echo $menu->text ?></option>
               <?php endforeach ?>
             </select>
           </div>
@@ -278,7 +278,12 @@ defined('_JEXEC') or die;
       </div>
 
       <div id="t3-admin-mm-container" class="navbar clearfix"></div>
-      <div class="ajaxloader"></div>
+      <div class="ajaxloader">
+        <h5><?php echo JText::_('T3_NAVIGATION_MM_LOADING') ?></h5>
+        <div class="progress progress-striped active">
+          <div class="bar"></div>
+        </div>
+      </div>
     </div>
     <div id="ajax-message" class="ajax-message alert">
       <button type="button" class="close">&times;</button>

@@ -87,7 +87,7 @@ class T3MenuMegamenu {
 			$item->mega     = 0;
 			$item->group    = 0;
 			$item->dropdown = 0;
-			if (isset($setting['group'])) {
+			if (isset($setting['group']) && $item->level > 1) {
 				$item->group = 1;
 			} else {
 				if ((isset($this->children[$item->id]) && ($this->editmode || !isset($setting['hidesub']))) || isset($setting['sub'])) {
@@ -96,18 +96,12 @@ class T3MenuMegamenu {
 			}
 			$item->mega = $item->group || $item->dropdown;
 			// set default sub if not exists
-			if ($item->mega && !isset($setting['sub'])) {
-				$c              = $this->children[$item->id][0]->id;
-				$setting['sub'] = array(
-					'rows' => array(
-						array(
-							array(
-								'width' => 12,
-								'item' => $c
-							)
-						)
-					)
-				);
+			if ($item->mega) {
+			 	if (!isset($setting['sub'])) $setting['sub'] = array();
+			 	if (!isset($setting['sub']['rows']) || !count($setting['sub']['rows'])) {
+					$c = $this->children[$item->id][0]->id;
+					$setting['sub'] = array('rows'=>array(array(array('width'=>12, 'item'=>$c))));
+				}
 			}
 			$item->setting = $setting;
 			

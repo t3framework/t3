@@ -303,8 +303,15 @@ class T3Template extends ObjectExtendable
 			
 			$mmkey = $menutype;
 		}
-
-		$mmconfig = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : array();
+		
+		// check if available configuration for language override
+		$langcode = substr (JFactory::getDocument()->language, 0, 2);
+		if ($currentconfig && isset($currentconfig[$menutype.'-'.$langcode])) {
+			$menutype = $menutype.'-'.$langcode;
+			$mmconfig = $currentconfig[$menutype];
+		} else {
+			$mmconfig = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : array();
+		}
 		
 		$mmconfig['access'] = $viewLevels;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $this->_tpl->params);

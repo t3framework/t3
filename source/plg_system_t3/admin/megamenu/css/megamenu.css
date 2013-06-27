@@ -127,10 +127,10 @@ body.bd {
 ---------------------*/
 #t3-admin-mm-container {
   float: left;
-  transition: opacity .4s ease-out;
-  -o-transition: opacity .4s ease-out;
-  -moz-transition: opacity .4s ease-out;
-  -webkit-transition: opacity .4s ease-out;
+  transition: opacity .2s ease-out;
+  -o-transition: opacity .2s ease-out;
+  -moz-transition: opacity .2s ease-out;
+  -webkit-transition: opacity .2s ease-out;
   /*margin-left: 20px;*/
 }
 
@@ -496,23 +496,34 @@ body.bd {
 
 /* Ajax loader ---*/
 #t3-admin-megamenu .ajaxloader {
-  width: 72px;
-  height: 72px;
+  width: 300px;
+  height: 20px;
   position: absolute;
-  top: 100px;
-  left: 50%;
-  margin-left: -36px;
-  background: white url(../images/ajaxloader.gif) 50% 50% no-repeat;
+  top: 130px;
+  left: -999em;
   border-radius: 3px;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -webkit-transition: opacity 0.5s ease-out;
+}
+
+#t3-admin-megamenu .ajaxloader .bar {
+  width: 0%;
 }
 
 #t3-admin-megamenu.loading .ajaxloader {
-  display: block;
+  left: 0;
+  opacity: 1;
+}
+
+#t3-admin-megamenu.loading .ajaxloader .bar {
+  width: 100%;
 }
 
 #t3-admin-megamenu.loading #t3-admin-mm-container {
-  opacity: 0.4;
+  opacity: 0;
 }
 
 /* Modal ---*/

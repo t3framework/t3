@@ -52,7 +52,7 @@ class T3AdminMegamenu
 		$mmconfig['language'] = $languages;
 		
 		//build the menu
-		$menu   = new T3MenuMegamenu($menutype, $mmconfig);
+		$menu   = new T3MenuMegamenu($menutype, $mmconfig, null, true);
 		$buffer = $menu->render(true);
 		
 		// replace image path
@@ -226,7 +226,9 @@ class T3AdminMegamenu
 		$referer  = $url->toString();
 		$template = T3_TEMPLATE;
 		$styleid  = JFactory::getApplication()->input->getCmd('id');
-		
+
+		$mm_type  = ($tplparams && $tplparams instanceof JRegistry) ? $tplparams->get('mm_type', '') : null;
+
 		//Keepalive
 		$config      = JFactory::getConfig();
 		$lifetime    = ($config->get('lifetime') * 60000);
