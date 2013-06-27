@@ -45,7 +45,8 @@ class T3AdminMegamenu
 		//check config
 		$currentconfig        = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 		$mmkey                = $menutype . (empty($viewLevels) ? '' : implode('-', $viewLevels)); //just for compatible
-		$mmconfig             = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : array();
+		$mmconfig             = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : (
+								($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array());
 		$mmconfig['editmode'] = true;
 		$mmconfig['access']   = $viewLevels;
 		$mmconfig['language'] = $languages;
