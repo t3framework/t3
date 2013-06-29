@@ -261,56 +261,51 @@ class T3Template extends ObjectExtendable
 
 		//get user access levels
 		$viewLevels = JFactory::getUser()->getAuthorisedViewLevels();
-		$viewLevels = array_unique($viewLevels);
-		sort($viewLevels);
+		$mmkey      = $menutype;
+		$mmconfig   = array();
+		if(!empty($currentconfig)){
 
-		if(is_array($viewLevels) && count($viewLevels)){
-
-			//retrieve menu configuration list for current menu type
-			$allMenus = array_keys($currentconfig);
-			$lookupMenus = array();
-			$mmkey = $menutype;
-
-			//get the current list
-			foreach ($allMenus as $avaiMenu) {
-				if(strpos($avaiMenu, $menutype) !== false){
-					$avaiMenu = str_replace($menutype, '', $avaiMenu);
-					$avaiMenu = explode('-', $avaiMenu);
-
-					$lookupMenus[] = $avaiMenu;
-				}
+			//find best fit configuration based on view level
+			$vlevels = array_merge($viewLevels);
+			if(is_array($vlevels) && in_array(3, $vlevels)){ //we assume, if a user is special, they should be registered also
+				$vlevels[] = 2;
 			}
+			$vlevels = array_unique($vlevels);
+			rsort($vlevels);
 
-			//sort by priority
-			usort($lookupMenus, array('T3Template', 'menupriority'));
+			if(is_array($vlevels) && count($vlevels)){
+				//should check for special view level first
+				if(in_array(3, $vlevels)){
+					array_unshift($vlevels, 3);
+				}
 
-			//find the best fit for access level
-			foreach ($lookupMenus as $lookupMenu) {
-				$isSub = true;
-				foreach ($lookupMenu as $lkvalue) {
-					if(!in_array($lkvalue, $viewLevels)){
-						$isSub = false;
+				$found = false;
+				foreach ($vlevels as $vlevel) {
+					$mmkey = $menutype . '-' . $vlevel;
+					if(isset($currentconfig[$mmkey])){
+						$found = true;
 						break;
 					}
 				}
 
-				if($isSub){
-					$mmkey = $menutype . implode('-', $lookupMenu);
-					break;
+				//fallback
+				if(!$found){
+					$mmkey = $menutype;
 				}
 			}
-		} else {
-			
-			$mmkey = $menutype;
-		}
-		
-		// check if available configuration for language override
-		$langcode = substr (JFactory::getDocument()->language, 0, 2);
-		if ($currentconfig && isset($currentconfig[$menutype.'-'.$langcode])) {
-			$menutype = $menutype.'-'.$langcode;
-			$mmconfig = $currentconfig[$menutype];
-		} else {
-			$mmconfig = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : array();
+
+			//we try to switch the language if we are in public
+			if($mmkey == $menutype){
+				// check if available configuration for language override
+				$langcode = substr(JFactory::getDocument()->language, 0, 2);
+				if (isset($currentconfig[$menutype.'-'.$langcode])) {
+					$mmkey = $menutype . '-' . $langcode;
+				}
+			}
+
+			if(isset($currentconfig[$mmkey])){
+				$mmconfig = $currentconfig[$mmkey];
+			}
 		}
 		
 		$mmconfig['access'] = $viewLevels;

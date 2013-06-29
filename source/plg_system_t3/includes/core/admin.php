@@ -69,7 +69,6 @@ class T3Admin {
 		$langs = array(
 			'lblCompile' => JText::_('T3_LBL_RECOMPILE'),
 			'lblThemer' => JText::_('T3_LBL_VIEWTHEMER'),
-			'enableThemeMagic' => JText::_('T3_MSG_ENABLE_THEMEMAGIC'),
 			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
 
 			'logoPresent' => JText::_('T3_LAYOUT_LOGO_TEXT'),

@@ -98,7 +98,7 @@ class T3MenuMegamenu {
 			// set default sub if not exists
 			if ($item->mega) {
 			 	if (!isset($setting['sub'])) $setting['sub'] = array();
-			 	if (!isset($setting['sub']['rows']) || !count($setting['sub']['rows'])) {
+			 	if (isset($this->children[$item->id]) && (!isset($setting['sub']['rows']) || !count($setting['sub']['rows']))) {
 					$c = $this->children[$item->id][0]->id;
 					$setting['sub'] = array('rows'=>array(array(array('width'=>12, 'item'=>$c))));
 				}

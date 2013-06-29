@@ -327,18 +327,19 @@ class T3Less extends lessc
 			if (is_file($path)) {
 				if ($last_modified < filemtime($path))
 					$last_modified = filemtime($path);
+				
 				// append theme file into vars
-				// $vars .= "\n".'@import "'.'themes/'.$theme.'/variables.less";';
 				$vars .= JFile::read($path);
 			}
+			
 			// add theme variables-custom.less
 			$path = T3_TEMPLATE_PATH . '/less/themes/' . $theme . '/variables-custom.less';
 			if (is_file($path)) {
 				if ($last_modified < filemtime($path))
 					$last_modified = filemtime($path);
+				
 				// append theme file into vars
 				$vars .= JFile::read($path);
-				// $vars .= "\n".'@import "'.'themes/'.$theme.'/variables-custom.less";';
 			}
 		}
 		

@@ -34,12 +34,27 @@ defined('_JEXEC') or die;
 		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i><i class="icon-loading"></i><?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
 	</div>
 
-	<div id="t3-admin-tb-themer" class="btn-group">
-		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_THEMER') ?>::<?php echo JText::_('T3_TOOLBAR_THEMER_DESC') ?>"><i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?></button>
+	<div id="t3-admin-tb-themer" 
+		class="btn-group"
+		data-title="<?php echo JText::_('T3_TM_THEME_MAGIC') ?>"
+		data-content="<?php echo JText::_('T3_MSG_ENABLE_THEMEMAGIC') ?>">
+		<button 
+			class="btn hasTip" 
+			title="<?php echo JText::_('T3_TOOLBAR_THEMER') ?>::<?php echo JText::_('T3_TOOLBAR_THEMER_DESC') ?>">
+			
+			<i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?>
+		</button>
 	</div>
 
-	<div id="t3-admin-tb-megamenu" class="btn-group">
-		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>::<?php echo JText::_('T3_TOOLBAR_MEGAMENU_DESC') ?>"><i class="icon-sitemap"></i><?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?></button>
+	<div id="t3-admin-tb-megamenu" 
+		class="btn-group" 
+		data-title="<?php echo JText::_('T3_NAVIGATION_MM_TITLE') ?>"
+		data-content="<?php echo JText::_('T3_MSG_MEGAMENU_NOT_USED') ?>">
+		<button 
+			class="btn hasTip" 
+			title="<?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>::<?php echo JText::_('T3_TOOLBAR_MEGAMENU_DESC') ?>">
+				<i class="icon-sitemap"></i><?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>
+		</button>
 	</div>
 	
 	<?php if(version_compare(JVERSION, '3.0', 'ge') && $input->getCmd('view') == 'template'): ?>

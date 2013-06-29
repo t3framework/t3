@@ -28,31 +28,41 @@ class T3AdminMegamenu
 		//menu type
 		$menutype = $input->get('t3menu', 'mainmenu');
 		
-		//viewLevels
-		$viewLevels  = self::getViewLevels();
-		$accessLevel = $input->get('t3acl', array(), 'array');
-
-		$viewLevels  = array_merge($viewLevels, (array)$accessLevel);
-		$viewLevels  = array_unique($viewLevels);
-		sort($viewLevels);
+		//accessLevel
+		$accessLevel = array();
+		$t3acl       = (int) $input->get('t3acl', 1);
+		for ($i = 1; $i <= $t3acl; $i++) { 
+			$accessLevel[] = $i;
+		}
+		$accessLevel  = array_unique($accessLevel);
 
 		//languages
 		$languages = array(trim($input->get('t3lang', '*')));
 		if($languages[0] != '*'){
 			$languages[] = '*';
 		}
-		
+
 		//check config
-		$currentconfig        = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
-		$mmkey                = $menutype . (empty($viewLevels) ? '' : implode('-', $viewLevels)); //just for compatible
-		$mmconfig             = ($currentconfig && isset($currentconfig[$mmkey])) ? $currentconfig[$mmkey] : (
-								($currentconfig && isset($currentconfig[$menutype])) ? $currentconfig[$menutype] : array());
+		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
+		$mmkey         = $menutype . (($t3acl == 1) ? '' : '-' . $t3acl);
+		$mmconfig      = array();
+
+		if($currentconfig){
+			for ($i = $t3acl; $i >= 1; $i--) {
+				$tmmkey = $menutype . (($i == 1) ? '' : '-' . $i);
+				if(isset($currentconfig[$tmmkey])){
+					$mmconfig = $currentconfig[$tmmkey];
+					break;
+				}
+			}
+		}
+
 		$mmconfig['editmode'] = true;
-		$mmconfig['access']   = $viewLevels;
+		$mmconfig['access']   = $accessLevel;
 		$mmconfig['language'] = $languages;
 		
 		//build the menu
-		$menu   = new T3MenuMegamenu($menutype, $mmconfig, null, true);
+		$menu   = new T3MenuMegamenu($menutype, $mmconfig);
 		$buffer = $menu->render(true);
 		
 		// replace image path
@@ -164,6 +174,29 @@ class T3AdminMegamenu
 
 	/**
 	 *
+	 * Ge all support access levels
+	 */
+	public static function access()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$query->select('a.id AS value, a.title AS text');
+		$query->from('#__viewlevels AS a');
+		$query->group('a.id, a.title, a.ordering');
+		$query->order('a.ordering ASC');
+		$query->order($query->qn('title') . ' ASC');
+		$query->where('a.id in (1,2,3)'); //we only support Public, Registered, Special
+
+		// Get the options.
+		$db->setQuery($query);
+		$options = $db->loadObjectList();
+		
+		return is_array($options) ? $options : array();
+	}
+
+	/**
+	 *
 	 * Ge all available modules
 	 */
 	public static function modules()
@@ -248,47 +281,5 @@ class T3AdminMegamenu
 		
 		include T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
 		exit;
-	}
-	
-	public static function getViewLevels()
-	{
-		// Get all groups that the user is mapped to recursively.
-		$userId     = 0; //guest
-		$groups     = JAccess::getGroupsByUser($userId);
-		$viewLevels = array();
-		
-		// Get a database object.
-		$db = JFactory::getDbo();
-		
-		// Build the base query.
-		$query = $db->getQuery(true)->select('id, rules')->from($db->quoteName('#__viewlevels'));
-		
-		// Set the query for execution.
-		$db->setQuery($query);
-		
-		// Build the view levels array.
-		foreach ($db->loadAssocList() as $level) {
-			$viewLevels[$level['id']] = (array) json_decode($level['rules']);
-		}
-		
-		// Initialise the authorised array.
-		$authorised = array(1);
-		
-		// Find the authorised levels.
-		foreach ($viewLevels as $level => $rule) {
-			foreach ($rule as $id) {
-				if (($id < 0) && (($id * -1) == $userId)) {
-					$authorised[] = $level;
-					break;
-				}
-				// Check to see if the group is mapped to the level.
-				elseif (($id >= 0) && in_array($id, $groups)) {
-					$authorised[] = $level;
-					break;
-				}
-			}
-		}
-		
-		return $authorised;
 	}
 }

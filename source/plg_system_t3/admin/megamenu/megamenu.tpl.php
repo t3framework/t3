@@ -58,7 +58,13 @@ defined('_JEXEC') or die;
             <label id="access-level-lbl" for="access-level" class="hasTip" title="<?php echo JText::_('T3_NAVIGATION_ACL_LABEL'), '::', JTexT::_('T3_NAVIGATION_ACL_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_ACL_LABEL'); ?></label>
           </div>
           <div class="controls t3-controls">
-            <?php echo JHtml::_('access.level', 'access-level', '', 'multiple="multiple"', array(), 'access-level') ?>
+            <?php //echo JHtml::_('access.level', 'access-level', '', 'multiple="multiple"', array(), 'access-level') ?>
+
+            <select id="access-level" name="access-level">
+              <?php foreach (self::access() as $access) : ?>
+                <option value="<?php echo $access->value ?>"><?php echo $access->text ?></option>
+              <?php endforeach ?>
+            </select>
           </div>
         </div>
 
