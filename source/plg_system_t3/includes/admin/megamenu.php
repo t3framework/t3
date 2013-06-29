@@ -83,6 +83,65 @@ class T3AdminMegamenu
 		//output the megamenu key to save
 		echo $buffer . '<input id="megamenu-key" type="hidden" name="mmkey" value="' . $mmkey . '"/>';
 	}
+
+	public static function delete(){
+		$input         = JFactory::getApplication()->input;
+		$template      = $input->get('template');
+		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
+		$tplparams     = $input->get('tplparams', '', 'raw');
+
+		if(!$tplparams){
+			$tplparams = self::getparams();
+		}
+		
+		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
+
+		if (!$currentconfig) {
+			$currentconfig = array();
+		}
+
+		//delete it
+		if(isset($currentconfig[$mmkey])){
+			unset($currentconfig[$mmkey]);
+		}
+		$currentconfig = json_encode($currentconfig);
+		
+		//get all other styles that have the same template
+		$db    = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		$query
+			->select('*')
+			->from('#__template_styles')
+			->where('template=' . $db->quote($template));
+
+		$db->setQuery($query);
+		$themes = $db->loadObjectList();
+		$return = true;
+		
+		foreach($themes as $theme){
+			$registry = new JRegistry;
+			$registry->loadString($theme->params);
+
+			//overwrite with new value
+			$registry->set('mm_config', $currentconfig);
+
+			$query = $db->getQuery(true);
+			$query
+				->update('#__template_styles')
+				->set('params =' . $db->quote($registry->toString()))
+				->where('id =' . (int)$theme->id);
+
+			$db->setQuery($query);
+			$return = $db->execute() && $return;
+		}
+
+		die(json_encode(array(
+					'status' => $return,
+					'message' => JText::_($return ? 'T3_NAVIGATION_DELETE_SUCCESSFULLY' : 'T3_NAVIGATION_DELETE_FAILED')
+				)
+			)
+		);
+	}
 	
 	public static function save()
 	{
@@ -141,7 +200,7 @@ class T3AdminMegamenu
 			)
 		);
 	}
-	
+
 	/**
 	 *
 	 * Ge all available modules

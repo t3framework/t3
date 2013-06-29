@@ -885,11 +885,64 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 			//init once
 			doajax();
+
+			T3AdminMegamenu.doajax = doajax;
 		},
 
 		initToolbar: function(){
 			$('#t3-admin-mm-save').off('click.mm').on('click.mm', function(){
 				$('.toolbox-saveConfig').trigger('click');
+
+				return false;
+			});
+
+			$('#t3-admin-mm-delete').off('click.mm').on('click.mm', function(){
+
+				var delbtn = $(this);
+
+				if(delbtn.hasClass('loading')){
+					return false;
+				}
+
+				delbtn.addClass('loading');
+
+				$.ajax({
+					url: T3AdminMegamenu.referer,
+					type: 'post',
+					data: {
+						t3action: 'megamenu',
+						t3task: 'delete',
+						styleid: T3AdminMegamenu.styleid,
+						template: T3AdminMegamenu.template,
+
+						mmkey: $('#megamenu-key').val()
+					}
+				}).done(function(rsp){
+
+					try {
+						rsp = $.parseJSON(rsp);
+					} catch(e){
+						rsp = false;
+					}
+
+					if(rsp){
+						clearTimeout($('#ajax-message').data('sid'));
+						$('#ajax-message')
+							.removeClass('alert-error alert-success')
+							.addClass(rsp.status ? 'alert-success' : 'alert-error')
+							.addClass('in')
+							.data('sid', setTimeout(function(){
+									$('#ajax-message').removeClass('in')
+								}, 5000))
+							.find('strong')
+								.html(rsp.message);
+					}
+
+				}).always(function(){
+					delbtn.removeClass('loading');
+
+					T3AdminMegamenu.doajax();
+				});
 
 				return false;
 			});

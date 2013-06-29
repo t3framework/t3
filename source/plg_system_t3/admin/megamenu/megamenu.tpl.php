@@ -59,7 +59,6 @@ defined('_JEXEC') or die;
           </div>
           <div class="controls t3-controls">
             <?php //echo JHtml::_('access.level', 'access-level', '', 'multiple="multiple"', array(), 'access-level') ?>
-
             <select id="access-level" name="access-level">
               <?php foreach (self::access() as $access) : ?>
                 <option value="<?php echo $access->value ?>"><?php echo $access->text ?></option>
@@ -71,6 +70,9 @@ defined('_JEXEC') or die;
         <div class="btn-toolbar">
           <div class="btn-group">
             <button id="t3-admin-mm-save" class="btn btn-success"><i class="icon-save"></i><?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
+          </div>
+          <div class="btn-group">
+            <button id="t3-admin-mm-delete" class="btn btn-danger"><i class="icon-trash"></i><?php echo JText::_('T3_TOOLBAR_DELETE') ?></button>
           </div>
           <div class="btn-group">
             <button id="t3-admin-mm-close" class="btn"><i class="icon-remove"></i><?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
