@@ -51,11 +51,17 @@ class T3MenuMegamenu {
 		$this->params   = $params;
 		$this->editmode = isset($settings['editmode']);
 		foreach ($items as &$item) {
+			//remove all non-parent item (the parent has access higher access level)
+			if($item->level >= 2 && !isset($this->_items[$item->parent_id])){
+				continue;
+			}
+
 			$parent                           = isset($this->children[$item->parent_id]) ? $this->children[$item->parent_id] : array();
 			$parent[]                         = $item;
 			$this->children[$item->parent_id] = $parent;
 			$this->_items[$item->id]          = $item;
 		}
+		
 		foreach ($items as &$item) {
 			// bind setting for this item
 			$key     = 'item-' . $item->id;
