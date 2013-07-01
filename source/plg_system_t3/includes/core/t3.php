@@ -256,6 +256,10 @@ class T3 {
 		return $t3;
 	}
 
+	/**
+	 *
+	 * Ge default template style
+	 */
 	public static function getDefaultTemplate(){
 		static $defaultTemplate;
 
@@ -278,5 +282,38 @@ class T3 {
 		}
 
 		return $defaultTemplate;
+	}
+
+	/**
+	 *
+	 * Ge template style params
+	 */
+	public static function getTemplateParams()
+	{
+		$app    = JFactory::getApplication();
+		$input  = $app->input;
+		$params = $input->get('tplparams', '', 'raw'); //check for tplparams first
+
+		if(!($params instanceof JRegistry)){
+			$id = $input->getCmd('styleid', $input->getCmd('id'));
+			if($id){
+				$db    = JFactory::getDbo();
+				$query = $db->getQuery(true);
+				$query
+					->select('template, params')
+					->from('#__template_styles')
+					->where('client_id = 0')
+					->where('id = ' . $id);
+				$db->setQuery($query);
+				$template = $db->loadObject();
+				
+				if ($template) {
+					$params = new JRegistry;
+					$params->loadString($template->params);
+				}
+			}
+		}
+		
+		return $params instanceof JRegistry ? $params : null;
 	}
 }

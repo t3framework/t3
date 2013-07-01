@@ -20,10 +20,7 @@ class T3AdminMegamenu
 		$input = JFactory::getApplication()->input;
 		
 		//params
-		$tplparams = $input->get('tplparams', '', 'raw');
-		if(!$tplparams){
-			$tplparams = self::getparams();
-		}
+		$tplparams = T3::getTemplateParams();
 		
 		//menu type
 		$menutype = $input->get('t3menu', 'mainmenu');
@@ -88,11 +85,7 @@ class T3AdminMegamenu
 		$input         = JFactory::getApplication()->input;
 		$template      = $input->get('template');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$tplparams     = $input->get('tplparams', '', 'raw');
-
-		if(!$tplparams){
-			$tplparams = self::getparams();
-		}
+		$tplparams     = T3::getTemplateParams();
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
@@ -149,11 +142,7 @@ class T3AdminMegamenu
 		$template      = $input->get('template');
 		$mmconfig      = $input->getString('config');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$tplparams     = $input->get('tplparams', '', 'raw');
-
-		if(!$tplparams){
-			$tplparams = self::getparams();
-		}
+		$tplparams     = T3::getTemplateParams();
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
@@ -276,41 +265,11 @@ class T3AdminMegamenu
 	
 	/**
 	 *
-	 * Ge template style params
-	 */
-	public static function getparams($id = null)
-	{
-		if (!$id) {
-			$id = JFactory::getApplication()->input->getCmd('id', '');
-		}
-		
-		$db    = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query
-			->select('template, params')
-			->from('#__template_styles')
-			->where('client_id = 0')
-			->where('id = ' . $id);
-		$db->setQuery($query);
-		$template = $db->loadObject();
-		
-		if ($template) {
-			$registry = new JRegistry;
-			$registry->loadString($template->params);
-			
-			return $registry;
-		}
-		
-		return null;
-	}
-	
-	/**
-	 *
 	 * Show thememagic form
 	 */
 	public static function megamenu()
 	{
-		$tplparams = self::getparams();
+		$tplparams = T3::getTemplateParams();
 		
 		$url = JFactory::getURI();
 		$url->delVar('t3action');

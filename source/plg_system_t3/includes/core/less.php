@@ -488,21 +488,24 @@ class T3Less extends lessc
 		}
 		
 		// compile rtl css
-		// compile default
-		if (!$theme || $theme == 'default') {
-			self::buildVars('', 'rtl');
-			foreach ($files as $file) {
-				$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $file . '.css');
-			}
-		}
-		
-		if (is_array($themes)) {
-			// rtl for themes
-			foreach ($themes as $t) {
-				self::buildVars($t, 'rtl');
-				// compile
+		$tplparams = T3::getTemplateParams();
+		if($tplparams && $tplparams->get('build_rtl', 0)){
+			// compile default
+			if (!$theme || $theme == 'default') {
+				self::buildVars('', 'rtl');
 				foreach ($files as $file) {
-					$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
+					$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $file . '.css');
+				}
+			}
+			
+			if (is_array($themes)) {
+				// rtl for themes
+				foreach ($themes as $t) {
+					self::buildVars($t, 'rtl');
+					// compile
+					foreach ($files as $file) {
+						$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
+					}
 				}
 			}
 		}
