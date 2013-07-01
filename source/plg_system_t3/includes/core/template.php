@@ -299,7 +299,7 @@ class T3Template extends ObjectExtendable
 				// check if available configuration for language override
 				$langcode = substr(JFactory::getDocument()->language, 0, 2);
 				if (isset($currentconfig[$menutype.'-'.$langcode])) {
-					$mmkey = $menutype . '-' . $langcode;
+					$mmkey = $menutype = $menutype . '-' . $langcode;
 				}
 			}
 
