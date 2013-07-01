@@ -1,3 +1,30 @@
+<h2>Version: 1.3.0 (01/07/2013)</h2>
+
+<h3>New features</h3>
+- Allow user put some codesnippet into some special positions (top-head, bottom-head, top-body, bottom-body) | <a href="https://github.com/t3framework/t3/commit/c0043b543138949a4bb4d2c7081a1a0dea80fc98">Link</a>
+- Megamenu: Support multi-configuration based on access level (3 basic access level only) and language | <a href="https://github.com/t3framework/t3/commit/2e1eb522da1d8d2c2fa9d214f73f19e289aa9155">Link</a>
+- Upgrade font awesome to v3.2.1 | <a href="https://github.com/t3framework/t3/commit/811ea4aa87eab8b2cf7ce3926745906c1672f032">Link</a>
+	
+<h3>Improvement</h3>
+- T3Depend: Extend to support multiple values | <a href="https://github.com/t3framework/t3/commit/079d193db8a3358f6235948740c7d5841e739c7d">Link</a>
+- T3: Update jQuery 1.9 ready | <a href="https://github.com/t3framework/t3/commit/ff61330348eabb20e2a01afaaad9a0174faa66fd">Link</a>
+- T3Admin: Change css of toolbar in J2.5 | <a href="https://github.com/t3framework/t3/commit/ff61330348eabb20e2a01afaaad9a0174faa66fd">Link</a>
+- Megamenu: Add delete configuration button | <a href="https://github.com/t3framework/t3/commit/e9ef3e9122f5272a6227f1bc640bddb43abc6867">Link</a>
+	
+<h3>Fix bugs</h3>
+- Offcanvas: Fix feature detect 'transition' | <a href="https://github.com/t3framework/t3/commit/03b9b0b9656f5644dd7e3dc5cb02bd469f66f42d">Link</a>
+- T3Admin: Fix Firefox script heavy waring when save the template style | <a href="https://github.com/t3framework/t3/commit/a4b1d5f302954820c9e4a38492886ea9c5bb77c7">Link</a>
+- Less: Fix font-awesome build | <a href="https://github.com/t3framework/t3/commit/06d93a2da96482b64db4474676fb21659dac955f">Link</a>
+- (fix) Ignore re-include variables.less when compiling less to css | <a href="https://github.com/t3framework/t3/commit/89e00f5d5ff3379ffd2811ba55bfab3bda133b7b">Link</a>
+- T3Admin: Fix backend can not replace with T3 markup | <a href="https://github.com/t3framework/t3/commit/6221731cb4e29e5fb5b0b1151b90673ec6252f87">Link</a>
+- Offcanvas: Fix conflict with Bootstrap modal on mobile | <a href="https://github.com/t3framework/t3/commit/91928f34db7c723ab1a1345af6ed826b1b14bbd9">Link</a>
+- T3Admin: Change css of toolbar in J2.5 | <a href="https://github.com/t3framework/t3/commit/ff61330348eabb20e2a01afaaad9a0174faa66fd">Link</a>
+- T3Package: Fix package installer | <a href="https://github.com/t3framework/t3/commit/2c30243d891db1312583935d42a3d50df457b788">Link</a>
+- T3Admin: Add copy template button for J3.0 | <a href="https://github.com/t3framework/t3/commit/ed54f8766477b3dc9029f3168b5016806a92cccb">Link</a>
+- Less: Fix build themes | <a href="https://github.com/t3framework/t3/commit/811ea4aa87eab8b2cf7ce3926745906c1672f032">Link</a>
+- Megamenu: Fix hide submenu item if its parent does not show | <a href="https://github.com/t3framework/t3/commit/c19f27ee516104a3d3e10309f3d5e84092ed236e">Link</a>
+- Megamenu: Fix auto detect switch menu configuration based on language | <a href="https://github.com/t3framework/t3/commit/c4916b4a6d5a3689e426a80b0d9a352f1ab9e329">Link</a>
+
 <h2>Version: 1.2.6 (04/06/2013)</h2>
 
 <h3>New features</h3>

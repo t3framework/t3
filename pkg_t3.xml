@@ -2,9 +2,9 @@
 <extension type="package" version="2.5" method="upgrade">
     <name>T3 Framework Package</name>
     <packagename>t3</packagename>
-    <version>1.2.4</version>
+    <version>1.3.0</version>
     <url>http://www.t3-framework.org</url>
-    <creationDate>26 April 2013</creationDate>
+    <creationDate>01 July 2013</creationDate>
     <copyright>(C) 2012 - 2013. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>support@t3-framework.org</authorEmail>
