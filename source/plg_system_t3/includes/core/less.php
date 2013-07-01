@@ -41,10 +41,8 @@ class T3Less extends lessc
 	
 	function getCss($path)
 	{
-		$app     = JFactory::getApplication();
 		// get vars last-modified
-		$vars_lm = $app->getUserState('vars_last_modified', 0);
-		$vars_lm = $app->getUserState('vars_last_modified_rtl', 0);
+		$vars_lm = JFactory::getApplication()->getUserState('vars_last_modified', 0);
 		
 		// less file last-modified
 		$filepath = JPATH_ROOT . '/' . $path;
@@ -73,31 +71,37 @@ class T3Less extends lessc
 	function buildCss($path)
 	{
 		$app     = JFactory::getApplication();
-		// get vars last-modified
-		$vars_lm = $app->getUserState('vars_last_modified', 0);
-		$vars_lm = $app->getUserState('vars_last_modified_rtl', 0);
 		$theme   = $app->getUserState('vars_theme', '');
 		
-		
 		// less file last-modified
-		$filepath = JPATH_ROOT . '/' . $path;
-		$less_lm  = filemtime($filepath);
-		
-		$less_lm_rtl = 0;
 		$is_rtl      = ($app->getUserState('DIRECTION') == 'rtl');
+		$filepath    = JPATH_ROOT . '/' . $path;
+		$less_lm     = is_file($filepath) ? filemtime($filepath) : 0;
+		$less_lm_rtl = 0;
+
 		if ($is_rtl) {
 			$filepath_rtl = preg_replace('/\/less\/(themes\/)?/', '/less/rtl/', $filepath);
-			if (is_file($filepath_rtl))
+			if (is_file($filepath_rtl)){
 				$less_lm_rtl = filemtime($filepath_rtl);
+			}
 		}
+
+		// get vars last-modified
+		$vars_lm     = $app->getUserState('vars_last_modified', 0);
 		
 		// get css cached file
 		$subdir  = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
 		$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $path) . '.css';
 		$cssurl  = JURI::base(true) . '/' . $cssfile;
 		$csspath = JPATH_ROOT . '/' . $cssfile;
-		if (is_file($csspath) && filemtime($csspath) > $less_lm && filemtime($csspath) > $less_lm_rtl && filemtime($csspath) > $vars_lm) {
-			return $cssurl;
+		if (is_file($csspath)){
+			$css_lm = filemtime($csspath);
+
+			if($css_lm > $less_lm &&
+			$css_lm > $vars_lm &&
+			$css_lm > $less_lm_rtl) {
+				return $cssurl;
+			}
 		}
 		
 		// not cached, build & store it
@@ -111,7 +115,7 @@ class T3Less extends lessc
 	function compileCss($path, $topath = '')
 	{
 		$app    = JFactory::getApplication();
-		$tpl    = $app->getTemplate();
+		$tpl    = T3_TEMPLATE;
 		$theme  = $app->getUserState('vars_theme');
 		$tofile = null;
 		
@@ -129,11 +133,10 @@ class T3Less extends lessc
 			return;
 		}
 
-		// Get file content
+		// get file content
 		$content = JFile::read($realpath);
 		// remove comments
 		$content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
-		
 		// split into array, separated by the import
 		$arr = preg_split('#^\s*@import\s+"([^"]*)"\s*;#im', $content, -1, PREG_SPLIT_DELIM_CAPTURE);
 		
@@ -147,7 +150,7 @@ class T3Less extends lessc
 		}
 		
 		// variables & mixin
-		$vars = $this->getVars();
+		$vars       = $this->getVars();
 		$importdirs = array();
 		
 		// compile chunk
@@ -160,19 +163,18 @@ class T3Less extends lessc
 				$url = T3Path::cleanPath(dirname($path) . '/' . $s);
 				// ignore vars.less and variables.less if they are in template folder
 				// cause there may have other css less file with the same name (eg. font awesome)
+				
 				if(strpos($url, $tpl . '/less/vars.less') !== false ||
 					strpos($url,  $tpl . '/less/variables.less') !== false || 
 					strpos($url, '/bootstrap/less/variables.less') !== false){
 
 					continue;
 				}
-
+				
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
-
-				// ignore variables.less | vars.less
 				if(strpos($url, $tpl . '/less/') !== false){
-					$importcontent = preg_replace('#^\s*@import\s+".*(variables|vars)\.less"\s*;#im', '', $importcontent);
+					$importcontent = preg_replace('#^\s*@import\s+".*(variables-custom|variables|vars)\.less"\s*;#im', '', $importcontent);
 				}
 
 				// remember this path when lookup for import
@@ -190,12 +192,8 @@ class T3Less extends lessc
 			}
 		}
 		
-		$importdirs[] = dirname($realpath);
-		$importdirs[] = T3_TEMPLATE_PATH . '/less/';
-		$this->setImportDir($importdirs);
-
 		// convert to RTL if using RTL
-		if ($app->getUserState('DIRECTION') == 'rtl' && !preg_match('#rtl/#', $path)) {
+		if ($app->getUserState('DIRECTION') == 'rtl' && strpos($path, 'rtl/') === false) {
 			// transform LTR to RTL
 			T3::import('jacssjanus/ja.cssjanus');
 			$output = JACSSJanus::transform($output, true);
@@ -206,15 +204,20 @@ class T3Less extends lessc
 			foreach ($arr as $s) {
 				if ($import) {
 					$import = false;
-					if ($s == 'vars.less')
+					
+					if ($s == 'vars.less'){
 						continue;
+					}
+
 					// process import file
 					$url = T3Path::cleanPath(dirname($path) . '/' . $s);
 					$url = preg_replace('/\/less\/(themes\/)?/', '/less/rtl/', $url);
-					if (!is_file(JPATH_ROOT . '/' . $url))
-						continue;
-					$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
 					
+					if (!is_file(JPATH_ROOT . '/' . $url)){
+						continue;
+					}
+
+					$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
 					$output .= "#less-file-path-rtl{content: \"$url\";}\n" . $importcontent . "\n\n";
 				} else {
 					$import = true;
@@ -238,6 +241,10 @@ class T3Less extends lessc
 				}
 			}
 		}
+
+		$importdirs[] = dirname($realpath);
+		$importdirs[] = T3_TEMPLATE_PATH . '/less/';
+		$this->setImportDir($importdirs);
 		
 		$source = $vars . "\n/**** Content ****/\n" . $output;
 		// compile less to css using lessphp
@@ -260,7 +267,7 @@ class T3Less extends lessc
 		}
 		
 		// remove the dupliate clearfix at the beggining if not bootstrap.css file
-		if (!preg_match('#bootstrap.less#', $path)) {
+		if (strpos($path, $tpl . '/less/bootstrap.less') === false) {
 			$arr = preg_split('/[\r?\n]{2,}/', $output);
 			// ignore first one, it's clearfix
 			array_shift($arr);
@@ -289,24 +296,29 @@ class T3Less extends lessc
 	public static function buildVars($theme = null, $dir = null)
 	{
 		$app  = JFactory::getApplication();
-		// get last modify from import files
 		$path = T3_TEMPLATE_PATH . '/less/vars.less';
-		$vars = JFile::read($path);
-		// get last-modified
-		preg_match_all('#^\s*@import\s+"([^"]*)"#im', $vars, $matches);
-		$vars          = '';
+		if(!is_file($path)){
+			T3::error(JText::_('T3_MSG_LESS_NOT_VALID'));
+			exit;
+		}
+
 		// get last-modified
 		$last_modified = filemtime($path);
+		$vars          = JFile::read($path);
+	
+		preg_match_all('#^\s*@import\s+"([^"]*)"#im', $vars, $matches);
 		if (count($matches[0])) {
+
+			$vars = '';
 			foreach ($matches[1] as $url) {
 				$path = T3Path::cleanPath(T3_TEMPLATE_PATH . '/less/' . $url);
 				if (file_exists($path)) {
-					if ($last_modified < filemtime($path))
-						$last_modified = filemtime($path);
+					$last_modified = max($last_modified, filemtime($path));
 					$vars .= JFile::read($path);
 				}
 			}
 		}
+
 		// theme style
 		if ($theme === null) {
 			$tpl   = $app->getTemplate(true);
@@ -322,53 +334,34 @@ class T3Less extends lessc
 		$app->setUserState('DIRECTION', $dir);
 		
 		if ($theme) {
-			// add theme variables.less
-			$path = T3_TEMPLATE_PATH . '/less/themes/' . $theme . '/variables.less';
-			if (is_file($path)) {
-				if ($last_modified < filemtime($path))
-					$last_modified = filemtime($path);
-				
-				// append theme file into vars
-				$vars .= JFile::read($path);
-			}
-			
-			// add theme variables-custom.less
-			$path = T3_TEMPLATE_PATH . '/less/themes/' . $theme . '/variables-custom.less';
-			if (is_file($path)) {
-				if ($last_modified < filemtime($path))
-					$last_modified = filemtime($path);
-				
-				// append theme file into vars
-				$vars .= JFile::read($path);
+			// add theme variables.less and variables-custom.less
+			foreach (array('variables.less', 'variables-custom.less') as $file) {
+				$path = T3_TEMPLATE_PATH . '/less/themes/' . $theme . '/' . $file;
+				if (is_file($path)) {
+					$last_modified = max($last_modified, filemtime($path));
+					$vars .= JFile::read($path);
+				}
 			}
 		}
 		
 		// RTL variables
 		$rtl = '';
 		if ($dir == 'rtl') {
-			// add rtl variables.less
-			$path = T3_TEMPLATE_PATH . '/less/rtl/variables.less';
-			if (is_file($path)) {
-				if ($last_modified < filemtime($path))
-					$last_modified = filemtime($path);
-				// append rtl file into vars
-				$vars .= JFile::read($path);
-			}
-			
-			// add rtl theme variables.less
-			$path = T3_TEMPLATE_PATH . '/less/rtl/' . $theme . '/variables.less';
-			if (is_file($path)) {
-				if ($last_modified < filemtime($path))
-					$last_modified = filemtime($path);
-				// append theme file into vars
-				$vars .= JFile::read($path);
+			// add rtl variables.less and rtl theme variables.less
+			foreach (array('variables.less', $theme . '/variables.less') as $file) {
+				$path = T3_TEMPLATE_PATH . '/less/rtl/' . $file;
+				if (is_file($path)) {
+					$last_modified = max($last_modified, filemtime($path));
+					// append rtl file into vars
+					$vars .= JFile::read($path);
+				}
 			}
 			
 			$rtl = '_rtl';
 		}
 		
-		if ($app->getUserState('vars_last_modified' . $rtl) != $last_modified . $theme) {
-			$app->setUserState('vars_last_modified' . $rtl, $last_modified . $theme);
+		if ($app->getUserState('vars_last_modified' . $rtl) != $last_modified . $theme . $rtl) {
+			$app->setUserState('vars_last_modified' . $rtl, $last_modified . $theme . $rtl);
 		} else {
 			return $app->getUserState('vars_content' . $rtl);
 		}
@@ -378,6 +371,7 @@ class T3Less extends lessc
 			T3::import('jacssjanus/ja.cssjanus');
 			$vars = JACSSJanus::transform($vars, true);
 		}
+
 		$app->setUserState('vars_content' . $rtl, $vars);
 	}
 	
@@ -408,6 +402,7 @@ class T3Less extends lessc
 				// get the less content
 				$lessContent = JFile::read(JPATH_ROOT . '/' . $lesspath);
 				$path        = dirname($lesspath);
+				
 				// parse less content
 				if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {
 					foreach ($matches[1] as $url) {
@@ -444,20 +439,20 @@ class T3Less extends lessc
 	
 	public static function compileAll($theme = null)
 	{
-		
 		$less     = new self;
 		// compile all css files
 		$files    = array();
 		$lesspath = 'templates/' . T3_TEMPLATE . '/less/';
 		$csspath  = 'templates/' . T3_TEMPLATE . '/css/';
 		
-		// get single files need to compile
+		// get files need to compile
 		$lessFiles   = JFolder::files(JPATH_ROOT . '/' . $lesspath, '.less');
 		$lessContent = '';
 		foreach ($lessFiles as $file) {
 			$lessContent .= JFile::read(JPATH_ROOT . '/' . $lesspath . $file) . "\n";
-			// get file imported in this list
 		}
+		
+		// get files imported in this list
 		if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {
 			foreach ($lessFiles as $f) {
 				if (!in_array($f, $matches[1]))
@@ -465,6 +460,7 @@ class T3Less extends lessc
 			}
 		}
 		
+		// build default
 		if (!$theme || $theme == 'default') {
 			self::buildVars('', 'ltr');
 			// compile default
@@ -472,12 +468,13 @@ class T3Less extends lessc
 				$less->compileCss($lesspath . $file . '.less', $csspath . $file . '.css');
 			}
 		}
-		// compile themes css
+
+		// build themes
 		if (!$theme) {
 			// get themes
 			$themes = JFolder::folders(JPATH_ROOT . '/' . $lesspath . '/themes');
 		} else {
-			$themes = $theme != 'default' ? (array) ($theme) : array();
+			$themes = $theme != 'default' ? (array)($theme) : array();
 		}
 		
 		if (is_array($themes)) {
@@ -491,9 +488,9 @@ class T3Less extends lessc
 		}
 		
 		// compile rtl css
-		self::buildVars('', 'rtl');
 		// compile default
 		if (!$theme || $theme == 'default') {
+			self::buildVars('', 'rtl');
 			foreach ($files as $file) {
 				$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $file . '.css');
 			}

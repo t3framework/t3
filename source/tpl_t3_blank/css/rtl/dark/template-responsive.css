@@ -1150,9 +1150,9 @@
   }
 }
 @media (max-width: 599px) {
-  article img[align=right],
-  .img_caption.left,
   article img[align=left],
+  .img_caption.left,
+  article img[align=right],
   .img_caption.right,
   .img-fulltext-left,
   .img-fulltext-right {
