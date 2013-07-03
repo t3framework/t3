@@ -196,8 +196,23 @@ class T3Less extends lessc
 		if ($app->getUserState('DIRECTION') == 'rtl' && strpos($path, 'rtl/') === false) {
 			// transform LTR to RTL
 			T3::import('jacssjanus/ja.cssjanus');
-			$output = JACSSJanus::transform($output, true);
-			
+			// $output = JACSSJanus::transform($output, true);
+			$reg = '/^(#less-file-path.*)$/m';
+			$arr = preg_split ($reg, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+			if (count($arr)) {
+				$is_source = true;
+				$output = "";
+				foreach ($arr as $s) {
+					if ($is_source) {
+						$output .= JACSSJanus::transform($s, true);
+						$is_source = false;
+					} else {
+						$output .= $s;
+						$is_source = true;
+					}
+				}
+			}
+						
 			// import rtl override
 			// check override for import
 			$import = false;

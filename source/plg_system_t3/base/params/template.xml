@@ -26,11 +26,19 @@
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
-			
+
 			<field name="responsive" type="radio" class="btn-group" default="1" 
 				global="1"
 				label="T3_GENERAL_RESPONSIVE_LABEL" 
 				description="T3_GENERAL_RESPONSIVE_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="build_rtl" type="radio" class="btn-group" default="0" 
+				global="1"
+				label="T3_GENERAL_BUILD_RTL_LABEL" 
+				description="T3_GENERAL_BUILD_RTL_DESC" >
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
