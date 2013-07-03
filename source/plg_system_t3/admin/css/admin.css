@@ -755,6 +755,19 @@ button.btn-primary:active {
   font-size: 14px;
 }
 
+/* GLOBAL BAGDE
+-------------------- */
+.t3-control-label.t3-admin-global::before {
+  float: right;
+  margin-right: -16px;
+  margin-top: -20px;
+  display: inline-block;
+  content: "\f0ac"; 
+  font-family: "FontAwesome";
+  font-size: 12px;
+  margin-left: 5px;
+  color: #07b;
+}
 
 
 /* PLUGINS STYLES

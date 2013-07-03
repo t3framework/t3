@@ -91,7 +91,7 @@ $iswritable = is_writable('t3test.txt');
 				?>
 				<?php if ($user->authorise('core.edit', 'com_menu') && ($form->getValue('client_id') == 0)):?>
 					<?php if ($canDo->get('core.edit.state')) : ?>
-							<li<?php echo $t3lock == 'assignment' ? ' class="active"' : ''?>><a href="#assignment_params" data-toggle="tab"><?php echo JText::_('T3_MENUS_ASSIGNMENT_LABEL');?></a></li>
+						<li<?php echo $t3lock == 'assignment' ? ' class="active"' : ''?>><a href="#assignment_params" data-toggle="tab"><?php echo JText::_('T3_MENUS_ASSIGNMENT_LABEL');?></a></li>
 					<?php endif; ?>
 				<?php endif;?>
 			</ul>
@@ -100,36 +100,36 @@ $iswritable = is_writable('t3test.txt');
 			<div class="tab-pane tab-overview clearfix<?php echo $t3lock == 'overview_params' ? ' active' : ''?>" id="overview_params">
 				<?php
 				$default_overview_override = T3_TEMPLATE_PATH . '/admin/default_overview.php';
-				if(file_exists($default_overview_override)) {
-					include $default_overview_override;
-				} else {
+                if(file_exists($default_overview_override)) {
+                    include $default_overview_override;
+                } else {
 					include T3_ADMIN_PATH . '/admin/tpls/default_overview.php';
 				}
 				?>
 			</div>
 			<?php
-			foreach ($fieldSets as $name => $fieldSet) :
-				
-				?>
+			foreach ($fieldSets as $name => $fieldSet) : ?>
 				<div class="tab-pane<?php echo $t3lock == preg_replace( '/\s+/', ' ', $name) ? ' active' : ''?>" id="<?php echo preg_replace( '/\s+/', ' ', $name); ?>">
 					<?php
 
-					if (isset($fieldSet->description) && trim($fieldSet->description)) :
+					if (isset($fieldSet->description) && trim($fieldSet->description)) : 
 						echo '<div class="t3-admin-fieldset-desc">'.(JText::_($fieldSet->description)).'</div>';
 					endif;
 
 					foreach ($form->getFieldset($name) as $field) :
-					$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
-					if ($field->type == 'Text') {
-						// add placeholder to Text input
-						$textinput = str_replace ('/>', ' placeholder="'.$form->getFieldAttribute($field->fieldname, 'default', '', $field->group).'"/>', $field->input);
-					}
+						$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
+						if ($field->type == 'Text') {
+							// add placeholder to Text input
+							$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group) . '"/>', $field->input);
+						}
+
+						$global = $form->getFieldAttribute($field->fieldname, 'global', 0, 'params');
 					?>
 					<?php if ($field->hidden || ($field->type == 'T3Depend' && !$field->label)) : ?>
 						<?php echo $field->input; ?>
 					<?php else : ?>
-					<div class="control-group t3-control-group<?php echo $hide ? ' hide' : ''?>">
-						<div class="control-label t3-control-label">
+					<div class="control-group t3-control-group<?php echo $hide ? ' hide' : '' ?>">
+						<div class="control-label t3-control-label<?php echo $global ? ' t3-admin-global' : '' ?>">
 							<?php echo $field->label; ?>
 						</div>
 						<div class="controls t3-controls">
