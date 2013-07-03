@@ -236,7 +236,7 @@ var T3Admin = window.T3Admin || {};
 
 		initChangeStyle: function(){
 			$('#t3-styles-list').on('change', function(){
-				window.location.href = T3Admin.baseurl + '/index.php?option=com_templates&task=style.edit&id=' + this.value;
+				window.location.href = T3Admin.baseurl + '/index.php?option=com_templates&task=style.edit&id=' + this.value + window.location.hash;
 			});
 		},
 
