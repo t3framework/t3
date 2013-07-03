@@ -91,10 +91,14 @@
 
 			<field name="sitename" type="text" default="" filter="RAW" size="50"
 				label="T3_THEME_SITENAME_LABEL"
-				description="T3_THEME_SITENAME_DESC" />
+				description="T3_THEME_SITENAME_DESC" 
+				placeholder="T3_THEME_SITENAME_HINT"
+				/>
 			<field name="slogan" type="text" default="" filter="RAW" size="50"
 				label="T3_THEME_SLOGAN_LABEL"
-				description="T3_THEME_SLOGAN_DESC" />
+				description="T3_THEME_SLOGAN_DESC" 
+				placeholder="T3_THEME_SLOGAN_HINT"
+				/>
 
 			<field name="logoimage" type="t3media" default=""
 				label="T3_THEME_LOGOIMAGE_LABEL" 

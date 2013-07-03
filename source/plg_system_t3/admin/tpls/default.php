@@ -118,22 +118,33 @@ $iswritable = is_writable('t3test.txt');
 
 					foreach ($form->getFieldset($name) as $field) :
 						$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
-						if ($field->type == 'Text') {
-							// add placeholder to Text input
-							$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group) . '"/>', $field->input);
+                        $fieldinput = $field->input;
+
+                        // add placeholder to Text input
+                        if ($field->type == 'Text') {
+                            $placeholder = $form->getFieldAttribute($field->fieldname, 'placeholder', '', $field->group);
+                            if(empty($placeholder)){
+                                $placeholder = $form->getFieldAttribute($field->fieldname, 'default', '', $field->group);
+                            } else {
+                                $placeholder = JText::_($placeholder);
+                            }
+
+                            if(!empty($placeholder)){
+                                $fieldinput = str_replace ('/>', ' placeholder="' . $placeholder . '"/>', $fieldinput);
+                            }
 						}
 
-						$global = $form->getFieldAttribute($field->fieldname, 'global', 0, 'params');
+						$global = $form->getFieldAttribute($field->fieldname, 'global', 0, $field->group);
 					?>
 					<?php if ($field->hidden || ($field->type == 'T3Depend' && !$field->label)) : ?>
-						<?php echo $field->input; ?>
+						<?php echo $fieldinput; ?>
 					<?php else : ?>
 					<div class="control-group t3-control-group<?php echo $hide ? ' hide' : '' ?>">
 						<div class="control-label t3-control-label<?php echo $global ? ' t3-admin-global' : '' ?>">
 							<?php echo $field->label; ?>
 						</div>
 						<div class="controls t3-controls">
-							<?php echo $field->type=='Text'?$textinput:$field->input ?>
+							<?php echo $fieldinput ?>
 						</div>
 					</div>
 					<?php endif; ?>
