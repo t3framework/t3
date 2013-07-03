@@ -83,7 +83,7 @@ defined('_JEXEC') or die;
     </div>
 
 
-    <div id="t3-admin-megamenu" class="t3-admin-megamenu">
+    <div id="t3-admin-megamenu" class="t3-admin-megamenu t3-admin-form">
       <div class="admin-inline-toolbox clearfix">
         <div class="t3-admin-mm-row clearfix">
 

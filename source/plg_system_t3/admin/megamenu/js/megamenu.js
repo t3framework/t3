@@ -453,21 +453,13 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		});
 
 		var menutype = $('#jform_params_mm_type').val(),
-			//jmmconfig = $('#jform_params_mm_config'),
 			curconfig = T3AdminMegamenu.config;
-
-		//try {
-			//curconfig = jmmconfig.val() ? $.parseJSON(jmmconfig.val()) : {};
-		//} catch(e){
-		//	curconfig = {};
-		//}
 
 		if($.isArray(curconfig) && curconfig.length == 0){
 			curconfig = {};
 		}
 
 		curconfig[menutype] = config;
-		//jmmconfig.val(JSON.stringify(curconfig));
 
 		$.ajax({
 			url: T3AdminMegamenu.referer,
@@ -504,7 +496,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			
 		}).always(function(){
 			savebtn.removeClass('loading')
-		})
+		});
 	}
 
 	toolbox_type = function () {
