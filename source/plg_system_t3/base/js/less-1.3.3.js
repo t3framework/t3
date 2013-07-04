@@ -4246,6 +4246,10 @@ function createCSS(styles, sheet, lastModified) {
 	(nextEl && nextEl.parentNode || document.getElementsByTagName('head')[0]).insertBefore(css, nextEl);
     }
 
+    if(typeof cssjanus != 'undefined'){
+        styles = cssjanus.transform(styles);
+    }
+
     if (css.styleSheet) { // IE
         try {
             css.styleSheet.cssText = styles;

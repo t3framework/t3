@@ -401,15 +401,25 @@ class T3Less extends lessc
 		}
 		
 		$app   = JFactory::getApplication();
+		$doc   = JFactory::getDocument();
 		$tpl   = $app->getTemplate(true);
 		$theme = $tpl->params->get('theme');
-		
-		$doc = JFactory::getDocument();
+
 		if (defined('T3_THEMER')) {
 			// in Themer mode, using js to parse less for faster
 			$doc->addStylesheet(JURI::base(true) . '/' . T3Path::cleanPath($lesspath), 'text/less');
-			// Add lessjs to process lesscss
-			$doc->addScript(T3_URL . '/js/less-1.3.3.js');
+
+			if(!defined('LESS_JS')){
+				// Add lessjs to process lesscss
+				$doc->addScript(T3_URL . '/js/less-1.3.3.js');
+
+				if($doc->direction == 'rtl'){
+					$doc->addScript(T3_URL . '/js/cssjanus.js');
+				}
+
+				define('LESS_JS', 1);
+			}
+			
 		} else {
 			// in development mode, using php to compile less for a better view of development
 			if (preg_match('#(template(-responsive)?.less)#', $lesspath)) {
