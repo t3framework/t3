@@ -126,4 +126,41 @@
 			});
 		}
 	});
+
+	//fix animation for navbar-collapse-fixed-top||bottom
+	$(window).load(function(){
+		if ($.support.transition) {
+			if(!$(document.documentElement).hasClass('off-canvas-ready') &&
+				($('.navbar-collapse-fixed-top').length ||
+					$('.navbar-collapse-fixed-bottom').length)){
+
+				var btn = $('.btn-navbar');
+				if (!btn.length){
+					return;
+				}
+
+				if(btn.data('target')){
+					var nav = $(btn.data('target'));
+					if(!nav.length){
+						return;
+					}
+
+					var fixedtop = nav.closest('.navbar-collapse-fixed-top').length;
+
+					btn.on('click', function(){
+						nav
+							.addClass('animate')
+							.css('max-height', fixedtop ?
+								((window.innerHeight || $(window).height()) - (parseFloat(nav.css('top')) || 0)) :
+								(parseFloat(nav.css('bottom')) || 0));
+					});
+					nav.on('shown hidden', function(){
+						nav.removeClass('animate');
+					});
+				}
+			}
+		}
+	});
+
+
 }(jQuery);

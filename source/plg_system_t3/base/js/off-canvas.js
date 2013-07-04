@@ -22,7 +22,12 @@
 				$nav = null,
 				$fixeditems = null;
 
-			if (!$btn.length) return;
+			if (!$btn.length){
+				return;
+			}
+
+			//mark that we have off-canvas menu
+			$(document.documentElement).addClass('off-canvas-ready');
 
 			$nav = $('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo(document.body));
 			$($btn.data('target')).clone().appendTo($nav);
@@ -37,16 +42,16 @@
 				return false;
 			});
 
-			posNav = function () {
+			var posNav = function () {
 				var t = $(window).scrollTop();
 				if (t < $nav.position().top) $nav.css('top', t);
-			};
+			},
 
 			bdHideNav = function (e) {
 				e.preventDefault();
 				hideNav();
 				return false;
-			};
+			},
 
 			showNav = function () {
 				$('html').addClass ('off-canvas');
@@ -71,9 +76,9 @@
 				setTimeout (function(){
 					wpfix(2);
 				}, 1000);
-			};
+			},
 
-			hideNav = function () {				
+			hideNav = function () {
 				$(window).unbind('scroll touchmove', posNav);
 				$('#off-canvas-nav').unbind ('click');
 				$('#off-canvas-nav a').unbind ('click', hideNav);
@@ -85,25 +90,28 @@
 				setTimeout (function(){
 					$('html').removeClass ('off-canvas');
 				}, 600);
-			};
+			},
 
 			wpfix = function (step) {
 				// check if need fixed
-				if ($fixeditems == -1) return ;// no need to fix
+				if ($fixeditems == -1){
+					return;// no need to fix
+				}
+
 				if (!$fixeditems) {
 					$fixeditems = $('body').children().filter(function(){ return $(this).css('position') === 'fixed' });
 					if (!$fixeditems.length) {
 						$fixeditems = -1;
-						return ;
+						return;
 					}
 				}
 
 				if (step==1) {
-					$fixeditems.css({'position': 'absolute', 'top': $(window).scrollTop()+'px'});
+					$fixeditems.css({'position': 'absolute', 'top': $(window).scrollTop() + 'px'});
 				} else {
 					$fixeditems.css({'position': '', 'top': ''});
 				}
-			}
+			};
 		}
 	})
 
