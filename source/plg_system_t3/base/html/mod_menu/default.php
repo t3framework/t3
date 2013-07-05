@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 <ul class="nav <?php echo $class_sfx;?>"<?php
 	$tag = '';
-	if ($params->get('tag_id')!= null)
+	if ($params->get('tag_id') != null)
 	{
 		$tag = $params->get('tag_id').'';
 		echo ' id="'.$tag.'"';
@@ -63,6 +63,7 @@ if (is_array($list)) :
 			case 'separator':
 			case 'url':
 			case 'component':
+			case 'heading':
 				require JModuleHelper::getLayoutPath('mod_menu', 'default_'.$item->type);
 				break;
 
