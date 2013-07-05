@@ -1,3 +1,20 @@
+<h2>Version: 1.3.1 (05/07/2013)</h2>
+
+<h3>New features</h3>
+- RTL support | <a href="https://github.com/t3framework/t3/commit/b5cf12b2225025b0a5910887c19a66ee3f2ff9e4">Link</a>
+	
+<h3>Improvement</h3>
+- ThemeMagic: Add cssjanus to transform RTL language | <a href="https://github.com/t3framework/t3/commit/1579c05067304068697225f32568d153b978e620">Link</a>
+- Add Build RTL CSS option to General tab | <a href="https://github.com/t3framework/t3/commit/11974eb14e1ad20bbfe8879e456d56f69f9fc9fa">Link</a>
+- T3Admin: Add support placeholder attribute for text field | <a href="https://github.com/t3framework/t3/commit/de375ea241d820d67bdf3b00c96ed33d0c2c98bb">Link</a>
+	
+<h3>Fix bugs</h3>
+- Overwrite: Fix compatible mod_menu J3.1 | <a href="https://github.com/t3framework/t3/commit/c71f59425fbb36c291d375b9860168069a4b98fd">Link</a>
+- Fix navar-collapse-fixed-top | <a href="https://github.com/t3framework/t3/commit/5af8c48523d73b42fee4739111a1b7dcc44ddcb9">Link</a>
+- Megamenu: Fix load module ajax | <a href="https://github.com/t3framework/t3/commit/78c4d0e060c8fb5c930e98709fb8a591acce6be5">Link</a>
+- Less: Fix build RTL | <a href="https://github.com/t3framework/t3/commit/ad88a06751ffed6a9d2cd16d3de7739fc052379b">Link</a>
+
+
 <h2>Version: 1.3.0 (01/07/2013)</h2>
 
 <h3>New features</h3>
