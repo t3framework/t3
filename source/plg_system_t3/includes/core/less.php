@@ -198,11 +198,11 @@ class T3Less extends lessc
 			T3::import('jacssjanus/ja.cssjanus');
 			// $output = JACSSJanus::transform($output, true);
 			$reg = '/^(#less-file-path.*)$/m';
-			$arr = preg_split ($reg, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-			if (count($arr)) {
+			$ltrarr = preg_split ($reg, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+			if (count($ltrarr)) {
 				$is_source = true;
 				$output = "";
-				foreach ($arr as $s) {
+				foreach ($ltrarr as $s) {
 					if ($is_source) {
 						$output .= JACSSJanus::transform($s, true);
 						$is_source = false;
@@ -246,6 +246,7 @@ class T3Less extends lessc
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
 				$output .= "#less-file-path-rtl{content: \"$rtlpath\";}\n" . $importcontent . "\n\n";
 			}
+
 			// rtl theme
 			if ($theme) {
 				$rtlthemepath = preg_replace('/\/less\/(themes\/[^\/]*\/)?/', '/less/rtl/' . $theme . '/', $path);
