@@ -43,9 +43,9 @@
     margin-right: -20px;
 
     // Toggle Button
-    .navbar .btn-navbar {
-      margin-bottom: (@T3globalMargin / 2);
-    }
+    //.navbar .btn-navbar {
+      //margin-bottom: (@T3globalMargin / 2);
+    //}
 
     .navbar .btn-navbar:hover {
       cursor: pointer;
@@ -132,8 +132,11 @@
     // ---------------------
     &.navbar-collapse-fixed-top,
     &.navbar-collapse-fixed-bottom {
-      margin-left: 0;
-      margin-right: 0;
+      margin: 0;
+
+      .nav-collapse {
+        margin: 0;
+      }
     }
     // End
   }

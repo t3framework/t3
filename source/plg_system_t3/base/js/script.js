@@ -150,9 +150,8 @@
 					btn.on('click', function(){
 						nav
 							.addClass('animate')
-							.css('max-height', fixedtop ?
-								((window.innerHeight || $(window).height()) - (parseFloat(nav.css('top')) || 0)) :
-								(parseFloat(nav.css('bottom')) || 0));
+							.css('max-height', (window.innerHeight || $(window).height()) -
+								(fixedtop ? (parseFloat(nav.css('top')) || 0) : (parseFloat(nav.css('bottom')) || 0)));
 					});
 					nav.on('shown hidden', function(){
 						nav.removeClass('animate');

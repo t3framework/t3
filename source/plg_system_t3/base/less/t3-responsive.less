@@ -26,31 +26,40 @@
   // -------------------------------------------------------
   .navbar-collapse-fixed-top,
   .navbar-collapse-fixed-bottom {
+    border-top: none;
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     z-index: 1000;
     // style for normal collapsed menu
-    .nav-collapse.in {
+    .nav-collapse {
       position: fixed;
       width: 100%;
-      overflow-y: auto;
-      top: @navbarHeight;
-      bottom: 0;
-      -webkit-overflow-scrolling: touch;
-      > * {
-        -webkit-transform: translateZ(0);
+      left: 0;
+      top: @navbarHeight + 2;
+      margin: 0;
+
+      &.in {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        > * {
+          -webkit-transform: translateZ(0);
+        }
       }
+    }
+
+    .nav-collapse.animate {
+      overflow: hidden;
     }
   }
 
   .navbar-collapse-fixed-bottom {
     bottom: 0;
     top: auto;
-    .nav-collapse.in {
-      top: 0;
-      bottom: @navbarHeight;
+    .nav-collapse {
+      bottom: @navbarHeight + 2;
+      top: auto;
     }
   }
 

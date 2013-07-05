@@ -68,27 +68,3 @@
     display: block;
   }
 }
-#less-file-path-rtl {
-  content: "plugins/system/t3/base/less/rtl/off-canvas.less";
-}
-@media (max-width: 767px) {
-  .off-canvas body > * {
-    left: 0;
-    -webkit-transform: translateX(0%);
-    -moz-transform: translateX(0%);
-    -o-transform: translateX(0%);
-    transform: translateX(0%);
-  }
-  .off-canvas #off-canvas-nav .t3-mainnav {
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -o-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  .off-canvas-enabled body > * {
-    -webkit-transform: translateX(-250px);
-    -moz-transform: translateX(-250px);
-    -o-transform: translateX(-250px);
-    transform: translateX(-250px);
-  }
-}
