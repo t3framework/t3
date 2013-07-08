@@ -673,11 +673,14 @@ class T3Template extends ObjectExtendable
 	function updateHead () {
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded 
-		$t3bootstrap = false;
-		$jabootstrap = false;
+		// And upgrade jquery as our Framework require jquery 1.7+ if we are loading jquery from google
+		$doc = JFactory::getDocument();
+		$scripts = array();
+
 		if(version_compare(JVERSION, '3.0', 'ge')){
-			$doc = JFactory::getDocument();
-			$scripts = array();
+			$t3bootstrap = false;
+			$jabootstrap = false;
+
 			foreach ($doc->_scripts as $url => $script) {
 				if(strpos($url, T3_URL.'/bootstrap/js/bootstrap.js') !== false){
 					$t3bootstrap = true;
@@ -700,7 +703,31 @@ class T3Template extends ObjectExtendable
 			}
 
 			$doc->_scripts = $scripts;
+			$scripts = array();
 		}
+
+		// VIRTUE MART compatible
+		foreach ($doc->_scripts as $url => $script) {
+			$replace = false;
+			if(strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false){
+				if(preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)){
+					if(is_array($jqver) && isset($jqver[1]) && isset($jqver[1][0])){
+						$jqver = explode('.', $jqver[1][0]);
+
+						if(isset($jqver[0]) && (int)$jqver[0] <= 1 && isset($jqver[1]) && (int)$jqver[1] < 7){
+							$scripts[T3_URL.'/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js'] = $script;
+							$replace = true;
+						}
+					}
+				}
+			}
+
+			if(!$replace){
+				$scripts[$url] = $script;
+			}
+		}
+
+		$doc->_scripts = $scripts;
 		// end update javascript
 
 		$devmode = $this->getParam('devmode', 0);
