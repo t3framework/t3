@@ -18,7 +18,7 @@
 		//inherit from bootstrap (http://www.modernizr.com/)
 		if ($.support.transition) {
 
-			var $btn = $('.btn-navbar'),
+			var $btn = $('.btn-navbar[data-toggle="collapse"]'),
 				$nav = null,
 				$fixeditems = null;
 
@@ -30,7 +30,13 @@
 			$(document.documentElement).addClass('off-canvas-ready');
 
 			$nav = $('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo(document.body));
-			$($btn.data('target')).clone().appendTo($nav);
+
+			//not all btn-navbar is used for off-canvas
+			var $navcollapse = $btn.parent().find($btn.data('target') + ':first');
+			if(!$navcollapse.length){
+				$navcollapse = $($btn.data('target') + ':first');
+			}
+			$navcollapse.clone().appendTo($nav);
 			
 			$btn.click (function(e){
 				if ($(this).data('off-canvas') == 'show') {
