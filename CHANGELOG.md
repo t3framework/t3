@@ -1,3 +1,18 @@
+<h2>Version: 1.4.0 (15/07/2013)</h2>
+
+<h3>Improvement</h3>
+- Module chrome: Support Joomla 3.0 advanced feature | <a href="https://github.com/t3framework/t3/commit/ba5b9a29ffc3355e9ba8b7eccab39a6f8b9f1667">Link</a>
+- T3 Blank: Enable languageswitherload position for multilanguage | <a href="https://github.com/t3framework/t3/commit/b0b63fe9386c5f4a7f9dbeb64b33e3bcc5835971">Link</a>
+
+<h3>Fix bugs</h3>
+- Fix jQuery conflict with Virtue Mart | <a href="https://github.com/t3framework/t3/commit/5356a49b267eb8330945997926bcb12972eba5e9">Link</a>
+- Fix off-canvas conflict with JomSocial | <a href="https://github.com/t3framework/t3/commit/7ebb3e11ea45bd1e330bd2cc8293502336ebb179">Link</a>
+- Off-canvas: Fix IE9 | <a href="https://github.com/t3framework/t3/commit/b9f2a4673fac64e418bc925cd2f117ddbe3e9fc3">Link</a>
+- RTL: Fix compile LESS to CSS | <a href="https://github.com/t3framework/t3/commit/56627765bf6e453abf6790ae9224ee0c9635de61">Link</a>
+- Megamenu: Fix Alignment error on RTL language | <a href="https://github.com/t3framework/t3/commit/13ab309e04742f7bfe84c33fda2c52bf71602335">Link</a>
+- Megamenu: Fix Magic Quote Gpc enabled | <a href="https://github.com/t3framework/t3/commit/13ab309e04742f7bfe84c33fda2c52bf71602335">Link</a>
+
+
 <h2>Version: 1.3.1 (05/07/2013)</h2>
 
 <h3>New features</h3>
