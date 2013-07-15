@@ -48,6 +48,9 @@ class JACSSJanus {
 	 * Build patterns we can't define above because they depend on other patterns.
 	 */
 	private static function buildPatterns() {
+		//increase the backtrack limit
+		@ini_set('pcre.backtrack_limit', '2M');
+
 		if ( isset( self::$patterns['token_delimiter'] ) ) {
 			// Patterns have already been built
 			return;

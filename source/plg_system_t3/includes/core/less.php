@@ -135,8 +135,10 @@ class T3Less extends lessc
 
 		// get file content
 		$content = JFile::read($realpath);
-		// remove comments
+		
+		// remove comments? - should we keep comment for rtl flip
 		$content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
+
 		// split into array, separated by the import
 		$arr = preg_split('#^\s*@import\s+"([^"]*)"\s*;#im', $content, -1, PREG_SPLIT_DELIM_CAPTURE);
 		
@@ -161,19 +163,16 @@ class T3Less extends lessc
 				$import = false;
 				
 				$url = T3Path::cleanPath(dirname($path) . '/' . $s);
+				
 				// ignore vars.less and variables.less if they are in template folder
 				// cause there may have other css less file with the same name (eg. font awesome)
-				
-				if(strpos($url, $tpl . '/less/vars.less') !== false ||
-					strpos($url,  $tpl . '/less/variables.less') !== false || 
-					strpos($url, '/bootstrap/less/variables.less') !== false){
-
+				if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less/', $url)){
 					continue;
 				}
 				
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
-				if(strpos($url, $tpl . '/less/') !== false){
+				if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\//', $url)){
 					$importcontent = preg_replace('#^\s*@import\s+".*(variables-custom|variables|vars)\.less"\s*;#im', '', $importcontent);
 				}
 
@@ -192,27 +191,12 @@ class T3Less extends lessc
 			}
 		}
 		
+		$rtlcontent = '';
+		$is_rtl     = $app->getUserState('DIRECTION') == 'rtl' && strpos($path, 'rtl/') === false;
+
 		// convert to RTL if using RTL
-		if ($app->getUserState('DIRECTION') == 'rtl' && strpos($path, 'rtl/') === false) {
-			// transform LTR to RTL
-			T3::import('jacssjanus/ja.cssjanus');
-			// $output = JACSSJanus::transform($output, true);
-			$reg = '/^(#less-file-path.*)$/m';
-			$ltrarr = preg_split ($reg, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-			if (count($ltrarr)) {
-				$is_source = true;
-				$output = "";
-				foreach ($ltrarr as $s) {
-					if ($is_source) {
-						$output .= JACSSJanus::transform($s, true);
-						$is_source = false;
-					} else {
-						$output .= $s;
-						$is_source = true;
-					}
-				}
-			}
-						
+		if ($is_rtl) {
+
 			// import rtl override
 			// check override for import
 			$import = false;
@@ -220,20 +204,32 @@ class T3Less extends lessc
 				if ($import) {
 					$import = false;
 					
-					if ($s == 'vars.less'){
+					$url = T3Path::cleanPath(dirname($path) . '/' . $s);
+					// ignore vars.less and variables.less if they are in template folder
+					// cause there may have other css less file with the same name (eg. font awesome)
+					if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less/', $url)){
 						continue;
 					}
 
 					// process import file
-					$url = T3Path::cleanPath(dirname($path) . '/' . $s);
 					$url = preg_replace('/\/less\/(themes\/)?/', '/less/rtl/', $url);
 					
 					if (!is_file(JPATH_ROOT . '/' . $url)){
 						continue;
 					}
 
+					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
-					$output .= "#less-file-path-rtl{content: \"$url\";}\n" . $importcontent . "\n\n";
+					if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\//', $url)){
+						$importcontent = preg_replace('#^\s*@import\s+".*(variables-custom|variables|vars)\.less"\s*;#im', '', $importcontent);
+					}
+
+					// remember this path when lookup for import
+					if (preg_match('#^\s*@import\s+"([^"]*)"\s*;#im', $importcontent)) {
+						$importdirs[] = dirname(JPATH_ROOT . '/' . $url);
+					}
+
+					$rtlcontent .= "#less-file-path-rtl{content: \"$url\";}\n" . $importcontent . "\n\n";
 				} else {
 					$import = true;
 				}
@@ -244,7 +240,7 @@ class T3Less extends lessc
 			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
-				$output .= "#less-file-path-rtl{content: \"$rtlpath\";}\n" . $importcontent . "\n\n";
+				$rtlcontent .= "#less-file-path-rtl{content: \"$rtlpath\";}\n" . $importcontent . "\n\n";
 			}
 
 			// rtl theme
@@ -253,21 +249,27 @@ class T3Less extends lessc
 				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-					$output .= "#less-file-path-rtl{content: \"$rtlthemepath\";}\n" . $importcontent . "\n\n";
+					$rtlcontent .= "#less-file-path-rtl{content: \"$rtlthemepath\";}\n" . $importcontent . "\n\n";
 				}
 			}
+
+			if($rtlcontent){
+				$output = $output . "#rtl-less-content{content: \"separator\";}\n\n" . $rtlcontent . "\n\n";
+			}
 		}
+
 
 		$importdirs[] = dirname($realpath);
 		$importdirs[] = T3_TEMPLATE_PATH . '/less/';
 		$this->setImportDir($importdirs);
+		$this->setPreserveComments(true);
 		
 		$source = $vars . "\n/**** Content ****/\n" . $output;
+
 		// compile less to css using lessphp
 		$output = $this->compile($source);
 		
-		$arr = preg_split('#^\s*\#less-file-path\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-		
+		$arr    = preg_split('#^\s*\#less-file-path[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
 		$output = '';
 		$file   = '';
 		$isfile = false;
@@ -284,10 +286,30 @@ class T3Less extends lessc
 		
 		// remove the dupliate clearfix at the beggining if not bootstrap.css file
 		if (strpos($path, $tpl . '/less/bootstrap.less') === false) {
-			$arr = preg_split('/[\r?\n]{2,}/', $output);
+			$arr = preg_split('/[\r?\n]{3,}/', $output);
 			// ignore first one, it's clearfix
-			array_shift($arr);
+			if(isset($arr[0]) && strpos($arr[0], '.clearfix') !== false){
+				array_shift($arr);
+			}
+
 			$output = implode("\n", $arr);
+		}
+
+		if ($is_rtl) {
+			
+			if($rtlcontent){
+				$output = preg_split('#^\s*\#rtl-less-content\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+				
+				$rtlcontent = isset($output[2]) ? $output[2] : false;
+				$output = $output[0];
+			}
+
+			T3::import('jacssjanus/ja.cssjanus');
+			$output = JACSSJanus::transform($output, true);
+			
+			if($rtlcontent){
+				$output = $output . "\n" . $rtlcontent;
+			}
 		}
 		
 		if ($tofile) {
@@ -382,12 +404,6 @@ class T3Less extends lessc
 			return $app->getUserState('vars_content' . $rtl);
 		}
 		
-		if ($rtl) {
-			// transform LTR to RTL
-			T3::import('jacssjanus/ja.cssjanus');
-			$vars = JACSSJanus::transform($vars, true);
-		}
-
 		$app->setUserState('vars_content' . $rtl, $vars);
 	}
 	

@@ -213,6 +213,7 @@ class T3AdminMegamenu
 
 		if(is_array($menus) && is_array($menulangs)){
 			foreach ($menus as $menu) {
+				$menu->text = $menu->text . ' [' . $menu->value . ']';
 				$menu->language = isset($menulangs[$menu->value]) ? $menulangs[$menu->value]['language'] : '*';
 			}
 		}
