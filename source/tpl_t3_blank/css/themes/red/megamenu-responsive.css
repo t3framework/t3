@@ -60,6 +60,12 @@
   .t3-megamenu .mega-caption {
     display: none !important;
   }
+  html[dir="rtl"] .t3-megamenu .row-fluid,
+  html[dir="rtl"] .t3-megamenu .mega-dropdown-menu,
+  html[dir="rtl"] .t3-megamenu .row-fluid [class*="span"] {
+    right: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 @media (max-width: 767px) {
   .t3-megamenu .mega-inner {

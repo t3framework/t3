@@ -1023,10 +1023,10 @@
   }
   .navbar-collapse-fixed-top .nav-collapse,
   .navbar-collapse-fixed-bottom .nav-collapse {
-    position: fixed;
+    position: absolute;
     width: 100%;
     left: 0;
-    top: 42px;
+    top: 41px;
     margin: 0;
   }
   .navbar-collapse-fixed-top .nav-collapse.in,
@@ -1047,8 +1047,12 @@
     top: auto;
   }
   .navbar-collapse-fixed-bottom .nav-collapse {
-    bottom: 42px;
+    bottom: 41px;
     top: auto;
+  }
+  .navbar-collapse-fixed-bottom .btn-navbar {
+    position: absolute;
+    bottom: 0;
   }
 }
 @media (max-width: 767px) {
@@ -1236,6 +1240,18 @@
   }
   .head-search .input:focus {
     width: 100%;
+  }
+  .t3-header .span8,
+  .t3-header .span4 {
+    width: 100% !important;
+    margin-left: 0 !important;
+    float: none;
+  }
+  .languageswitcherload {
+    float: left;
+  }
+  .languageswitcherload .mod-languages {
+    text-align: right;
   }
   .t3-sl {
     padding-bottom: 20px;

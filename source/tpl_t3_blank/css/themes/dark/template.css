@@ -669,6 +669,7 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5d5d5d', endColorstr='#ff444444', GradientType=0);
   border-color: #444 #444 #1e1e1e;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #444;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -774,6 +775,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0097ed', endColorstr='#ff0077bb', GradientType=0);
   border-color: #07b #07b #00466f;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #07b;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -804,6 +806,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff9f32', endColorstr='#ffff8800', GradientType=0);
   border-color: #f80 #f80 #b35f00;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #f80;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -834,6 +837,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff0000', endColorstr='#ffcc0000', GradientType=0);
   border-color: #c00 #c00 #800000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #c00;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -864,6 +868,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff87cc00', endColorstr='#ff669900', GradientType=0);
   border-color: #690 #690 #334d00;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #690;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -894,6 +899,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00bfff', endColorstr='#ff0099cc', GradientType=0);
   border-color: #09c #09c #006080;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #09c;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -924,6 +930,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5d5d5d', endColorstr='#ff444444', GradientType=0);
   border-color: #444 #444 #1e1e1e;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #444;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -1326,6 +1333,7 @@ input.invalid {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffd8d8d8', GradientType=0);
   border-color: #d9d9d9 #d9d9d9 #b3b3b3;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #d9d9d9;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
@@ -2320,6 +2328,13 @@ article aside .btn-group > .dropdown-toggle:focus {
 }
 .btn-group .chzn-results {
   white-space: normal;
+}
+.languageswitcherload {
+  float: right;
+  width: 100%;
+}
+.languageswitcherload .mod-languages {
+  text-align: right;
 }
 p {
   margin: 0 0 10px;

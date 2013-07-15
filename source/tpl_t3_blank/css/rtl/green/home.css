@@ -109,6 +109,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
   border-color: #222 #222 #000000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #222;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }

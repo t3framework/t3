@@ -1,3 +1,102 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         https://github.com/t3framework/ 
+ *------------------------------------------------------------------------------
+*/
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+/**** Content ****/
+/* Responsive images (ensure images don't scale beyond their parents) */
+/* Allow for input prepend/append in search forms */
+/*!
+ *  Font Awesome 3.2.1
+ *  the iconic font designed for Bootstrap
+ *  ------------------------------------------------------------------------------
+ *  The full suite of pictographic icons, examples, and documentation can be
+ *  found at http://fontawesome.io.  Stay up to date on Twitter at
+ *  http://twitter.com/fontawesome.
+ *
+ *  License
+ *  ------------------------------------------------------------------------------
+ *  - The Font Awesome font is licensed under SIL OFL 1.1 -
+ *    http://scripts.sil.org/OFL
+ *  - Font Awesome CSS, LESS, and SASS files are licensed under MIT License -
+ *    http://opensource.org/licenses/mit-license.html
+ *  - Font Awesome documentation licensed under CC BY 3.0 -
+ *    http://creativecommons.org/licenses/by/3.0/
+ *  - Attribution is no longer required in Font Awesome 3.0, but much appreciated:
+ *    "Font Awesome by Dave Gandy - http://fontawesome.io"
+ *
+ *  Author - Dave Gandy
+ *  ------------------------------------------------------------------------------
+ *  Email: dave@fontawesome.io
+ *  Twitter: http://twitter.com/davegandy
+ *  Work: Lead Product Designer @ Kyruus - http://kyruus.com
+ */
+/* FONT PATH
+ * -------------------------- */
+/* FONT AWESOME CORE
+ * -------------------------- */
+/* makes the font 33% larger relative to the icon container */
+/* makes sure icons active on rollover in links */
+/* increased font size for icon-large */
+/* BOOTSTRAP SPECIFIC CLASSES
+ * -------------------------- */
+/* Bootstrap 2.0 sprites.less reset */
+/* more sprites.less reset */
+/* keeps Bootstrap styles with and without icons the same */
+/* Fixes alignment in nav lists */
+/* EXTRAS
+ * -------------------------- */
+/* Stacked and layered icon */
+/* Animated rotating icon */
+/* Prevent stack and spinners from being taken inline when inside a link */
+/* Icon rotations and mirroring */
+/* ensure rotation occurs inside anchor tags */
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+/* move down carets for tabs */
 .clearfix {
   *zoom: 1;
 }
@@ -81,8 +180,11 @@ sub {
   bottom: -0.25em;
 }
 img {
+  /* Part 1: Set a maxium relative to the parent */
   max-width: 100%;
+  /* IE7-8 need help adjusting responsive images */
   width: auto \9;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
   height: auto;
   vertical-align: middle;
   border: 0;
@@ -700,6 +802,7 @@ input[type="color"]:focus,
 .uneditable-input:focus {
   border-color: rgba(82,168,236,0.8);
   outline: 0;
+  /* IE6-9 */
   outline: thin dotted \9;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
@@ -708,7 +811,9 @@ input[type="color"]:focus,
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
+  /* IE7 */
   *margin-top: 0;
+  /* IE8-9 */
   margin-top: 1px \9;
   line-height: normal;
 }
@@ -723,7 +828,9 @@ input[type="checkbox"] {
 }
 select,
 input[type="file"] {
+  /* In IE7, the height of the select element cannot be changed by height, only font-size */
   height: 30px;
+  /* For IE7, add top margin to align select with labels */
   *margin-top: 4px;
   line-height: 30px;
 }
@@ -1096,6 +1203,7 @@ select:focus:invalid:focus {
 }
 .help-inline {
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
   vertical-align: middle;
@@ -1131,12 +1239,12 @@ select:focus:invalid:focus {
   margin-bottom: 0;
   *margin-right: 0;
   vertical-align: top;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .input-append input:focus,
 .input-append select:focus,
@@ -1186,32 +1294,32 @@ select:focus:invalid:focus {
 }
 .input-prepend .add-on:first-child,
 .input-prepend .btn:first-child {
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 .input-append input,
 .input-append select,
 .input-append .uneditable-input {
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 .input-append input + .btn-group .btn:last-child,
 .input-append select + .btn-group .btn:last-child,
 .input-append .uneditable-input + .btn-group .btn:last-child {
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .input-append .add-on,
 .input-append .btn,
@@ -1221,12 +1329,12 @@ select:focus:invalid:focus {
 .input-append .add-on:last-child,
 .input-append .btn:last-child,
 .input-append .btn-group:last-child > .dropdown-toggle {
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .input-prepend.input-append input,
 .input-prepend.input-append select,
@@ -1241,32 +1349,32 @@ select:focus:invalid:focus {
 .input-prepend.input-append input + .btn-group .btn,
 .input-prepend.input-append select + .btn-group .btn,
 .input-prepend.input-append .uneditable-input + .btn-group .btn {
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .input-prepend.input-append .add-on:first-child,
 .input-prepend.input-append .btn:first-child {
   margin-left: -1px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 .input-prepend.input-append .add-on:last-child,
 .input-prepend.input-append .btn:last-child {
   margin-right: -1px;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .input-prepend.input-append .btn-group:first-child {
   margin-right: 0;
@@ -1275,6 +1383,7 @@ input.search-query {
   padding-left: 14px;
   padding-left: 4px \9;
   padding-right: 14px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
   padding-right: 4px \9;
   margin-bottom: 0;
   -webkit-border-radius: 15px;
@@ -1294,36 +1403,36 @@ input.search-query {
   border-radius: 0;
 }
 .form-search .input-append .search-query {
-  -webkit-border-radius: 14px 14px 0 0;
-  -moz-border-radius: 14px 14px 0 0;
-  border-radius: 14px 14px 0 0;
-  -webkit-border-radius: 14px 14px 0 0;
-  -moz-border-radius: 14px 14px 0 0;
-  border-radius: 14px 14px 0 0;
+  -webkit-border-radius: 0 14px 14px 0;
+  -moz-border-radius: 0 14px 14px 0;
+  border-radius: 0 14px 14px 0;
+  -webkit-border-radius: 0 14px 14px 0;
+  -moz-border-radius: 0 14px 14px 0;
+  border-radius: 0 14px 14px 0;
 }
 .form-search .input-append .btn {
-  -webkit-border-radius: 0 0 14px 14px;
-  -moz-border-radius: 0 0 14px 14px;
-  border-radius: 0 0 14px 14px;
-  -webkit-border-radius: 0 0 14px 14px;
-  -moz-border-radius: 0 0 14px 14px;
-  border-radius: 0 0 14px 14px;
+  -webkit-border-radius: 14px 0 0 14px;
+  -moz-border-radius: 14px 0 0 14px;
+  border-radius: 14px 0 0 14px;
+  -webkit-border-radius: 14px 0 0 14px;
+  -moz-border-radius: 14px 0 0 14px;
+  border-radius: 14px 0 0 14px;
 }
 .form-search .input-prepend .search-query {
-  -webkit-border-radius: 0 0 14px 14px;
-  -moz-border-radius: 0 0 14px 14px;
-  border-radius: 0 0 14px 14px;
-  -webkit-border-radius: 0 0 14px 14px;
-  -moz-border-radius: 0 0 14px 14px;
-  border-radius: 0 0 14px 14px;
+  -webkit-border-radius: 14px 0 0 14px;
+  -moz-border-radius: 14px 0 0 14px;
+  border-radius: 14px 0 0 14px;
+  -webkit-border-radius: 14px 0 0 14px;
+  -moz-border-radius: 14px 0 0 14px;
+  border-radius: 14px 0 0 14px;
 }
 .form-search .input-prepend .btn {
-  -webkit-border-radius: 14px 14px 0 0;
-  -moz-border-radius: 14px 14px 0 0;
-  border-radius: 14px 14px 0 0;
-  -webkit-border-radius: 14px 14px 0 0;
-  -moz-border-radius: 14px 14px 0 0;
-  border-radius: 14px 14px 0 0;
+  -webkit-border-radius: 0 14px 14px 0;
+  -moz-border-radius: 0 14px 14px 0;
+  border-radius: 0 14px 14px 0;
+  -webkit-border-radius: 0 14px 14px 0;
+  -moz-border-radius: 0 14px 14px 0;
+  border-radius: 0 14px 14px 0;
 }
 .form-search input,
 .form-search textarea,
@@ -1347,6 +1456,7 @@ input.search-query {
 .form-horizontal .input-prepend,
 .form-horizontal .input-append {
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
   margin-bottom: 0;
@@ -1696,7 +1806,7 @@ table th[class*="span"],
   font-style: normal;
   text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
-  *margin-right: .3em;
+  *margin-left: .3em;
 }
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
@@ -1716,15 +1826,15 @@ a [class*=" icon-"] {
 [class*=" icon-"].icon-fixed-width {
   display: inline-block;
   width: 1.1428571428571em;
-  text-align: right;
-  padding-right: 0.28571428571429em;
+  text-align: left;
+  padding-left: 0.28571428571429em;
 }
 [class^="icon-"].icon-fixed-width.icon-large,
 [class*=" icon-"].icon-fixed-width.icon-large {
   width: 1.4285714285714em;
 }
 .icons-ul {
-  margin-left: 2.1428571428571em;
+  margin-right: 2.1428571428571em;
   list-style-type: none;
 }
 .icons-ul > li {
@@ -1732,7 +1842,7 @@ a [class*=" icon-"] {
 }
 .icons-ul .icon-li {
   position: absolute;
-  left: -2.1428571428571em;
+  right: -2.1428571428571em;
   width: 2.1428571428571em;
   text-align: center;
   line-height: inherit;
@@ -1809,18 +1919,18 @@ a [class*=" icon-"] {
   border-radius: 7px;
 }
 .pull-right {
-  float: right;
+  float: left;
 }
 .pull-left {
-  float: left;
+  float: right;
 }
 [class^="icon-"].pull-left,
 [class*=" icon-"].pull-left {
-  margin-right: .3em;
+  margin-left: .3em;
 }
 [class^="icon-"].pull-right,
 [class*=" icon-"].pull-right {
-  margin-left: .3em;
+  margin-right: .3em;
 }
 [class^="icon-"],
 [class*=" icon-"] {
@@ -1830,7 +1940,7 @@ a [class*=" icon-"] {
   line-height: normal;
   vertical-align: baseline;
   background-image: none;
-  background-position: 0% 0%;
+  background-position: 100% 0%;
   background-repeat: repeat;
   margin-top: 0;
 }
@@ -1899,11 +2009,11 @@ a [class*=" icon-"] {
 }
 .btn.btn-large [class^="icon-"].pull-left.icon-2x,
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x {
-  margin-right: .2em;
+  margin-left: .2em;
 }
 .btn.btn-large [class^="icon-"].pull-right.icon-2x,
 .btn.btn-large [class*=" icon-"].pull-right.icon-2x {
-  margin-left: .2em;
+  margin-right: .2em;
 }
 .nav-list [class^="icon-"],
 .nav-list [class*=" icon-"] {
@@ -3212,6 +3322,7 @@ button.close {
 
 .btn {
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
   padding: 4px 12px;
@@ -3233,6 +3344,7 @@ button.close {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff5d5d5d', GradientType=0);
   border-color: #5e5e5e #5e5e5e #373737;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #5e5e5e;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border: 1px solid #2b2b2b;
@@ -3379,6 +3491,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0077bb', endColorstr='#ff0097ed', GradientType=0);
   border-color: #0097ee #0097ee #0067a2;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #0097ee;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3409,6 +3522,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff8800', endColorstr='#ffff9f32', GradientType=0);
   border-color: #ffa033 #ffa033 #e67a00;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #ffa033;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3439,6 +3553,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcc0000', endColorstr='#ffff0000', GradientType=0);
   border-color: #ff0000 #ff0000 #b30000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #ff0000;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3469,6 +3584,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff669900', endColorstr='#ff87cc00', GradientType=0);
   border-color: #88cc00 #88cc00 #558000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #88cc00;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3499,6 +3615,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0099cc', endColorstr='#ff00bfff', GradientType=0);
   border-color: #00bfff #00bfff #0086b3;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #00bfff;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3529,6 +3646,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff5d5d5d', GradientType=0);
   border-color: #5e5e5e #5e5e5e #373737;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #5e5e5e;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3608,6 +3726,7 @@ input[type="submit"].btn.btn-mini {
 .btn-group {
   position: relative;
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
   font-size: 0;
@@ -3785,6 +3904,7 @@ input[type="submit"].btn.btn-mini {
 }
 .btn-group-vertical {
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
 }
@@ -4011,12 +4131,12 @@ input[type="submit"].btn.btn-mini {
   padding-bottom: 8px;
   line-height: 20px;
   border: 1px solid transparent;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
@@ -4095,12 +4215,12 @@ input[type="submit"].btn.btn-mini {
   margin-bottom: 1px;
 }
 .nav-tabs .dropdown-menu {
-  -webkit-border-radius: 0 6px 6px 0;
-  -moz-border-radius: 0 6px 6px 0;
-  border-radius: 0 6px 6px 0;
-  -webkit-border-radius: 0 6px 6px 0;
-  -moz-border-radius: 0 6px 6px 0;
-  border-radius: 0 6px 6px 0;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
 }
 .nav-pills .dropdown-menu {
   -webkit-border-radius: 6px;
@@ -4192,12 +4312,12 @@ input[type="submit"].btn.btn-mini {
   margin-bottom: 0;
 }
 .tabs-below > .nav-tabs > li > a {
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
 }
 .tabs-below > .nav-tabs > li > a:hover,
 .tabs-below > .nav-tabs > li > a:focus {
@@ -4226,16 +4346,16 @@ input[type="submit"].btn.btn-mini {
 }
 .tabs-left > .nav-tabs > li > a {
   margin-left: -1px;
-  -webkit-border-radius: 4px 4px 0 0;
-  -moz-border-radius: 4px 4px 0 0;
-  border-radius: 4px 4px 0 0;
-  -webkit-border-radius: 4px 4px 0 0;
-  -moz-border-radius: 4px 4px 0 0;
-  border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 .tabs-left > .nav-tabs > li > a:hover,
 .tabs-left > .nav-tabs > li > a:focus {
-  border-color: #eee #ddd #eee #eee;
+  border-color: #eee #eee #eee #ddd;
 }
 .tabs-left > .nav-tabs .active > a,
 .tabs-left > .nav-tabs .active > a:hover,
@@ -4250,16 +4370,16 @@ input[type="submit"].btn.btn-mini {
 }
 .tabs-right > .nav-tabs > li > a {
   margin-right: -1px;
-  -webkit-border-radius: 0 0 4px 4px;
-  -moz-border-radius: 0 0 4px 4px;
-  border-radius: 0 0 4px 4px;
-  -webkit-border-radius: 0 0 4px 4px;
-  -moz-border-radius: 0 0 4px 4px;
-  border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .tabs-right > .nav-tabs > li > a:hover,
 .tabs-right > .nav-tabs > li > a:focus {
-  border-color: #eee #eee #eee #ddd;
+  border-color: #eee #ddd #eee #eee;
 }
 .tabs-right > .nav-tabs .active > a,
 .tabs-right > .nav-tabs .active > a:hover,
@@ -4545,6 +4665,7 @@ input[type="submit"].btn.btn-mini {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffd8d8d8', GradientType=0);
   border-color: #d9d9d9 #d9d9d9 #b3b3b3;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #d9d9d9;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
@@ -4659,12 +4780,12 @@ input[type="submit"].btn.btn-mini {
   left: 100%;
   margin-right: 0;
   margin-left: -1px;
-  -webkit-border-radius: 6px 6px 6px 0;
-  -moz-border-radius: 6px 6px 6px 0;
-  border-radius: 6px 6px 6px 0;
-  -webkit-border-radius: 6px 6px 6px 0;
-  -moz-border-radius: 6px 6px 6px 0;
-  border-radius: 6px 6px 6px 0;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px 6px;
+  border-radius: 0 6px 6px 6px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px 6px;
+  border-radius: 0 6px 6px 6px;
 }
 .navbar-inverse .navbar-inner {
   background-color: #1b1b1b;
@@ -4783,6 +4904,7 @@ input[type="submit"].btn.btn-mini {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff151515', endColorstr='#ff040404', GradientType=0);
   border-color: #040404 #040404 #000000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   *background-color: #040404;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -4817,6 +4939,7 @@ input[type="submit"].btn.btn-mini {
 }
 .breadcrumb > li {
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
   text-shadow: 0 1px 0 #fff;
@@ -4836,6 +4959,7 @@ input[type="submit"].btn.btn-mini {
 }
 .pagination ul {
   display: inline-block;
+  /* IE7 inline-block hack */
   *display: inline;
   *zoom: 1;
   margin-right: 0;
@@ -5050,6 +5174,7 @@ input[type="submit"].btn.btn-mini {
   background-color: #fff;
   border: 1px solid #999;
   border: 1px solid rgba(0,0,0,0.3);
+  /* IE6-7 */
   *border: 1px solid #999;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -5101,12 +5226,12 @@ input[type="submit"].btn.btn-mini {
   text-align: left;
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;
-  -webkit-border-radius: 0 6px 6px 0;
-  -moz-border-radius: 0 6px 6px 0;
-  border-radius: 0 6px 6px 0;
-  -webkit-border-radius: 0 6px 6px 0;
-  -moz-border-radius: 0 6px 6px 0;
-  border-radius: 0 6px 6px 0;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
   -webkit-box-shadow: inset 0 1px 0 #fff;
   -moz-box-shadow: inset 0 1px 0 #fff;
   box-shadow: inset 0 1px 0 #fff;
@@ -5196,14 +5321,14 @@ input[type="submit"].btn.btn-mini {
   top: 50%;
   right: 0;
   margin-top: -5px;
-  border-width: 5px 5px 5px 0;
+  border-width: 5px 0 5px 5px;
   border-left-color: #000;
 }
 .tooltip.left .tooltip-arrow {
   top: 50%;
   left: 0;
   margin-top: -5px;
-  border-width: 5px 0 5px 5px;
+  border-width: 5px 5px 5px 0;
   border-right-color: #000;
 }
 .tooltip.bottom .tooltip-arrow {
@@ -5262,12 +5387,12 @@ input[type="submit"].btn.btn-mini {
   line-height: 18px;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
-  -webkit-border-radius: 5px 0 0 5px;
-  -moz-border-radius: 5px 0 0 5px;
-  border-radius: 5px 0 0 5px;
-  -webkit-border-radius: 5px 0 0 5px;
-  -moz-border-radius: 5px 0 0 5px;
-  border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 .popover-title:empty {
   display: none;
@@ -5627,10 +5752,10 @@ input[type="submit"].btn.btn-mini {
 .carousel-inner > .item {
   display: none;
   position: relative;
-  -webkit-transition: .6s ease-in-out left;
-  -moz-transition: .6s ease-in-out left;
-  -o-transition: .6s ease-in-out left;
-  transition: .6s ease-in-out left;
+  -webkit-transition: .6s ease-in-out right;
+  -moz-transition: .6s ease-in-out right;
+  -o-transition: .6s ease-in-out right;
+  transition: .6s ease-in-out right;
 }
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {

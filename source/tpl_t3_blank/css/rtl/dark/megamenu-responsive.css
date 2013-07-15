@@ -47,7 +47,7 @@
   }
   .t3-megamenu .row-fluid + .row-fluid {
     padding-top: 10px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #444;
   }
   .t3-megamenu .hidden-collapse,
   .t3-megamenu .always-show  .caret,
@@ -59,6 +59,12 @@
   }
   .t3-megamenu .mega-caption {
     display: none !important;
+  }
+  html[dir="rtl"] .t3-megamenu .row-fluid,
+  html[dir="rtl"] .t3-megamenu .mega-dropdown-menu,
+  html[dir="rtl"] .t3-megamenu .row-fluid [class*="span"] {
+    left: 0 !important;
+    margin-left: 0 !important;
   }
 }
 @media (max-width: 767px) {
