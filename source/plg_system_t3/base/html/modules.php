@@ -34,20 +34,26 @@ defined('_JEXEC') or die('Restricted access');
  */
 function modChrome_T3Xhtml($module, &$params, &$attribs)
 { 
-	$badge = preg_match ('/badge/', $params->get('moduleclass_sfx'))? '<span class="badge">&nbsp;</span>' : '';
-	?>
-	<div class="t3-module module<?php echo $params->get('moduleclass_sfx'); ?>" id="Mod<?php echo $module->id; ?>">
-		<div class="module-inner">
-			<?php echo $badge; ?>
-			<?php if ($module->showtitle != 0) : ?>
-				<h3 class="module-title"><span><?php echo $module->title; ?></span></h3>
-			<?php endif; ?>
-			<div class="module-ct">
-				<?php echo $module->content; ?>
-			</div>
-		</div>
-	</div>
-	<?php
+	$badge          = preg_match ('/badge/', $params->get('moduleclass_sfx'))? '<span class="badge">&nbsp;</span>' : '';
+	$moduleTag      = htmlspecialchars($params->get('module_tag', 'div'));
+	$headerTag      = htmlspecialchars($params->get('header_tag', 'h3'));
+	$headerClass    = $params->get('header_class');
+	$bootstrapSize  = $params->get('bootstrap_size');
+	$moduleClass    = !empty($bootstrapSize) ? ' span' . (int) $bootstrapSize . '' : '';
+	$moduleClassSfx = htmlspecialchars($params->get('moduleclass_sfx'));
+
+	if (!empty ($module->content)) {
+		$html = "<{$moduleTag} class=\"t3-module module {$moduleClassSfx} {$moduleClass}\" id=\"Mod{$module->id}\">" .
+					"<div class=\"module-inner\">" . $badge;
+
+		if ($module->showtitle != 0) {
+			$html .= "<{$headerTag} class=\"module-title {$headerClass}\"><span>{$module->title}</span></{$headerTag}>";
+		}
+
+		$html .= "<div class=\"module-ct\">{$module->content}</div></div></{$moduleTag}>";
+
+		echo $html;
+	}
 }
 
 
