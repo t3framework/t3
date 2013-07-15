@@ -143,6 +143,10 @@ class T3AdminMegamenu
 		$mmconfig      = $input->getString('config');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
 		$tplparams     = T3::getTemplateParams();
+
+		if(get_magic_quotes_gpc() && !is_null($mmconfig)){
+			$mmconfig  = stripslashes($mmconfig);
+		} 
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
