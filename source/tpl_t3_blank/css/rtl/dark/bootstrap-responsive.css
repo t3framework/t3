@@ -1,3 +1,5 @@
+
+
 .hidden {
   display: none;
   visibility: hidden;
@@ -53,6 +55,7 @@
     display: none !important;
   }
 }
+
 @media (min-width: 1200px) {
   .row {
     margin-right: -40px;
@@ -378,6 +381,7 @@
     margin-right: 0;
   }
 }
+
 @media (min-width: 768px) and (max-width: 979px) {
   .row {
     margin-right: -20px;
@@ -694,6 +698,7 @@
     width: 29px;
   }
 }
+
 @media (max-width: 767px) {
   body {
     padding-right: 20px;
@@ -842,6 +847,7 @@
     position: static;
   }
 }
+
 .fade {
   opacity: 0;
   -webkit-transition: opacity .15s linear;
@@ -864,6 +870,7 @@
 .collapse.in {
   height: auto;
 }
+
 @media (max-width: 767px) {
   body {
     padding-top: 0;
@@ -1026,3 +1033,4 @@
     overflow: visible !important;
   }
 }
+

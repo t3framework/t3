@@ -1,3 +1,5 @@
+
+
 .jumbotron {
   position: relative;
   padding: 40px 0;
@@ -172,6 +174,7 @@ a.thumbnail:hover {
 .t3-logo-small.t3-logo-light {
   background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-light.png");
 }
+
 .wrap {
   width: auto;
   clear: both;
@@ -215,10 +218,12 @@ a.thumbnail:hover {
 .row-fluid .spanfirst {
   margin-right: 0 !important;
 }
+
 .wrap {
   width: auto;
   clear: both;
 }
+
 body {
   background-color: #fff;
   color: #666;
@@ -424,6 +429,7 @@ hr.hr-condensed {
 .width-auto {
   width: auto;
 }
+
 form {
   margin: 0 0 20px;
 }
@@ -669,7 +675,7 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffeeeeee', GradientType=0);
   border-color: #eee #eee #c8c8c8;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #eee;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -775,7 +781,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0097ed', endColorstr='#ff0077bb', GradientType=0);
   border-color: #07b #07b #00466f;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #07b;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -806,7 +812,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff9f32', endColorstr='#ffff8800', GradientType=0);
   border-color: #f80 #f80 #b35f00;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #f80;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -837,7 +843,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff0000', endColorstr='#ffcc0000', GradientType=0);
   border-color: #c00 #c00 #800000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #c00;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -868,7 +874,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff87cc00', endColorstr='#ff669900', GradientType=0);
   border-color: #690 #690 #334d00;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #690;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -899,7 +905,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00bfff', endColorstr='#ff0099cc', GradientType=0);
   border-color: #09c #09c #006080;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #09c;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -930,7 +936,7 @@ button a.btn:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5d5d5d', endColorstr='#ff444444', GradientType=0);
   border-color: #444 #444 #1e1e1e;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #444;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -957,6 +963,7 @@ label.invalid {
 input.invalid {
   border: 1px solid #c00;
 }
+
 .nav {
   margin-bottom: 20px;
 }
@@ -1245,6 +1252,7 @@ input.invalid {
 .breadcrumb .active {
   color: #999;
 }
+
 .t3-mainnav {
   background-color: #f5f5f5;
   background-image: -moz-linear-gradient(top,#ffffff,#e6e6e6);
@@ -1333,7 +1341,7 @@ input.invalid {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffd8d8d8', GradientType=0);
   border-color: #d9d9d9 #d9d9d9 #b3b3b3;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #d9d9d9;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
@@ -1397,6 +1405,7 @@ input.invalid {
   background-color: #07b;
   color: #eee;
 }
+
 .t3-module {
   background: transparent;
   color: inherit;
@@ -1578,6 +1587,7 @@ div.tagssimilar ul li a:focus,
 div.tagssimilar ul li a:active {
   color: #00466f;
 }
+
 .items-leading .leading {
   margin-bottom: 40px;
 }
@@ -2269,6 +2279,7 @@ article aside .btn-group > .dropdown-toggle:focus {
 .languageswitcherload .mod-languages {
   text-align: left;
 }
+
 p {
   margin: 0 0 10px;
 }
@@ -2595,6 +2606,7 @@ address {
   font-style: normal;
   line-height: 20px;
 }
+
 .t3-header {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -2745,7 +2757,6 @@ address {
   opacity: .5;
 }
 
-
 article img[align=left],
 .img_caption.left,
 .pull-left.item-image {
@@ -2759,3 +2770,4 @@ article img[align=right],
 .languageswitcherload ul {
   float: left;
 }
+

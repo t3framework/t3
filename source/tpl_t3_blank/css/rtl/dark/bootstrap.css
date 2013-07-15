@@ -1,102 +1,5 @@
-/** 
- *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
- *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         https://github.com/t3framework/ 
- *------------------------------------------------------------------------------
-*/
-/** 
- *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
- *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
- *------------------------------------------------------------------------------
- */
-/** 
- *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
- *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
- *------------------------------------------------------------------------------
- */
-/** 
- *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
- *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
- * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
- *------------------------------------------------------------------------------
- */
-/**** Content ****/
-/* Responsive images (ensure images don't scale beyond their parents) */
-/* Allow for input prepend/append in search forms */
-/*!
- *  Font Awesome 3.2.1
- *  the iconic font designed for Bootstrap
- *  ------------------------------------------------------------------------------
- *  The full suite of pictographic icons, examples, and documentation can be
- *  found at http://fontawesome.io.  Stay up to date on Twitter at
- *  http://twitter.com/fontawesome.
- *
- *  License
- *  ------------------------------------------------------------------------------
- *  - The Font Awesome font is licensed under SIL OFL 1.1 -
- *    http://scripts.sil.org/OFL
- *  - Font Awesome CSS, LESS, and SASS files are licensed under MIT License -
- *    http://opensource.org/licenses/mit-license.html
- *  - Font Awesome documentation licensed under CC BY 3.0 -
- *    http://creativecommons.org/licenses/by/3.0/
- *  - Attribution is no longer required in Font Awesome 3.0, but much appreciated:
- *    "Font Awesome by Dave Gandy - http://fontawesome.io"
- *
- *  Author - Dave Gandy
- *  ------------------------------------------------------------------------------
- *  Email: dave@fontawesome.io
- *  Twitter: http://twitter.com/davegandy
- *  Work: Lead Product Designer @ Kyruus - http://kyruus.com
- */
-/* FONT PATH
- * -------------------------- */
-/* FONT AWESOME CORE
- * -------------------------- */
-/* makes the font 33% larger relative to the icon container */
-/* makes sure icons active on rollover in links */
-/* increased font size for icon-large */
-/* BOOTSTRAP SPECIFIC CLASSES
- * -------------------------- */
-/* Bootstrap 2.0 sprites.less reset */
-/* more sprites.less reset */
-/* keeps Bootstrap styles with and without icons the same */
-/* Fixes alignment in nav lists */
-/* EXTRAS
- * -------------------------- */
-/* Stacked and layered icon */
-/* Animated rotating icon */
-/* Prevent stack and spinners from being taken inline when inside a link */
-/* Icon rotations and mirroring */
-/* ensure rotation occurs inside anchor tags */
-/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
-   readers do not read off random characters that represent icons */
-/* move down carets for tabs */
+
+
 .clearfix {
   *zoom: 1;
 }
@@ -124,11 +27,6 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-
-
-
-
 
 article,
 aside,
@@ -180,11 +78,11 @@ sub {
   bottom: -0.25em;
 }
 img {
-  /* Part 1: Set a maxium relative to the parent */
+  
   max-width: 100%;
-  /* IE7-8 need help adjusting responsive images */
+  
   width: auto \9;
-  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+  
   height: auto;
   vertical-align: middle;
   border: 0;
@@ -294,14 +192,6 @@ textarea {
     page-break-after: avoid;
   }
 }
-
-
-
-
-
-
-
-
 
 .row {
   margin-right: -40px;
@@ -582,8 +472,6 @@ textarea {
   float: left;
 }
 
-
-
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -612,11 +500,6 @@ textarea {
 .container-fluid:after {
   clear: both;
 }
-
-
-
-
-
 
 code,
 pre {
@@ -673,8 +556,6 @@ pre code {
   max-height: 340px;
   overflow-y: scroll;
 }
-
-
 
 form {
   margin: 0 0 20px;
@@ -802,7 +683,7 @@ input[type="color"]:focus,
 .uneditable-input:focus {
   border-color: rgba(82,168,236,0.8);
   outline: 0;
-  /* IE6-9 */
+  
   outline: thin dotted \9;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
@@ -811,9 +692,9 @@ input[type="color"]:focus,
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
-  /* IE7 */
+  
   *margin-top: 0;
-  /* IE8-9 */
+  
   margin-top: 1px \9;
   line-height: normal;
 }
@@ -828,9 +709,9 @@ input[type="checkbox"] {
 }
 select,
 input[type="file"] {
-  /* In IE7, the height of the select element cannot be changed by height, only font-size */
+  
   height: 30px;
-  /* For IE7, add top margin to align select with labels */
+  
   *margin-top: 4px;
   line-height: 30px;
 }
@@ -1203,7 +1084,7 @@ select:focus:invalid:focus {
 }
 .help-inline {
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
   vertical-align: middle;
@@ -1383,7 +1264,7 @@ input.search-query {
   padding-left: 14px;
   padding-left: 4px \9;
   padding-right: 14px;
-  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  
   padding-right: 4px \9;
   margin-bottom: 0;
   -webkit-border-radius: 15px;
@@ -1456,7 +1337,7 @@ input.search-query {
 .form-horizontal .input-prepend,
 .form-horizontal .input-append {
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
   margin-bottom: 0;
@@ -1544,8 +1425,6 @@ legend + .control-group {
 .form-horizontal .form-actions {
   padding-right: 180px;
 }
-
-
 
 table {
   max-width: 100%;
@@ -1786,11 +1665,6 @@ table th[class*="span"],
 .table-hover tbody tr.info:hover > td {
   background-color: #c4e3f3;
 }
-
-
-
-
-
 
 @font-face {
   font-family: 'FontAwesome';
@@ -3240,11 +3114,6 @@ a .icon-flip-vertical:before {
   content: "\f18b";
 }
 
-
-
-
-
-
 .well {
   min-height: 20px;
   padding: 19px;
@@ -3284,11 +3153,6 @@ a .icon-flip-vertical:before {
   border-radius: 3px;
 }
 
-
-
-
-
-
 .close {
   float: left;
   font-size: 20px;
@@ -3315,14 +3179,9 @@ button.close {
   -webkit-appearance: none;
 }
 
-
-
-
-
-
 .btn {
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
   padding: 4px 12px;
@@ -3344,7 +3203,7 @@ button.close {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff5d5d5d', GradientType=0);
   border-color: #5e5e5e #5e5e5e #373737;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #5e5e5e;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border: 1px solid #2b2b2b;
@@ -3491,7 +3350,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0077bb', endColorstr='#ff0097ed', GradientType=0);
   border-color: #0097ee #0097ee #0067a2;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #0097ee;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3522,7 +3381,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff8800', endColorstr='#ffff9f32', GradientType=0);
   border-color: #ffa033 #ffa033 #e67a00;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #ffa033;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3553,7 +3412,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcc0000', endColorstr='#ffff0000', GradientType=0);
   border-color: #ff0000 #ff0000 #b30000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #ff0000;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3584,7 +3443,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff669900', endColorstr='#ff87cc00', GradientType=0);
   border-color: #88cc00 #88cc00 #558000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #88cc00;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3615,7 +3474,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0099cc', endColorstr='#ff00bfff', GradientType=0);
   border-color: #00bfff #00bfff #0086b3;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #00bfff;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3646,7 +3505,7 @@ input[type="button"].btn-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff5d5d5d', GradientType=0);
   border-color: #5e5e5e #5e5e5e #373737;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #5e5e5e;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -3721,12 +3580,10 @@ input[type="submit"].btn.btn-mini {
   text-decoration: none;
 }
 
-
-
 .btn-group {
   position: relative;
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
   font-size: 0;
@@ -3904,7 +3761,7 @@ input[type="submit"].btn.btn-mini {
 }
 .btn-group-vertical {
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
 }
@@ -3955,8 +3812,6 @@ input[type="submit"].btn.btn-mini {
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
 }
-
-
 
 .alert {
   padding: 8px 14px 8px 35px;
@@ -4021,11 +3876,6 @@ input[type="submit"].btn.btn-mini {
 .alert-block p + p {
   margin-top: 5px;
 }
-
-
-
-
-
 
 .nav {
   margin-right: 0;
@@ -4397,8 +4247,6 @@ input[type="submit"].btn.btn-mini {
   cursor: default;
 }
 
-
-
 .navbar {
   overflow: visible;
   margin-bottom: 20px;
@@ -4665,7 +4513,7 @@ input[type="submit"].btn.btn-mini {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffd8d8d8', GradientType=0);
   border-color: #d9d9d9 #d9d9d9 #b3b3b3;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #d9d9d9;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
@@ -4904,7 +4752,7 @@ input[type="submit"].btn.btn-mini {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff151515', endColorstr='#ff040404', GradientType=0);
   border-color: #040404 #040404 #000000;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  
   *background-color: #040404;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -4923,8 +4771,6 @@ input[type="submit"].btn.btn-mini {
   background-color: #000000 \9;
 }
 
-
-
 .breadcrumb {
   padding: 8px 15px;
   margin: 0 0 20px;
@@ -4939,7 +4785,7 @@ input[type="submit"].btn.btn-mini {
 }
 .breadcrumb > li {
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
   text-shadow: 0 1px 0 #fff;
@@ -4952,14 +4798,12 @@ input[type="submit"].btn.btn-mini {
   color: #999;
 }
 
-
-
 .pagination {
   margin: 20px 0;
 }
 .pagination ul {
   display: inline-block;
-  /* IE7 inline-block hack */
+  
   *display: inline;
   *zoom: 1;
   margin-right: 0;
@@ -5087,8 +4931,6 @@ input[type="submit"].btn.btn-mini {
   font-size: 10.5px;
 }
 
-
-
 .pager {
   margin: 20px 0;
   list-style: none;
@@ -5142,11 +4984,6 @@ input[type="submit"].btn.btn-mini {
   cursor: default;
 }
 
-
-
-
-
-
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -5174,7 +5011,7 @@ input[type="submit"].btn.btn-mini {
   background-color: #fff;
   border: 1px solid #999;
   border: 1px solid rgba(0,0,0,0.3);
-  /* IE6-7 */
+  
   *border: 1px solid #999;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -5257,8 +5094,6 @@ input[type="submit"].btn.btn-mini {
   margin-right: 0;
 }
 
-
-
 .tooltip {
   position: absolute;
   z-index: 1030;
@@ -5338,8 +5173,6 @@ input[type="submit"].btn.btn-mini {
   border-width: 0 5px 5px;
   border-bottom-color: #000;
 }
-
-
 
 .popover {
   position: absolute;
@@ -5473,11 +5306,6 @@ input[type="submit"].btn.btn-mini {
   bottom: -10px;
 }
 
-
-
-
-
-
 .media,
 .media-body {
   overflow: hidden;
@@ -5507,11 +5335,6 @@ input[type="submit"].btn.btn-mini {
   margin-right: 0;
   list-style: none;
 }
-
-
-
-
-
 
 @-webkit-keyframes progress-bar-stripes {
   from {
@@ -5707,8 +5530,6 @@ input[type="submit"].btn.btn-mini {
   background-image: linear-gradient(45deg,rgba(255,255,255,0.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.15) 75%,transparent 75%,transparent);
 }
 
-
-
 .accordion {
   margin-bottom: 20px;
 }
@@ -5736,8 +5557,6 @@ input[type="submit"].btn.btn-mini {
   padding: 9px 15px;
   border-top: 1px solid #e5e5e5;
 }
-
-
 
 .carousel {
   position: relative;
@@ -5869,8 +5688,6 @@ input[type="submit"].btn.btn-mini {
   margin-bottom: 0;
 }
 
-
-
 .hero-unit {
   padding: 60px;
   margin-bottom: 30px;
@@ -5897,11 +5714,6 @@ input[type="submit"].btn.btn-mini {
   line-height: 30px;
 }
 
-
-
-
-
-
 .pull-right {
   float: left;
 }
@@ -5920,8 +5732,4 @@ input[type="submit"].btn.btn-mini {
 .affix {
   position: fixed;
 }
-
-
-
-
 

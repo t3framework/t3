@@ -1,3 +1,5 @@
+
+
 .clearfix {
   *zoom: 1;
 }
@@ -67,6 +69,7 @@
     margin-left: 0 !important;
   }
 }
+
 @media (max-width: 767px) {
   .t3-megamenu .mega-inner {
     padding: 10px 20px;
@@ -85,3 +88,4 @@
     margin-bottom: 0;
   }
 }
+
