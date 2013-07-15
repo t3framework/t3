@@ -264,11 +264,11 @@ class T3Less extends lessc
 		$this->setImportDir($importdirs);
 		$this->setPreserveComments(true);
 		
-		$source = $vars . "\n/**** Content ****/\n" . $output;
+		$source = $vars . "\n#less-content-separator{content: \"separator\";}\n" . $output;
 
 		// compile less to css using lessphp
 		$output = $this->compile($source);
-		
+
 		$arr    = preg_split('#^\s*\#less-file-path[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
 		$output = '';
 		$file   = '';
@@ -283,16 +283,19 @@ class T3Less extends lessc
 				$isfile = true;
 			}
 		}
-		
+
 		// remove the dupliate clearfix at the beggining if not bootstrap.css file
 		if (strpos($path, $tpl . '/less/bootstrap.less') === false) {
-			$arr = preg_split('/[\r?\n]{3,}/', $output);
+			$arr = preg_split('#^\s*\#less-content-separator[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output);
 			// ignore first one, it's clearfix
-			if(isset($arr[0]) && strpos($arr[0], '.clearfix') !== false){
+			if(is_array($arr)){
 				array_shift($arr);
 			}
 
 			$output = implode("\n", $arr);
+
+		} else {
+			$output = preg_replace('#^\s*\#less-content-separator[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', '', $output);
 		}
 
 		if ($is_rtl) {
@@ -311,7 +314,11 @@ class T3Less extends lessc
 				$output = $output . "\n" . $rtlcontent;
 			}
 		}
-		
+
+		//remove comments
+		$output = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $output);
+		$output = preg_replace('/[\r?\n]{2,}/', "\n\n", $output);
+
 		if ($tofile) {
 			$ret = JFile::write($tofile, $output);
 			@chmod($tofile, 0644);
