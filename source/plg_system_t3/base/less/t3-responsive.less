@@ -34,15 +34,16 @@
     z-index: 1000;
     // style for normal collapsed menu
     .nav-collapse {
-      position: fixed;
+      position: absolute;
       width: 100%;
       left: 0;
-      top: @navbarHeight + 2;
+      top: @navbarHeight + 1;
       margin: 0;
 
       &.in {
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+
         > * {
           -webkit-transform: translateZ(0);
         }
@@ -58,9 +59,13 @@
     bottom: 0;
     top: auto;
     .nav-collapse {
-      bottom: @navbarHeight + 2;
+      bottom: @navbarHeight + 1;
       top: auto;
     }
-  }
 
+    .btn-navbar {
+      position: absolute;
+      bottom: 0;
+    }
+  }
 }

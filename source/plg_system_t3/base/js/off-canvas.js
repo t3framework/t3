@@ -15,8 +15,23 @@
 	
 	$(document).ready(function(){
 		
-		//inherit from bootstrap (http://www.modernizr.com/)
-		if ($.support.transition) {
+		//detect transform (https://github.com/cubiq/)
+		$.support.t3transform =  (function () {
+			var style = document.createElement('div').style,
+				vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
+				transform, i = 0, l = vendors.length;
+
+			for ( ; i < l; i++ ) {
+				transform = vendors[i] + 'ransform';
+				if ( transform in style ) {
+					return transform;
+				}
+			}
+
+			return false;
+		})();
+
+		if ($.support.t3transform !== false) {
 
 			var $btn = $('.btn-navbar[data-toggle="collapse"]'),
 				$nav = null,

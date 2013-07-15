@@ -129,36 +129,44 @@
 
 	//fix animation for navbar-collapse-fixed-top||bottom
 	$(window).load(function(){
-		if ($.support.transition) {
-			if(!$(document.documentElement).hasClass('off-canvas-ready') &&
-				($('.navbar-collapse-fixed-top').length ||
-					$('.navbar-collapse-fixed-bottom').length)){
+		
+		if(!$(document.documentElement).hasClass('off-canvas-ready') &&
+			($('.navbar-collapse-fixed-top').length ||
+			$('.navbar-collapse-fixed-bottom').length)){
 
-				var btn = $('.btn-navbar');
-				if (!btn.length){
+			var btn = $('.btn-navbar[data-toggle="collapse"]');
+			if (!btn.length){
+				return;
+			}
+
+			if(btn.data('target')){
+				var nav = $(btn.data('target'));
+				if(!nav.length){
 					return;
 				}
 
-				if(btn.data('target')){
-					var nav = $(btn.data('target'));
-					if(!nav.length){
-						return;
+				var fixedtop = nav.closest('.navbar-collapse-fixed-top').length;
+
+				btn.on('click', function(){
+
+					var wheight = (window.innerHeight || $(window).height());
+
+					if(!$.support.transition){
+						nav.parent().css('height', !btn.hasClass('collapsed') && btn.data('t3-clicked') ? '' : wheight);
+						btn.data('t3-clicked', 1);
 					}
 
-					var fixedtop = nav.closest('.navbar-collapse-fixed-top').length;
-
-					btn.on('click', function(){
-						nav
-							.addClass('animate')
-							.css('max-height', (window.innerHeight || $(window).height()) -
-								(fixedtop ? (parseFloat(nav.css('top')) || 0) : (parseFloat(nav.css('bottom')) || 0)));
-					});
-					nav.on('shown hidden', function(){
-						nav.removeClass('animate');
-					});
-				}
+					nav
+						.addClass('animate')
+						.css('max-height', wheight -
+							(fixedtop ? (parseFloat(nav.css('top')) || 0) : (parseFloat(nav.css('bottom')) || 0)));
+				});
+				nav.on('shown hidden', function(){
+					nav.removeClass('animate');
+				});
 			}
 		}
+	
 	});
 
 
