@@ -16,12 +16,25 @@
 defined('_JEXEC') or die;
 ?>
 <?php
-	$style = 'T3Xhtml';
-	$name = $vars['name'];
+	$name      = $vars['name'];
 	$splparams = $vars['splparams'];
-	$datas = $vars['datas'];
-	$cols = $vars['cols'];
-	$rowcls = isset($vars['row-fluid']) && $vars['row-fluid'] ? 'row-fluid':'row';
+	$datas     = $vars['datas'];
+	$cols      = $vars['cols'];
+	$rowcls    = isset($vars['row-fluid']) && $vars['row-fluid'] ? 'row-fluid' : 'row';
+	$style     = isset($vars['style']) && $vars['style'] ? $vars['style'] : 'T3Xhtml';
+	$tstyles   = explode(',', $style);
+
+	if(count($tstyles) == 1){
+		$styles = array_fill(0, $cols, $style);
+	} else {
+
+		$styles = array_fill(0, $cols, 'T3Xhtml');
+		foreach ($tstyles as $i => $stl) {
+			if(trim($stl)){
+				$styles[$i] = trim($stl);
+			}
+		}
+	}
 	?>
 	<!-- SPOTLIGHT -->
 	<div class="t3-spotlight t3-<?php echo $name ?> <?php echo $rowcls ?>">
@@ -31,7 +44,7 @@ defined('_JEXEC') or die;
 		?>
 			<div class="<?php echo $splparam->default ?> <?php echo ($i == 0) ? 'item-first' : (($i == $cols - 1) ? 'item-last' : '') ?>"<?php echo $datas[$i] ?>>
 				<?php if ($this->countModules($param->position)) : ?>
-				<jdoc:include type="modules" name="<?php echo $param->position ?>" style="<?php echo $style ?>"/>
+				<jdoc:include type="modules" name="<?php echo $param->position ?>" style="<?php echo $styles[$i] ?>"/>
 				<?php else: ?>
 				&nbsp;
 				<?php endif ?>
