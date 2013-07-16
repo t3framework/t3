@@ -118,6 +118,22 @@ class T3Less extends lessc
 		$tpl    = T3_TEMPLATE;
 		$theme  = $app->getUserState('vars_theme');
 		$tofile = null;
+
+		//pattern
+		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
+		$rspace       = '@[\r?\n]{2,}@';
+		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
+		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less@';
+		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')\/less\/@';
+		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
+
+		$rsplitbegin  = '@^\s*\#';
+		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
+
+		$kfilepath    = 'less-file-path';
+		$kvarsep      = 'less-content-separator';
+		$krtlsep      = 'rtl-less-content';		
+
 		
 		if ($topath) {
 			$tofile = JPATH_ROOT . '/' . $topath;
@@ -129,21 +145,20 @@ class T3Less extends lessc
 		// check path
 		$realpath = realpath(JPATH_ROOT . '/' . $path);
 		if (!is_file($realpath)) {
-			//if (!JPath::check ($realpath)){
 			return;
 		}
 
 		// get file content
 		$content = JFile::read($realpath);
 		
-		// remove comments? - should we keep comment for rtl flip
-		$content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
+		// remove comments? - we should keep comment for rtl flip
+		//$content = preg_replace($rcomment, '', $content);
 
 		// split into array, separated by the import
-		$arr = preg_split('#^\s*@import\s+"([^"]*)"\s*;#im', $content, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$arr = preg_split($rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
 		
 		// check and add theme less if not is theme less
-		if ($theme && !preg_match('#themes/#', $path)) {
+		if ($theme && strpos($path, 'themes/') === false) {
 			$themepath = 'themes/' . $theme . '/' . basename($path);
 			if (is_file(T3_TEMPLATE_PATH . '/less/' . $themepath)) {
 				$arr[] = $themepath;
@@ -166,27 +181,27 @@ class T3Less extends lessc
 				
 				// ignore vars.less and variables.less if they are in template folder
 				// cause there may have other css less file with the same name (eg. font awesome)
-				if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less/', $url)){
+				if (preg_match($rvarscheck, $url)){
 					continue;
 				}
 				
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
-				if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\//', $url)){
-					$importcontent = preg_replace('#^\s*@import\s+".*(variables-custom|variables|vars)\.less"\s*;#im', '', $importcontent);
+				if (preg_match($rexcludepath, $url)){
+					$importcontent = preg_replace($rimportvars, '', $importcontent);
 				}
 
 				// remember this path when lookup for import
-				if (preg_match('#^\s*@import\s+"([^"]*)"\s*;#im', $importcontent)) {
+				if (preg_match($rimport, $importcontent)) {
 					$importdirs[] = dirname(JPATH_ROOT . '/' . $url);
 				}
 				
-				$output .= "#less-file-path{content: \"$url\";}\n" . $importcontent . "\n\n";
+				$output .= "#$kfilepath{content: \"$url\";}\n$importcontent\n\n";
 			} else {
 				$import = true;
 				$s      = trim($s);
 				if ($s) {
-					$output .= "#less-file-path{content: \"$path\";}\n" . $s . "\n\n";
+					$output .= "#$kfilepath{content: \"$path\";}\n$s\n\n";
 				}
 			}
 		}
@@ -207,7 +222,7 @@ class T3Less extends lessc
 					$url = T3Path::cleanPath(dirname($path) . '/' . $s);
 					// ignore vars.less and variables.less if they are in template folder
 					// cause there may have other css less file with the same name (eg. font awesome)
-					if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less/', $url)){
+					if (preg_match($rvarscheck, $url)){
 						continue;
 					}
 
@@ -220,16 +235,16 @@ class T3Less extends lessc
 
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
-					if (preg_match('/(base|bootstrap|'.preg_quote($tpl).')\/less\//', $url)){
-						$importcontent = preg_replace('#^\s*@import\s+".*(variables-custom|variables|vars)\.less"\s*;#im', '', $importcontent);
+					if (preg_match($rexcludepath, $url)){
+						$importcontent = preg_replace($rimportvars, '', $importcontent);
 					}
 
 					// remember this path when lookup for import
-					if (preg_match('#^\s*@import\s+"([^"]*)"\s*;#im', $importcontent)) {
+					if (preg_match($rimport, $importcontent)) {
 						$importdirs[] = dirname(JPATH_ROOT . '/' . $url);
 					}
 
-					$rtlcontent .= "#less-file-path-rtl{content: \"$url\";}\n" . $importcontent . "\n\n";
+					$rtlcontent .= "#$kfilepath-rtl{content: \"$url\";}\n$importcontent\n\n";
 				} else {
 					$import = true;
 				}
@@ -240,7 +255,7 @@ class T3Less extends lessc
 			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
-				$rtlcontent .= "#less-file-path-rtl{content: \"$rtlpath\";}\n" . $importcontent . "\n\n";
+				$rtlcontent .= "#$kfilepath-rtl{content: \"$rtlpath\";}\n$importcontent\n\n";
 			}
 
 			// rtl theme
@@ -249,27 +264,26 @@ class T3Less extends lessc
 				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-					$rtlcontent .= "#less-file-path-rtl{content: \"$rtlthemepath\";}\n" . $importcontent . "\n\n";
+					$rtlcontent .= "#$kfilepath-rtl{content: \"$rtlthemepath\";}\n$importcontent\n\n";
 				}
 			}
 
 			if($rtlcontent){
-				$output = $output . "#rtl-less-content{content: \"separator\";}\n\n" . $rtlcontent . "\n\n";
+				$output = $output . "#$krtlsep{content: \"separator\";}\n\n$rtlcontent\n\n";
 			}
 		}
-
 
 		$importdirs[] = dirname($realpath);
 		$importdirs[] = T3_TEMPLATE_PATH . '/less/';
 		$this->setImportDir($importdirs);
 		$this->setPreserveComments(true);
 		
-		$source = $vars . "\n#less-content-separator{content: \"separator\";}\n" . $output;
+		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
 
 		// compile less to css using lessphp
 		$output = $this->compile($source);
 
-		$arr    = preg_split('#^\s*\#less-file-path[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$arr    = preg_split($rsplitbegin . $kfilepath . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
 		$output = '';
 		$file   = '';
 		$isfile = false;
@@ -277,7 +291,8 @@ class T3Less extends lessc
 			if ($isfile) {
 				$isfile  = false;
 				$file    = $s;
-				$relpath = $topath ? T3Path::relativePath(dirname($topath), dirname($file)) : JURI::base(true) . '/' . dirname($file);
+				$relpath = $topath ? T3Path::relativePath(dirname($topath), dirname($file)) : 
+									JURI::base(true) . '/' . dirname($file);
 			} else {
 				$output .= ($file ? T3Path::updateUrl($s, $relpath) : $s) . "\n\n";
 				$isfile = true;
@@ -286,7 +301,7 @@ class T3Less extends lessc
 
 		// remove the dupliate clearfix at the beggining if not bootstrap.css file
 		if (strpos($path, $tpl . '/less/bootstrap.less') === false) {
-			$arr = preg_split('#^\s*\#less-content-separator[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output);
+			$arr = preg_split($rsplitbegin . $kvarsep . $rsplitend, $output);
 			// ignore first one, it's clearfix
 			if(is_array($arr)){
 				array_shift($arr);
@@ -295,13 +310,13 @@ class T3Less extends lessc
 			$output = implode("\n", $arr);
 
 		} else {
-			$output = preg_replace('#^\s*\#less-content-separator[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', '', $output);
+			$output = preg_replace($rsplitbegin . $kvarsep . $rsplitend, '', $output);
 		}
 
 		if ($is_rtl) {
 			
 			if($rtlcontent){
-				$output = preg_split('#^\s*\#rtl-less-content\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}#im', $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+				$output = preg_split($rsplitbegin . $krtlsep . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
 				
 				$rtlcontent = isset($output[2]) ? $output[2] : false;
 				$output = $output[0];
@@ -315,9 +330,9 @@ class T3Less extends lessc
 			}
 		}
 
-		//remove comments
-		$output = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $output);
-		$output = preg_replace('/[\r?\n]{2,}/', "\n\n", $output);
+		//remove comments and clean up
+		$output = preg_replace($rcomment, '', $output);
+		$output = preg_replace($rspace, "\n\n", $output);
 
 		if ($tofile) {
 			$ret = JFile::write($tofile, $output);
