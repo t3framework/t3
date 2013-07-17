@@ -35,19 +35,20 @@
 		<filename>templateInfo.php</filename>
 		<filename>template_preview.png</filename>
 		<filename>template_thumbnail.png</filename>
+		<filename>templateDetails.xml</filename>
 		<folder>etc</folder>
 		<folder>fonts</folder>
 		<folder>css</folder>
 		<folder>js</folder>
 		<folder>less</folder>
+		<folder>language</folder>
 		<folder>images</folder>
 		<folder>tpls</folder>
-		<folder>languages</folder>
 	</files>
 	
-	<languages folder="languages">
-		<language tag="en-GB">en-GB.tpl_t3_blank.ini</language>
-		<language tag="en-GB">en-GB.tpl_t3_blank.sys.ini</language>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_t3_blank.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_t3_blank.sys.ini</language>
 	</languages>
 
 	<positions>
