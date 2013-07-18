@@ -9,7 +9,9 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- META FOR IOS & HANDHELD -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0<?php echo $this->getParam('responsive', 1) ? ', maximum-scale=1.0, user-scalable=no' : '' ?>"/>
+<?php if($this->getParam('responsive', 1)): ?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<?php endif ?>
 <meta name="HandheldFriendly" content="true" />
 <meta name="apple-mobile-web-app-capable" content="YES" />
 <!-- //META FOR IOS & HANDHELD -->
