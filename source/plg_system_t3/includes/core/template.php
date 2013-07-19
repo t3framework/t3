@@ -51,6 +51,11 @@ class T3Template extends ObjectExtendable
 	protected $_layoutsettings = null;
 
 	/**
+	 * page class
+	 */
+	protected $_bodyclass = array();
+
+	/**
 	 * Class constructor
 	 *
 	 * @param   object  $template Current template instance
@@ -75,6 +80,8 @@ class T3Template extends ObjectExtendable
 				$this->_layoutsettings->loadString (JFile::read($fconfig), 'INI', array('processSections' => true));
 			}
 		}
+
+		JDispatcher::getInstance()->trigger('onT3TplInit', array($this));
 	}
 
 	/**
@@ -140,12 +147,14 @@ class T3Template extends ObjectExtendable
 	{
 		$path = T3Path::getPath ('tpls/'.$layout.'.php', 'tpls/default.php');
 
+		JDispatcher::getInstance()->trigger('onT3LoadLayout', array(&$path, $layout));
+
 		if (is_file ($path)) {
 			include $path;
 		} else {
 			echo "<div class=\"error\">Layout [$layout] or [Default] not found!</div>";
 		}
-	} 
+	}
 
 	/**
 	* Load spotlight block
@@ -245,6 +254,8 @@ class T3Template extends ObjectExtendable
 		$vars['datas'] = $datas;
 		$vars['cols'] = $cols;
 
+		JDispatcher::getInstance()->trigger('onT3Spotlight', array(&$vars, $name, $positions));
+
 		$this->loadBlock ('spotlight', $vars);
 	}
 
@@ -307,6 +318,8 @@ class T3Template extends ObjectExtendable
 				$mmconfig = $currentconfig[$mmkey];
 			}
 		}
+
+		JDispatcher::getInstance()->trigger('onT3Megamenu', array(&$menutype, &$mmconfig, &$viewLevels));
 		
 		$mmconfig['access'] = $viewLevels;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $this->_tpl->params);
@@ -370,24 +383,32 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
+	* Add page class
+	*/
+	function addBodyClass($class){
+		$this->_bodyclass = array_merge($this->_bodyclass, (array)($class));
+	}
+
+	/**
 	* Render page class
 	*/
 	function bodyClass () {
 		$input = JFactory::getApplication()->input;
+
 		if($input->getCmd('option', '')){
-			$classes[] = $input->getCmd('option', '');
+			$this->_bodyclass[] = $input->getCmd('option', '');
 		}
 		if($input->getCmd('view', '')){
-			$classes[] = 'view-' . $input->getCmd('view', '');
+			$this->_bodyclass[] = 'view-' . $input->getCmd('view', '');
 		}
 		if($input->getCmd('layout', '')){
-			$classes[] = 'layout-' . $input->getCmd('layout', '');
+			$this->_bodyclass[] = 'layout-' . $input->getCmd('layout', '');
 		}
 		if($input->getCmd('task', '')){
-			$classes[] = 'task-' . $input->getCmd('task', '');
+			$this->_bodyclass[] = 'task-' . $input->getCmd('task', '');
 		}
 		if($input->getCmd('Itemid', '')){
-			$classes[] = 'itemid-' . $input->getCmd('Itemid', '');
+			$this->_bodyclass[] = 'itemid-' . $input->getCmd('Itemid', '');
 		}
 
 		$menu = JFactory::getApplication()->getMenu();
@@ -397,18 +418,21 @@ class T3Template extends ObjectExtendable
 
 			if ($active) {
 				if($default && $active->id == $default->id){
-					$classes[] = 'home';
+					$this->_bodyclass[] = 'home';
 				}
 
 				if ($active->params && $active->params->get('pageclass_sfx')) {
-					$classes[] = $active->params->get('pageclass_sfx');
+					$this->_bodyclass[] = $active->params->get('pageclass_sfx');
 				}
 			}
 		}
 		
-		$classes[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
+		$this->_bodyclass[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
+		$this->_bodyclass = array_unique($this->_bodyclass);
 
-		echo implode(' ', $classes);
+		JDispatcher::getInstance()->trigger('onT3BodyClass', array(&$this->_bodyclass));
+
+		echo implode(' ', $this->_bodyclass);
 	}
 
 	/**

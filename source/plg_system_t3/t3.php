@@ -30,11 +30,27 @@ class plgSystemT3 extends JPlugin
 		include_once dirname(__FILE__) . '/includes/core/bot.php';
 		T3Bot::preload();
 		$template = T3::detect();
-		if($template){			
+		if($template){
 			T3Bot::beforeInit();
 			T3::init($template);
 			T3Bot::afterInit();
 			
+			//load T3 plugins
+			JPluginHelper::importPlugin('t3');
+
+			if(is_file(T3_TEMPLATE_PATH . '/templateHook.php')){
+				include_once T3_TEMPLATE_PATH . '/templateHook.php';
+			}
+
+			$tplHookCls = preg_replace('/(^[^A-Z_]+|[^A-Z0-9_])/i', '', T3_TEMPLATE . 'Hook');
+			$dispatcher = JDispatcher::getInstance();
+
+			if(class_exists($tplHookCls)){
+				new $tplHookCls($dispatcher, array());
+			}
+
+			$dispatcher->trigger('onT3Init');
+
 			//check and execute the t3action
 			T3::checkAction();
 			
@@ -46,6 +62,9 @@ class plgSystemT3 extends JPlugin
 	function onBeforeRender(){
 		if(T3::detect()){
 			$japp = JFactory::getApplication();
+
+			JDispatcher::getInstance()->trigger('onT3BeforeRender');
+
 			if($japp->isAdmin()){
 
 				$t3app = T3::getApp();
@@ -71,7 +90,12 @@ class plgSystemT3 extends JPlugin
 			// call update head for replace css to less if in devmode
 			$t3app = T3::getApp();
 			if($t3app){
+
+				JDispatcher::getInstance()->trigger('onT3BeforeCompileHead');
+
 				$t3app->updateHead();
+
+				JDispatcher::getInstance()->trigger('onT3AfterCompileHead');
 			}
 		}
 	}
@@ -82,11 +106,14 @@ class plgSystemT3 extends JPlugin
 			$t3app = T3::getApp();
 
 			if($t3app){
+				
 				if(JFactory::getApplication()->isAdmin()){
 					$t3app->render();
 				} else {
 					$t3app->snippet();
 				}
+
+				JDispatcher::getInstance()->trigger('onT3AfterRender');
 			}
 		}
 	}
