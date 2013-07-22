@@ -61,7 +61,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			var onsubmit = form.onsubmit;
 
 			form.onsubmit = function(e){
-				T3AdminLayout.t3savelayout(onsubmit);
+
+				(form.task.value && form.task.value.indexOf('.cancel') != -1) ?
+					($.isFunction(onsubmit) ? onsubmit() : false) : T3AdminLayout.t3savelayout(onsubmit);
 			};
 		},
 

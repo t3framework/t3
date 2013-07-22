@@ -43,7 +43,7 @@ function modChrome_T3Xhtml($module, &$params, &$attribs)
 	$moduleClassSfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 	if (!empty ($module->content)) {
-		$html = "<{$moduleTag} class=\"t3-module module {$moduleClassSfx} {$moduleClass}\" id=\"Mod{$module->id}\">" .
+		$html = "<{$moduleTag} class=\"t3-module module{$moduleClassSfx} {$moduleClass}\" id=\"Mod{$module->id}\">" .
 					"<div class=\"module-inner\">" . $badge;
 
 		if ($module->showtitle != 0) {
