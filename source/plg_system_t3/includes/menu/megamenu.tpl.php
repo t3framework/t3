@@ -219,7 +219,7 @@ class T3MenuMegamenuTpl {
 				break;
 			case 2:
 				// window.open
-				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,'.$params->get('window_open');
+				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
 				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
