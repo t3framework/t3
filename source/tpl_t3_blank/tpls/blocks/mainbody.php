@@ -55,7 +55,7 @@ defined('_JEXEC') or die;
   $col = 0;
 ?>
 
-<section id="t3-mainbody" class="container t3-mainbody">
+<div id="t3-mainbody" class="container t3-mainbody">
   <div class="row">
     
     <!-- MAIN CONTENT -->
@@ -82,4 +82,4 @@ defined('_JEXEC') or die;
     <?php endif ?>
 
   </div>
-</section> 
+</div> 

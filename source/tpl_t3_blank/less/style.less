@@ -28,7 +28,7 @@
 .logo {
   float: left;
 
-  h1, h1 a {
+  a {
     display: inline-block;
     line-height: 1;
     margin: 0;
@@ -62,19 +62,16 @@
 // ----------
 .logo-text {
 
-  h1 {
-    color: @grayDark;
-  }
-
-  h1 a {
+  a {
     color: @grayDark;
     text-decoration: none;
+    font-size: @fontSizeLarge;
   }
 
-  &:hover h1 a,
-  h1 a:hover,
-  h1 a:active,
-  h1 a:focus {
+  &:hover a,
+  a:hover,
+  a:active,
+  a:focus {
     text-decoration: none;
   }
 

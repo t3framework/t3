@@ -117,6 +117,9 @@ class T3 {
 				// JPagination
 				if (!class_exists('JPagination', false)) T3::import ('joomla25/pagination');
 			}
+
+			// import renderer
+			T3::import('renderer/pageclass');
 		} else {
 		}
 

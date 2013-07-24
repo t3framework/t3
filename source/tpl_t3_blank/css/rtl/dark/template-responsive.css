@@ -1061,6 +1061,41 @@
 }
 
 @media (max-width: 767px) {
+  h1 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+  h1 small {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+  h2 small {
+    font-size: 21px;
+  }
+  h3 {
+    font-size: 17.5px;
+    line-height: 1.25;
+  }
+  h3 small {
+    font-size: 14px;
+  }
+  h4,
+  h5,
+  h6 {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  h4 small,
+  h5 small,
+  h6 small {
+    font-size: 14px -2px;
+  }
+}
+
+@media (max-width: 767px) {
   .t3-navhelper {
     margin-right: -20px;
     margin-left: -20px;
@@ -1181,41 +1216,6 @@
     margin-right: 0;
     margin-left: 0;
     width: 100% !important;
-  }
-}
-
-@media (max-width: 767px) {
-  h1 {
-    font-size: 28px;
-    line-height: 1.25;
-  }
-  h1 small {
-    font-size: 28px;
-  }
-  h2 {
-    font-size: 21px;
-    line-height: 1.25;
-  }
-  h2 small {
-    font-size: 21px;
-  }
-  h3 {
-    font-size: 17.5px;
-    line-height: 1.25;
-  }
-  h3 small {
-    font-size: 14px;
-  }
-  h4,
-  h5,
-  h6 {
-    font-size: 14px;
-    line-height: 1.25;
-  }
-  h4 small,
-  h5 small,
-  h6 small {
-    font-size: 14px -2px;
   }
 }
 
