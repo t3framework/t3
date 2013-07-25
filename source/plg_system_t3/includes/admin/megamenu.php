@@ -243,7 +243,6 @@ class T3AdminMegamenu
 		$query->group('a.id, a.title, a.ordering');
 		$query->order('a.ordering ASC');
 		$query->order($query->qn('title') . ' ASC');
-		$query->where('a.id in (1,2,3)'); //we only support Public, Registered, Special
 
 		// Get the options.
 		$db->setQuery($query);
