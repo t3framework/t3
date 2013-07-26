@@ -154,7 +154,7 @@ class T3MenuMegamenuTpl {
 
 		if($item->dropdown && $item->level < 2){
 			$vars['class'] .= ' dropdown-toggle';
-			$vars['dropdown'] = ' data-toggle="dropdown"';
+			$vars['dropdown'] = ' data-toggle="dropdown" data-target="#"'; // Note: data-target for JomSocial old bootstrap lib
 			$vars['caret'] = '<b class="caret"></b>';
 		}
 
