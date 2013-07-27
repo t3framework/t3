@@ -542,7 +542,13 @@
       if (this.transitioning || !this.$element.hasClass('in')) return
       dimension = this.dimension()
       this.reset(this.$element[dimension]())
+	  /* >>> JUI >>> */
+	  /* ORIGINAL:
       this.transition('removeClass', $.Event('hide'), 'hidden')
+      */
+      this.transition('removeClass', $.Event('hideme'), 'hidden')
+      /* <<< JUI <<< */
+
       this.$element[dimension](0)
     }
 
@@ -631,7 +637,8 @@
     $(target).collapse(option)
   })
 
-}(window.jQuery);/* ============================================================
+}(window.jQuery);
+/* ============================================================
  * bootstrap-dropdown.js v2.3.2
  * http://twitter.github.com/bootstrap/javascript.html#dropdowns
  * ============================================================
@@ -672,9 +679,23 @@
     constructor: Dropdown
 
   , toggle: function (e) {
+      /* >>> JUI >>> */
+      /* ORIGINAL
       var $this = $(this)
         , $parent
         , isActive
+      */
+      var $this = $(this)
+        , $parent
+        , isActive
+        , url
+
+      url = $this.attr('href')
+      if ((url) && (url !== '#')) {
+         window.location = url
+         return
+      }
+      /* <<< JUI <<< */
 
       if ($this.is('.disabled, :disabled')) return
 
@@ -1270,9 +1291,16 @@
     }
 
   , hide: function () {
+	  /* >>> JUI >>> */
+	  /* ORIGINAL:
       var that = this
         , $tip = this.tip()
         , e = $.Event('hide')
+      */
+      var that = this
+        , $tip = this.tip()
+        , e = $.Event('hideme')
+      /* <<< JUI <<< */
 
       this.$element.trigger(e)
       if (e.isDefaultPrevented()) return
@@ -1394,7 +1422,12 @@
   , trigger: 'hover focus'
   , title: ''
   , delay: 0
+  /* >>> JUI >>> */
+  /* ORIGINAL:
   , html: false
+  */
+  , html: true
+  /* <<< JUI <<< */
   , container: false
   }
 
