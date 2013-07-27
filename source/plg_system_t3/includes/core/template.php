@@ -699,7 +699,9 @@ class T3Template extends ObjectExtendable
 
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
-		$this->addScript(T3_URL . '/bootstrap/js/bootstrap.js');
+		if (version_compare(JVERSION, '3.1.4', 'lt')) {
+			$this->addScript(T3_URL . '/bootstrap/js/bootstrap.js');
+		}
 
 		// add css/js for off-canvas
 		if ($offcanvas && $responsive) {
@@ -744,7 +746,7 @@ class T3Template extends ObjectExtendable
 		$doc = JFactory::getDocument();
 		$scripts = array();
 
-		if (version_compare(JVERSION, '3.0', 'ge')) {
+		if (version_compare(JVERSION, '3.0', 'ge') && version_compare(JVERSION, '3.1.4', 'lt')) {
 			$t3bootstrap = false;
 			$jabootstrap = false;
 
