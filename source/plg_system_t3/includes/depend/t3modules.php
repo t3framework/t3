@@ -18,7 +18,7 @@ defined('_JEXEC') or die();
 /**
  * Radio List Element
  *
- * @package  JAT3.Core.Element
+ * @package  T3.Core.Element
  */
 class JFormFieldT3Modules extends JFormField
 {
@@ -53,7 +53,7 @@ class JFormFieldT3Modules extends JFormField
 				if(version_compare(JVERSION, '3.0', 'ge')){
 					JHtml::_('jquery.framework');
 				} else {
-					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
+					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
 					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 				}
 

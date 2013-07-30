@@ -209,6 +209,21 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			T3AdminLayout.chsid = setTimeout(check, 1500);
 		},
 
+		initChosen: function(){
+			//remove chosen on position list
+			var jtplpos = $('#tpl-positions-list');
+			if(jtplpos.hasClass('chzn-done')){
+				var chosen = jtplpos.data('chosen');
+				if(chosen && chosen.destroy) {
+					chosen.destroy();
+				} else {
+					jtplpos
+						.removeClass('chzn-done').show()
+						.next().remove();
+				}
+			}
+		},
+
 		initLayoutClone: function(){
 			$('#t3-admin-layout-clone-dlg')
 				.on('show', function(){
@@ -1395,6 +1410,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				}
 			}
 		}
+
 	});
 	
 	$(document).ready(function(){
@@ -1402,6 +1418,10 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		T3AdminLayout.initLayoutClone();
 		T3AdminLayout.initModalDialog();
 		T3AdminLayout.initPreSubmit();
+	});
+
+	$(window).load(function(){
+		T3AdminLayout.initChosen();
 	});
 	
 }(jQuery);

@@ -141,12 +141,15 @@ class T3Admin {
 		if(!$jversion->isCompatible('3.0')){
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
 			
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.0.min.js');
+			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/bootstrap/js/bootstrap.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 		}
 
-		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.css');
+		if(!$this->checkAssetsLoaded('chosen.css', '_styleSheets')){
+			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.css');
+		}
+
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout-preview.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout.css');
@@ -160,7 +163,10 @@ class T3Admin {
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j30.css');
 		}
 
-		$jdoc->addScript(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.jquery.min.js');	
+		if(!$this->checkAssetsLoaded('chosen.jquery.min.js', '_scripts')){
+			$jdoc->addScript(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.jquery.min.js');	
+		}
+
 		$jdoc->addScript(T3_ADMIN_URL . '/includes/depend/js/depend.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/json2.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jimgload.js');
@@ -288,6 +294,19 @@ class T3Admin {
 
 	function replaceDoctype($body){
 		return preg_replace('@<!DOCTYPE\s(.*?)>@', '<!DOCTYPE html>', $body);
+	}
+
+	function checkAssetsLoaded($pattern, $hash){
+		$doc = JFactory::getDocument();
+		$hash = $doc->$hash;
+
+		foreach ($hash as $path => $object) {
+			if(strpos($path, $pattern) !== false){
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
 

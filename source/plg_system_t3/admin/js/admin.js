@@ -168,6 +168,7 @@ var T3Admin = window.T3Admin || {};
 		},
 		
 		initChosen: function(){
+
 			$('#style-form').find('select').chosen({
 				disable_search_threshold : 10,
 				allow_single_deselect : true

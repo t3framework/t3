@@ -12,11 +12,11 @@
  *------------------------------------------------------------------------------
  */
 
+jimport('joomla.filesystem.file');
+jimport('joomla.filesystem.folder');
 
 /**
- *
  * Layout helper module class
- *
  */
 class T3AdminLayout
 {
@@ -95,6 +95,10 @@ class T3AdminLayout
 		}
 		
 		$file = JPATH_ROOT . '/templates/' . $template . '/etc/layout/' . $layout . '.ini';
+		
+		if (!is_dir(dirname($file))) {
+			JFolder::create(dirname($file));
+		}
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);
@@ -137,6 +141,11 @@ class T3AdminLayout
 		$params->loadObject($_POST);
 
 		$data = $params->toString('INI');
+
+		if (!is_dir($confpath)) {
+			JFolder::create($confpath);
+		}
+
 		if ($data && !@JFile::write($confdest, $data)) {
 			return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
 		}
@@ -242,7 +251,7 @@ class T3AdminLayout
 			$options[] = JHTML::_('select.option', $position, $text);
 		}
 		
-		$lists = JHTML::_('select.genericlist', $options, '', 'multiple="multiple" size="10"', 'value', 'text', '');
+		$lists = JHTML::_('select.genericlist', $options, '', 'multiple="multiple" size="10"', 'value', 'text', '', 'tpl-positions-list');
 		
 		return $lists;
 	}
