@@ -25,6 +25,8 @@ $aInfo 		= (($params->get('show_author') && !empty($this->item->author )) ||
 				($params->get('show_parent_category')) ||
 				($params->get('show_publish_date')));
 $exAction	= ($canEdit ||  $params->get('show_print_icon') || $params->get('show_email_icon'));
+
+JHtml::_('behavior.caption');
 ?>
 
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
