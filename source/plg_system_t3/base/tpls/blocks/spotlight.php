@@ -21,6 +21,7 @@ defined('_JEXEC') or die;
 	$datas     = $vars['datas'];
 	$cols      = $vars['cols'];
 	$rowcls    = isset($vars['row-fluid']) && $vars['row-fluid'] ? 'row-fluid' : 'row';
+	$addcls    = isset($vars['class']) ? $vars['class'] : '';
 	$style     = isset($vars['style']) && $vars['style'] ? $vars['style'] : 'T3Xhtml';
 	$tstyles   = explode(',', $style);
 
@@ -37,7 +38,7 @@ defined('_JEXEC') or die;
 	}
 	?>
 	<!-- SPOTLIGHT -->
-	<div class="t3-spotlight t3-<?php echo $name ?> <?php echo $rowcls ?>">
+	<div class="t3-spotlight t3-<?php echo $name, ' ', $addcls, ' ', $rowcls ?>">
 		<?php
 		foreach ($splparams as $i => $splparam):
 			$param = (object)$splparam;
