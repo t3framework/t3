@@ -54,6 +54,10 @@ class T3AdminMegamenu
 			}
 		}
 
+		if(!is_array($mmconfig)){
+			$mmconfig = array();
+		}
+
 		$mmconfig['editmode'] = true;
 		$mmconfig['access']   = $accessLevel;
 		$mmconfig['language'] = $languages;
@@ -89,7 +93,7 @@ class T3AdminMegamenu
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
-		if (!$currentconfig) {
+		if (!is_array($currentconfig)) {
 			$currentconfig = array();
 		}
 
@@ -150,7 +154,7 @@ class T3AdminMegamenu
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
-		if (!$currentconfig) {
+		if (!is_array($currentconfig)) {
 			$currentconfig = array();
 		}
 
