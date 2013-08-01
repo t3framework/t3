@@ -691,6 +691,7 @@ class T3Template extends ObjectExtendable
 				foreach ($scripts as $script => $opts) {
 					if (preg_match($pattern, $script)) {
 						$jqueryIncluded = 1;
+						break;
 					}
 				}
 			}
@@ -768,21 +769,25 @@ class T3Template extends ObjectExtendable
 			$scripts = array();
 		}
 
-		// VIRTUE MART compatible
+		// VIRTUE MART / JSHOPPING compatible
+		
 		foreach ($doc->_scripts as $url => $script) {
 			$replace = false;
-			if (strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false) {
-				if (preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)) {
-					if (is_array($jqver) && isset($jqver[1]) && isset($jqver[1][0])) {
-						$jqver = explode('.', $jqver[1][0]);
 
-						if (isset($jqver[0]) && (int)$jqver[0] <= 1 && isset($jqver[1]) && (int)$jqver[1] < 7) {
-							$scripts[T3_URL . '/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js'] = $script;
-							$replace = true;
-						}
+			if ((strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false && preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)) || 
+				(preg_match_all('@(^|\/)jquery([-_]*(\d+(\.\d+)+))?(\.min)?\.js@i', $url, $jqver))) {
+
+				$idx = strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false ? 1 : 3;
+
+				if (is_array($jqver) && isset($jqver[$idx]) && isset($jqver[$idx][0])) {
+					$jqver = explode('.', $jqver[$idx][0]);
+
+					if (isset($jqver[0]) && (int)$jqver[0] <= 1 && isset($jqver[1]) && (int)$jqver[1] < 7) {
+						$scripts[T3_URL . '/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js'] = $script;
+						$replace = true;
 					}
 				}
-			}
+			}		
 
 			if (!$replace) {
 				$scripts[$url] = $script;
