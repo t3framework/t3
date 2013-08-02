@@ -68,6 +68,8 @@ var T3Admin = window.T3Admin || {};
 				if(!T3Admin.themermode){
 					
 					$('#t3-admin-tb-megamenu').popover('hide');
+					T3Admin.tbmmid = 0;
+					
 					$(this).popover('show');
 
 					clearTimeout(T3Admin.tbthemerid);
@@ -82,7 +84,8 @@ var T3Admin = window.T3Admin || {};
 				if(!T3Admin.themermode){
 					$(this).popover({
 						trigger: 'manual',
-						placement: 'bottom'
+						placement: 'bottom',
+						container: 'body'
 					});
 				}
 			});
@@ -106,7 +109,8 @@ var T3Admin = window.T3Admin || {};
 				return false;
 			}).popover({
 				trigger: 'manual',
-				placement: 'bottom'
+				placement: 'bottom',
+				container: 'body'
 			});		
 
 			//for style toolbar
