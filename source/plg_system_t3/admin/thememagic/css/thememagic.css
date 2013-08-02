@@ -457,7 +457,7 @@ fieldset select {
   top: -25%;
 }
 
-.modal.fade.in {
+#t3-admin-thememagic-dlg.fade.in {
   top: 50%;
 }
 

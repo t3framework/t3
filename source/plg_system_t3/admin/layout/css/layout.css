@@ -305,6 +305,10 @@
   border-radius: 3px;
 }
 
+#t3-admin-layout-clone-dlg.fade.in {
+  top: 50%;
+}
+
 
 /* Special Pos Styles
 -------------------- */
