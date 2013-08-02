@@ -28,7 +28,7 @@ defined('_JEXEC') or die;
 		<?php foreach ($poss as $i => $pos): ?>
 		<div class="span<?php echo $default[$i] ?>">
 			<?php if ($this->countModules($pos)) : ?>
-				<jdoc:include type="modules" name="<?php $this->_p($pos) ?>" style="<?php echo $style ?>" />
+				<jdoc:include type="modules" name="<?php echo $pos ?>" style="<?php echo $style ?>" />
 				<?php else: ?>
 				&nbsp;
 			<?php endif ?>
