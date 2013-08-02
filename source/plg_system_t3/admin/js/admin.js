@@ -273,13 +273,13 @@ var T3Admin = window.T3Admin || {};
 
 					var jgroup = jinput.closest('.control-group'),
 						jpane = jgroup.closest('.tab-pane'),
-						chretain = Math.max(0, (jgroup.data('chretain') || 0) + (eq ? -1 : 1));
+						chretain = Math.max(0, (jgroup.data('chretain') || 0) + (!eq && jinput.data('included') ? 0 : (eq ? -1 : 1)));
 
-					jgroup.data('chretain', chretain)
-						[chretain ? 'addClass' : 'removeClass']('t3-changed');
+					jgroup.data('chretain', chretain).toggleClass('t3-changed', !!(chretain));
 
-					$('.t3-admin-nav .nav li').eq(jpane.index())[(!eq || jpane.find('.t3-changed').length) ? 'addClass' : 'removeClass']('t3-changed');
+					$('.t3-admin-nav .nav li').eq(jpane.index()).toggleClass('t3-changed', !!(!eq || jpane.find('.t3-changed').length));
 
+					jinput.data('included', !eq);
 				});
 			}, 500);
 		},

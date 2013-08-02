@@ -46,7 +46,7 @@
 	<div class="arrow"></div>
 	<h3 class="popover-title"><?php echo JTexT::_('T3_LAYOUT_POPOVER_TITLE') ?></h3>
 	<div class="popover-content">
-		<?php echo T3AdminLayout::getTplPositions() ?>
+		<?php echo T3AdminLayout::getPositions() ?>
 		<button class="t3-admin-layout-rmvbtn btn btn-small"><i class="icon-remove"></i><?php echo JTexT::_('T3_LAYOUT_EMPTY_POSITION') ?></button>
 		<button class="t3-admin-layout-defbtn btn btn-small btn-success"><i class="icon-ok-circle"></i><?php echo JTexT::_('JDEFAULT') ?></button>
 	</div>
