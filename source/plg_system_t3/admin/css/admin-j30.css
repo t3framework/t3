@@ -66,3 +66,13 @@
 	border-color: transparent !important;
 	color: #468847;
 }
+
+
+/* Chosen
+----------------------------------------------------*/
+.chzn-drop:after {
+	content: "t3";
+	position: absolute;
+	bottom: -50px;
+	visibility: hidden;
+}
