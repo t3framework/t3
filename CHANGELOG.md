@@ -1,3 +1,35 @@
+<h2>Version: 1.4.1 (05/08/2013)</h2>
+
+<h3>New features</h3>
+T3: Add new Hook feature and support T3 plugins	https://github.com/t3framework/t3/commit/468d78e76cf13dd08a747924fbb84074d9659ffb
+	
+	
+<h3>Improvement</h3>
+- T3 Blank: Change less and language file structure | <a href="https://github.com/t3framework/t3/commit/de90fd3c0ea15ce09bcf91310d86840c754149a4">Link</a>
+- T3 Blank: Fix disabled responsive | <a href="https://github.com/t3framework/t3/commit/e9e15939f2834a1d16335445b05ad92ccab22bc1">Link</a>
+- T3 Blank: Update navigation core, move pagination to navigation core less | <a href="https://github.com/t3framework/t3/commit/c5222f296db3138b0077e26e2395435e9dd641fb">Link</a>
+- T3Layout: List all positions in all templates and database to user | <a href="https://github.com/t3framework/t3/commit/c60808fc0a0c5657741e69e5c753dfeabbf2db29">Link</a>
+- Add support additional class for spotlight block | <a href="https://github.com/t3framework/t3/commit/293b3eee1bddb716a32c92e49c45c100011cc5d4">Link</a>
+	
+<h3>Fix bugs</h3>
+- T3Less: Clean up code and fix @noflip for RTL | <a href="https://github.com/t3framework/t3/commit/e7e0cc7e4107d6f5ed2d1ea6c3ba4bce9e06d13d">Link</a>
+- Spotlight: Add support style param for spotlight Chrome style | <a href="https://github.com/t3framework/t3/commit/b9ab451f084c206db00e380869640982d2cf989d">Link</a>
+- T3Layout: Fix discard changes on close | <a href="https://github.com/t3framework/t3/commit/aa531eedb578a60333e2f131bc0d0718379e30e8">Link</a>
+- Megamenu: Fix error on browserNav | <a href="https://github.com/t3framework/t3/commit/7d3f4992a0c69d797e187776566f706995b4665c">Link</a>
+Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatible with JomSocial). Fix Bootstrap Carousel - conflict with Mootool More | <a href="https://github.com/t3framework/t3/commit/94300d07cb16450a0345a0a34c4a4036cdc5a8a4">Link</a>
+- T3Admin: Update compatible with Joomla v3.1.4 | <a href="https://github.com/t3framework/t3/commit/24c6874c996b7b4f11f83e32eea5c625b46d04bc">Link</a>
+- T3Blank: Fix T3globalMargin variable | <a href="https://github.com/t3framework/t3/commit/a0a9aa87d71f0577d1df5d42135d2826c341f816">Link</a>
+- T3: Update jquery if the version is too low. Compatible with JShopping | <a href="https://github.com/t3framework/t3/commit/c83b384e0c04a80e4a45bc0f39cc00eea34082c1">Link</a>
+- Megamenu: Fix megamenu configuration corruptted error | <a href="https://github.com/t3framework/t3/commit/6ead1347c3143ea9761414b56f27119d44a3b885">Link</a>
+- T3 Overwrite: Fix caption of image | <a href="https://github.com/t3framework/t3/commit/60587bdb9fbe17f51bd296c154439c0f055085d0">Link</a>
+- T3Layout: Remove re-mapped position in spotlight | <a href="https://github.com/t3framework/t3/commit/9cb85815eae445c6068aa1c76fc6e62bab4e1e76">Link</a>
+- T3Admin: Fix modal position when show up | <a href="https://github.com/t3framework/t3/commit/666653ef3ba7ee528800d64f6789ffd26b45c651">Link</a>
+- T3Admin: Fix popover information of ThemeMagic and Megamenu | <a href="https://github.com/t3framework/t3/commit/349af341b744323634387eae20ac54b222a1fdee">Link</a>
+- T3Tour: Fix J3.1.5 css for quickhelp | <a href="https://github.com/t3framework/t3/commit/2f1b569f6bb1f50bcc98f96b384443daeec4c475">Link</a>
+- Tpl Component: Show system message for tpl=component layout | <a href="https://github.com/t3framework/t3/commit/0e77b8473f64e461592bf5617047e267d4b5caeb">Link</a>
+
+
+
 <h2>Version: 1.4.0 (15/07/2013)</h2>
 
 <h3>Improvement</h3>
