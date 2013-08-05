@@ -1709,7 +1709,7 @@ input.invalid {
   font-size: 10.5px;
 }
 .pager {
-  margin:  0;
+  margin: 20px 0;
   list-style: none;
   text-align: center;
   *zoom: 1;
@@ -2359,28 +2359,28 @@ article aside .btn-group > .dropdown-toggle:focus {
   border-color: #999;
   box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
-#mailtoFormm .formelm {
+#mailtoForm .formelm {
   padding: 5px 0;
   vertical-align: middle;
   overflow: hidden;
 }
-#mailtoFormm .formelm label {
-  display: block;
+#mailtoForm .formelm label {
+  display: inline-block;
   float: left;
   font-weight: bold;
   vertical-align: middle;
   width: 100px;
 }
-#mailtoFormm p {
+#mailtoForm p {
   margin-top: 20px;
 }
-#mailtoFormm .input,
-#mailtoFormm .inputbox {
-  width: 70%;
+#mailtoForm .input,
+#mailtoForm .inputbox {
+  width: 65%;
 }
-#mailtoFormm .btn,
-#mailtoFormm .button,
-#mailtoFormm button {
+#mailtoForm .btn,
+#mailtoForm .button,
+#mailtoForm button {
   margin-right: 5px;
 }
 .user-details {
