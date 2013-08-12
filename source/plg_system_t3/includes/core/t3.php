@@ -120,7 +120,9 @@ class T3 {
 
 			// import renderer
 			T3::import('renderer/pageclass');
+			T3::import('renderer/megamenu');
 		} else {
+
 		}
 
 		// capture for tm=1 => show theme magic

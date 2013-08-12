@@ -26,34 +26,30 @@ class T3Template extends ObjectExtendable
 {
 	/**
 	 * Define constants
-	 *
 	 */
 	protected static $maxcol = array('default' => 6, 'wide' => 6, 'normal' => 6, 'xtablet' => 4, 'tablet' => 3, 'mobile' => 2);
 	protected static $minspan = array('default' => 2, 'wide' => 2, 'normal' => 2, 'xtablet' => 3, 'tablet' => 4, 'mobile' => 6);
 	protected static $maxgrid = 12;
 	protected static $maxcolumns = 6;
 
-	/**
-	 *
-	 * Known Valid CSS Extension Types
-	 * @var array
-	 */
-	protected static $cssexts = array(".css", ".css1", ".css2", ".css3");
-
+	
 	/**
 	 * Current template instance
 	 */
 	public $_tpl = null;
+
 
 	/**
 	 * Store layout settings if exist
 	 */
 	protected $_layoutsettings = null;
 
+
 	/**
 	 * page class
 	 */
 	protected $_pageclass = array();
+
 
 	/**
 	 * Class constructor
@@ -84,23 +80,33 @@ class T3Template extends ObjectExtendable
 		JDispatcher::getInstance()->trigger('onT3TplInit', array($this));
 	}
 
+
 	/**
-	 * get template parameter
+	 * Get template parameter
+	 * @param  string  $name     parameter name
+	 * @param  mixed   $default  parameter default value
 	 *
-	 * @param   $name  parameter name
-	 * @param   $default  parameter default value
-	 *
-	 * @return   parameter value
+	 * @return  mixed  parameter value
 	 */
 	public function getParam($name, $default = null)
 	{
 		return $this->_tpl->params->get($name, $default);
 	}
 
+
+	/**
+	 * Set template parameter. It will not store to database. This should not be used
+	 * @param  string  $name   parameter name
+	 * @param  mixed   $value  parameter value
+	 *
+	 * @return  null
+	 * @deprecated  This function is no longer used in T3
+	 */
 	public function setParam($name, $value)
 	{
 		return $this->_tpl->params->set($name, $value);
 	}
+
 
 	/**
 	 * Get current layout tpls
@@ -112,8 +118,11 @@ class T3Template extends ObjectExtendable
 		return JFactory::getApplication()->input->getCmd('tmpl') ? JFactory::getApplication()->input->getCmd('tmpl') : $this->getParam('mainlayout', 'default');
 	}
 
+
 	/**
-	 * Get layout settings
+	 * Get layout settings (Layout Tab)
+	 * @param  string  $name     parameter name
+	 * @param  mixed   $default  parameter default value
 	 *
 	 * @return string Layout name
 	 */
@@ -122,11 +131,10 @@ class T3Template extends ObjectExtendable
 		return isset($this->_layoutsettings) ? $this->_layoutsettings->get($name, $default) : $default;
 	}
 
+
 	/**
 	 * Load block content
-	 *
-	 * @param $block string
-	 *     Block name - the real block is tpls/blocks/[blockname].php
+	 * @param  string  $block  Block name - the real block is tpls/blocks/[blockname].php
 	 *
 	 * @return string Block content
 	 */
@@ -139,6 +147,7 @@ class T3Template extends ObjectExtendable
 			echo "<div class=\"error\">Block [$block] not found!</div>";
 		}
 	}
+
 
 	/**
 	 * Load block content
@@ -163,12 +172,11 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Load spotlight block
+	 * @param  string  $name       Name of the spotlight. Default will load positions base on this name: [name]-1, [name]-2...
+	 * @param  string  $positions  The positions of spotlight, separated by comma
+	 * @param  array   $info       Other information of spotlight
 	 *
-	 * @param $name string
-	 *     Name of the spotlight. Default will load positions base on this name: [name]-1, [name]-2...
-	 * @param $default_cols integer
-	 *     Default columns in the spotlight, changable in admin
-	 *
+	 * @return null
 	 */
 	function spotlight($name, $positions, array $info = array())
 	{
@@ -264,94 +272,30 @@ class T3Template extends ObjectExtendable
 		$this->loadBlock('spotlight', $vars);
 	}
 
+
+	/**
+	 * Render megamenu markup
+	 * @param  string  $menutype  The menutype to render
+	 *
+	 * @deprecated  Use <jdoc:include type="megamenu" menutype="$menutype" /> instead
+	 */
 	function megamenu($menutype)
 	{
-		T3::import('menu/megamenu');
-
-		//we will check from params
-		$currentconfig = json_decode($this->getParam('mm_config', ''), true);
-
-		//force to array
-		if (!is_array($currentconfig)) {
-			$currentconfig = (array)$currentconfig;
-		}
-
-		//get user access levels
-		$viewLevels = JFactory::getUser()->getAuthorisedViewLevels();
-		$mmkey = $menutype;
-		$mmconfig = array();
-		if (!empty($currentconfig)) {
-
-			//find best fit configuration based on view level
-			$vlevels = array_merge($viewLevels);
-			if (is_array($vlevels) && in_array(3, $vlevels)) { //we assume, if a user is special, they should be registered also
-				$vlevels[] = 2;
-			}
-			$vlevels = array_unique($vlevels);
-			rsort($vlevels);
-
-			if (is_array($vlevels) && count($vlevels)) {
-				//should check for special view level first
-				if (in_array(3, $vlevels)) {
-					array_unshift($vlevels, 3);
-				}
-
-				$found = false;
-				foreach ($vlevels as $vlevel) {
-					$mmkey = $menutype . '-' . $vlevel;
-					if (isset($currentconfig[$mmkey])) {
-						$found = true;
-						break;
-					}
-				}
-
-				//fallback
-				if (!$found) {
-					$mmkey = $menutype;
-				}
-			}
-
-			//we try to switch the language if we are in public
-			if ($mmkey == $menutype) {
-				// check if available configuration for language override
-				$langcode = substr(JFactory::getDocument()->language, 0, 2);
-				if (isset($currentconfig[$menutype . '-' . $langcode])) {
-					$mmkey = $menutype = $menutype . '-' . $langcode;
-				}
-			}
-
-			if (isset($currentconfig[$mmkey])) {
-				$mmconfig = $currentconfig[$mmkey];
-			}
-		}
-
-		JDispatcher::getInstance()->trigger('onT3Megamenu', array(&$menutype, &$mmconfig, &$viewLevels));
-
-		$mmconfig['access'] = $viewLevels;
-		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $this->_tpl->params);
-		$menu->render();
-
-		// add core megamenu.css in plugin
-		// deprecated - will extend the core style into template megamenu.less & megamenu-responsive.less
-		// to use variable overridden in template
-		$this->addStyleSheet(T3_URL . '/css/megamenu.css');
-		if ($this->getParam('responsive', 1)) $this->addStyleSheet(T3_URL . '/css/megamenu-responsive.css');
-
-		// megamenu.css override in template
-		$this->addCss('megamenu');
+		T3::import('renderer/megamenu');
+		
+		$doc      = JFactory::getDocument();
+		$renderer = new JDocumentRendererMegamenu($doc);
+		
+		echo $renderer->render(); 
 	}
 
 	/**
 	 * Get data property for layout - responsive layout
+	 * @param  object   $layout  Layout configuration object
+	 * @param  number   $col     Column number, start from 0
+	 * @param  boolean  $array   Return array or string
 	 *
-	 * @param $layout object
-	 *     Layout configuration
-	 * @param $col int
-	 *     Column number, start from 0
-	 * @param $array boolean
-	 *     return array or string
-	 *
-	 * @return string Block content
+	 * @return  mixed  Block content
 	 */
 	function getData($layout, $col, $array = false)
 	{
@@ -373,15 +317,13 @@ class T3Template extends ObjectExtendable
 		return $data;
 	}
 
+
 	/**
 	 * Get layout column class
+	 * @param  object  $layout  Layout configuration object
+	 * @param  number  $col     Column number, start from 0
 	 *
-	 * @param $layout object
-	 *     Layout configuration
-	 * @param $col int
-	 *     Column number, start from 0
-	 *
-	 * @return string Block content
+	 * @return string  Block content
 	 */
 	function getClass($layout, $col)
 	{
@@ -389,6 +331,7 @@ class T3Template extends ObjectExtendable
 		if (!isset ($width[$col]) || !$width[$col]) return "";
 		return $width[$col];
 	}
+
 
 	/**
 	 * Add page class
@@ -419,7 +362,7 @@ class T3Template extends ObjectExtendable
 	/**
 	 * Render page class
 	 *
-	 * @deprecated
+	 * @deprecated  Use <jdoc:include type="pageclass" /> instead
 	 */
 	function bodyClass()
 	{
@@ -465,8 +408,11 @@ class T3Template extends ObjectExtendable
 		echo implode(' ', $this->_pageclass);
 	}
 
+
 	/**
 	 * Render snippet
+	 *
+	 * @return null
 	 */
 	function snippet()
 	{
@@ -499,8 +445,11 @@ class T3Template extends ObjectExtendable
 		}
 	}
 
+
 	/**
 	 * Wrap of document countModules function, get position from configuration before calculate
+	 *
+	 * @return  boolean  The position key is avaialble or not
 	 */
 	function countModules($positions)
 	{
@@ -508,8 +457,13 @@ class T3Template extends ObjectExtendable
 		return $this->_tpl && method_exists($this->_tpl, 'countModules') ? $this->_tpl->countModules($pos) : 0;
 	}
 
+
 	/**
-	 * Wrap of document countModules function, get position from configuration before calculate
+	 * Wrap of document countModules function, used to detect if a spotlight is available to render or not
+	 * @param  string  $name       The spotlight name
+	 * @param  string  $positions  The positions name separated by comma
+	 *
+	 * @return  boolean  The spotlight is available or not
 	 */
 	function checkSpotlight($name, $positions)
 	{
@@ -532,8 +486,11 @@ class T3Template extends ObjectExtendable
 		return $this->_tpl && method_exists($this->_tpl, 'countModules') ? $this->_tpl->countModules(implode(' or ', $poss)) : 0;
 	}
 
+
 	/**
 	 * Check system messages
+	 *
+	 * @return  boolean  The system message queue has any message or not
 	 */
 	function hasMessage()
 	{
@@ -542,11 +499,12 @@ class T3Template extends ObjectExtendable
 		return !empty($messages);
 	}
 
+
 	/**
-	 * Get position name
+	 * Get mapped position name
+	 * @param  string  $condition  The position key(name)
 	 *
-	 * @param $poskey string
-	 *     the key used in block
+	 * @return  string  The mapped position
 	 */
 	function getPosname($condition)
 	{
@@ -571,11 +529,12 @@ class T3Template extends ObjectExtendable
 		return $poss;
 	}
 
+
 	/**
-	 * echo position name
-	 *
-	 * @param $poskey string
-	 *     the key used in block
+	 * Render position name
+	 * @param  string  $poskey  The key used in block
+	 *     
+	 * @return  null    
 	 */
 	function posname($condition)
 	{
@@ -585,19 +544,21 @@ class T3Template extends ObjectExtendable
 	/**
 	 * Alias of posname
 	 *
+	 * @return null
 	 */
 	function _p($condition)
 	{
 		$this->posname($condition);
 	}
 
-	/**
-	 * add position additinal class
-	 *
-	 * @param $poskey string
-	 *     the key used in block
-	 */
 
+	/**
+	 * Add position additinal class (show/hide)
+	 * @param  string  $name  The position name
+	 * @param  array   $cls   The responsive array style for responsive layout [default, wide, ...]
+	 *
+	 * @return null
+	 */
 	function _c($name, $cls = array())
 	{
 		$data = '';
@@ -633,7 +594,6 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Add current template css base on template setting.
-	 *
 	 * @param $name String
 	 *     file name, without .css
 	 *
@@ -641,9 +601,10 @@ class T3Template extends ObjectExtendable
 	 */
 	function addCss($name, $addresponsive = true)
 	{
-		$devmode = $this->getParam('devmode', 0);
+		$devmode    = $this->getParam('devmode', 0);
 		$themermode = $this->getParam('themermode', 1);
 		$responsive = $addresponsive ? $this->getParam('responsive', 1) : false;
+
 		if (($devmode || ($themermode && defined('T3_THEMER'))) && ($url = T3Path::getUrl('less/' . $name . '.less', '', true))) {
 			T3::import('core/less');
 			T3Less::addStylesheet($url);
@@ -662,10 +623,15 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Add T3 basic head
+	 *
+	 * @return  null
 	 */
 	function addHead()
 	{
 		$responsive = $this->getParam('responsive', 1);
+		$navtype    = $this->getParam('navigation_type', 'joomla');
+		$navtrigger = $this->getParam('navigation_trigger', 'hover');
+		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1);
 
 		// BOOTSTRAP CSS
 		$this->addCss('bootstrap', false);
@@ -678,6 +644,26 @@ class T3Template extends ObjectExtendable
 			// RESPONSIVE CSS
 			$this->addCss('template-responsive');
 		}
+
+		// add core megamenu.css in plugin
+		// deprecated - will extend the core style into template megamenu.less & megamenu-responsive.less
+		// to use variable overridden in template
+		if($navtype == 'megamenu'){
+
+			// If the template does not overwrite megamenu.less & megamenu-responsive.less
+			// We check and included predefined megamenu style in base
+			if(!is_file(T3_TEMPLATE_PATH . '/less/megamenu.less')){
+				$this->addStyleSheet(T3_URL . '/css/megamenu.css');
+				
+				if ($responsive){
+					$this->addStyleSheet(T3_URL . '/css/megamenu-responsive.css');
+				}
+			}
+
+			// megamenu.css override in template
+			$this->addCss('megamenu');
+		}
+		
 
 		// Add scripts
 		if (version_compare(JVERSION, '3.0', 'ge')) {
@@ -701,6 +687,7 @@ class T3Template extends ObjectExtendable
 				$this->addScript(T3_URL . '/js/jquery.noconflict.js');
 			}
 		}
+
 		define('JQUERY_INCLUED', 1);
 
 
@@ -708,7 +695,7 @@ class T3Template extends ObjectExtendable
 		$this->addScript(T3_URL . '/bootstrap/js/bootstrap.js');
 
 		// add css/js for off-canvas
-		if ($this->getParam('navigation_collapse_offcanvas', 1) && $this->getParam('responsive', 1)) {
+		if ($offcanvas && $responsive) {
 			$this->addCss('off-canvas', false);
 			$this->addScript(T3_URL . '/js/off-canvas.js');
 		}
@@ -716,7 +703,7 @@ class T3Template extends ObjectExtendable
 		$this->addScript(T3_URL . '/js/script.js');
 
 		//menu control script
-		if ($this->getParam('navigation_trigger', 'hover') == 'hover') {
+		if ($navtrigger == 'hover') {
 			$this->addScript(T3_URL . '/js/menu.js');
 		}
 
@@ -731,9 +718,19 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
+	 * We also detect and update jQuery, Bootstrap to use T3 assets
+	 *
+	 * @return  null
 	 */
 	function updateHead()
 	{
+		//state parameters
+		$devmode = $this->getParam('devmode', 0);
+		$themermode = $this->getParam('themermode', 1) && defined('T3_THEMER');
+		$theme = $this->getParam('theme', '');
+		$minify = $this->getParam('minify', 0);
+
+
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded 
 		// And upgrade jquery as our Framework require jquery 1.7+ if we are loading jquery from google
@@ -770,7 +767,6 @@ class T3Template extends ObjectExtendable
 		}
 
 		// VIRTUE MART / JSHOPPING compatible
-		
 		foreach ($doc->_scripts as $url => $script) {
 			$replace = false;
 
@@ -783,7 +779,7 @@ class T3Template extends ObjectExtendable
 					$jqver = explode('.', $jqver[$idx][0]);
 
 					if (isset($jqver[0]) && (int)$jqver[0] <= 1 && isset($jqver[1]) && (int)$jqver[1] < 7) {
-						$scripts[T3_URL . '/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js'] = $script;
+						$scripts[T3_URL . '/js/jquery-1.8.3' . ($devmode ? '' : '.min') . '.js'] = $script;
 						$replace = true;
 					}
 				}
@@ -797,14 +793,8 @@ class T3Template extends ObjectExtendable
 		$doc->_scripts = $scripts;
 		// end update javascript
 
-		$devmode = $this->getParam('devmode', 0);
-		$themermode = $this->getParam('themermode', 1) && defined('T3_THEMER');
-		$theme = $this->getParam('theme', '');
-		$minify = $this->getParam('minify', 0);
-
 		// detect RTL
-		$doc = JFactory::getDocument();
-		$dir = $doc->direction;
+		$dir    = $doc->direction;
 		$is_rtl = ($dir == 'rtl');
 
 		// not in devmode and in default theme, do nothing
@@ -813,34 +803,37 @@ class T3Template extends ObjectExtendable
 		}
 
 
-		$doc = JFactory::getDocument();
-		$root = JURI::root(true);
-		$regex = '#' . T3_TEMPLATE_URL . '/css/([^/]*)\.css((\?|\#).*)?$#i';
+		//Update css/less based on devmode and themermode
+		$root        = JURI::root(true);
+		$current     = JURI::current();
+		$regex       = '#' . T3_TEMPLATE_URL . '/css/([^/]*)\.css((\?|\#).*)?$#i';
 
 		$stylesheets = array();
+
 		foreach ($doc->_styleSheets as $url => $css) {
 			// detect if this css in template css
 			if (preg_match($regex, $url, $match)) {
 				$fname = $match[1];
+
 				if ($devmode || $themermode) {
 					if (is_file(T3_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
 						if ($themermode) {
 							$newurl = T3_TEMPLATE_URL . '/less/' . $fname . '.less';
-							$css ['mime'] = 'text/less';
+							$css['mime'] = 'text/less';
 						} else {
-							$newurl = JURI::current() . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
+							$newurl = $current . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
 						}
 						$stylesheets[$newurl] = $css;
-						continue;
 					}
 				} else {
 					$subpath = $is_rtl ? 'rtl/' . ($theme ? $theme . '/' : '') : ($theme ? 'themes/' . $theme . '/' : '');
 					if ($subpath && is_file(T3_TEMPLATE_PATH . '/css/' . $subpath . $fname . '.css')) {
 						$newurl = T3_TEMPLATE_URL . '/css/' . $subpath . $fname . '.css';
 						$stylesheets[$newurl] = $css;
-						continue;
 					}
 				}
+
+				continue;
 			}
 
 			$stylesheets[$url] = $css;
@@ -856,12 +849,15 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
-	 * Add some other condition assets (css, javascript)
+	 * Add some other condition assets (css, javascript). Use to parse /etc/assets.xml
+	 *
+	 * @return  null
 	 */
 	function addExtraAssets()
 	{
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
+		
 		foreach (array(T3_PATH, T3_TEMPLATE_PATH) as $bpath) {
 			//full path
 			$afile = $bpath . '/etc/assets.xml';
@@ -869,7 +865,8 @@ class T3Template extends ObjectExtendable
 
 				//load xml
 				$axml = JFactory::getXML($afile);
-				//parse stylesheets first if exist
+				
+				//process if exist
 				if ($axml) {
 					foreach ($axml as $node => $nodevalue) {
 						//ignore others node
@@ -913,16 +910,22 @@ class T3Template extends ObjectExtendable
 				}
 			}
 		}
-
-
 	}
 
-	function paramToStyle($style, $paramname = '', $isurl = false)
+
+	/**
+	 * Turn a param to DOM style value
+	 * @param   string   $style  The style property
+	 * @param   string   $pname  The parameter name
+	 * @param   boolean  $isurl  Is url?
+	 * @deprecated   This function is no longer used in T3
+	 */
+	function paramToStyle($style, $pname = '', $isurl = false)
 	{
-		if ($paramname == '') {
-			$paramname = $style;
+		if ($pname == '') {
+			$pname = $style;
 		}
-		$param = $this->getParam($paramname);
+		$param = $this->getParam($pname);
 
 		if (!$param) return '';
 
@@ -934,8 +937,10 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
-	 * Auto generate optimize width in a row fit to 12 grid
-	 * @var (int) numpos: number columns in row
+	 * Internal function, auto generate optimize width in a row fit to 12 grid
+	 * @param  number  $numpos  number columns in row
+	 *
+	 * @return  array  The span width layout columns for a row
 	 */
 	function fitWidth($numpos)
 	{
@@ -954,7 +959,11 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
-	 * Generate auto calculate width
+	 * Internal function, generate auto calculate width
+	 * @param   string   $layout  The targt layout [default, wide, normal, xtablet, tablet, mobile]
+	 * @param   number   $numpos  Number of columns (block)
+	 * 
+	 * @return  array  The span width layout columns
 	 */
 	function genWidth($layout, $numpos)
 	{
@@ -980,22 +989,6 @@ class T3Template extends ObjectExtendable
 		}
 
 		return $result;
-	}
-
-
-	/**
-	 * Compare function for sorting the menu match order
-	 */
-	public static function menupriority($a, $b)
-	{
-		$ca = count($a);
-		$cb = count($b);
-
-		if ($ca == $cb) {
-			return 0;
-		}
-
-		return ($ca < $cb) ? 1 : -1;
 	}
 }
 
