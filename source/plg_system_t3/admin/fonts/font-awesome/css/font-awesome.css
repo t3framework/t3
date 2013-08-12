@@ -1477,3 +1477,266 @@ a .icon-flip-vertical:before {
 .icon-renren:before {
   content: "\f18b";
 }
+/* Include Joomla3 compatibility icons */
+/* This file provides a mapping from Joomla3 icon classes to FontAwesome icons */
+.icon-address:before {
+  content: "\f02d";
+}
+.icon-arrow-down-2:before {
+  content: "\f0ab";
+}
+.icon-arrow-down-3:before {
+  content: "\f0d7";
+}
+.icon-arrow-first:before {
+  content: "\f048";
+}
+.icon-arrow-last:before {
+  content: "\f051";
+}
+.icon-arrow-left-2:before {
+  content: "\f0a8";
+}
+.icon-arrow-left-3:before {
+  content: "\f0d9";
+}
+.icon-arrow-right-2:before {
+  content: "\f0a9";
+}
+.icon-arrow-right-3:before {
+  content: "\f0da";
+}
+.icon-arrow-up-2:before {
+  content: "\f0aa";
+}
+.icon-arrow-up-3:before {
+  content: "\f0d8";
+}
+.icon-bars:before {
+  content: "\f080";
+}
+.icon-basket:before {
+  content: "\f07a";
+}
+.icon-box-add:before {
+  content: "\f019";
+}
+.icon-box-remove:before {
+  content: "\f093";
+}
+.icon-broadcast:before {
+  content: "\f012";
+}
+.icon-brush:before {
+  content: "\f043";
+}
+.icon-calendar-2:before {
+  content: "\f073";
+}
+.icon-camera-2:before {
+  content: "\f03d";
+}
+.icon-cancel:before {
+  content: "\f057";
+}
+.icon-cancel-2:before {
+  content: "\f00d";
+}
+.icon-cart:before {
+  content: "\f07a";
+}
+.icon-chart:before {
+  content: "\f080";
+}
+.icon-checkbox:before {
+  content: "\f046";
+}
+.icon-checkbox-partial:before {
+  content: "\f147";
+}
+.icon-checkbox-unchecked:before {
+  content: "\f096";
+}
+.icon-checkmark:before {
+  content: "\f00c";
+}
+.icon-clock:before {
+  content: "\f017";
+}
+.icon-color-palette:before {
+  content: "\f0e4";
+}
+.icon-comments-2:before {
+  content: "\f086";
+}
+.icon-contract:before {
+  content: "\f066";
+}
+.icon-contract-2:before {
+  content: "\f066";
+}
+.icon-cube:before {
+  content: "\f01c";
+}
+.icon-database:before {
+  content: "\f0a0";
+}
+.icon-drawer:before {
+  content: "\f01c";
+}
+.icon-drawer-2:before {
+  content: "\f01c";
+}
+.icon-expand:before {
+  content: "\f065";
+}
+.icon-expand-2:before {
+  content: "\f0b2";
+}
+.icon-eye:before {
+  content: "\f06e";
+}
+.icon-feed:before {
+  content: "\f143";
+}
+.icon-file-add:before {
+  content: "\f116";
+}
+.icon-file-remove:before {
+  content: "\f117";
+}
+.icon-first:before {
+  content: "\f049";
+}
+.icon-flag-2:before {
+  content: "\f0c6";
+}
+.icon-folder:before {
+  content: "\f07c";
+}
+.icon-folder-2:before {
+  content: "\f07b";
+}
+.icon-grid-view:before {
+  content: "\f0db";
+}
+.icon-grid-view-2:before {
+  content: "\f00a";
+}
+.icon-health:before {
+  content: "\f0f1";
+}
+.icon-help:before {
+  content: "\f059";
+}
+.icon-lamp:before {
+  content: "\f0eb";
+}
+.icon-last:before {
+  content: "\f050";
+}
+.icon-lightning:before {
+  content: "\f0e7";
+}
+.icon-list-view:before {
+  content: "\f0ca";
+}
+.icon-location:before {
+  content: "\f041";
+}
+.icon-locked:before {
+  content: "\f023";
+}
+.icon-loop:before {
+  content: "\f021";
+}
+.icon-mail:before {
+  content: "\f0e0";
+}
+.icon-mail-2:before {
+  content: "\f003";
+}
+.icon-menu:before {
+  content: "\f142";
+}
+.icon-menu-2:before {
+  content: "\f0dc";
+}
+.icon-minus-2:before {
+  content: "\f068";
+}
+.icon-mobile:before {
+  content: "\f10b";
+}
+.icon-next:before {
+  content: "\f04e";
+}
+.icon-out:before {
+  content: "\f045";
+}
+.icon-out-2:before {
+  content: "\f08b";
+}
+.icon-pencil-2:before {
+  content: "\f040";
+}
+.icon-pictures:before {
+  content: "\f03e";
+}
+.icon-pin:before {
+  content: "\f08d";
+}
+.icon-play-2:before {
+  content: "\f01d";
+}
+.icon-plus-2:before {
+  content: "\f067";
+}
+.icon-power-cord:before {
+  content: "\f076";
+}
+.icon-previous:before {
+  content: "\f04a";
+}
+.icon-printer:before {
+  content: "\f02f";
+}
+.icon-puzzle:before {
+  content: "\f12e";
+}
+.icon-quote:before {
+  content: "\f10d";
+}
+.icon-quote-2:before {
+  content: "\f10e";
+}
+.icon-redo:before {
+  content: "\f064";
+}
+.icon-screen:before {
+  content: "\f108";
+}
+.icon-shuffle:before {
+  content: "\f074";
+}
+.icon-star-2:before {
+  content: "\f123";
+}
+.icon-support:before {
+  content: "\f05b";
+}
+.icon-tools:before {
+  content: "\f0ad";
+}
+.icon-users:before {
+  content: "\f0c0";
+}
+.icon-vcard:before {
+  content: "\f18b";
+}
+.icon-wand:before {
+  content: "\f0d0";
+}
+.icon-warning:before {
+  content: "\f071";
+}
