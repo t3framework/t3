@@ -28,6 +28,7 @@ class T3Bot extends JObject
 		$input = JFactory::getApplication()->input;
 		if ($input->get('option') == 'com_menus' && 
 			preg_match('#save|apply|trash|remove|delete|publish|order#i', $input->get('task'))) {
+			
 			// get all template styles
 			$db = JFactory::getDBO();
 			$query = $db->getQuery(true);
@@ -70,21 +71,66 @@ class T3Bot extends JObject
 
 	// call after call T3::init
 	public static function afterInit () {
-		$app = JFactory::getApplication();
-		$input = $app->input;
+		
+		$app       = JFactory::getApplication();
+		$input     = $app->input;
+		$tplparams = $app->getTemplate(true)->params;
+		
 		if (!$app->isAdmin()) {
 			// check if need update megamenu configuration
-			if ($app->getTemplate(true)->params->get ('mm_config_needupdate')) {
+			if ($tplparams->get ('mm_config_needupdate')) {
 				T3::import('menu/megamenu');
-				$currentconfig = json_decode($app->getTemplate(true)->params->get ('mm_config'), true);
-				if (!is_array($currentconfig)) $currentconfig = array();
-				
-				foreach ($currentconfig as $menutype => $mmconfig) {
-					if (!is_array($mmconfig)) continue;
+				T3::import('admin/megamenu');
+
+				$currentconfig = @json_decode($tplparams->get ('mm_config', ''), true);
+				if (!is_array($currentconfig)){
+					$currentconfig = array();
+				} else {
+					$menuassoc = T3AdminMegamenu::menus();
+					$menulangs = array();
+					$menutypes = array();
+
+					foreach ($menuassoc as $key => $massoc) {
+						$menutypes[] = $massoc->value;
+						$menulangs[$massoc->value] = $massoc->language;
+					}
+				}
+
+				foreach ($currentconfig as $menukey => $mmconfig) {
+					if (!is_array($mmconfig)){
+						continue;
+					}
+
+					$menutype = $menukey;
+					if(!in_array($menutype, $menutypes) && preg_match('@(-(\d))+$@', $menukey, $match)){
+						$menutype = preg_replace('@(-(\d))+$@', '', $menutype);
+
+						$access = explode('-', $match[0]);
+						$access[] = 1;
+
+						$access = array_filter($access);
+						$access = array_unique($access);
+
+						$mmconfig['access'] = $access;
+					}
+
+					if(!in_array($menutype, $menutypes)){
+						continue;
+					}
+
+					$mmconfig['language'] = $menulangs[$menutype];
+					
 					$menu = new T3MenuMegamenu ($menutype, $mmconfig);
+
 					$children = $menu->get ('children');
+
+					//remove additional settings
+					unset($mmconfig['language']);
+					unset($mmconfig['access']);
+
 					foreach ($mmconfig as $item => $setting) {
-						if (isset ($setting['sub'])) {
+
+						if (is_array($setting) && isset($setting['sub'])) {
 							$sub = &$setting['sub'];
 							$id = (int) substr($item, 5); // remove item-
 							$modify = false;
@@ -146,14 +192,12 @@ class T3Bot extends JObject
 
 							// no need update config for this item
 							if ($items == $_items) continue;
-							// update back to setting
 
+							// update back to setting
 							$i = 0;
 							$c = count ($_items);
 							for ($j=0; $j < count($sub['rows']); $j++) {
-							// foreach ($sub['rows'] as $row) {
 								for ($k=0; $k < count($sub['rows'][$j]); $k++) {
-								// foreach ($row as $col) {
 									if (!isset($sub['rows'][$j][$k]['position'])) {
 										$sub['rows'][$j][$k]['item'] = $i < $c ? $_items[$i++] : "";
 									}
@@ -190,7 +234,7 @@ class T3Bot extends JObject
 						}
 					}
 
-					$currentconfig[$menutype] = $mmconfig;
+					$currentconfig[$menukey] = $mmconfig;
 				}
 
 				// update  megamenu back to other template styles parameter
@@ -236,7 +280,6 @@ class T3Bot extends JObject
 				$cache = JFactory::getCache('com_templates', '');
 				$cache->clean();
 			}
-		}		
-
+		}
 	}
 }
