@@ -20,7 +20,7 @@ if(!defined('T3_TPL_COMPONENT')){
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class="<?php $this->bodyClass(); ?>">
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class='component <jdoc:include type="pageclass" />'>
 
   <head>
     <jdoc:include type="head" />

@@ -79,141 +79,57 @@ class JFormFieldT3Positions extends JFormField
 	{
 		$this->loadAsset();
 
-		/*
-		$db = JFactory::getDBO();
-		$query = "SELECT DISTINCT position FROM #__modules ORDER BY position ASC";
-		$db->setQuery($query);
-		$groups = $db->loadObjectList();
-
-		$groupHTML = array();
-		if($this->element['show_empty']){
-			$groupHTML[] = JHTML::_('select.option', '', '');
-		}
-
-		if($this->element['show_none']){
-			$groupHTML[] = JHTML::_('select.option', 'none', JText::_('JNONE'));
-		}
-
-		if ($groups && count($groups)) {
-			foreach ($groups as $v=>$t) {
-				if(!empty($t->position)){
-					$groupHTML[] = JHTML::_('select.option', $t->position, $t->position);
-				}
-			}
-		}
-		*/
-
-		$template = T3_TEMPLATE;
-		$path = JPATH_SITE;
-		$lang = JFactory::getLanguage();
-		$lang->load('tpl_'.$template.'.sys', $path, null, false, false)
-			||  $lang->load('tpl_'.$template.'.sys', $path.'/templates/'.$template, null, false, false)
-			||  $lang->load('tpl_'.$template.'.sys', $path, $lang->getDefault(), false, false)
-			||  $lang->load('tpl_'.$template.'.sys', $path.'/templates/'.$template, $lang->getDefault(), false, false);
-			
-		$options = array();
-		if($this->element['show_empty']){
-			$options[] = JHTML::_('select.option', '', '');
-		}
-
-		if($this->element['show_none']){
-			$options[] = JHTML::_('select.option', 'none', JText::_('JNONE'));
-		}
-
-		$positions = self::getPositions($template);
-		foreach ($positions as $position)
-		{
-			// Template translation
-			
-			$langKey = strtoupper('TPL_' . $template . '_POSITION_' . $position);
-			$text = JText::_($langKey);
-
-			// Avoid untranslated strings
-			if ($langKey === $text)
-			{
-				// Modules component translation
-				$langKey = strtoupper('COM_MODULES_POSITION_' . $position);
-				$text = JText::_($langKey);
-
-				if ($langKey === $text)
-				{
-					// Try to humanize the position name
-					$text = ucfirst(preg_replace('/^' . $template . '\-/', '', $position));
-					$text = ucwords(str_replace(array('-', '_'), ' ', $text));
-				}
-			}
-
-			$text = $text . ' [' . $position . ']';
-			$options[] = JHTML::_('select.option', $position, $text);
-		}
+		T3::import('admin/layout');
 		
-		$lists = JHTML::_('select.genericlist', $options, $this->name . ($this->element['multiple'] == 1 ? '[]' : ''), ($this->element['multiple'] == 1 ? 'multiple="multiple" size="10" ' : '') . ($this->element['disabled'] ? 'disabled="disabled"' : ''), 'value', 'text', $this->value);
-		
-		return $lists;
+		return $this->getPositions();
 	}
-
-	public static function getPositions($template = '')
+	
+	function getPositions()
 	{
-		$positions = array();
-
-		$templateBaseDir = JPATH_SITE;
-		$filePath = JPath::clean($templateBaseDir . '/templates/' . $template . '/templateDetails.xml');
-
-		if (is_file($filePath))
-		{
-			// Read the file to see if it's a valid component XML file
-			$xml = simplexml_load_file($filePath);
-			if (!$xml)
-			{
-				return false;
-			}
-
-			// Check for a valid XML root tag.
-
-			// Extensions use 'extension' as the root tag.  Languages use 'metafile' instead
-
-			if ($xml->getName() != 'extension' && $xml->getName() != 'metafile')
-			{
-				unset($xml);
-				return false;
-			}
-
-			$positions = (array) $xml->positions;
-
-			if (isset($positions['position']))
-			{
-				$positions = $positions['position'];
-			}
-			else
-			{
-				$positions = array();
-			}
+		$path     = JPATH_SITE;
+		$lang     = JFactory::getLanguage();
+		$clientId = 0;
+		$state    = 1;
+		
+		$templates      = array_keys(T3AdminLayout::getTemplates($clientId, $state));
+		$templateGroups = array();
+		
+		// Add positions from templates
+		foreach ($templates as $template) {
+			$options = array();
+			
+			$positions = T3AdminLayout::getTplPositions($clientId, $template);
+			if (is_array($positions))
+				foreach ($positions as $position) {
+					$text      = T3AdminLayout::getTranslatedModulePosition($clientId, $template, $position) . ' [' . $position . ']';
+					$options[] = T3AdminLayout::createOption($position, $text);
+				}
+			
+			$templateGroups[$template] = T3AdminLayout::createOptionGroup(ucfirst($template), $options);
 		}
+		
+		// Add custom position to options
+		$customGroupText                  = JText::_('T3_LAYOUT_CUSTOM_POSITION');
+		$customPositions                  = T3AdminLayout::getDbPositions($clientId);
+		$templateGroups[$customGroupText] = T3AdminLayout::createOptionGroup($customGroupText, $customPositions);
 
-		return $positions;
+
+		$multiple = $this->toBoolean((string) $this->element['multiple']);
+		$disabled = $this->toBoolean((string) $this->element['disabled']);
+		
+		
+		return JHtml::_('select.groupedlist', $templateGroups, $this->name, array(
+			'list.attr' => ($multiple ? ' multiple="multiple" size="10"' : '') . ($disabled ? 'disabled="disabled"' : '')
+		));
 	}
+
 
 	/**
-	 * Create and return a new Option
+	 * Helper function, check the field attribute and return boolean value
 	 *
-	 * @param   string  $value  The option value [optional]
-	 * @param   string  $text   The option text [optional]
-	 *
-	 * @return  object  The option as an object (stdClass instance)
-	 *
-	 * @since   3.0
+	 * @return  boolean the check result
 	 */
-	public static function createOption($value = '', $text = '')
-	{
-		if (empty($text))
-		{
-			$text = $value;
-		}
-
-		$option = new stdClass;
-		$option->value = $value;
-		$option->text  = $text;
-
-		return $option;
+	function toBoolean($attr){
+		return !in_array($attr, array('false', '', '0', 'no', 'off'));
 	}
 }

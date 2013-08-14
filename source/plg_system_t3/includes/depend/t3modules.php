@@ -79,40 +79,48 @@ class JFormFieldT3Modules extends JFormField
 	{
 		$this->loadAsset();
 
-		$db = JFactory::getDBO();
-		$query = "SELECT e.extension_id, a.id, a.title, a.note, a.position, a.module, a.language,a.checked_out,
-		a.checked_out_time, a.published, a.access, a.ordering, a.publish_up, a.publish_down,
-		l.title AS language_title,uc.name AS editor,ag.title AS access_level,
-		MIN(mm.menuid) AS pages,e.name AS name
-		FROM `#__modules` AS a
-		LEFT JOIN `#__languages` AS l ON l.lang_code = a.language
-		LEFT JOIN #__users AS uc ON uc.id=a.checked_out
-		LEFT JOIN #__viewlevels AS ag ON ag.id = a.access
-		LEFT JOIN #__modules_menu AS mm ON mm.moduleid = a.id
-		LEFT JOIN #__extensions AS e ON e.element = a.module
-		WHERE (a.published IN (0, 1)) AND a.client_id = 0
-		GROUP BY a.id";
-		
-		$db->setQuery($query);
-		$groups = $db->loadObjectList();
-		$groupHTML = array();
+		$show_default = $this->toBoolean((string) $this->element['show_default']);
+		$show_none    = $this->toBoolean((string) $this->element['show_none']);
+		$multiple     = $this->toBoolean((string) $this->element['multiple']);
+		$disabled     = $this->toBoolean((string) $this->element['disabled']);
 
-		if($this->element['show_default']){
-			$groupHTML[] = JHTML::_('select.option', 'default', JText::_('JDEFAULT'));
+		$db    = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query
+			->select('id, title, module, position')
+			->from('#__modules')
+			->where('published = 1')
+			->where('client_id = 0')
+			->order('title');
+		$db->setQuery($query);
+		
+		$modules = $db->loadObjectList();
+		$moduleopts = array();
+
+		if($show_default){
+			$moduleopts[] = JHTML::_('select.option', 'default', JText::_('JDEFAULT'));
 		}
 
-		if($this->element['show_none']){
-			$groupHTML[] = JHTML::_('select.option', 'none', JText::_('JNONE'));
+		if($show_none){
+			$moduleopts[] = JHTML::_('select.option', 'none', JText::_('JNONE'));
 		} 
 
-		if ($groups && count($groups)) {
-			foreach ($groups as $v => $t) {
-				$groupHTML[] = JHTML::_('select.option', $t->id, $t->title);
+		if (is_array($modules)) {
+			foreach ($modules as $module) {
+				$moduleopts[] = JHTML::_('select.option', $module->id, $module->title);
 			}
 		}
 
-		$lists = JHTML::_('select.genericlist', $groupHTML, "{$this->name}" . ($this->element['multiple'] == 1 ? '[]' : ''), ($this->element['multiple'] == 1 ? 'multiple="multiple" size="10" ' : '') . ($this->element['disabled'] ? 'disabled="disabled"' : ''), 'value', 'text', $this->value);
+		return JHTML::_('select.genericlist', $moduleopts, $this->name . ($multiple ? '[]' : ''), ($multiple ? 'multiple="multiple" size="10" ' : '') . ($disabled ? 'disabled="disabled"' : ''), 'value', 'text', $this->value);
+	}
 
-		return $lists;
+
+	/**
+	 * Helper function, check the field attribute and return boolean value
+	 *
+	 * @return  boolean the check result
+	 */
+	function toBoolean($str){
+		return !in_array($str, array('false', '', '0', 'no', 'off'));
 	}
 }

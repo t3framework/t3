@@ -831,16 +831,16 @@ class T3Template extends ObjectExtendable
 							$newurl = $current . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
 						}
 						$stylesheets[$newurl] = $css;
+						continue;
 					}
 				} else {
 					$subpath = $is_rtl ? 'rtl/' . ($theme ? $theme . '/' : '') : ($theme ? 'themes/' . $theme . '/' : '');
 					if ($subpath && is_file(T3_TEMPLATE_PATH . '/css/' . $subpath . $fname . '.css')) {
 						$newurl = T3_TEMPLATE_URL . '/css/' . $subpath . $fname . '.css';
 						$stylesheets[$newurl] = $css;
+						continue;
 					}
 				}
-
-				continue;
 			}
 
 			$stylesheets[$url] = $css;
