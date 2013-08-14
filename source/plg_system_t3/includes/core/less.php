@@ -444,7 +444,7 @@ class T3Less extends lessc
 		$tpl   = $app->getTemplate(true);
 		$theme = $tpl->params->get('theme');
 
-		if (defined('T3_THEMER')) {
+		if (defined('T3_THEMER') && $tpl->params->get('themermode', 1)) {
 			// in Themer mode, using js to parse less for faster
 			$doc->addStylesheet(JURI::base(true) . '/' . T3Path::cleanPath($lesspath), 'text/less');
 

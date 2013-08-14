@@ -226,7 +226,7 @@ class T3AdminTheme
 							}
 
 							if($other != 'variables-custom.less'){
-								$tobj->$other = true; //JFile::read($themepath . '/' . $theme . '/' . $other);
+								$tobj->$other = true;
 							}
 						}
 

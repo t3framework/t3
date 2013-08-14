@@ -32,7 +32,7 @@ class T3Template extends ObjectExtendable
 	protected static $maxgrid = 12;
 	protected static $maxcolumns = 6;
 
-	
+
 	/**
 	 * Current template instance
 	 */
@@ -282,11 +282,11 @@ class T3Template extends ObjectExtendable
 	function megamenu($menutype)
 	{
 		T3::import('renderer/megamenu');
-		
+
 		$doc      = JFactory::getDocument();
 		$renderer = new JDocumentRendererMegamenu($doc);
-		
-		echo $renderer->render(); 
+
+		echo $renderer->render();
 	}
 
 	/**
@@ -432,6 +432,13 @@ class T3Template extends ObjectExtendable
 			$places[] = '<body>';
 			$contents[] = "<body>\n" . $openbody;
 		}
+		
+		// append modules in debug position
+		if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
+			$places[] = '</body>';
+			$contents[] = $this->getBuffer('modules', 'debug') . "\n</body>";
+		}
+		
 		if (($closebody = $this->getParam('snippet_close_body', ''))) {
 			$places[] = '</body>';
 			$contents[] = $closebody . "\n</body>";
@@ -533,8 +540,8 @@ class T3Template extends ObjectExtendable
 	/**
 	 * Render position name
 	 * @param  string  $poskey  The key used in block
-	 *     
-	 * @return  null    
+	 *
+	 * @return  null
 	 */
 	function posname($condition)
 	{
@@ -654,7 +661,7 @@ class T3Template extends ObjectExtendable
 			// We check and included predefined megamenu style in base
 			if(!is_file(T3_TEMPLATE_PATH . '/less/megamenu.less')){
 				$this->addStyleSheet(T3_URL . '/css/megamenu.css');
-				
+
 				if ($responsive){
 					$this->addStyleSheet(T3_URL . '/css/megamenu-responsive.css');
 				}
@@ -663,7 +670,7 @@ class T3Template extends ObjectExtendable
 			// megamenu.css override in template
 			$this->addCss('megamenu');
 		}
-		
+
 
 		// Add scripts
 		if (version_compare(JVERSION, '3.0', 'ge')) {
@@ -732,7 +739,7 @@ class T3Template extends ObjectExtendable
 
 
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
-		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded 
+		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded
 		// And upgrade jquery as our Framework require jquery 1.7+ if we are loading jquery from google
 		$doc = JFactory::getDocument();
 		$scripts = array();
@@ -770,7 +777,7 @@ class T3Template extends ObjectExtendable
 		foreach ($doc->_scripts as $url => $script) {
 			$replace = false;
 
-			if ((strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false && preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)) || 
+			if ((strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false && preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)) ||
 				(preg_match_all('@(^|\/)jquery([-_]*(\d+(\.\d+)+))?(\.min)?\.js@i', $url, $jqver))) {
 
 				$idx = strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false ? 1 : 3;
@@ -783,7 +790,7 @@ class T3Template extends ObjectExtendable
 						$replace = true;
 					}
 				}
-			}		
+			}
 
 			if (!$replace) {
 				$scripts[$url] = $script;
@@ -857,7 +864,7 @@ class T3Template extends ObjectExtendable
 	{
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
-		
+
 		foreach (array(T3_PATH, T3_TEMPLATE_PATH) as $bpath) {
 			//full path
 			$afile = $bpath . '/etc/assets.xml';
@@ -865,7 +872,7 @@ class T3Template extends ObjectExtendable
 
 				//load xml
 				$axml = JFactory::getXML($afile);
-				
+
 				//process if exist
 				if ($axml) {
 					foreach ($axml as $node => $nodevalue) {
@@ -962,7 +969,7 @@ class T3Template extends ObjectExtendable
 	 * Internal function, generate auto calculate width
 	 * @param   string   $layout  The targt layout [default, wide, normal, xtablet, tablet, mobile]
 	 * @param   number   $numpos  Number of columns (block)
-	 * 
+	 *
 	 * @return  array  The span width layout columns
 	 */
 	function genWidth($layout, $numpos)

@@ -77,18 +77,17 @@ var T3Admin = window.T3Admin || {};
 						$('#t3-admin-tb-themer').popover('hide');
 					}, 2000);
 				} else {
+					$(this).popover('hide');
+					
 					window.location.href = T3Admin.themerUrl;
 				}
 				return false;
-			}).map(function(){
-				if(!T3Admin.themermode){
-					$(this).popover({
-						trigger: 'manual',
-						placement: 'bottom',
-						container: 'body'
-					});
-				}
+			}).popover({
+				trigger: 'manual',
+				placement: 'bottom',
+				container: 'body'
 			});
+		
 
 			$('#t3-admin-tb-megamenu').on('click', function(){
 				

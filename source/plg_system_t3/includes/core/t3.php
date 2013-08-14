@@ -54,10 +54,10 @@ class T3 {
 	 * Initialize T3
 	 */
 	public static function init ($xml) {
-		$app = JFactory::getApplication();
-		$input = $app->input;
-		$templateobj = $app->getTemplate(true);
+		$app       = JFactory::getApplication();
+		$input     = $app->input;
 		$coretheme = isset($xml->t3) && isset($xml->t3->base) ? trim($xml->t3->base) : 'base';
+		
 		// check coretheme in media/t3/themes folder
 		// if not exists, use default base theme in T3
 		if ($coretheme && is_dir(JPATH_ROOT.'/media/t3/themes/'.$coretheme)){
@@ -84,8 +84,8 @@ class T3 {
 			define ('T3_THEMER', 1);
 		}
 
-		if (!JFactory::getApplication()->isAdmin()) {
-			$t3assets = $templateobj->params->get ('t3-assets', 't3-assets');
+		if (!$app->isAdmin()) {
+			$t3assets = $app->getTemplate(true)->params->get ('t3-assets', 't3-assets');
 			define ('T3_DEV_FOLDER', $t3assets . '/dev');
 		}
 
@@ -97,7 +97,6 @@ class T3 {
 		// load core library
 		T3::import ('core/path');
 		
-		$app = JFactory::getApplication();
 		if (!$app->isAdmin()) {
 			
 			if(version_compare(JVERSION, '3.0', 'ge')){
