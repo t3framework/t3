@@ -459,6 +459,47 @@ cite {
 .muted {
   color: #999;
 }
+a.muted:hover,
+a.muted:focus {
+  color: #808080;
+}
+.text-warning {
+  color: #f80;
+}
+a.text-warning:hover,
+a.text-warning:focus {
+  color: #cc6d00;
+}
+.text-error {
+  color: #c00;
+}
+a.text-error:hover,
+a.text-error:focus {
+  color: #990000;
+}
+.text-info {
+  color: #07b;
+}
+a.text-info:hover,
+a.text-info:focus {
+  color: #005788;
+}
+.text-success {
+  color: #690;
+}
+a.text-success:hover,
+a.text-success:focus {
+  color: #446600;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
 .highlight {
   background-color: #FFC;
   font-weight: bold;
@@ -591,6 +632,20 @@ ol.unstyled {
   margin-left: 0;
   list-style: none;
 }
+ul.inline,
+ol.inline {
+  margin-left: 0;
+  list-style: none;
+}
+ul.inline > li,
+ol.inline > li {
+  display: inline-block;
+  
+  *display: inline;
+  *zoom: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 dl {
   margin-bottom: 20px;
 }
@@ -604,9 +659,21 @@ dt {
 dd {
   margin-left: 10px;
 }
+.dl-horizontal {
+  *zoom: 1;
+}
+.dl-horizontal:before,
+.dl-horizontal:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.dl-horizontal:after {
+  clear: both;
+}
 .dl-horizontal dt {
   float: left;
-  width: 120px;
+  width: 160px;
   clear: left;
   text-align: right;
   overflow: hidden;
@@ -614,7 +681,7 @@ dd {
   white-space: nowrap;
 }
 .dl-horizontal dd {
-  margin-left: 130px;
+  margin-left: 180px;
 }
 .label,
 .badge {
@@ -700,7 +767,8 @@ a.badge:hover {
 .page-header .badge {
   vertical-align: middle;
 }
-abbr[title] {
+abbr[title],
+abbr[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #999;
 }
@@ -715,9 +783,9 @@ blockquote {
 }
 blockquote p {
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 17.5px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 1.25;
 }
 blockquote small {
   display: block;
