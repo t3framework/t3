@@ -450,7 +450,7 @@ class T3Less extends lessc
 
 			if(!defined('LESS_JS')){
 				// Add lessjs to process lesscss
-				$doc->addScript(T3_URL . '/js/less-1.3.3.js');
+				$doc->addScript(T3_URL . '/js/less-1.4.2.js');
 
 				if($doc->direction == 'rtl'){
 					$doc->addScript(T3_URL . '/js/cssjanus.js');
