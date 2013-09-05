@@ -147,14 +147,14 @@ class T3MenuMegamenuTpl {
 		// Note. It is important to remove spaces between elements.
 		$vars['class'] = $item->anchor_css ? $item->anchor_css : '';
 		$vars['title'] = $item->anchor_title ? 'title="'.$item->anchor_title.'" ' : '';
-		$vars['dropdown'] = '';
+		$vars['dropdown'] = ' data-target="#"';
 		$vars['caret'] = '';
 		$vars['icon'] = '';
 		$vars['caption'] = '';
 
 		if($item->dropdown && $item->level < 2){
 			$vars['class'] .= ' dropdown-toggle';
-			$vars['dropdown'] = ' data-toggle="dropdown" data-target="#"'; // Note: data-target for JomSocial old bootstrap lib
+			$vars['dropdown'] = ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
 			$vars['caret'] = '<b class="caret"></b>';
 		}
 

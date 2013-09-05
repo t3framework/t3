@@ -238,13 +238,13 @@
 				description="T3_INJECTION_CLOSE_BODY_DESC"
 				/>
 
-            <field name="snippet_debug" type="radio" class="btn-group" default="0"
-                   global="1"
-                   label="T3_INJECTION_DEBUG_LABEL"
-                   description="T3_INJECTION_DEBUG_DESC">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
+	            <field name="snippet_debug" type="radio" class="btn-group" default="0"
+	                   global="1"
+	                   label="T3_INJECTION_DEBUG_LABEL"
+	                   description="T3_INJECTION_DEBUG_DESC">
+	                <option value="0">JNO</option>
+	                <option value="1">JYES</option>
+	            </field>
 
 		</fieldset>
 

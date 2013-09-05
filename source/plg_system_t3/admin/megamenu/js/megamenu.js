@@ -898,42 +898,52 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 				delbtn.addClass('loading');
 
-				$.ajax({
-					url: T3AdminMegamenu.referer,
-					type: 'post',
-					data: {
-						t3action: 'megamenu',
-						t3task: 'delete',
-						styleid: T3AdminMegamenu.styleid,
-						template: T3AdminMegamenu.template,
+				T3AdminMegamenu.confirm(function(ok){
+					if(ok != undefined && !ok){
+						delbtn.removeClass('loading');
 
-						mmkey: $('#megamenu-key').val()
-					}
-				}).done(function(rsp){
-
-					try {
-						rsp = $.parseJSON(rsp);
-					} catch(e){
-						rsp = false;
+						return false;
 					}
 
-					if(rsp){
-						clearTimeout($('#ajax-message').data('sid'));
-						$('#ajax-message')
-							.removeClass('alert-error alert-success')
-							.addClass(rsp.status ? 'alert-success' : 'alert-error')
-							.addClass('in')
-							.data('sid', setTimeout(function(){
-									$('#ajax-message').removeClass('in')
-								}, 5000))
-							.find('strong')
-								.html(rsp.message);
-					}
+					$.ajax({
+						url: T3AdminMegamenu.referer,
+						type: 'post',
+						data: {
+							t3action: 'megamenu',
+							t3task: 'delete',
+							styleid: T3AdminMegamenu.styleid,
+							template: T3AdminMegamenu.template,
 
-				}).always(function(){
-					delbtn.removeClass('loading');
+							mmkey: $('#megamenu-key').val()
+						}
+					}).done(function(rsp){
 
-					T3AdminMegamenu.doajax();
+						$('#t3-admin-megamenu-dlg').modal('hide');
+
+						try {
+							rsp = $.parseJSON(rsp);
+						} catch(e){
+							rsp = false;
+						}
+
+						if(rsp){
+							clearTimeout($('#ajax-message').data('sid'));
+							$('#ajax-message')
+								.removeClass('alert-error alert-success')
+								.addClass(rsp.status ? 'alert-success' : 'alert-error')
+								.addClass('in')
+								.data('sid', setTimeout(function(){
+										$('#ajax-message').removeClass('in')
+									}, 5000))
+								.find('strong')
+									.html(rsp.message);
+						}
+
+					}).always(function(){
+						delbtn.removeClass('loading');
+
+						T3AdminMegamenu.doajax();
+					});
 				});
 
 				return false;
@@ -950,6 +960,27 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			$('#ajax-message').on('click', '.close', function(){
 				clearTimeout($('#ajax-message').removeClass('in').data('sid'));
 			});
+		},
+
+		initModalDialog: function(){
+			$('#t3-admin-megamenu-dlg')
+				.prop('hide', false) //remove mootool hide function
+				.on('click', '.modal-footer button', function(e){
+					if($.isFunction(T3AdminMegamenu.modalCallback)){
+						T3AdminMegamenu.modalCallback($(this).hasClass('yes'));
+					} else if($(this).hasClass('yes')){
+						$('#t3-admin-megamenu-dlg').modal('hide');
+					}
+					return false;
+				}).on('hidden', function(){
+					$('#t3-admin-mm-delete').removeClass('loading');
+				})
+		},
+
+		confirm: function(callback){
+			T3AdminMegamenu.modalCallback = callback;
+
+			$('#t3-admin-megamenu-dlg').addClass('modal-confirm').modal('show');
 		}
 	});
 
@@ -957,6 +988,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		T3AdminMegamenu.initCustomForm();
 		T3AdminMegamenu.initToolbar();
 		T3AdminMegamenu.initAjaxmenu();
+		T3AdminMegamenu.initModalDialog();
 		T3AdminMegamenu.initAjaxMessage();
 	});
 

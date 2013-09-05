@@ -708,8 +708,14 @@ dd {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+.label:empty,
+.badge:empty {
+  display: none;
+}
 a.label:hover,
-a.badge:hover {
+a.label:focus,
+a.badge:hover,
+a.badge:focus {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
@@ -1225,7 +1231,8 @@ button a.btn:active {
 .btn-warning.active {
   background-color: #cc6d00 \9;
 }
-.btn-danger {
+.btn-danger,
+.btn-error {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
   background-color: #eb0000;
@@ -1247,13 +1254,21 @@ button a.btn:active {
 .btn-danger:active,
 .btn-danger.active,
 .btn-danger.disabled,
-.btn-danger[disabled] {
+.btn-danger[disabled],
+.btn-error:hover,
+.btn-error:focus,
+.btn-error:active,
+.btn-error.active,
+.btn-error.disabled,
+.btn-error[disabled] {
   color: #fff;
   background-color: #c00;
   *background-color: #b30000;
 }
 .btn-danger:active,
-.btn-danger.active {
+.btn-danger.active,
+.btn-error:active,
+.btn-error.active {
   background-color: #990000 \9;
 }
 .btn-success {

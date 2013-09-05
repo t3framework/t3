@@ -165,6 +165,12 @@ class T3Template extends ObjectExtendable
 
 		if (is_file($path)) {
 			include $path;
+
+			// append modules in debug position
+			if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
+				$this->getBuffer('modules', 'debug');
+			}
+
 		} else {
 			echo "<div class=\"error\">Layout [$layout] or [Default] not found!</div>";
 		}
@@ -436,7 +442,7 @@ class T3Template extends ObjectExtendable
 		// append modules in debug position
 		if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
 			$places[] = '</body>';
-			$contents[] = $this->getBuffer('modules', 'debug') . "\n</body>";
+			$contents[] = '<div class="t3-debug">' . $this->getBuffer('modules', 'debug') . "</div>\n</body>";
 		}
 		
 		if (($closebody = $this->getParam('snippet_close_body', ''))) {

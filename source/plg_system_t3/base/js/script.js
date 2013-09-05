@@ -126,6 +126,11 @@
 				}
 			});
 		}
+
+		// overwrite default tooltip/popover behavior (same as Joomla 3.1.5)
+		$.fn.tooltip.defaults.html = true;
+		$.fn.popover.defaults.html = true;
+
 	});
 
 	//fix animation for navbar-collapse-fixed-top||bottom
