@@ -297,11 +297,27 @@ defined('_JEXEC') or die;
       <button type="button" class="close">&times;</button>
       <strong>Save success full</strong>
     </div>
+    <!-- MODAL DIALOG -->
+    <div id="t3-admin-megamenu-dlg" class="modal fade hide">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3><?php echo JTexT::_('T3_NAVIGATION_ASK_DELETE') ?></h3>
+      </div>
+      <div class="modal-body">
+        <div class="message-block">
+          <p class="msg"><?php echo JTexT::_('T3_NAVIGATION_ASK_DELETE_DESC') ?></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn cancel" data-dismiss="modal"><?php echo JTexT::_('JCANCEL') ?></button>
+        <button class="btn btn-danger yes"><?php echo JTexT::_('T3_NAVIGATION_LABEL_DELETEIT') ?></button>
+      </div>
+    </div>
   </div>
   <script type="text/javascript">
     //<![CDATA[
 
-    var T3AdminMegamenu = window.T3AdminMegamenu || {};
+    T3AdminMegamenu = window.T3AdminMegamenu || {};
     T3AdminMegamenu.referer = '<?php echo $referer; ?>';
     T3AdminMegamenu.site = '<?php echo JUri::root(); ?>';
     T3AdminMegamenu.config = <?php echo $currentconfig ?>;

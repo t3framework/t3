@@ -24,6 +24,8 @@
 // T3 Base variables
 @import "variables.less";
 
+// T3 Base mixins
+@import "mixins.less";
 
 // -------------------------------------------------------
 // OFF-CANVAS NAVIGATIONS ELEMENTS
@@ -58,10 +60,7 @@
     body > * {
       left: 0;
       .translate(0, 0);
-      -webkit-transition: -webkit-transform 500ms ease;
-      -moz-transition: -moz-transform 500ms ease;
-      -o-transition: -o-transform 500ms ease;
-      transition: transform 500ms ease;
+      .transition-transform(500ms ease) ;
       .backface-visibility(hidden);
     }
     

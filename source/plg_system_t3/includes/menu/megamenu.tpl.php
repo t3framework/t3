@@ -79,7 +79,7 @@ class T3MenuMegamenuTpl {
 	static function begincol ($vars) {
 		$setting = isset($vars['setting']) ? $vars['setting'] : array();
 		$width   = isset($setting['width']) ? $setting['width'] : T3_BASE_MAX_GRID;
-		$data    = "data-width=\"{$width}\"";
+		$data    = "data-width=\"$width\"";
 		$cls     = ($vars['menu']->editmode ? 'span' : T3_BASE_WIDTH_PREFIX) . $width;
 
 		if (isset($setting['position'])) {

@@ -81,9 +81,7 @@ class T3Template extends ObjectExtendable
 		if ($template) {
 			$this->_tpl = $template;
 			$this->_extend(array($template));
-
-
-
+			
 			// merge layout setting
 			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
 			if (empty($layout)) {
