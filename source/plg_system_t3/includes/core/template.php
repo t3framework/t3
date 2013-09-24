@@ -100,7 +100,6 @@ class T3Template extends ObjectExtendable
 	 * @param  mixed   $value  parameter value
 	 *
 	 * @return  null
-	 * @deprecated  This function is no longer used in T3
 	 */
 	public function setParam($name, $value)
 	{
@@ -115,7 +114,8 @@ class T3Template extends ObjectExtendable
 	 */
 	public function getLayout()
 	{
-		return JFactory::getApplication()->input->getCmd('tmpl') ? JFactory::getApplication()->input->getCmd('tmpl') : $this->getParam('mainlayout', 'default');
+		$input = JFactory::getApplication()->input;
+		return $input->getCmd('tmpl') ? $input->getCmd('tmpl') : $this->getParam('mainlayout', 'default');
 	}
 
 
@@ -134,8 +134,8 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Load block content
-	 * @param  string  $block  Block name - the real block is tpls/blocks/[blockname].php
-	 *
+	 * @param  string  $block  Block name - the real block is tpls/blocks/[block].php
+	 * @param  array   $vars   information of block (used in template layout)
 	 * @return string Block content
 	 */
 	function loadBlock($block, $vars = array())
@@ -150,12 +150,12 @@ class T3Template extends ObjectExtendable
 
 
 	/**
-	 * Load block content
+	 * Load block layout
 	 *
-	 * @param $block string
-	 *     Block name - the real block is tpls/blocks/[blockname].php
+	 * @param string &layout
+	 *     Block name - the real block is tpls/[layout].php
 	 *
-	 * @return string Block content
+	 * @return null
 	 */
 	function loadLayout($layout)
 	{
@@ -292,7 +292,7 @@ class T3Template extends ObjectExtendable
 		$doc      = JFactory::getDocument();
 		$renderer = new JDocumentRendererMegamenu($doc);
 
-		echo $renderer->render();
+		echo $renderer->render(null, array('menutype' => $menutype));
 	}
 
 	/**
@@ -461,8 +461,8 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Wrap of document countModules function, get position from configuration before calculate
-	 *
-	 * @return  boolean  The position key is avaialble or not
+	 * @param   string  $positions  Positions string
+	 * @return  boolean  The position key is available or not
 	 */
 	function countModules($positions)
 	{
@@ -545,7 +545,7 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Render position name
-	 * @param  string  $poskey  The key used in block
+	 * @param  string  $condition  The key used in block
 	 *
 	 * @return  null
 	 */
@@ -556,7 +556,7 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Alias of posname
-	 *
+	 * @param  string  $condition
 	 * @return null
 	 */
 	function _p($condition)
@@ -566,9 +566,9 @@ class T3Template extends ObjectExtendable
 
 
 	/**
-	 * Add position additinal class (show/hide)
+	 * Add position additional class (show/hide)
 	 * @param  string  $name  The position name
-	 * @param  array   $cls   The responsive array style for responsive layout [default, wide, ...]
+	 * @param  array   $cls   The responsive array style for responsive layout [lg, md, ...]
 	 *
 	 * @return null
 	 */
@@ -607,8 +607,8 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Add current template css base on template setting.
-	 * @param $name String
-	 *     file name, without .css
+	 * @param $name           string  file name, without .css
+	 * @param $addresponsive  bool    add responsive part or not
 	 *
 	 * @return string Block content
 	 */
@@ -931,6 +931,8 @@ class T3Template extends ObjectExtendable
 	 * @param   string   $style  The style property
 	 * @param   string   $pname  The parameter name
 	 * @param   boolean  $isurl  Is url?
+	 *
+	 * @return  string   The css style string
 	 * @deprecated   This function is no longer used in T3
 	 */
 	function paramToStyle($style, $pname = '', $isurl = false)
@@ -973,7 +975,7 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Internal function, generate auto calculate width
-	 * @param   string   $layout  The targt layout [default, wide, normal, xtablet, tablet, mobile]
+	 * @param   string   $layout  The target layout
 	 * @param   number   $numpos  Number of columns (block)
 	 *
 	 * @return  array  The span width layout columns

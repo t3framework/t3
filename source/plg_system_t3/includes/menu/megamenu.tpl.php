@@ -56,8 +56,8 @@ class T3MenuMegamenuTpl {
 			$cls .= " span12";
 		} else {
 			if (isset($sub['width'])) {
-				if ($item->dropdown) $style = " style=\"width:{$sub['width']}px\"";
-				$data .= " data-width=\"{$sub['width']}\"";
+				if ($item->dropdown) $style = ' style="width: ' . str_replace('px', '', $sub['width']) . 'px"';
+				$data .= ' data-width="' . str_replace('px', '', $sub['width']) . '"';
 			} 			
 		}
 

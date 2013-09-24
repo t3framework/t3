@@ -216,10 +216,11 @@ class T3Minify
 
 					$cssdata = implode("\n", $cssdata);
 					JFile::write($groupfile, $cssdata);
+					$grouptime = @filemtime($groupfile);
 					@chmod($groupfile, 0644);
 				}
 
-				$output[$outputurl . '/' . $groupname] = array(
+				$output[$outputurl . '/' . $groupname.'?t='.($grouptime % 1000)] = array(
 					'mime' => 'text/css',
 					'media' => null,
 					'attribs' => array()

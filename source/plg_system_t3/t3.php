@@ -130,12 +130,12 @@ class plgSystemT3 extends JPlugin
 	{
 		if(T3::detect() && $form->getName() == 'com_templates.style'){
 			$this->loadLanguage();
-			JForm::addFormPath(T3_PATH . DIRECTORY_SEPARATOR . 'params');
+			JForm::addFormPath(T3_PATH . '/params');
 			$form->loadFile('template', false);
 		}
 	
 		$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
-	
+
 		if($tmpl){
 			$extended = JPATH_ROOT . '/templates/' . $tmpl . '/etc/form/' . $form->getName() . '.xml';
 			
