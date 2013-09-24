@@ -31,7 +31,7 @@ class T3MenuMegamenuTpl {
 		$cls = '';
 		if (!$item) {
 			// first nav
-			$cls = 'nav level0';
+			$cls = 'nav navbar-nav level0';
 		} else {
 			$cls .= ' mega-nav';
 			$cls .= ' level'.$item->level;
@@ -70,7 +70,7 @@ class T3MenuMegamenuTpl {
 	}
 
 	static function beginrow ($vars) {
-		return '<div class="row-fluid">';
+		return '<div class="' . ($vars['menu']->editmode ? 'row-fluid' : T3_BASE_ROW_FLUID_PREFIX) . '">';
 	}
 	static function endrow ($vars) {
 		return '</div>';
@@ -78,14 +78,15 @@ class T3MenuMegamenuTpl {
 
 	static function begincol ($vars) {
 		$setting = isset($vars['setting']) ? $vars['setting'] : array();
-		$width = isset($setting['width']) ? $setting['width'] : '12';
-		$data = "data-width=\"$width\"";
-		$cls = "span$width";
+		$width   = isset($setting['width']) ? $setting['width'] : T3_BASE_MAX_GRID;
+		$data    = "data-width=\"{$width}\"";
+		$cls     = ($vars['menu']->editmode ? 'span' : T3_BASE_WIDTH_PREFIX) . $width;
+
 		if (isset($setting['position'])) {
-			$cls .= " mega-col-module";
+			$cls  .= " mega-col-module";
 			$data .= " data-position=\"{$setting['position']}\"";
 		} else {
-			$cls .= " mega-col-nav";
+			$cls  .= " mega-col-nav";
 		}
 		if (isset($setting['class'])) {
 			$cls .= " {$setting['class']}";
@@ -220,7 +221,7 @@ class T3MenuMegamenuTpl {
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a class=\"$class\" href=\"$flink\"" . ($vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 

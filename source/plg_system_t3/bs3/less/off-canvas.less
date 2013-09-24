@@ -1,0 +1,114 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+// VARIABLES & MIXINS
+// ------------------
+
+// Prevent Bootstrap Upgrading errors
+@import "../bootstrap/less/variables.less";
+
+// Prevent Bootstrap Upgrading errors
+@import "../bootstrap/less/mixins.less";
+
+// T3 Base variables
+@import "variables.less";
+
+
+// -------------------------------------------------------
+// OFF-CANVAS NAVIGATIONS ELEMENTS
+// -------------------------------------------------------
+#off-canvas-nav {
+  display: none;
+}
+
+@media (max-width: @grid-float-breakpoint) {
+  .off-canvas-ready {
+    #off-canvas-nav {
+      .collapse {
+        display: block;
+      }
+    }
+  }
+
+  .off-canvas {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+
+    body {
+      width: 100%;
+      overflow-x: hidden;
+      -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    }
+
+    body > * {
+      left: 0;
+      .translate(0, 0);
+      -webkit-transition: -webkit-transform 500ms ease;
+      -moz-transition: -moz-transform 500ms ease;
+      -o-transition: -o-transform 500ms ease;
+      transition: transform 500ms ease;
+      .backface-visibility(hidden);
+    }
+    
+    #t3-mainnav .nav-collapse,
+    #ja-mainnav .nav-collapse {
+      display: none;
+    }
+
+    #off-canvas-nav {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      z-index: 1;
+      background: none;
+      .t3-mainnav {
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;        
+        width: @t3-off-canvas-width;
+         
+        .translate(-100%, 0);
+
+        .nav-collapse {
+          height: auto;
+          background: none;
+        }
+      }
+    }
+
+  }
+  
+  
+  // On stage
+  // --------
+  .off-canvas-enabled {
+    body > *{
+      .translate(@t3-off-canvas-width, 0);
+    }
+
+    #t3-mainnav {
+      display: block;
+    }
+    //End
+  }
+  // End Responsive
+
+}

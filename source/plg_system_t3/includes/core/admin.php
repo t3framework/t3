@@ -136,11 +136,12 @@ class T3Admin {
 			$eids[] = $eid[0];
 		}
 
-		//check for version compactible
-		$jversion  = new JVersion;
-		if(!$jversion->isCompatible('3.0')){
+		//check for version compatible
+		if(version_compare(JVERSION, '3.0', 'ge')){
+			JHtml::_('bootstrap.framework');
+		} else {
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
-			
+
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/bootstrap/js/bootstrap.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
@@ -151,16 +152,17 @@ class T3Admin {
 		}
 
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
-		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout-preview.css');
+		$jdoc->addStyleSheet(T3_URL . '/css/layout-preview.css');
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout.css');
 		if(file_exists(T3_TEMPLATE_PATH . '/admin/layout-custom.css')) {
 			$jdoc->addStyleSheet(T3_TEMPLATE_URL . '/admin/layout-custom.css');
 		}
 		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin.css');
-		if(!$jversion->isCompatible('3.0')){
-			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j25.css');
-		} else {
+
+		if(version_compare(JVERSION, '3.0', 'ge')){
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j30.css');
+		} else {
+			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j25.css');
 		}
 
 		if(!$this->checkAssetsLoaded('chosen.jquery.min.js', '_scripts')){
@@ -174,8 +176,8 @@ class T3Admin {
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
 
 		JFactory::getDocument()->addScriptDeclaration ( '
-			var T3Admin = window.T3Admin || {};
-			T3Admin.adminurl = \'' . JFactory::getURI()->toString() . '\';
+			T3Admin = window.T3Admin || {};
+			T3Admin.adminurl = \'' . JUri::getInstance()->toString() . '\';
 			T3Admin.t3adminurl = \'' . T3_ADMIN_URL . '\';
 			T3Admin.baseurl = \'' . JURI::base(true) . '\';
 			T3Admin.rooturl = \'' . JURI::root() . '\';
@@ -187,12 +189,11 @@ class T3Admin {
 			T3Admin.eids = [' . implode($eids, ',') .'];
 			T3Admin.telement = \'' . T3_TEMPLATE . '\';
 			T3Admin.felement = \'' . T3_ADMIN . '\';
-			T3Admin.themerUrl = \'' . JFactory::getURI()->toString() . '&t3action=theme&t3task=thememagic' . '\';
-			T3Admin.megamenuUrl = \'' . JFactory::getURI()->toString() . '&t3action=megamenu&t3task=megamenu' . '\';
+			T3Admin.themerUrl = \'' . JUri::getInstance()->toString() . '&t3action=theme&t3task=thememagic' . '\';
+			T3Admin.megamenuUrl = \'' . JUri::getInstance()->toString() . '&t3action=megamenu&t3task=megamenu' . '\';
 			T3Admin.t3updateurl = \'' . JURI::base() . 'index.php?option=com_installer&view=update&task=update.ajax' . '\';
 			T3Admin.t3layouturl = \'' . JURI::base() . 'index.php?t3action=layout' . '\';
 			T3Admin.jupdateUrl = \'' . JURI::base() . 'index.php?option=com_installer&view=update' . '\';'
-			
 		);
 	}
 

@@ -38,13 +38,13 @@ class T3Minify
 	/**
 	 * 
 	 * Check and convert to css real path
-	 * @var url
+	 * @param  string  $url  url to check
+	 * @return  mixed  the css file path or false if not exist in server
 	 */
 	public static function cssPath($url = '') {
 		$url = preg_replace('#[?\#]+.*$#', '', $url);
 		$base = JURI::base();
 		$root = JURI::root(true);
-		$path = false;
 		$ret = false;
 
 		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
@@ -77,10 +77,19 @@ class T3Minify
 		return false;
 	}
 
+
+	/**
+	 * @param   string  $url  url to refine
+	 * @return  string  the refined url
+	 */
 	public static function fixUrl($url = ''){
 		return ($url[0] === '/' || strpos($url, '://') !== false) ? $url : JURI::base(true) . '/' . $url;
 	}
 
+	/**
+	 * @param   $tpl  template object
+	 * @return  bool  optimize success or not
+	 */
 	public static function optimizecss($tpl)
 	{
 		$outputpath = JPATH_ROOT . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/css';
@@ -216,11 +225,10 @@ class T3Minify
 
 					$cssdata = implode("\n", $cssdata);
 					JFile::write($groupfile, $cssdata);
-					$grouptime = @filemtime($groupfile);
 					@chmod($groupfile, 0644);
 				}
 
-				$output[$outputurl . '/' . $groupname.'?t='.($grouptime % 1000)] = array(
+				$output[$outputurl . '/' . $groupname] = array(
 					'mime' => 'text/css',
 					'media' => null,
 					'attribs' => array()

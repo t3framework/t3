@@ -15,6 +15,10 @@
 T3::import('menu/megamenu.tpl');
 
 class T3MenuMegamenu {
+
+	/**
+	 * Internal variables
+	 */
 	protected $children = array();
 	protected $_items = array();
 	protected $settings = null;
@@ -23,7 +27,12 @@ class T3MenuMegamenu {
 	protected $active_id = 0;
 	protected $active_tree = array();
 	protected $top_level_caption = false;
-	
+
+	/**
+	 * @param  string  $menutype  menu type to render
+	 * @param  array   $settings  settings information
+	 * @param  null    $params    other parameters
+	 */
 	function __construct($menutype = 'mainmenu', $settings = array(), $params = null) {
 		$app   = JFactory::getApplication();
 		$menu  = $app->getMenu('site');
@@ -154,7 +163,6 @@ class T3MenuMegamenu {
 			$item->anchor_css   = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
 			$item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
 			$item->menu_image   = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
-			
 		}
 	}
 	
@@ -225,12 +233,14 @@ class T3MenuMegamenu {
 		
 		$this->_('beginitem', array(
 			'item' => $item,
-			'setting' => $setting
+			'setting' => $setting,
+			'menu' => $this
 		));
 		
 		$this->menu .= $this->_('item', array(
 			'item' => $item,
-			'setting' => $setting
+			'setting' => $setting,
+			'menu' => $this
 		));
 		
 		if ($item->mega) {
@@ -242,7 +252,6 @@ class T3MenuMegamenu {
 	}
 	
 	function mega($item) {
-		$key       = 'item-' . $item->id;
 		$setting   = $item->setting;
 		$sub       = $setting['sub'];
 		$items     = isset($this->children[$item->id]) ? $this->children[$item->id] : array();
@@ -270,10 +279,14 @@ class T3MenuMegamenu {
 		
 		$firstitemscol = true;
 		foreach ($sub['rows'] as $row) {
-			$this->_('beginrow');
+			$this->_('beginrow', array(
+				'menu' => $this
+			));
+
 			foreach ($row as $col) {
 				$this->_('begincol', array(
-					'setting' => $col
+					'setting' => $col,
+					'menu' => $this
 				));
 				if (isset($col['position'])) {
 					$this->module($col['position']);

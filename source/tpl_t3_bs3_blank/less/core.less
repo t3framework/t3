@@ -1,0 +1,224 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+// ------------------------------------------------------
+// CORE ELEMENTS
+// ------------------------------------------------------
+
+
+// SCAFFOLDING
+// ------------------------------------------------------
+
+body {
+  background-color: @body-bg;
+  color: @text-color;
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+  line-height: @line-height-computed;
+  margin: 0;
+}
+
+// Links
+// ------------------------------------------------------
+a {
+  color: @link-color;
+  text-decoration: none;
+  // Hover state
+  &:hover {
+    color: @link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+
+
+// IMAGES
+// ------------------------------------------------------
+
+.img-polaroid {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc; // for IE 
+  border: 1px solid rgba(0,0,0,.2);
+  .box-shadow (0 1px 3px rgba(0,0,0,.1));
+}
+
+
+
+
+
+
+// LISTS
+// -------------------------------------------------------
+// Alternating Rows
+.row-even,.row-odd {
+  padding: 5px;
+  width: 99%;
+  border-bottom: 1px solid @table-border-color;
+}
+
+.row-odd {
+  background-color: @table-bg;
+}
+
+.row-even {
+  background-color: @table-bg-accent;
+}
+
+.blog-row-rule,
+.blog-item-rule {
+  border: 0;
+}
+
+// Row reveal
+.row .row-reveal {
+  visibility: hidden;
+}
+.row:hover .row-reveal {
+  visibility: visible;
+}
+
+// Nav List Offset
+.nav-list > li.offset > a {
+  padding-left: 30px;
+  font-size: 12px;
+}
+
+.blog-row-rule,
+.blog-item-rule {
+  border: 0;
+}
+
+
+// Striped
+.list-striped,
+.row-striped {
+  list-style: none;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+  border-top: 1px solid @table-border-color;
+  margin-left: 0;
+}
+
+.list-striped li,
+.list-striped dd,
+.row-striped .row,
+.row-striped .row-fluid {
+  border-bottom: 1px solid @table-border-color;
+  padding: 10px 15px;
+}
+
+.list-striped li:nth-child(odd),
+.list-striped dd:nth-child(odd),
+.row-striped .row:nth-child(odd),
+.row-striped .row-fluid:nth-child(odd) {
+  background-color: @table-bg-accent;
+}
+
+.list-striped li:hover,
+.list-striped dd:hover,
+.row-striped .row:hover,
+.row-striped .row-fluid:hover {
+  background-color: @table-bg-hover;
+}
+
+.row-striped .row {
+  width: 97%; // lower than 100% since we have padding
+}
+
+.row-striped .row [class*="span"] {
+  min-height: 10px;
+  margin-left: 8px;
+}
+
+.row-striped .row [class*="span"]:first-child {
+  margin-left: 0;
+}
+
+
+// Condensed
+.list-condensed {
+  li {
+    padding: 5px 10px;
+  }
+}
+
+.row-condensed {
+  .row {
+    padding: 5px 10px;
+  }
+}
+
+
+// Bordered
+// --------
+.list-bordered,
+.row-bordered{
+  list-style: none;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+  margin-left: 0;
+  border: 1px solid @table-border-color;
+  border-radius: 4px;
+}
+
+
+
+// MISC
+// -------------------------------------------------------
+.star {
+  color: @yellow;
+}
+
+.red {
+  color: @red;
+}
+
+// Center
+.center,
+.table td.center,
+.table th.center {
+  text-align: center;
+}
+
+// Horizontal rules
+hr {
+  margin: @t3-global-margin 0;
+  border: 0;
+  border-top: 1px solid @hr-border;
+  border-bottom: 1px solid @white;
+}
+
+// Horizontal Row (hr)
+hr.hr-condensed {
+  margin: 10px 0;
+}
+
+// Accessible Hidden Elements (good for hidden labels and such)
+.element-invisible {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+// Auto width
+.width-auto {
+  width: auto;
+}

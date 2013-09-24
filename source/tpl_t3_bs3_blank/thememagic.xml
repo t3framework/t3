@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+	<fields name="thememagic" addfieldpath="/plugins/system/t3/includes/depend">
+		
+		<fieldset name="scaffolding_params" label="T3_TM_SCAFFOLDING">        
+			<field name="bodyBackground" type="color" class="t3tm-color" label="T3_TM_VARS_BODY_BKG_LABEL" description="T3_TM_VARS_BODY_BKG_DESC" />
+			<field name="textColor" type="color" class="t3tm-color" label="T3_TM_VARS_TEXT_COLOR_LABEL" description="T3_TM_VARS_TEXT_COLOR_DESC" />
+			<field name="linkColor" type="color" class="t3tm-color" label="T3_TM_VARS_LINK_COLOR_LABEL" description="T3_TM_VARS_LINK_COLOR_DESC" />
+
+		</fieldset>
+		<fieldset name="visual_params" label="T3_TM_VISUAL">
+
+			<field name="inputBorderRadius" type="text" class="input-tiny t3tm-dimension" 
+				label="T3_TM_VARS_ELEMENT_RADIUS_LABEL" 
+				description="T3_TM_VARS_ELEMENT_RADIUS_DESC" />
+
+			<field name="T3NavbarInverted" type="radio" class="btn-group"
+				label="T3_TM_VARS_NAVBAR_INVERTED_LABEL"
+				description="T3_TM_VARS_NAVBAR_INVERTED_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="T3SpotlightsInverted" type="radio" class="btn-group"
+				label="T3_TM_VARS_SPOTLIGHT_INVERTED_LABEL"
+				description="T3_TM_VARS_SPOTLIGHT_INVERTED_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>        
+		</fieldset>
+
+		<fieldset name="module_params" label="T3_TM_MODULE">
+			<field name="t3-module-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_BGCOLOR_DESC" />
+			<field name="t3-module-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_COLOR_LABEL" description="T3_TM_VARS_MODULE_COLOR_DESC" />
+			<field name="t3-module-title-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_BGCOLOR_DESC" />
+			<field name="t3-module-title-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_COLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_COLOR_DESC" />
+		</fieldset>
+
+		<fieldset name="typo_params" label="T3_TM_TYPO">
+			<field name="typo_params_default" type="t3depend" function="@group">
+				<option for="baseFontFamily" value="undefined">baseFontFamily_custom</option>
+				<option for="headingsFontFamily" value="undefined">headingsFontFamily_custom</option>
+			</field>
+
+			<field name="baseFontSize" type="text" size="10" class="input-tiny t3tm-dimension" 
+				label="T3_TM_VARS_FONTSIZE_LABEL"
+				description="T3_TM_VARS_FONTSIZE_DESC" />
+
+			<field name="baseFontFamily" type="list"
+				label="T3_TM_VARS_FONTFAMILY_LABEL" 
+				description="T3_TM_VARS_FONTFAMILY_DESC" >
+				<option value="">JDEFAULT</option>
+				<option value="sans-serif">T3_TM_VARS_FONTFAMILY_SANS_SERIF</option>
+				<option value="serif">T3_TM_VARS_FONTFAMILY_SERIF</option>
+				<option value="monospace">T3_TM_VARS_FONTFAMILY_MONOSPACE</option>
+				<option value="undefined">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
+			</field>
+			<field name="baseFontFamily_custom" type="text" size="30"
+				label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
+				description="T3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
+
+			<field name="headingsFontFamily" type="list"
+				label="T3_TM_VARS_HEADINGFONTFAMILY_LABEL" 
+				description="T3_TM_VARS_HEADINGFONTFAMILY_DESC" >
+				<option value="">JDEFAULT</option>
+				<option value="sans-serif">T3_TM_VARS_FONTFAMILY_SANS_SERIF</option>
+				<option value="serif">T3_TM_VARS_FONTFAMILY_SERIF</option>
+				<option value="monospace">T3_TM_VARS_FONTFAMILY_MONOSPACE</option>
+				<option value="undefined">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
+			</field>
+			<field name="headingsFontFamily_custom" type="text" size="30"
+				label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
+				description="T3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
+
+		</fieldset> 
+
+		<fieldset name="links_params" label="T3_THEMER_FOOTER">
+			<field name="T3FooterModuleTitleColor" type="color" class="t3tm-color" label="T3_VARS_FOOTER_MOD_TCOLOR_LABEL" description="T3_VARS_FOOTER_MOD_TCOLOR_DESC" />
+			<field name="T3FooterModuleColor" type="color" class="t3tm-color" label="T3_VARS_FOOTER_MOD_COLOR_LABEL" description="T3_VARS_FOOTER_MOD_COLOR_DESC" />
+		</fieldset>
+
+		<fieldset name="grid_params" label="T3_TM_GRID">
+			<!-- Grid -->
+			<field name="T3gridWidth1200" type="text" default="1200px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_WIDE_WIDTH_LABEL" description="T3_TM_VARS_SCFD_WIDE_WIDTH_DESC" />
+			<field name="gridGutterWidth1200" type="text" default="40px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_WIDE_GUTTER_LABEL" description="T3_TM_VARS_SCFD_WIDE_GUTTER_DESC" />
+
+			<field name="T3gridWidth" type="text" default="940px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_NORMAL_WIDTH_LABEL" description="T3_TM_VARS_SCFD_NORMAL_WIDTH_DESC" />
+			<field name="gridGutterWidth" type="text" default="40px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_NORMAL_GUTTER_LABEL" description="T3_TM_VARS_SCFD_NORMAL_GUTTER_DESC" />
+
+			<field name="T3gridWidth980" type="text" default="940px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_XTABLET_WIDTH_LABEL" description="T3_TM_VARS_SCFD_XTABLET_WIDTH_DESC" />
+			<field name="gridGutterWidth980" type="text" default="40px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_XTABLET_GUTTER_LABEL" description="T3_TM_VARS_SCFD_XTABLET_GUTTER_DESC" />
+
+			<field name="T3gridWidth768" type="text" default="740px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_TABLET_WIDTH_LABEL" description="T3_TM_VARS_SCFD_TABLET_WIDTH_DESC" />
+			<field name="gridGutterWidth768" type="text" default="20px" class="input-small t3tm-dimension" label="T3_TM_VARS_SCFD_TABLET_GUTTER_LABEL" description="T3_TM_VARS_SCFD_TABLET_GUTTER_DESC" />
+			<!-- End Grid -->
+		</fieldset>
+
+	</fields>
+</form>

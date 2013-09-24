@@ -28,10 +28,11 @@
 		<folder>admin</folder>
 		<folder>includes</folder>
 		<folder>base</folder>
+		<folder>bs3</folder>
 	</files>
-	<languages folder="languages">
-		<language tag="en-GB">en-GB.plg_system_t3.ini</language>
-		<language tag="en-GB">en-GB.plg_system_t3.sys.ini</language>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_t3.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_t3.sys.ini</language>
 	</languages>
 	<config>
 		<fields name="params">

@@ -27,11 +27,10 @@
 		</div>
 		<div class="t3-admin-layout-row-device clearfix">
 			<div class="t3-admin-layout-devices btn-group hide">
-				<button class="btn t3-admin-dv-wide" data-device="wide" title="<?php echo JTexT::_('T3_LAYOUT_DVI_WIDE') ?>"><i class="icon-desktop"></i><?php echo JTexT::_('T3_LAYOUT_DVI_WIDE') ?></button>
-				<button class="btn t3-admin-dv-normal" data-device="normal" title="<?php echo JTexT::_('T3_LAYOUT_DVI_NORMAL') ?>"><i class="icon-laptop"></i><?php echo JTexT::_('T3_LAYOUT_DVI_NORMAL') ?></button>
-				<button class="btn t3-admin-dv-xtablet" data-device="xtablet" title="<?php echo JTexT::_('T3_LAYOUT_DVI_XTABLET') ?>"><i class="icon-laptop"></i><?php echo JTexT::_('T3_LAYOUT_DVI_XTABLET') ?></button>
-				<button class="btn t3-admin-dv-tablet" data-device="tablet" title="<?php echo JTexT::_('T3_LAYOUT_DVI_TABLET') ?>"><i class="icon-tablet"></i><?php echo JTexT::_('T3_LAYOUT_DVI_TABLET') ?></button>
-				<button class="btn t3-admin-dv-mobile" data-device="mobile" title="<?php echo JTexT::_('T3_LAYOUT_DVI_MOBILE') ?>"><i class="icon-mobile-phone"></i><?php echo JTexT::_('T3_LAYOUT_DVI_MOBILE') ?></button>
+				<?php $t3devices = json_decode(T3_BASE_DEVICES, true); ?>
+				<?php foreach($t3devices as $device) : ?>
+					<button class="btn t3-admin-dv-<?php echo $device ?>" data-device="<?php echo $device ?>" title="<?php echo JTexT::_('T3_LAYOUT_DVI_' . strtoupper($device)) ?>"><i class="icon-device"></i><?php echo JTexT::_('T3_LAYOUT_DVI_' . strtoupper($device)) ?></button>
+				<?php endforeach; ?>
 			</div>
 			<button class="btn t3-admin-layout-reset-device pull-right hide"><?php echo JTexT::_('T3_LAYOUT_RESET_PER_DEVICE') ?></button>
 			<button class="btn t3-admin-layout-reset-position pull-right"><?php echo JTexT::_('T3_LAYOUT_RESET_POSITION') ?></button>
@@ -82,3 +81,22 @@
 		<button class="btn btn-success yes"><?php echo JTexT::_('T3_LAYOUT_LABEL_CLONEIT') ?></button>
 	</div>
 </div>
+<script type="text/javascript">
+	T3AdminLayout = window.T3AdminLayout || {};
+	T3AdminLayout.layout = T3AdminLayout.layout || {};
+	T3AdminLayout.layout.devices     = <?php echo T3_BASE_DEVICES ?>;
+	T3AdminLayout.layout.maxcol      = <?php echo T3_BASE_DV_MAXCOL ?>;
+	T3AdminLayout.layout.minspan     = <?php echo T3_BASE_DV_MINWIDTH ?>;
+	T3AdminLayout.layout.unitspan    = <?php echo T3_BASE_DV_UNITSPAN ?>;
+	T3AdminLayout.layout.dlayout     = '<?php echo T3_BASE_DEFAULT_DEVICE ?>';
+	T3AdminLayout.layout.clayout     = '<?php echo T3_BASE_DEFAULT_DEVICE ?>';
+	T3AdminLayout.layout.nlayout     = '<?php echo T3_BASE_DEFAULT_DEVICE ?>';
+	T3AdminLayout.layout.maxgrid     = <?php echo T3_BASE_MAX_GRID ?>;
+	T3AdminLayout.layout.maxcols     = <?php echo T3_BASE_MAX_GRID ?>;
+	T3AdminLayout.layout.widthprefix = '<?php echo T3_BASE_WIDTH_PREFIX ?>';
+	T3AdminLayout.layout.spanptrn    = '<?php echo T3_BASE_WIDTH_PATTERN ?>';
+	T3AdminLayout.layout.hiddenptrn  = '<?php echo T3_BASE_HIDDEN_PATTERN ?>';
+	T3AdminLayout.layout.firstptrn   = '<?php echo T3_BASE_FIRST_PATTERN ?>';
+	T3AdminLayout.layout.spancls     = new RegExp('<?php echo trim(preg_quote(T3_BASE_WIDTH_REGEX), '/') ?>', 'g');
+	T3AdminLayout.layout.responcls   = <?php echo (bool)T3_BASE_RSP_IN_CLASS ? 'true' : 'false' ?>;
+</script>

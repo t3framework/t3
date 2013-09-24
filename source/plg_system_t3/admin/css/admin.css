@@ -1066,6 +1066,7 @@ button.btn-primary:active {
 
 .t3-admin-overview-header h2 small {
   font-size: 18px;
+  display: block;
 }
 
 .t3-admin-overview-body {}

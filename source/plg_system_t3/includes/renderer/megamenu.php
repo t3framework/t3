@@ -10,16 +10,12 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
- * JDocument Bodyclass renderer
- *
- * @package     Joomla.Platform
- * @subpackage  Document
- * @since       11.1
+ * JDocument Megamenu renderer
  */
 class JDocumentRendererMegamenu extends JDocumentRenderer
 {
 	/**
-	 * Render body class of current page
+	 * Render megamenu block
 	 *
 	 * @param   string  $position  The position of the modules to render
 	 * @param   array   $params    Associative array of values

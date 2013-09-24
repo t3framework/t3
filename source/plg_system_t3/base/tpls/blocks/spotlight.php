@@ -20,7 +20,7 @@ defined('_JEXEC') or die;
 	$splparams = $vars['splparams'];
 	$datas     = $vars['datas'];
 	$cols      = $vars['cols'];
-	$rowcls    = isset($vars['row-fluid']) && $vars['row-fluid'] ? 'row-fluid' : 'row';
+	$rowcls    = isset($vars['row-fluid']) && $vars['row-fluid'] ? T3_BASE_ROW_FLUID_PREFIX : 'row';
 	$addcls    = isset($vars['class']) ? $vars['class'] : '';
 	$style     = isset($vars['style']) && $vars['style'] ? $vars['style'] : 'T3Xhtml';
 	$tstyles   = explode(',', $style);

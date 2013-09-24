@@ -1,0 +1,279 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+//
+// GENECRIC MODULE STYLE
+// --------------------------------------------------
+.t3-module {
+  background: @t3-module-bg;
+  color: @t3-module-color;
+  margin-bottom: @t3-global-margin * 2;
+  // Module padding
+  .module-inner {
+    padding: @t3-module-padding;
+  }
+}
+
+// Module Title
+// ------------
+.module-title {
+  background: @t3-module-title-bg;
+  color: @t3-module-title-color;
+  line-height: 30px;
+  margin: 0 0 (@t3-global-margin / 2) 0;
+  padding: @t3-module-title-padding;
+}
+
+// Module Content
+// --------------
+.module-ct {
+  background: @t3-module-content-bg;
+  color: @t3-module-content-color;
+  padding: @t3-module-content-padding;
+  .clearfix();
+}
+
+// Module List
+// -----------
+.t3-module {
+  ul,
+  ol {
+    margin-left: 20px;
+  }
+  
+  ul.unstyled,
+  ol.unstyled,
+  ul.nav,
+  ol.nav {
+    margin-left: 0;
+  }
+}
+
+
+
+//
+// JOOMLA! MODULES
+// --------------------------------------------------
+
+// Menu
+// ----
+.module_menu {
+  .nav {
+    margin-bottom: @t3-global-margin;
+  }
+  
+  .nav > li {
+    border-top: 1px solid @hr-border;
+  }
+  
+  .nav > li > a,
+  .nav > li > .separator {
+    padding: 5px;
+    display: block;
+  }
+  
+  // No top border
+  .nav > li:first-child {
+    border-top: 0;
+  }
+  
+  .nav > li:first-child > a {
+    border-top: 0;
+  }
+  
+  // Hover state
+  .nav > li > a:hover {
+  }
+  
+  // Active state
+  .nav > li.active > a {
+  }
+}
+
+
+// Login Form
+// ----------
+#login-form {
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 90%;
+  }
+  
+  .btn-primary {
+  }
+  
+  ul.unstyled {
+  }
+
+  #form-login-username {
+  }
+  
+  #form-login-password {
+  }
+  
+  #form-login-remember {
+  }
+
+}
+
+// Advertisement
+// -------------
+.bannergroup {
+}
+
+.banneritem {
+  a {
+    font-weight: bold;
+  }
+}
+
+.bannerfooter {
+  border-top: 1px solid @t3-border-color;
+  font-size: @t3-font-size-smaller;
+  padding-top: @t3-global-padding / 2;
+  text-align: right;
+}
+
+
+// Categories
+// ----------
+.categories-module, ul.categories-module,
+.category-module, ul.category-module {
+  margin: 0;
+  
+  li {
+    list-style: none;
+    padding: (@line-height-computed / 2) 0;
+    border-top: 1px solid @t3-border-color;
+    // Remove border for first item
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+  
+  h4 {
+    font-size: @font-size-base;
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+
+// News Feed
+// ----------
+.feed {
+  // Feed Title
+  h4 {
+    font-weight: bold;
+  }
+  // Feed list
+  .newsfeed,
+  ul.newsfeed {
+    border-top: 1px solid @hr-border;
+    li {}
+    .feed-link, 
+    h5.feed-link {
+      font-size: @font-size-base;
+      font-weight: normal;
+      margin: 0;
+    }
+  }
+
+}
+
+
+// Latest Users 
+// ------------
+.latestusers,
+ul.latestusers {
+  margin-left: 0;
+  li {
+    background: @gray-lighter;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: @border-radius-base;
+  }
+}
+
+
+// Stats 
+// ------
+.stats-module {
+  dt, dd {
+    display: inline-block;
+    margin: 0;
+  }
+  dt {
+    font-weight: bold;
+    width: 35%;
+  }
+  dd {
+    width: 60%;
+  }
+}
+
+// Popular Tags
+div.tagspopular ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+div.tagspopular ul li {
+  color: @gray;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+}
+
+div.tagspopular ul li a {
+  background: @gray-lighter;
+  border-radius: 3px;
+  color: @gray;
+  display: block;
+  padding: 2px 5px;
+}
+
+div.tagspopular ul li a:hover,
+div.tagspopular ul li a:focus,
+div.tagspopular ul li a:active {
+  background: @link-hover-color;
+  color: @white;
+  text-decoration: none;
+}
+
+// Similar tags
+div.tagssimilar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+div.tagssimilar ul li {
+  border-bottom: 1px solid @gray-lighter;
+  padding: 8px 0;
+}
+
+div.tagssimilar ul li a {
+  color: @gray;
+}
+
+div.tagssimilar ul li a:hover,
+div.tagssimilar ul li a:focus,
+div.tagssimilar ul li a:active {
+  color: @link-hover-color;
+}

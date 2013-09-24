@@ -27,11 +27,16 @@ class T3Template extends ObjectExtendable
 	/**
 	 * Define constants
 	 */
-	protected static $maxcol = array('default' => 6, 'wide' => 6, 'normal' => 6, 'xtablet' => 4, 'tablet' => 3, 'mobile' => 2);
-	protected static $minspan = array('default' => 2, 'wide' => 2, 'normal' => 2, 'xtablet' => 3, 'tablet' => 4, 'mobile' => 6);
-	protected static $maxgrid = 12;
-	protected static $maxcolumns = 6;
-
+	protected $maxgrid      = 12;
+	protected $widthprefix  = 'span';
+	protected $nonrspprefix = 'span';
+	protected $spancls      = '/(\s*)span(\d+)(\s*)/';
+	protected $responcls    = false;								//indicate this will use data-[device] property or not
+	protected $rowfluidcls  = 'row-fluid';
+	protected $defdv        = 'default';
+	protected $devices      = array('default', 'wide', 'normal', 'xtablet', 'tablet', 'mobile');
+	protected $maxcol       = array('default' => 6, 'wide' => 6, 'normal' => 6, 'xtablet' => 4, 'tablet' => 3, 'mobile' => 2);
+	protected $minspan      = array('default' => 2, 'wide' => 2, 'normal' => 2, 'xtablet' => 3, 'tablet' => 4, 'mobile' => 6);
 
 	/**
 	 * Current template instance
@@ -58,13 +63,28 @@ class T3Template extends ObjectExtendable
 	 */
 	public function __construct($template = null)
 	{
+		// merge the base theme information
+		$this->maxgrid      = T3_BASE_MAX_GRID;
+		$this->widthprefix  = T3_BASE_WIDTH_PREFIX;
+		$this->nonrspprefix = T3_BASE_NONRSP_WIDTH_PREFIX;
+		$this->spancls      = T3_BASE_WIDTH_REGEX;
+		$this->responcls    = T3_BASE_RSP_IN_CLASS;
+		$this->rowfluidcls  = T3_BASE_ROW_FLUID_PREFIX;
+		$this->defdv        = T3_BASE_DEFAULT_DEVICE;
+		$this->devices      = json_decode(T3_BASE_DEVICES, true);
+		$this->maxcol       = json_decode(T3_BASE_DV_MAXCOL, true);
+		$this->minspan      = json_decode(T3_BASE_DV_MINWIDTH, true);
+
+		// layout settings
 		$this->_layoutsettings = new JRegistry;
 
 		if ($template) {
 			$this->_tpl = $template;
 			$this->_extend(array($template));
-			// merge layout setting
 
+
+
+			// merge layout setting
 			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
 			if (empty($layout)) {
 				$layout = $template->params->get('mainlayout', 'default');
@@ -136,6 +156,7 @@ class T3Template extends ObjectExtendable
 	 * Load block content
 	 * @param  string  $block  Block name - the real block is tpls/blocks/[block].php
 	 * @param  array   $vars   information of block (used in template layout)
+	 *
 	 * @return string Block content
 	 */
 	function loadBlock($block, $vars = array())
@@ -152,8 +173,7 @@ class T3Template extends ObjectExtendable
 	/**
 	 * Load block layout
 	 *
-	 * @param string &layout
-	 *     Block name - the real block is tpls/[layout].php
+	 * @param string &layout  Block name - the real block is tpls/[layout].php
 	 *
 	 * @return null
 	 */
@@ -186,13 +206,14 @@ class T3Template extends ObjectExtendable
 	 */
 	function spotlight($name, $positions, array $info = array())
 	{
+		$defdv  = $this->defdv;
 		$defpos = preg_split('/\s*,\s*/', $positions);
-		$vars = is_array($info) ? $info : array();
-		$cols = count($defpos);
-		$poss = $defpos;
+		$vars   = is_array($info) ? $info : array();
+		$cols   = count($defpos);
+		$poss   = $defpos;
 
 		$splparams = array();
-		for ($i = 1; $i <= self::$maxcolumns; $i++) {
+		for ($i = 1; $i <= $this->maxgrid; $i++) {
 			$param = $this->getLayoutSetting('block' . $i . '@' . $name);
 			if (empty($param)) {
 				break;
@@ -220,7 +241,8 @@ class T3Template extends ObjectExtendable
 		//empty - so we will use default configuration
 		if (empty($splparams)) {
 			//generate a optimize default width
-			$default = $this->genWidth('default', $cols);
+			$default = $this->genWidth($defdv, $cols);
+
 			foreach ($poss as $i => $pos) {
 				//is there any configuration param
 				$var = isset($vars[$pos]) ? $vars[$pos] : '';
@@ -228,23 +250,14 @@ class T3Template extends ObjectExtendable
 				$param = new stdClass;
 				$param->position = $pos;
 
-				$param->default = ($var && isset($var['default'])) ? $var['default'] : 'span' . $default[$i];
+				$param->$defdv = ($var && isset($var[$defdv])) ? $var[$defdv] : $this->widthprefix . $default[$i];
 				if ($var) {
-					if (isset($var['wide'])) {
-						$param->wide = $var['wide'];
+					foreach($this->devices as $device){
+						if (isset($var[$device])) {
+							$param->$device = $var[$device];
+						}
 					}
-					if (isset($var['normal'])) {
-						$param->normal = $var['normal'];
-					}
-					if (isset($var['xtablet'])) {
-						$param->xtablet = $var['xtablet'];
-					}
-					if (isset($var['tablet'])) {
-						$param->tablet = $var['tablet'];
-					}
-					if (isset($var['mobile'])) {
-						$param->mobile = $var['mobile'];
-					}
+					
 				}
 
 				$splparams[$i] = $param;
@@ -252,26 +265,41 @@ class T3Template extends ObjectExtendable
 		}
 
 		//build data
-		$datas = array();
-		foreach ($splparams as $idx => $splparam) {
+		$responsive = $this->getParam('responsive', 1);
+		$datas      = array();
+		foreach ($splparams as $splparam) {
 			$param = (object)$splparam;
 
 			$data = '';
-			$data .= isset($param->default) ? ' data-default="' . $param->default . '"' : '';
-			$data .= isset($param->wide) ? ' data-wide="' . $param->wide . '"' : '';
-			$data .= isset($param->normal) ? ' data-normal="' . $param->normal . '"' : '';
-			$data .= isset($param->xtablet) ? ' data-xtablet="' . $param->xtablet . '"' : '';
-			$data .= isset($param->tablet) ? ' data-tablet="' . $param->tablet . '"' : '';
-			$data .= isset($param->mobile) ? ' data-mobile="' . $param->mobile . '"' : '';
+			
+			if($responsive){
+					
+				foreach($this->devices as $device){
+					
+					if(isset($param->$device)){
+						$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
+						$posfix = $this->responcls ? '' : '"';
+						
+						$data .= $prefix . $param->$device . $posfix;
+					}
+
+				}
+			} else {
+				$data = isset($param->$defdv) ? ' ' . $param->$defdv : '';
+				
+				if($this->nonrspprefix && ($this->nonrspprefix != $this->widthprefix)){
+					$data = str_replace($this->widthprefix, $this->nonrspprefix, $data);
+				}
+			}
 
 			$datas[] = $data;
 		}
 
-		//
-		$vars['name'] = $name;
+		//pack to single variable
+		$vars['name']      = $name;
 		$vars['splparams'] = $splparams;
-		$vars['datas'] = $datas;
-		$vars['cols'] = $cols;
+		$vars['datas']     = $datas;
+		$vars['cols']      = $cols;
 
 		JDispatcher::getInstance()->trigger('onT3Spotlight', array(&$vars, $name, $positions));
 
@@ -333,9 +361,48 @@ class T3Template extends ObjectExtendable
 	 */
 	function getClass($layout, $col)
 	{
-		$width = $layout->default;
-		if (!isset ($width[$col]) || !$width[$col]) return "";
-		return $width[$col];
+		$defdv = $this->defdv;
+
+		if($this->responcls){
+			$result     = '';
+			$responsive = $this->getParam('responsive', 1);
+		
+			if($responsive){
+				foreach ($layout as $width) {
+					if (!isset ($width[$col]) || !$width[$col]) {
+						continue;
+					}
+
+					$result .= ' ' . $width[$col];
+				}
+
+			} else {
+				//remove all width classes
+				$width   = $this->maxgrid;
+				$clayout = isset($layout->$defdv) ? $layout->$defdv : false;
+
+				if($clayout && !empty($clayout[$col])){
+					$defcls = $clayout[$col];
+					if(preg_match($this->spancls, $defcls, $match)){
+						$width = array_pop(array_filter($match, 'is_numeric'));
+						$width = (isset($width[0]) ? $width[0] : $this->maxgrid);
+					}
+				}
+
+				$result = ' ' . $this->nonrspprefix . $width;
+			}
+			
+			return $result;
+			
+		} else {
+
+			$width = $layout->$defdv;
+			if (!isset ($width[$col]) || !$width[$col]){
+				return '';
+			}
+
+			return $width[$col];
+		}
 	}
 
 
@@ -482,7 +549,7 @@ class T3Template extends ObjectExtendable
 	{
 		$poss = array();
 
-		for ($i = 1; $i <= self::$maxcolumns; $i++) {
+		for ($i = 1; $i <= $this->maxgrid; $i++) {
 			$param = $this->getLayoutSetting('block' . $i . '@' . $name);
 			if (empty($param)) {
 				break;
@@ -587,18 +654,21 @@ class T3Template extends ObjectExtendable
 
 		if (!empty($param)) {
 
-			$data = '"';
-			$data .= isset($param->default) ? ' data-default="' . $param->default . '"' : '';
-			$data .= isset($param->normal) ? ' data-normal="' . $param->normal . '"' : '';
-			$data .= isset($param->wide) ? ' data-wide="' . $param->wide . '"' : '';
-			$data .= isset($param->xtablet) ? ' data-xtablet="' . $param->xtablet . '"' : '';
-			$data .= isset($param->tablet) ? ' data-tablet="' . $param->tablet . '"' : '';
-			$data .= isset($param->mobile) ? ' data-mobile="' . $param->mobile . '"' : '';
-
-			if ($data == '"') {
-				$data = '';
-			} else {
-				$data = (isset($param->default) ? ' ' . $param->default : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
+			foreach ($this->maxcol as $device => $span) {
+				if(!empty($param->$device) && strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
+					$param->$device = str_replace(' hidden ', ' hidden-' . $device . ' ', ' ' . $param->$device . ' ');
+				}
+				
+				if(!empty($param->$device)){
+					$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
+					$posfix = $this->responcls ? '' : '"';
+					$data .= $prefix . trim($param->device) . $posfix;
+				}
+			}
+			
+			$defdv = $this->defdv;
+			if(!$this->responcls && !empty($data)){
+				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 
@@ -616,7 +686,7 @@ class T3Template extends ObjectExtendable
 	{
 		$devmode    = $this->getParam('devmode', 0);
 		$themermode = $this->getParam('themermode', 1);
-		$responsive = $addresponsive ? $this->getParam('responsive', 1) : false;
+		$responsive = $addresponsive && !$this->responcls ? $this->getParam('responsive', 1) : false;
 
 		if (($devmode || ($themermode && defined('T3_THEMER'))) && ($url = T3Path::getUrl('less/' . $name . '.less', '', true))) {
 			T3::import('core/less');
@@ -629,7 +699,7 @@ class T3Template extends ObjectExtendable
 			}
 		}
 
-		if ($responsive) {
+		if ($responsive && !$this->responcls) {
 			$this->addCss($name . '-responsive', false);
 		}
 	}
@@ -645,13 +715,32 @@ class T3Template extends ObjectExtendable
 		$navtype    = $this->getParam('navigation_type', 'joomla');
 		$navtrigger = $this->getParam('navigation_trigger', 'hover');
 		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1);
+		$bs2compat  = $this->getParam('bs2compat', 0);
+
+		// BOOTSTRAP 2 COMPATIBLE
+		if($bs2compat){
+			$this->addCss('bs2compat');
+		}
 
 		// BOOTSTRAP CSS
 		$this->addCss('bootstrap', false);
 		// TEMPLATE CSS
 		$this->addCss('template', false);
 
-		if ($responsive) {
+		if (!$responsive) {
+			// BOOTSTRAP 2 COMPATIBLE
+			if($bs2compat){
+				$this->addCss('bs2-non-responsive');
+			}
+
+			$this->addCss('non-responsive');
+
+			$nonrespwidth = $this->getParam('non_responsive_width', '970px');
+			if(preg_match('/^(-?\d*\.?\d+)(px|%|em|rem|pc|ex|in|deg|s|ms|pt|cm|mm|rad|grad|turn)?/', $nonrespwidth, $match)){
+				$nonrespwidth = $match[1] . (!empty($match[2]) ? $match[2] : 'px');
+			}
+			$this->addStyleDeclaration('.container {width: ' . $nonrespwidth . ' !important;}');
+		} else if(!$this->responcls){
 			// BOOTSTRAP RESPONSIVE CSS
 			$this->addCss('bootstrap-responsive');
 			// RESPONSIVE CSS
@@ -668,7 +757,7 @@ class T3Template extends ObjectExtendable
 			if(!is_file(T3_TEMPLATE_PATH . '/less/megamenu.less')){
 				$this->addStyleSheet(T3_URL . '/css/megamenu.css');
 
-				if ($responsive){
+				if ($responsive && !$this->responcls){
 					$this->addStyleSheet(T3_URL . '/css/megamenu-responsive.css');
 				}
 			}
@@ -721,7 +810,7 @@ class T3Template extends ObjectExtendable
 		}
 
 		//reponsive script
-		if ($responsive) {
+		if ($responsive && !$this->responcls) {
 			$this->addScript(T3_URL . '/js/responsive.js');
 		}
 
@@ -960,7 +1049,7 @@ class T3Template extends ObjectExtendable
 	function fitWidth($numpos)
 	{
 		$result = array();
-		$avg = floor(self::$maxgrid / $numpos);
+		$avg = floor($this->maxgrid / $numpos);
 		$sum = 0;
 
 		for ($i = 0; $i < $numpos - 1; $i++) {
@@ -968,7 +1057,7 @@ class T3Template extends ObjectExtendable
 			$sum += $avg;
 		}
 
-		$result[] = self::$maxgrid - $sum;
+		$result[] = $this->maxgrid - $sum;
 
 		return $result;
 	}
@@ -982,17 +1071,14 @@ class T3Template extends ObjectExtendable
 	 */
 	function genWidth($layout, $numpos)
 	{
-
-		$cmaxcol = self::$maxcol[$layout];
-		$cminspan = ($layout == 'mobile') ? self::$maxgrid : self::$minspan[$layout];
+		$cminspan = $this->minspan[$layout];
 		$total = $cminspan * $numpos;
-		$sum = 0;
 
-		if ($total < self::$maxgrid) {
+		if ($total < $this->maxgrid) {
 			return $this->fitWidth($numpos);
 		} else {
 			$result = array();
-			$rows = ceil($total / self::$maxgrid);
+			$rows = ceil($total / $this->maxgrid);
 			$cols = ceil($numpos / $rows);
 
 			for ($i = 0; $i < $rows - 1; $i++) {

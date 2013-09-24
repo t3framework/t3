@@ -1,0 +1,51 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         https://github.com/t3framework/ 
+ *------------------------------------------------------------------------------
+*/
+@media (max-width: 767px) {
+  .t3-megamenu .mega-inner {
+    padding: 10px 20px;
+  }
+  .t3-megamenu .row-fluid,
+  .t3-megamenu .mega-dropdown-menu,
+  .t3-megamenu .row-fluid [class*="span"] {
+    width: 100% !important;
+    min-width: 100% !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+  }
+  .t3-megamenu .row-fluid + .row-fluid {
+    padding-top: 10px;
+    border-top: 1px solid #eeeeee;
+  }
+  .t3-megamenu .hidden-collapse,
+  .t3-megamenu .always-show .caret,
+  .t3-megamenu .sub-hidden-collapse > .nav-child,
+  .t3-megamenu .sub-hidden-collapse .caret,
+  .t3-megamenu .sub-hidden-collapse > a:after,
+  .t3-megamenu .always-show .dropdown-submenu > a:after {
+    display: none !important;
+  }
+  .t3-megamenu .mega-caption {
+    display: none !important;
+  }
+  html[dir="rtl"] .t3-megamenu .row-fluid,
+  html[dir="rtl"] .t3-megamenu .mega-dropdown-menu,
+  html[dir="rtl"] .t3-megamenu .row-fluid [class*="span"] {
+    right: 0 !important;
+    margin-right: 0 !important;
+  }
+}

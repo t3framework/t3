@@ -28,7 +28,7 @@ class T3 {
 	/**
 	 * Import T3 Library
 	 *
-	 * @param string $package    Object path that seperate by backslash (/)
+	 * @param string  $package  Object path that seperate by backslash (/)
 	 *
 	 * @return void
 	 */
@@ -41,8 +41,12 @@ class T3 {
 		}
 	}
 
+	/**
+	 * @param   object  $tpl  template object to initialize if needed
+	 * @return  bool|null|T3Admin
+	 */
 	public static function getApp($tpl = null){
-		if(empty(self::$t3app)){	
+		if(empty(self::$t3app)){
 			$japp = JFactory::getApplication();
 			self::$t3app = $japp->isAdmin() ? self::getAdmin() : self::getSite($tpl); 
 		}
@@ -56,20 +60,33 @@ class T3 {
 	public static function init ($xml) {
 		$app       = JFactory::getApplication();
 		$input     = $app->input;
-		$coretheme = isset($xml->t3) && isset($xml->t3->base) ? trim($xml->t3->base) : 'base';
+		$coretheme = isset($xml->t3) && isset($xml->t3->base) ? trim((string)$xml->t3->base) : 'base';
 		
 		// check coretheme in media/t3/themes folder
 		// if not exists, use default base theme in T3
-		if ($coretheme && is_dir(JPATH_ROOT.'/media/t3/themes/'.$coretheme)){
-			define ('T3', $coretheme);
-			define ('T3_URL', JURI::base(true).'/media/t3/themes/' . T3);
-			define ('T3_PATH', JPATH_ROOT . '/media/t3/themes/' . T3);
-			define ('T3_REL', 'media/t3/themes/' . T3);
-		} else {
-			define ('T3', 'base');
-			define ('T3_URL', T3_ADMIN_URL.'/'.T3);
-			define ('T3_PATH', T3_ADMIN_PATH . '/' . T3);
-			define ('T3_REL', T3_ADMIN_REL.'/'.T3);
+		if (!$coretheme){
+			$coretheme = 'base';
+		}
+
+		foreach(array(T3_EX_BASE_PATH, T3_ADMIN_PATH) as $basedir){
+			if(is_dir($basedir . '/' . $coretheme)){
+
+				if(is_file($basedir . '/' . $coretheme . '/define.php')){
+					include_once ($basedir . '/' . $coretheme . '/define.php');
+				}
+
+				break;
+			}
+		}
+
+		if(!defined('T3')){
+			// get ready for the t3 core base theme
+			include_once (T3_CORE_BASE_PATH . '/define.php');
+		}
+
+		if(!defined('T3')){
+			T3::error(JText::sprintf('T3_MSG_FAILED_INIT_BASE', $coretheme));
+			exit;
 		}
 
 		define ('T3_TEMPLATE', $xml->tplname);
@@ -149,7 +166,7 @@ class T3 {
 
 			//T3Ajax::processAjaxRule();
 
-			JFactory::getApplication()->getTemplate(true)->params->set('mainlayout', 'ajax.' . $input->getCmd('f', 'html'));	
+			JFactory::getApplication()->getTemplate(true)->params->set('mainlayout', 'ajax.' . $input->getCmd('f', 'html'));
 		}
 	}
 
@@ -165,10 +182,10 @@ class T3 {
 		}
 
 		$type = 'Template'. JFactory::getApplication()->input->getCmd ('t3tp', '');
-		T3::import ('core/'.$type);
+		T3::import ('core/' . $type);
 
 		// create global t3 template object 
-		$class = 'T3'.$type;
+		$class = 'T3' . $type;
 		return new $class($tpl);
 	}
 
@@ -244,7 +261,7 @@ class T3 {
 				$tplname = $app->getTemplate(false);
 			}
 
-			if ($tplname) {				
+			if ($tplname) {
 					// parse xml
 				$filePath = JPath::clean(JPATH_ROOT.'/templates/'.$tplname.'/templateDetails.xml');
 				if (is_file ($filePath)) {

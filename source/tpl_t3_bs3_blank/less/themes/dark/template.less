@@ -1,0 +1,102 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+//
+// GENERIC ARTICLE STYLES
+// ---------------------------------------------------------
+.page-header {
+  border-bottom: 1px solid @grayDark;
+}
+
+// Page Subheader
+// --------------
+.page-subheader {
+  border-bottom: 1px solid @grayDark;
+}
+
+// Divider
+.divider-vertical {
+  border-top: 1px solid @grayDarker;
+  border-bottom: 1px solid @grayDark;
+}
+
+
+// ---------------------------------------------------------
+// HEADER
+// ---------------------------------------------------------
+
+// Logo Text
+// ----------
+.logo-text h1 {
+	color: @white;
+}
+
+.logo-text h1 a {
+	color: @white;
+}
+
+// Taglines
+.logo-text .site-slogan {
+  display: block;
+  font-size: @baseFontSize;
+  margin-top: 5px;
+}
+
+// Head Search
+// -----------
+
+.head-search .input {
+  background: url("@{T3ThemeImagePath}/ico/search.png") no-repeat 8px center;
+}
+
+/* focus state */
+.head-search .input:focus {
+  color: @white;
+}
+
+
+//
+// DEFAULT JOOMLA! MENU 
+// ------------------------------------------------------
+.module_menu .nav > li {
+  border-top: 1px solid @grayDark;
+}
+
+
+// Active nav items
+.t3-mainnav.inverted .navbar .nav > .active > a,
+.t3-mainnav.inverted .navbar .nav > .active > a:hover,
+.t3-mainnav.inverted .navbar .nav > .active > a:focus {
+  color: @white;
+  #gradient > .vertical(lighten(@blue, 10%), @blue);
+}
+
+// Shitty
+.input-append .add-on, .input-prepend .add-on {
+  background: #444;
+}
+
+
+.nav-tabs.nav-stacked > li > a,
+.pagination a, .pagination span {
+  border-color: #444;
+}
+
+.pagination a:hover, .pagination .active a, .pagination .active span,
+.pagination a, .pagination span {
+  background: #444;
+}
+
+
+.btn { text-shadow: none;}

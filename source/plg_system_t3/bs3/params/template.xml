@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params" addfieldpath="/plugins/system/t3/includes/depend">
+
+		<fieldset name="general_params" label="T3_GENERAL_LABEL" description="T3_GENERAL_DESC">
+			<field name="t3_template" type="hidden" default="1" value="1"/>
+
+			<field name="general_params_default" type="t3depend" function="@group">
+				<option for="devmode" value="0">
+					minify
+				</option>
+				<option for="responsive" value="0">
+					non_responsive_width
+				</option>
+			</field>
+
+			<field name="devmode" type="radio" class="btn-group" default="0"
+				   global="1"
+				   label="T3_GENERAL_DEVELOPMENT_LABEL"
+				   description="T3_GENERAL_DEVELOPMENT_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="themermode" type="radio" class="btn-group" default="1"
+				   global="1"
+				   label="T3_GENERAL_THEMER_LABEL"
+				   description="T3_GENERAL_THEMER_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="bs2compat" type="radio" class="btn-group" default="0"
+				   global="1"
+				   label="T3_GENERAL_BS2_COMPAT_LABEL"
+				   description="T3_GENERAL_BS2_COMPAT_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="responsive" type="radio" class="btn-group" default="1"
+				   global="1"
+				   label="T3_GENERAL_RESPONSIVE_LABEL"
+				   description="T3_GENERAL_RESPONSIVE_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="non_responsive_width" type="text" class="btn-group" default="970px"
+				   global="1"
+				   label="T3_GENERAL_NON_RESPON_WIDTH_LABEL"
+				   description="T3_GENERAL_NON_RESPON_WIDTH_DESC"/>
+
+			<field name="build_rtl" type="radio" class="btn-group" default="0"
+				   global="1"
+				   label="T3_GENERAL_BUILD_RTL_LABEL"
+				   description="T3_GENERAL_BUILD_RTL_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="minify" type="radio" class="btn-group" default="0"
+				   global="1"
+				   label="T3_GENERAL_ASSETS_MINIFY_LABEL"
+				   description="T3_GENERAL_ASSETS_MINIFY_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="t3-assets" type="text" default="t3-assets"
+				   global="1"
+				   label="T3_GENERAL_ASSETS_FOLDER_LABEL"
+				   description="T3_GENERAL_ASSETS_FOLDER_DESC"/>
+
+			<field name="t3-rmvlogo" type="radio" class="btn-group" default="1"
+				   global="1"
+				   label="T3_GENERAL_REMOVE_T3LOGO_LABEL"
+				   description="T3_GENERAL_REMOVE_T3LOGO_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">
+
+			<field name="theme_params_default" type="t3depend" function="@group">
+				<option for="logotype" value="image">
+					logoimage
+				</option>
+			</field>
+
+			<field name="theme" type="t3folderlist" default=""
+				   label="T3_THEME_THEME_LABEL"
+				   description="T3_THEME_THEME_DESC"
+				   filter=".*"
+				   directory="less/themes"
+				   stripext="true"
+				   hide_none="false"/>
+
+			<field name="logotype" type="list" default="image"
+				   label="T3_THEME_LOGOTYPE_LABEL"
+				   description="T3_THEME_LOGOTYPE_DESC">
+				<option value="text">T3_THEME_LOGOTYPE_TEXT</option>
+				<option value="image">T3_THEME_LOGOTYPE_IMAGE</option>
+			</field>
+
+			<field name="sitename" type="text" default="" filter="RAW" size="50"
+				   label="T3_THEME_SITENAME_LABEL"
+				   description="T3_THEME_SITENAME_DESC"
+				   placeholder="T3_THEME_SITENAME_HINT"
+					/>
+			<field name="slogan" type="text" default="" filter="RAW" size="50"
+				   label="T3_THEME_SLOGAN_LABEL"
+				   description="T3_THEME_SLOGAN_DESC"
+				   placeholder="T3_THEME_SLOGAN_HINT"
+					/>
+
+			<field name="logoimage" type="t3media" default=""
+				   label="T3_THEME_LOGOIMAGE_LABEL"
+				   description="T3_THEME_LOGOIMAGE_DESC"/>
+
+		</fieldset>
+
+		<fieldset name="layout_params" label="T3_LAYOUT_LABEL" description="T3_LAYOUT_DESC">
+			<field name="layout_ajax_default" type="t3depend" function="@ajax">
+				<option
+						for="mainlayout"
+						query="t3action=layout&amp;t3task=display&amp;t3tp=layout"
+						func="T3AdminLayout.t3layout">
+				</option>
+			</field>
+
+			<field name="mainlayout" type="t3filelist" default="default-joomla-3.x"
+				   label="T3_LAYOUT_LAYOUT_LABEL"
+				   description="T3_LAYOUT_LAYOUT_DESC"
+				   filter=".*\.php"
+				   directory="tpls"
+				   stripext="true"
+				   hide_none="false"
+				   hide_default="true"
+					/>
+
+		</fieldset>
+
+		<fieldset name="navigation_params" label="T3_NAVIGATION_LABEL" description="T3_NAVIGATION_DESC">
+			<field name="navigation_group_default" type="t3depend" function="@group">
+				<option for="navigation_type" value="megamenu">
+					mm_type,navigation_animation,navigation_animation_duration
+				</option>
+				<option
+						for="navigation_trigger" value="hover">
+					navigation_animation,navigation_animation_duration
+				</option>
+				<option
+						for="navigation_animation" value="fading,slide,zoom,elastic">
+					navigation_animation_duration
+				</option>
+			</field>
+
+			<field name="navigation_trigger" type="list" default="hover"
+				   global="1"
+				   label="T3_NAVIGATION_TRIGGER_LABEL"
+				   description="T3_NAVIGATION_TRIGGER_DESC">
+				<option value="hover">Mouse Hover</option>
+				<option value="click">Mouse Click</option>
+			</field>
+
+			<field name="navigation_collapse_offcanvas" type="radio" class="btn-group" default="1"
+				   global="1"
+				   label="T3_NAVIGATION_COLLAPSE_OFFCANVAS"
+				   description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="navigation_collapse_showsub" type="radio" class="btn-group" default="1"
+				   global="1"
+				   label="T3_NAVIGATION_COLLAPSE_LABEL"
+				   description="T3_NAVIGATION_COLLAPSE_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field name="navigation_type" type="list" class="btn-group" default="joomla"
+				   label="T3_NAVIGATION_TYPE_LABEL"
+				   description="T3_NAVIGATION_TYPE_DESC">
+				<option value="joomla">Joomla Module</option>
+				<option value="megamenu">Megamenu</option>
+			</field>
+
+			<field name="navigation_animation" type="list" default=""
+				   global="1"
+				   label="T3_NAVIGATION_ANIMATION_LABEL"
+				   description="T3_NAVIGATION_ANIMATION_DESC">
+				<option value="">None</option>
+				<option value="fading">Fading</option>
+				<option value="slide">Slide</option>
+				<option value="zoom">Zoom</option>
+				<option value="elastic">Elastic</option>
+			</field>
+			<field name="navigation_animation_duration" type="text" default="400"
+				   global="1"
+				   label="T3_NAVIGATION_ANIMATION_DURATION_LABEL"
+				   description="T3_NAVIGATION_ANIMATION_DURATION_DESC"/>
+
+			<field name="mm_type" type="menu" default="mainmenu"
+				   label="T3_NAVIGATION_MM_TYPE_LABEL"
+				   description="T3_NAVIGATION_MM_TYPE_DESC"
+					/>
+
+			<field name="mm_config" type="hidden" hide="true" global="1"
+				   label=""
+				   description=""
+					/>
+
+		</fieldset>
+
+		<fieldset name="injection_params" label="T3_INJECTION_LABEL" description="T3_INJECTION_DESC">
+
+			<field name="snippet_open_head" type="textarea"
+				   class="t3-admin-textarea"
+				   global="1"
+				   filter="raw"
+				   default=""
+				   label="T3_INJECTION_OPEN_HEAD_LABEL"
+				   description="T3_INJECTION_OPEN_HEAD_DESC"
+					/>
+
+			<field name="snippet_close_head" type="textarea"
+				   class="t3-admin-textarea"
+				   global="1"
+				   filter="raw"
+				   default=""
+				   label="T3_INJECTION_CLOSE_HEAD_LABEL"
+				   description="T3_INJECTION_CLOSE_HEAD_DESC"
+					/>
+
+			<field name="snippet_open_body" type="textarea"
+				   class="t3-admin-textarea"
+				   global="1"
+				   filter="raw"
+				   default=""
+				   label="T3_INJECTION_OPEN_BODY_LABEL"
+				   description="T3_INJECTION_OPEN_BODY_DESC"
+					/>
+
+			<field name="snippet_close_body" type="textarea"
+				   class="t3-admin-textarea"
+				   global="1"
+				   filter="raw"
+				   default=""
+				   label="T3_INJECTION_CLOSE_BODY_LABEL"
+				   description="T3_INJECTION_CLOSE_BODY_DESC"
+					/>
+
+			<field name="snippet_debug" type="radio" class="btn-group" default="0"
+				   global="1"
+				   label="T3_INJECTION_DEBUG_LABEL"
+				   description="T3_INJECTION_DEBUG_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+		</fieldset>
+
+	</fields>
+</form>

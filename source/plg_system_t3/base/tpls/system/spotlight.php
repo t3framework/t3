@@ -21,12 +21,12 @@ defined('_JEXEC') or die;
 	$poss = $vars['poss'];
 	$spldata = $vars['spldata'];
 	$default = $vars['default'];
-	$rowcls = isset($vars['row-fluid']) && $vars['row-fluid'] ? 'row-fluid':'row';
+	$rowcls = isset($vars['row-fluid']) && $vars['row-fluid'] ? T3_BASE_ROW_FLUID_PREFIX : 'row';
 ?>
 	<!-- SPOTLIGHT -->
-	<div class="<?php echo $rowcls ?> t3-spotlight t3-<?php echo $name ?>"<?php echo $spldata ?>>
+	<div class="<?php echo $rowcls ?> t3-spotlight t3-<?php echo $name ?>" <?php echo $spldata ?>>
 		<?php foreach ($poss as $i => $pos): ?>
-		<div class="span<?php echo $default[$i] ?>">
+		<div class="<?php echo T3_BASE_WIDTH_PREFIX, $default[$i] ?>">
 			<?php if ($this->countModules($pos)) : ?>
 				<jdoc:include type="modules" name="<?php echo $pos ?>" data-original="" style="<?php echo $style ?>" />
 				<?php else: ?>

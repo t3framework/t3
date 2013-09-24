@@ -18,7 +18,6 @@ defined('_JEXEC') or die;
 
 <link rel="stylesheet" href="<?php echo T3_ADMIN_URL ?>/admin/tour/css/tour.css" type="text/css" />
 <script type="text/javascript" src="<?php echo T3_URL ?>/js/jquery.ckie.js"></script>
-<script type="text/javascript" src="<?php echo T3_URL ?>/bootstrap/js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="<?php echo T3_ADMIN_URL ?>/admin/tour/js/tour.js"></script>
 
 

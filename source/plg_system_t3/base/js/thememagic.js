@@ -45,7 +45,7 @@
 			if(data && typeof data == 'object'){
 				T3Theme.vars = data.vars;
 				T3Theme.others = data.others;
-				T3Theme.theme = data.theme;		
+				T3Theme.theme = data.theme;
 			}
 			
 			less.refresh(true);

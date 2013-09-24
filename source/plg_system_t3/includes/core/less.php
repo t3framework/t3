@@ -30,6 +30,10 @@ T3::import('core/path');
  */
 class T3Less extends lessc
 {
+	/**
+	 * Singleton constructor
+	 * @return T3Less
+	 */
 	public static function getInstance()
 	{
 		static $t3less = null;
@@ -38,7 +42,12 @@ class T3Less extends lessc
 		}
 		return $t3less;
 	}
-	
+
+	/**
+	 * Compile LESS to CSS
+	 * @param   $path   the file path of less file
+	 * @return  string  the css compiled content
+	 */
 	function getCss($path)
 	{
 		// get vars last-modified
@@ -67,7 +76,12 @@ class T3Less extends lessc
 		
 		return $data;
 	}
-	
+
+	/**
+	 * Compile LESS to CSS
+	 * @param   $path   the less file to compile
+	 * @return  string  url to css file
+	 */
 	function buildCss($path)
 	{
 		$app     = JFactory::getApplication();
@@ -87,7 +101,7 @@ class T3Less extends lessc
 		}
 
 		// get vars last-modified
-		$vars_lm     = $app->getUserState('vars_last_modified', 0);
+		$vars_lm = $app->getUserState('vars_last_modified', 0);
 		
 		// get css cached file
 		$subdir  = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
@@ -111,7 +125,12 @@ class T3Less extends lessc
 		
 		return $cssurl;
 	}
-	
+
+	/**
+	 * @param   string  $path    file path of less file to compile
+	 * @param   string  $topath  file path of output css file
+	 * @return  bool|mixed       compile result or the css compiled content
+	 */
 	function compileCss($path, $topath = '')
 	{
 		$app    = JFactory::getApplication();
@@ -132,7 +151,7 @@ class T3Less extends lessc
 
 		$kfilepath    = 'less-file-path';
 		$kvarsep      = 'less-content-separator';
-		$krtlsep      = 'rtl-less-content';		
+		$krtlsep      = 'rtl-less-content';
 
 		
 		if ($topath) {
@@ -343,7 +362,12 @@ class T3Less extends lessc
 		
 		return $output;
 	}
-	
+
+
+	/**
+	 * Get less variables
+	 * @return mixed
+	 */
 	function getVars()
 	{
 		$app  = JFactory::getApplication();
@@ -352,7 +376,12 @@ class T3Less extends lessc
 
 		return $vars;
 	}
-	
+
+	/**
+	 * @param  string  $theme  template theme
+	 * @param  string  $dir    direction (ltr or rtl)
+	 * @return mixed
+	 */
 	public static function buildVars($theme = null, $dir = null)
 	{
 		$app  = JFactory::getApplication();
@@ -428,12 +457,16 @@ class T3Less extends lessc
 		
 		$app->setUserState('vars_content' . $rtl, $vars);
 	}
-	
+
+
+	/**
+	 * Wrapper function to add a stylesheet to html document
+	 * @param  string  $lesspath  the less file to add
+	 */
 	public static function addStylesheet($lesspath)
 	{
 		// build less vars, once only
 		static $vars_built = false;
-		$t3less = T3Less::getInstance();
 		if (!$vars_built) {
 			self::buildVars();
 			$vars_built = true;
@@ -445,10 +478,11 @@ class T3Less extends lessc
 		$theme = $tpl->params->get('theme');
 
 		if (defined('T3_THEMER') && $tpl->params->get('themermode', 1)) {
-			// in Themer mode, using js to parse less for faster
+			// in Themer mode, using js to parse less, so we will use 'text/less' content type
 			$doc->addStylesheet(JURI::base(true) . '/' . T3Path::cleanPath($lesspath), 'text/less');
 
-			if(!defined('LESS_JS')){
+			// just to make sure this function is call once
+			if(!defined('T3_LESS_JS')){
 				// Add lessjs to process lesscss
 				$doc->addScript(T3_URL . '/js/less-1.3.3.js');
 
@@ -456,10 +490,13 @@ class T3Less extends lessc
 					$doc->addScript(T3_URL . '/js/cssjanus.js');
 				}
 
-				define('LESS_JS', 1);
+				define('T3_LESS_JS', 1);
 			}
 			
 		} else {
+
+			$t3less = T3Less::getInstance();
+
 			// in development mode, using php to compile less for a better view of development
 			if (preg_match('#(template(-responsive)?.less)#', $lesspath)) {
 				// Development mode is on, try to include less file inside folder less/
@@ -500,10 +537,14 @@ class T3Less extends lessc
 			}
 		}
 	}
-	
+
+	/**
+	 * Compile LESS to CSS for a specific theme or all themes
+	 * @param  string  $theme  the specific theme
+	 */
 	public static function compileAll($theme = null)
 	{
-		$less     = new self;
+		$less     = T3Less::getInstance();
 		// compile all css files
 		$files    = array();
 		$lesspath = 'templates/' . T3_TEMPLATE . '/less/';

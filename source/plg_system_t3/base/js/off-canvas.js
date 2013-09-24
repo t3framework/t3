@@ -128,20 +128,9 @@
 				}
 
 				if (step==1) {
-                    $fixeditems.each (function () {
-                        var $this = $(this);
-                        var style = $this.attr('style'),
-                            opos = style && style.test('position') ? $this.css('position'):'',
-                            otop = style && style.test('top') ? $this.css('top'):'';
-
-                        $this.data('opos', opos).data('otop', otop);
-                        $this.css({'position': 'absolute', 'top': ($(window).scrollTop() + $this.css('top').toInt()) + 'px'});
-                    });
+					$fixeditems.css({'position': 'absolute', 'top': $(window).scrollTop() + 'px'});
 				} else {
-                    $fixeditems.each (function () {
-                        $this = $(this);
-                        $this.css({'position': $this.data('opos'), 'top': $this.data('otop')});
-                    });
+					$fixeditems.css({'position': '', 'top': ''});
 				}
 			};
 		}

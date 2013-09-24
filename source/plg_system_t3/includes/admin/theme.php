@@ -324,8 +324,8 @@ class T3AdminTheme
 			$jdoc->addStyleSheet(T3_URL.'/css/thememagic.css');
 			$jdoc->addScript(T3_URL.'/js/thememagic.js');
 			
-			$theme     = $params->get('theme');
-			$params    = new JRegistry;
+			$theme = $params->get('theme');
+			$params = new JRegistry;
 			$themeinfo = new stdClass;
 
 			if($theme){
@@ -373,27 +373,6 @@ class T3AdminTheme
 				}
 			}
 
-			$cache = array();
-			
-			// a little security
-			if($user->authorise('core.manage', 'com_templates') || (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], JUri::base() . 'administrator') !== false)){
-				T3::import('core/path');
-				$baseurl = JUri::base();
-				
-				//should we provide a list of less path
-				foreach (array(T3_TEMPLATE_PATH . '/less', T3_TEMPLATE_PATH . '/fonts/font-awesome/less', T3_PATH . '/bootstrap/less', T3_PATH . '/less') as $lesspath) {
-					$lessfiles = JFolder::files($lesspath, '.less', true, true);
-					if(is_array($lessfiles)){
-						foreach ($lessfiles as $less) {
-							$path            = ltrim(str_replace(array(JPATH_ROOT, '\\'), array('', '/'), $less), '/');
-							$path            = T3Path::cleanPath($path);
-							$fullurl         = $baseurl . preg_replace('@(\\+)|(/+)@', '/', $path);
-							$cache[$fullurl] = JFile::read($less);
-						}
-					}
-				}
-			}
-
 			$jdoc->addScriptDeclaration('
 				var T3Theme = window.T3Theme || {};
 				T3Theme.vars = ' . json_encode($params->toArray()) . ';
@@ -401,7 +380,6 @@ class T3AdminTheme
 				T3Theme.theme = \'' . $theme . '\';
 				T3Theme.template = \'' . T3_TEMPLATE . '\';
 				T3Theme.base = \'' . JURI::base() . '\';
-				T3Theme.cache = ' . json_encode($cache) . ';
 				if(typeof less != \'undefined\'){
 					
 					//we need to build one - cause the js will have unexpected behavior

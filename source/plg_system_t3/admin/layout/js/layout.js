@@ -11,7 +11,7 @@
  *------------------------------------------------------------------------------
  */
 
-var T3AdminLayout = window.T3AdminLayout || {};
+T3AdminLayout = window.T3AdminLayout || {};
 
 !function ($) {
 
@@ -46,7 +46,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			maxgrid: 12,
 			maxcols: 6,
 			mode: 0,
-
+			spancls: /(\s*)span(\d+)(\s*)/g,
+			spanptrn: 'span{width}',
+			span: 'span',
 			rspace: /\s+/,
 			rclass: /[\t\r\n]/g
 		},
@@ -90,7 +92,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						jselect.hide();
 
 						jelms.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
-						jdevices.find('[data-device="wide"]').removeClass('active').trigger('click');
+						jdevices.find('[data-device]:first').removeClass('active').trigger('click');
 					} else {
 						jelms.removeClass('t3-admin-layout-mode-r').addClass('t3-admin-layout-mode-m');
 						T3AdminLayout.layout.mode = 0;
@@ -99,8 +101,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						jresetdevice.addClass('hide');
 						jresetposition.removeClass('hide');
 
-						jelms.removeClass(T3AdminLayout.layout.clayout);
-						T3AdminLayout.t3updatedevice('default');
+						jelms.removeClass(T3AdminLayout.layout.clayout).addClass(T3AdminLayout.layout.dlayout);
+						T3AdminLayout.t3updatedevice(T3AdminLayout.layout.dlayout);
 					}
 
 					$(this).addClass('active').siblings().removeClass('active');
@@ -113,9 +115,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					$(this).addClass('active').siblings('.active').removeClass('active');
 
 					jelms.removeClass(T3AdminLayout.layout.clayout);
-					if(T3AdminLayout.layout.mode == 1){
-						jelms.addClass(nlayout);
-					}
+					jelms.addClass(nlayout);
 
 					T3AdminLayout.t3updatedevice(nlayout);
 				}
@@ -319,10 +319,10 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				jelms = $('#t3-admin-layout-container');
 
 			jelms.removeClass('t3-admin-layout-mode-r').addClass('t3-admin-layout-mode-m');
-			jelms.removeClass(T3AdminLayout.layout.clayout);
+			jelms.removeClass(T3AdminLayout.layout.clayout).addClass(T3AdminLayout.layout.dlayout);
 
 			T3AdminLayout.layout.mode = 0;
-			T3AdminLayout.layout.clayout = 'default';
+			T3AdminLayout.layout.clayout = T3AdminLayout.layout.dlayout;
 
 			jlayout.find('.t3-admin-layout-mode-structure').addClass('active').siblings().removeClass('active');
 			jlayout.find('.t3-admin-layout-devices').addClass('hide');
@@ -337,7 +337,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 			var nname = $('#t3-admin-layout-cloned-name').val();
 			if(nname){
-				nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();					
+				nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
 			}
 
 			if(nname == ''){
@@ -389,7 +389,6 @@ var T3AdminLayout = window.T3AdminLayout || {};
 						var mainlayout = document.getElementById('jform_params_mainlayout'),
 							options = mainlayout.options;
 
-						
 						for(var j = 0, jl = options.length; j < jl; j++){
 							if(options[j].value == json.layout){
 								mainlayout.remove(j);
@@ -397,9 +396,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 							}
 						}
 					
-						options[0].selected = true;	
+						options[0].selected = true;
 						$(mainlayout).trigger('change.less').trigger('liszt:updated');
-					}					
+					}
 				}
 			});
 		},
@@ -439,7 +438,9 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					val = $(this).find('.t3-admin-layout-posname').html(),
 					vis = $(this).closest('[data-vis]').data('data-vis'),
 					others = $(this).closest('[data-others]').data('data-others'),
-					info = {position: val ? val : '', 'default': '', wide: '', normal: '', xtablet: '', tablet: '', mobile: ''};
+					info = T3AdminLayout.t3emptydv();
+					
+				info.position = val ? val : '';
 
 				if(vis){
 					vis = T3AdminLayout.t3visible(0, vis.vals);
@@ -462,13 +463,15 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 				$(this).children().each(function(idx){
 					var jpos = $(this),
-						pname = jpos.find('.t3-admin-layout-pos').attr('data-original'),
+						//pname = jpos.find('.t3-admin-layout-pos').attr('data-original'),
 						val = jpos.find('.t3-admin-layout-posname').html(),
-						info = {position: val, 'default': '', wide: '', normal: '', xtablet: '', tablet: '', mobile: ''},
+						info = T3AdminLayout.t3emptydv(),
 						width = T3AdminLayout.t3getwidth(idx, widths),
 						visible = T3AdminLayout.t3visible(idx, vis.vals),
 						first = T3AdminLayout.t3first(idx, firsts),
 						other = T3AdminLayout.t3others(idx, others);
+					
+					info.position = val ? val : '';
 
 					T3AdminLayout.t3formatwidth(info, width);
 					T3AdminLayout.t3formatvisible(info, visible);
@@ -544,7 +547,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3fullscreen: function(){
 			if ($(this).hasClass('t3-fullscreen-full')) {
 				$('.subhead-collapse').removeClass ('subhead-fixed');
-				$('#t3-admin-layout').closest('.controls').removeClass ('t3-admin-control-fixed');			
+				$('#t3-admin-layout').closest('.controls').removeClass ('t3-admin-control-fixed');
 				$(this).removeClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-full');
 			} else {
 				$('.subhead-collapse').addClass ('subhead-fixed');
@@ -579,7 +582,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			$(T3AdminLayout.jelms.find('.row, .row-fluid').not('.t3-spotlight').get().reverse()).each(function(){
 				var jrow = $(this),
 					jchilds = jrow.children(),
-					offset = jrow.offset().top,
+					//offset = jrow.offset().top,
 					height = 0,
 					maxHeight = 0;
 
@@ -610,16 +613,26 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			return result.join(' ');
 		},
 
+		//we will do this only for not responsive class (old bootstrap spanX style)
 		t3opimizeparam: function(pos){
-			var defcls = pos['default'];
-			for(var p in pos){
-				if(pos.hasOwnProperty(p) && pos[p] === defcls && p != 'default'){
-					pos[p] = T3AdminLayout.t3removeclass(defcls, pos[p]);
+
+			if(!T3AdminLayout.layout.responcls){
+
+				//optimize
+				var defdv  = T3AdminLayout.layout.dlayout,
+					defcls = pos[defdv];
+
+				for(var p in pos){
+					if(pos.hasOwnProperty(p) && pos[p] === defcls && p != defdv){
+						pos[p] = T3AdminLayout.t3removeclass(defcls, pos[p]);
+					}
+				}
+
+				//remove span100, should we do this?
+				if(pos.mobile){
+					pos.mobile = T3AdminLayout.t3removeclass('span100 ' + T3AdminLayout.t3firstclass('mobile'), pos.mobile);
 				}
 			}
-
-			//remove span100
-			pos.mobile = T3AdminLayout.t3removeclass('span100 spanfirst', pos.mobile);
 			
 			//remove empty property
 			for(var p in pos){
@@ -635,7 +648,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			for(var p in info){
 				if(info.hasOwnProperty(p)){
 					//width always be first - no need for a space
-					result[p] += 'span' + T3AdminLayout.t3widthconvert(info[p], p);
+					result[p] += this.t3widthclass(p, T3AdminLayout.t3widthconvert(info[p], p));
 				}
 			}
 		},
@@ -643,7 +656,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3formatvisible: function(result, info){
 			for(var p in info){
 				if(info.hasOwnProperty(p) && info[p] == 1){
-					result[p] += ' hidden';
+					result[p] += ' ' + T3AdminLayout.t3hiddenclass(p);
 				}
 			}
 		},
@@ -651,7 +664,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		t3formatfirst: function(result, info){
 			for(var p in info){
 				if(info.hasOwnProperty(p) && info[p] == 1){
-					result[p] += ' spanfirst';
+					result[p] += ' ' + T3AdminLayout.t3firstclass(p);
 				}
 			}
 		},
@@ -681,11 +694,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3genwidth: function(layout, numpos){
-			var cmaxcol = T3AdminLayout.layout.maxcol[layout],
-				cminspan = (layout == 'mobile') ? T3AdminLayout.layout.maxgrid : T3AdminLayout.layout.minspan[layout],
-				cpmaxcol = cmaxcol - 1,
-				total = cminspan * numpos,
-				sum = 0;
+			var cminspan = T3AdminLayout.layout.minspan[layout],
+				total = cminspan * numpos;
 
 			if(total <= T3AdminLayout.layout.maxgrid) {
 				return T3AdminLayout.t3widthoptimize(numpos);
@@ -732,8 +742,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3getwidth: function(pidx, widths){
-			var result = { 'default': 0,  wide: 0, normal: 0, xtablet: 0, tablet: 0, mobile: 0 },
-				dv = null;
+			var result = this.t3emptydv(0),
+				dv;
 
 			for(dv in widths){
 				if(widths.hasOwnProperty(dv)){
@@ -745,12 +755,12 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3widthconvert: function(span, layout){
-			return ((layout || T3AdminLayout.layout.clayout) == 'mobile') ? Math.floor(span / 12 * 100) : span;
+			return ((layout || T3AdminLayout.layout.clayout) == 'mobile') ? Math.floor(span / T3AdminLayout.layout.maxgrid * 100) : span;
 		},
 
 		t3visible: function(pidx, visible){
-			var result = { 'default': 0,  wide: 0, normal: 0, xtablet: 0, tablet: 0, mobile: 0 },
-				dv = null;
+			var result = this.t3emptydv(0),
+				dv;
 
 			for(dv in visible){
 				if(visible.hasOwnProperty(dv)){
@@ -762,8 +772,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3first: function(pidx, firsts){
-			var result = { 'default': 0,  wide: 0, normal: 0, xtablet: 0, tablet: 0, mobile: 0 },
-				dv = null;
+			var result = this.t3emptydv(0),
+				dv;
 
 			for(dv in firsts){
 				if(firsts.hasOwnProperty(dv)){
@@ -775,8 +785,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		t3others: function(pidx, others){
-			var result = { 'default': '', wide: '', normal: '', xtablet: '', tablet: '', mobile: '' },
-				dv = null;
+			var result = this.t3emptydv(),
+				dv;
 
 			for(dv in others){
 				if(others.hasOwnProperty(dv)){
@@ -793,12 +803,12 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			var jspl = $(spl),
 				layout = T3AdminLayout.layout.clayout,
 				cmaxcol = T3AdminLayout.layout.maxcol[layout],
-				junitspan = $('<div class="span' + T3AdminLayout.t3widthconvert(T3AdminLayout.layout.unitspan[layout]) + '"></div>').appendTo(jspl),
-				jminspan = $('<div class="span' + T3AdminLayout.t3widthconvert(T3AdminLayout.layout.minspan[layout]) + '"></div>').appendTo(jspl),
+				junitspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.layout.unitspan[layout]) + '"></div>').appendTo(jspl),
+				jminspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.layout.minspan[layout]) + '"></div>').appendTo(jspl),
 				gridgap = parseInt(junitspan.css('marginLeft')),
 				absgap = Math.abs(gridgap),
-				gridsize = Math.floor(junitspan.width())
-				minsize = Math.floor(jminspan.width()),
+				gridsize = Math.floor(junitspan.outerWidth())
+				minsize = Math.floor(jminspan.outerWidth()),
 				widths = jspl.data('data-widths'),
 				firsts = jspl.data('data-firsts'),
 				visible = jspl.data('data-vis').vals[layout],
@@ -820,12 +830,12 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			jspl.find('.t3-admin-layout-unit').each(function(idx){
 				if(visible[idx] == 0 || visible[idx] == undefined){ //ignore all hidden spans
 					if(needfirst || (sum + parseInt(width[idx]) > T3AdminLayout.layout.maxgrid)){
-						$(this).addClass('spanfirst');
+						$(this).addClass(T3AdminLayout.t3firstclass(layout));
 						sum = parseInt(width[idx]);
 						first[idx] = 1;
 						needfirst = false;
 					} else {
-						$(this).removeClass('spanfirst');
+						$(this).removeClass(T3AdminLayout.t3firstclass(layout));
 						sum += parseInt(width[idx]);
 						first[idx] = 0;
 					}
@@ -841,7 +851,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				jpos = jvis.parent(),
 				jdata = jvis.closest('[data-vis]'),
 				visible = jdata.data('data-vis').vals[T3AdminLayout.layout.clayout],
-				state = 0, idx = 0,
+				state, idx = 0,
 				spotlight = jdata.attr('data-spotlight');
 
 			//if spotlight -> get the index
@@ -852,7 +862,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			state = visible[idx] || 0;
 			
 			if(spotlight){
-				jvis.closest('.t3-admin-layout-unit')[state == 0 ? 'show' : 'hide']();
+				jvis.closest('.t3-admin-layout-unit').toggle(state == 0);
 
 				var jhiddenpos = jdata.nextAll('.t3-admin-layout-hiddenpos');
 				jhiddenpos.children().eq(idx).toggleClass('hide', state == 0);
@@ -872,12 +882,13 @@ var T3AdminLayout = window.T3AdminLayout || {};
 		// apply the change (width, columns) of spotlight block when change device 
 		t3updatespl: function(si, spl){
 			var jspl = $(spl),
-				width = jspl.data('data-widths')[T3AdminLayout.layout.clayout];
+				layout = T3AdminLayout.layout.clayout,
+				width = jspl.data('data-widths')[layout];
 
 			jspl.children().each(function(idx){
 				//remove all class and reset style width
-				this.className = this.className.replace(/(\s*)span(\d+)(\s*)/g, ' ');
-				$(this).css('width', '').addClass('span' + T3AdminLayout.t3widthconvert(width[idx])).find('.t3-admin-layout-poswidth').html(width[idx]);
+				this.className = this.className.replace(T3AdminLayout.layout.spancls, ' ');
+				$(this).css('width', '').addClass(T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(width[idx]))).find('.t3-admin-layout-poswidth').html(width[idx]);
 			});
 
 			T3AdminLayout.t3updategrid(spl);
@@ -885,9 +896,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 		//apply responsive class - maybe we do not need this
 		t3updatedevice: function(nlayout){
-			//if (nlayout == T3AdminLayout.layout.clayout){
-			//	return false;
-			//}
+			
 			var clayout = T3AdminLayout.layout.clayout;
 
 			T3AdminLayout.jrlems.each(function(){
@@ -997,19 +1006,17 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					jhides = jspl.nextAll('.t3-admin-layout-hiddenpos').children(),
 					vis = jspl.data('data-vis'),
 					widths = jspl.data('data-widths'),
-					//firsts = $(this).data('data-firsts'),
 					original = jspl.attr('data-original').split(','),
 					owidths = jspl.data('data-owidths'),
-					//ofirsts = $(this).data('data-ofirsts'),
-					numcols = owidths['default'].length,
+					numcols = owidths[T3AdminLayout.layout.dlayout].length,
 					html = [];
 
 				for(var i = 0; i < numcols; i++){
 					html = html.concat([
-					'<div class="t3-admin-layout-unit span', owidths['default'][i], '">', //we do not need convert width here
+					'<div class="t3-admin-layout-unit ', T3AdminLayout.t3widthclass(T3AdminLayout.layout.clayout, owidths[T3AdminLayout.layout.dlayout][i]), '">', //we do not need convert width here
 						'<div class="t3-admin-layout-pos block-', original[i], (original[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (original[i] || ''), '">',
 							'<span class="t3-admin-layout-edit"><i class="icon-cog"></i></span>',
-							'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', owidths['default'][i], '</span>',
+							'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', owidths[T3AdminLayout.layout.dlayout][i], '</span>',
 							'<h3 class="t3-admin-layout-posname" title="', T3Admin.langs.layoutPosName, '">', original[i], '</h3>',
 							'<span class="t3-admin-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
 						'</div>',
@@ -1030,11 +1037,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 
 				$.extend(true, vis.vals, vis.deft);
 				$.extend(true, widths, owidths);
-				
-				//optimized: not need
-				//$.extend(true, firsts, ofirsts);
 
-				$(this).nextAll('.t3-admin-layout-ncolumns').children().eq(owidths['default'].length - 1).trigger('click');
+				$(this).nextAll('.t3-admin-layout-ncolumns').children().eq(owidths[T3AdminLayout.layout.dlayout].length - 1).trigger('click');
 			});
 
 			//change to default view
@@ -1122,8 +1126,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 					for(var i = 0, il = visibleIdxs.length; i < il; i++){
 						vi = visibleIdxs[i];
 						widths[vi] = width[i];
-						junits[vi].className = junits[vi].className.replace(/(\s*)span(\d+)(\s*)/g, ' ');
-						junits.eq(vi).addClass('span' + T3AdminLayout.t3widthconvert(width[i])).find('.t3-admin-layout-poswidth').html(width[i]);
+						junits[vi].className = junits[vi].className.replace(T3AdminLayout.layout.spancls, ' ');
+						junits.eq(vi).addClass(T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(width[i]))).find('.t3-admin-layout-poswidth').html(width[i]);
 					}
 				}
 			} else {
@@ -1143,6 +1147,31 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				T3AdminLayout.t3updategrid(jdata);
 			}
 			return false;
+		},
+
+		t3emptydv: function(val){
+			var result = {},
+				devices = T3AdminLayout.layout.devices;
+				
+			val = typeof val != 'undefined' ? val : '';
+
+			for(var i = 0; i < devices.length; i++){
+				result[devices[i]] = val;
+			}
+
+			return result;
+		},
+
+		t3widthclass: function(device, width){
+			return T3AdminLayout.layout.spanptrn.replace('{device}', device).replace('{width}', width);
+		},
+
+		t3hiddenclass: function(device){
+			return T3AdminLayout.layout.hiddenptrn.replace('{device}', device);
+		},
+
+		t3firstclass: function(device){
+			return T3AdminLayout.layout.firstptrn.replace('{device}', device);
 		},
 
 		t3layout: function(form, ctrlelm, ctrl, rsp){
@@ -1371,10 +1400,10 @@ var T3AdminLayout = window.T3AdminLayout || {};
 									var html = [];
 									for(i = 0; i < numpos; i++){
 										html = html.concat([
-										'<div class="t3-admin-layout-unit span', widths['default'][i], '">',
+										'<div class="t3-admin-layout-unit ', T3AdminLayout.t3widthclass(T3AdminLayout.layout.clayout, widths[T3AdminLayout.layout.dlayout][i]), '">',
 											'<div class="t3-admin-layout-pos block-', positions[i], (positions[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (defpos[i] || ''), '">',
 												'<span class="t3-admin-layout-edit"><i class="icon-cog"></i></span>',
-												'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', widths['default'][i], '</span>',
+												'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', widths[T3AdminLayout.layout.dlayout][i], '</span>',
 												'<h3 class="t3-admin-layout-posname" title="', T3Admin.langs.layoutPosName, '">', positions[i], '</h3>',
 												'<span class="t3-admin-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
 											'</div>',
@@ -1437,7 +1466,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 	var isdown = false,
 		curelm = null,
 		opts, memwidth, memfirst, memvisible, owidth, 
-		mx, rzleft, rzwidth, rzlayout, rzindex, rzminspan,
+		rzleft, rzwidth, rzlayout, rzindex, rzminspan,
 
 		snapoffset = function(grid, size) {
 			var limit = grid / 2;
@@ -1455,12 +1484,12 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			$(curelm).parent().children().each(function(idx){
 				if(memvisible[idx] == 0 || memvisible[idx] == undefined){
 					if(needfirst || ((sum + parseInt(memwidth[idx]) > T3AdminLayout.layout.maxgrid) || (rzindex + 1 == idx && sum + parseInt(memwidth[idx]) == T3AdminLayout.layout.maxgrid && (rwidth > owidth)))){
-						$(this).addClass('spanfirst');
+						$(this).addClass(T3AdminLayout.t3firstclass(rzlayout));
 						memfirst[idx] = 1;
 						sum = parseInt(memwidth[idx]);
 						needfirst = false;
 					} else {
-						$(this).removeClass('spanfirst');
+						$(this).removeClass(T3AdminLayout.t3firstclass(rzlayout));
 						memfirst[idx] = 0;
 						sum += parseInt(memwidth[idx]);
 					}
@@ -1514,9 +1543,8 @@ var T3AdminLayout = window.T3AdminLayout || {};
 				width = opts.maxwidth;
 			}
 
-			curelm.className = curelm.className.replace(/(\s*)span(\d+)(\s*)/g, ' ');
-			$(curelm).css('width', '').addClass('span' + T3AdminLayout.t3widthconvert((rzminspan * ((width + opts.gap) / opts.grid) >> 0)));
-
+			curelm.className = curelm.className.replace(T3AdminLayout.layout.spancls, ' ');
+			$(curelm).css('width', '').addClass(T3AdminLayout.t3widthclass(rzlayout, T3AdminLayout.t3widthconvert((rzminspan * ((width + opts.gap) / opts.grid) >> 0))));
 			spanfirst(width);
 		},
 
@@ -1524,7 +1552,7 @@ var T3AdminLayout = window.T3AdminLayout || {};
 			curelm = this.parentNode;
 			isdown = true;
 			rzleft = e.pageX;
-			owidth = rzwidth  = $(curelm).width();
+			owidth = rzwidth  = $(curelm).outerWidth();
 
 			var jdata = $(this).closest('.t3-admin-layout-xresize');
 			

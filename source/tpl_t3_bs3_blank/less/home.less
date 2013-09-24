@@ -1,0 +1,274 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less"; // Modify this for custom colors, font-sizes, etc
+
+
+// HOME MIXINS
+// ------------------
+
+// Spotlight 1 (Inverted)
+// ----------------------
+.t3-spotlight-home1() when (@t3-spotlight-inverted = 1) {
+
+  // Begin: Mixin Styling
+  color: @gray-lighter;
+  // jumbotron
+  .jumbotron {
+    #gradient > .radial(@gray-darker, @gray-darker);
+    h1 {
+      color: @white;
+    }
+  }
+
+  // End: Mixin Styling
+}
+
+.t3-spotlight-home1() when (@t3-spotlight-inverted = 0) {
+  // Leave blank here because we will use the default style.
+}
+
+
+// Spotlight 5 (Inverted)
+// ----------------------
+
+.t3-spotlight-home5() when (@t3-spotlight-inverted = 1) {
+
+  // Begin: Mixin Styling
+  background: @gray-darker;
+  border-bottom: 1px solid @t3-border-color;
+  color: @gray-lighter;
+
+  // arrow
+  .section-arrow-alt {
+    display: none;
+  }
+
+  // End: Mixin Styling
+}
+
+.t3-spotlight-home5() when (@t3-spotlight-inverted = 0) {
+  // Leave blank here because we will use the default style.
+}
+
+
+
+// ---------------------------------------------------------
+// HOME
+// ---------------------------------------------------------
+.home {
+  .jumbotron {
+    background-color: transparent;
+  }
+
+  // ---------------------------------------------------------
+  // HOME SPOTLIGHTS
+  // ---------------------------------------------------------
+
+  // Spotlight 1
+  // -----------
+  .t3-sl-1 {
+    padding: 0;
+
+    // Calling the styles for spotlight 1
+    .t3-spotlight-home1;
+
+    // jumbotron
+    .jumbotron {
+      #gradient > .radial(@white, @gray-lighter);
+      border-bottom: 1px solid @t3-border-color;
+
+      h1 {
+        font-weight: bold;
+      }
+
+      //jumbotron btn
+      .btn-large {
+        font-size: @font-size-base * 1.75;
+        padding: 18px ((@font-size-base * 1.75) + 20px);
+      }
+    }
+
+    // social buttons
+    .t3-social {
+      background: @gray-lighter;
+      padding: @t3-global-padding 0;
+
+      .t3-social-btns {
+        margin: 0;
+        height: 20px;
+        text-align: center;
+      }
+
+      .t3-social-btns li {
+        display: inline-block;
+        margin: 0 10px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Spotlight 2
+  // -----------
+  .t3-sl-2 {
+    text-align: center;
+
+    .img-responsive {
+      display: inline-block;
+    }
+
+    p {
+      font-size: @t3-font-size-bigger;
+      line-height: @line-height-computed + 2px;
+    }
+  }
+
+  // Spotlight 3 & 4
+  // ---------------
+  .t3-sl-3 p img {
+    margin-bottom: @t3-global-margin;
+  }
+
+  .t3-sl-3,
+  .t3-sl-4 {
+    border-top: 1px solid @t3-border-color;
+    text-align: center;
+
+    p {
+      font-size: @t3-font-size-bigger;
+      line-height: @line-height-computed + 2px;
+    }
+
+    // jumbotron
+    .jumbotron {
+      padding-top: 0;
+      h1 {
+        margin-bottom: @t3-global-margin / 2;
+        margin-top: 0;
+      }
+      p {
+        font-size: @font-size-base * 1.5;
+        line-height: 1.275;
+        color: @gray-light;
+      }
+    }
+  }
+
+  // Spotlight 5
+  // -----------
+  .t3-sl-5 {
+    background: @gray-lighter;
+    border-top: 1px solid @t3-border-color;
+    padding: 0;
+
+    // Calling the styles
+    .t3-spotlight-home5;
+
+    // jumbotron
+    .jumbotron {
+      margin-bottom: 0;
+
+      //jumbotron btn
+      .btn-large {
+        font-size: @font-size-base * 1.75;
+        padding: 18px ((@font-size-base * 1.75) + 20px);
+      }
+    }
+
+    // arrow
+    .section-arrow-alt {
+      background: url("@{t3-image-path}/arrow-section-alt.png") no-repeat center -1px @gray-lighter;
+      width: 37px;
+      height: 19px;
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      margin-left: -19px;
+    }
+  }
+}
+
+
+
+//
+// MOBILE
+// -------------------------------------------------------------
+@media (max-width: @screen-xs-max) {
+
+  // -----------------------------------------------------------
+  // HOME SPOTLIGHTS
+  // -----------------------------------------------------------
+
+  .home {
+
+    // Spotlight 1 + 5
+    // ---------------
+    .t3-sl-1,
+    .t3-sl-5 {
+
+      //jumbotron
+      .jumbotron {
+        padding-top: 30px;
+        padding-bottom: 10px;
+        //jumbotron btn
+        .btn-large {
+          font-size: @font-size-base + 2;
+          padding: (@font-size-base - 2px) (@font-size-base + 2px);
+        }
+      }
+    }
+
+
+    // Spotlight 2
+    // -----------
+    .t3-sl-2 {
+      text-align: center;
+      p {
+        font-size: @font-size-base;
+        line-height: @line-height-computed;
+      }
+    }
+
+
+    // Spotlight 3 & 4
+    // ---------------
+    .t3-sl-3 p img {
+      margin-bottom: 0;
+      margin-top: @t3-global-margin;
+    }
+
+    .t3-sl-3,
+    .t3-sl-4 {
+      p {
+        font-size: @font-size-base;
+        line-height: @line-height-computed;
+      }
+
+      //jumbotron
+      .jumbotron {
+        padding-bottom: 0;
+        h1 {
+          margin-bottom: @t3-global-margin / 2;
+          margin-top: @t3-global-margin / 2;
+        }
+        p {
+          font-size: @font-size-base;
+        }
+      }
+    }
+  }
+}
+
