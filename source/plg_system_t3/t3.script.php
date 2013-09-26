@@ -22,11 +22,17 @@ class plgSystemT3InstallerScript
      */
     public function postflight($route, JAdapterInstance $adapter)
     {
-        $db = JFactory::getDBO();
+        $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
-        $query->update('#__extensions')->set("`enabled`='1'")->where("`type`='plugin'")->where("`folder`='system'")->where("`element`='t3'");
+        $query
+            ->update('#__extensions')
+            ->set("`enabled`='1'")
+            ->where("`type`='plugin'")
+            ->where("`folder`='system'")
+            ->where("`element`='t3'");
         $db->setQuery($query);
         $db->execute();
+        
         return true;
     }
 }

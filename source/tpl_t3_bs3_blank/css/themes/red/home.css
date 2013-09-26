@@ -1,0 +1,153 @@
+
+
+.home .jumbotron {
+  background-color: transparent;
+}
+.home .t3-sl-1 {
+  padding: 0;
+}
+.home .t3-sl-1 .jumbotron {
+  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#fff),to(#eeeeee));
+  background-image: -webkit-radial-gradient(circle,#fff,#eeeeee);
+  background-image: -moz-radial-gradient(circle,#fff,#eeeeee);
+  background-image: radial-gradient(circle,#fff,#eeeeee);
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #ddd;
+}
+.home .t3-sl-1 .jumbotron h1 {
+  font-weight: bold;
+}
+.home .t3-sl-1 .jumbotron .btn-large {
+  font-size: 24.5px;
+  padding: 18px 44.5px;
+}
+.home .t3-sl-1 .t3-social {
+  background: #eeeeee;
+  padding: 20px 0;
+}
+.home .t3-sl-1 .t3-social .t3-social-btns {
+  margin: 0;
+  height: 20px;
+  text-align: center;
+}
+.home .t3-sl-1 .t3-social .t3-social-btns li {
+  display: inline-block;
+  margin: 0 10px;
+  height: 20px;
+}
+.home .t3-sl-2 {
+  text-align: center;
+}
+.home .t3-sl-2 .img-responsive {
+  display: inline-block;
+}
+.home .t3-sl-2 p {
+  font-size: 16px;
+  line-height: 22px;
+}
+.home .t3-sl-3 p img {
+  margin-bottom: 20px;
+}
+.home .t3-sl-3,
+.home .t3-sl-4 {
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+.home .t3-sl-3 p,
+.home .t3-sl-4 p {
+  font-size: 16px;
+  line-height: 22px;
+}
+.home .t3-sl-3 .jumbotron,
+.home .t3-sl-4 .jumbotron {
+  padding-top: 0;
+}
+.home .t3-sl-3 .jumbotron h1,
+.home .t3-sl-4 .jumbotron h1 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.home .t3-sl-3 .jumbotron p,
+.home .t3-sl-4 .jumbotron p {
+  font-size: 21px;
+  line-height: 1.275;
+  color: #999999;
+}
+.home .t3-sl-5 {
+  background: #eeeeee;
+  border-top: 1px solid #ddd;
+  padding: 0;
+}
+.home .t3-sl-5 .jumbotron {
+  margin-bottom: 0;
+}
+.home .t3-sl-5 .jumbotron .btn-large {
+  font-size: 24.5px;
+  padding: 18px 44.5px;
+}
+.home .t3-sl-5 .section-arrow-alt {
+  background: url("../../../images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
+  width: 37px;
+  height: 19px;
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  margin-left: -19px;
+}
+@media (max-width: 767px) {
+  .home .t3-sl-1 .jumbotron,
+  .home .t3-sl-5 .jumbotron {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+  .home .t3-sl-1 .jumbotron .btn-large,
+  .home .t3-sl-5 .jumbotron .btn-large {
+    font-size: 16px;
+    padding: 12px 16px;
+  }
+  .home .t3-sl-2 {
+    text-align: center;
+  }
+  .home .t3-sl-2 p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .home .t3-sl-3 p img {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+  .home .t3-sl-3 p,
+  .home .t3-sl-4 p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .home .t3-sl-3 .jumbotron,
+  .home .t3-sl-4 .jumbotron {
+    padding-bottom: 0;
+  }
+  .home .t3-sl-3 .jumbotron h1,
+  .home .t3-sl-4 .jumbotron h1 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .home .t3-sl-3 .jumbotron p,
+  .home .t3-sl-4 .jumbotron p {
+    font-size: 14px;
+  }
+}
+
+.home .t3-sl-1 {
+  margin-top: -1px;
+}
+.home .t3-sl-1 .jumbotron {
+  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#ff0000),to(#c00));
+  background-image: -webkit-radial-gradient(circle,#ff0000,#c00);
+  background-image: -moz-radial-gradient(circle,#ff0000,#c00);
+  background-image: radial-gradient(circle,#ff0000,#c00);
+  background-repeat: no-repeat;
+  color: ;
+}
+.home .t3-sl-1 .jumbotron h1 {
+  color: #fff;
+}
+
