@@ -116,10 +116,15 @@ body.bd {
 
 
 /* Fullscreen Toggle */
-#navigation_params .t3-admin-tog-fullscreen {
-  position: absolute;
+#t3-admin-megamenu .t3-admin-tog-fullscreen {
+  display: none !important;
+  /*position: absolute;
   right: 0;
-  top: -50px;
+  top: -50px;*/
+}
+
+#t3-admin-megamenu .toolbox-saveConfig {
+  display: none !important;
 }
 
 

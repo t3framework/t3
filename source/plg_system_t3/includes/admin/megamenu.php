@@ -215,9 +215,20 @@ class T3AdminMegamenu
 		$query = $db->getQuery(true)
 			->select('menutype, language')
 			->from($db->quoteName('#__menu'))
-			->where('home = 1');
+			->group('menutype');
 		$db->setQuery($query);
 		$menulangs = $db->loadAssocList('menutype');
+
+		$query = $db->getQuery(true)
+			->select('menutype, language')
+			->from($db->quoteName('#__menu'))
+			->where('home = 1');
+		$db->setQuery($query);
+		$homelangs = $db->loadAssocList('menutype');
+
+		if(is_array($menulangs) && is_array($homelangs)){
+			$menulangs = array_merge($menulangs, $homelangs);
+		}
 
 		if(is_array($menus) && is_array($menulangs)){
 			foreach ($menus as $menu) {
