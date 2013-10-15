@@ -137,7 +137,7 @@ class plgSystemT3 extends JPlugin
 		$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
 	
 		if($tmpl){
-			$extended = JPATH_ROOT . '/templates/' . $tmpl . '/etc/form/' . $form->getName() . '.xml';
+			$extended = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl) . '/etc/form/' . $form->getName() . '.xml';
 			
 			if(is_file($extended)){
 				JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
