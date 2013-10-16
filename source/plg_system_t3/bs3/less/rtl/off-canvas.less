@@ -16,19 +16,15 @@
     body > * {
       left: 0;
       -webkit-transform: translateX(0%);
-      -moz-transform: translateX(0%);
-      -o-transform: translateX(0%);
+      -ms-transform: translateX(0%);
       transform: translateX(0%);
     }
-    
 
     #off-canvas-nav {
       .t3-mainnav {
         -webkit-transform: translateX(100%);
-        -moz-transform: translateX(100%);
-        -o-transform: translateX(100%);
+        -ms-transform: translateX(100%);
         transform: translateX(100%);
-
       }
     }
   }
@@ -36,8 +32,7 @@
   .off-canvas-enabled {
     body > *{
       -webkit-transform: translateX(-@t3-off-canvas-width);
-      -moz-transform: translateX(-@t3-off-canvas-width);
-      -o-transform: translateX(-@t3-off-canvas-width);
+      -ms-transform: translateX(-@t3-off-canvas-width);
       transform: translateX(-@t3-off-canvas-width);
     }
   }

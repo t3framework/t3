@@ -270,7 +270,7 @@ class T3Less extends lessc
 			}
 			
 			// override in template for this file
-			$rtlpath = preg_replace('/\/less\/(themes\/[^\/]*\/)?/', '/less/rtl/', $path);
+			$rtlpath = preg_replace('@/less/(themes/[^/]*/)?@', '/less/rtl/', $path);
 			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
@@ -279,7 +279,7 @@ class T3Less extends lessc
 
 			// rtl theme
 			if ($theme) {
-				$rtlthemepath = preg_replace('/\/less\/(themes\/[^\/]*\/)?/', '/less/rtl/' . $theme . '/', $path);
+				$rtlthemepath = preg_replace('@/less/(themes/[^/]*/)?@', '/less/rtl/' . $theme . '/', $path);
 				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);

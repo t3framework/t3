@@ -690,10 +690,23 @@ class T3Template extends ObjectExtendable
 			T3::import('core/less');
 			T3Less::addStylesheet($url);
 		} else {
-			$url = T3Path::getUrl('css/' . $name . '.css');
-			// Add this css into template
-			if ($url) {
-				$this->addStyleSheet($url);
+
+			$added = false;
+			if ($this->direction == 'rtl') {
+				$url = T3Path::getUrl('css/rtl/' . $name . '.css');
+				// Add this css into template
+				if ($url) {
+					$this->addStyleSheet($url);
+					$added = true;
+				}
+			}
+
+			if(!$added){
+				$url = T3Path::getUrl('css/' . $name . '.css');
+				// Add this css into template
+				if ($url) {
+					$this->addStyleSheet($url);
+				}
 			}
 		}
 
@@ -717,7 +730,7 @@ class T3Template extends ObjectExtendable
 
 		// BOOTSTRAP 2 COMPATIBLE
 		if($bs2compat){
-			$this->addStylesheet(T3_URL . '/css/bs2.css');
+			$this->addCss('bs2');
 		}
 
 		// BOOTSTRAP CSS
@@ -726,11 +739,6 @@ class T3Template extends ObjectExtendable
 		$this->addCss('template', false);
 
 		if (!$responsive) {
-			// BOOTSTRAP 2 COMPATIBLE
-			//if($bs2compat){
-			//	$this->addCss('bs2-non-responsive');
-			//}
-
 			$this->addCss('non-responsive');
 
 			$nonrespwidth = $this->getParam('non_responsive_width', '970px');
