@@ -253,9 +253,8 @@ class T3AdminMegamenu
 		$query->from('#__viewlevels AS a');
 		$query->group('a.id, a.title, a.ordering');
 		$query->order('a.ordering ASC');
-		$query->order($query->qn('title') . ' ASC');
-		$query->where('a.id in (1,2,3)'); //we only support Public, Registered, Special
-
+		$query->where('a.id in (1,2,3) or a.title = ' . $db->quote('Guest')); //we only support Public, Registered, Special, Guest
+		
 		// Get the options.
 		$db->setQuery($query);
 		$options = $db->loadObjectList();
