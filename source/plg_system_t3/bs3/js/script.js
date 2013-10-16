@@ -112,6 +112,7 @@
 		//remove conflict of mootools more show/hide function of element
 		if(window.MooTools && window.MooTools.More && Element && Element.implement){
 			$('.collapse, .hasTooltip').each(function(){this.show = null; this.hide = null});
+			$('.dropdown-menu').parent().each(function(){this.show = null; this.hide = null});
 			$('.carousel').each(function(){this.slide = null;});
 		}
 

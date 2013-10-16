@@ -717,7 +717,7 @@ class T3Template extends ObjectExtendable
 
 		// BOOTSTRAP 2 COMPATIBLE
 		if($bs2compat){
-			$this->addCss('bs2compat');
+			$this->addStylesheet(T3_URL . '/css/bs2.css');
 		}
 
 		// BOOTSTRAP CSS
@@ -727,9 +727,9 @@ class T3Template extends ObjectExtendable
 
 		if (!$responsive) {
 			// BOOTSTRAP 2 COMPATIBLE
-			if($bs2compat){
-				$this->addCss('bs2-non-responsive');
-			}
+			//if($bs2compat){
+			//	$this->addCss('bs2-non-responsive');
+			//}
 
 			$this->addCss('non-responsive');
 
