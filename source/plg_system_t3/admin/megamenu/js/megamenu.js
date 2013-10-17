@@ -708,10 +708,44 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 							url: T3AdminMegamenu.site,
 							data: {
 								t3action: 'module',
-								mid: value
+								mid: value,
+								styleid: T3AdminMegamenu.styleid,
+								template: T3AdminMegamenu.template,
+
+								t3menu: $('#menu-type').val(),
+								t3acl: $('#access-level').val(),
+								t3lang: $('#menu-type :selected').attr('data-language') || '*'
 							}
 						}).done(function ( data ) {
-							currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
+							if(data){
+								if(data.charAt(0) == '{' || data.charAt(0) == '['){
+									try {
+										data = $.parseJSON(data);
+									} catch(e){
+										data = false;
+									}
+
+									if(data && data.message){
+										clearTimeout($('#ajax-message').data('sid'));
+										$('#ajax-message')
+											.removeClass('alert-error alert-success')
+											.addClass('alert-error')
+											.addClass('in')
+											.data('sid', setTimeout(function(){
+													$('#ajax-message').removeClass('in')
+												}, 5000))
+											.find('strong')
+												.html(data.message);
+									}
+
+									//not valid value => we set to empty
+									$(input).val('').trigger('liszt:updated');
+									currentSelected.data (name, '');
+
+								} else {
+									currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
+								}
+							}
 						});
 					} else {
 						currentSelected.find('.mega-inner').html('');

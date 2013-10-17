@@ -19,8 +19,8 @@ class T3MenuMegamenu {
 	/**
 	 * Internal variables
 	 */
-	protected $children = array();
 	protected $_items = array();
+	protected $children = array();
 	protected $settings = null;
 	protected $params = null;
 	protected $menu = '';
@@ -43,6 +43,8 @@ class T3MenuMegamenu {
 		if(isset($settings['access'])){
 			$attributes[] = 'access';
 			$values[]     = $settings['access'];
+		} else {
+			$settings['access'] = array(1);
 		}
 		
 		if(isset($settings['language'])){
@@ -310,10 +312,12 @@ class T3MenuMegamenu {
 		$id    = intval($module);
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
-		$query->from('#__modules AS m');
-		$query->where('m.id = ' . $id);
-		$query->where('m.published = 1');
+		$query
+			->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params')
+			->from('#__modules AS m')
+			->where('m.id = ' . $id)
+			->where('m.published = 1')
+			->where('m.access IN ('.implode(',', $this->settings['access']).')');
 		$db->setQuery($query);
 		$module = $db->loadObject();
 		
