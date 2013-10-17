@@ -28,6 +28,7 @@
 @gray-light:             lighten(#000, 60%);   // #999
 @gray-lighter:           lighten(#000, 93.5%); // #eee
 
+
 // Brand colors
 // -------------------------
 
@@ -40,6 +41,7 @@
 
 // Accent colors
 // -------------------------
+
 @black:                 #000;
 @white:                 #fff;
 @blue:                  #07b;
@@ -52,13 +54,6 @@
 @purple:                #8b08ae;
 
 
-// T3 Main colors
-// -------------------------
-@t3-primary-color:      @blue;
-@t3-secondary-color:    @green;
-
-
-
 // Scaffolding
 // -------------------------
 
@@ -69,13 +64,12 @@
 // Links
 // -------------------------
 
-@link-color:            @t3-primary-color;
+@link-color:            @brand-primary;
 @link-hover-color:      darken(@link-color, 15%);
 
 
 // Typography
 // -------------------------
-
 @font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
@@ -92,9 +86,9 @@
 @headings-font-weight:    500;
 @headings-line-height:    1.1;
 
+
 // Iconography
 // -------------------------
-
 @icon-font-path:          "../fonts/";
 @icon-font-name:          "glyphicons-halflings-regular";
 
@@ -102,7 +96,6 @@
 // Components
 // -------------------------
 // Based on 14px font-size and 1.428 line-height (~20px to start)
-
 @padding-base-vertical:          6px;
 @padding-base-horizontal:        12px;
 
@@ -124,9 +117,9 @@
 @caret-width-base:               4px;
 @caret-width-large:              5px;
 
+
 // Tables
 // -------------------------
-
 @table-cell-padding:                 8px;
 @table-condensed-cell-padding:       5px;
 
@@ -659,17 +652,13 @@
 
 
 //
-// Theme magic
-// --------------------------------------------------
-@t3-navbar-inverted:          0;
-@t3-spotlight-inverted:       0;
-// -------------------------
-
-
-//
-// T3 LOGO
+// T3 TEMPLATE STYLES
 // --------------------------------------------------
 @t3-image-path:               "../images";
+
+
+// T3 LOGO
+// --------------------------------------------------
 @t3-logo-image:               "@{t3-image-path}/logo.png";
 
 

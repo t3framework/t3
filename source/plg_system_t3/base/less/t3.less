@@ -14,3 +14,14 @@
 //
 // INCLUDES VARIOUS FUNCTIONS FOR T3
 // ---------------------------------------------------------
+
+// Always Show Submenu
+// -------------------
+@media (max-width: @grid-float-breakpoint) {
+  // Always show submenu for navigation
+  .always-show .mega > .mega-dropdown-menu,
+  .always-show .dropdown-menu {
+    display: block !important;
+    position: static;
+  }
+}
