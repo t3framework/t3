@@ -17,19 +17,11 @@
 // -------------------------------------------------------
 .t3-mainnav {
 
-  #gradient > .vertical(@start-color: lighten(@navbar-default-bg, 10%); @end-color: @navbar-default-bg;);
-  border-top: 1px solid @navbar-default-bg;
-  border-bottom: 1px solid darken(@navbar-default-bg, 10%);
+  border-left: 0;
+  border-right: 0;
+  margin-bottom: 0;
+  border-radius: 0;
 
-  .navbar {
-    margin-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .navbar-inner {
-
-  }
 
   // NAVBAR
   // -------------------------------------------------------
@@ -39,36 +31,7 @@
 
   // Links
   // -----
-  .navbar .nav {
-    > li > a,
-    > li > .separator {
-      position: relative;
-      display: block;
-      padding: @nav-link-padding;
-      line-height: @line-height-computed;
-    }
 
-    @media (min-width: @grid-float-breakpoint) {
-      > li > a,
-      > li > .separator {
-        padding-top: ((@navbar-height - @line-height-computed) / 2);
-        padding-bottom: ((@navbar-height - @line-height-computed) / 2);
-      }
-    }
-
-    // Hover
-    > li > a:focus,
-    > li > a:hover {
-
-    }
-
-    // Active nav items
-    > .active {
-      > a, > a:hover, > a:focus {
-
-      }
-    }
-  }
 
   // Toggle Button
   // -------------
@@ -88,205 +51,7 @@
   // DROPDOWN
   // -------------------------------------------------------
 
-  // Dropdown arrow/caret
-  // --------------------
-  .caret {
-  }
 
-  // Place the caret
-  .dropdown .caret {
-    margin-left: 5px;
-  }
-
-
-  // The dropdown menu
-  // -----------------
-  .dropdown-menu {
-
-
-    // Links within the dropdown menu
-    li > a {
-
-    }
-
-    // No border top on the first
-    li:first-child > a {
-
-    }
-  }
-
-
-  // Hide the Top arrow of the dropdown menu.
-  // See bootstrap/navbar.less or comment these line if you want to show it again.
-  .navbar .nav > li > .dropdown-menu {
-    &:before {
-      display: none;
-    }
-    &:after {
-      display: none;
-    }
-  }
-
-
-  .dropdown-menu {
-    // Hover state
-    // -----------
-    li > a:hover,
-    li > a:focus {
-    }
-
-    // Active state
-    // ------------
-    .active > a,
-    .active > a:hover {
-    }
-
-    // Disabled state
-    // --------------
-    .disabled > a,
-    .disabled > a:hover {
-      color: @gray-light;
-    }
-
-
-    .disabled > a:hover {
-      background-color: transparent;
-    }
-  }
-
-  // Open State
-  // ----------
-  .nav li.dropdown.open > .dropdown-toggle {
-    background-color: @dropdown-link-hover-bg;
-    color: @dropdown-link-hover-color;
-  }
-
-  // Active Open
-  .nav li.dropdown.active > .dropdown-toggle,
-  .nav li.dropdown.open.active > .dropdown-toggle {
-    background-color: @dropdown-link-active-bg;
-    color: @dropdown-link-active-color;
-  }
-
-  // The Caret
-  .nav li.dropdown > .dropdown-toggle .caret {
-  }
-
-  .nav li.dropdown.open > .dropdown-toggle .caret,
-  .nav li.dropdown.active > .dropdown-toggle .caret,
-  .nav li.dropdown.open.active > .dropdown-toggle .caret {
-  }
-
-
-  // Sub menus
-  // ---------------------------
-  .dropdown-submenu {
-    position: relative;
-  }
-  // Default dropdowns
-  .dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -11px;
-    margin-left: -1px;
-    .border-radius(0 6px 6px 6px);
-  }
-  .dropdown-submenu:hover > .dropdown-menu {
-    display: block;
-  }
-
-  // Dropdown Sub menus
-  // ------------------
-  .dropdown-submenu > .dropdown-menu {
-  }
-
-  .dropdown-submenu > a:after {
-  }
-
-  .dropdown-submenu:hover > a:after {
-  }
-  // End 
-}
-
-
-
-// ------------------------------------------------------
-// T3 MAIN MENU (Inverted)
-// -------------------------------------------------------
-.t3-navbar-inv () when (@t3-navbar-inverted = 1) {
-
-  // Begin: Mixin Styling
-  #gradient > .vertical(@gray-dark, @gray-darker);
-  border-top: 1px solid @gray-dark;
-  border-bottom: 1px solid @gray-dark;
-
-  .navbar {
-    color: @gray-lighter;
-  }
-
-  .navbar-inner {
-    border-left: 1px solid @gray-dark;
-  }
-
-
-  // NAVBAR
-  // -------------------------------------------------------
-
-  // Links
-  // -----
-  .navbar .nav > li > a {
-    color: @gray-lighter;
-    border-right: 1px solid @gray-dark;
-  }
-
-  // Hover
-  .navbar .nav > li > a:focus,
-  .navbar .nav > li > a:hover {
-    background-color: lighten(@gray-dark, 10%);
-    #gradient > .vertical(lighten(@gray-dark, 20%), lighten(@gray-dark, 10%));
-  }
-
-  // Active nav items
-  .navbar .nav > .active > a,
-  .navbar .nav > .active > a:hover,
-  .navbar .nav > .active > a:focus {
-    color: @white;
-    #gradient > .vertical(lighten(@link-color, 10%), @link-color);
-  }
-
-
-  // DROPDOWN
-  // -------------------------------------------------------
-
-  // The dropdown menu
-  // -----------------
-  .dropdown-menu {
-    background-color: lighten(@gray-dark, 10%);
-    border: 1px solid lighten(@gray-dark, 20%);
-
-    // Links within the dropdown menu
-    li > a {
-    color: @gray-lighter;
-    border-top: 1px solid lighten(@gray-dark, 20%);
-    }
-  }
-
-  // Open dropdown
-  .nav li.dropdown.open > .dropdown-toggle,
-  .nav li.dropdown.active > .dropdown-toggle,
-  .nav li.dropdown.open.active > .dropdown-toggle {
-    #gradient > .vertical(lighten(@link-color, 10%), @link-color);
-  }
-  // End: Mixin Styling
-}
-
-.t3-navbar-inv() when (@t3-navbar-inverted = 0) {
-  // Leave blank here because we will use the default style.
-}
-
-// Calling the styles
-.t3-mainnav {
-  .t3-navbar-inv();
 }
 
 
@@ -351,8 +116,9 @@
 }
 
 
+
 // ---------------------------------------------------------
-// RESPONSIVE NAVIFATION FOR MOBILE
+// RESPONSIVE NAVIGATION FOR MOBILE
 // ---------------------------------------------------------
 @media (max-width: @grid-float-breakpoint) {
 
@@ -463,66 +229,6 @@
   }
 
 
-  // -------------------------------------------------------
-  //  T3 MAIN MENU (Inverted)
-  // -------------------------------------------------------
-
-  .t3-navbar-inv () when (@t3-navbar-inverted = 1) {
-
-    background: @gray-dark;
-    border-top: 1px solid @gray-dark;
-
-
-    // COLLAPSIBLE NAVBAR
-    // ----------------------------------------------------
-
-    // The nav
-    .navbar-collapse {
-      background: @gray-darker;
-      color: @gray-lighter;
-
-      // Nav and dropdown links in navbar
-      // -------------------------------
-      .nav > li > a {
-        border-bottom: 1px solid @gray;
-      }
-
-      // Hover state
-      .nav > li > a:hover {
-        background-color: @dropdown-link-hover-bg;
-      }
-
-      // Dropdowns in the navbar
-      // -----------------------
-      .dropdown-menu {
-        background-color: @gray-dark;
-
-        // dropdown links
-        // --------------
-        .dropdown-menu a {
-          border-top: 1px solid @gray;
-          border-bottom: 0;
-
-          // Hover state
-          &:hover {
-            background-color: @dropdown-link-hover-bg;
-          }
-        }
-      }
-    }
-  }
-
-  .t3-navbar-inv() when (@t3-navbar-inverted = 0) {
-    // Leave blank here because we will use the default style.
-  }
-
-  // Calling the styles
-  .t3-mainnav {
-    .t3-navbar-inv();
-  }
-
-
-
   // ----------------------------------------------------
   // MISC
   // ----------------------------------------------------
@@ -535,6 +241,8 @@
 
   // End Responsive
 }
+
+
 
 // PAGINATION
 // -------------------------------------------------------
