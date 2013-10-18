@@ -17,61 +17,13 @@
 @import "vars.less"; // Modify this for custom colors, font-sizes, etc
 
 
-// HOME MIXINS
-// ------------------
-
-// Spotlight 1 (Inverted)
-// ----------------------
-.t3-spotlight-home1() when (@t3-spotlight-inverted = 1) {
-
-  // Begin: Mixin Styling
-  color: @gray-lighter;
-  // jumbotron
-  .jumbotron {
-    #gradient > .radial(@gray-darker, @gray-darker);
-    h1 {
-      color: @white;
-    }
-  }
-
-  // End: Mixin Styling
-}
-
-.t3-spotlight-home1() when (@t3-spotlight-inverted = 0) {
-  // Leave blank here because we will use the default style.
-}
-
-
-// Spotlight 5 (Inverted)
-// ----------------------
-
-.t3-spotlight-home5() when (@t3-spotlight-inverted = 1) {
-
-  // Begin: Mixin Styling
-  background: @gray-darker;
-  border-bottom: 1px solid @t3-border-color;
-  color: @gray-lighter;
-
-  // arrow
-  .section-arrow-alt {
-    display: none;
-  }
-
-  // End: Mixin Styling
-}
-
-.t3-spotlight-home5() when (@t3-spotlight-inverted = 0) {
-  // Leave blank here because we will use the default style.
-}
-
-
-
 // ---------------------------------------------------------
 // HOME
 // ---------------------------------------------------------
 .home {
   .jumbotron {
     background-color: transparent;
+    position: relative;
   }
 
   // ---------------------------------------------------------
@@ -99,6 +51,7 @@
       .btn-large {
         font-size: @font-size-base * 1.75;
         padding: 18px ((@font-size-base * 1.75) + 20px);
+        margin-top: @line-height-computed;
       }
     }
 
