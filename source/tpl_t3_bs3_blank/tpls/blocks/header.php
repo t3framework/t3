@@ -11,14 +11,10 @@ defined('_JEXEC') or die;
 $sitename  = $this->params->get('sitename');
 $slogan    = $this->params->get('slogan', '');
 $logotype  = $this->params->get('logotype', 'text');
-$logoimage = $logotype == 'image' ? $this->params->get('logoimage', '') : '';
+$logoimage = $logotype == 'image' ? $this->params->get('logoimage', 'templates/' . T3_TEMPLATE . '/images/logo.png') : '';
 
 if (!$sitename) {
 	$sitename = JFactory::getConfig()->get('sitename');
-}
-
-if ($logoimage) {
-	$logoimage = ' style="background-image:url(' . JURI::base(true) . '/' . $logoimage . ');"';
 }
 
 $logosize = 'col-md-12';
@@ -34,8 +30,10 @@ if ($headright = $this->countModules('head-search or languageswitcherload')) {
 		<!-- LOGO -->
 		<div class="col-xs-12 <?php echo $logosize ?> logo">
 			<div class="logo-<?php echo $logotype ?>">
-				<a href="<?php echo JURI::base(true) ?>"
-				   title="<?php echo strip_tags($sitename) ?>"<?php echo $logoimage ?>>
+				<a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>">
+					<?php if($logotype == 'image'): ?>
+						<img class="logo-img" src="<?php echo JURI::base(true) . '/' . $logoimage ?>" alt="<?php echo strip_tags($sitename) ?>" />
+					<?php endif ?>
 					<span><?php echo $sitename ?></span>
 				</a>
 				<small class="site-slogan hidden-xs"><?php echo $slogan ?></small>
