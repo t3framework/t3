@@ -96,7 +96,7 @@ class T3Action
 		T3::import('admin/theme');
 		
 		if(method_exists('T3AdminTheme', $action)){
-			T3AdminTheme::$action(T3_TEMPLATE_PATH);	
+			T3AdminTheme::$action(T3_TEMPLATE_PATH);
 		} else {
 			die(json_encode(array(
 				'error' => JText::_('T3_MSG_UNKNOW_ACTION')

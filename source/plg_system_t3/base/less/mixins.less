@@ -19,7 +19,7 @@
   // extend left offset
   .offset (@gridColumnWidth, @gridGutterWidth) {
     .offset-X (@index) when (@index > 0) {
-      (.offset-@{index}) { .offset-(@index); }
+      (~".offset-@{index}") { .offset-(@index); }
       .offset-X(@index - 1);
     }
     .offset-X (0) {}
@@ -35,8 +35,8 @@
   .fixOffsetX (@fluidGridColumnWidth, @fluidGridGutterWidth) {
 
     .offsetX (@index) when (@index > 0) {
-      (.offset@{index}) { .offset(@index); }
-      (.offset@{index}:first-child) { .offsetFirstChild(@index); }
+      (~'.offset@{index}') { .offset(@index); }
+      (~'.offset@{index}:first-child') { .offsetFirstChild(@index); }
       .offsetX(@index - 1);
     }
     .offsetX (0) {}
@@ -50,7 +50,7 @@
     }
 
     .offset-X (@index) when (@index > 0) {
-      (.offset-@{index}) { .offset-(@index); }
+      (~'.offset-@{index}') { .offset-(@index); }
       .offset-X(@index - 1);
     }
     .offset-X (0) {}
@@ -67,7 +67,7 @@
   .fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
 
     .spanX (@index) when (@index > 0) {
-      (.span@{index}) { .span(@index); }
+      (~".span@{index}") { .span(@index); }
       .spanX(@index - 1);
     }
     .spanX (0) {}
@@ -105,7 +105,7 @@
       *width: percentage(((@fluidGridColumnWidth * @cols) + (@fluidGridGutterWidth * (@cols - 1)))/((@fluidGridColumnWidth * @pcols) + (@fluidGridGutterWidth * (@pcols - 1)))) - (.5 / @gridRowWidth * 100 * 1%);
     }
     .spanXY (@indexx) when(@indexx > 0) {
-      (.span@{indexx}) {
+      (~".span@{indexx}") { 
         .row {
           // span for spany in spanx
           [class*="span"] {
@@ -117,7 +117,7 @@
           }
 
           .spanY (@indexy) when (@indexy > 0) {
-            (.span@{indexy}) {
+            (~".span@{indexy}") {
               .spanxy_(@indexx, @indexy);
             }
             .spanY (@indexy - 1); 

@@ -142,12 +142,14 @@ class T3Less extends lessc
 		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
 		$rspace       = '@[\r?\n]{2,}@';
 		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less@';
-		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')\/less\/@';
+		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables)\.less@';
+		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')/less/@';
 		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
 
 		$rsplitbegin  = '@^\s*\#';
 		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
+		$rswitchrtl   = '@/less/(themes/[^/]*/)?@';
+
 
 		$kfilepath    = 'less-file-path';
 		$kvarsep      = 'less-content-separator';
@@ -270,7 +272,7 @@ class T3Less extends lessc
 			}
 			
 			// override in template for this file
-			$rtlpath = preg_replace('@/less/(themes/[^/]*/)?@', '/less/rtl/', $path);
+			$rtlpath = preg_replace($rswitchrtl, '/less/rtl/', $path);
 			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
@@ -279,7 +281,7 @@ class T3Less extends lessc
 
 			// rtl theme
 			if ($theme) {
-				$rtlthemepath = preg_replace('@/less/(themes/[^/]*/)?@', '/less/rtl/' . $theme . '/', $path);
+				$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $path);
 				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
@@ -484,7 +486,7 @@ class T3Less extends lessc
 			// just to make sure this function is call once
 			if(!defined('T3_LESS_JS')){
 				// Add lessjs to process lesscss
-				$doc->addScript(T3_URL . '/js/less-1.3.3.js');
+				$doc->addScript(T3_URL . '/js/less.js');
 
 				if($doc->direction == 'rtl'){
 					$doc->addScript(T3_URL . '/js/cssjanus.js');

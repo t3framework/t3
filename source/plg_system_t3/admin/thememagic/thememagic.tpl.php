@@ -165,7 +165,7 @@ defined('_JEXEC') or die;
 
 			<?php endif;?>
 			<div id="t3-admin-tm-preview">
-				<iframe id="t3-admin-tm-ifr-preview" frameborder="0" src="<?php echo $url . ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '') ?>"></iframe>
+				<iframe id="t3-admin-tm-ifr-preview" frameborder="0" src="<?php echo $url ?>"></iframe>
 			</div>
 
 		</div>

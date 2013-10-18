@@ -174,14 +174,15 @@ class T3AdminTheme
 	 */
 	public static function thememagic($path)
 	{
-		$app = JFactory::getApplication();
-		$isadmin = $app->isAdmin();
-		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
-		$url .= (preg_match('/\?/', $url) ? '&' : '?').'themer=1';
-		// show thememagic form
-
+		$app       = JFactory::getApplication();
+		$input     = $app->input;
 		//todo: Need to optimize here
 		$tplparams = JFactory::getApplication('site')->getTemplate(true)->params;
+		$isadmin   = $app->isAdmin();
+		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
+		$url .= (preg_match('/\?/', $url) ? '&' : '?') . 'themer=1';
+		$url .= ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '');
+		$url .= '&t3tmid=' . $input->getCmd('id');
 
 		$assetspath = T3_TEMPLATE_PATH;
 		$themepath = $assetspath . '/less/themes';
@@ -189,14 +190,16 @@ class T3AdminTheme
 			include_once T3_ADMIN_PATH . '/includes/format/less.php';
 		}
 
-		$themes = array();
+		$themes   = array();
 		$jsondata = array();
 
 		//push a default theme
 		$tobj = new stdClass();
-		$tobj->id = 'base';
+		$tobj->id    = 'base';
 		$tobj->title = JText::_('JDEFAULT');
+
 		$themes['base'] = $tobj;
+
 		$varfile = $assetspath . '/less/variables.less';
 		if(file_exists($varfile)){
 			$params = new JRegistry;
@@ -212,7 +215,7 @@ class T3AdminTheme
 					if(file_exists($varsfile)){
 
 						$tobj = new stdClass();
-						$tobj->id = $theme;
+						$tobj->id    = $theme;
 						$tobj->title = $theme;
 
 						//check for all less file in theme folder
@@ -248,24 +251,24 @@ class T3AdminTheme
 		}
 
 		$langs = array (
-			'addTheme' => JText::_('T3_TM_ASK_ADD_THEME'),
-			'delTheme' => JText::_('T3_TM_ASK_DEL_THEME'),
+			'addTheme'       => JText::_('T3_TM_ASK_ADD_THEME'),
+			'delTheme'       => JText::_('T3_TM_ASK_DEL_THEME'),
 			'overwriteTheme' => JText::_('T3_TM_ASK_OVERWRITE_THEME'),
-			'correctName' => JText::_('T3_TM_ASK_CORRECT_NAME'),
-			'themeExist' => JText::_('T3_TM_EXISTED'),
-			'saveChange' => JText::_('T3_TM_ASK_SAVE_CHANGED'),
-			'previewError' => JText::_('T3_TM_PREVIEW_ERROR'),
-			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
-			'lblCancel' => JText::_('JCANCEL'),
-			'lblOk'	=> JText::_('T3_TM_LABEL_OK'),
-			'lblNo' => JText::_('JNO'),
-			'lblYes' => JText::_('JYES'),
-			'lblDefault' => JText::_('JDEFAULT')
+			'correctName'    => JText::_('T3_TM_ASK_CORRECT_NAME'),
+			'themeExist'     => JText::_('T3_TM_EXISTED'),
+			'saveChange'     => JText::_('T3_TM_ASK_SAVE_CHANGED'),
+			'previewError'   => JText::_('T3_TM_PREVIEW_ERROR'),
+			'unknownError'   => JText::_('T3_MSG_UNKNOWN_ERROR'),
+			'lblCancel'      => JText::_('JCANCEL'),
+			'lblOk'          => JText::_('T3_TM_LABEL_OK'),
+			'lblNo'          => JText::_('JNO'),
+			'lblYes'         => JText::_('JYES'),
+			'lblDefault'     => JText::_('JDEFAULT')
 		);
 
 		//Keepalive
-		$config = JFactory::getConfig();
-		$lifetime = ($config->get('lifetime') * 60000);
+		$config      = JFactory::getConfig();
+		$lifetime    = ($config->get('lifetime') * 60000);
 		$refreshTime = ($lifetime <= 60000) ? 30000 : $lifetime - 60000;
 
 		// Refresh time is 1 minute less than the liftime assined in the configuration.php file.
@@ -352,7 +355,7 @@ class T3AdminTheme
 								//overwrite the default variables
 								foreach ($devparams->toArray() as $key => $value) {
 									$params->set($key, $value);
-								}								
+								}
 							}
 
 							//ok, we will import it later

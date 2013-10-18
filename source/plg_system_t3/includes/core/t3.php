@@ -78,7 +78,7 @@ class T3 {
 				break;
 			}
 		}
-
+		
 		if(!defined('T3')){
 			// get ready for the t3 core base theme
 			include_once (T3_CORE_BASE_PATH . '/define.php');

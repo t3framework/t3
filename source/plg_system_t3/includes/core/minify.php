@@ -33,7 +33,7 @@ class T3Minify
 	 * Known Valid CSS Extension Types
 	 * @var array
 	 */
-	protected static $cssexts = array(".css", ".css1", ".css2", ".css3");
+	protected static $cssexts = array('.css', '.css1', '.css2', '.css3');
 
 	/**
 	 * 
@@ -53,7 +53,7 @@ class T3Minify
 
 		//check for css file extensions
 		foreach ( self::$cssexts as $ext ) {
-			if (substr_compare($url, $ext, -strlen($ext), strlen($ext)) === 0) {
+			if (strlen($ext) <= strlen($url) && substr_compare($url, $ext, -strlen($ext), strlen($ext)) === 0) {
 				$ret = true;
 				break;
 			}
