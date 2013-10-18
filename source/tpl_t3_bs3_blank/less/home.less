@@ -21,9 +21,16 @@
 // HOME
 // ---------------------------------------------------------
 .home {
+  color: @gray;
+
   .jumbotron {
     background-color: transparent;
     position: relative;
+    
+    // Heading
+    h1, h2, h3 {
+      color: @gray-dark;
+    }
   }
 
   // ---------------------------------------------------------
@@ -40,7 +47,7 @@
 
     // jumbotron
     .jumbotron {
-      #gradient > .radial(@white, @gray-lighter);
+      background: @gray-lighter;
       border-bottom: 1px solid @t3-border-color;
 
       h1 {
@@ -49,8 +56,6 @@
 
       //jumbotron btn
       .btn-large {
-        font-size: @font-size-base * 1.75;
-        padding: 18px ((@font-size-base * 1.75) + 20px);
         margin-top: @line-height-computed;
       }
     }
@@ -136,8 +141,7 @@
 
       //jumbotron btn
       .btn-large {
-        font-size: @font-size-base * 1.75;
-        padding: 18px ((@font-size-base * 1.75) + 20px);
+        margin-top: @line-height-computed;
       }
     }
 

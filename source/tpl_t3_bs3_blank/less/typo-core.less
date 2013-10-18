@@ -23,18 +23,10 @@
 // Paragraphs
 // ----------
 p {
-  margin: 0 0 @T3globalMargin / 2;
-  small, .small {
-    font-size: @T3smallerFontSize;
-    color: @grayLight;
-  }
+  
 }
 
 .lead {
-  margin-bottom: @T3globalMargin;
-  font-size: 20px;
-  font-weight: 200;
-  line-height: @baseLineHeight * 1.5;
 }
 
 
@@ -62,64 +54,7 @@ cite {
 // HEADINGS
 // ------------------------------------------------------
 
-h1, h2, h3, h4, h5, h6 {
-  margin: (@T3globalMargin / 2) 0;
-  font-family: @headingsFontFamily;
-  font-weight: @headingsFontWeight;
-  line-height: 1;
-  color: @headingsColor;
-  text-rendering: optimizelegibility; // Fix the character spacing for headings
-  small {
-    font-weight: normal;
-    line-height: 1;
-    color: @grayLight;
-  }
-}
 
-h1 {
-  font-size: @baseFontSize * 2.5;
-  line-height: @baseLineHeight * 2;
-  small {
-    font-size: @baseFontSize * 2;
-  }
-}
-
-h2 {
-  font-size: @baseFontSize * 2; 
-  line-height: @baseLineHeight * 2;
-  small {
-    font-size: @baseFontSize * 1.5;
-  }
-}
-
-h3 {
-  font-size: @baseFontSize * 1.5; 
-  line-height: @baseLineHeight * 2; 
-  small {
-    font-size: @baseFontSize + 2px;
-  }
-}
-
-h4 {
-  font-size: @baseFontSize + 2px; 
-  line-height: @baseLineHeight;
-  small {
-    font-size: @baseFontSize;
-  }
-}
-
-h5 {
-  font-size: @baseFontSize + 1px; 
-  line-height: @baseLineHeight; 
-  small {
-    font-size: @baseFontSize - 2px;
-  }
-}
-
-h6 {
-  font-size: @baseFontSize; 
-  line-height: @baseLineHeight; 
-}
 
 
 
