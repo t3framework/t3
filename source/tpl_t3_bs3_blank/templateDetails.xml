@@ -10,7 +10,7 @@
 	<copyright>Copyright (C), J.O.O.M Solutions Co., Ltd. All Rights Reserved.</copyright>
 	<license>license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
 	<t3>
-		<base>bs3</base>
+		<base>base-bs3</base>
 	</t3>
 	<description>
 		<![CDATA[
