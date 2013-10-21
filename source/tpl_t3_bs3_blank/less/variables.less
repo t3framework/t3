@@ -652,14 +652,62 @@
 
 
 //
-// T3 TEMPLATE STYLES
+// T3 GLOBAL STYLES
 // --------------------------------------------------
-@t3-image-path:               "../images";
+
+// Module Styles
+// -------------------------
+// Module General
+@t3-module-bg:                  transparent;
+@t3-module-color:               inherit;
+@t3-module-padding:             0;
+@t3-module-border:              1px solid #ddd;
+
+// Module Title
+@t3-module-title-bg:            @t3-module-bg;    // inherit from @t3-module-bg
+@t3-module-title-color:         @t3-module-color; // inherit from @t3-module-color
+@t3-module-title-padding:       @t3-module-padding;
+
+// Module Content
+@t3-module-content-bg:          @t3-module-bg; // inherit from @t3-module-bg
+@t3-module-content-color:       @t3-module-color; // inherit from @t3-module-color
+@t3-module-content-padding:     @t3-module-padding;
 
 
+// Global Margin& Padding
+// -------------------------
+@t3-global-margin:              @line-height-computed;
+@t3-global-padding:             @line-height-computed;
+
+
+// Typography
+// -------------------------
+@t3-font-size-big:              @font-size-base + 1px;
+@t3-font-size-bigger:           @font-size-base + 2px;
+
+@t3-font-size-small:            @font-size-base - 1px;
+@t3-font-size-smaller:          @font-size-base - 2px;
+
+
+//
 // T3 LOGO
 // --------------------------------------------------
 @t3-logo-image:               "@{t3-image-path}/logo.png";
+
+
+
+//
+// T3 TEMPLATE STYLES
+// --------------------------------------------------
+@t3-image-path:                 "../images";
+@t3-border-color:               #ddd;
+
+
+// Off-Canvas menu width
+// -------------------------
+@t3-mega-dropdown-min-width:    200px;
+@t3-off-canvas-width:           250px;
+
 
 
 // Footer Modules Styles
