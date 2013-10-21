@@ -21,7 +21,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 
 
-define('T3', 'bs3');
+define('T3', 'base-bs3');
 define('T3_URL', T3_ADMIN_URL . '/' . T3);
 define('T3_PATH', T3_ADMIN_PATH . '/' . T3);
 define('T3_REL', T3_ADMIN_REL . '/' . T3);

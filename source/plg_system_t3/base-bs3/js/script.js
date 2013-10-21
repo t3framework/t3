@@ -31,7 +31,7 @@
 				}
 			}
 
-			return this.each(function(){	
+			return this.each(function(){
 				var	itemsel = $(this).has('.mega').length ? 'li.mega' : 'li.parent',
 					jitems = $(this).find(itemsel),
 					reset = function(){
@@ -56,7 +56,7 @@
 
 								//at initial state, test if it is display: none !important, 
 								//if true, we will open this link (val = 0)
-								if(!hasopen){	
+								if(!hasopen){
 									//add open class, 
 									//iphone seem have buggy when we modify display property
 									//it does not trigger hover CSS
@@ -80,7 +80,7 @@
 						if(val){
 							$(this) //reset, sometime the mouseenter does not refire, so we reset to enable click
 								.data('rsid', setTimeout($.proxy(reset, this), 500))
-								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');							
+								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');
 						}
 					},
 					onClick = function(e){
