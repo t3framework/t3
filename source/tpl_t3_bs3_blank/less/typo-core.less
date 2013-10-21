@@ -17,10 +17,12 @@
 // TYPOGRAPHY
 // --------------------------------------------------
 
-
+//
 // BODY TEXT
-// ------------------------------------------------------
+// --------------------------------------------------
 
+// Paragraphs
+// --------------------------------------------------
 p {
   margin: 0 0 (@line-height-computed / 2);
 }
@@ -38,7 +40,7 @@ p {
 
 
 // Emphasis & misc
-// -------------------------
+// --------------------------------------------------
 
 // Ex: 14px base font * 85% = about 12px
 small   { font-size: 85%; }
@@ -59,9 +61,18 @@ cite    { font-style: normal; }
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
 
+// Highlight
+.highlight {
+  background-color: #FFC;
+  font-weight: bold;
+  padding: 1px 4px;
+}
 
-// Headings
-// -------------------------
+
+
+//
+// HEADINGS
+// ------------------------------------------------------
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -101,21 +112,76 @@ h3 small, .h3 small,
 h4 small, .h4 small { font-size: @font-size-base; }
 
 
-// Page header
-// -------------------------
 
+//
+// TITLES
+// ------------------------------------------------------
+
+// Page header
+// --------------------------------------------------
 .page-header {
   padding-bottom: ((@line-height-computed / 2) - 1);
   margin: (@line-height-computed * 2) 0 @line-height-computed;
   border-bottom: 1px solid @page-header-border-color;
 }
 
+.page-title,
+.page-header h1 {
+  line-height: 1;
+  margin: 0;
+}
 
 
-// Lists
+// Page Subheader
+// --------------------------------------------------
+.page-subheader {
+  border-bottom: 1px solid @t3-border-color;
+  margin: 0 0 @t3-global-margin;
+  .clearfix();
+}
+
+.page-subtitle,
+.page-subheader h2 {
+  line-height: 1;
+  margin: 0;
+}
+
+.page-header + .page-subheader {
+  margin-top: -@t3-global-margin; //If there is page header, then omit the space before page subheader
+}
+
+
+// Article Header
+// --------------------------------------------------
+.article-header {
+}
+
+.article-title,
+.article-header h1, {
+  margin: 0 0 @t3-global-margin/2 0;
+  line-height: 1;
+}
+
+// Smaller "Article Title" in Blog and List layout
+h2.article-title,
+.article-header h2 {
+}
+
+
+// Item Header
+// --------------------------------------------------
+.item-title {
+  font-weight: bold;
+}
+
+
+
+//
+// LISTS
 // --------------------------------------------------
 
 // Unordered and Ordered lists
+// --------------------------------------------------
 ul,
 ol {
   margin-top: 0;
@@ -127,12 +193,12 @@ ol {
 }
 
 // List options
-
 // Unstyled keeps list items block level, just removes default browser padding and list-style
 .list-unstyled {
   padding-left: 0;
   list-style: none;
 }
+
 // Inline turns list items into inline-block
 .list-inline {
   .list-unstyled();
@@ -179,10 +245,136 @@ dd {
   }
 }
 
+
+//
+// LABELS & BADGES
+// --------------------------------------------------
+
+// Labels
+// --------------------------------------------------
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: @label-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+
+  // Add hover effects, but only for links
+  &[href] {
+    &:hover,
+    &:focus {
+      color: @label-link-hover-color;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  // Empty labels collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+}
+
+// Colors
+// Contextual variations (linked labels get darker on :hover)
+
+.label-default {
+  .label-variant(@label-default-bg);
+}
+
+.label-primary {
+  .label-variant(@label-primary-bg);
+}
+
+.label-success {
+  .label-variant(@label-success-bg);
+}
+
+.label-info {
+  .label-variant(@label-info-bg);
+}
+
+.label-warning {
+  .label-variant(@label-warning-bg);
+}
+
+.label-danger {
+  .label-variant(@label-danger-bg);
+}
+
+
+// Badges
+// --------------------------------------------------
+
+// Base classes
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: @font-size-small;
+  font-weight: @badge-font-weight;
+  color: @badge-color;
+  line-height: @badge-line-height;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: @badge-bg;
+  border-radius: @badge-border-radius;
+
+  // Empty badges collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+}
+
+// Hover state, but only for links
+a.badge {
+  &:hover,
+  &:focus {
+    color: @badge-link-hover-color;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+// Quick fix for labels/badges in buttons
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+
+// Quick fix for labels/badges in page-header- NNTH
+.page-header {
+  .label, .badge {
+    vertical-align: middle;
+  }
+}
+
+// Account for counters in navs
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+  color: @badge-active-color;
+  background-color: @badge-active-bg;
+}
+.nav-pills > li > a > .badge {
+  margin-left: 3px;
+}
+
+
+
+
+//
 // MISC
-// ----
+// --------------------------------------------------
 
 // Abbreviations and acronyms
+// --------------------------------------------------
 abbr[title],
 // Added data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
 abbr[data-original-title] {
@@ -194,7 +386,9 @@ abbr.initialism {
   text-transform: uppercase;
 }
 
+
 // Blockquotes
+// --------------------------------------------------
 blockquote {
   padding: (@line-height-computed / 2) @line-height-computed;
   margin: 0 0 @line-height-computed;
@@ -237,7 +431,9 @@ blockquote {
   }
 }
 
+
 // Quotes
+// --------------------------------------------------
 q:before,
 q:after,
 blockquote:before,
@@ -245,7 +441,9 @@ blockquote:after {
   content: "";
 }
 
+
 // Addresses
+// --------------------------------------------------
 address {
   display: block;
   margin-bottom: @line-height-computed;
