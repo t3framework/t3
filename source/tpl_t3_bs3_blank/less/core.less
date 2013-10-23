@@ -79,8 +79,8 @@ a {
 }
 
 
-// Images
-// -------------------
+// IMAGES
+// -------------------------------------------------------
 img {
   vertical-align: middle;
 }
@@ -116,6 +116,97 @@ img {
 }
 
 
+
+
+// TABLES
+// -------------------------------------------------------
+table {
+  background-color: @tableBackground;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  line-height: @baseLineHeight;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+} 
+
+td {
+  border-top: 1px solid @tableBorder;
+}
+
+tr td {
+}
+
+th {
+  background: @grayDark;
+  color: @grayLighter;
+  font-weight: bold;
+}
+
+th td {
+}
+
+th a {
+  color: @grayLighter;
+  // Link states
+  &:hover, &:focus, &:active {
+    color: @white;
+  }
+}
+
+.cat-list-row0,
+.cat-list-row1,
+tr.cat-list-row0 td,
+tr.cat-list-row1 td {
+}
+
+.cat-list-row0:hover,
+.cat-list-row1:hover {
+  background: @tableBackgroundHover;
+}
+
+.cat-list-row1,
+tr.cat-list-row1 td {
+  background: @tableBackgroundAccent;
+}
+
+table.contentpane,
+table.tablelist,
+table.category,
+table.admintable,
+table.blog {
+  width: 100%;
+}
+
+table.contentpaneopen {
+  border: 0;
+}
+
+
+
+// --------------------------------------------------
+// MISC
+// --------------------------------------------------
+.star {
+  color: @yellow;
+}
+
+.red {
+  color: @red;
+}
+
+// Center
+.center,
+.table td.center,
+.table th.center {
+  text-align: center;
+}
+
+
 // Horizontal rules
 // -------------------
 hr {
@@ -126,10 +217,6 @@ hr {
 }
 
 
-
-// --------------------------------------------------
-// MISC
-// --------------------------------------------------
 // Only display content to screen readers
 //
 // See: http://a11yproject.com/posts/how-to-hide-content/
