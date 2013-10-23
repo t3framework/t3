@@ -22,6 +22,7 @@ body {
   background: #fff;
   color: #555;
   line-height: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -65,7 +66,7 @@ hr {
 .subhead-collapse,
 .container-main, 
 #content-box {
-  font-family: sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #555;
 }
@@ -409,10 +410,11 @@ select, input[type="file"] {
   margin: 0;
   padding: 0;
   border-top: 1px solid #e6e6e6;
+  background: #f2f2f2;
 }
 
 .t3-admin-form .form-horizontal .t3-control-label {
-  width: 18%;
+  width: 22%;
   padding: 20px 20px 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -431,7 +433,7 @@ select, input[type="file"] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  margin-left: 18%;
+  margin-left: 22%;
   background: #fff;
   border-left: 1px solid #e6e6e6;
 }
@@ -740,18 +742,23 @@ button.btn-primary:active {
   font-size: 14px;
 }
 
+
 /* GLOBAL BAGDE
 -------------------- */
-.t3-control-label.t3-admin-global::before {
-  float: right;
-  margin-right: -16px;
-  margin-top: -20px;
+.t3-control-label.t3-admin-global label::after {
   display: inline-block;
-  content: "\f0ac"; 
-  font-family: "FontAwesome";
-  font-size: 12px;
-  margin-left: 5px;
-  color: #07b;
+  content: "Global"; 
+  font-size: 10px;
+  font-weight: normal;
+  line-height: normal;
+  padding: 3px 5px;
+  border-radius: 2px;
+  background: #ccc;
+  color: #666;
+  text-shadow: none;
+  margin-left: 10px;
+  top: -2px;
+  position: relative;
 }
 
 
