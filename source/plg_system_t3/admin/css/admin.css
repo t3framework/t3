@@ -496,21 +496,72 @@ select, input[type="file"] {
 /* Radio
 --------*/
 /* Radio Button Groups ---*/
-.radio.btn-group input[type=radio] {
+fieldset.radio {
+  width: 40px;
+  height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  padding-left: 0;
+}
+
+fieldset.radio input[type=radio] {
   display: none;
 }
 
-.radio.btn-group > label:first-of-type {
-  margin-left: 0;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+fieldset.radio label {
+  width: 40px;
+  height: 24px;
+  overflow: hidden;
+  display: inline-block;
+  float: none;
+  background: #4CD964;
+  border-radius: 24px;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+
+  -webkit-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+  
+  /* hide text*/
+  text-indent: -999em;
 }
 
-fieldset.radio.btn-group {
-  padding-left: 0;
-  padding-top: 0 !important;
+fieldset.radio label:nth-child(4),
+fieldset.radio label.on {
+  background: #eee;
+  left: -24px;
 }
 
+fieldset.radio label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 24px;
+  border: 1px solid #ddd;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+}
+
+fieldset.radio label:nth-child(4):before,
+fieldset.radio label.on:before {
+  left: 0;
+  right: auto;
+}
+
+fieldset.radio label.active {
+  width: 24px;
+  z-index: 0;
+}
+
+
+/* Selectbox
+--------------*/
 fieldset select {
   width: 220px;
 }

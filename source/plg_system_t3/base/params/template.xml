@@ -11,7 +11,7 @@
 				</option>
 			</field>
 
-			<field name="devmode" type="radio" class="btn-group" default="0"
+			<field name="devmode" type="radio" default="0"
 				global="1"
 				label="T3_GENERAL_DEVELOPMENT_LABEL"
 				description="T3_GENERAL_DEVELOPMENT_DESC">
@@ -19,7 +19,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="themermode" type="radio" class="btn-group" default="1" 
+			<field name="themermode" type="radio" default="1" 
 				global="1"
 				label="T3_GENERAL_THEMER_LABEL" 
 				description="T3_GENERAL_THEMER_DESC" >
@@ -27,7 +27,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="responsive" type="radio" class="btn-group" default="1" 
+			<field name="responsive" type="radio" default="1" 
 				global="1"
 				label="T3_GENERAL_RESPONSIVE_LABEL" 
 				description="T3_GENERAL_RESPONSIVE_DESC" >
@@ -35,7 +35,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="build_rtl" type="radio" class="btn-group" default="0" 
+			<field name="build_rtl" type="radio" default="0" 
 				global="1"
 				label="T3_GENERAL_BUILD_RTL_LABEL" 
 				description="T3_GENERAL_BUILD_RTL_DESC" >
@@ -43,7 +43,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="minify" type="radio" class="btn-group" default="0"
+			<field name="minify" type="radio" default="0"
 				global="1"
 				label="T3_GENERAL_ASSETS_MINIFY_LABEL" 
 				description="T3_GENERAL_ASSETS_MINIFY_DESC" >
@@ -56,7 +56,7 @@
 				label="T3_GENERAL_ASSETS_FOLDER_LABEL"
 				description="T3_GENERAL_ASSETS_FOLDER_DESC" />
 
-			<field name="t3-rmvlogo" type="radio" class="btn-group" default="1"
+			<field name="t3-rmvlogo" type="radio" default="1"
 				global="1"
 				label="T3_GENERAL_REMOVE_T3LOGO_LABEL" 
 				description="T3_GENERAL_REMOVE_T3LOGO_DESC" >
@@ -150,7 +150,7 @@
 				<option value="click">Mouse Click</option>
 			</field>
 
-			<field name="navigation_collapse_offcanvas" type="radio" class="btn-group" default="1"
+			<field name="navigation_collapse_offcanvas" type="radio" default="1"
 				global="1"
 				label="T3_NAVIGATION_COLLAPSE_OFFCANVAS"
 				description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
@@ -158,7 +158,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="navigation_collapse_showsub" type="radio" class="btn-group" default="1"
+			<field name="navigation_collapse_showsub" type="radio" default="1"
 				global="1"
 				label="T3_NAVIGATION_COLLAPSE_LABEL"
 				description="T3_NAVIGATION_COLLAPSE_DESC">
@@ -238,7 +238,7 @@
 				description="T3_INJECTION_CLOSE_BODY_DESC"
 				/>
 
-	            <field name="snippet_debug" type="radio" class="btn-group" default="0"
+	            <field name="snippet_debug" type="radio" default="0"
 	                   global="1"
 	                   label="T3_INJECTION_DEBUG_LABEL"
 	                   description="T3_INJECTION_DEBUG_DESC">

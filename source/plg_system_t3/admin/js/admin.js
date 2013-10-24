@@ -133,18 +133,14 @@ var T3Admin = window.T3Admin || {};
 		initRadioGroup: function(){
 			//copy from J3.0
 			// Turn radios into btn-group
-			$('.radio.btn-group label').addClass('btn');
-			$('.btn-group label').unbind('click').click(function() {
+			//$('.radio label').removeClass('btn btn-success btn-danger btn-primary');
+			$('.radio label').unbind('click').click(function() {
 				var label = $(this),
 					input = $('#' + label.attr('for'));
 
 				if (!input.prop('checked')){
-					label.closest('.btn-group')
-						.find('label')
-						.removeClass('active btn-success btn-danger btn-primary');
+					label.addClass('active').siblings().removeClass('active');
 
-					label.addClass('active ' + (input.val() == '' ? 'btn-primary' : (input.val() == 0 ? 'btn-danger' : 'btn-success')));
-					
 					input.prop('checked', true).trigger('change');
 				}
 			});
@@ -153,19 +149,19 @@ var T3Admin = window.T3Admin || {};
 				if(this.checked){
 					$(this)
 						.closest('.btn-group')
-						.find('label').removeClass('active btn-success btn-danger btn-primary')
+						.find('label').removeClass('active')
 						.filter('[for="' + this.id + '"]')
-							.addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
+							.addClass('active');
 				}
 			});
 
-			$('.btn-group input[checked=checked]').each(function(){
+			$('.radio input[checked=checked]').each(function(){
 				if($(this).val() == ''){
-					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-primary');
+					$('label[for=' + $(this).attr('id') + ']').addClass('active');
 				} else if($(this).val() == 0){
-					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-danger');
+					$('label[for=' + $(this).attr('id') + ']').addClass('active');
 				} else {
-					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-success');
+					$('label[for=' + $(this).attr('id') + ']').addClass('active');
 				}
 			});
 		},
