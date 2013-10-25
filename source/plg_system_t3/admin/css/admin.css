@@ -523,7 +523,7 @@ fieldset.radio label {
 
 /* use before as background */
 fieldset.radio label:before {
-  content: "OFF";
+  content: "ON";
   display: block;
   position: absolute;
   top: 0;
@@ -539,7 +539,7 @@ fieldset.radio label:before {
   box-sizing: border-box;
 
   text-indent: 0;
-  text-align: right;
+  color: white;
   padding: 6px 14px;
   font-weight: bold;
 }
@@ -563,54 +563,42 @@ fieldset.radio label:after {
 
 fieldset.radio label:nth-child(2):before,
 fieldset.radio label.off:before {
-  content: "ON";
-  text-align: left;
-  color: white;
+  content: "OFF";
+  text-align: right;
+  color: #555;
 }
 
 /* active label should be under => so inactive can be clickable */
 fieldset.radio label.active {
   z-index: 0;
-  visibility: hidden;
 }
 
 /* off background */
-fieldset.radio label:nth-child(4):before,
-fieldset.radio label.on:before {
-  background: #eee;
-  left: 5%;
-}
-
-fieldset.radio label.active:nth-child(4):before,
-fieldset.radio label.on.active:before {
-  left: 100%;
-}
-
-/* on background */
 fieldset.radio label:nth-child(2):before,
 fieldset.radio label.off:before {
-  background: #51a351;
-  left: -5%;
+  background: #eee;
+  left: 100%;
 }
 
 fieldset.radio label.active:nth-child(2):before,
 fieldset.radio label.off.active:before {
+  left: 5%;
+}
+
+/* on background */
+fieldset.radio label:nth-child(4):before,
+fieldset.radio label.on:before {
+  background: #51a351;
   left: -100%;
+}
+
+fieldset.radio label.active:nth-child(4):before,
+fieldset.radio label.on.active:before {
+  left: -5%;
 }
 
 
 /* off switch */
-fieldset.radio label:nth-child(4):after,
-fieldset.radio label.on:after {
-  left: 0%;
-}
-
-fieldset.radio label.active:nth-child(4):after,
-fieldset.radio label.on.active:after {
-  left: 60%;
-}
-
-/* on switch */
 fieldset.radio label:nth-child(2):after,
 fieldset.radio label.off:after {
   left: 60%;
@@ -619,6 +607,17 @@ fieldset.radio label.off:after {
 fieldset.radio label.active:nth-child(2):after,
 fieldset.radio label.off.active:after {
   left: 0%;
+}
+
+/* on switch */
+fieldset.radio label:nth-child(4):after,
+fieldset.radio label.on:after {
+  left: 0%;
+}
+
+fieldset.radio label.active:nth-child(4):after,
+fieldset.radio label.on.active:after {
+  left: 60%;
 }
 
 /* Selectbox
