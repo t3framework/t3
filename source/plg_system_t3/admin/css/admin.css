@@ -692,8 +692,8 @@ button.btn-primary:active {
 /* DESC
 ---------- */
 .t3-admin-fieldset-desc {
-  padding: 12px 40px;
-  background: #FEFFDE;
+  padding: 12px 20px;
+  background: #f2f2f2;
 }
 
 
@@ -834,7 +834,7 @@ button.btn-primary:active {
   font-family: "FontAwesome";
   font-size: 12px;
   margin-left: 5px;
-  color: #fff;
+  color: #ffbb00;
   vertical-align: middle;
 }
 
