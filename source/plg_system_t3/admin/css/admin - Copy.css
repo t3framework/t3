@@ -167,9 +167,9 @@ h1.page-title small {
 ----------- */
 .t3-admin-nav .nav-tabs {
   margin: 0 0 0 -1px; /*margin: 0 -1px;*/
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #eee;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  background: #333;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -178,35 +178,30 @@ h1.page-title small {
 
 .t3-admin-nav .nav-tabs > li {
   margin-bottom: 0;
-  margin-right: 20px;
-  margin-left: 20px;
   position: relative;
 }
 
 .t3-admin-nav .nav-tabs > li > a {
-  color: #4f4f4f;
+  color: #ccc;
   border-radius: 0;
   border: 0;
-  border-bottom: 3px solid transparent;
   margin: 0;
   padding: 12px 0;
+  width: 120px;
   text-align: center;
 }
 
 .t3-admin-nav .nav-tabs > li > a:hover {
   border: 0;
-  border-bottom: 3px solid #07b;
-  color: #000;
+  color: #fff;
   background: transparent;
 }
 
 .t3-admin-nav .nav-tabs > .active > a, 
 .t3-admin-nav .nav-tabs > .active > a:hover {
   border: 0;
-  color: #000;
-  font-weight: bold;
-  background: transparent;
-  border-bottom: 3px solid #07b;
+  color: #fff;
+  background: #07b;
 }
 
 
@@ -354,17 +349,19 @@ select, input[type="file"] {
 /* Legends
 ---------- */
 .t3-admin-form-legend {
-  background: #f2f2f2;
-  padding: 15px 20px 15px 22%;
-  border: 0;
+  background-color: whiteSmoke;
+  padding: 12px 20px 12px 22%;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   margin-bottom: 0;
   line-height: normal;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  text-shadow: 0 1px 1px #fff;
   font-size: 20px;
-  font-weight: normal;
-  text-indent: 0;
+  font-weight: bold;
+  text-indent: 20px;
 }
 
 .t3-admin-form-legend-desc {
@@ -493,7 +490,7 @@ select, input[type="file"] {
 --------*/
 /* Radio Button Groups ---*/
 fieldset.radio {
-  width: 86px;
+  width: 80px;
   height: 30px;
   white-space: nowrap;
   overflow: hidden;
@@ -518,12 +515,11 @@ fieldset.radio label {
   z-index: 1;
   text-transform: uppercase;
   background: url(../images/blank.gif) no-repeat transparent;
-  text-indent: -999em;
 }
 
 /* use before as background */
 fieldset.radio label:before {
-  content: "OFF";
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -534,14 +530,6 @@ fieldset.radio label:before {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-
-  text-indent: 0;
-  text-align: right;
-  padding: 6px 14px;
-  font-weight: bold;
 }
 
 /* use after as switch */
@@ -552,20 +540,13 @@ fieldset.radio label:after {
   top: 0;
   border-radius: 3px;
   border: 1px solid #ddd;
-  width: 32px;
+  width: 40px;
   height: 28px;
   background: #fff;
 
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
-}
-
-fieldset.radio label:nth-child(2):before,
-fieldset.radio label.off:before {
-  content: "ON";
-  text-align: left;
-  color: white;
 }
 
 /* active label should be under => so inactive can be clickable */
@@ -575,49 +556,49 @@ fieldset.radio label.active {
 }
 
 /* off background */
-fieldset.radio label:nth-child(4):before,
-fieldset.radio label.on:before {
+fieldset.radio label.off:nth-child(2):before,
+fieldset.radio label.off:before {
   background: #eee;
-  left: 5%;
+  right: 0%;
 }
 
-fieldset.radio label.active:nth-child(4):before,
+fieldset.radio label.off.active:nth-child(2):before,
+fieldset.radio label.off.active:before {
+  right: 100%;
+}
+
+/* on background */
+fieldset.radio label.on:nth-child(4):before,
+fieldset.radio label.on:before {
+  background: #51a351;
+  left: 0%;
+}
+
+fieldset.radio label.on.active:nth-child(4):before,
 fieldset.radio label.on.active:before {
   left: 100%;
 }
 
-/* on background */
-fieldset.radio label:nth-child(2):before,
-fieldset.radio label.off:before {
-  background: #51a351;
-  left: -5%;
-}
-
-fieldset.radio label.active:nth-child(2):before,
-fieldset.radio label.off.active:before {
-  left: -100%;
-}
-
 
 /* off switch */
-fieldset.radio label:nth-child(4):after,
-fieldset.radio label.on:after {
-  left: 0%;
+fieldset.radio label.off:nth-child(2):after,
+fieldset.radio label.off:after {
+  right: 50%;
 }
 
-fieldset.radio label.active:nth-child(4):after,
-fieldset.radio label.on.active:after {
-  left: 60%;
+fieldset.radio label.off.active:nth-child(2):after,
+fieldset.radio label.off.active:after {
+  right: 0%;
 }
 
 /* on switch */
-fieldset.radio label:nth-child(2):after,
-fieldset.radio label.off:after {
-  left: 60%;
+fieldset.radio label.on:nth-child(2):after,
+fieldset.radio label.on:after {
+  left: 50%;
 }
 
-fieldset.radio label.active:nth-child(2):after,
-fieldset.radio label.off.active:after {
+fieldset.radio label.on.active:nth-child(2):after,
+fieldset.radio label.on.active:after {
   left: 0%;
 }
 
@@ -1080,7 +1061,7 @@ button.btn-primary:active {
   -o-box-sizing: border-box;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 3px;
+  border-radius: 2px;
   font-size: 12px;
 }
 
@@ -1133,8 +1114,6 @@ button.btn-primary:active {
 /* Overview ---*/
 .t3-admin-overview-header {
   margin-bottom: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .t3-admin-overview-header h2 {
@@ -1142,7 +1121,6 @@ button.btn-primary:active {
   margin-bottom: 20px;
   font-size: 30px;
   line-height: 40px;
-  font-weight: normal;
 }
 
 .t3-admin-overview-header h2 small {
@@ -1150,10 +1128,7 @@ button.btn-primary:active {
   display: block;
 }
 
-.t3-admin-overview-body {
-  padding-left: 20px;
-  padding-right: 20px;
-}
+.t3-admin-overview-body {}
 
 .t3-admin-overview-body h4 {
   font-size: 18px;
@@ -1166,56 +1141,43 @@ button.btn-primary:active {
 }
 
 .t3-admin-overview-features li {
-  display: block !important;
-  float: left;
+  display: inline-block !important;
   margin: 0 5px 10px 0 !important;
-  padding: 0 !important;
+  padding: 4px 10px !important;
   line-height: normal !important;
+  background: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .t3-admin-overview-features li a,
 .t3-admin-overview-features li a:visited {
-  padding: 6px 12px;
-  background: #e6e6e6;
-  border: 0;
-  border-radius: 3px;
-  color: #333;
-}
-
-.t3-admin-overview-features li a:hover,
-.t3-admin-overview-features li a:active,
-.t3-admin-overview-features li a:focus {
-  background: #07b;
-  color: #fff;
-  text-decoration: none;
+  color: #07b;
 }
 
 /* Updater ---*/
 .updater {
   color: #ffffff;
-  background: #690;
-  border-color: #578200;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background: #5bb75b;
+  border-color: #51a351;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 
 .updater.outdated {
   color: #ffffff;
-  background-color: #d62229;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #da4f49;
   border-color: #bd362f;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
 .updater .btn {
-  color: #fff;
+  color: #666;
   font-size: 12px;
-  background: transparent;
-  border: 1px solid #fff;
-  font-weight: bold;
-}
-
-.updater .btn:hover,
-.updater .btn:active,
-.updater .btn:focus {
-  color: #333;
-  background: #fff;
 }
 
 

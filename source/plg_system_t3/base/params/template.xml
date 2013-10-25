@@ -15,40 +15,40 @@
 				global="1"
 				label="T3_GENERAL_DEVELOPMENT_LABEL"
 				description="T3_GENERAL_DEVELOPMENT_DESC">
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="themermode" type="radio" default="1" 
 				global="1"
 				label="T3_GENERAL_THEMER_LABEL" 
 				description="T3_GENERAL_THEMER_DESC" >
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="responsive" type="radio" default="1" 
 				global="1"
 				label="T3_GENERAL_RESPONSIVE_LABEL" 
 				description="T3_GENERAL_RESPONSIVE_DESC" >
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="build_rtl" type="radio" default="0" 
 				global="1"
 				label="T3_GENERAL_BUILD_RTL_LABEL" 
 				description="T3_GENERAL_BUILD_RTL_DESC" >
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="minify" type="radio" default="0"
 				global="1"
 				label="T3_GENERAL_ASSETS_MINIFY_LABEL" 
 				description="T3_GENERAL_ASSETS_MINIFY_DESC" >
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="t3-assets" type="text" default="t3-assets"
@@ -60,8 +60,8 @@
 				global="1"
 				label="T3_GENERAL_REMOVE_T3LOGO_LABEL" 
 				description="T3_GENERAL_REMOVE_T3LOGO_DESC" >
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 		</fieldset>
@@ -154,16 +154,16 @@
 				global="1"
 				label="T3_NAVIGATION_COLLAPSE_OFFCANVAS"
 				description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="navigation_collapse_showsub" type="radio" default="1"
 				global="1"
 				label="T3_NAVIGATION_COLLAPSE_LABEL"
 				description="T3_NAVIGATION_COLLAPSE_DESC">
-				<option value="0">T3_LBL_OFF</option>
-				<option value="1">T3_LBL_ON</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 
 			<field name="navigation_type" type="list" class="btn-group" default="joomla"
@@ -242,8 +242,8 @@
 	                   global="1"
 	                   label="T3_INJECTION_DEBUG_LABEL"
 	                   description="T3_INJECTION_DEBUG_DESC">
-	                <option value="0">T3_LBL_OFF</option>
-	                <option value="1">T3_LBL_ON</option>
+	                <option value="0">JNO</option>
+	                <option value="1">JYES</option>
 	            </field>
 
 		</fieldset>

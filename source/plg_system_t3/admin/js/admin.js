@@ -143,6 +143,11 @@ var T3Admin = window.T3Admin || {};
 				}
 			});
 
+			$('fieldset.radio')
+				.removeClass('btn-group')
+				.find('label').removeClass('btn btn-success btn-danger btn-primary');
+
+
 			$('.radio input[checked=checked]').each(function(){
 				$('label[for=' + $(this).attr('id') + ']').addClass('active');
 			});
