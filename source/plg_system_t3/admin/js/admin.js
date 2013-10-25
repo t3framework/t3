@@ -155,7 +155,7 @@ var T3Admin = window.T3Admin || {};
 			$('.t3-admin-form').on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
-						.closest('.btn-group')
+						.closest('.radio')
 						.find('label').removeClass('active')
 						.filter('[for="' + this.id + '"]')
 							.addClass('active');

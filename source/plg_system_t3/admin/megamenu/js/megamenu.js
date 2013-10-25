@@ -538,7 +538,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		if (!type) type = toolbox_type ();
 		// remove all disabled status
 		$('#t3-admin-mm-tb .disabled').removeClass('disabled');
-		$('#t3-admin-mm-tb .active').removeClass('active');
+		//$('#t3-admin-mm-tb .active').removeClass('active');
 		switch (type) {
 			case 'item':
 				// value for toggle
@@ -551,7 +551,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				$('.toolitem-caption').attr('value', liitem.data ('caption') || '');
 				// toggle Submenu
 				var toggle = $('.toolitem-sub');
-				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
+				//toggle.find('label').removeClass('active');
 				if (liitem.data('group')) {
 					// disable the toggle
 					$('.toolitem-sub').addClass ('disabled');
@@ -565,7 +565,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 				// toggle Group
 				var toggle = $('.toolitem-group');
-				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
+				//toggle.find('label').removeClass('active');
 				if (liitem.data('level') == 1 || sub.length == 0 || liitem.data('hidesub') == 1) {
 					// disable the toggle
 					$('.toolitem-group').addClass ('disabled');
@@ -611,7 +611,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 				// toggle hidewhencollapse
 				var toggle = $('.toolsub-hidewhencollapse');
-				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
+				//toggle.find('label').removeClass('active');
 				if (liitem.data('hidewcol')) {
 					// toggle enable
 					update_toggle (toggle, 1);
@@ -639,7 +639,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 				// toggle hidewhencollapse
 				var toggle = $('.toolcol-hidewhencollapse');
-				toggle.find('label').removeClass('active btn-success btn-danger btn-primary');
+				//toggle.find('label').removeClass('active');
 				if (currentSelected.data('hidewcol')) {
 					// toggle enable
 					update_toggle (toggle, 1);
@@ -821,18 +821,13 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 			var jt3menu = $('.t3-admin-megamenu');
 
-			jt3menu.find('.radio.btn-group label').addClass('btn');
-			jt3menu.find('.btn-group label').unbind('click').click(function() {
+			jt3menu.find('.radio label').unbind('click').click(function() {
 				var label = $(this),
 					input = $('#' + label.attr('for'));
 
 				if (!input.prop('checked')){
-					label.closest('.btn-group')
-						.find('label')
-						.removeClass('active btn-success btn-danger btn-primary');
+					label.addClass('active').siblings().removeClass('active');
 
-					label.addClass('active ' + (input.val() == '' ? 'btn-primary' : (input.val() == 0 ? 'btn-danger' : 'btn-success')));
-					
 					input.prop('checked', true).trigger('change');
 				}
 			});
@@ -840,21 +835,15 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			jt3menu.on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
-						.closest('.btn-group')
-						.find('label').removeClass('active btn-success btn-danger btn-primary')
+						.closest('.radio')
+						.find('label').removeClass('active')
 						.filter('[for="' + this.id + '"]')
-							.addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
+							.addClass('active');
 				}
 			});
 
-			jt3menu.find('.btn-group input[checked=checked]').each(function(){
-				if($(this).val() == ''){
-					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-primary');
-				} else if($(this).val() == 0){
-					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-danger');
-				} else {
-					$('label[for=' + $(this).attr('id') + ']').addClass('active btn-success');
-				}
+			jt3menu.find('.radio input:checked').each(function(){
+				$('label[for=' + $(this).attr('id') + ']').addClass('active');
 			});
 
 

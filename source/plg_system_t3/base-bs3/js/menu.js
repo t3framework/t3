@@ -17,10 +17,7 @@
 	if(!isTouch){
 		$(document).ready(function($){
 			// detect animation duration
-			var mm_duration = 0;
-			$('.t3-megamenu').each (function(){
-				if ($(this).data('duration')) mm_duration = $(this).data('duration');
-			});
+			var mm_duration = $('.t3-megamenu').data('duration') || 0;
 			if (mm_duration) {
 				var style = '.t3-megamenu.animate .mega > .mega-dropdown-menu, .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {';
 				style += 'transition-duration: ' + mm_duration + 'ms;';

@@ -14,12 +14,16 @@
 
 class T3MenuMegamenuTpl {
 	static function beginmenu ($vars) {
-		$menu = $vars['menu'];
-		$animation = $menu->getParam ('navigation_animation', '');
-		$animation_duration = $menu->getParam ('navigation_animation_duration', 0);
-		$cls = ' class="t3-megamenu'.($animation ? ' animate '.$animation : '').'"';
-		$data = $animation && $animation_duration ? ' data-duration="'.$animation_duration.'"' : '';
-		return "<div$cls$data>";
+		$menu          = $vars['menu'];
+		$animation     = $menu->getParam('navigation_animation', '');
+		$responsive    = $menu->getParam('responsive', 1);
+
+		$anim_duration = $menu->getParam ('navigation_animation_duration', 0);
+		$cls           = ' class="t3-megamenu'.($animation ? ' animate '.$animation : '').'"';
+		$data          = $animation && $anim_duration ? ' data-duration="'.$anim_duration.'"' : '';
+		$data          = $data . ($responsive ? ' data-responsive="true"' : '');
+
+		return "<div $cls $data>";
 	}
 
 	static function endmenu ($vars) {
