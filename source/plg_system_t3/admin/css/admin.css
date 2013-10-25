@@ -490,7 +490,7 @@ select, input[type="file"] {
 --------*/
 /* Radio Button Groups ---*/
 fieldset.radio {
-  width: 40px;
+  width: 80px;
   height: 24px;
   white-space: nowrap;
   overflow: hidden;
@@ -503,13 +503,13 @@ fieldset.radio input[type=radio] {
 }
 
 fieldset.radio label {
-  width: 40px;
-  height: 24px;
+  width: 86px;
+  height: 30px;
   overflow: hidden;
   display: inline-block;
   float: none;
-  background: #4CD964;
-  border-radius: 24px;
+  background: #51a351;
+  border-radius: 3px;
   position: relative;
   z-index: 1;
   text-transform: uppercase;
@@ -525,7 +525,7 @@ fieldset.radio label {
 fieldset.radio label:nth-child(4),
 fieldset.radio label.on {
   background: #eee;
-  left: -24px;
+  left: -40px;
 }
 
 fieldset.radio label:before {
@@ -534,9 +534,9 @@ fieldset.radio label:before {
   position: absolute;
   top: 0;
   right: 0;
-  border-radius: 24px;
+  border-radius: 3px;
   border: 1px solid #ddd;
-  width: 22px;
+  width: 40px;
   height: 22px;
   background: #fff;
 }
@@ -548,7 +548,7 @@ fieldset.radio label.on:before {
 }
 
 fieldset.radio label.active {
-  width: 24px;
+  width: 40px;
   z-index: 0;
 }
 
