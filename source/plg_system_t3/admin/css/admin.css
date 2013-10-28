@@ -40,10 +40,15 @@ a:hover, a:active, a:focus {
   text-decoration: underline;
 }
 
+.dropdown-menu {
+  border-radius: 0 0 3px 3px;
+}
+
 .dropdown-menu li > a:hover,
 .dropdown-menu li > a:focus,
 .dropdown-submenu:hover > a {
   background: #4f4f4f;
+  text-shadow: none !important;
 }
 
 .dropdown-menu a:visited {
@@ -101,19 +106,25 @@ h1.page-title small {
 
 /* Toolbar ---*/
 #t3-admin-toolbar {
+  margin: 0;
+  padding: 20px;
+}
+
+#t3-admin-toolbar button {
+  top: 0;
 }
 
 #t3-admin-toolbar .btn-group {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 #t3-admin-toolbar #t3-admin-tb-save {
-  margin-right: 15px;
-  margin-left: 15px;
+  margin-right: 20px;
+  margin-left: 0;
 }
 
 #t3-admin-toolbar #t3-admin-tb-close {
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .btn [class^="icon-"],
@@ -217,7 +228,7 @@ h1.page-title small {
 ---------------------------------------------------*/
 .t3-admin-inline-nav {
   margin: 15px -20px 20px;
-  padding: 20px 0 0;
+  padding: 0;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -233,18 +244,23 @@ h1.page-title small {
 }
 
 .t3-admin-inline-nav .nav-tabs > li > a {
-  padding: 10px 20px;
+  padding: 20px 20px;
   color: #666;
-  text-shadow: 0 1px 1px #fff;
+  text-shadow: none;
+  border: 0 !important;
 }
 
 .t3-admin-inline-nav .nav-tabs > li > a:hover {
   color: #333;
+  background: none;
+  border: 0 !important;
 }
 
 .t3-admin-inline-nav .nav-tabs > .active > a,
 .t3-admin-inline-nav .nav-tabs > .active > a:hover {
   color: #333;
+  background: none;
+  border: 0 !important;
 }
 
 
@@ -639,30 +655,54 @@ fieldset select {
   line-height: 22px;
   background-image: none;
   text-shadow: none;
+  outline: none !important;
+  background-color: #f2f2f2;
+  border-color: #ccc;
+  border-bottom-width: 2px; 
+  position: relative;
+}
+
+.btn:hover, .btn:focus {
+  background-color: #e6e6e6;
+  border-color: #b1b1b1;
+  box-shadow: none;
+}
+
+.btn.active, .btn:active {
+  box-shadow: none;
+  border-bottom-width: 1px; 
+  top: 1px;
+}
+
+.btn-group > .btn + .dropdown-toggle {
+  box-shadow: none;
 }
 
 .btn-primary,
 button.btn-primary {
-  color: #ffffff;
+  color: #fff;
   text-shadow: none;
   background-color: #07b;
-  border-color: #00466e;
+  border-color: #0067a2;
 }
 
 .btn-primary:hover,
 button.btn-primary:hover, {
-  color: #ffffff;
-  background-color: #0077bb;
+  color: #fff;
+  background: #0067a2;
+  border-color: #005a8d;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 button.btn-primary:active {
-  background-color: #008ada;
+  background: #0067a2;
 }
 
 .btn-success {
   background: #690;
+  border-color: #5c8b00;
+  box-shadow: none;
 }
 
 .btn-success:hover,
@@ -671,13 +711,17 @@ button.btn-primary:active {
 .btn-success.active,
 .btn-success.disabled,
 .btn-success[disabled] {
-  border-color: #690;
-  background: #74a318;
+  border-color: #4b7100;
+  background: #5c8b00;
 }
 
 .btn-success.disabled,
 .btn-success[disabled] {
   opacity: .5;
+}
+
+.btn-group.open .btn-success.dropdown-toggle {
+  background: #5c8b00;
 }
 
 
