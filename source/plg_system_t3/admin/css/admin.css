@@ -893,24 +893,15 @@ button.btn-primary:active {
 
 /* CHANGED INDICATOR
 -------------------- */
-.t3-admin-nav .nav-tabs > .t3-changed > a::after,
-.t3-control-group.t3-changed .t3-control-label label::before {
-  display: inline-block;
-  content: "\f071"; 
-  font-family: "FontAwesome";
-  font-size: 12px;
-  margin-left: 5px;
-  color: #ffbb00;
-  vertical-align: middle;
+.t3-control-group.t3-changed .t3-control-label label,
+.t3-admin-nav .nav-tabs > .t3-changed > a {
+  color: #f80;
 }
 
-.t3-control-group.t3-changed .t3-control-label label::before {
-  margin-left: 0;
-  margin-right: 5px;
-  color: #ffbb00;
-  font-size: 14px;
-}
 
+.t3-admin-nav .nav-tabs > .t3-changed > a {
+  border-bottom-color: #f80;
+}
 
 /* GLOBAL BAGDE
 -------------------- */
