@@ -82,6 +82,7 @@ hr {
 
 .subhead {
   margin-bottom: 0;
+  text-shadow: 0;
 }
 
 
@@ -144,9 +145,9 @@ h1.page-title small {
 --------- */
 .t3-admin-header {
   background: #eee;
-  padding: 0 20px;
-  border-top: 1px solid #fff;
+  padding: 0;
   line-height: normal;
+  text-shadow: none;
 }
 
 
@@ -184,7 +185,7 @@ h1.page-title small {
 }
 
 .t3-admin-nav .nav-tabs > li > a {
-  color: #666;
+  color: #555;
   border-radius: 0;
   border: 0;
   border-bottom: 3px solid transparent;
@@ -455,8 +456,8 @@ select, input[type="file"] {
   width: auto !important;
   display: block;
   float: left;
-  margin: 15px 40px 15px 0;
-  padding: 0;
+  margin: 0;
+  padding: 20px;
   border: 0;
   background: none;
   box-shadow: none;
