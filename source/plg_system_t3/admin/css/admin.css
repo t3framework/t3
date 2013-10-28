@@ -492,14 +492,22 @@ select, input[type="file"] {
 /* Radio
 --------*/
 /* Radio Button Groups ---*/
+fieldset.radio * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
 fieldset.radio {
   width: 86px;
   height: 30px;
   white-space: nowrap;
   overflow: hidden;
   display: block;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
   position: relative;
+  border: 1px solid #aaa;
 }
 
 fieldset.radio input[type=radio] {
@@ -511,7 +519,7 @@ fieldset.radio label {
   height: 30px;
   overflow: hidden;
   display: block;
-  border-radius: 3px;
+  border-radius: 5px;
   position: absolute;
   top: 0;
   left: 0;
@@ -540,8 +548,8 @@ fieldset.radio label:before {
 
   text-indent: 0;
   color: white;
-  padding: 6px 14px;
-  font-weight: bold;
+  padding: 6px 18px;
+  font-weight: normal;
 }
 
 /* use after as switch */
@@ -550,10 +558,9 @@ fieldset.radio label:after {
   display: block;
   position: absolute;
   top: 0;
-  border-radius: 3px;
-  border: 1px solid #ddd;
+  border-radius: 5px;
   width: 32px;
-  height: 28px;
+  height: 30px;
   background: #fff;
 
   -webkit-transition: all 0.5s;
@@ -576,7 +583,7 @@ fieldset.radio label.active {
 /* off background */
 fieldset.radio label:nth-child(2):before,
 fieldset.radio label.off:before {
-  background: #eee;
+  background: #ccc;
   left: 100%;
 }
 
@@ -588,7 +595,7 @@ fieldset.radio label.off.active:before {
 /* on background */
 fieldset.radio label:nth-child(4):before,
 fieldset.radio label.on:before {
-  background: #51a351;
+  background: #690;
   left: -100%;
 }
 
@@ -655,9 +662,25 @@ button.btn-primary:active {
   background-color: #008ada;
 }
 
-.btn-success:hover {
-  border-color: #479047;
+.btn-success {
+  background: #690;
 }
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  border-color: #690;
+  background: #74a318;
+}
+
+.btn-success.disabled,
+.btn-success[disabled] {
+  opacity: .5;
+}
+
 
 /* Textarea 
 ------------*/
