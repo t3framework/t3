@@ -511,13 +511,18 @@ select, input[type="file"] {
 --------*/
 /* Radio Button Groups ---*/
 fieldset.radio {
-  width: 86px;
+  width: 90px;
   height: 30px;
   white-space: nowrap;
   overflow: hidden;
   display: block;
   padding: 0 !important;
   position: relative;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 fieldset.radio input[type=radio] {
@@ -525,19 +530,18 @@ fieldset.radio input[type=radio] {
 }
 
 fieldset.radio label {
-  width: 86px;
+  width: 90px;
   height: 30px;
   overflow: hidden;
   display: block;
   border-radius: 3px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -1px;
+  left: -1px;
   z-index: 1;
   text-transform: uppercase;
   background: url(../images/blank.gif) no-repeat transparent;
   text-indent: -999em;
-  box-shadow: inset 0 0 1px 1px #aaa;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -550,7 +554,7 @@ fieldset.radio label:before {
   position: absolute;
   top: 0;
   border-radius: 3px;
-  width: 86px;
+  width: 90px;
   height: 30px;
 
   -webkit-transition: all 0.5s;
@@ -574,7 +578,7 @@ fieldset.radio label:after {
   top: 0;
   border-radius: 3px;
   border: 1px solid #aaa;
-  width: 32px;
+  width: 34px;
   height: 28px;
   background: #fff;
 
@@ -604,7 +608,7 @@ fieldset.radio label.off:before {
 
 fieldset.radio label.active:nth-child(2):before,
 fieldset.radio label.off.active:before {
-  left: 5%;
+  left: 0%;
 }
 
 /* on background */
@@ -616,7 +620,7 @@ fieldset.radio label.on:before {
 
 fieldset.radio label.active:nth-child(4):before,
 fieldset.radio label.on.active:before {
-  left: -5%;
+  left: -0%;
 }
 
 
