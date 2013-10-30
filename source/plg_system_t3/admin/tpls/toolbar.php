@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
 
 	<?php if($input->getCmd('view') == 'style'): ?>
 	<div id="t3-admin-tb-save" class="btn-group">
-		<button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i><?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
+		<button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i>  <?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
 		<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 			<span class="caret"></span>&nbsp;
 		</button>
@@ -31,7 +31,7 @@ defined('_JEXEC') or die;
 	<?php endif; ?>
 
 	<div id="t3-admin-tb-recompile" class="btn-group">
-		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i><i class="icon-loading"></i><?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
+		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i><i class="icon-loading"></i>  <?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
 	</div>
 
 	<div id="t3-admin-tb-themer" 
@@ -42,7 +42,7 @@ defined('_JEXEC') or die;
 			class="btn hasTip" 
 			title="<?php echo JText::_('T3_TOOLBAR_THEMER') ?>::<?php echo JText::_('T3_TOOLBAR_THEMER_DESC') ?>">
 			
-			<i class="icon-magic"></i><?php echo JText::_('T3_TOOLBAR_THEMER') ?>
+			<i class="icon-magic"></i>  <?php echo JText::_('T3_TOOLBAR_THEMER') ?>
 		</button>
 	</div>
 
@@ -53,21 +53,21 @@ defined('_JEXEC') or die;
 		<button 
 			class="btn hasTip" 
 			title="<?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>::<?php echo JText::_('T3_TOOLBAR_MEGAMENU_DESC') ?>">
-				<i class="icon-sitemap"></i><?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>
+				<i class="icon-sitemap"></i>  <?php echo JText::_('T3_TOOLBAR_MEGAMENU') ?>
 		</button>
 	</div>
 	
 	<?php if(version_compare(JVERSION, '3.0', 'ge') && $input->getCmd('view') == 'template'): ?>
 	<div id="t3-admin-tb-copy" class="btn-group <?php echo $input->getCmd('view') ?>" data-toggle="modal" data-target="#collapseModal">
-		<button class="btn"><i class="icon-copy"></i><?php echo JText::_('T3_TOOLBAR_COPY') ?></button>
+		<button class="btn"><i class="icon-copy"></i>  <?php echo JText::_('T3_TOOLBAR_COPY') ?></button>
 	</div>
 	<?php endif; ?>
 
 	<div id="t3-admin-tb-close" class="btn-group <?php echo $input->getCmd('view') ?>">
-		<button class="btn"><i class="icon-remove"></i><?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
+		<button class="btn"><i class="icon-remove"></i>  <?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
 	</div>
 	<div id="t3-admin-tb-help" class="btn-group <?php echo $input->getCmd('view') ?>">
-		<button class="btn"><i class="icon-question-sign"></i><?php echo JText::_('T3_TOOLBAR_HELP') ?></button>
+		<button class="btn"><i class="icon-question-sign"></i>  <?php echo JText::_('T3_TOOLBAR_HELP') ?></button>
 	</div>
 
 </div>

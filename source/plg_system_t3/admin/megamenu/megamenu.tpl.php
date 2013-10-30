@@ -69,13 +69,13 @@ defined('_JEXEC') or die;
 
         <div class="btn-toolbar">
           <div class="btn-group">
-            <button id="t3-admin-mm-save" class="btn btn-success"><i class="icon-save"></i><?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
+            <button id="t3-admin-mm-save" class="btn btn-success"><i class="icon-save"></i>  <?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
           </div>
           <div class="btn-group">
-            <button id="t3-admin-mm-delete" class="btn btn-danger"><i class="icon-trash"></i><?php echo JText::_('T3_TOOLBAR_DELETE') ?></button>
+            <button id="t3-admin-mm-delete" class="btn btn-danger"><i class="icon-trash"></i>  <?php echo JText::_('T3_TOOLBAR_DELETE') ?></button>
           </div>
           <div class="btn-group">
-            <button id="t3-admin-mm-close" class="btn"><i class="icon-remove"></i><?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
+            <button id="t3-admin-mm-close" class="btn"><i class="icon-remove"></i>  <?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
           </div> 
         </div>
 
@@ -137,7 +137,7 @@ defined('_JEXEC') or die;
               <ul>
                 <li>
                   <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ICON'), '::', JTexT::_('T3_NAVIGATION_MM_ICON_DESC') ?>">
-                    <a href="http://fortawesome.github.io/Font-Awesome/#icons-web-app" target="_blank"><i class="icon-search"></i><?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
+                    <a href="http://fortawesome.github.io/Font-Awesome/#icons-web-app" target="_blank"><i class="icon-search"></i>  <?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
                   </label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
@@ -277,8 +277,7 @@ defined('_JEXEC') or die;
 
           <div class="toolbox-actions-group hidden">
             <button class="t3-admin-tog-fullscreen toolbox-action toolbox-togglescreen" data-action="toggleScreen" data-iconfull="icon-resize-full" data-iconsmall="icon-resize-small"><i class="icon-resize-full"></i></button>
-
-            <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i><?php echo JTexT::_('T3_NAVIGATION_MM_SAVE') ?></button>
+            <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i>  <?php echo JTexT::_('T3_NAVIGATION_MM_SAVE') ?></button>
             <!--button class="btn btn-danger toolbox-action toolbox-resetConfig"><i class="icon-undo"></i><?php echo JTexT::_('T3_NAVIGATION_MM_RESET') ?></button-->
           </div>
 

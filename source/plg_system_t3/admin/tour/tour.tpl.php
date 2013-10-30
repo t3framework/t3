@@ -29,17 +29,17 @@ defined('_JEXEC') or die;
 		    <p>Are you ready to discover the best framework for Joomla! yet? Click the buttons below to start your travel and having fun!</p>
 		</div>
 		<div class="t3-admin-tour-intro-action clearfix">
-			<button class="t3-admin-tour-starttour btn btn-large btn-primary pull-left"><i class="icon-signin"></i>Start the tour!</button>	
-			<button class="t3-admin-tour-endtour btn btn-large pull-right"><i class="icon-ok"></i>End</button>	
+			<button class="t3-admin-tour-starttour btn btn-large btn-primary pull-left"><i class="icon-signin"></i>  Start the tour!</button>	
+			<button class="t3-admin-tour-endtour btn btn-large pull-right"><i class="icon-ok"></i>  End</button>	
 		</div>
 	</div>	
 
 	<div id="t3-admin-tour-controls" class="t3-admin-tour-controls clearfix">
 		<div class="btn-group  pull-left">
-			<button class="t3-admin-tour-prevtourstep btn btn-primary"><i class="icon-caret-left"></i>Prev</button>	
-			<button class="t3-admin-tour-nexttourstep btn btn-primary">Next<i class="icon-caret-right" style="margin-left: 5px; margin-right: 0;"></i></button>
+			<button class="t3-admin-tour-prevtourstep btn btn-primary"><i class="icon-caret-left"></i>  Prev</button>	
+			<button class="t3-admin-tour-nexttourstep btn btn-primary">Next  <i class="icon-caret-right" style="margin-left: 5px; margin-right: 0;"></i></button>
 		</div>
-		<button class="t3-admin-tour-endtour btn pull-right"><i class="icon-ok"></i>End</button>	
+		<button class="t3-admin-tour-endtour btn pull-right"><i class="icon-ok"></i>  End</button>	
 		<div class="t3-admin-tour-count"><span class="t3-admin-tour-idx"></span>/<span class="t3-admin-tour-total"></span></div>
 	</div>
 </div>

@@ -35,7 +35,7 @@ $user = JFactory::getUser();
     <div class="controls t3-controls">
       <div class="btn-toolbar">
         <button type="button" class="btn" onclick="$$('.chk-menulink').each(function(el) { el.checked = !el.checked; });">
-          <i class="icon-checkbox-partial"></i> <?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>
+          <i class="icon-checkbox-partial"></i>  <?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>
         </button>
       </div>
       <div id="menu-assignment">
