@@ -50,9 +50,8 @@ a:hover, a:active, a:focus {
   text-decoration: underline;
 }
 
-
 .dropdown-menu {
-  border-radius: 0 0 3px 3px;
+  border-radius: 0;
 }
 
 .dropdown-menu li > a:hover,
@@ -220,7 +219,7 @@ h1.page-title small {
 }
 
 .t3-admin-nav .nav-tabs > li {
-  margin-bottom: 0;
+  margin-bottom: -1px;
   margin-right: 20px;
   margin-left: 20px;
   position: relative;
@@ -392,6 +391,7 @@ input[type="tel"], input[type="color"], .uneditable-input,
 .input-append .add-on, .input-prepend .add-on, .input-append .btn, .input-prepend .btn {
   height: 22px;
   line-height: 22px;
+  border-radius: 0;
 }
 
 select, input[type="file"] {
@@ -579,7 +579,7 @@ fieldset.radio {
   padding: 0 !important;
   position: relative;
   border: 1px solid #aaa;
-  border-radius: 3px;
+  border-radius: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -594,7 +594,7 @@ fieldset.radio label {
   height: 30px;
   overflow: hidden;
   display: block;
-  border-radius: 3px;
+  border-radius: 0;
   position: absolute;
   top: -1px;
   left: -1px;
@@ -613,7 +613,7 @@ fieldset.radio label:before {
   display: block;
   position: absolute;
   top: 0;
-  border-radius: 3px;
+  border-radius: 0;
   width: 90px;
   height: 30px;
 
@@ -636,7 +636,7 @@ fieldset.radio label:after {
   display: block;
   position: absolute;
   top: 0;
-  border-radius: 3px;
+  border-radius: 0;
   border: 1px solid #aaa;
   width: 34px;
   height: 28px;
@@ -722,8 +722,8 @@ fieldset select {
   outline: none !important;
   background-color: #f2f2f2;
   border-color: #ccc;
-  border-bottom-width: 2px; 
   position: relative;
+  border-radius: 0 !important;
 }
 
 .btn:hover, .btn:focus {
@@ -734,8 +734,6 @@ fieldset select {
 
 .btn.active, .btn:active {
   box-shadow: none;
-  border-bottom-width: 1px; 
-  top: 1px;
 }
 
 .btn-group > .btn + .dropdown-toggle {
@@ -919,7 +917,7 @@ button.btn-primary:active {
   border: 1px solid #000;
   padding: 10px 20px;
   max-width: 400px;
-  border-radius: 3px;
+  border-radius: 0;
   box-shadow: 1px 2px 2px rgba(0,0,0,.25);
 }
 
@@ -951,7 +949,7 @@ button.btn-primary:active {
 }
 
 .progress-mini .bar {
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 
@@ -965,7 +963,18 @@ button.btn-primary:active {
 
 .t3-admin-nav .nav-tabs > .t3-changed > a {
   border-bottom-color: #f80;
+  border-bottom-width: 1px;
+  padding-bottom: 14px;
 }
+
+.t3-admin-nav .nav-tabs > .t3-changed > a:hover,
+.t3-admin-nav .nav-tabs > .t3-changed > a:active,
+.t3-admin-nav .nav-tabs > .t3-changed > a:focus,
+.t3-admin-nav .nav-tabs > .active.t3-changed > a {
+  border-bottom-width: 5px;
+  padding-bottom: 10px;
+}
+
 
 /* GLOBAL BAGDE
 -------------------- */
@@ -1008,7 +1017,7 @@ button.btn-primary:active {
 
 /* @group Single Chosen */
 .chzn-container-single .chzn-single {
-  border-radius: 2px;
+  border-radius: 0;
   border: 1px solid #ccc;
   box-shadow: none;
   height: 23px;
@@ -1058,7 +1067,7 @@ button.btn-primary:active {
 }
 
 .chzn-container-single .chzn-drop {
-  border-radius        : 0 0 2px 2px;
+  border-radius: 0;
   box-shadow: 0 2px 3px rgba(0,0,0,.15);
 }
 /* @end */
@@ -1197,7 +1206,7 @@ button.btn-primary:active {
   -o-box-sizing: border-box;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 3px;
+  border-radius: 0;
   font-size: 12px;
 }
 
@@ -1236,15 +1245,15 @@ button.btn-primary:active {
 
 /* Preview IMG ---*/
 .t3-admin-prd-preview {
-  border: 1px solid #eee;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 0;
   padding: 10px;
   margin-bottom: 20px;
 }
 
 .t3-admin-prd-preview img {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 /* Overview ---*/
@@ -1297,7 +1306,7 @@ button.btn-primary:active {
   padding: 6px 12px;
   background: #e6e6e6;
   border: 0;
-  border-radius: 3px;
+  border-radius: 0;
   color: #555;
   display: block;
 }
@@ -1358,7 +1367,6 @@ button.btn-primary:active {
 --------------------------------------------------*/
 .icon-out-2::before,
 .icon-checkbox-partial::before {
-  font-family: 'IcoMoon' !important;
 }
 
 #t3-admin-toolbar .btn .caret {
@@ -1389,15 +1397,17 @@ button.btn-primary:active {
 .tooltip {
   font-size: 12px;
   text-shadow: none;
+  border-radius: 0;
 }
 
 .tooltip-inner {
   max-width: 200px;
   padding: 12px;
+  border-radius: 0;
 }
 
 .tooltip-inner > strong {
-  font-size: 14px;
+  font-size: 12px;
   display: block;
   margin-bottom: 5px;
 }

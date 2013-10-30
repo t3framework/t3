@@ -84,7 +84,7 @@
 .t3-admin-layout-section {
   margin: 0 0 12px;
   padding: 12px 12px 0;
-  border-radius: 3px;
+  border-radius: 0;
   background: #f2f2f2;
 }
 
@@ -103,7 +103,7 @@
   margin-bottom: 12px;
   font-size: 12px;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: 0;
   text-align: left;
   overflow: hidden;
   position: relative;
@@ -266,12 +266,14 @@
 .t3-admin-layout-ncolumns .btn {
   font-size: 12px;
   background: #eee;
-  border-color: #ddd;
+  border-color: #ccc;
+  border-radius: 0 !important;
 }
 
 .t3-admin-layout-ncolumns .btn.active,
 .t3-admin-layout-ncolumns .btn:active {
-  background: #ddd;
+  background: #ccc;
+  border-color: #aaa;
 }
 
 
