@@ -51,14 +51,14 @@
 /* Layout Edit Tabs
 --------------------*/
 .t3-admin-layout-row-device {
-  padding: 15px 30px;
+  padding: 15px 20px;
   background-color: #fff;
   border-bottom: 1px dotted #ccc;
 }
 
 .t3-admin-layout-row-mode .t3-admin-layout-reset-all {
   margin-top: -40px;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .t3-admin-layout-row-device .t3-admin-layout-reset-position,
@@ -122,7 +122,7 @@
 
 .t3-admin-layout-pos:hover {
   border: 1px solid #aaa;
-  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  box-shadow: 3px 3px 0 rgba(0,0,0,.15);
 }
 
 
@@ -174,7 +174,6 @@
   border: 1px solid #ddd;
   border-top: none;
   border-right: none;
-  border-radius: 0 3px 0 3px;
   color: #666;
   background: #eee;
   display: none;
@@ -198,7 +197,6 @@
   border: 1px solid #ddd;
   border-top: none;
   border-right: none;
-  border-radius: 0 3px 0 3px;
   color: #555;
   background: #eee;
   display: none;
@@ -359,7 +357,7 @@
   padding: 10px;
 }
 
-.t3-admin-layout-preview .logo h1 {
+.t3-admin-layout-preview .logo span {
   font-size: 24px;
   margin: 0;
   line-height: normal;
