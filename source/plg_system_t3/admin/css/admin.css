@@ -23,6 +23,16 @@ body {
   color: #555;
   line-height: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Need to redefine cause of Default Joomla Style */
+.subhead-collapse,
+.container-main,
+#content-box {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #555;
 }
 
 a {
@@ -39,6 +49,7 @@ a:hover, a:active, a:focus {
   outline: none;
   text-decoration: underline;
 }
+
 
 .dropdown-menu {
   border-radius: 0 0 3px 3px;
@@ -87,27 +98,47 @@ hr {
 
 .subhead {
   margin-bottom: 0;
-  text-shadow: 0;
+  text-shadow: none;
 }
 
 
 /* Title & Toolbar
 /* ---------------- */
+.header {
+  background: #333;
+  padding: 10px 0;
+}
+
+.header .container-logo {
+  text-align: left;
+}
+
+.header .container-logo .logo {
+  margin-left: 20px;
+}
 
 /* Page Tittle ---*/
 .page-title {
+  text-shadow: none;
+  line-height: 32px;
+}
+
+.page-title h1 {
+  line-height: normal;
 }
 
 h1.page-title small {
   color: rgba(255,255,255,.7);
   font-size: 85%;
+  display: inline-block;
+  margin-left: 10px;
 }
 
 
 /* Toolbar ---*/
 #t3-admin-toolbar {
   margin: 0;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 #t3-admin-toolbar button {
@@ -199,16 +230,16 @@ h1.page-title small {
   color: #555;
   border-radius: 0;
   border: 0;
-  border-bottom: 3px solid transparent;
+  border-bottom: 5px solid transparent;
   margin: 0;
-  padding: 12px 0;
+  padding: 15px 0 10px;
   font-weight: bold;
   text-align: center;
 }
 
 .t3-admin-nav .nav-tabs > li > a:hover {
   border: 0;
-  border-bottom: 3px solid #07b;
+  border-bottom: 5px solid #07b;
   color: #000;
   background: transparent;
 }
@@ -219,7 +250,7 @@ h1.page-title small {
   color: #000;
   font-weight: bold;
   background: transparent;
-  border-bottom: 3px solid #07b;
+  border-bottom: 5px solid #07b;
 }
 
 
@@ -251,14 +282,14 @@ h1.page-title small {
 }
 
 .t3-admin-inline-nav .nav-tabs > li > a:hover {
-  color: #333;
+  color: #555;
   background: none;
   border: 0 !important;
 }
 
 .t3-admin-inline-nav .nav-tabs > .active > a,
 .t3-admin-inline-nav .nav-tabs > .active > a:hover {
-  color: #333;
+  color: #555;
   background: none;
   border: 0 !important;
 }
@@ -368,6 +399,27 @@ select, input[type="file"] {
   line-height: 32px;
 }
 
+/* Focus State */
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus, 
+input[type="date"]:focus, 
+input[type="month"]:focus, 
+input[type="time"]:focus, 
+input[type="week"]:focus, 
+input[type="number"]:focus, 
+input[type="email"]:focus, 
+input[type="url"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="color"]:focus, 
+.uneditable-input:focus {
+  border-color: #07b;
+  box-shadow: none;
+}
+
 
 /* Legends
 ---------- */
@@ -431,12 +483,14 @@ select, input[type="file"] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  text-shadow: 0 1px 1px #fff;
+  -o-box-sizing: border-box;
+  text-shadow: none;
   text-align: right;
 }
 
 .t3-admin-form .form-horizontal .t3-control-label > label {
   font-weight: bold;
+  display: inline-block;
 }
 
 .t3-admin-form .form-horizontal .t3-controls {
@@ -445,6 +499,7 @@ select, input[type="file"] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
   margin-left: 22%;
   background: #fff;
   border-left: 1px solid #e6e6e6;
@@ -473,7 +528,7 @@ select, input[type="file"] {
   display: block;
   float: left;
   margin: 0;
-  padding: 20px;
+  padding: 15px 0 15px 20px;
   border: 0;
   background: none;
   box-shadow: none;
@@ -491,6 +546,10 @@ select, input[type="file"] {
   padding: 8px 0 0 0;
 }
 
+.t3-admin-form .form-horizontal .t3-admin-header .t3-control-label > label {
+  font-weight: normal;
+}
+
 .t3-admin-form .form-horizontal .t3-admin-header .controls {
   margin: 0 0 0 10px;
   width: auto !important;
@@ -499,6 +558,7 @@ select, input[type="file"] {
   padding: 0;
   background: none;
 }
+
 
 .t3-admin-form .form-horizontal .t3-admin-header .inputbox,
 .t3-admin-form .form-horizontal .t3-admin-header .input {
@@ -854,7 +914,7 @@ button.btn-primary:active {
 }
 
 .tip-wrap .tip {
-  background: #333;
+  background: #555;
   color: #fff;
   border: 1px solid #000;
   padding: 10px 20px;
@@ -941,7 +1001,7 @@ button.btn-primary:active {
   border-top: 0;
   top: 32px;
   /*left: 0;*/
-  box-shadow: 0 4px 5px rgba(0,0,0,.15);
+  box-shadow: none;
 }
 /* @end */
 
@@ -950,7 +1010,7 @@ button.btn-primary:active {
 .chzn-container-single .chzn-single {
   border-radius: 2px;
   border: 1px solid #ccc;
-  box-shadow: 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
+  box-shadow: none;
   height: 23px;
   line-height: 24px;
   padding: 4px 0 4px 8px;
@@ -1066,9 +1126,7 @@ button.btn-primary:active {
 
 /* @group Active  */
 .chzn-container-active .chzn-single {
-  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
-  -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
-  box-shadow        : 0 0 5px rgba(0,0,0,.3);
+  box-shadow: none;
   border: 1px solid #07b;
 }
 
@@ -1085,12 +1143,12 @@ button.btn-primary:active {
 }
 
 .chzn-container-active .chzn-choices {
-  box-shadow        : 0 0 5px rgba(0,0,0,.3);
+  box-shadow: none;
   border: 1px solid #07b;
 }
 
 .chzn-container-active .chzn-choices .search-field input {
-  color: #333 !important;
+  color: #555 !important;
 }
 /* @end */
 
@@ -1216,6 +1274,8 @@ button.btn-primary:active {
 
 .t3-admin-overview-body h4 {
   font-size: 18px;
+  font-weight: normal;
+  color: #999;
 }
 
 .t3-admin-overview-features {
@@ -1227,7 +1287,7 @@ button.btn-primary:active {
 .t3-admin-overview-features li {
   display: block !important;
   float: left;
-  margin: 0 5px 10px 0 !important;
+  margin: 0 10px 10px 0 !important;
   padding: 0 !important;
   line-height: normal !important;
 }
@@ -1238,7 +1298,8 @@ button.btn-primary:active {
   background: #e6e6e6;
   border: 0;
   border-radius: 3px;
-  color: #333;
+  color: #555;
+  display: block;
 }
 
 .t3-admin-overview-features li a:hover,
@@ -1273,7 +1334,7 @@ button.btn-primary:active {
 .updater .btn:hover,
 .updater .btn:active,
 .updater .btn:focus {
-  color: #333;
+  color: #555;
   background: #fff;
 }
 
@@ -1324,6 +1385,26 @@ button.btn-primary:active {
   content: "\f06e";
 }
 
+/* Tooltips font is too small */
+.tooltip {
+  font-size: 12px;
+  text-shadow: none;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 12px;
+}
+
+.tooltip-inner > strong {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.tooltip-inner > strong + br {
+  display: none;
+}
 
 /* -------------------------------------------------
 /* Responsive
