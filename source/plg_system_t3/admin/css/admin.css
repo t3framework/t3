@@ -160,7 +160,6 @@ h1.page-title small {
 .btn [class^="icon-"],
 .btn [class*=" icon-"] {
   line-height: 1;
-  margin-right: 5px;
   font-size: 14px;
 }
 
