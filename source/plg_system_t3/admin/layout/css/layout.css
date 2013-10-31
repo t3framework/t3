@@ -121,8 +121,7 @@
 }
 
 .t3-admin-layout-pos:hover {
-  border: 1px solid #aaa;
-  box-shadow: 0 0 0 2px rgba(0,0,0,.15);
+  border: 1px solid #07b;
 }
 
 
@@ -153,7 +152,6 @@
   left: 50%;
   bottom: 3px;
   text-align: center;
-  text-shadow: 1px 1px 1px #FFF;
   border-radius: 10px;
   margin-left: -40px;
 }
@@ -214,7 +212,7 @@
 /* Resize 2 ---*/
 .t3-admin-layout-rzhandle {
   display: block;
-  cursor: e-resize;
+  cursor: ew-resize;
   width: 7px;
   right: -11px;
   top: 0;
@@ -314,12 +312,15 @@
 -------------------- */
 .block-component {
   height: 100px;
-  border-color: #c1c382;
   background: #feffde;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
   box-flex: 1;
+}
+
+.block-message {
+  background: #feffde;
 }
 
 .block-sidebar-1,
@@ -328,8 +329,7 @@
 .block-sidebar-4,
 .block-sidebar-5 {
   height: 100px;
-  border-color: #dfedc3;
-  background: #f4f9ea;
+  background: #eef3e2;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -398,8 +398,7 @@
 
 /* Pos Active ---*/
 .pos-active {
-  border: 1px solid #aaa;
-  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  border: 1px solid #07b;
 }
 
 .t3-admin-layout-mode-m .pos-active .t3-admin-layout-edit {
@@ -407,7 +406,7 @@
 }
 
 .pos-active:hover {
-  border-color: #aaa;
+  border-color: #07b;
 }
 
 /* Pos Hidden ---*/
@@ -420,7 +419,6 @@
   padding: 0 12px 0 42px;
   margin-bottom: 10px;
   background: #ddd;
-  border-radius: 3px;
   position: relative;
 }
 
@@ -438,14 +436,12 @@
   left: 0;
   bottom: 0;
   text-align: center;
-  border-radius: 3px 0 0 3px;
 }
 
 .pos-hidden {
   display: inline-block;
   border: 1px solid #ccc;
   background: #eee;
-  border-radius: 3px;
   padding: 1px 10px;
   font-size: 12px;
   margin-right: 5px;
@@ -460,8 +456,7 @@
 }
 
 .pos-hidden:hover {
-  border: 1px solid #999;
-  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  border: 1px solid #07b;
 }
 
 .t3-hide {

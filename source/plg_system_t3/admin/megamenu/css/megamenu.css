@@ -47,10 +47,10 @@ body.bd {
 
 .bd .t3-admin-header {
   border: 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #ccc;
   padding-left: 20px;
   padding-right: 20px;
-  background: #f2f2f2;
+  background: #e6e6e6;
 }
 
 .t3-admin-header .btn-toolbar {
@@ -63,7 +63,6 @@ body.bd {
 #t3-admin-mm-intro {
   float: left;
   padding: 20px 200px 20px 20px;
-  text-shadow: 0 1px 1px white;
 }
 
 #t3-admin-mm-intro h3 {
@@ -83,7 +82,6 @@ body.bd {
 ---------------------*/
 #t3-admin-mm-tb {
   float: left;
-  text-shadow: 0 1px 1px #fff;
 }
 
 #t3-admin-megamenu .admin-inline-toolbox {
@@ -171,11 +169,8 @@ body.bd {
 }
 
 .t3-megamenu .row-fluid [class*="span"] {
-  border: 1px dotted #cccccc;
+  border: 1px dotted #ccc;
   border-radius: 0;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
   background: white;
 }
 
@@ -191,14 +186,11 @@ body.bd {
 
 .t3-megamenu .nav > li > a,
 .t3-megamenu .nav > li > span {
-  border: 1px solid #dddddd;
-  padding: 6px 10px;
+  border: 1px solid #ccc;
+  padding: 7px 10px;
   background: #f2f2f2;
   font-weight: bold;
   border-radius: 0;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
   display: block;
 }
 
@@ -219,23 +211,20 @@ body.bd {
 }
 
 .t3-megamenu .dropdown-menu {
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   padding: 10px;
   margin-top: 10px;
   border-radius: 0;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
   min-width: 200px;
   background: #f2f2f2;
-  box-shadow: none;
+  box-shadow: 3px 3px 0 #e6e6e6;
   z-index: 99;
   /* Fixed overlap with the Joomla Toolbar */
 }
 
 .t3-megamenu .dropdown-menu .dropdown-menu {
   margin-top: 0;
-  margin-left: 11px;
+  margin-left: 10px;
 }
 
 .t3-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
@@ -254,13 +243,11 @@ body.bd {
 .t3-megamenu .mega-nav li > a,
 .t3-megamenu .mega-nav li > span {
   padding: 5px 20px 5px 10px;
-  border: 1px dotted #dddddd;
+  border: 1px dotted #ccc;
+  background: #fff;
   border-radius: 0;
   font-size: 12px;
-  color: #999999;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
+  color: #999;
 }
 
 
@@ -272,12 +259,9 @@ body.bd {
 }
 
 .t3-megamenu .mega-group-ct {
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   padding: 10px;
   margin: 10px 0 10px 0;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
   border-radius: 0;
   background: #f2f2f2;
 }
@@ -293,9 +277,6 @@ body.bd {
   cursor: default;
   position: relative;
   margin: 0;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
 }
 
 .t3-megamenu .t3-module:after {
@@ -310,9 +291,9 @@ body.bd {
   text-align: center;
   font-size: 10px;
   text-transform: uppercase;
-  color: #999999;
+  color: #999;
   border-radius: 0;
-  border: 1px dotted #dddddd;
+  border: 1px solid #dddddd;
   border-width: 1px 0 0 1px;
 }
 
@@ -381,8 +362,8 @@ body.bd {
 .t3-megamenu [class*="span"].hover .t3-module:after,
 .t3-megamenu [class*="span"].selected .t3-module:after {
   border-style: solid;
-  border-color: #666666;
-  background: #ffbb00;
+  border-color: #07b;
+  background: #07b;
   color: #fff;
 }
 
@@ -399,7 +380,8 @@ body.bd {
 /* Open Item ---*/
 .t3-megamenu .nav > li.open > a,
 .t3-megamenu .open > a {
-  background: #333333 !important;
+  background: #07b !important;
+  border-color: #07b !important;
   color: #fff !important;
   text-shadow: none !important;
 }
@@ -415,18 +397,15 @@ body.bd {
 .t3-megamenu ul[class*="level"] > li > a.hover,
 .t3-megamenu ul[class*="level"] > li > span.hover,
 .t3-megamenu .row-fluid [class*="span"].hover {
-  background: #fffbf0 !important;
-  color: #333333 !important;
-  border: 1px solid #666666 !important;
-  box-shadow: none;
-  border-radius: 0;
+  border-style: solid !important;
+  border-color: #07b !important;
 }
 
 .t3-megamenu ul[class*="level"] > li > a:hover,
 .t3-megamenu ul[class*="level"] > li > a:focus,
 .t3-megamenu ul[class*="level"] > li > a:active {
-  background: #fffbf0 !important;
-  color: #333333 !important;
+  background: #fff!important;
+  color: #333 !important;
   text-shadow: none !important;
 }
 
@@ -434,7 +413,7 @@ body.bd {
 .t3-megamenu ul[class*="level"] > li > a:hover > .caret,
 .t3-megamenu ul[class*="level"] > li > a:focus > .caret,
 .t3-megamenu ul[class*="level"] > li > a:active > .caret {
-  border-top-color: #333333 !important;
+  border-top-color: #333 !important;
 }
 
 /* The caret */
@@ -446,12 +425,8 @@ body.bd {
 
 /* Selected Item ---*/
 .t3-megamenu .selected {
-  background: #fffbf0 !important;
-  color: #333333 !important;
-  border: 1px solid #666666 !important;
-  box-shadow: none;
-  border-radius: 0;
-  text-shadow: none !important;
+  border-style: solid !important;
+  border-color: #07b !important;
 }
 
 /* The caption ---*/
@@ -467,9 +442,11 @@ body.bd {
 #t3-admin-megamenu .dropdown-menu a {
   white-space: normal;
 }
+
 #t3-admin-megamenu .row-fluid [class*="span"] {
   margin-left: 2.12766%;
 }
+
 #t3-admin-megamenu .row-fluid [class*="span"]:first-child {
   margin-left: 0;
 }

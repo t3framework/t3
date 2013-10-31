@@ -278,10 +278,11 @@ h1.page-title small {
 
 .t3-admin-inline-nav .nav-tabs > li > a {
   padding: 15px 0;
-  color: #666;
+  color: #555;
   text-shadow: none;
   border: 0 !important;
   position: relative;
+  font-weight: bold;
 }
 
 .t3-admin-inline-nav .nav-tabs > li > a:hover {
@@ -775,6 +776,8 @@ fieldset select {
 
 .btn.active, .btn:active {
   box-shadow: none;
+  background-color: #ccc;
+  border-color: #aaa;
 }
 
 .btn-group > .btn + .dropdown-toggle {
