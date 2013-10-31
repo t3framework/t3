@@ -420,6 +420,7 @@ input[type="tel"], input[type="color"], .uneditable-input,
   height: 22px;
   line-height: 22px;
   border-radius: 0;
+  font-size: 14px;
 }
 
 select, input[type="file"] {
@@ -446,6 +447,18 @@ input[type="color"]:focus,
 .uneditable-input:focus {
   border-color: #07b;
   box-shadow: none;
+}
+
+
+/* Options */
+.popover select {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.popover select option {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 
@@ -1444,6 +1457,12 @@ button.btn-primary:active {
 .tooltip-inner > strong + br {
   display: none;
 }
+
+/* Popover */
+.popover {
+  border-radius: 0;
+}
+
 
 /* -------------------------------------------------
 /* Responsive
