@@ -828,6 +828,20 @@ button.btn-primary:active {
 }
 
 
+.btn-danger {
+  background: #ee372a;
+  border-color: #c62e23;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active {
+  background: #c62e23;
+  border-color: #b42a20;
+}
+
+
 /* Textarea 
 ------------*/
 .t3-admin-form .form-horizontal textarea {
