@@ -13,59 +13,52 @@
 
 // Global values
 // --------------------------------------------------
-@T3BaseImagePath:      "../../../images";
-@T3ThemeImagePath:      "@{T3BaseImagePath}/themes/dark";
+@t3-base-img-path:              "../../../images";
+@t3-theme-img-path:             "@{t3-base-img-path}/themes/dark";
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @grayDarker;
-@textColor:             @grayLighter;
+@body-bg:                       @gray-darker;
+@text-color:                    @gray-lighter;
 
 
 // Links
 // -------------------------
-@linkColor:             lighten(@blue, 20%);
+@link-color:                    lighten(@blue, 20%);
 
 
 // Typography
 // -------------------------
-@baseFontSize:          14px;
-@baseFontFamily:        sans-serif;
-@headingsFontFamily:    sans-serif; 
-@headingsColor:         @grayLighter; // empty to use BS default, @textColor
+@font-size-base:                14px;
+@font-family-base:              sans-serif;
+@headings-font-family:          sans-serif; 
 
 
 // Navbar
 // -------------------------
-@navbarLinkBackgroundActive:      @blue;
+@navbar-default-link-active-bg: @blue;
 
 
 // Buttons
 // -------------------------
-@btnBackground:                     @grayDark;
-@btnBackgroundHighlight:            lighten(@grayDark, 10%);
-@btnBorder:                         darken(@grayDark, 10%);
+@btn-default-bg:                 @gray-dark;
+@btn-default-border:             darken(@gray-dark, 10%);
 
-@btnPrimaryBackground:              @blue;
-@btnPrimaryBackgroundHighlight:     lighten(@blue, 10%);
+@btn-primary-bg:                 @blue;
 
 
 // Forms
 // -------------------------
-@inputBackground:               @grayDark;
-@inputBorder:                   @gray;
-@formActionsBackground:         @grayDarker;
-
+@input-bg:                       @gray-dark;
+@input-border:                   @gray;
 
 
 // Hr border color
 // -------------------------
-@hrBorder:                @grayDark;
+@hr-border:                      @gray-dark;
 
 
 //
 // T3 TEMPLATE STYLES
 // --------------------------------------------------
-@t3-border-color:   @grayDark;
-@T3NavbarInverted:      1;
-@T3SpotlightsInverted:  1;
+@t3-border-color:                @gray-dark;

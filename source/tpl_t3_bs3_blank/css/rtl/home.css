@@ -95,8 +95,8 @@
   height: 19px;
   position: absolute;
   top: -1px;
-  left: 50%;
-  margin-left: -19px;
+  right: 50%;
+  margin-right: -19px;
 }
 @media (max-width: 767px) {
   .home .t3-sl-1 .jumbotron,

@@ -95,8 +95,8 @@
   height: 19px;
   position: absolute;
   top: -1px;
-  left: 50%;
-  margin-left: -19px;
+  right: 50%;
+  margin-right: -19px;
 }
 @media (max-width: 767px) {
   .home .t3-sl-1 .jumbotron,
@@ -138,4 +138,19 @@
   .home .t3-sl-4 .jumbotron p {
     font-size: 14px;
   }
+}
+
+.home .t3-sl-1 {
+  margin-top: -1px;
+}
+.home .t3-sl-1 .jumbotron {
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#ff0000), to(#cc0000));
+  background-image: -webkit-radial-gradient(circle, #ff0000, #cc0000);
+  background-image: -moz-radial-gradient(circle, #ff0000, #cc0000);
+  background-image: radial-gradient(circle, #ff0000, #cc0000);
+  background-repeat: no-repeat;
+  color: #eeeeee;
+}
+.home .t3-sl-1 .jumbotron h1 {
+  color: #ffffff;
 }

@@ -1,25 +1,30 @@
 
 
+.home {
+  color: #555555;
+}
 .home .jumbotron {
   background-color: transparent;
+  position: relative;
+}
+.home .jumbotron h1,
+.home .jumbotron h2,
+.home .jumbotron h3 {
+  color: #333333;
 }
 .home .t3-sl-1 {
   padding: 0;
+  background: #eeeeee;
+  border-bottom: 1px solid #dddddd;
 }
 .home .t3-sl-1 .jumbotron {
-  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#fff),to(#eeeeee));
-  background-image: -webkit-radial-gradient(circle,#fff,#eeeeee);
-  background-image: -moz-radial-gradient(circle,#fff,#eeeeee);
-  background-image: radial-gradient(circle,#fff,#eeeeee);
-  background-repeat: no-repeat;
-  border-bottom: 1px solid #ddd;
+  border-radius: 0;
 }
 .home .t3-sl-1 .jumbotron h1 {
   font-weight: bold;
 }
 .home .t3-sl-1 .jumbotron .btn-large {
-  font-size: 24.5px;
-  padding: 18px 44.5px;
+  margin-top: 20px;
 }
 .home .t3-sl-1 .t3-social {
   background: #eeeeee;
@@ -50,7 +55,7 @@
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
   text-align: center;
 }
 .home .t3-sl-3 p,
@@ -75,18 +80,17 @@
 }
 .home .t3-sl-5 {
   background: #eeeeee;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron {
   margin-bottom: 0;
 }
 .home .t3-sl-5 .jumbotron .btn-large {
-  font-size: 24.5px;
-  padding: 18px 44.5px;
+  margin-top: 20px;
 }
 .home .t3-sl-5 .section-arrow-alt {
-  background: url("../../../images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
+  background: url("../images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
   width: 37px;
   height: 19px;
   position: absolute;
@@ -140,14 +144,13 @@
   margin-top: -1px;
 }
 .home .t3-sl-1 .jumbotron {
-  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#ffa033),to(#f80));
-  background-image: -webkit-radial-gradient(circle,#ffa033,#f80);
-  background-image: -moz-radial-gradient(circle,#ffa033,#f80);
-  background-image: radial-gradient(circle,#ffa033,#f80);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffa033), to(#ff8800));
+  background-image: -webkit-radial-gradient(circle, #ffa033, #ff8800);
+  background-image: -moz-radial-gradient(circle, #ffa033, #ff8800);
+  background-image: radial-gradient(circle, #ffa033, #ff8800);
   background-repeat: no-repeat;
-  color: ;
+  color: #eeeeee;
 }
 .home .t3-sl-1 .jumbotron h1 {
-  color: #fff;
+  color: #ffffff;
 }
-

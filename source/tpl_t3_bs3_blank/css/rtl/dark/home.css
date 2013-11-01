@@ -15,7 +15,7 @@
 .home .t3-sl-1 {
   padding: 0;
   background: #eeeeee;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #333333;
 }
 .home .t3-sl-1 .jumbotron {
   border-radius: 0;
@@ -55,7 +55,7 @@
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #333333;
   text-align: center;
 }
 .home .t3-sl-3 p,
@@ -80,7 +80,7 @@
 }
 .home .t3-sl-5 {
   background: #eeeeee;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #333333;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron {
@@ -95,8 +95,8 @@
   height: 19px;
   position: absolute;
   top: -1px;
-  left: 50%;
-  margin-left: -19px;
+  right: 50%;
+  margin-right: -19px;
 }
 @media (max-width: 767px) {
   .home .t3-sl-1 .jumbotron,

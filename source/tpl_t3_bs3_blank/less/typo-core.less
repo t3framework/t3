@@ -254,15 +254,15 @@ dd {
 .row-odd {
   padding: 5px;
   width: 99%;
-  border-bottom: 1px solid @tableBorder;
+  border-bottom: 1px solid @table-border-color;
 }
 
 .row-odd {
-  background-color: @tableBackground;
+  background-color: @table-bg;
 }
 
 .row-even {
-  background-color: @tableBackgroundAccent;
+  background-color: @table-bg-accent;
 }
 
 .blog-row-rule,
@@ -293,7 +293,7 @@ dd {
   line-height: 18px;
   text-align: left;
   vertical-align: middle;
-  border-top: 1px solid @tableBorder;
+  border-top: 1px solid @table-border-color;
   margin-left: 0;
 }
 
@@ -301,7 +301,7 @@ dd {
 .list-striped dd,
 .row-striped .row,
 .row-striped .row-fluid {
-  border-bottom: 1px solid @tableBorder;
+  border-bottom: 1px solid @table-border-color;
   padding: 10px 15px;
 }
 
@@ -309,14 +309,14 @@ dd {
 .list-striped dd:nth-child(odd),
 .row-striped .row:nth-child(odd),
 .row-striped .row-fluid:nth-child(odd) {
-  background-color: @tableBackgroundAccent;
+  background-color: @table-bg-accent;
 }
 
 .list-striped li:hover,
 .list-striped dd:hover,
 .row-striped .row:hover,
 .row-striped .row-fluid:hover {
-  background-color: @tableBackgroundHover;
+  background-color: @table-bg-hover;
 }
 
 .row-striped .row-fluid {
@@ -359,8 +359,7 @@ dd {
   text-align: left;
   vertical-align: middle;
   margin-left: 0;
-  border: 1px solid @tableBorder;
-  .border-radius(4px);
+  border: 1px solid @table-border-color;
 }
 
 
