@@ -132,8 +132,8 @@
 }
 
 .t3-admin-tour-popover {
-  width: auto;
   width: 350px;
+  max-width: 350px;
   font-size: 14px;
 
   background-color: #eee;
@@ -181,12 +181,11 @@
 
 .t3-admin-tour-count {
   line-height: 18px;
-  padding: 4px 8px;
+  padding: 6px 8px;
   font-size: 12px;
   display: inline-block;
   border: 1px solid #ddd;
   background: #eee;
-  border-radius: 5px;
   box-shadow: inset 0 0 1px rgba(0,0,0,.2);
   margin-left: 5px;
   color: #999;

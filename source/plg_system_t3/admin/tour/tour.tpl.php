@@ -25,21 +25,21 @@ defined('_JEXEC') or die;
 	<div class="t3-admin-tour-overlay"></div>
 	<div class="t3-admin-tour-intro">
 		<div class="t3-admin-tour-intro-msg">
-		    <h1>Welcome to T3!</h1>
-		    <p>Are you ready to discover the best framework for Joomla! yet? Click the buttons below to start your travel and having fun!</p>
+		    <h1><?php echo JTexT::_('T3_TOUR_INTRO_1') ?></h1>
+		    <p><?php echo JTexT::_('T3_TOUR_INTRO_2') ?></p>
 		</div>
 		<div class="t3-admin-tour-intro-action clearfix">
-			<button class="t3-admin-tour-starttour btn btn-large btn-primary pull-left"><i class="icon-signin"></i>  Start the tour!</button>	
-			<button class="t3-admin-tour-endtour btn btn-large pull-right"><i class="icon-ok"></i>  End</button>	
+			<button class="t3-admin-tour-starttour btn btn-large btn-primary pull-left"><i class="icon-signin"></i>  <?php echo JTexT::_('T3_TOUR_CTRL_START') ?></button>	
+			<button class="t3-admin-tour-endtour btn btn-large pull-right"><i class="icon-ok"></i>  <?php echo JTexT::_('T3_TOUR_CTRL_END') ?></button>	
 		</div>
 	</div>	
 
 	<div id="t3-admin-tour-controls" class="t3-admin-tour-controls clearfix">
 		<div class="btn-group  pull-left">
-			<button class="t3-admin-tour-prevtourstep btn btn-primary"><i class="icon-caret-left"></i>  Prev</button>	
-			<button class="t3-admin-tour-nexttourstep btn btn-primary">Next  <i class="icon-caret-right" style="margin-left: 5px; margin-right: 0;"></i></button>
+			<button class="t3-admin-tour-prevtourstep btn btn-primary"><i class="icon-caret-left"></i>  <?php echo JTexT::_('T3_TOUR_CTRL_PREV') ?></button>	
+			<button class="t3-admin-tour-nexttourstep btn btn-primary"><?php echo JTexT::_('T3_TOUR_CTRL_NEXT') ?>  <i class="icon-caret-right"></i></button>
 		</div>
-		<button class="t3-admin-tour-endtour btn pull-right"><i class="icon-ok"></i>  End</button>	
+		<button class="t3-admin-tour-endtour btn pull-right"><i class="icon-ok"></i>  <?php echo JTexT::_('T3_TOUR_CTRL_END') ?></button>	
 		<div class="t3-admin-tour-count"><span class="t3-admin-tour-idx"></span>/<span class="t3-admin-tour-total"></span></div>
 	</div>
 </div>

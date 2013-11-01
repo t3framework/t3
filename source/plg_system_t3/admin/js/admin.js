@@ -64,17 +64,17 @@ var T3Admin = window.T3Admin || {};
 				return false;
 			});
 
-			$('#t3-admin-tb-themer').on('click', function(){
+			$('#t3-admin-tb-themer button').on('click', function(){
 				if(!T3Admin.themermode){
 					
-					$('#t3-admin-tb-megamenu').popover('hide');
+					$('#t3-admin-tb-megamenu button').popover('hide');
 					T3Admin.tbmmid = 0;
 					
 					$(this).popover('show');
 
 					clearTimeout(T3Admin.tbthemerid);
 					T3Admin.tbthemerid = setTimeout(function(){
-						$('#t3-admin-tb-themer').popover('hide');
+						$('#t3-admin-tb-themer button').popover('hide');
 					}, 2000);
 				} else {
 					$(this).popover('hide');
@@ -89,16 +89,16 @@ var T3Admin = window.T3Admin || {};
 			});
 		
 
-			$('#t3-admin-tb-megamenu').on('click', function(){
+			$('#t3-admin-tb-megamenu button').on('click', function(){
 				
 				if($('#jform_params_navigation_type').val() != 'megamenu' && !T3Admin.tbmmid){
 					
-					$('#t3-admin-tb-themer').popover('hide');
+					$('#t3-admin-tb-themer button').popover('hide');
 					$(this).popover('show');
 
 					clearTimeout(T3Admin.tbmmid);
 					T3Admin.tbmmid = setTimeout(function(){
-						$('#t3-admin-tb-megamenu').popover('hide');
+						$('#t3-admin-tb-megamenu button').popover('hide');
 						T3Admin.tbmmid = 0;
 					}, 3000);
 				} else {
