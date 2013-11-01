@@ -133,7 +133,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '8',
-			element : "#jform_params_devmode label:first",
+			element : "#jform_params_devmode",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -143,7 +143,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '9',
-			element : "#jform_params_themermode label:first",
+			element : "#jform_params_themermode",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -153,7 +153,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '10',
-			element : "#jform_params_responsive label:first",
+			element : "#jform_params_responsive",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -279,7 +279,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '22',
-			element : "#jform_params_mm_enable label:first",
+			element : "#jform_params_mm_enable",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
