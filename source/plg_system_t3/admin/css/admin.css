@@ -766,6 +766,7 @@ fieldset select {
   border-color: #ccc;
   position: relative;
   border-radius: 0 !important;
+  box-shadow: none;
 }
 
 .btn:hover, .btn:focus {
@@ -793,7 +794,9 @@ button.btn-primary {
 }
 
 .btn-primary:hover,
-button.btn-primary:hover, {
+button.btn-primary:hover,
+.btn-primary:focus,
+button.btn-primary:focus {
   color: #fff;
   background: #0067a2;
   border-color: #005a8d;
@@ -829,7 +832,6 @@ button.btn-primary:active {
 .btn-group.open .btn-success.dropdown-toggle {
   background: #5c8b00;
 }
-
 
 .btn-danger {
   background: #ee372a;
@@ -1257,8 +1259,7 @@ button.btn-primary:active {
 
 /* t3-admin-overview-block ---*/
 .t3-admin-overview-block {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
+  background: #f2f2f2;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -1303,7 +1304,8 @@ button.btn-primary:active {
 }
 
 /* Preview IMG ---*/
-.t3-admin-prd-preview {
+.t3-admin-prd-preview,
+.tpl-preview {
   border: 1px solid #ccc;
   border-radius: 0;
   padding: 10px;
@@ -1380,30 +1382,19 @@ button.btn-primary:active {
 
 /* Updater ---*/
 .updater {
-  color: #ffffff;
-  background: #690;
-  border-color: #578200;
+  border-left: 3px solid #690;
 }
 
 .updater.outdated {
-  color: #ffffff;
-  background-color: #d62229;
-  border-color: #bd362f;
+  border-left: 3px solid #ee372a;
 }
 
 .updater .btn {
-  color: #fff;
-  font-size: 12px;
-  background: transparent;
-  border: 1px solid #fff;
-  font-weight: bold;
 }
 
 .updater .btn:hover,
 .updater .btn:active,
 .updater .btn:focus {
-  color: #555;
-  background: #fff;
 }
 
 
@@ -1420,6 +1411,41 @@ button.btn-primary:active {
   margin-bottom: 20px;
 }
 
+.t3-admin-assignment [class*="span"] {
+  margin: 0;
+}
+
+.t3-admin-assignment #menu-assignment {
+  margin-left: -10px;
+}
+
+.t3-admin-assignment .thumbnail {
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 14px;
+  border: 5px solid #f2f2f2;
+  background: #f2f2f2;
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 10px;
+  padding: 10px;
+}
+
+.t3-admin-assignment h5 {
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.t3-admin-assignment .small {
+  font-size: 12px;
+  padding: 3px 0;
+}
+
+.t3-admin-assignment input[type="checkbox"] {
+  margin: 3px 5px 0 0;
+}
 
 
 /* Fix for Joomla! Default Admin Template

@@ -21,7 +21,6 @@
 .t3-admin-layout-preview {
   width: 720px;
   float: left;
-  padding: 12px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -355,12 +354,11 @@
   max-width: none;
   margin-bottom: 12px;
   padding: 10px;
+  font-size: 24px;
 }
 
-.t3-admin-layout-preview .logo span {
-  font-size: 24px;
-  margin: 0;
-  line-height: normal;
+.t3-admin-layout-preview .logo a {
+  color: #333;
 }
 
 /* Powered by ---*/
@@ -373,6 +371,7 @@
   display: block;
   color: #999;
   padding: 10px;
+  font-size: 12px;
 }
 
 .poweredby a strong {

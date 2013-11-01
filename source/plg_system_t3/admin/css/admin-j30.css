@@ -22,14 +22,7 @@
 
 /* Menu Assignment
 ----------------------------------------------------*/
-.t3-admin-assignment .thumbnail {
-  padding: 10px;
-}
-
-.t3-admin-assignment h5 {
-  margin: 0 0 5px;
-  color: #333;
-}
+.t3-admin-assignment .thumbnail {}
 
 
 /* Responsive

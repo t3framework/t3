@@ -150,7 +150,9 @@ div#menu-assignment ul.menu-links {
   clear: both;
 }
 
-.t3-admin-assignment li.span3 {margin-bottom: 20px;}
+.t3-admin-assignment li.span3 {
+  margin-bottom: 20px;
+}
 
 .t3-admin-assignment label.checkbox {
   padding: 3px 0;
