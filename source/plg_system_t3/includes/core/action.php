@@ -46,7 +46,7 @@ class T3Action
 		$path = JFactory::getApplication()->input->getString ('s');
 
 		T3::import ('core/less');
-		$t3less = new T3Less;
+		$t3less = T3Less::getInstance();
 		$css = $t3less->getCss($path);
 
 		header("Content-Type: text/css");
@@ -62,7 +62,7 @@ class T3Action
 			T3Less::compileAll();
 			$result['successful'] = JText::_('T3_MSG_COMPILE_SUCCESS');
 		}catch(Exception $e){
-			$result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->getMessage());
+			$result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->__toString());
 		}
 		
 		echo json_encode($result);

@@ -15,7 +15,7 @@
 // No direct access
 defined('_JEXEC') or die();
 /**
- * T3Less class
+ * T3Bot class
  * Auto trigger
  *
  * @package T3

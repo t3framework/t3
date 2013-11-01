@@ -18,9 +18,6 @@ defined('_JEXEC') or die();
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
-if (!class_exists('lessc')) {
-	T3::import('lessphp/lessc.inc');
-}
 T3::import('core/path');
 
 /**
@@ -28,12 +25,51 @@ T3::import('core/path');
  *
  * @package T3
  */
-class T3Less extends lessc
+class T3Less
 {
+	function __construct(){
+
+		$less_lib_path = T3_ADMIN_PATH . '/includes/lessphp/Less';
+		$files = JFolder::files($less_lib_path, '.php', false, true);
+		foreach($files as $file){
+			include_once $file;
+		}
+
+		$files = JFolder::files($less_lib_path . '/Node', '.php', false, true);
+		usort($files,function($a, $b){
+			return strlen($a) - strlen($b);
+		});
+		foreach($files as $file){
+			include_once $file;
+		}
+
+		$files = JFolder::files($less_lib_path . '/Node/Mixin', '.php', false, true);
+		usort($files,function($a, $b){
+			return strlen($a) - strlen($b);
+		});
+		foreach($files as $file){
+			include_once $file;
+		}
+
+		foreach(JFolder::files($less_lib_path . '/Exception', '.php', false, true) as $file){
+			include_once $file;
+		}
+
+
+		$files = JFolder::files($less_lib_path . '/Visitor', '.php', false, true);
+		usort($files,function($a, $b){
+			return strlen($a) - strlen($b);
+		});
+		foreach($files as $file){
+			include_once $file;
+		}
+	}
+
 	/**
 	 * Singleton constructor
 	 * @return T3Less
 	 */
+
 	public static function getInstance()
 	{
 		static $t3less = null;
@@ -133,10 +169,18 @@ class T3Less extends lessc
 	 */
 	function compileCss($path, $topath = '')
 	{
+		@ini_set('pcre.backtrack_limit', '2M');
+
+		$env    = new Less_Environment();
+		$parser = new Less_Parser($env);
+		$env->setCompress(false);
+
+
 		$app    = JFactory::getApplication();
 		$tpl    = T3_TEMPLATE;
 		$theme  = $app->getUserState('vars_theme');
 		$tofile = null;
+		$root   = JUri::root(true);
 
 		//pattern
 		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
@@ -171,6 +215,9 @@ class T3Less extends lessc
 
 		// get file content
 		$content = JFile::read($realpath);
+
+		//remove vars.less
+		$content = preg_replace($rimportvars, '', $content);
 		
 		// remove comments? - we should keep comment for rtl flip
 		//$content = preg_replace($rcomment, '', $content);
@@ -184,16 +231,18 @@ class T3Less extends lessc
 			if (is_file(T3_TEMPLATE_PATH . '/less/' . $themepath)) {
 				$arr[] = $themepath;
 				$arr[] = '';
+
+				$content = $content . "\n@import \"$themepath\"; \n\n";
 			}
 		}
 		
 		// variables & mixin
 		$vars       = $this->getVars();
+		$output     = $content;
 		$importdirs = array();
 		
 		// compile chunk
 		$import = false;
-		$output = '';
 		foreach ($arr as $s) {
 			if ($import) {
 				$import = false;
@@ -206,24 +255,11 @@ class T3Less extends lessc
 					continue;
 				}
 				
-				// process import file
-				$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
-				if (preg_match($rexcludepath, $url)){
-					$importcontent = preg_replace($rimportvars, '', $importcontent);
-				}
-
 				// remember this path when lookup for import
-				if (preg_match($rimport, $importcontent)) {
-					$importdirs[] = dirname(JPATH_ROOT . '/' . $url);
-				}
-				
-				$output .= "#$kfilepath{content: \"$url\";}\n$importcontent\n\n";
+				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
+
 			} else {
 				$import = true;
-				$s      = trim($s);
-				if ($s) {
-					$output .= "#$kfilepath{content: \"$path\";}\n$s\n\n";
-				}
 			}
 		}
 		
@@ -248,7 +284,7 @@ class T3Less extends lessc
 					}
 
 					// process import file
-					$url = preg_replace('/\/less\/(themes\/)?/', '/less/rtl/', $url);
+					$url = preg_replace('@/less/(themes/)?@', '/less/rtl/', $url);
 					
 					if (!is_file(JPATH_ROOT . '/' . $url)){
 						continue;
@@ -262,10 +298,10 @@ class T3Less extends lessc
 
 					// remember this path when lookup for import
 					if (preg_match($rimport, $importcontent)) {
-						$importdirs[] = dirname(JPATH_ROOT . '/' . $url);
+						$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
 					}
 
-					$rtlcontent .= "#$kfilepath-rtl{content: \"$url\";}\n$importcontent\n\n";
+					$rtlcontent .= "\n$importcontent\n\n";
 				} else {
 					$import = true;
 				}
@@ -276,7 +312,8 @@ class T3Less extends lessc
 			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
-				$rtlcontent .= "#$kfilepath-rtl{content: \"$rtlpath\";}\n$importcontent\n\n";
+				$rtlcontent   .= "\n$importcontent\n\n";
+				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = $root . '/' . dirname($rtlpath) . '/';
 			}
 
 			// rtl theme
@@ -285,41 +322,25 @@ class T3Less extends lessc
 				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-					$rtlcontent .= "#$kfilepath-rtl{content: \"$rtlthemepath\";}\n$importcontent\n\n";
+					$rtlcontent   .= "\n$importcontent\n\n";
+					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = $root . '/' . dirname($rtlthemepath) . '/';
 				}
 			}
 
 			if($rtlcontent){
-				$output = $output . "#$krtlsep{content: \"separator\";}\n\n$rtlcontent\n\n";
+				$output = $output . "\n#$krtlsep{content: \"separator\";}\n\n$rtlcontent\n\n";
 			}
 		}
 
-		$importdirs[] = dirname($realpath);
-		$importdirs[] = T3_TEMPLATE_PATH . '/less/';
-		$this->setImportDir($importdirs);
-		$this->setPreserveComments(true);
-		
-		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
+		// last one
+		$importdirs[T3_TEMPLATE_PATH . '/less/'] = T3_TEMPLATE_URL . '/css/';
 
 		// compile less to css using lessphp
-		$output = $this->compile($source);
-
-		$arr    = preg_split($rsplitbegin . $kfilepath . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-		$output = '';
-		$file   = '';
-		$isfile = false;
-		foreach ($arr as $s) {
-			if ($isfile) {
-				$isfile  = false;
-				$file    = $s;
-				$relpath = $topath ? T3Path::relativePath(dirname($topath), dirname($file)) : 
-									JURI::base(true) . '/' . dirname($file);
-			} else {
-				$output .= ($file ? T3Path::updateUrl($s, $relpath) : $s) . "\n\n";
-				$isfile = true;
-			}
-		}
-
+		$parser->SetImportDirs($importdirs);
+		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
+		$parser->parse($source);
+		$output = $parser->getCss();
+		
 		// remove the dupliate clearfix at the beggining if not bootstrap.css file
 		if (strpos($path, $tpl . '/less/bootstrap.less') === false) {
 			$arr = preg_split($rsplitbegin . $kvarsep . $rsplitend, $output);
@@ -333,6 +354,7 @@ class T3Less extends lessc
 		} else {
 			$output = preg_replace($rsplitbegin . $kvarsep . $rsplitend, '', $output);
 		}
+
 
 		if ($is_rtl) {
 			
@@ -616,5 +638,6 @@ class T3Less extends lessc
 				}
 			}
 		}
+		
 	}
 }
