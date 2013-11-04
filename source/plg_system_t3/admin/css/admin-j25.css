@@ -32,6 +32,7 @@ body {
 #toolbar-box {
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 div#toolbar-box div.m {

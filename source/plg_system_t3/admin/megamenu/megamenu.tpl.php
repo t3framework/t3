@@ -287,9 +287,9 @@ defined('_JEXEC') or die;
       <div id="t3-admin-mm-container" class="navbar clearfix"></div>
       <div class="ajaxloader">
         <h5><?php echo JText::_('T3_NAVIGATION_MM_LOADING') ?></h5>
-        <div class="progress progress-striped active">
+        <!--div class="progress progress-striped active">
           <div class="bar"></div>
-        </div>
+        </div-->
       </div>
     </div>
     <div id="ajax-message" class="ajax-message alert">

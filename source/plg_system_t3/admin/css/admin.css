@@ -138,6 +138,7 @@ h1.page-title small {
 #t3-admin-toolbar {
   margin: 0;
   padding: 10px 20px;
+  position: relative;
 }
 
 #t3-admin-toolbar button {
@@ -169,7 +170,7 @@ h1.page-title small {
 
 /* Loading */
 #t3-admin-tb-recompile .icon-loading,
-#t3-admin-tb-recompile.loading .icon-check {
+#t3-admin-tb-recompile.loading .icon-code {
   display: none;
 }
 
@@ -1000,18 +1001,35 @@ button.btn-primary:active {
 
 /* PROGRESS BAR
 --------------- */
-.progress-mini {
-  display: inline-block;
-  width: 45px;
-  margin: 3px 0 0 10px;
-  height: 25px;
-  vertical-align: top;
-  border-radius: 0;
+.t3-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 0%;
+  opacity: 0;
+  height: 4px;
+  background: #f80;
+  pointer-events: none;
 }
 
-.progress-mini .bar {
-  border-radius: 0;
+.t3-progress.t3-anim-slow {
+  -webkit-transition: width 5s ease-in;
+  transition: width 5s ease-in;
+
+  opacity: 1;
+  z-index: 100;
 }
+
+.t3-progress.t3-anim-finish {
+  -webkit-transition: width 0.5s ease-in, opacity 0.5s 0.5s;
+  transition: width 0.5s ease-in, opacity 0.5s 0.5s;
+  
+  width: 100% !important;
+  opacity: 0;
+  z-index: 100;
+}
+
 
 
 /* CHANGED INDICATOR

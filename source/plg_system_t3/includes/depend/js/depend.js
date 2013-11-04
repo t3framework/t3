@@ -180,12 +180,9 @@
 				ajaxs[name] = {};
 
 				var inst = this;
-				ajaxs[name].indicator = this.elmsFrom(name).on('change.less', function(e){
+				this.elmsFrom(name).on('change.less', function(e){
 					inst.loadajax(this);
-				}).after('' +
-					'<div class="progress progress-striped progress-mini active">' +
-						'<div class="bar" style="width: 100%"></div>' +
-					'</div>').next().hide();
+				});
 			}
 
 			ajaxs[name].info = info;
@@ -217,17 +214,66 @@
 				ctrl.elms = [];
 			}
 
-			if(ctrl.indicator.next('.chzn-container').length){
-				ctrl.indicator.insertAfter(ctrl.indicator.next('.chzn-container'));
+			if(!this.progElm){
+
 			}
 
-			if(ctrl.indicator.next('#t3-admin-layout-clone-btns').length){
-				ctrl.indicator.insertAfter($('#t3-admin-layout-clone-btns'));	
+			if(!this.progElm){
+				this.progElm = $('.t3-progress');
+
+				if(!this.progElm.length){
+					this.progElm = $('<div class="t3-progress"></div>')
+				}
+
+				this.progElm.appendTo(document.body);
+
+				var placed = $('#toolbar-box');
+				if(!placed.length){
+					placed = $('#t3-admin-toolbar');
+				}
+
+				if(placed.length){
+					this.progElm.appendTo(placed);
+				}
 			}
 
-			ctrl.indicator.show();
+			//progress bar
+			//show it first
+			if($.support.transition){
+				form.progElm.removeClass('t3-anim-slow t3-anim-finish').css('width', '');
+				setTimeout(function(){
+					form.progElm.addClass('t3-anim-slow').css('width', 50 + Math.floor(Math.random() * 20) + '%');
+				});
+			} else {
+				form.progElm.stop(true).css({
+					width: '0%',
+					display: 'block'
+				}).animate({
+					width: 50 + Math.floor(Math.random() * 20) + '%'
+				});
+			}
+
 			$.get(info.url, { jvalue: form.valuesFrom(form.elmsFrom(name))[0], _: $.now() }, function(rsp){
-				ctrl.indicator.hide();
+				
+				//progress bar
+				if($.support.transition){
+					
+					form.progElm.removeClass('t3-anim-slow').addClass('t3-anim-finish')
+					.one($.support.transition.end, function () {
+						setTimeout(function(){
+							if(form.progElm.hasClass('t3-anim-finish')){
+								$(form.progElm).removeClass('t3-anim-finish');
+							}
+						}, 1000);
+					});
+
+				} else {
+					$(form.progElm).stop(true).animate({
+						width: '100%'
+					}, function(){
+						$(form.progElm).hide();
+					});
+				}
 
 				var parts = ctrl.info.func.split('.'),
 					fobj = window;

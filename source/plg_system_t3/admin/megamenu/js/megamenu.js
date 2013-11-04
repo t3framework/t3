@@ -882,7 +882,28 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 						beforeSend: function(){
 							clearTimeout(lid);
+
+							//progress bar
 							$('#t3-admin-megamenu').addClass('loading');
+							if($.support.transition){
+								T3AdminMegamenu.progElm
+									.removeClass('t3-anim-slow t3-anim-finish')
+									.css('width', '');
+
+								setTimeout(function(){
+									T3AdminMegamenu.progElm
+										.addClass('t3-anim-slow')
+										.css('width', 50 + Math.floor(Math.random() * 20) + '%');
+								});
+							} else {
+								T3AdminMegamenu.progElm.stop(true).css({
+									width: '0%',
+									display: 'block'
+								}).animate({
+									width: 50 + Math.floor(Math.random() * 20) + '%'
+								});
+							}
+
 						}
 					}).done(function(rsp){
 						T3AdminMegamenu.t3megamenu(rsp);
@@ -892,6 +913,30 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						clearTimeout(lid);
 						lid = setTimeout(function(){
 							$('#t3-admin-megamenu').removeClass('loading');
+
+							//progress bar
+							if($.support.transition){
+								
+								T3AdminMegamenu.progElm
+									.removeClass('t3-anim-slow')
+									.addClass('t3-anim-finish')
+									.one($.support.transition.end, function () {
+										setTimeout(function(){
+											if(T3AdminMegamenu.progElm.hasClass('t3-anim-finish')){
+												$(T3AdminMegamenu.progElm).removeClass('t3-anim-finish');
+											}
+
+										}, 1000);
+									});
+
+							} else {
+								$(T3AdminMegamenu.progElm).stop(true).animate({
+									width: '100%'
+								}, function(){
+									$(T3AdminMegamenu.progElm).hide();
+								});
+							}
+
 						}, 500);
 					})
 				};
@@ -1004,10 +1049,28 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			T3AdminMegamenu.modalCallback = callback;
 
 			$('#t3-admin-megamenu-dlg').addClass('modal-confirm').modal('show');
+		},
+
+		initLoadingBar: function(){
+			if(!T3AdminMegamenu.progElm){
+				T3AdminMegamenu.progElm = $('.t3-progress');
+
+				if(!T3AdminMegamenu.progElm.length){
+					T3AdminMegamenu.progElm = $('<div class="t3-progress"></div>');
+				}
+
+				T3AdminMegamenu.progElm.appendTo(document.body);
+
+				var placed = $('.t3-admin-header');
+				if(placed.length){
+					T3AdminMegamenu.progElm.appendTo(placed);
+				}
+			}
 		}
 	});
 
 	$(document).ready(function(){
+		T3AdminMegamenu.initLoadingBar();
 		T3AdminMegamenu.initCustomForm();
 		T3AdminMegamenu.initToolbar();
 		T3AdminMegamenu.initAjaxmenu();

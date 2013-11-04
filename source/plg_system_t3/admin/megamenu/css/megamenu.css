@@ -51,6 +51,7 @@ body.bd {
   padding-left: 20px;
   padding-right: 20px;
   background: #e6e6e6;
+  position: relative;
 }
 
 .t3-admin-header .btn-toolbar {

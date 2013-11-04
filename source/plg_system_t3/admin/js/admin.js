@@ -20,14 +20,71 @@ var T3Admin = window.T3Admin || {};
 		initToolbar: function(){
 			//t3 added
 			$('#t3-admin-tb-recompile').on('click', function(){
-				var jrecompile = $(this);
-				jrecompile.addClass('loading');
+				var recompile = $(this);
+
+				//progress bar
+				recompile.addClass('loading');
+				if($.support.transition){
+					T3Admin.progElm
+						.removeClass('t3-anim-slow t3-anim-finish')
+						.css('width', '');
+
+					setTimeout(function(){
+						var width = 5 + Math.floor(Math.random() * 10),
+							iid = null;
+
+						T3Admin.progElm
+							.addClass('t3-anim-slow')
+							.css('width', width + '%');
+
+						iid = setInterval(function(){
+							if(!T3Admin.progElm.hasClass('t3-anim-slow')) {
+								clearInterval(iid);
+								return false;
+							}
+
+							width += Math.floor(Math.random() * 5);
+
+							T3Admin.progElm
+								.addClass('t3-anim-slow')
+								.css('width', Math.min(90, width) + '%');
+						}, 3000);
+					});
+				} else {
+					T3Admin.progElm.stop(true).css({
+						width: '0%',
+						display: 'block'
+					}).animate({
+						width: 50 + Math.floor(Math.random() * 20) + '%'
+					});
+				}
 
 				$.ajax({
 					url: T3Admin.adminurl,
 					data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid },
 					success: function(rsp){
-						jrecompile.removeClass('loading');
+						
+						//progress bar
+						recompile.removeClass('loading');
+						if($.support.transition){
+							
+							T3Admin.progElm.removeClass('t3-anim-slow').addClass('t3-anim-finish')
+							.one($.support.transition.end, function () {
+								setTimeout(function(){
+									if(T3Admin.progElm.hasClass('t3-anim-finish')){
+										$(T3Admin.progElm).removeClass('t3-anim-finish');
+									}
+								}, 1000);
+							});
+
+						} else {
+							$(T3Admin.progElm).stop(true).animate({
+								width: '100%'
+							}, function(){
+								$(T3Admin.progElm).hide();
+							});
+						}
+
 
 						rsp = $.trim(rsp);
 						if(rsp){
@@ -57,7 +114,7 @@ var T3Admin = window.T3Admin || {};
 					},
 
 					error: function(){
-						jrecompile.removeClass('loading');
+						recompile.removeClass('loading');
 						T3Admin.systemMessage(T3Admin.langs.unknownError);
 					}
 				});
@@ -428,6 +485,27 @@ var T3Admin = window.T3Admin || {};
 				}, 5000));
 		},
 
+		initLoadingBar: function(){
+			if(!T3Admin.progElm){
+				T3Admin.progElm = $('.t3-progress');
+
+				if(!T3Admin.progElm.length){
+					T3Admin.progElm = $('<div class="t3-progress"></div>')
+				}
+
+				T3Admin.progElm.appendTo(document.body);
+
+				var placed = $('#toolbar-box');
+				if(!placed.length){
+					placed = $('#t3-admin-toolbar');
+				}
+
+				if(placed.length){
+					T3Admin.progElm.appendTo(placed);
+				}
+			}
+		},
+
 		switchTab: function () {
 			$('.t3-admin-nav a[data-toggle="tab"]').on('shown', function (e) {
 				var url = e.target.href;
@@ -533,6 +611,7 @@ var T3Admin = window.T3Admin || {};
 	
 	$(document).ready(function(){
 		T3Admin.initSystemMessage();
+		T3Admin.initLoadingBar();
 		T3Admin.improveMarkup();
 		T3Admin.initMarkChange();
 		T3Admin.initToolbar();
