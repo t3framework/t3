@@ -32,9 +32,9 @@
   -webkit-box-sizing: border-box;
 
 	-webkit-transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1); 
-	   -moz-transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
-		 -o-transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
-			transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1); 
+  -moz-transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  -o-transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: left 800ms cubic-bezier(0.25, 0.1, 0.25, 1); 
 			
 	-webkit-backface-visibility: hidden; /* it seem webkit-only, FF 13 have problem*/
 }
@@ -107,7 +107,6 @@ a.btn, a.btn:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 1px 1px #000;
 }
 
 .t3-admin-tm-header h2 strong {
@@ -224,16 +223,9 @@ input, select {
 }
 
 .accordion-heading a {
-  background-color: #eee;
-  background-image: -moz-linear-gradient(top,#fff,#eee);
-  background-image: -webkit-linear-gradient(top,#fff,#eee);
-  background-image: -o-linear-gradient(top,#fff,#eee);
-  background-image: linear-gradient(to bottom,#fff,#eee);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffeeeeee', GradientType=0);
+  background: #eee;
   color: #666;
   font-weight: bold;
-  text-shadow: 0 1px 1px #fff;
   border-radius: 0;
   font-size: 14px;
   border-bottom: 1px solid #eee;
@@ -244,30 +236,15 @@ input, select {
 }
 
 .accordion-heading a:hover {
-  background-color: #eee;
-  background-image: -moz-linear-gradient(top,#eee,#ddd);
-  background-image: -webkit-linear-gradient(top,#eee,#ddd);
-  background-image: -o-linear-gradient(top,#eee,#ddd);
-  background-image: linear-gradient(to bottom,#eee,#ddd);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffdddddd', GradientType=0);
+  background: #eee;
   color: #333;
   border-bottom: 1px solid #ddd;
 }
 
 .active .accordion-heading a,
 .accordion-heading a:active {
-  background-color: #333;
-  background-color: #008ada;
-  background-image: -moz-linear-gradient(top, #0097ee, #0077bb);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0097ee), to(#0077bb));
-  background-image: -webkit-linear-gradient(top, #0097ee, #0077bb);
-  background-image: -o-linear-gradient(top, #0097ee, #0077bb);
-  background-image: linear-gradient(to bottom, #0097ee, #0077bb);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0097ee', endColorstr='#ff0077bb', GradientType=0);
+  background: #07b;
   color: #fff;
-  text-shadow: 0 1px 1px rgba(0,0,0,.75);
   border-bottom: 1px solid #ccc;
 }
 
@@ -491,11 +468,7 @@ fieldset select {
   text-align: right;
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: inset 0 1px 0 #ffffff;
-  -moz-box-shadow: inset 0 1px 0 #ffffff;
   box-shadow: inset 0 1px 0 #ffffff;
   *zoom: 1;
 }
