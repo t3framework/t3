@@ -442,7 +442,6 @@ class Less_Environment{
 
 
 	public static function _percent(){
-		$numargs = func_num_args();
 		$quoted = func_get_arg(0);
 
 		$args = func_get_args();

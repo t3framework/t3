@@ -21,8 +21,8 @@ class Less_Tree_Attribute{
 	*/
 
 	function compile($env){
-		return new Less_Tree_Attribute( (method_exists($this->key,'compile') ? $this->key->compile($env) : $this->key),
-			$this->op, ($this->value && method_exists($this->value,'compile')) ? $this->value->compile($env) : $this->value);
+		return new Less_Tree_Attribute( ( (Less_Parser::is_method($this->key,'compile')) ? $this->key->compile($env) : $this->key),
+			$this->op, ( Less_Parser::is_method($this->value,'compile')) ? $this->value->compile($env) : $this->value);
 	}
 
 	function toCSS($env){
@@ -30,7 +30,7 @@ class Less_Tree_Attribute{
 
 		if( $this->op ){
 			$value .= $this->op;
-			$value .= ( method_exists($this->value,'toCSS') ? $this->value->toCSS($env) : $this->value);
+			$value .= ( Less_Parser::is_method($this->value,'toCSS') ? $this->value->toCSS($env) : $this->value);
 		}
 
 		return '[' . $value . ']';

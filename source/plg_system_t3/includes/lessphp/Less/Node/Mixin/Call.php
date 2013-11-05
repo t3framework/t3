@@ -71,7 +71,7 @@ class Less_Tree_Mixin_Call{
 				}
 
 				if ($mixin->matchArgs($args, $env)) {
-					if( !method_exists($mixin,'matchCondition') || $mixin->matchCondition($args, $env) ){
+					if( !Less_Parser::is_method($mixin,'matchCondition') || $mixin->matchCondition($args, $env) ){
 						try {
 							$rules = array_merge($rules, $mixin->compile($env, $args, $this->important)->rules);
 						} catch (Exception $e) {
@@ -99,7 +99,7 @@ class Less_Tree_Mixin_Call{
 					if( $a['name'] ){
 						$argValue += $a['name']+':';
 					}
-					if( $a['value'] && method_exists($a['value'],'toCSS') ){
+					if( Less_Parser::is_method($a['value'],'toCSS') ){
 						$argValue += $a['value']->toCSS();
 					}else{
 						$argValue += '???';

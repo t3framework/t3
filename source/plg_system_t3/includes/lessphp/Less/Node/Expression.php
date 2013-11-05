@@ -59,7 +59,7 @@ class Less_Tree_Expression {
 
 		$ret = array();
 		foreach($this->value as $e){
-			$ret[] = method_exists($e, 'toCSS') ? $e->toCSS($env) : '';
+			$ret[] = Less_Parser::is_method($e, 'toCSS') ? $e->toCSS($env) : '';
 		}
 
 		return implode(' ',$ret);

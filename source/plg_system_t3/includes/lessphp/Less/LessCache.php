@@ -148,13 +148,19 @@ class Less_Cache{
 			return;
 		}
 
-		$files = glob(self::$cache_dir.'lessphp_.*');
-		$check_time = time() - 604800;
-		foreach($files as $file){
-			if( filemtime($file) > $check_time ){
-				continue;
+		$files = scandir(self::$cache_dir);
+		if( $files ){
+			$check_time = time() - 604800;
+			foreach($files as $file){
+				if( strpos($file,'lessphp_') !== 0 ){
+					continue;
+				}
+				$full_path = self::$cache_dir.'/'.$file;
+				if( filemtime($full_path) > $check_time ){
+					continue;
+				}
+				unlink($full_path);
 			}
-			unlink($file);
 		}
 
 		$clean = true;

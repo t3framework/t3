@@ -103,7 +103,7 @@ class Less_processExtendsVisitor extends Less_visitor{
 				try{
 					$selectorOne = $extendsToAdd[0]->selfSelectors[0]->toCSS();
 					$selectorTwo = $extendsToAdd[0]->selector->toCSS();
-				}catch(\Exception $e){}
+				}catch(Exception $e){}
 				throw new Less_ParserException("extend circular reference detected. One of the circular extends is currently:"+$selectorOne+":extend(" + $selectorTwo+")");
 			}
 
@@ -137,7 +137,7 @@ class Less_processExtendsVisitor extends Less_visitor{
 			return;
 		}
 
-		$allExtends = $this->allExtendsStack[ count($this->allExtendsStack)-1];
+		$allExtends = end($this->allExtendsStack); //$this->allExtendsStack[ count($this->allExtendsStack)-1];
 		$selectorsToAdd = array();
 		$extendVisitor = $this;
 
@@ -283,7 +283,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 			);
 
 			if( $match['pathIndex'] > $currentSelectorPathIndex && $currentSelectorPathElementIndex > 0 ){
-				$path[ count($path)-1]->elements = array_merge( $path[ count($path) - 1]->elements, array_slice( $selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
+				$last_key = count($path)-1;
+				$path[$last_key]->elements = array_merge( $path[$last_key]->elements, array_slice( $selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
 				$currentSelectorPathElementIndex = 0;
 				$currentSelectorPathIndex++;
 			}
@@ -307,7 +308,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 		}
 
 		if( $currentSelectorPathIndex < count($selectorPath) && $currentSelectorPathElementIndex > 0 ){
-			$path[ count($path) - 1]->elements = array_merge( $path[ count($path) - 1]->elements, array_slice($selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
+			$last_key = count($path) - 1;
+			$path[$last_key]->elements = array_merge( $path[$last_key]->elements, array_slice($selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
 			$currentSelectorPathElementIndex = 0;
 			$currentSelectorPathIndex++;
 		}
@@ -320,7 +322,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 
 
 	function visitMedia( $mediaNode ){
-		$newAllExtends = array_merge( $mediaNode->allExtends, $this->allExtendsStack[ count($this->allExtendsStack)-1 ] );
+		//$newAllExtends = array_merge( $mediaNode->allExtends, $this->allExtendsStack[ count($this->allExtendsStack)-1 ] );
+		$newAllExtends = array_merge( $mediaNode->allExtends, end($this->allExtendsStack) );
 		$newAllExtends = array_merge($newAllExtends, $this->doExtendChaining($newAllExtends, $mediaNode->allExtends));
 		$this->allExtendsStack[] = $newAllExtends;
 	}

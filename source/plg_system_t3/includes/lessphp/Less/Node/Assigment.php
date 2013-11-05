@@ -23,7 +23,7 @@ class Less_Tree_Assignment {
     }
 
     public function compile($env) {
-		if( is_object($this->value) && method_exists($this->value,'compile') ){
+		if( Less_Parser::is_method($this->value,'compile') ){
 			return new Less_Tree_Assignment( $this->key, $this->value->compile($env));
         }
         return $this;

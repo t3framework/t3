@@ -29,7 +29,7 @@ class Less_Tree_Quoted{
 		$value = $this->value;
 		if( preg_match_all('/`([^`]+)`/', $this->value, $matches) ){
 			foreach($matches as $i => $match){
-				$js = Less_Tree_JavaScript($matches[1], $this->index, true);
+				$js = new Less_Tree_JavaScript($matches[1], $this->index, true);
 				$js = $js->compile($env)->value;
 				$value = str_replace($matches[0][$i], $js, $value);
 			}
@@ -49,7 +49,7 @@ class Less_Tree_Quoted{
 
 	function compare($x) {
 
-		if( !method_exists($x, 'toCSS') ){
+		if( !Less_Parser::is_method($x, 'toCSS') ){
 			return -1;
 		}
 

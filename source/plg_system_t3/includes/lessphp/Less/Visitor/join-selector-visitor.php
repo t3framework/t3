@@ -13,7 +13,7 @@ class Less_joinSelectorVisitor extends Less_visitor{
 	}
 
 	function visitRuleset($rulesetNode) {
-		$context = $this->contexts[ count($this->contexts) - 1];
+		$context = end($this->contexts); //$context = $this->contexts[ count($this->contexts) - 1];
 		$paths = array();
 		//$this->contexts[] = $paths;
 		if( !$rulesetNode->root ){
@@ -31,7 +31,7 @@ class Less_joinSelectorVisitor extends Less_visitor{
 	}
 
 	function visitMedia($mediaNode) {
-		$context = $this->contexts[ count($this->contexts) - 1];
+		$context = end($this->contexts); //$context = $this->contexts[ count($this->contexts) - 1];
 		$mediaNode->ruleset->root = ( count($context) === 0 || @$context[0]->multiMedia);
 	}
 

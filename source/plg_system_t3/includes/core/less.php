@@ -171,6 +171,9 @@ class T3Less
 	{
 		@ini_set('pcre.backtrack_limit', '2M');
 
+		//reset import dirs
+		Less_Cache::$import_dirs = array();
+
 		$env    = new Less_Environment();
 		$parser = new Less_Parser($env);
 		$env->setCompress(false);

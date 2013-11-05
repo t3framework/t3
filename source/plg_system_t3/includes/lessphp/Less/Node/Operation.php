@@ -29,7 +29,7 @@ class Less_Tree_Operation{
 					throw new Less_CompilerError("Operation on an invalid type");
 				}
 			}
-			if ( !$a || !method_exists($a,'operate') ) {
+			if ( !Less_Parser::is_method($a,'operate') ) {
 				throw new Less_CompilerError("Operation on an invalid type");
 			}
 

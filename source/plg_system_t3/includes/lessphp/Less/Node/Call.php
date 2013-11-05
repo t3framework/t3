@@ -52,7 +52,7 @@ class Less_Tree_Call{
 			$name = 'datauri';
 		}
 
-		if (method_exists($env, $name)) { // 1.
+		if( Less_Parser::is_method($env, $name) ){ // 1.
 			try {
 
 				$result = call_user_func_array( array($env, $name), $args);

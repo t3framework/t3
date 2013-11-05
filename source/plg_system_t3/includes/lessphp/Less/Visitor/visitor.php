@@ -23,7 +23,7 @@ class Less_visitor{
 			}
 
 			$deeper_property = $funcName.'Deeper';
-			if( !isset($this->$deeper_property) && method_exists($node,'accept') ){
+			if( !isset($this->$deeper_property) && Less_Parser::is_method($node,'accept') ){
 				$node->accept($this);
 			}
 

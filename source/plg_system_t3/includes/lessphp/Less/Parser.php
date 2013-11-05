@@ -28,7 +28,7 @@ class Less_Parser extends Less_Cache{
     /**
      *
      */
-    const version = '1.4.2';
+    const version = '1.4.2.1';
     const less_version = '1.4.2';
 
     /**
@@ -204,13 +204,20 @@ class Less_Parser extends Less_Cache{
 	 */
 	private function GetRules( $file_path ){
 
-		$cache_file = $this->CacheFile( $file_path );
-		if( $cache_file && file_exists($cache_file) && ($cache = file_get_contents( $cache_file )) && ($cache = unserialize($cache)) ){
-			touch($cache_file);
-			return $cache;
-		}
-
+		$cache_file = false;
 		if( $file_path ){
+
+			$cache_file = substr($file_path,0,-5).'.lesscache';
+			if( file_exists($cache_file) && ($cache = file_get_contents( $cache_file )) && ($cache = unserialize($cache)) ){
+				return $cache;
+			}
+
+			$cache_file = $this->CacheFile( $file_path );
+			if( $cache_file && file_exists($cache_file) && ($cache = file_get_contents( $cache_file )) && ($cache = unserialize($cache)) ){
+				touch($cache_file);
+				return $cache;
+			}
+
 			$this->input = file_get_contents( $file_path );
 		}
 
@@ -222,6 +229,10 @@ class Less_Parser extends Less_Cache{
 		$this->current = $this->input;
 
 		$rules = $this->parsePrimary();
+
+
+		// free up a little memory
+		unset($this->input, $this->current, $this->pos);
 
 
 		//save the cache
@@ -238,7 +249,7 @@ class Less_Parser extends Less_Cache{
 	}
 
 
-	private function CacheFile( $file_path ){
+	public function CacheFile( $file_path ){
 
 		if( $file_path && self::$cache_dir ){
 			$file_size = filesize( $file_path );
@@ -344,7 +355,7 @@ class Less_Parser extends Less_Cache{
 	private function MatchString($string){
 		$len = strlen($string);
 
-		if( (strlen($this->input) > $this->pos) && substr_compare( $this->input, $string, $this->pos, $len, true ) === 0 ){
+		if( (strlen($this->input) >= ($this->pos+$len)) && substr_compare( $this->input, $string, $this->pos, $len, true ) === 0 ){
 			$this->skipWhitespace( $len );
 			$this->sync();
 			return $string;
@@ -678,7 +689,8 @@ class Less_Parser extends Less_Cache{
     //     0.5em 95%
     //
     private function parseEntitiesDimension(){
-        $c = ord($this->input[$this->pos]);
+
+        $c = @ord($this->input[$this->pos]);
 
 		//Is the first char of the dimension 0-9, '.', '+' or '-'
 		if (($c > 57 || $c < 43) || $c === 47 || $c == 44){
@@ -1541,7 +1553,6 @@ class Less_Parser extends Less_Cache{
 
 	private function parseMultiplication() {
 		$operation = false;
-		$expression = array();
 
 		if ($m = $this->parseOperand()) {
 			$isSpaced = $this->isWhitespace( -1 );
@@ -1660,8 +1671,17 @@ class Less_Parser extends Less_Cache{
         }
     }
 
+	/**
+	 * Some versions of php have trouble with method_exists($a,$b) if $a is not an object
+	 *
+	 */
+    public static function is_method($a,$b){
+		return is_object($a) && method_exists($a,$b);
+	}
+
 
 }
+
 
 	if( !function_exists('pre') ){
 		function pre($arg){
@@ -1689,3 +1709,4 @@ class Less_Parser extends Less_Cache{
 			echo Pre($arg);
 		}
 	}
+

@@ -35,7 +35,7 @@ class Less_Tree_Ruleset{
 		$selectors = array();
 		if( $this->selectors ){
 			foreach($this->selectors as $s){
-				if( is_object($s) && method_exists($s,'compile') ){
+				if( Less_Parser::is_method($s,'compile') ){
 					$selectors[] = $s->compile($env);
 				}
 			}
@@ -103,7 +103,7 @@ class Less_Tree_Ruleset{
 
 		foreach($ruleset->rules as $i => $rule) {
 			if(! ($rule instanceof Less_Tree_Mixin_Definition) ){
-				$ruleset->rules[$i] = method_exists($rule,'compile') ? $rule->compile($env) : $rule;
+				$ruleset->rules[$i] = Less_Parser::is_method($rule,'compile') ? $rule->compile($env) : $rule;
 			}
 		}
 
@@ -145,9 +145,9 @@ class Less_Tree_Ruleset{
 
 		$important_rules = array();
 		foreach($rules as $rule){
-			if( method_exists($rule,'makeImportant') && property_exists($rule,'selectors') ){
+			if( Less_Parser::is_method($rule,'makeImportant') && property_exists($rule,'selectors') ){
 				$important_rules[] = $rule->makeImportant($rule->selectors, $rule->rules, $strictImports);
-			}elseif( method_exists($rule,'makeImportant') ){
+			}elseif( Less_Parser::is_method($rule,'makeImportant') ){
 				$important_rules[] = $rule->makeImportant();
 			}else{
 				$important_rules[] = $rule;
@@ -272,7 +272,7 @@ class Less_Tree_Ruleset{
 					}
 				}
 			} else {
-				if( method_exists($rule, 'toCSS') && (!isset($rule->variable) || !$rule->variable) ){
+				if( Less_Parser::is_method($rule, 'toCSS') && (!isset($rule->variable) || !$rule->variable) ){
                     if( $this->firstRoot && $rule instanceof Less_Tree_Rule ){
 						throw new Less_CompilerError("properties must be inside selector blocks, they cannot be in the root.");
                     }

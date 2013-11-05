@@ -40,7 +40,7 @@ class Less_Tree_Rule{
 				return $this->name . ($env->compress ? ':' : ': ')
 					. $this->value->toCSS($env)
 					. $this->important . ($this->inline ? "" : ";");
-			}catch( \Exception $e ){
+			}catch( Exception $e ){
 				$e->index = $this->index;
 				$e->filename = $this->currentFileInfo['filename'];
 				throw $e;
@@ -63,7 +63,7 @@ class Less_Tree_Rule{
 										$this->currentFileInfo,
 										$this->index, $this->inline);
 		}
-		catch(\Exception $e){}
+		catch(Exception $e){}
 
 		if( $strictMathBypass ){
 			$env->strictMath = false;

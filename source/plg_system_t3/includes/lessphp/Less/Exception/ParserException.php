@@ -1,6 +1,6 @@
 <?php
 
 
-class Less_ParserException extends \Exception{
+class Less_ParserException extends Exception{
 
 }
