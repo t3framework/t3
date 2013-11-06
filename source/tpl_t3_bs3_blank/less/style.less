@@ -91,13 +91,16 @@
   }
   
   .input {
-    background: url("@{t3-image-path}/ico/search-invert.png") no-repeat 8px center;
     width: 120px;
     padding-left: 26px;
     // focus state
     &:focus {
       color: @gray-dark;
       width: 180px;
+    }
+    &::before {
+      content: "test";
+      display: block;
     }
   }
 }

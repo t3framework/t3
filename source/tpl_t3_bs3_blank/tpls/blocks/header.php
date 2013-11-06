@@ -42,7 +42,7 @@ if ($headright = $this->countModules('head-search or languageswitcherload')) {
 		<!-- //LOGO -->
 
 		<?php if ($headright): ?>
-			<div class="col-xs-12 col-md-4 clearfix">
+			<div class="col-xs-12 col-md-4">
 				<?php if ($this->countModules('head-search')) : ?>
 					<!-- HEAD SEARCH -->
 					<div class="head-search <?php $this->_c('head-search') ?>">
