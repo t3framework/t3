@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar">
-				<i class="icon-reorder"></i>
+				<i class="fa fa-bars"></i>
 			</button>
 		</div>
 
