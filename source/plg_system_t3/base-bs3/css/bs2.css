@@ -8,7 +8,6 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 [class*="span"]{float:left;min-height:1px;margin-left:20px;}
-.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container{width:940px;}
 .span12{width:940px;}
 .span11{width:860px;}
 .span10{width:780px;}
