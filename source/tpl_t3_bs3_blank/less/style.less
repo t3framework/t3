@@ -88,19 +88,25 @@
   }
   
   .search {
+    position: relative;
+    // Place a search icon
+    &:before {
+      font-family: "FontAwesome";
+      content: "\f002";
+      display: block;
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      color: @gray;
+    }
   }
   
-  .input {
-    width: 120px;
-    padding-left: 26px;
+  .form-control {
+    width: 150px;
+    padding-left: 30px;
     // focus state
     &:focus {
-      color: @gray-dark;
-      width: 180px;
-    }
-    &::before {
-      content: "test";
-      display: block;
+      width: 200px;
     }
   }
 }
@@ -171,11 +177,13 @@
   background: @gray-darker;
   color: @gray;
   .clearfix();
+
   // small
   small {
     display: block;
     font-size: 100%; //Use global footer font size.
   }
+
   // links
   a {
     color: @t3-footer-module-color;
@@ -184,6 +192,7 @@
       color: lighten(@gray,50%);
     }
   }
+
 }
 
 // Foot Nav
@@ -195,6 +204,7 @@
   ul {
     list-style: none;
     margin-left: 0;
+    padding-left: 0;
   }
   
   li {
