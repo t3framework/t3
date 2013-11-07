@@ -12,9 +12,8 @@
  */
  
 
-
 // --------------------------------------------------
-// TYPOGRAPHY
+// CORE TYPOGRAPHY
 // --------------------------------------------------
 
 //
@@ -36,7 +35,6 @@ p {
     font-size: (@font-size-base * 1.5);
   }
 }
-
 
 
 // Emphasis & misc
@@ -71,9 +69,11 @@ cite    { font-style: normal; }
 
 
 //
-// HEADINGS
+// TITLES & HEADINGS
 // ------------------------------------------------------
 
+// Generic Headings
+// ------------------------------------------------------
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: @headings-font-family;
@@ -112,11 +112,6 @@ h2 small, .h2 small { font-size: ceil(@font-size-base * 1.25); } // ~18px
 h3 small, .h3 small,
 h4 small, .h4 small { font-size: @font-size-base; }
 
-
-
-//
-// TITLES
-// ------------------------------------------------------
 
 // Page header
 // --------------------------------------------------
@@ -365,129 +360,6 @@ dd {
 
 
 //
-// LABELS & BADGES
-// --------------------------------------------------
-
-// Labels
-// --------------------------------------------------
-
-.label {
-  display: inline;
-  padding: .2em .6em .3em;
-  font-size: 75%;
-  font-weight: bold;
-  line-height: 1;
-  color: @label-color;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25em;
-
-  // Add hover effects, but only for links
-  &[href] {
-    &:hover,
-    &:focus {
-      color: @label-link-hover-color;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-
-  // Empty labels collapse automatically (not available in IE8)
-  &:empty {
-    display: none;
-  }
-}
-
-// Colors
-// Contextual variations (linked labels get darker on :hover)
-
-.label-default {
-  .label-variant(@label-default-bg);
-}
-
-.label-primary {
-  .label-variant(@label-primary-bg);
-}
-
-.label-success {
-  .label-variant(@label-success-bg);
-}
-
-.label-info {
-  .label-variant(@label-info-bg);
-}
-
-.label-warning {
-  .label-variant(@label-warning-bg);
-}
-
-.label-danger {
-  .label-variant(@label-danger-bg);
-}
-
-
-// Badges
-// --------------------------------------------------
-
-// Base classes
-.badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: @font-size-small;
-  font-weight: @badge-font-weight;
-  color: @badge-color;
-  line-height: @badge-line-height;
-  vertical-align: baseline;
-  white-space: nowrap;
-  text-align: center;
-  background-color: @badge-bg;
-  border-radius: @badge-border-radius;
-
-  // Empty badges collapse automatically (not available in IE8)
-  &:empty {
-    display: none;
-  }
-}
-
-// Hover state, but only for links
-a.badge {
-  &:hover,
-  &:focus {
-    color: @badge-link-hover-color;
-    text-decoration: none;
-    cursor: pointer;
-  }
-}
-
-// Quick fix for labels/badges in buttons
-.btn .badge {
-  position: relative;
-  top: -1px;
-}
-
-// Quick fix for labels/badges in page-header- NNTH
-.page-header {
-  .label, .badge {
-    vertical-align: middle;
-  }
-}
-
-// Account for counters in navs
-a.list-group-item.active > .badge,
-.nav-pills > .active > a > .badge {
-  color: @badge-active-color;
-  background-color: @badge-active-bg;
-}
-.nav-pills > li > a > .badge {
-  margin-left: 3px;
-}
-
-
-
-
-//
 // MISC
 // --------------------------------------------------
 
@@ -568,3 +440,23 @@ address {
   font-style: normal;
   line-height: @line-height-base;
 }
+
+
+// Code (inline and block)
+// --------------------------------------------------
+// Inline and block code styles
+code,
+kbd,
+pre,
+samp {
+  font-family: @font-family-monospace;
+}
+
+// Inline code
+code {
+}
+
+// Blocks of code
+pre {
+}
+
