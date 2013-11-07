@@ -15,13 +15,243 @@
 // TYPOGRAPHY
 // --------------------------------------------------
 
+//
+// TITLES
+// --------------------------------------------------
+
+// Page header
+// -----------
+.page-header {
+  padding-bottom: ((@line-height-computed / 2) - 1);
+  margin: (@line-height-computed * 2) 0 @line-height-computed;
+  border-bottom: 1px solid @page-header-border-color;
+}
+
+.page-title,
+.page-header h1 {
+  line-height: 1;
+  margin: 0;
+}
+
+
+// Page Subheader
+// --------------
+.page-subheader {
+  border-bottom: 1px solid @t3-border-color;
+  margin: 0 0 @t3-global-margin;
+  .clearfix();
+}
+
+.page-subtitle,
+.page-subheader h2 {
+  line-height: 1;
+  margin: 0;
+}
+
+.page-header + .page-subheader {
+  margin-top: -@t3-global-margin; //If there is page header, then omit the space before page subheader
+}
+
+
+// Article Header
+// --------------
+.article-header {
+}
+
+.article-title,
+.article-header h1, {
+  margin: 0 0 @t3-global-margin/2 0;
+  line-height: 1;
+}
+
+// Smaller "Article Title" in Blog and List layout
+h2.article-title,
+.article-header h2 {
+}
+
+
+// Item Header
+// -----------
+.item-title {
+  font-weight: bold;
+}
+
+
+
+//
+// MASHEAD & JUMBOTRON
+// --------------------------------------------------
+
+// Mashead
+// --------
+.masthead {
+  padding: (@t3-global-padding * 4) 0 (@t3-global-padding * 3);
+  text-align: center;
+
+  h1 {
+    font-size: @font-size-base * 7;
+  }
+
+  p {
+    font-size: @font-size-base * 3;
+  }
+
+}
+
+
+// Jumbotron
+// ---------
+.jumbotron {
+
+  h1 {
+  }
+
+  p {
+  }
+
+  .container & {
+    border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+
+    .container & {
+    }
+
+    h1 {
+    }
+  }
+
+}
+
+
+
+//
+// ROW LISTS
+// -------------------------------------------------------
+// Alternating Rows
+.row-even,
+.row-odd {
+  padding: 5px;
+  width: 99%;
+  border-bottom: 1px solid @table-border-color;
+}
+
+.row-odd {
+  background-color: @table-bg;
+}
+
+.row-even {
+  background-color: @table-bg-accent;
+}
+
+.blog-row-rule,
+.blog-item-rule {
+  border: 0;
+}
+
+// Row reveal
+.row-fluid .row-reveal {
+  visibility: hidden;
+}
+
+.row-fluid:hover .row-reveal {
+  visibility: visible;
+}
+
+// Nav List Offset
+.nav-list > li.offset > a {
+  padding-left: 30px;
+  font-size: 12px;
+}
+
+
+// Striped
+// -------
+.list-striped,
+.row-striped {
+  list-style: none;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+  border-top: 1px solid @table-border-color;
+  margin-left: 0;
+}
+
+.list-striped li,
+.list-striped dd,
+.row-striped .row,
+.row-striped .row-fluid {
+  border-bottom: 1px solid @table-border-color;
+  padding: 10px 15px;
+}
+
+.list-striped li:nth-child(odd),
+.list-striped dd:nth-child(odd),
+.row-striped .row:nth-child(odd),
+.row-striped .row-fluid:nth-child(odd) {
+  background-color: @table-bg-accent;
+}
+
+.list-striped li:hover,
+.list-striped dd:hover,
+.row-striped .row:hover,
+.row-striped .row-fluid:hover {
+  background-color: @table-bg-hover;
+}
+
+.row-striped .row-fluid {
+  width: 97%; // lower than 100% since we have padding
+}
+
+.row-striped .row-fluid [class*="span"] {
+  min-height: 10px;
+}
+
+.row-striped .row-fluid [class*="span"] {
+  margin-left: 8px;
+}
+
+.row-striped .row-fluid [class*="span"]:first-child {
+  margin-left: 0;
+}
+
+
+// Condensed
+// ---------
+.list-condensed {
+  li {
+    padding: 5px 10px;
+  }
+}
+
+.row-condensed {
+  .row, .row-fluid {
+    padding: 5px 10px;
+  }
+}
+
+
+// Bordered
+// --------
+.list-bordered,
+.row-bordered {
+  list-style: none;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+  margin-left: 0;
+  border: 1px solid @table-border-color;
+}
+
+
 
 //
 // LABELS & BADGES
 // --------------------------------------------------
 
 // Labels
-// --------------------------------------------------
+// ------
 
 .label {
 
@@ -61,7 +291,7 @@
 
 
 // Badges
-// --------------------------------------------------
+// ------
 
 // Base classes
 .badge {
@@ -90,53 +320,6 @@ a.badge {
   .label, .badge {
     vertical-align: middle;
   }
-}
-
-
-
-// 
-// MASHEAD
-// ---------------------------------------------------------
-.masthead {
-  padding: (@t3-global-padding * 4) 0 (@t3-global-padding * 3);
-  text-align: center;
-
-  h1 {
-    font-size: @font-size-base * 7;
-  }
-
-  p {
-    font-size: @font-size-base * 3;
-  }
-
-}
-
-
-
-//
-// JUMBOTRON
-// --------------------------------------------------
-.jumbotron {
-
-  h1 {
-  }
-
-  p {
-  }
-
-  .container & {
-    border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
-  }
-
-  @media screen and (min-width: @screen-sm-min) {
-
-    .container & {
-    }
-
-    h1 {
-    }
-  }
-  
 }
 
 
