@@ -19,55 +19,242 @@
 // GENERIC STYLES
 // ------------------------------------------------------
 
-select,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-  height: auto;
+form {
+}
+
+fieldset {
+}
+
+legend {
+  // Small
+  small {
+  }
+}
+
+label {
 }
 
 
-// Everything else
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-  .transition(~"border linear .2s, box-shadow linear .2s, width 0.7s ease 0s");
-}
+// FORM CONTROLS
+// ------------------------------------------------------
+// select
+// textarea
+// input[type="text"]
+// input[type="password"]
+// input[type="datetime"]
+// input[type="datetime-local"]
+// input[type="date"]
+// input[type="month"]
+// input[type="time"]
+// input[type="week"]
+// input[type="number"]
+// input[type="email"]
+// input[type="url"]
+// input[type="search"]
+// input[type="tel"]
+// input[type="color"]
+.form-control {
 
+  // Hover state
+  &:hover {
+  }
 
-// INPUT GROUPS
-// ------------
+  // Focus state
+  &:focus,
+  &:active {
+  }
 
-// Allow us to put symbols and text within the input field for a cleaner look
-.input-append,
-.input-prepend {
-  .add-on {
+  // Reset height for `textarea`s
+  textarea& {
     height: auto;
   }
 }
+
+
+// Form groups
+// -----------------------
+.form-group {
+}
+
+
+// Checkboxes and radios
+// -----------------------
+.radio,
+.checkbox {
+}
+
+
+// Radios and checkboxes on same line
+.radio-inline,
+.checkbox-inline {
+}
+
+
+// Form control sizing
+// -----------------------
+.input-sm {
+}
+
+.input-lg {
+}
+
+
+// Help text
+// -----------------------
+.help-block {
+}
+
+
+// Inline forms
+// -----------------------
+.form-inline {
+
+  // Kick in the inline
+  @media (min-width: @screen-sm) {
+
+    .form-group  {
+    }
+
+    .form-control {
+    }
+
+  }
+}
+
+
+// Horizontal forms
+// -----------------------
+.form-horizontal {
+
+  .form-group {
+  }
+
+  .form-control {
+  }
+
+}
+
+
+
+//
+// BUTTONS
+// ------------------------------------------------------
+
+// Base styles
+// -----------------------
+
+// Core styles
+.btn {
+
+  // Button states
+  &:hover,
+  &:focus {
+  }
+
+  &:active,
+  &.active {
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+  }
+
+}
+
+
+// Alternate buttons
+// -----------------------
+.btn-default {
+}
+
+.btn-primary {
+}
+
+// Warning appears as orange
+.btn-warning {
+}
+
+// Danger and error appear as red
+.btn-danger {
+}
+
+// Success appears as green
+.btn-success {
+}
+
+// Info appears as blue-green
+.btn-info {
+}
+
+
+// Link buttons
+// -----------------------
+// Make a button look and behave like a link
+.btn-link {
+
+  &,
+  &:active,
+  &[disabled],
+  fieldset[disabled] & {
+  }
+
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+  }
+
+  &:hover,
+  &:focus {
+  }
+
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+    }
+  }
+
+  // End
+}
+
+
+// Button Sizes
+// -----------------------
+.btn-lg {
+}
+
+.btn-sm,
+.btn-xs {
+}
+
+.btn-xs {
+}
+
+
+// Block button
+// -----------------------
+.btn-block {
+}
+
+
+
+//
+// FORM VALIDATION
+// -------------------------------------------------------
+
+// Invalid
+// -------
+.invalid {
+  border-color: @red;
+}
+
+label.invalid {
+  color: @red;
+}
+
+input.invalid {
+  border: 1px solid @red;
+}
+
