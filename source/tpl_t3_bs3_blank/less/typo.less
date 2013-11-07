@@ -11,132 +11,174 @@
  *------------------------------------------------------------------------------
  */
  
-// ---------------------------------------------------------
-// BANNERS
-// ---------------------------------------------------------
+// --------------------------------------------------
+// TYPOGRAPHY
+// --------------------------------------------------
 
 
-// Masthead
-// --------
+//
+// LABELS & BADGES
+// --------------------------------------------------
+
+// Labels
+// --------------------------------------------------
+
+.label {
+
+  // Add hover effects, but only for links
+  &[href] {
+    &:hover,
+    &:focus {
+    }
+  }
+
+  // Empty labels collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+}
+
+// Colors
+// Contextual variations (linked labels get darker on :hover)
+
+.label-default {
+}
+
+.label-primary {
+}
+
+.label-success {
+}
+
+.label-info {
+}
+
+.label-warning {
+}
+
+.label-danger {
+}
+
+
+// Badges
+// --------------------------------------------------
+
+// Base classes
+.badge {
+
+  // Empty badges collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+}
+
+// Hover state, but only for links
+a.badge {
+  &:hover,
+  &:focus {
+  }
+}
+
+// Quick fix for labels/badges in buttons
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+
+// Quick fix for labels/badges in page-header- NNTH
+.page-header {
+  .label, .badge {
+    vertical-align: middle;
+  }
+}
+
+
+
+// 
+// MASHEAD
+// ---------------------------------------------------------
 .masthead {
   padding: (@t3-global-padding * 4) 0 (@t3-global-padding * 3);
   text-align: center;
-}
 
-.masthead h1 {
-  font-size: @font-size-base * 7;
-}
+  h1 {
+    font-size: @font-size-base * 7;
+  }
 
-.masthead p {
-  font-size: @font-size-base * 3;
-}
+  p {
+    font-size: @font-size-base * 3;
+  }
 
-.masthead .btn-large {
-  font-size: @font-size-base * 2;
-  padding: @font-size-base (@font-size-base * 2);
-}
-
-.masthead.has-image {
-  text-align: left;
 }
 
 
 
-// ---------------------------------------------------------
+//
+// JUMBOTRON
+// --------------------------------------------------
+.jumbotron {
+
+  h1 {
+  }
+
+  p {
+  }
+
+  .container & {
+    border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+
+    .container & {
+    }
+
+    h1 {
+    }
+  }
+  
+}
+
+
+
+//
 // THUMBNAILS
-// ---------------------------------------------------------
+// --------------------------------------------------
 
-// Note: `.thumbnails` and `.thumbnails > li` are overriden in responsive files
-
-// Make wrapper ul behave like the grid
-.thumbnails {
-  margin-bottom: @t3-global-margin;
-  margin-left: 0;
-  list-style: none;
-
-  .clearfix();
-}
-
-// Fluid rows have no left margin
-.row-fluid .thumbnails {
-  margin-left: 0;
-}
-
-// Float li to make thumbnails appear in a row
-.thumbnails > li {
-  float: left; // Explicity set the float since we don't require .span* classes
-  position: relative;
-  margin-bottom: @t3-global-margin;
-}
-
-// The actual thumbnail (can be `a` or `div`)
+// Mixin and adjust the regular image class
 .thumbnail {
-  border: 1px solid @t3-border-color;
-  display: block;
-  padding: 4px;
-  line-height: @line-height-computed;
-  border-radius: @border-radius-base;
-  .box-shadow(0 1px 3px rgba(0,0,0,.055));
-  .transition(all .2s ease-in-out);
+  > img {
+  }
 }
 
 // Add a hover state for linked versions only
-a.thumbnail:hover {
-  border-color: @link-color;
-  .box-shadow(0 1px 4px rgba(0,105,214,.25));
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
 }
 
-// Images and captions
-.thumbnail > img {
-  display: block;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+// Image captions
 .thumbnail .caption {
-  padding: 9px;
-  color: @gray;
 }
 
 
-// Thumbnail Styles
-// ------------------
 
-// Paper Style
-.thumbnails.paper > li:before,
-.thumbnails.paper > li:after {
-  content: '';
-  position: absolute;
-  z-index: -2;
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  height: 20%;
-  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  transform: rotate(-3deg);
+//
+// WELLS
+// --------------------------------------------------
+// Base class
+.well {
+  blockquote {
+  }
 }
 
-.thumbnails.paper > li:after {
-  right: 10px;
-  left: auto;
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  transform: rotate(3deg);
+// Sizes
+.well-lg {
 }
 
-.thumbnails.paper .thumbnail {
-  border: none;
-  padding: 0;
-  .box-shadow(none);
+.well-sm {
 }
 
-.thumbnails.paper a.thumbnail.paper:hover {
-  .box-shadow(none);
-}
+
+
+

@@ -12,6 +12,79 @@
  */
 
 
+// --------------------------------------------------
+// CORE ELEMENTS
+// --------------------------------------------------
+
+//
+// Scaffolding
+// --------------------------------------------------
+
+html {
+}
+
+body {
+}
+
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+
+// Links
+// --------------------------------------------------
+a {
+  color: @link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    .tab-focus();
+  }
+}
+
+
+// Images
+// --------------------------------------------------
+img {
+  vertical-align: middle;
+}
+
+// Responsive images (ensure images don't scale beyond their parents)
+.img-responsive {
+}
+
+// Rounded corners
+.img-rounded {
+}
+
+// Image thumbnails
+.img-thumbnail {
+}
+
+// Perfect circle
+.img-circle {
+}
+
+
+// Horizontal rules
+hr {
+}
+
+
+
+//
 // TABLES
 // -------------------------------------------------------
 table {
@@ -82,7 +155,7 @@ table.contentpaneopen {
 
 
 
-// --------------------------------------------------
+// 
 // MISC
 // --------------------------------------------------
 .star {
