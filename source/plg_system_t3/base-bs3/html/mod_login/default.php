@@ -46,7 +46,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 		<div class="controls">
 		<?php if (!$params->get('usetext')) : ?>
 			<div class="input-prepend">
-				<span class="add-on"><i class="icon-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i></span>
+				<span class="add-on"><i class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i></span>
 				<input id="modlgn-username" type="text" name="username" class="input" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
 			</div>
 		<?php else: ?>
@@ -59,7 +59,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 		<div class="controls">
 		<?php if (!$params->get('usetext')) : ?>
 			<div class="input-prepend">
-				<span class="add-on"><i class="icon-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i></span>
+				<span class="add-on"><i class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i></span>
 				<input id="modlgn-passwd" type="password" name="password" class="input" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
 			</div>
 		<?php else: ?>
@@ -83,7 +83,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 		<ul class="unstyled">
 			<li>
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-				<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
+				<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="fa fa-arrow-right"></span></a>
 			</li>
 			<li>
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">

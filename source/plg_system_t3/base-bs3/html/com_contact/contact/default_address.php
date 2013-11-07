@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 
 /**
  * marker_class: Class based on the selection of text, none, or icons
- * jicon-text, jicon-none, jicon-icon
  */
 ?>
 <dl class="contact-address dl-horizontal">

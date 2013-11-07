@@ -26,7 +26,7 @@ class JHtmlIcon
 		$url = 'index.php?option=com_content&task=article.add&return='.base64_encode($uri).'&a_id=0&catid=' . $category->id;
 
 		if ($params->get('show_icons')) {
-			$text = '<i class="icon-plus"></i> ' . JText::_('JNEW') . '&#160;';
+			$text = '<i class="fa fa-plus"></i> ' . JText::_('JNEW') . '&#160;';
 		} else {
 			$text = JText::_('JNEW').'&#160;';
 		}
@@ -49,7 +49,7 @@ class JHtmlIcon
 		$status = 'width=400,height=350,menubar=yes,resizable=yes';
 
 		if ($params->get('show_icons')) {
-			$text = '<i class="icon-envelope"></i> ' . JText::_('JGLOBAL_EMAIL');
+			$text = '<i class="fa fa-envelope"></i> ' . JText::_('JGLOBAL_EMAIL');
 		} else {
 			$text = JText::_('JGLOBAL_EMAIL');
 		}
@@ -118,8 +118,8 @@ class JHtmlIcon
 				$overlib .= '&lt;br /&gt;';
 				$overlib .= JText::sprintf('COM_CONTENT_WRITTEN_BY', htmlspecialchars($author, ENT_COMPAT, 'UTF-8'));
 
-		$icon	= $article->state ? 'edit' : 'eye-close';
-		$text = '<i class="hasTip icon-'.$icon.' tip" title="'.JText::_('COM_CONTENT_EDIT_ITEM').' :: '.$overlib.'"></i> '.JText::_('JGLOBAL_EDIT');
+		$icon	= $article->state ? 'edit' : 'eye-slash';
+		$text = '<i class="hasTip fa fa-'.$icon.' tip" title="'.JText::_('COM_CONTENT_EDIT_ITEM').' :: '.$overlib.'"></i> '.JText::_('JGLOBAL_EDIT');
 
 		$output = JHtml::_('link', JRoute::_($url), $text);
 
@@ -135,7 +135,7 @@ class JHtmlIcon
 
 		// checks template image directory for image, if non found default are loaded
 		if ($params->get('show_icons')) {
-			$text = '<i class="icon-print"></i> '.JText::_('JGLOBAL_PRINT');
+			$text = '<i class="fa fa-print"></i> '.JText::_('JGLOBAL_PRINT');
 		} else {
 			$text = JText::_('JGLOBAL_PRINT');
 		}
@@ -151,7 +151,7 @@ class JHtmlIcon
 	{
 		// checks template image directory for image, if non found default are loaded
 		if ($params->get('show_icons')) {
-			$text = $text = '<i class="icon-print"></i> '.JText::_('JGLOBAL_PRINT');
+			$text = $text = '<i class="fa fa-print"></i> '.JText::_('JGLOBAL_PRINT');
 		} else {
 			$text = JText::_('JGLOBAL_PRINT');
 		}

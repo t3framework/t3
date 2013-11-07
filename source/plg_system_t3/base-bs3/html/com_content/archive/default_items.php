@@ -51,7 +51,7 @@ $params = $this->params;
 					
 					<?php if ($params->get('show_publish_date')) : ?>
 					<dd class="published">
-						<span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?> 
+						<span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?> 
 					</dd>
 					<?php endif; ?>
 					
@@ -100,11 +100,11 @@ $params = $this->params;
 				<div class="btn-toolbar">
 				
 					<?php if ($params->get('show_modify_date')) : ?>
-					<div class="btn-group modified"><i class="icon-calendar"></i> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3'))); ?> </div>
+					<div class="btn-group modified"><i class="fa fa-calendar"></i> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3'))); ?> </div>
 					<?php endif; ?>
 					
 					<?php if ($params->get('show_hits')) : ?>
-					<div class="btn-group hits"><i class="icon-eye-open"></i> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?> </div>
+					<div class="btn-group hits"><i class="fa fa-eye"></i> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?> </div>
 					<?php endif; ?>
 					
 				</div>

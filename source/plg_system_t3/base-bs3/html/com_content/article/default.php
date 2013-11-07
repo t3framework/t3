@@ -122,7 +122,7 @@ JHtml::_('behavior.caption');
 			<?php endif; ?>
 
 			<?php if ($exAction) : ?>
-				<div class="btn-group pull-right"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-cog"></i> <span class="caret"></span> </a>
+				<div class="btn-group pull-right"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-cog"></i> <span class="caret"></span> </a>
 					<ul class="dropdown-menu">
 						<?php if (!$this->print) : ?>
 							<?php if ($params->get('show_print_icon')) : ?>

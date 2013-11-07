@@ -330,10 +330,10 @@ if (!$editoroptions)
 			</div>
 			<div class="form-actions">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
-					<span class="icon-ok"></span>&#160;<?php echo JText::_('JSAVE') ?>
+					<span class="fa fa-check"></span>&#160;<?php echo JText::_('JSAVE') ?>
 				</button>
 				<button type="button" class="btn" onclick="Joomla.submitbutton('article.cancel')">
-					<span class="icon-remove-sign"></span>&#160;<?php echo JText::_('JCANCEL') ?>
+					<span class="fa fa-times-circle"></span>&#160;<?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
 			<?php echo JHtml::_('form.token'); ?>

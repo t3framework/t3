@@ -23,7 +23,7 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 			<input type="text" name="searchword" placeholder="<?php echo JText::_('COM_SEARCH_SEARCH_KEYWORD'); ?>" id="search-searchword" size="30" maxlength="<?php echo $upper_limit; ?>" value="<?php echo $this->escape($this->origkeyword); ?>" class="input" />
 		</div>
 		<div class="btn-group pull-left">
-			<button name="Search" onclick="this.form.submit()" class="btn hasTooltip" title="<?php echo JText::_('COM_SEARCH_SEARCH');?>"><span class="icon-search"></span></button>
+			<button name="Search" onclick="this.form.submit()" class="btn hasTooltip" title="<?php echo JText::_('COM_SEARCH_SEARCH');?>"><span class="fa fa-search"></span></button>
 		</div>
 		<input type="hidden" name="task" value="search" />
 		<div class="clearfix"></div>
