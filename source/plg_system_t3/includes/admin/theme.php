@@ -384,7 +384,7 @@ class T3AdminTheme
 				$baseurl = JUri::base();
 				
 				//should we provide a list of less path
-				foreach (array(T3_TEMPLATE_PATH . '/less', T3_TEMPLATE_PATH . '/fonts/font-awesome/less', T3_PATH . '/bootstrap/less', T3_PATH . '/less') as $lesspath) {
+				foreach (array(T3_TEMPLATE_PATH . '/less', T3_PATH . '/bootstrap/less', T3_PATH . '/less') as $lesspath) {
 					$lessfiles = JFolder::files($lesspath, '.less', true, true);
 					if(is_array($lessfiles)){
 						foreach ($lessfiles as $less) {

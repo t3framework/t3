@@ -171,6 +171,20 @@ class T3Less
 	{
 		@ini_set('pcre.backtrack_limit', '2M');
 
+		$mem_limit = @ini_get('memory_limit');
+		if (preg_match('@^(\d+)(.)$@', $mem_limit, $matches)) {
+			if ($matches[2] == 'M') {
+				$mem_limit = $matches[1] * 1024 * 1024;
+			} else if ($matches[2] == 'K') {
+				$mem_limit = $matches[1] * 1024;
+			}
+		}
+
+		if((int)$mem_limit < 128 * 1024 * 1024) {
+			@ini_set('memory_limit', '128M');
+		}
+
+
 		//reset import dirs
 		Less_Cache::$import_dirs = array();
 
@@ -220,7 +234,9 @@ class T3Less
 		$content = JFile::read($realpath);
 
 		//remove vars.less
-		$content = preg_replace($rimportvars, '', $content);
+		if (preg_match($rexcludepath, $path)){
+			$content = preg_replace($rimportvars, '', $content);
+		}
 		
 		// remove comments? - we should keep comment for rtl flip
 		//$content = preg_replace($rcomment, '', $content);
@@ -335,8 +351,9 @@ class T3Less
 			}
 		}
 
+
 		// last one
-		$importdirs[T3_TEMPLATE_PATH . '/less/'] = T3_TEMPLATE_URL . '/css/';
+		$importdirs[T3_TEMPLATE_PATH . '/less'] = T3_TEMPLATE_URL . '/css/';
 
 		// compile less to css using lessphp
 		$parser->SetImportDirs($importdirs);
@@ -357,6 +374,9 @@ class T3Less
 		} else {
 			$output = preg_replace($rsplitbegin . $kvarsep . $rsplitend, '', $output);
 		}
+
+		//update url of needed
+		$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), T3_TEMPLATE_URL . '/css') : T3_TEMPLATE_URL . '/css/');
 
 
 		if ($is_rtl) {
