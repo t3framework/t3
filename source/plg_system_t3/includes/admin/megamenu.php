@@ -215,9 +215,20 @@ class T3AdminMegamenu
 		$query = $db->getQuery(true)
 			->select('menutype, language')
 			->from($db->quoteName('#__menu'))
-			->where('home = 1');
+			->group('menutype');
 		$db->setQuery($query);
 		$menulangs = $db->loadAssocList('menutype');
+
+		$query = $db->getQuery(true)
+			->select('menutype, language')
+			->from($db->quoteName('#__menu'))
+			->where('home = 1');
+		$db->setQuery($query);
+		$homelangs = $db->loadAssocList('menutype');
+
+		if(is_array($menulangs) && is_array($homelangs)){
+			$menulangs = array_merge($menulangs, $homelangs);
+		}
 
 		if(is_array($menus) && is_array($menulangs)){
 			foreach ($menus as $menu) {
@@ -242,9 +253,8 @@ class T3AdminMegamenu
 		$query->from('#__viewlevels AS a');
 		$query->group('a.id, a.title, a.ordering');
 		$query->order('a.ordering ASC');
-		$query->order($query->qn('title') . ' ASC');
-		$query->where('a.id in (1,2,3)'); //we only support Public, Registered, Special
-
+		$query->where('a.id in (1,2,3) or a.title = ' . $db->quote('Guest')); //we only support Public, Registered, Special, Guest
+		
 		// Get the options.
 		$db->setQuery($query);
 		$options = $db->loadObjectList();

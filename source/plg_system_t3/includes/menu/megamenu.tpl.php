@@ -154,7 +154,7 @@ class T3MenuMegamenuTpl {
 
 		if($item->dropdown && $item->level < 2){
 			$vars['class'] .= ' dropdown-toggle';
-			$vars['dropdown'] = ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
+			$vars['dropdown'] .= ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
 			$vars['caret'] = '<b class="caret"></b>';
 		}
 
@@ -220,7 +220,7 @@ class T3MenuMegamenuTpl {
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a class=\"$class\" href=\"$flink\"" . ($vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 

@@ -60,7 +60,7 @@ class plgSystemT3 extends JPlugin
 	}
 	
 	function onBeforeRender(){
-		if(T3::detect()){
+		if (defined('T3_PLUGIN') && T3::detect()) {
 			$japp = JFactory::getApplication();
 
 			JDispatcher::getInstance()->trigger('onT3BeforeRender');
@@ -83,10 +83,10 @@ class plgSystemT3 extends JPlugin
 			}
 		}
 	}
-	
-	function onBeforeCompileHead () {
-		$app = JFactory::getApplication();
-		if(T3::detect() && !$app->isAdmin()){
+
+	function onBeforeCompileHead()
+	{
+		if (defined('T3_PLUGIN') && T3::detect() && !JFactory::getApplication()->isAdmin()) {
 			// call update head for replace css to less if in devmode
 			$t3app = T3::getApp();
 			if($t3app){
@@ -100,14 +100,14 @@ class plgSystemT3 extends JPlugin
 		}
 	}
 
-	function onAfterRender ()
+	function onAfterRender()
 	{
-		if(T3::detect()){
+		if (defined('T3_PLUGIN') && T3::detect()) {
 			$t3app = T3::getApp();
 
-			if($t3app){
-				
-				if(JFactory::getApplication()->isAdmin()){
+			if ($t3app) {
+
+				if (JFactory::getApplication()->isAdmin()) {
 					$t3app->render();
 				} else {
 					$t3app->snippet();
@@ -128,28 +128,31 @@ class plgSystemT3 extends JPlugin
 	 */
 	function onContentPrepareForm($form, $data)
 	{
-		if(T3::detect() && $form->getName() == 'com_templates.style'){
-			$this->loadLanguage();
-			JForm::addFormPath(T3_PATH . '/params');
-			$form->loadFile('template', false);
-		}
-	
-		$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
+		if(defined('T3_PLUGIN')){
+			if (T3::detect() && $form->getName() == 'com_templates.style') {
+				$this->loadLanguage();
+				JForm::addFormPath(T3_PATH . '/params');
+				$form->loadFile('template', false);
+			}
 
-		if($tmpl){
-			$extended = JPATH_ROOT . '/templates/' . $tmpl . '/etc/form/' . $form->getName() . '.xml';
-			
-			if(is_file($extended)){
-				JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
-				
-				JForm::addFormPath(dirname($extended));
-				$form->loadFile($form->getName(), false);
+			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
+
+			if ($tmpl) {
+				$extended = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl) . '/etc/form/' . $form->getName() . '.xml';
+
+				if (is_file($extended)) {
+					JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
+
+					JForm::addFormPath(dirname($extended));
+					$form->loadFile($form->getName(), false);
+				}
 			}
 		}
 	}
-	
-	function onExtensionAfterSave($option, $data){
-		if(T3::detect() && $option == 'com_templates.style' && !empty($data->id)){
+
+	function onExtensionAfterSave($option, $data)
+	{
+		if (defined('T3_PLUGIN') && T3::detect() && $option == 'com_templates.style' && !empty($data->id)) {
 			//get new params value
 			$japp = JFactory::getApplication();
 			$params = new JRegistry;
@@ -158,14 +161,14 @@ class plgSystemT3 extends JPlugin
 
 			//check for changed params
 			$pchanged = array();
-			foreach($oparams as $oparam){
-				if($params->get($oparam['name']) != $oparam['value']){
+			foreach ($oparams as $oparam) {
+				if ($params->get($oparam['name']) != $oparam['value']) {
 					$pchanged[] = $oparam['name'];
 				}
 			}
 
 			//if we have any changed, we will update to global
-			if(count($pchanged)){
+			if (count($pchanged)) {
 
 				//get all other styles that have the same template
 				$db = JFactory::getDBO();
@@ -177,13 +180,13 @@ class plgSystemT3 extends JPlugin
 
 				$db->setQuery($query);
 				$themes = $db->loadObjectList();
-				
+
 				//update all global parameters
-				foreach($themes as $theme){
+				foreach ($themes as $theme) {
 					$registry = new JRegistry;
 					$registry->loadString($theme->params);
 
-					foreach($pchanged as $pname){
+					foreach ($pchanged as $pname) {
 						$registry->set($pname, $params->get($pname)); //overwrite with new value
 					}
 
@@ -206,16 +209,16 @@ class plgSystemT3 extends JPlugin
 	 * This event is fired by overriding ModuleHelper class
 	 * Return false for continueing render module
 	 *
-	 * @param   object  &$module   A module object.
-	 * @param   array   $attribs   An array of attributes for the module (probably from the XML).
+	 * @param   object &$module   A module object.
+	 * @param   array $attribs   An array of attributes for the module (probably from the XML).
 	 *
 	 * @return  bool
 	 */
-	function onRenderModule (&$module, $attribs)
+	function onRenderModule(&$module, $attribs)
 	{
 		static $chromed = false;
 		// Detect layout path in T3 themes
-		if (T3::detect()) {
+		if (defined('T3_PLUGIN') && T3::detect()) {
 			// Chrome for module
 			if (!$chromed) {
 				$chromed = true;
@@ -234,8 +237,8 @@ class plgSystemT3 extends JPlugin
 	 * This event is fired by overriding ModuleHelper class
 	 * Return path to layout if found, false if not
 	 *
-	 * @param   string  $module  The name of the module
-	 * @param   string  $layout  The name of the module layout. If alternative
+	 * @param   string $module  The name of the module
+	 * @param   string $layout  The name of the module layout. If alternative
 	 *                           layout, in the form template:filename.
 	 *
 	 * @return  null
@@ -243,11 +246,11 @@ class plgSystemT3 extends JPlugin
 	function onGetLayoutPath($module, $layout)
 	{
 		// Detect layout path in T3 themes
-		if (T3::detect()) {
+		if (defined('T3_PLUGIN') && T3::detect()) {
 			$tPath = T3Path::getPath('html/' . $module . '/' . $layout . '.php');
 			if ($tPath)
 				return $tPath;
 		}
 		return false;
-	}	
+	}
 }

@@ -52,7 +52,7 @@ class JFormFieldT3FolderList extends JFormFieldFolderList
 		$path = (string) $this->element['directory'];
 		if (!is_dir($path))
 		{
-			$this->element['directory'] =  T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
+			$this->directory = $this->element['directory'] =  T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
 		}
 
 		if(!is_dir($this->element['directory'])){

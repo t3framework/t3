@@ -174,14 +174,15 @@ class T3AdminTheme
 	 */
 	public static function thememagic($path)
 	{
-		$app = JFactory::getApplication();
-		$isadmin = $app->isAdmin();
-		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
-		$url .= (preg_match('/\?/', $url) ? '&' : '?').'themer=1';
-		// show thememagic form
-
+		$app       = JFactory::getApplication();
+		$input     = $app->input;
 		//todo: Need to optimize here
 		$tplparams = JFactory::getApplication('site')->getTemplate(true)->params;
+		$isadmin   = $app->isAdmin();
+		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
+		$url .= (preg_match('/\?/', $url) ? '&' : '?') . 'themer=1';
+		$url .= ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '');
+		$url .= '&t3tmid=' . $input->getCmd('id');
 
 		$assetspath = T3_TEMPLATE_PATH;
 		$themepath = $assetspath . '/less/themes';

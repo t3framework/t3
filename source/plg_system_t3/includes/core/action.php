@@ -178,17 +178,31 @@ class T3Action
 	}
 
 	public static function module () {
-		$input = JFactory::getApplication()->input;
-		$id = $input->getInt ('mid');
+		$user   = JFactory::getUser();
+		$input  = JFactory::getApplication()->input;
+		$id     = $input->getInt('mid');
+		$t3acl  = (int)$input->get('t3acl', 1);
+		$groups = $user->getAuthorisedViewLevels();
 		$module = null;
+		$buffer = null;
+
+		array_push($groups, $t3acl);
+
+		if (is_array($groups) && in_array(3, $groups)) { 
+			//we assume, if a user is special, they should be registered also
+			$groups[] = 2;
+		}
+
 		if ($id) {
 			// load module
 			$db = JFactory::getDbo();
 			$query = $db->getQuery(true);
-			$query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params')
+			$query
+				->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params')
 				->from('#__modules AS m')
 				->where('m.id = '.$id)
-				->where('m.published = 1');
+				->where('m.published = 1')
+				->where('m.access IN ('.implode(',', array_unique($groups)).')');
 			$db->setQuery($query);
 			$module = $db->loadObject ();
 		}
@@ -203,10 +217,17 @@ class T3Action
 			$buffer    = preg_replace($regex, "$1=\"$base\$2\"", $buffer);
 		}
 
-		//remove invisibile content, there are more ... but ...
-		$buffer = preg_replace(array( '@<style[^>]*?>.*?</style>@siu', '@<script[^>]*?.*?</script>@siu'), array('', ''), $buffer);
+		if($buffer){
+			//remove invisibile content, there are more ... but ...
+			$buffer = preg_replace(array( '@<style[^>]*?>.*?</style>@siu', '@<script[^>]*?.*?</script>@siu'), array('', ''), $buffer);
 
-		echo $buffer;
+			echo $buffer;	
+		} else {
+			die(json_encode(array(
+				'message' => JText::_('T3_MSG_MODULE_NOT_AVAIL')
+			)));
+		}
+		
 	}
 
 	//translate param name to new name, from jvalue => to desired param name

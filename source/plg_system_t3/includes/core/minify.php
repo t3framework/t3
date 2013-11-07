@@ -44,7 +44,6 @@ class T3Minify
 		$url = preg_replace('#[?\#]+.*$#', '', $url);
 		$base = JURI::base();
 		$root = JURI::root(true);
-		$path = false;
 		$ret = false;
 
 		if(substr($url, 0, 2) === '//'){ //check and append if url is omit http
@@ -53,7 +52,7 @@ class T3Minify
 
 		//check for css file extensions
 		foreach ( self::$cssexts as $ext ) {
-			if (substr_compare($url, $ext, -strlen($ext), strlen($ext)) === 0) {
+			if (strlen($ext) <= strlen($url) && substr_compare($url, $ext, -strlen($ext), strlen($ext)) === 0) {
 				$ret = true;
 				break;
 			}
