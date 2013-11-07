@@ -70,6 +70,35 @@
     display: block;
   }
 
+  // Sub menus
+  // ---------------------------
+  .dropdown-submenu {
+    position: relative;
+  }
+  // Default dropdowns
+  .dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -11px;
+    margin-left: -1px;
+    border-radius: @border-radius-base;
+  }
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+
+  // Dropdown Sub menus
+  // ------------------
+  .dropdown-submenu > .dropdown-menu {
+  }
+
+  .dropdown-submenu > a:after {
+  }
+
+  .dropdown-submenu:hover > a:after {
+  }
+  // End 
+
 
   // The Group
   // ---------

@@ -29,7 +29,26 @@
     padding: 0;
   }
 
+  .nav {
+    > li > .separator {
+      position: relative;
+      display: block;
+      padding: @nav-link-padding;
+      line-height: @line-height-computed;
+    }
+  }
 
+  @media (min-width: @grid-float-breakpoint) {
+    .navbar-nav {
+      > li {
+        float: left;
+        > .separator {
+          padding-top: ((@navbar-height - @line-height-computed) / 2);
+          padding-bottom: ((@navbar-height - @line-height-computed) / 2);
+        }
+      }
+    }
+  }
 }
 
 
