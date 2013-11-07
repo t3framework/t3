@@ -93,7 +93,28 @@ h2.article-title,
   }
 
   p {
-    font-size: @font-size-base * 3;
+    font-size: @font-size-base * 2;
+  }
+
+  // Big mashead btn
+  .btn-lg {
+    margin-top: @line-height-computed;
+    padding: 18px 42px;
+    font-size: @font-size-base * 1.5;
+  }
+
+
+  //
+  // Reponsive Mashead
+  // -------------------------------------------------
+
+  // Mobile
+  // ------
+  @media screen and (max-width: @screen-sm-min) {
+    .btn-lg {
+      padding: @padding-base-vertical @padding-base-horizontal;
+      font-size: @font-size-base;
+    }
   }
 
 }
@@ -103,7 +124,8 @@ h2.article-title,
 // ---------
 .jumbotron {
 
-  h1 {
+  h1, h2, h3 {
+    margin-top: 0;
   }
 
   p {
@@ -113,11 +135,13 @@ h2.article-title,
     border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
   }
 
-  @media screen and (min-width: @screen-sm-min) {
 
+  //
+  // Reponsive Jumbotron
+  // -------------------------------------------------
+  @media screen and (min-width: @screen-sm-min) {
     .container & {
     }
-
     h1 {
     }
   }
