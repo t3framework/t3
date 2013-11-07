@@ -731,6 +731,7 @@ class T3Template extends ObjectExtendable
 		// BOOTSTRAP 2 COMPATIBLE
 		if($bs2compat){
 			$this->addCss('bs2');
+			$this->addStyleSheet(T3_URL . '/fonts/font-awesome/css/font-awesome.css');
 		}
 
 		// BOOTSTRAP CSS
