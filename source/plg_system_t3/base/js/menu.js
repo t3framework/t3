@@ -12,32 +12,147 @@
  */
 
 !function($){
-	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
+	var has_touch = 'ontouchstart' in window;
 
-	if(!isTouch){
+	if(!has_touch){
 		$(document).ready(function($){
 			// detect animation duration
-			var mm_duration = 0;
-			$('.t3-megamenu').each (function(){
-				if ($(this).data('duration')) mm_duration = $(this).data('duration');
-			});
+			var mm_duration = $('.t3-megamenu').data('duration') || 0;
 			if (mm_duration) {
-				var style = '.t3-megamenu.animate .mega > .mega-dropdown-menu, .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {';
+
+				var style = '';
+				style += '.t3-megamenu.animate .mega > .mega-dropdown-menu, .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {'
 				style += 'transition-duration: ' + mm_duration + 'ms;';
 				style += '-webkit-transition-duration: ' + mm_duration + 'ms;';
 				style += '-ms-transition-duration: ' + mm_duration + 'ms;';
 				style += '-o-transition-duration: ' + mm_duration + 'ms;';
 				style += '}';
+
 				$('<style type="text/css">'+style+'</style>').appendTo ('head');
 			}
 
 			var mm_timeout = mm_duration ? 100 + mm_duration : 500;
+			var mm_rtl = $('html').attr('dir') == 'rtl';
+
+			function position_menu(item){
+
+				var sub = item.children('.mega-dropdown-menu'),
+					is_show = sub.is(':visible');
+
+				if(!is_show){
+					sub.show();
+				}
+
+				var offset = item.offset(),
+					width = item.outerWidth(),
+					screen_width = $(window).width(),
+					sub_width = sub.outerWidth(),
+					level = item.data('level');
+
+				if(!is_show){
+					sub.css('display', '');
+				}
+
+				if(level == 1){
+
+					var align = item.data('alignsub'),
+						align_offset = 0;
+
+					if(!align){
+						align = mm_rtl ? 'right' : 'left';
+					}
+
+					if(align == 'left'){
+						align_offset = offset.left;
+					} else if(align == 'center'){
+						align_offset = offset.left + (width - sub_width) / 2;
+					} else if(align == 'right'){
+						align_offset = offset.left + width - sub_width;
+					}
+				}
+
+				if (level == 1) {
+					if (mm_rtl) {
+						if(align_offset + sub_width > screen_width && align == 'left'){
+							sub.css('left', Math.max(-align_offset, offset.left + sub_width - screen_width));
+						} else if(align_offset - sub_width < 0){
+							sub.css('right', Math.min(screen_width - offset.left - width, sub_width - align_offset));
+						}
+					} else {
+						if(align_offset < 0 && align == 'right'){
+							sub.css('right', Math.max(align_offset, offset.left + width - screen_width));
+						} else if(Math.max(0, align_offset) + sub_width > screen_width){
+							sub.css('left', Math.max(-align_offset + (align == 'center' ? width / 2 : 0), screen_width - Math.max(0, align_offset) - sub_width));
+						}
+					}
+				} else {
+
+					//reset custom align
+					sub.css({left : '', right : ''});
+
+					if (mm_rtl) {
+						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-left')) {
+
+							//should be align to the right as parent
+							item.removeClass('mega-align-right').addClass('mega-align-left');
+
+							// check if not able => revert the direction
+							if (offset.left + width + sub_width > screen_width) {
+								item.removeClass('mega-align-left'); //should we add align left ? it is th default now
+
+								if(offset.left + width - sub_width > 0){
+									sub.css('right', sub_width - offset.left - width);
+								}
+							}
+						} else {
+							if (offset.left + width - sub_width < 0) {
+								item.removeClass('mega-align-right').addClass('mega-align-left');
+
+								if(offset.left + sub_width > screen_width){
+									sub.css('left', screen_width - offset.left - sub_width);
+								}
+							}
+						}
+					} else {
+
+						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
+
+							//should be align to the right as parent
+							item.removeClass('mega-align-left').addClass('mega-align-right');
+
+							// check if not able => revert the direction
+							if (offset.left + width - sub_width < 0) {
+								item.removeClass('mega-align-right'); //should we add align left ? it is th default now
+
+								if(offset.left + sub_width > screen_width){
+									sub.css('left', screen_width - sub_width - offset.left);
+								}
+							}
+						} else {
+
+							if (offset.left + sub_width > screen_width) {
+								item.removeClass('mega-align-left').addClass('mega-align-right');
+
+								if(offset.left + width - sub_width < 0){
+									sub.css('right', sub_width - offset.left - width);
+								}
+							}
+						}
+					}
+				}
+
+			}
 
 			$('.nav > li, li.mega').hover(function(event) {
 				var $this = $(this);
 				if ($this.hasClass ('mega')) {
+
+					//place menu
+					position_menu($this);
+
 					// add class animate
-					$this.addClass ('animating');
+					setTimeout(function(){$this.addClass ('animating');})
+
 					clearTimeout ($this.data('animatingTimeout'));
 					$this.data('animatingTimeout', 
 						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));

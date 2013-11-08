@@ -73,16 +73,16 @@
 
 				if (level == 1) {
 					if (mm_rtl) {
-						if(align_offset - sub_width > 0){
+						if(align_offset + sub_width > screen_width && align == 'left'){
+							sub.css('left', Math.max(-align_offset, offset.left + sub_width - screen_width));
+						} else if(align_offset - sub_width < 0){
 							sub.css('right', Math.min(screen_width - offset.left - width, sub_width - align_offset));
 						}
 					} else {
-						if(align_offset < 0 || Math.max(0, align_offset) + sub_width > screen_width){
-							if(align == 'right'){
-								sub.css('right', Math.max(offset.left + width - screen_width, offset.left - sub_width));
-							} else {
-								sub.css('left', Math.max(-align_offset + (align == 'center' ? width / 2 : 0), screen_width - Math.max(0, align_offset) - sub_width));
-							}
+						if(align_offset < 0 && align == 'right'){
+							sub.css('right', Math.max(align_offset, offset.left + width - screen_width));
+						} else if(Math.max(0, align_offset) + sub_width > screen_width){
+							sub.css('left', Math.max(-align_offset + (align == 'center' ? width / 2 : 0), screen_width - Math.max(0, align_offset) - sub_width));
 						}
 					}
 				} else {
@@ -146,10 +146,13 @@
 			$('.nav > li, li.mega').hover(function(event) {
 				var $this = $(this);
 				if ($this.hasClass ('mega')) {
-					// add class animate
+
+					//place menu
 					position_menu($this);
 
-					$this.addClass ('animating');
+					// add class animate
+					setTimeout(function(){$this.addClass ('animating');})
+
 					clearTimeout ($this.data('animatingTimeout'));
 					$this.data('animatingTimeout', 
 						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
