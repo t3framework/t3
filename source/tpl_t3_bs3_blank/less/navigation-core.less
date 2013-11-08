@@ -26,19 +26,28 @@
 // BREADCRUMS
 // -------------------------------------------------------
 .t3-navhelper {
-  background: lighten(@gray-darker,5%);
+  background: @breadcrumb-bg;
   color: @gray;
 }
 
 .breadcrumb {
+  margin-bottom: 0;
+  border-radius: 0;
+
   > li {
     + li:before {
       content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
     }
   }
+
   // Active
   > .active {
     color: @breadcrumb-active-color;
+  }
+
+  // Hide default Joomla! arrow in breadcrum
+  .divider {
+    display: none;
   }
 }
 
@@ -48,6 +57,9 @@
 //
 // PAGINATION (MULTIPLE PAGES)
 // --------------------------------------------------
+.pagination-wrap {
+}
+
 .pagination {
 
   > li {
@@ -83,6 +95,18 @@
     > a:focus {
     }
   }
+}
+
+
+// Counter
+// ----------
+.counter {
+  float: right;
+  margin-top: @line-height-computed;
+  padding: @padding-base-vertical @padding-base-horizontal;
+  background-color: @pagination-bg;
+  border: 1px solid @pagination-border;
+  border-radius: @border-radius-base;
 }
 
 

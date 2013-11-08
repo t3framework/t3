@@ -14,11 +14,11 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 }
 ?>
 
-<ul class="breadcrumb <?php echo $moduleclass_sfx; ?>">
+<ol class="breadcrumb <?php echo $moduleclass_sfx; ?>">
 	<?php
 	if ($params->get('showHere', 1))
 	{
-		echo '<li class="active"><span class="divider hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip" title="' .JText::_('MOD_BREADCRUMBS_HERE').'"></i></span></li>';
+		echo '<li class="active"><span class="hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip" title="' .JText::_('MOD_BREADCRUMBS_HERE').'"></i></span></li>';
 	}
 
 	// Get rid of duplicated entries on trail including home page when using multilanguage
@@ -67,4 +67,4 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 		echo '</li>';
 	}
 	endforeach; ?>
-</ul>
+</ol>

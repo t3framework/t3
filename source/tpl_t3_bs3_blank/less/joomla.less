@@ -11,14 +11,17 @@
  *------------------------------------------------------------------------------
  */
 
-
 // ---------------------------------------------------------
+// SPECIFIC JOOMLA STYLES
+// ---------------------------------------------------------
+
+
+// 
 // GENERIC ARTICLE STYLES
 // ---------------------------------------------------------
 
-
 // Articles Layout
-// ---------------------------------------------------------
+// ---------------
 .blog {
 }
 
@@ -191,6 +194,26 @@ article img[align=right],
   text-align: center;
   clear: both;
 }
+
+//
+// Reponsive Article Images
+// ------------------------------------
+
+// Mobile
+// ------
+@media (max-width: @screen-xs-max) {
+
+  article img[align=left], .img_caption.left,
+  article img[align=right], .img_caption.right,
+  .img-fulltext-left, .img-fulltext-right {
+    float: none !important;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100% !important;
+  }
+
+}
+
 
 
 // Article Actions
@@ -817,16 +840,6 @@ article aside .btn-group {
 }
 
 
-// Pagination
-// ----------
-.counter {
-  float: right;
-  line-height: 1;
-  margin: (@t3-global-margin / 2) 0;
-  text-align: right;
-}
-
-
 // Items More
 // -----------
 .items-more {
@@ -1036,27 +1049,3 @@ article aside .btn-group {
   }
 }
 
-
-
-
-//
-// MOBILE
-// -------------------------------------------------------------
-@media (max-width: @screen-xs-max) {
-
-  //
-  // GENERIC ARTICLE STYLES
-  // -----------------------------------------------------------
-
-  // Article Images
-  // --------------
-  article img[align=left], .img_caption.left,
-  article img[align=right], .img_caption.right,
-  .img-fulltext-left, .img-fulltext-right {
-    float: none !important;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100% !important;
-  }
-
-}
