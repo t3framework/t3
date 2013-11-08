@@ -256,7 +256,7 @@ defined('_JEXEC') or die;
                 <li>
                   <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_MODULE'), '::', JTexT::_('T3_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_MODULE') ?></label>
                   <fieldset class="">
-                    <select class="toolcol-position toolbox-input toolbox-select input-medium" name="toolcol-position" data-name="position" data-placeholder="<?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
+                    <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
                       <option value=""></option>
                       <?php foreach (T3AdminMegamenu::modules() as $module): ?>
                         <option value="<?php echo $module->id ?>"><?php echo $module->title ?></option>

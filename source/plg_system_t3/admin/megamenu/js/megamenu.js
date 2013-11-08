@@ -602,7 +602,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 					// active align button
 					if (liitem.data('alignsub')) {
-						$('.toolsub-align-'+liitem.data('alignsub')).addClass ('active');
+						$('.toolsub-align-'+liitem.data('alignsub')).addClass ('active').siblings().removeClass('active');
 						if (liitem.data('alignsub') == 'justify') {
 							$('.toolsub-width').addClass ('disabled');
 						}
