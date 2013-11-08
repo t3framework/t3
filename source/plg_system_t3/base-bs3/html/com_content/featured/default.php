@@ -82,12 +82,12 @@ JHtml::_('behavior.caption');
 <?php endif; ?>
 
 <?php if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $this->pagination->get('pages.total') > 1)) : ?>
-	<nav class="pagination">
+	<nav class="pagination-wrap">
 
 		<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-			<p class="counter pull-right">
+			<div class="counter">
 				<?php echo $this->pagination->getPagesCounter(); ?>
-			</p>
+			</div>
 		<?php  endif; ?>
 				<?php echo $this->pagination->getPagesLinks(); ?>
 	</nav>
