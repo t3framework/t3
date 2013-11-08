@@ -317,6 +317,7 @@ class T3AdminMegamenu
 		}
 		
 		include T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
+		
 		exit;
 	}
 }
