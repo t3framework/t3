@@ -124,6 +124,7 @@ function pagination_item_active(&$item)
 }
 
 function pagination_item_inactive(&$item) {
-	return "<li class=\"disabled\"><a>".$item->text."</a></li>";
+  $cls = (int)$item->text > 0 ? 'active': 'disabled';
+	return "<li class=\"$cls\"><a>".$item->text."</a></li>";
 }
 ?>

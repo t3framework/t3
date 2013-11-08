@@ -865,10 +865,16 @@ article aside .btn-group {
 // -----------
 .items-more {
   h3 {
-    margin: 0 0 5px;
+    margin: 0 0 @t3-global-margin;
   }
   
-  ol {
+  .nav {
+    > li {
+      border-top: 1px solid @t3-border-color;
+    }
+    > li > a {
+      padding: @padding-base-vertical 5px;
+    }
   }
 }
 
