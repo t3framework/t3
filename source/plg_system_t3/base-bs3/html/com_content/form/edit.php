@@ -10,12 +10,12 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
 JHtml::_('behavior.calendar');
 JHtml::_('behavior.formvalidation');
 
 if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('formbehavior.chosen', 'select');
+	JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
 }
 
 // Create shortcut to parameters.
@@ -34,7 +34,7 @@ if (!$editoroptions)
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'article.cancel' || document.formvalidator.isValid(document.id('adminForm')))
+		if (task == 'article.cancel' || document.formvalidator.isValid(document.getElementById('adminForm')))
 		{
 			<?php echo $this->form->getField('articletext')->save(); ?>
 			Joomla.submitform(task);
@@ -226,13 +226,22 @@ if (!$editoroptions)
 					</div>
 					<div class="control-group">
 						<div class="control-label">
-							<?php echo $this->form->getLabel('tags', 'metadata'); ?>
+							<?php echo $this->form->getLabel('tags'); ?>
 						</div>
 						<div class="controls">
-							<?php echo $this->form->getInput('tags', 'metadata'); ?>
+							<?php echo $this->form->getInput('tags'); ?>
 						</div>
 					</div>
-
+					<?php if ($params->get('save_history', 0)) : ?>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('version_note'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('version_note'); ?>
+						</div>
+					</div>
+					<?php endif; ?>
 					<div class="control-group">
 						<div class="control-label">
 							<?php echo $this->form->getLabel('created_by_alias'); ?>
@@ -328,13 +337,22 @@ if (!$editoroptions)
 					<?php endif; ?>
 				</div>
 			</div>
-			<div class="form-actions">
-				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
-					<span class="fa fa-check"></span>&#160;<?php echo JText::_('JSAVE') ?>
-				</button>
-				<button type="button" class="btn btn-default" onclick="Joomla.submitbutton('article.cancel')">
-					<span class="fa fa-times-circle"></span>&#160;<?php echo JText::_('JCANCEL') ?>
-				</button>
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
+						<span class="icon-ok"></span>&#160;<?php echo JText::_('JSAVE') ?>
+					</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn" onclick="Joomla.submitbutton('article.cancel')">
+						<span class="icon-cancel"></span>&#160;<?php echo JText::_('JCANCEL') ?>
+					</button>
+				</div>
+				<?php if ($params->get('save_history', 0)) : ?>
+				<div class="btn-group">
+					<?php echo $this->form->getInput('contenthistory'); ?>
+				</div>
+				<?php endif; ?>
 			</div>
 			<?php echo JHtml::_('form.token'); ?>
 		</fieldset>
