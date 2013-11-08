@@ -1403,8 +1403,16 @@ button.btn-primary:active {
   border-left: 3px solid #690;
 }
 
+.updater h3 {
+  color: #690;
+}
+
 .updater.outdated {
   border-left: 3px solid #ee372a;
+}
+
+.updater.outdated h3 {
+  color: #ee372a;
 }
 
 .updater .btn {
