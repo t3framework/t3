@@ -22,6 +22,7 @@
 @import "../../../plugins/system/t3/base-bs3/less/megamenu.less";
 
 
+//
 // BASIC STYLE FOR MEGAMENU
 // -------------------------
 .t3-megamenu {
@@ -69,10 +70,11 @@
   .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
     background: inherit;
     color: @gray-darker;
-    font-size: @t3-font-size-bigger;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: @font-size-large;
+    font-weight: @headings-font-weight;
+    margin-bottom: @line-height-computed / 2;
 
+    // States
     &:hover, &:active, &:focus {
       background: inherit;
       color: @gray-darker;
@@ -151,11 +153,11 @@
 
   // Module Title
   .t3-module .module-title {
-    font-size: @t3-font-size-bigger;
     color: @gray-darker;
-    display: block;
+    font-size: @font-size-large;
+    font-weight: @headings-font-weight;
     line-height: @line-height-computed;
-    margin-bottom: 5px;
+    margin-bottom: @line-height-computed / 2;
   }
 
   // Module Content
@@ -166,7 +168,6 @@
   // Reset List Style in Module
   .t3-module ul,
   .t3-module .nav {
-    margin: 0 0 0 15px;
   }
 
   .t3-module ul li,
