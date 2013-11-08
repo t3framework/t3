@@ -55,12 +55,17 @@
   ul,
   ol {
     margin-left: 20px;
+    padding-left: 0;
   }
   
   ul.unstyled,
-  ol.unstyled,
+  ol.unstyled {
+    padding-left: 0;
+  }
+
   ul.nav,
   ol.nav {
+    padding-left: 0;
     margin-left: 0;
   }
 }
@@ -120,6 +125,7 @@
   }
   
   ul.unstyled {
+    margin-top: @line-height-computed;
   }
 
   #form-login-username {
@@ -129,6 +135,9 @@
   }
   
   #form-login-remember {
+    label {
+      font-weight: normal;
+    }
   }
 
 }
