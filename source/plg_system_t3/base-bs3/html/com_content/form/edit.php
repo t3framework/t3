@@ -332,7 +332,7 @@ if (!$editoroptions)
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
 					<span class="fa fa-check"></span>&#160;<?php echo JText::_('JSAVE') ?>
 				</button>
-				<button type="button" class="btn" onclick="Joomla.submitbutton('article.cancel')">
+				<button type="button" class="btn btn-default" onclick="Joomla.submitbutton('article.cancel')">
 					<span class="fa fa-times-circle"></span>&#160;<?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
