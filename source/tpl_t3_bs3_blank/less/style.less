@@ -211,8 +211,12 @@
     line-height: 24px;
   }
   
+  .t3-module {
+    margin-bottom: 0;
+  }
+
   .module-title {
-    font-size: @font-size-base + 4px;
+    font-size: @font-size-large;
     color: @t3-footer-mtitle-color;
   }
 }
@@ -224,6 +228,9 @@
   font-size: @t3-font-size-smaller;
   padding: (@t3-global-padding * 2) 0 (@t3-global-padding * 4);
   .clearfix();
+  small {
+    margin-bottom: 5px;
+  }
 }
 
 .copyright {
