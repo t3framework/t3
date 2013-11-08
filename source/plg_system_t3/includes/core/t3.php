@@ -94,9 +94,6 @@ class T3 {
 		define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
 		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
 
-		//load T3 Framework language
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
-		
 		if ($input->getCmd('themer', 0)){
 			define ('T3_THEMER', 1);
 		}

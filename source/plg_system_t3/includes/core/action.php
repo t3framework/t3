@@ -143,6 +143,8 @@ class T3Action
 	public static function megamenu() {
 		self::cloneParam('t3menu');
 
+		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
+
 		if(!defined('T3')) {
 			die(json_encode(array(
 				'error' => JText::_('T3_MSG_PLUGIN_NOT_READY')

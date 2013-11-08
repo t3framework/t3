@@ -63,7 +63,6 @@ class T3Admin {
 	public function addAssets(){
 
 		// load template language
-		JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
 		JFactory::getLanguage()->load ('tpl_'.T3_TEMPLATE.'.sys', JPATH_ROOT, null, true);
 
 		$langs = array(

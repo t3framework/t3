@@ -73,6 +73,10 @@ class plgSystemT3 extends JPlugin
 			$template = T3::detect();
 			
 			if ($template) {
+				
+				// load the language
+				$this->loadLanguage();
+
 				T3Bot::beforeInit();
 				T3::init($template);
 				T3Bot::afterInit();
@@ -174,7 +178,6 @@ class plgSystemT3 extends JPlugin
 	{
 		if(defined('T3_PLUGIN')){
 			if (T3::detect() && $form->getName() == 'com_templates.style') {
-				$this->loadLanguage();
 				JForm::addFormPath(T3_PATH . '/params');
 				$form->loadFile('template', false);
 			}
