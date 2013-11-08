@@ -15,7 +15,7 @@
 .home .t3-sl-1 {
   padding: 0;
   background: #eeeeee;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #eeeeee;
 }
 .home .t3-sl-1 .jumbotron {
   border-radius: 0;
@@ -23,7 +23,7 @@
 .home .t3-sl-1 .jumbotron h1 {
   font-weight: bold;
 }
-.home .t3-sl-1 .jumbotron .btn-large {
+.home .t3-sl-1 .jumbotron .btn {
   margin-top: 20px;
 }
 .home .t3-sl-1 .t3-social {
@@ -55,7 +55,7 @@
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #eeeeee;
   text-align: center;
 }
 .home .t3-sl-3 p,
@@ -80,23 +80,12 @@
 }
 .home .t3-sl-5 {
   background: #eeeeee;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #eeeeee;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron {
+  border-radius: 0;
   margin-bottom: 0;
-}
-.home .t3-sl-5 .jumbotron .btn-large {
-  margin-top: 20px;
-}
-.home .t3-sl-5 .section-arrow-alt {
-  background: url("../images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
-  width: 37px;
-  height: 19px;
-  position: absolute;
-  top: -1px;
-  left: 50%;
-  margin-left: -19px;
 }
 @media (max-width: 767px) {
   .home .t3-sl-1 .jumbotron,
