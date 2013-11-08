@@ -205,12 +205,12 @@ if (!empty($this->items)) {
 	<?php // Add pagination links ?>
 	<?php if (!empty($this->items)) : ?>
 	<?php if (($this->params->def('show_pagination', 2) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-		<div class="pagination">
+		<div class="pagination-wrap">
 
 			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-				<p class="counter pull-right">
+				<div class="counter">
 					<?php echo $this->pagination->getPagesCounter(); ?>
-				</p>
+				</div>
 			<?php endif; ?>
 
 			<?php echo $this->pagination->getPagesLinks(); ?>

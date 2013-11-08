@@ -4,20 +4,20 @@
   padding: 0;
 }
 .home .t3-sl-1 .jumbotron {
-  background-color: #eee;
-  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#fff),to(#eee));
-  background-image: -webkit-radial-gradient(circle,#fff,#eee);
-  background-image: -moz-radial-gradient(circle,#fff,#eee);
-  background-image: -o-radial-gradient(circle,#fff,#eee);
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#eeeeee));
+  background-image: -webkit-radial-gradient(circle, #ffffff, #eeeeee);
+  background-image: -moz-radial-gradient(circle, #ffffff, #eeeeee);
+  background-image: -o-radial-gradient(circle, #ffffff, #eeeeee);
   background-repeat: no-repeat;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #444444;
 }
 .home .t3-sl-1 .jumbotron .btn-large {
   font-size: 24.5px;
   padding: 18px 44.5px;
 }
 .home .t3-sl-1 .t3-social {
-  background: #eee;
+  background: #eeeeee;
   padding: 20px 0;
 }
 .home .t3-sl-1 .t3-social .t3-social-btns {
@@ -31,18 +31,18 @@
   height: 20px;
 }
 .home .t3-sl-1 {
-  color: #eee;
+  color: #eeeeee;
 }
 .home .t3-sl-1 .jumbotron {
-  background-color: #222;
-  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#222),to(#222));
-  background-image: -webkit-radial-gradient(circle,#222,#222);
-  background-image: -moz-radial-gradient(circle,#222,#222);
-  background-image: -o-radial-gradient(circle,#222,#222);
+  background-color: #222222;
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#222222), to(#222222));
+  background-image: -webkit-radial-gradient(circle, #222222, #222222);
+  background-image: -moz-radial-gradient(circle, #222222, #222222);
+  background-image: -o-radial-gradient(circle, #222222, #222222);
   background-repeat: no-repeat;
 }
 .home .t3-sl-1 .jumbotron h1 {
-  color: #fff;
+  color: #ffffff;
 }
 .home .t3-sl-2 {
   text-align: center;
@@ -56,7 +56,7 @@
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #444;
+  border-top: 1px solid #444444;
   text-align: center;
 }
 .home .t3-sl-3 p,
@@ -77,11 +77,11 @@
 .home .t3-sl-4 .jumbotron p {
   font-size: 21px;
   line-height: 1.275;
-  color: #999;
+  color: #999999;
 }
 .home .t3-sl-5 {
-  background: #eee;
-  border-top: 1px solid #444;
+  background: #eeeeee;
+  border-top: 1px solid #444444;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron .btn-large {
@@ -89,7 +89,7 @@
   padding: 18px 44.5px;
 }
 .home .t3-sl-5 .section-arrow-alt {
-  background: url("../../../images/arrow-section-alt.png") no-repeat center -1px #eee;
+  background: url("/T3/t3mb/templates/t3_blank/images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
   width: 37px;
   height: 19px;
   position: absolute;
@@ -98,11 +98,10 @@
   margin-right: -19px;
 }
 .home .t3-sl-5 {
-  background: #222;
-  border-bottom: 1px solid #444;
-  color: #eee;
+  background: #222222;
+  border-bottom: 1px solid #444444;
+  color: #eeeeee;
 }
 .home .t3-sl-5 .section-arrow-alt {
   display: none;
 }
-

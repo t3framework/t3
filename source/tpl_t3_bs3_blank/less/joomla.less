@@ -16,9 +16,9 @@
 // GENERIC ARTICLE STYLES
 // ---------------------------------------------------------
 
-
+//
 // Articles Layout
-// ---------------------------------------------------------
+// --------------------------------------------------------
 .blog {
 }
 
@@ -52,7 +52,7 @@
 
 
 // Article Aside
-// -------------
+// -------------------------
 .article-aside {
 	color: @gray-light;
 	font-size: @t3-font-size-small;
@@ -114,7 +114,7 @@
 
 
 // Article Footer
-// --------------
+// -------------------------
 .article-footer {
   color: @gray-light;
   font-size: @t3-font-size-small;
@@ -123,17 +123,19 @@
 
 
 // Article Images
-// --------------
+// -------------------------
 article img[align=left],
 .img_caption.left,
 .pull-left.item-image {
-  margin: 0 @grid-gutter-width @t3-global-margin 0;
+  .img-responsive(); // Make the image reponsive
+  margin: 0 @padding-base-horizontal @t3-global-margin 0;
 }
 
 article img[align=right],
 .img_caption.right,
 .pull-right.item-image {
-  margin: 0 0 @t3-global-margin @grid-gutter-width;
+  .img-responsive(); // Make the image reponsive
+  margin: 0 0 @t3-global-margin @padding-base-horizontal;
 }
 
 .img-intro-none,
@@ -159,12 +161,12 @@ article img[align=right],
 
 .img-fulltext-left {
   float: left;
-  margin-right: @grid-gutter-width;
+  margin-right: @padding-base-horizontal;
 }
 
 .img-fulltext-right {
   float: right;
-  margin-left: @grid-gutter-width;
+  margin-left: @padding-base-horizontal;
 }
 
 .img-intro-none img,
@@ -193,8 +195,27 @@ article img[align=right],
 }
 
 
+// Reponsive Article Images
+// -------------------------
+
+// Mobile
+// ------
+@media (max-width: @screen-xs-max) {
+
+  article img[align=left], .img_caption.left,
+  article img[align=right], .img_caption.right,
+  .img-fulltext-left, .img-fulltext-right {
+    float: none !important;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100% !important;
+  }
+
+}
+
+
 // Article Actions
-// ---------------
+// -------------------------
 article aside .btn-group {
   .dropdown-menu {
   }
@@ -203,10 +224,11 @@ article aside .btn-group {
   > .dropdown-toggle:hover,
   > .dropdown-toggle:active,
   > .dropdown-toggle:focus {
-    background: transparent;
-    border: 0;
-    padding: 0;
-    .box-shadow(none);
+    padding: 2px 5px;
+  }
+
+  > .dropdown-toggle .caret {
+    margin-left: 5px;
   }
 }
 
@@ -217,7 +239,8 @@ article aside .btn-group {
 // COMMON JOOMLA STYLE
 // ---------------------------------------------------------
 
-// Login
+//
+// LOGIN
 // ---------------------------------------------------------
 .login h1 {
 }
@@ -260,7 +283,9 @@ article aside .btn-group {
 }
 
 
-// Register
+
+//
+// REGISTER
 // ---------------------------------------------------------
 .form-register {
   fieldset {
@@ -305,7 +330,9 @@ article aside .btn-group {
 }
 
 
-// Mail to Windows
+
+//
+// MAILTO WINDOWS
 // ---------------------------------------------------------
 .com_mailto {
   body {
@@ -374,7 +401,9 @@ article aside .btn-group {
 }
 
 
-// User
+
+//
+// USERS
 // ---------------------------------------------------------
 .user-details {
   padding: 10px 0;
@@ -453,13 +482,16 @@ article aside .btn-group {
 }
 
 
-// Search
+
+//
+// SEARCH
 // ---------------------------------------------------------
 .search {
 }
 
 .searchintro {
 }
+
 
 // Search Form
 // -----------
@@ -528,7 +560,8 @@ article aside .btn-group {
 
 
 
-// Contact
+//
+// CONTACT
 // ---------------------------------------------------------
 .contact {}
 
@@ -537,7 +570,9 @@ article aside .btn-group {
 }
 
 
-// Archive
+
+//
+// ARCHIVED ITEMS
 // ---------------------------------------------------------
 #archive-items > li {
   line-height: normal;
@@ -552,7 +587,9 @@ article aside .btn-group {
 }
 
 
-// Category List
+
+//
+// CATEGORY LIST
 // ---------------------------------------------------------
 .categories-list {
 }
@@ -579,9 +616,13 @@ article aside .btn-group {
 }
 
 
-// News Feeds
+
+//
+// NEWS FEEDS
 // ---------------------------------------------------------
+
 // Feed categories
+// ---------------
 .newsfeed-category,
 .newsfeed {
   > h2 {
@@ -602,7 +643,9 @@ article aside .btn-group {
   }
 }
 
+
 // Feeds item
+// ----------
 .newsfeed {
   > h2 {
     border-bottom: 1px solid @t3-border-color;
@@ -627,7 +670,8 @@ article aside .btn-group {
 }
 
 
-// Edit Content
+//
+// EDIT CONTENT FORM
 // ---------------------------------------------------------
 .edit {
   fieldset {
@@ -640,6 +684,7 @@ article aside .btn-group {
     .box-sizing (border-box);
   }
 }
+
 
 // Editor Buttons
 // --------------
@@ -726,7 +771,7 @@ article aside .btn-group {
 
 
 
-// ---------------------------------------------------------
+// 
 // CONTENT NAVIGATIONS
 // ---------------------------------------------------------
 
@@ -817,27 +862,22 @@ article aside .btn-group {
 }
 
 
-// Pagination
-// ----------
-.counter {
-  float: right;
-  line-height: 1;
-  margin: (@t3-global-margin / 2) 0;
-  text-align: right;
-}
-
-
 // Items More
 // -----------
 .items-more {
   h3 {
-    margin: 0 0 5px;
+    margin: 0 0 @t3-global-margin;
   }
   
-  ol {
+  .nav {
+    > li {
+      border-top: 1px solid @t3-border-color;
+    }
+    > li > a {
+      padding: @padding-base-vertical 5px;
+    }
   }
 }
-
 
 
 // Back Buttons
@@ -872,11 +912,13 @@ article aside .btn-group {
 
 
 
+
 // ---------------------------------------------------------
 // MESSAGES & NOTIFICATIONS
 // ---------------------------------------------------------
 
-// Messages
+//
+// MESSAGES
 // ---------------------------------------------------------
 #system-message {
   dt {
@@ -905,10 +947,12 @@ article aside .btn-group {
 }
 
 // System Standard Messages
+// ------------------------
 #system-message dd.message ul {
 }
 
 // System Error Messages
+// ---------------------
 .error {
 }
 
@@ -919,10 +963,13 @@ article aside .btn-group {
 }
 
 // System Notice Messages
+// ----------------------
 #system-message dd.notice ul {
 }
 
 
+
+//
 // Tooltips
 // ---------------------------------------------------------
 .tip-wrap {
@@ -950,6 +997,7 @@ article aside .btn-group {
   border: none;
   margin: 0 5px 0 0;
 }
+
 
 
 
@@ -1036,27 +1084,3 @@ article aside .btn-group {
   }
 }
 
-
-
-
-//
-// MOBILE
-// -------------------------------------------------------------
-@media (max-width: @screen-xs-max) {
-
-  //
-  // GENERIC ARTICLE STYLES
-  // -----------------------------------------------------------
-
-  // Article Images
-  // --------------
-  article img[align=left], .img_caption.left,
-  article img[align=right], .img_caption.right,
-  .img-fulltext-left, .img-fulltext-right {
-    float: none !important;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100% !important;
-  }
-
-}

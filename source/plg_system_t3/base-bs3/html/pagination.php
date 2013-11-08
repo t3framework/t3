@@ -66,7 +66,7 @@ defined('_JEXEC') or die;
 
 function pagination_list_footer($list)
 {
-	$html = "<div class=\"pagination\">\n";
+	$html = "<div class=\"pagination-wrap\">\n";
 	$html .= $list['pageslinks'];
 	$html .= "\n<input type=\"hidden\" name=\"" . $list['prefix'] . "limitstart\" value=\"".$list['limitstart']."\" />";
 	$html .= "\n</div>";
@@ -124,6 +124,7 @@ function pagination_item_active(&$item)
 }
 
 function pagination_item_inactive(&$item) {
-	return "<li class=\"disabled\"><a>".$item->text."</a></li>";
+  $cls = (int)$item->text > 0 ? 'active': 'disabled';
+	return "<li class=\"$cls\"><a>".$item->text."</a></li>";
 }
 ?>

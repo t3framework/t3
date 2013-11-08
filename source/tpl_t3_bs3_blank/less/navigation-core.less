@@ -26,19 +26,28 @@
 // BREADCRUMS
 // -------------------------------------------------------
 .t3-navhelper {
-  background: lighten(@gray-darker,5%);
+  background: @breadcrumb-bg;
   color: @gray;
 }
 
 .breadcrumb {
+  margin-bottom: 0;
+  border-radius: 0;
+
   > li {
     + li:before {
       content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
     }
   }
+
   // Active
   > .active {
     color: @breadcrumb-active-color;
+  }
+
+  // Hide default Joomla! arrow in breadcrum
+  .divider {
+    display: none;
   }
 }
 
@@ -48,6 +57,9 @@
 //
 // PAGINATION (MULTIPLE PAGES)
 // --------------------------------------------------
+.pagination-wrap {
+}
+
 .pagination {
 
   > li {
@@ -83,6 +95,18 @@
     > a:focus {
     }
   }
+}
+
+
+// Counter
+// ----------
+.counter {
+  float: right;
+  margin-top: @line-height-computed;
+  padding: @padding-base-vertical @padding-base-horizontal;
+  background-color: @pagination-bg;
+  border: 1px solid @pagination-border;
+  border-radius: @border-radius-base;
 }
 
 
@@ -141,4 +165,77 @@
     }
   }
 
+}
+
+
+
+//
+// PANELS
+// --------------------------------------------------
+// Base class
+.panel {
+}
+
+// Panel contents
+.panel-body {
+}
+
+
+// Optional heading
+.panel-heading {
+  > .dropdown .dropdown-toggle {
+    color: inherit;
+  }
+}
+
+// Within heading, strip any `h*` tag of it's default margins for spacing.
+.panel-title {
+  > a {
+    color: inherit;
+  }
+}
+
+// Optional footer (stays gray in every modifier class)
+.panel-footer {
+}
+
+
+// Collapsable panels (aka, accordion)
+.panel-group {
+
+  .panel {
+    + .panel {
+    }
+  }
+
+  .panel-heading {
+    + .panel-collapse .panel-body {
+    }
+  }
+
+  .panel-footer {
+    + .panel-collapse .panel-body {
+    }
+  }
+
+}
+
+
+// Contextual variations
+.panel-default {
+}
+
+.panel-primary {
+}
+
+.panel-success {
+}
+
+.panel-warning {
+}
+
+.panel-danger {
+}
+
+.panel-info {
 }

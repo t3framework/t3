@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 // Note. It is important to remove spaces between elements.
 ?>
 
-<ul class="nav <?php echo $class_sfx;?>"<?php
+<ul class="nav nav-pills nav-stacked <?php echo $class_sfx;?>"<?php
 	$tag = '';
 	if ($params->get('tag_id') != null)
 	{

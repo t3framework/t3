@@ -34,10 +34,8 @@
 .module-title {
   background: @t3-module-title-bg;
   color: @t3-module-title-color;
-  line-height: @line-height-computed;
-  margin: 0 0 (@t3-global-margin / 2) 0;
+  margin: 0 0 @t3-global-margin 0;
   padding: @t3-module-title-padding;
-  font-size: @font-size-large;
 }
 
 // Module Content
@@ -51,20 +49,21 @@
 
 // Module List
 // -----------
-.t3-module {
-  ul,
-  ol {
+.module-ct,
+.module-ct .custom {
+  > ul,
+  > ol {
     margin-left: 20px;
     padding-left: 0;
   }
   
-  ul.unstyled,
-  ol.unstyled {
+  > ul.unstyled,
+  > ol.unstyled {
     padding-left: 0;
   }
 
-  ul.nav,
-  ol.nav {
+  > ul.nav,
+  > ol.nav {
     padding-left: 0;
     margin-left: 0;
   }
@@ -84,24 +83,14 @@
   }
   
   .nav > li {
-    border-top: 1px solid @hr-border;
   }
   
   .nav > li > a,
   .nav > li > .separator {
-    padding: 5px;
+    padding: @padding-base-vertical 5px;
     display: block;
   }
-  
-  // No top border
-  .nav > li:first-child {
-    border-top: 0;
-  }
-  
-  .nav > li:first-child > a {
-    border-top: 0;
-  }
-  
+
   // Hover state
   .nav > li > a:hover {
   }
@@ -118,7 +107,7 @@
   
   input[type="text"],
   input[type="password"] {
-    width: 90%;
+    width: 100%;
   }
   
   .btn-primary {
@@ -126,6 +115,7 @@
   
   ul.unstyled {
     margin-top: @line-height-computed;
+    padding-left: 20px;
   }
 
   #form-login-username {
@@ -141,6 +131,7 @@
   }
 
 }
+
 
 // Advertisement
 // -------------

@@ -39,6 +39,19 @@
 .t3-megamenu .mega.dropdown-submenu:hover > .mega-dropdown-menu {
   display: block;
 }
+.t3-megamenu .dropdown-submenu {
+  position: relative;
+}
+.t3-megamenu .dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -11px;
+  margin-left: -1px;
+  border-radius: 4px;
+}
+.t3-megamenu .dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
 .t3-megamenu .mega-group:before,
 .t3-megamenu .mega-group:after {
   content: " ";
@@ -372,17 +385,21 @@ html[dir="rtl"] .t3-megamenu .mega-nav .dropdown-submenu > a:after {
     margin-right: 0 !important;
   }
 }
+.t3-megamenu .row {
+  margin-left: 0;
+  margin-right: 0;
+}
 .t3-megamenu .row + .row {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #eeeeee;
 }
 .t3-megamenu .mega-nav .mega-group > .mega-group-title,
 .t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title,
 .t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
   background: inherit;
   color: #222222;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 .t3-megamenu .mega-nav .mega-group > .mega-group-title:hover,
 .t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title:hover,
@@ -400,15 +417,11 @@ html[dir="rtl"] .t3-megamenu .mega-nav .dropdown-submenu > a:after {
   margin-right: 0;
 }
 .t3-megamenu .t3-module .module-title {
-  font-size: 16px;
   color: #222222;
-  display: block;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 20px;
-  margin-bottom: 5px;
-}
-.t3-megamenu .t3-module ul,
-.t3-megamenu .t3-module .nav {
-  margin: 0 0 0 15px;
+  margin-bottom: 10px;
 }
 .t3-megamenu .t3-module ul li,
 .t3-megamenu .t3-module .nav li {
