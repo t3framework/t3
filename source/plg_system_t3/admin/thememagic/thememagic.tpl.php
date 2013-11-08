@@ -117,10 +117,11 @@ defined('_JEXEC') or die;
 
 										// add placeholder to Text input
 										if ($field->type == 'Text' || $field->type == 'Color') {
-											$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group).'"/>', $textinput);
+											
+											$textinput = str_replace ('/>', ' placeholder="' . $form->getFieldAttribute($field->fieldname, 'default', '', $field->group) .'"/>', $textinput);
 
 											if($field->type == 'Color'){
-												$textinput = str_replace('value="#000000"', 'value=""', $textinput);
+												$textinput = str_replace(array('"#000000"', '"#rrggbb"'), '""', $textinput);
 											}
 										}
 									?>

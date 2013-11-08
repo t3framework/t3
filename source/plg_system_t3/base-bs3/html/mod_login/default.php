@@ -43,39 +43,35 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 			</div>
 		<?php endif; ?>
 		<fieldset class="userdata">
-			<div id="form-login-username" class="control-group">
-				<div class="controls">
-					<?php if (!$params->get('usetext')) : ?>
-						<div class="input-prepend">
-							<span class="add-on">
-								<i class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i>
-							</span>
-							<input id="modlgn-username" type="text" name="username" class="input" tabindex="0" size="18"
-								   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
-						</div>
-					<?php else: ?>
-						<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
-						<input id="modlgn-username" type="text" name="username" class="input-small" tabindex="0"
-							   size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
-					<?php endif; ?>
-				</div>
+			<div id="form-login-username" class="form-group">
+				<?php if (!$params->get('usetext')) : ?>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i>
+						</span>
+						<input id="modlgn-username" type="text" name="username" class="input form-control" tabindex="0" size="18"
+							   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
+					</div>
+				<?php else: ?>
+					<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
+					<input id="modlgn-username" type="text" name="username" class="input-sm form-control" tabindex="0"
+						   size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
+				<?php endif; ?>
 			</div>
-			<div id="form-login-password" class="control-group">
-				<div class="controls">
-					<?php if (!$params->get('usetext')) : ?>
-						<div class="input-prepend">
-							<span class="add-on">
-								<i class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i>
-							</span>
-							<input id="modlgn-passwd" type="password" name="password" class="input" tabindex="0"
-								   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
-						</div>
-					<?php else: ?>
-						<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
-						<input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0"
-							   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
-					<?php endif; ?>
+			<div id="form-login-password" class="form-group">
+				<?php if (!$params->get('usetext')) : ?>
+				<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i>
+						</span>
+					<input id="modlgn-passwd" type="password" name="password" class="input form-control" tabindex="0"
+						   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
 				</div>
+			<?php else: ?>
+				<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
+				<input id="modlgn-passwd" type="password" name="password" class="input-sm form-control" tabindex="0"
+					   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
+			<?php endif; ?>
 			</div>
 			<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
 				<div id="form-login-remember" class="control-group">
