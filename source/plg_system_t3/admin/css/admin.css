@@ -105,7 +105,7 @@ hr {
 /* ---------------- */
 .header {
   background: #333;
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 
 .header .container-logo {
@@ -113,7 +113,12 @@ hr {
 }
 
 .header .container-logo .logo {
-  margin-left: 20px;
+  
+}
+
+.navbar .admin-logo {
+  padding-left: 10px;
+  text-decoration: none;
 }
 
 /* Page Tittle ---*/
@@ -1503,6 +1508,11 @@ button.btn-primary:active {
 .icon-eye:before {
   content: "\f06e";
 }
+
+.icon-joomla::before {
+  font-family: 'IcoMoon';
+}
+
 
 /* Tooltips font is too small */
 .tooltip {
