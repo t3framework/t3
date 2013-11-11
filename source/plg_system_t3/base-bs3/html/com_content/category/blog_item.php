@@ -9,6 +9,10 @@
 
 defined('_JEXEC') or die;
 
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.framework');
+
 // Create a shortcut for params.
 $params  = & $this->item->params;
 $images  = json_decode($this->item->images);
@@ -23,9 +27,6 @@ $hasCtrl = ($params->get('show_print_icon') ||
 			$params->get('show_email_icon') ||
 			$canEdit);
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.framework');
 ?>
 <?php if ($this->item->state == 0) : ?>
 <div class="system-unpublished">

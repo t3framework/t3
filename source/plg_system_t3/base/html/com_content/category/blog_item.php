@@ -9,16 +9,18 @@
 
 defined('_JEXEC') or die;
 
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.framework');
+
 // Create a shortcut for params.
-$params = &$this->item->params;
-$images = json_decode($this->item->images);
+$params  = &$this->item->params;
+$images  = json_decode($this->item->images);
 $canEdit = $this->item->params->get('access-edit');
 $hasInfo = (($params->get('show_author') && !empty($this->item->author )) or ($params->get('show_category')) or ($params->get('show_create_date')) or $params->get('show_publish_date') or ($params->get('show_parent_category')));
 $hasCtrl = ($params->get('show_print_icon') || $params->get('show_email_icon') || $canEdit);
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-$info = $this->item->params->get('info_block_position', 0);
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.framework');
+$info    = $this->item->params->get('info_block_position', 0);
+
 ?>
 <?php if ($this->item->state == 0) : ?>
 
