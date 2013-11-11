@@ -14,7 +14,6 @@
 
 defined('_JEXEC') or die;
 ?>
-
 <div id="t3-admin-toolbar" class="btn-toolbar">
 
 	<?php if($input->getCmd('view') == 'style'): ?>
@@ -31,7 +30,15 @@ defined('_JEXEC') or die;
 	<?php endif; ?>
 
 	<div id="t3-admin-tb-recompile" class="btn-group">
-		<button class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i>  <i class="icon-loading"></i>  <?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
+		<button id="t3-admin-tb-compile-all" class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i>  <i class="icon-loading"></i>  <?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
+		<?php if($input->getCmd('view') == 'style') : ?>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>&nbsp;
+		</button>
+		<ul class="dropdown-menu">
+			<li id="t3-admin-tb-compile-this" data-default="<?php echo JText::_('JDEFAULT') ?>" data-msg="<?php echo JText::_('T3_TOOLBAR_COMPILE_THIS') ?>"><a href="#"><?php echo JText::sprintf('T3_TOOLBAR_COMPILE_THIS', $params->get('theme', JText::_('JDEFAULT'))) ?></a></li>
+		</ul>
+		<?php endif ?>
 	</div>
 
 	<div id="t3-admin-tb-themer" 

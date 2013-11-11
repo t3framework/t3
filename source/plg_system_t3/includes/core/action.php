@@ -57,9 +57,11 @@ class T3Action
 	public static function lesscall(){
 		T3::import ('core/less');
 		
+		$input  = JFactory::getApplication()->input;
 		$result = array();
+
 		try{
-			T3Less::compileAll();
+			T3Less::compileAll($input->get('theme', ''));
 			$result['successful'] = JText::_('T3_MSG_COMPILE_SUCCESS');
 		}catch(Exception $e){
 			$result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->__toString());

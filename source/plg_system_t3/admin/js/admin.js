@@ -19,106 +19,20 @@ var T3Admin = window.T3Admin || {};
 		
 		initToolbar: function(){
 			//t3 added
-			$('#t3-admin-tb-recompile').on('click', function(){
-				var recompile = $(this);
-
-				//progress bar
-				recompile.addClass('loading');
-				if($.support.transition){
-					T3Admin.progElm
-						.removeClass('t3-anim-slow t3-anim-finish')
-						.css('width', '');
-
-					setTimeout(function(){
-						var width = 5 + Math.floor(Math.random() * 10),
-							iid = null;
-
-						T3Admin.progElm
-							.addClass('t3-anim-slow')
-							.css('width', width + '%');
-
-						iid = setInterval(function(){
-							if(!T3Admin.progElm.hasClass('t3-anim-slow')) {
-								clearInterval(iid);
-								return false;
-							}
-
-							width += Math.floor(Math.random() * 5);
-
-							T3Admin.progElm
-								.addClass('t3-anim-slow')
-								.css('width', Math.min(90, width) + '%');
-						}, 3000);
-					});
-				} else {
-					T3Admin.progElm.stop(true).css({
-						width: '0%',
-						display: 'block'
-					}).animate({
-						width: 50 + Math.floor(Math.random() * 20) + '%'
-					});
-				}
-
-				$.ajax({
-					url: T3Admin.adminurl,
-					data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid },
-					success: function(rsp){
-						
-						//progress bar
-						recompile.removeClass('loading');
-						if($.support.transition){
-							
-							T3Admin.progElm.removeClass('t3-anim-slow').addClass('t3-anim-finish')
-							.one($.support.transition.end, function () {
-								setTimeout(function(){
-									if(T3Admin.progElm.hasClass('t3-anim-finish')){
-										$(T3Admin.progElm).removeClass('t3-anim-finish');
-									}
-								}, 1000);
-							});
-
-						} else {
-							$(T3Admin.progElm).stop(true).animate({
-								width: '100%'
-							}, function(){
-								$(T3Admin.progElm).hide();
-							});
-						}
-
-
-						rsp = $.trim(rsp);
-						if(rsp){
-							var json = rsp;
-							if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
-								json = rsp.match(new RegExp('{[\["].*}'));
-								if(json && json[0]){
-									json = json[0];
-								}
-							}
-
-							if(json && typeof json == 'string'){
-								
-								rsp = rsp.replace(json, '');
-
-								try {
-									json = $.parseJSON(json);
-								} catch (e){
-									json = {
-										error: T3Admin.langs.unknownError
-									}
-								}
-							}
-
-							T3Admin.systemMessage(rsp || json.error || json.successful);
-						}
-					},
-
-					error: function(){
-						recompile.removeClass('loading');
-						T3Admin.systemMessage(T3Admin.langs.unknownError);
-					}
-				});
+			$('#t3-admin-tb-compile-all').on('click', function(){
+				T3Admin.compileLESS('all');
 				return false;
+			});
+
+			$('#t3-admin-tb-compile-this').on('click', function(){
+				T3Admin.compileLESS($('#jform_params_theme').val() || 'default');
+				return false;
+			});
+
+			$('#jform_params_theme').on('change', function(){
+				var compileThis = $('#t3-admin-tb-compile-this');
+
+				compileThis.find('a').html(compileThis.attr('data-msg').replace('%s', this.value || compileThis.attr('data-default')));
 			});
 
 			$('#t3-admin-tb-themer button').on('click', function(){
@@ -606,6 +520,107 @@ var T3Admin = window.T3Admin || {};
 				};
 
 			}
+		},
+
+		compileLESS: function(theme){
+			var recompile = $('#t3-admin-tb-recompile');
+
+			//progress bar
+			recompile.addClass('loading');
+			if($.support.transition){
+				T3Admin.progElm
+					.removeClass('t3-anim-slow t3-anim-finish')
+					.css('width', '');
+
+				setTimeout(function(){
+					var width = 5 + Math.floor(Math.random() * 10),
+						iid = null;
+
+					T3Admin.progElm
+						.addClass('t3-anim-slow')
+						.css('width', width + '%');
+
+					iid = setInterval(function(){
+						if(!T3Admin.progElm.hasClass('t3-anim-slow')) {
+							clearInterval(iid);
+							return false;
+						}
+
+						width += Math.floor(Math.random() * 5);
+
+						T3Admin.progElm
+							.addClass('t3-anim-slow')
+							.css('width', Math.min(90, width) + '%');
+					}, 3000);
+				});
+			} else {
+				T3Admin.progElm.stop(true).css({
+					width: '0%',
+					display: 'block'
+				}).animate({
+					width: 50 + Math.floor(Math.random() * 20) + '%'
+				});
+			}
+
+			$.ajax({
+				url: T3Admin.adminurl,
+				data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid, 'theme': theme || 'all' },
+				success: function(rsp){
+					
+					//progress bar
+					recompile.removeClass('loading');
+					if($.support.transition){
+						
+						T3Admin.progElm.removeClass('t3-anim-slow').addClass('t3-anim-finish')
+						.one($.support.transition.end, function () {
+							setTimeout(function(){
+								if(T3Admin.progElm.hasClass('t3-anim-finish')){
+									$(T3Admin.progElm).removeClass('t3-anim-finish');
+								}
+							}, 1000);
+						});
+
+					} else {
+						$(T3Admin.progElm).stop(true).animate({
+							width: '100%'
+						}, function(){
+							$(T3Admin.progElm).hide();
+						});
+					}
+
+
+					rsp = $.trim(rsp);
+					if(rsp){
+						var json = rsp;
+						if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
+							json = rsp.match(new RegExp('{[\["].*}'));
+							if(json && json[0]){
+								json = json[0];
+							}
+						}
+
+						if(json && typeof json == 'string'){
+							
+							rsp = rsp.replace(json, '');
+
+							try {
+								json = $.parseJSON(json);
+							} catch (e){
+								json = {
+									error: T3Admin.langs.unknownError
+								}
+							}
+						}
+
+						T3Admin.systemMessage(rsp || json.error || json.successful);
+					}
+				},
+
+				error: function(){
+					recompile.removeClass('loading');
+					T3Admin.systemMessage(T3Admin.langs.unknownError);
+				}
+			});
 		}
 	});
 	

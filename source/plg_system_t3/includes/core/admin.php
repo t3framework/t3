@@ -16,7 +16,7 @@
 class T3Admin {
 
 	protected $langs = array();
-	
+
 	/**
 	 * function render
 	 * render T3 administrator configuration form
@@ -29,7 +29,7 @@ class T3Admin {
 		if(file_exists($layout) && JFactory::getApplication()->input->getCmd('view') == 'style'){
 			
 			ob_start();
-			$this->loadParams();
+			$this->renderAdmin();
 			$buffer = ob_get_clean();
 
 			//this cause backtrack_limit in some server
@@ -60,14 +60,41 @@ class T3Admin {
 		JResponse::setBody($body);
 	}
 
+	public function getTplParams(){
+		static $params;
+
+		if(!isset($params)){
+			$db     = JFactory::getDbo();
+			$input  = JFactory::getApplication()->input;
+			$params = new JRegistry;
+
+			//get params of templates
+			$query = $db->getQuery(true);
+			$query
+				->select('params')
+				->from('#__template_styles');
+
+			if($input->get('view') == 'style'){
+				$query->where('id='. $input->get('id'));
+			} else {
+				$query->where('template='. $db->quote(T3_TEMPLATE));
+			}
+
+			$query->limit(0, 1);
+
+			$db->setQuery($query);
+			$params->loadString($db->loadResult());
+		}
+
+		return $params;
+	}
+
 	public function addAssets(){
 
 		// load template language
 		JFactory::getLanguage()->load ('tpl_'.T3_TEMPLATE.'.sys', JPATH_ROOT, null, true);
 
 		$langs = array(
-			'lblCompile' => JText::_('T3_LBL_RECOMPILE'),
-			'lblThemer' => JText::_('T3_LBL_VIEWTHEMER'),
 			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
 
 			'logoPresent' => JText::_('T3_LAYOUT_LOGO_TEXT'),
@@ -106,20 +133,8 @@ class T3Admin {
 		
 		$japp = JFactory::getApplication();
 		$jdoc = JFactory::getDocument();
-
-		$params = new JRegistry;
-		$db = JFactory::getDbo();
-
-		//get params of templates
-		$query = $db->getQuery(true);
-		$query
-			->select('params')
-			->from('#__template_styles')
-			->where('template='. $db->quote(T3_TEMPLATE));
+		$db   = JFactory::getDbo();
 		
-		$db->setQuery($query);
-		$params->loadString($db->loadResult());
-
 		//get extension id of framework and template
 		$query = $db->getQuery(true);
 		$query
@@ -174,6 +189,8 @@ class T3Admin {
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/layout/js/layout.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
 
+		$params = $this->getTplParams();
+
 		JFactory::getDocument()->addScriptDeclaration ( '
 			T3Admin = window.T3Admin || {};
 			T3Admin.adminurl = \'' . JUri::getInstance()->toString() . '\';
@@ -208,7 +225,7 @@ class T3Admin {
 	 *
 	 * @return render success or not
 	 */
-	function loadParams(){
+	function renderAdmin(){
 		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
 		$jtpl = T3_ADMIN_PATH . '/admin/tpls/default.php';
@@ -279,7 +296,9 @@ class T3Admin {
 			$toolbar = JToolBar::getInstance('toolbar')->render('toolbar');
 			$helpurl = JHelp::createURL($input->getCmd('view') == 'template' ? 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_TEMPLATES_EDIT' : 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_STYLES_EDIT');
 			$helpurl = htmlspecialchars($helpurl, ENT_QUOTES);
-		
+			
+			$params  = $this->getTplParams();
+
 			//render our toolbar
 			ob_start();
 			include $t3toolbar;
