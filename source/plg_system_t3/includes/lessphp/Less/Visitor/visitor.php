@@ -15,8 +15,7 @@ class Less_visitor{
 			}
 
 			$class = get_class($node);
-			$funcName = 'visit' . substr( $class, strrpos( $class, '_')+1 );
-
+			$funcName = 'visit'.substr($class,10); //remove 'Less_Tree_' from the class name
 
 			if( method_exists($this,$funcName) ){
 				$this->$funcName( $node );

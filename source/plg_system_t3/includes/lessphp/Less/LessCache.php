@@ -7,11 +7,11 @@ class Less_Cache{
 	public static $import_dirs = array();
 	public static $error;
 
-    const cache_version = '1423';
+    const cache_version = '1424';
 	protected static $clean_cache = true;
 
 
-	function Get( $less_files, $parser_options = array() ){
+	public static function Get( $less_files, $parser_options = array() ){
 
 		//check $cache_dir
 		if( empty(self::$cache_dir) ){
@@ -71,7 +71,7 @@ class Less_Cache{
 
 		}
 
-		$compiled = self::Cache( $less_files );
+		$compiled = self::Cache( $less_files, $parser_options );
 		if( !$compiled ){
 			return false;
 		}
@@ -94,7 +94,7 @@ class Less_Cache{
 
 	}
 
-	function Cache( &$less_files ){
+	public static function Cache( &$less_files, $parser_options = array() ){
 
 		//prepare the processor
 		if( !class_exists('Less_Parser') ){
@@ -102,7 +102,7 @@ class Less_Cache{
 		}
 
 
-		$parser = new Less_Parser(); //array('compress'=>true)
+		$parser = new Less_Parser($parser_options);
 		$parser->SetCacheDir( self::$cache_dir );
 		$parser->SetImportDirs( self::$import_dirs );
 
@@ -133,7 +133,7 @@ class Less_Cache{
 	}
 
 
-	function CompiledName( $hash, $list_file ){
+	public static function CompiledName( $hash, $list_file ){
 
 		$etag = base_convert( self::cache_version, 10, 36 ) . base_convert( filesize($list_file), 10, 36 );
 

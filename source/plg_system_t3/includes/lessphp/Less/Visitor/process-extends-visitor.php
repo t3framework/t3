@@ -16,7 +16,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 		$extendFinder->run( $root );
 		if( !$extendFinder->foundExtends) { return $root; }
 
-		$root->allExtends = array_merge($root->allExtends, $this->doExtendChaining( $root->allExtends, $root->allExtends));
+		$root->allExtends = $this->doExtendChaining( $root->allExtends, $root->allExtends);
+
 		$this->allExtendsStack = array();
 		$this->allExtendsStack[] = &$root->allExtends;
 
@@ -43,7 +44,7 @@ class Less_processExtendsVisitor extends Less_visitor{
 		// and the second is the target.
 		// the seperation into two lists allows us to process a subset of chains with a bigger set, as is the
 		// case when processing media queries
-		for( $extendIndex = 0; $extendIndex < count($extendsList); $extendIndex++ ){
+		for( $extendIndex = 0, $extendsList_len = count($extendsList); $extendIndex < $extendsList_len; $extendIndex++ ){
 			for( $targetExtendIndex = 0; $targetExtendIndex < count($extendsListTarget); $targetExtendIndex++ ){
 
 				$extend = $extendsList[$extendIndex];
@@ -59,7 +60,7 @@ class Less_processExtendsVisitor extends Less_visitor{
 				$matches = $extendVisitor->findMatch( $extend, $selectorPath);
 
 
-				if( count($matches) ){
+				if( $matches ){
 
 					// we found a match, so for each self selector..
 					foreach($extend->selfSelectors as $selfSelector ){
@@ -73,7 +74,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 						$newExtend->selfSelectors = $newSelector;
 
 						// add the extend onto the list of extends for that selector
-						$newSelector[ count($newSelector)-1]->extendList = array($newExtend);
+						end($newSelector)->extendList = array($newExtend);
+						//$newSelector[ count($newSelector)-1]->extendList = array($newExtend);
 
 						// record that we need to add it.
 						$extendsToAdd[] = $newExtend;
@@ -94,7 +96,7 @@ class Less_processExtendsVisitor extends Less_visitor{
 			}
 		}
 
-		if( count($extendsToAdd) ){
+		if( $extendsToAdd ){
 			// try to detect circular references to stop a stack overflow.
 			// may no longer be needed.			$this->extendChainCount++;
 			if( $iterationCount > 100) {
@@ -108,10 +110,10 @@ class Less_processExtendsVisitor extends Less_visitor{
 			}
 
 			// now process the new extends on the existing rules so that we can handle a extending b extending c ectending d extending e...
-			return array_merge($extendsToAdd, $extendVisitor->doExtendChaining( $extendsToAdd, $extendsListTarget, $iterationCount+1));
-		} else {
-			return $extendsToAdd;
+			$extendsToAdd = $extendVisitor->doExtendChaining( $extendsToAdd, $extendsListTarget, $iterationCount+1);
 		}
+
+		return array_merge($extendsList, $extendsToAdd);
 	}
 
 	function inInheritanceChain( $possibleParent, $possibleChild ){
@@ -137,29 +139,26 @@ class Less_processExtendsVisitor extends Less_visitor{
 			return;
 		}
 
-		$allExtends = end($this->allExtendsStack); //$this->allExtendsStack[ count($this->allExtendsStack)-1];
+		$allExtends = end($this->allExtendsStack);
 		$selectorsToAdd = array();
 		$extendVisitor = $this;
 
 		// look at each selector path in the ruleset, find any extend matches and then copy, find and replace
 
-		for( $extendIndex = 0; $extendIndex < count($allExtends); $extendIndex++ ){
-			for($pathIndex = 0; $pathIndex < count($rulesetNode->paths); $pathIndex++ ){
+		for( $extendIndex = 0, $all_extend_len = count($allExtends); $extendIndex < $all_extend_len; $extendIndex++ ){
+			for($pathIndex = 0, $paths_len = count($rulesetNode->paths); $pathIndex < $paths_len; $pathIndex++ ){
 
 				$selectorPath = $rulesetNode->paths[$pathIndex];
 
 				// extending extends happens initially, before the main pass
-				if( count( $selectorPath[ count($selectorPath)-1]->extendList) ) { continue; }
+				if( end($selectorPath)->extendList ){ continue; }
 
 				$matches = $this->findMatch($allExtends[$extendIndex], $selectorPath);
 
-
-
-				if( count($matches) ){
+				if( $matches ){
 					foreach($allExtends[$extendIndex]->selfSelectors as $selfSelector ){
 						$selectorsToAdd[] = $extendVisitor->extendSelector($matches, $selectorPath, $selfSelector);
 					}
-
 				}
 			}
 		}
@@ -173,8 +172,10 @@ class Less_processExtendsVisitor extends Less_visitor{
 		// returns an array of selector matches that can then be replaced
 		//
 		$needleElements = $extend->selector->elements;
+		$needleElements_len = count($needleElements);
 		//$extendVisitor = $this;
 		$potentialMatches = array();
+		$potentialMatches_len = 0;
 		$potentialMatch = null;
 		$matches = array();
 
@@ -189,9 +190,10 @@ class Less_processExtendsVisitor extends Less_visitor{
 				// if we allow elements before our match we can add a potential match every time. otherwise only at the first element.
 				if( $extend->allowBefore || ($haystackSelectorIndex == 0 && $hackstackElementIndex == 0) ){
 					$potentialMatches[] = array('pathIndex'=> $haystackSelectorIndex, 'index'=> $hackstackElementIndex, 'matched'=> 0, 'initialCombinator'=> $haystackElement->combinator);
+					$potentialMatches_len++;
 				}
 
-				for($i = 0; $i < count($potentialMatches); $i++ ){
+				for($i = 0; $i < $potentialMatches_len; $i++ ){
 					$potentialMatch = &$potentialMatches[$i];
 
 					// selectors add " " onto the first element. When we use & it joins the selectors together, but if we don't
@@ -212,24 +214,26 @@ class Less_processExtendsVisitor extends Less_visitor{
 
 					// if we are still valid and have finished, test whether we have elements after and whether these are allowed
 					if( $potentialMatch ){
-						$potentialMatch['finished'] = ($potentialMatch['matched'] === count($needleElements) );
+						$potentialMatch['finished'] = ($potentialMatch['matched'] === $needleElements_len );
 
 						if( $potentialMatch['finished'] &&
-							(!$extend->allowAfter && ($hackstackElementIndex+1 < count($hackstackSelector->elements) || $haystackSelectorIndex+1 < count($haystackSelectorPath))) ){
+							(!$extend->allowAfter && ($hackstackElementIndex+1 < $haystack_elements_len || $haystackSelectorIndex+1 < $haystack_path_len)) ){
 							$potentialMatch = null;
 						}
 					}
 					// if null we remove, if not, we are still valid, so either push as a valid match or continue
 					if( $potentialMatch ){
 						if( $potentialMatch['finished'] ){
-							$potentialMatch['length'] = count($needleElements);
+							$potentialMatch['length'] = $needleElements_len;
 							$potentialMatch['endPathIndex'] = $haystackSelectorIndex;
 							$potentialMatch['endPathElementIndex'] = $hackstackElementIndex + 1; // index after end of match
 							$potentialMatches = array(); // we don't allow matches to overlap, so start matching again
+							$potentialMatches_len = 0;
 							$matches[] = $potentialMatch;
 						}
 					} else {
 						array_splice($potentialMatches, $i, 1);
+						$potentialMatches_len--;
 						$i--;
 					}
 				}
@@ -270,8 +274,9 @@ class Less_processExtendsVisitor extends Less_visitor{
 		$currentSelectorPathIndex = 0;
 		$currentSelectorPathElementIndex = 0;
 		$path = array();
+		$selectorPath_len = count($selectorPath);
 
-		for($matchIndex = 0; $matchIndex < count($matches); $matchIndex++ ){
+		for($matchIndex = 0, $matches_len = count($matches); $matchIndex < $matches_len; $matchIndex++ ){
 
 
 			$match = $matches[$matchIndex];
@@ -283,8 +288,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 			);
 
 			if( $match['pathIndex'] > $currentSelectorPathIndex && $currentSelectorPathElementIndex > 0 ){
-				$last_key = count($path)-1;
-				$path[$last_key]->elements = array_merge( $path[$last_key]->elements, array_slice( $selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
+				$last_path = end($path);
+				$last_path->elements = array_merge( $last_path->elements, array_slice( $selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
 				$currentSelectorPathElementIndex = 0;
 				$currentSelectorPathIndex++;
 			}
@@ -307,14 +312,14 @@ class Less_processExtendsVisitor extends Less_visitor{
 			}
 		}
 
-		if( $currentSelectorPathIndex < count($selectorPath) && $currentSelectorPathElementIndex > 0 ){
-			$last_key = count($path) - 1;
-			$path[$last_key]->elements = array_merge( $path[$last_key]->elements, array_slice($selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
+		if( $currentSelectorPathIndex < $selectorPath_len && $currentSelectorPathElementIndex > 0 ){
+			$last_path = end($path);
+			$last_path->elements = array_merge( $last_path->elements, array_slice($selectorPath[$currentSelectorPathIndex]->elements, $currentSelectorPathElementIndex));
 			$currentSelectorPathElementIndex = 0;
 			$currentSelectorPathIndex++;
 		}
 
-		$slice_len = count($selectorPath) - $currentSelectorPathIndex;
+		$slice_len = $selectorPath_len - $currentSelectorPathIndex;
 		$path = array_merge($path, array_slice($selectorPath, $currentSelectorPathIndex, $slice_len));
 
 		return $path;
@@ -322,10 +327,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 
 
 	function visitMedia( $mediaNode ){
-		//$newAllExtends = array_merge( $mediaNode->allExtends, $this->allExtendsStack[ count($this->allExtendsStack)-1 ] );
 		$newAllExtends = array_merge( $mediaNode->allExtends, end($this->allExtendsStack) );
-		$newAllExtends = array_merge($newAllExtends, $this->doExtendChaining($newAllExtends, $mediaNode->allExtends));
-		$this->allExtendsStack[] = $newAllExtends;
+		$this->allExtendsStack[] = $this->doExtendChaining($newAllExtends, $mediaNode->allExtends);
 	}
 
 	function visitMediaOut( $mediaNode ){
@@ -333,10 +336,8 @@ class Less_processExtendsVisitor extends Less_visitor{
 	}
 
 	function visitDirective( $directiveNode ){
-		$temp = $this->allExtendsStack[ count($this->allExtendsStack)-1];
-		$newAllExtends = array_merge( $directiveNode->allExtends, $temp );
-		$newAllExtends = array_merge($newAllExtends, $this->doExtendChaining($newAllExtends, $directiveNode->allExtends));
-		$this->allExtendsStack[] = $newAllExtends;
+		$newAllExtends = array_merge( $directiveNode->allExtends, end($this->allExtendsStack) );
+		$this->allExtendsStack[] = $this->doExtendChaining($newAllExtends, $directiveNode->allExtends);
 	}
 
 	function visitDirectiveOut( $directiveNode ){

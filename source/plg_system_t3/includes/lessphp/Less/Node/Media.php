@@ -65,10 +65,6 @@ class Less_Tree_Media {
 		return $this->ruleset->find($selector, $this);
 	}
 
-	public function rulesets() {
-		return $this->ruleset->rulesets();
-	}
-
 	public function emptySelectors(){
 		$el = new Less_Tree_Element('','&', 0);
 		return array(new Less_Tree_Selector(array($el)));

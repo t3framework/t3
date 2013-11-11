@@ -1,7 +1,7 @@
 <?php
 
 
-class Less_Tree_Mixin_Call{
+class Less_Tree_MixinCall{
 
 	//public $type = 'MixinCall';
 	private $selector;
@@ -59,7 +59,7 @@ class Less_Tree_Mixin_Call{
 
 				$isRecursive = false;
 				foreach($env->frames as $recur_frame){
-					if( !($mixin instanceof Less_Tree_Mixin_Definition) ){
+					if( !($mixin instanceof Less_Tree_MixinDefinition) ){
 						if( (isset($recur_frame->originalRuleset) && $mixin === $recur_frame->originalRuleset) || ($mixin === $recur_frame) ){
 							$isRecursive = true;
 							break;
@@ -75,7 +75,8 @@ class Less_Tree_Mixin_Call{
 						try {
 							$rules = array_merge($rules, $mixin->compile($env, $args, $this->important)->rules);
 						} catch (Exception $e) {
-							throw new Less_CompilerException($e->message, $e->index, null, $this->currentFileInfo['filename']);
+							//throw new Less_CompilerException($e->getMessage(), $e->index, null, $this->currentFileInfo['filename']);
+							throw new Less_CompilerException($e->getMessage(), null, null, $this->currentFileInfo['filename']);
 						}
 					}
 					$match = true;
@@ -107,7 +108,7 @@ class Less_Tree_Mixin_Call{
 					$message[] = $argValue;
 				}
 			}
-			$message = implode(', ');
+			$message = implode(', ',$message);
 
 
 			throw new Less_CompilerException('No matching definition was found for `'.

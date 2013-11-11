@@ -82,15 +82,13 @@ class Less_Tree_Selector {
 			$this->_css = '';
 		}
 
-		$temp = array();
 		foreach($this->elements as $e){
 			if( is_string($e) ){
-				$temp[] = ' ' . trim($e);
+				$this->_css .= ' ' . trim($e);
 			}else{
-				$temp[] = $e->toCSS($env);
+				$this->_css .= $e->toCSS($env);
 			}
 		}
-		$this->_css .= implode('', $temp);
 
 		return $this->_css;
 	}

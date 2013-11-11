@@ -146,13 +146,13 @@ class Less_Tree_Color{
 	public function toARGB(){
 		$argb = array_merge( (array) round($this->alpha * 255), $this->rgb);
 
-		$temp = array();
+		$temp = '';
 		foreach($argb as $i){
 			$i = round($i);
 			$i = dechex($i > 255 ? 255 : ($i < 0 ? 0 : $i));
-			$temp[] = str_pad($i, 2, '0', STR_PAD_LEFT);
+			$temp .= str_pad($i, 2, '0', STR_PAD_LEFT);
 		}
-		return '#' . implode('',$temp);
+		return '#' . $temp;
 	}
 
     public function compare($x){

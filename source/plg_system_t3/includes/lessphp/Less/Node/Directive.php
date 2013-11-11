@@ -56,9 +56,4 @@ class Less_Tree_Directive{
         return $this->ruleset->find($selector, $this);
     }
 
-    public function rulesets()
-    {
-        return $this->ruleset->rulesets();
-    }
-
 }

@@ -687,11 +687,17 @@ class Less_Environment{
 
 		$filePath = str_replace('\\','/',$filePath);
 		if( Less_Environment::isPathRelative($filePath) ){
+
 			if( $this->relativeUrls ){
-				$filePath = Less_Environment::NormPath(rtrim($this->currentFileInfo['currentDirectory'],'/').'/'.$filePath);
+				$temp = $this->currentFileInfo['currentDirectory'];
 			} else {
-				$filePath = Less_Environment::NormPath(rtrim($this->currentFileInfo['entryPath'],'/').'/'.$filePath);
+				$temp = $this->currentFileInfo['entryPath'];
 			}
+
+			if( !empty($temp) ){
+				$filePath = Less_Environment::NormPath(rtrim($temp,'/').'/'.$filePath);
+			}
+
 		}
 
 
@@ -717,6 +723,7 @@ class Less_Environment{
 		}else{
 			$useBase64 = preg_match('/;base64$/',$mimetype);
 		}
+
 
 		if( file_exists($filePath) ){
 			$buf = @file_get_contents($filePath);

@@ -64,7 +64,7 @@ class Less_Tree_Ruleset{
 		// Store the frames around mixin definitions,
 		// so they can be evaluated like closures when the time comes.
 		foreach($ruleset->rules as $i => $rule) {
-			if ($rule instanceof Less_Tree_Mixin_Definition) {
+			if ($rule instanceof Less_Tree_MixinDefinition) {
 				$ruleset->rules[$i]->frames = array_slice($env->frames,0);
 			}
 		}
@@ -77,7 +77,7 @@ class Less_Tree_Ruleset{
 		// Evaluate mixin calls.
 		for($i=0; $i < count($ruleset->rules); $i++){
 			$rule = $ruleset->rules[$i];
-			if( $rule instanceof Less_Tree_Mixin_Call ){
+			if( $rule instanceof Less_Tree_MixinCall ){
 				$rules = $rule->compile($env);
 
 				$temp = array();
@@ -102,7 +102,7 @@ class Less_Tree_Ruleset{
 
 
 		foreach($ruleset->rules as $i => $rule) {
-			if(! ($rule instanceof Less_Tree_Mixin_Definition) ){
+			if(! ($rule instanceof Less_Tree_MixinDefinition) ){
 				$ruleset->rules[$i] = Less_Parser::is_method($rule,'compile') ? $rule->compile($env) : $rule;
 			}
 		}
@@ -187,16 +187,6 @@ class Less_Tree_Ruleset{
 	}
 
 
-	public function rulesets(){
-		$rulesets = array();
-		foreach($this->rules as $r){
-			if( ($r instanceof Less_Tree_Ruleset) || ($r instanceof Less_Tree_Mixin_Definition) ){
-				$rulesets[] = $r;
-			}
-		}
-		return $rulesets;
-	}
-
 
 	public function find( $selector, $self = null, $env = null){
 
@@ -209,20 +199,25 @@ class Less_Tree_Ruleset{
 		if( !array_key_exists($key, $this->lookups) ){
 			$this->lookups[$key] = array();;
 
-			foreach( $this->rulesets() as $rule ){
+
+			foreach($this->rules as $rule){
+
 				if( $rule == $self ){
 					continue;
 				}
 
-				foreach( $rule->selectors as $ruleSelector ){
-					if( $selector->match($ruleSelector) ){
+				if( ($rule instanceof Less_Tree_Ruleset) || ($rule instanceof Less_Tree_MixinDefinition) ){
 
-						if (count($selector->elements) > count($ruleSelector->elements)) {
-							$this->lookups[$key] = array_merge($this->lookups[$key], $rule->find( new Less_Tree_Selector(array_slice($selector->elements, 1)), $self, $env));
-						} else {
-							$this->lookups[$key][] = $rule;
+					foreach( $rule->selectors as $ruleSelector ){
+						if( $selector->match($ruleSelector) ){
+
+							if (count($selector->elements) > count($ruleSelector->elements)) {
+								$this->lookups[$key] = array_merge($this->lookups[$key], $rule->find( new Less_Tree_Selector(array_slice($selector->elements, 1)), $self, $env));
+							} else {
+								$this->lookups[$key][] = $rule;
+							}
+							break;
 						}
-						break;
 					}
 				}
 			}
@@ -237,7 +232,7 @@ class Less_Tree_Ruleset{
 	//	 `context` holds an array of arrays.
 	//
 	public function toCSS($env){
-		$css = array();	  // The CSS output
+		$css = '';	  // The CSS output
 		$rules = array();	// node.Rule instances
 		$_rules = array();
 		$rulesets = array(); // node.Ruleset instances
@@ -283,33 +278,29 @@ class Less_Tree_Ruleset{
 			}
 		}
 
-        // Remove last semicolon
-		if( $env->compress && count($rules) ){
-			$rule =& $rules[ count($rules)-1 ];
-			if( substr($rule, -1 ) === ';' ){
-				$rule = substr($rule,0,-1);
-			}
-		}
-
 		$rulesets = implode('', $rulesets);
 
 		// If this is the root node, we don't render
 		// a selector, or {}.
 		// Otherwise, only output if this ruleset has rules.
 		if ($this->root) {
-			$css[] = implode($env->compress ? '' : "\n", $rules);
+			if( $env->compress ){
+				$css .= rtrim(implode('', $rules),';');
+			}else{
+				$css .= implode("\n", $rules);
+			}
 		} else {
 			if (count($rules)) {
 
 				$selector = array();
 				foreach($this->paths as $p){
-					$_p = array();
+					$_p = '';
 					foreach($p as $s){
-						$_p[] = $s->toCSS($env);
+						$_p .= $s->toCSS($env);
 					}
-					$selector[] = trim(implode('',$_p));
+					$selector[] = trim($_p);
 				}
-				$selector = implode($env->compress ? ',' : ",\n", $selector);
+				$css .= implode($env->compress ? ',' : ",\n", $selector);
 
 				// Remove duplicates
 				for ($i = count($rules) - 1; $i >= 0; $i--) {
@@ -319,15 +310,16 @@ class Less_Tree_Ruleset{
 				}
 				$rules = $_rules;
 
-				$css[] = $selector;
-				$css[] = ($env->compress ? '{' : " {\n  ") .
-						 implode($env->compress ? '' : "\n  ", $rules) .
-						 ($env->compress ? '}' : "\n}\n");
+				if( $env->compress ){
+					$css .= '{'.rtrim(implode('',$rules),';').'}';
+				}else{
+					$css .= " {\n  ".implode("\n  ",$rules)."\n}\n";
+				}
 			}
 		}
-		$css[] = $rulesets;
+		$css .= $rulesets;
 
-		return implode('', $css) . ($env->compress ? "\n" : '' );
+		return $css . ($env->compress ? "\n" : '' );
 	}
 
 

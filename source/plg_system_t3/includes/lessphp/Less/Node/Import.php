@@ -106,12 +106,7 @@ class Less_Tree_Import{
 		$evald_path = $evald->getPath();
 		if( $evald_path && $env->isPathRelative($evald_path) ){
 			foreach(Less_Parser::$import_dirs as $rootpath => $rooturi){
-				
-				T3::import('core/path');
-
 				$temp = $rootpath.$evald_path;
-				$temp = T3Path::cleanPath($temp);
-				
 				if( file_exists($temp) ){
 					$full_path = Less_Environment::NormPath($temp);
 					$uri = Less_Environment::NormPath(dirname($rooturi.$evald_path));
