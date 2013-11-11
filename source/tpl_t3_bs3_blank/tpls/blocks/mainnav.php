@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- MAIN NAVIGATION -->
-<nav id="t3-mainnav" class="wrap t3-mainnav navbar navbar-default">
+<nav id="t3-mainnav" class="wrap navbar navbar-default t3-mainnav">
 	<div class="container">
 
 		<div class="navbar-header">
