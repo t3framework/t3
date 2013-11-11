@@ -215,7 +215,7 @@ ul.latestusers {
 
 
 // Stats 
-// ------
+// -----
 .stats-module {
   dt, dd {
     display: inline-block;
@@ -230,55 +230,65 @@ ul.latestusers {
   }
 }
 
+
 // Popular Tags
-div.tagspopular ul {
-  display: block;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
+//-------------
+.tagspopular {
+  ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+
+  ul > li {
+    color: @gray;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+  }
+
+  ul > li > a {
+    background: @gray-lighter;
+    border-radius: 3px;
+    color: @gray;
+    display: block;
+    padding: 2px 5px;
+    // Links states
+    &:hover,
+    &:focus,
+    &:active {
+      background: @link-hover-color;
+      color: @white;
+      text-decoration: none;
+    }
+  }
 }
 
-div.tagspopular ul li {
-  color: @gray;
-  display: inline-block;
-  margin: 0 5px 5px 0;
-}
 
-div.tagspopular ul li a {
-  background: @gray-lighter;
-  border-radius: 3px;
-  color: @gray;
-  display: block;
-  padding: 2px 5px;
-}
-
-div.tagspopular ul li a:hover,
-div.tagspopular ul li a:focus,
-div.tagspopular ul li a:active {
-  background: @link-hover-color;
-  color: @white;
-  text-decoration: none;
-}
 
 // Similar tags
-div.tagssimilar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+// ------------
+.tagssimilar {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul > li {
+    border-bottom: 1px solid @gray-lighter;
+    padding: 8px 0;
+  }
+
+  ul > li > a {
+    color: @gray;
+    // Link states
+    &:hover,
+    &:focus,
+    &:active {
+      color: @link-hover-color;
+    }
+  }
 }
 
-div.tagssimilar ul li {
-  border-bottom: 1px solid @gray-lighter;
-  padding: 8px 0;
-}
-
-div.tagssimilar ul li a {
-  color: @gray;
-}
-
-div.tagssimilar ul li a:hover,
-div.tagssimilar ul li a:focus,
-div.tagssimilar ul li a:active {
-  color: @link-hover-color;
-}
