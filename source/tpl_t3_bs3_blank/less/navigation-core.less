@@ -35,14 +35,9 @@
 // The dropdown menu (ul)
 // ----------------------
 .dropdown-menu {
-  padding: 0;
-  margin: 2px 0 0;
-  border-radius: @border-radius-base;
-  .box-shadow(0 6px 12px rgba(0,0,0,.175));
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    .nav-divider(@dropdown-divider-bg);
   }
 
   // Links within the dropdown menu
@@ -85,7 +80,7 @@
 // ------------------------
 .dropdown-header {
   padding: 3px 20px;
-  font-size: @font-size-small;
+  font-size: @font-size-base;
   // T3: Links in Header
   a {
     color: @dropdown-header-color;
@@ -104,7 +99,6 @@
 
   // Nav Items
   > li {
-
     > a {
       // Hover state
       &:hover,
@@ -119,7 +113,19 @@
       &:focus {
       }
     }
+  }
 
+  // Seperator
+  > li > .separator {
+    position: relative;
+    display: block;
+    padding: @nav-link-padding;
+    line-height: @line-height-computed;
+
+    @media (min-width: @grid-float-breakpoint) {
+      padding-top: ((@navbar-height - @line-height-computed) / 2);
+      padding-bottom: ((@navbar-height - @line-height-computed) / 2);
+    }
   }
 
   // Open dropdowns
@@ -220,7 +226,6 @@
 .navbar {
 
   @media (min-width: @grid-float-breakpoint) {
-    border-radius: @navbar-border-radius;
   }
 }
 
@@ -230,7 +235,6 @@
 .navbar-header {
 
   @media (min-width: @grid-float-breakpoint) {
-    float: left;
   }
 }
 
@@ -254,9 +258,6 @@
   }
 
   @media (min-width: @grid-float-breakpoint) {
-    .navbar > .container & {
-      margin-left: -@navbar-padding-horizontal;
-    }
   }
 
 }
@@ -294,42 +295,31 @@
   @media (max-width: @screen-xs-max) {
     // Dropdowns get custom display when collapsed
     .open .dropdown-menu {
-      position: static;
-      float: none;
-      width: auto;
-      margin-top: 0;
-      background-color: transparent;
-      border: 0;
-      box-shadow: none;
 
       > li > a,
       .dropdown-header {
-        padding: 5px 15px 5px 25px;
       }
 
       > li > a {
-        line-height: @line-height-computed;
+
         // Link states
         &:hover,
         &:focus {
-          background-image: none;
         }
       }
     }
+
   }
 
   // Uncollapse the nav
   @media (min-width: @grid-float-breakpoint) {
-    float: left;
     margin: 0;
 
     > li {
-      float: left;
       > a {
-        padding-top: ((@navbar-height - @line-height-computed) / 2);
-        padding-bottom: ((@navbar-height - @line-height-computed) / 2);
       }
     }
+
   }
 
   // End
@@ -346,8 +336,6 @@
 // -------------------
 // Menu position and menu carets
 .navbar-nav > li > .dropdown-menu {
-  margin-top: 0;
-  .border-top-radius(0);
 }
 
 
@@ -364,9 +352,11 @@
 
 
 
+//
 // Default Navbars
 // --------------------------------------------------
 // T3 Note: This section has been moved to "navigation.less" for better workflow.
+//
 
 
 
@@ -393,12 +383,11 @@
     color: @breadcrumb-active-color;
   }
 
-  // Hide default Joomla! arrow in breadcrum
+  // T3 Note: Hide default Joomla! arrow in breadcrum
   .divider {
     display: none;
   }
 }
-
 
 
 
@@ -443,6 +432,18 @@
     > a:focus {
     }
   }
+}
+
+
+// T3 Note: Fix for Joomla! Pagination
+// ------------------------------------
+.pagination {
+
+   // re-defined nested class - joomla structure
+  .pagination {
+    display: inline-block;
+  }
+
 }
 
 
