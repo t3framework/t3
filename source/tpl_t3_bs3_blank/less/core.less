@@ -17,7 +17,7 @@
 // --------------------------------------------------
 
 //
-// Scaffolding
+// SCAFFOLDING (scaffolding.less)
 // --------------------------------------------------
 
 html {
@@ -78,53 +78,45 @@ img {
 }
 
 
-// Horizontal rules
-hr {
-}
-
-
 
 //
-// TABLES
+// TABLES (tables.less)
 // -------------------------------------------------------
 table {
-  background-color: @table-bg;
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
+// All Cells
+// ---------
 th,
 td {
-  line-height: @line-height-computed;
-  padding: 8px 10px;
+  line-height: @line-height-base;
   text-align: left;
   vertical-align: top;
 } 
 
-td {
-  border-top: 1px solid @table-border-color;
-}
-
-tr td {
-}
-
+// Heading
+// -------
 th {
-  background: @gray-dark;
-  color: @gray-lighter;
   font-weight: bold;
-}
-
-th td {
-}
-
-th a {
-  color: @gray-lighter;
-  // Link states
-  &:hover, &:focus, &:active {
-    color: @white;
+  // Links in Table Heading
+  a {
+    // Link states
+    &:hover, &:focus, &:active {
+    }
   }
 }
 
+// Base Cells
+// ----------
+td,
+tr td {
+  border-top: 1px solid @table-border-color;
+}
+
+
+
+// Specific Joomla! Table Styles
+// -----------------------------
 .cat-list-row0,
 .cat-list-row1,
 tr.cat-list-row0 td,
@@ -164,6 +156,14 @@ table.contentpaneopen {
 
 .red {
   color: @red;
+}
+
+// Horizontal rules
+hr {
+  margin-top:    @line-height-computed;
+  margin-bottom: @line-height-computed;
+  border: 0;
+  border-top: 1px solid @hr-border;
 }
 
 // Wrap Element
