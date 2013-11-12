@@ -64,9 +64,13 @@
 
 					if(align == 'left'){
 						align_offset = offset.left;
-
 					} else if(align == 'center'){
 						align_offset = offset.left + (width - sub_width) / 2;
+
+						if(!$.support.t3transform){
+							sub.css(mm_rtl ? 'right' : 'left', (width - sub_width) / 2);
+						}
+
 					} else if(align == 'right'){
 						align_offset = offset.left + width - sub_width;
 					}

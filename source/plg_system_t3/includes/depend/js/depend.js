@@ -240,9 +240,16 @@
 			//progress bar
 			//show it first
 			if($.support.transition){
-				form.progElm.removeClass('t3-anim-slow t3-anim-finish').css('width', '');
+				form.progElm
+					.removeClass('t3-anim-slow t3-anim-finish')
+					.css('width', '');
+
 				setTimeout(function(){
-					form.progElm.addClass('t3-anim-slow').css('width', 50 + Math.floor(Math.random() * 20) + '%');
+					if(!form.progElm.hasClass('t3-anim-finish')){
+						form.progElm
+							.addClass('t3-anim-slow')
+							.css('width', 50 + Math.floor(Math.random() * 20) + '%');
+					}
 				});
 			} else {
 				form.progElm.stop(true).css({

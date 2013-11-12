@@ -71,6 +71,16 @@ class T3TemplateLayout extends T3Template
 		return 1;
 	}
 
+	
+	/**
+	 * Check for the message queue
+	 *
+	 * @return  true    always return true
+	 */
+	function hasMessage(){
+		return 1;
+	}
+
 	/**
 	 * Load block content
 	 *

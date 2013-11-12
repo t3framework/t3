@@ -182,8 +182,6 @@ class T3MenuMegamenuTpl
 			$vars['caret']     = '<b class="caret"></b>';
 		}
 
-		if ($item->group) $vars['class'] .= ' dropdown-header mega-group-title';
-
 		if ($item->menu_image) {
 			$item->params->get('menu_text', 1) ?
 				$vars['linktype'] = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
@@ -211,6 +209,10 @@ class T3MenuMegamenuTpl
 			case 'url':
 			default:
 				$html = self::item_url($vars);
+		}
+
+		if($item->group){
+			$html = '<div class="dropdown-header mega-group-title">' . $html . '</div>';
 		}
 
 		return $html;
