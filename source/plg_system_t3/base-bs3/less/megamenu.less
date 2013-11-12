@@ -306,9 +306,10 @@
 
 
 
+//
 // MEGAMENU Animation
 // --------------------------------------------------------------
-// 
+
 @media (min-width: @grid-float-breakpoint) {
   .t3-megamenu.animate {
     .mega {
@@ -419,6 +420,7 @@
 }
 
 
+//
 // MEGAMENU RESPONSIVE
 // --------------------------------------------------------------
 @media (max-width: @screen-xs-max) {
@@ -494,167 +496,6 @@
         right: 0 !important;
         margin-right: 0 !important;
       }
-    }
-  }
-}
-
-
-//
-// NAVIGATION RESPONSIVE
-// ---------------------------------------------------------
-@media (max-width: @grid-float-breakpoint) {
-
-  // -------------------------------------------------------
-  //  T3 MAIN MENU
-  // -------------------------------------------------------
-  .t3-mainnav {
-    height: auto;
-
-    // The nav
-    .navbar-collapse {
-      margin-top: (@t3-global-margin / 2);
-      background: #fff;
-      max-height: none;
-
-      .nav {
-        margin: 0;
-
-        > li {
-          .clearfix();
-
-          > a {
-            margin-bottom: 0;
-          }
-        }
-      }
-
-      // Nav and dropdown links in navbar
-      // -------------------------------
-      .nav > li > a,
-      .dropdown-menu a {
-        border-bottom: 1px solid @hr-border;
-        padding: (@t3-global-padding / 2) @t3-global-padding;
-        font-weight: bold;
-        text-shadow: none;
-        border-radius: 0;
-      }
-
-      .dropdown-menu li + li a {
-        margin-bottom: 0;
-      }
-
-      // Hover state
-      .nav > li > a:hover {
-        background-color: @dropdown-link-hover-bg;
-        background-image: none;
-        .reset-filter();
-      }
-
-      // Dropdowns in the navbar
-      // -----------------------
-      .dropdown-menu {
-        margin: 0;
-        padding: 0;
-        float: none;
-        border: none;
-        border-radius: 0;
-        .box-shadow(none);
-
-        // dropdown links
-        // --------------
-        a {
-          border: none;
-          font-weight: normal;
-          padding: (@t3-global-padding / 2) @t3-global-padding;
-
-          // Hover state
-          &:hover {
-            background-color: @dropdown-link-hover-bg;
-            background-image: none;
-            .reset-filter();
-          }
-        }
-      }
-    }
-
-    // Full width when fixed
-    // ---------------------
-    &.navbar-collapse-fixed-top,
-    &.navbar-collapse-fixed-bottom {
-      margin: 0;
-
-      .navbar-collapse {
-        margin: 0;
-      }
-    }
-    // End
-  }
-
-  // ----------------------------------------------------
-  // MISC
-  // ----------------------------------------------------
-  .t3-mainnav .navbar .nav > li > .dropdown-menu {
-    // Hiding Menu and Divider in navbar-collapse
-    &:before, &:after, .divider {
-      display: none;
-    }
-  }
-
-  // ----------------------------------------------------
-  // ALWAYS SHOW AND NAV COLLAPSE FIXED
-  // ----------------------------------------------------
-  // Always show submenu for navigation
-  .always-show .mega > .mega-dropdown-menu,
-  .always-show .dropdown-menu {
-    display: block !important;
-    position: static;
-  }
-
-  // ------------------------------------------------------
-  // Support fixed navbar when collapsed
-  // -------------------------------------------------------
-  .navbar-collapse-fixed-top,
-  .navbar-collapse-fixed-bottom {
-    border-top: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    // style for normal collapsed menu
-    .navbar-collapse {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: @navbar-height+1;
-      margin: 0;
-
-      &.in {
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-
-        > * {
-          -webkit-transform: translateZ(0);
-        }
-      }
-    }
-
-    .navbar-collapse.animate {
-      overflow: hidden;
-    }
-  }
-
-  .navbar-collapse-fixed-bottom {
-    bottom: 0;
-    top: auto;
-    .navbar-collapse {
-      bottom: @navbar-height+1;
-      top: auto;
-    }
-
-    .navbar-toggle {
-      position: absolute;
-      bottom: 0;
     }
   }
 }
