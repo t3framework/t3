@@ -153,7 +153,6 @@
 
 
 
-
 // -------------------------------------------------------
 //  T3 MAIN MENU
 // -------------------------------------------------------
@@ -164,50 +163,12 @@
   border-radius: 0;
 
 
-  // NAVBAR
-  // -------------------------------------------------------
+  // Navbar
+  // -------
   .t3-navbar {
     margin: 0;
     padding: 0;
   }
 
-  .nav {
-    > li > .separator {
-      position: relative;
-      display: block;
-      padding: @nav-link-padding;
-      line-height: @line-height-computed;
-    }
-  }
-
-  @media (min-width: @grid-float-breakpoint) {
-    .navbar-nav {
-      > li {
-        float: left;
-        > .separator {
-          padding-top: ((@navbar-height - @line-height-computed) / 2);
-          padding-bottom: ((@navbar-height - @line-height-computed) / 2);
-        }
-      }
-    }
-  }
-}
-
-
-
-//
-// PAGINATION
-// -------------------------------------------------------
-// Fix Pagination
-.pagination {
-  display: block;
-  margin: @line-height-computed 0;
-
-   //re-defined nested class - joomla structure
-  .pagination {
-    display: inline-block;
-    padding-left: 0;
-    margin: 0;
-    border-radius: @border-radius-base;
-  }
+  // End
 }
