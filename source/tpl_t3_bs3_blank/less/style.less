@@ -201,24 +201,25 @@
   padding: (@t3-global-padding * 3) 0 (@t3-global-padding * 2);
   .clearfix();
 
-  ul {
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-  }
-  
-  li {
-    line-height: 24px;
-  }
-  
   .t3-module {
     margin-bottom: 0;
+
+    .module-title {
+      color: @t3-footer-module-title-color;
+      font-size: @font-size-large;
+    }
+
+    ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    
+    li {
+      line-height: 24px;
+    }
   }
 
-  .module-title {
-    color: @t3-footer-module-title-color;
-    font-size: @font-size-large;
-  }
 }
 
 // Copyright
