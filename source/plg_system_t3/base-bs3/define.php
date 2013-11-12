@@ -40,3 +40,4 @@ define('T3_BASE_DEVICES',             json_encode(array('lg', 'md', 'sm', 'xs'))
 define('T3_BASE_DV_MAXCOL',           json_encode(array('lg' => 6, 'md' => 6, 'sm' => 4, 'xs' => 2)));
 define('T3_BASE_DV_MINWIDTH',         json_encode(array('lg' => 2, 'md' => 2, 'sm' => 3, 'xs' => 6)));
 define('T3_BASE_DV_UNITSPAN',         json_encode(array('lg' => 1, 'md' => 1, 'sm' => 1, 'xs' => 1)));
+define('T3_BASE_LESS_COMPILER',      'less');
