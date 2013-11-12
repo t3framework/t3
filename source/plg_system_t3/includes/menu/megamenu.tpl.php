@@ -133,7 +133,6 @@ class T3MenuMegamenuTpl
 		}
 
 		if ($item->mega)  $cls .= ' mega';
-		if ($item->group) $cls .= ' dropdown-header mega-group';
 		if ($item->type == 'separator') $cls .= ' divider';
 
 		$data = "data-id=\"{$item->id}\" data-level=\"{$item->level}\"";
@@ -151,7 +150,7 @@ class T3MenuMegamenuTpl
 		if (isset($setting['caption'])) $data .= " data-caption=\"" . htmlspecialchars($setting['caption']) . "\"";
 		if (isset($setting['hidewcol'])) {
 			$data .= " data-hidewcol=\"1\"";
-			$cls .= " sub-hidden-collapse";
+			$cls  .= " sub-hidden-collapse";
 		}
 
 		if ($cls) $cls = 'class="' . trim($cls) . '"';
@@ -183,7 +182,7 @@ class T3MenuMegamenuTpl
 			$vars['caret']     = '<b class="caret"></b>';
 		}
 
-		if ($item->group) $vars['class'] .= ' mega-group-title';
+		if ($item->group) $vars['class'] .= ' dropdown-header mega-group-title';
 
 		if ($item->menu_image) {
 			$item->params->get('menu_text', 1) ?
