@@ -564,14 +564,16 @@ var T3Admin = window.T3Admin || {};
 
 			$.ajax({
 				url: T3Admin.adminurl,
-				data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid, 'theme': theme || 'all' },
-				success: function(rsp){
+				data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid, 'theme': theme || 'all' }
+			}).always(function(){
+				
+				//progress bar
+				recompile.removeClass('loading');
+				if($.support.transition){
 					
-					//progress bar
-					recompile.removeClass('loading');
-					if($.support.transition){
-						
-						T3Admin.progElm.removeClass('t3-anim-slow').addClass('t3-anim-finish')
+					T3Admin.progElm
+						.removeClass('t3-anim-slow')
+						.addClass('t3-anim-finish')
 						.one($.support.transition.end, function () {
 							setTimeout(function(){
 								if(T3Admin.progElm.hasClass('t3-anim-finish')){
@@ -580,46 +582,45 @@ var T3Admin = window.T3Admin || {};
 							}, 1000);
 						});
 
-					} else {
-						$(T3Admin.progElm).stop(true).animate({
-							width: '100%'
-						}, function(){
-							$(T3Admin.progElm).hide();
-						});
-					}
-
-
-					rsp = $.trim(rsp);
-					if(rsp){
-						var json = rsp;
-						if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
-							json = rsp.match(new RegExp('{[\["].*}'));
-							if(json && json[0]){
-								json = json[0];
-							}
-						}
-
-						if(json && typeof json == 'string'){
-							
-							rsp = rsp.replace(json, '');
-
-							try {
-								json = $.parseJSON(json);
-							} catch (e){
-								json = {
-									error: T3Admin.langs.unknownError
-								}
-							}
-						}
-
-						T3Admin.systemMessage(rsp || json.error || json.successful);
-					}
-				},
-
-				error: function(){
-					recompile.removeClass('loading');
-					T3Admin.systemMessage(T3Admin.langs.unknownError);
+				} else {
+					$(T3Admin.progElm).stop(true).animate({
+						width: '100%'
+					}, function(){
+						$(T3Admin.progElm).hide();
+					});
 				}
+				
+			}).done(function(rsp){
+					
+				rsp = $.trim(rsp);
+				if(rsp){
+					var json = rsp;
+					if(rsp.charAt(0) != '[' && rsp.charAt(0) != '{'){
+						json = rsp.match(new RegExp('{[\["].*}'));
+						if(json && json[0]){
+							json = json[0];
+						}
+					}
+
+					if(json && typeof json == 'string'){
+						
+						rsp = rsp.replace(json, '');
+
+						try {
+							json = $.parseJSON(json);
+						} catch (e){
+							json = {
+								error: T3Admin.langs.unknownError
+							}
+						}
+					}
+
+					T3Admin.systemMessage(rsp || json.error || json.successful);
+				}
+
+			}).fail(function(){
+				recompile.removeClass('loading');
+				T3Admin.systemMessage(T3Admin.langs.unknownError);
 			});
 		}
 	});

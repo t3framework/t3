@@ -69,3 +69,10 @@
 	bottom: -50px;
 	visibility: hidden;
 }
+
+/* Brand J3.2
+----------------------------------------------------*/
+.navbar .brand {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

@@ -11,15 +11,15 @@
  *------------------------------------------------------------------------------
  */
 
-!function($){
-	
-	$(document).ready(function(){
-		
+ !function($){
+
+ 	$(document).ready(function(){
+
 		//detect transform (https://github.com/cubiq/)
 		$.support.t3transform =  (function () {
 			var style = document.createElement('div').style,
-				vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
-				transform, i = 0, l = vendors.length;
+			vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
+			transform, i = 0, l = vendors.length;
 
 			for ( ; i < l; i++ ) {
 				transform = vendors[i] + 'ransform';
@@ -128,23 +128,24 @@
 				}
 
 				if (step==1) {
-		                    $fixeditems.each (function () {
-		                        var $this = $(this);
-		                        var style = $this.attr('style'),
-		                            opos = style && style.test('position') ? $this.css('position'):'',
-		                            otop = style && style.test('top') ? $this.css('top'):'';
+					$fixeditems.each (function () {
+						var $this = $(this);
+						var style = $this.attr('style'),
+						opos = style && style.test('position') ? $this.css('position'):'',
+						otop = style && style.test('top') ? $this.css('top'):'';
 
-		                        $this.data('opos', opos).data('otop', otop);
-		                        $this.css({'position': 'absolute', 'top': ($(window).scrollTop() + $this.css('top').toInt()) + 'px'});
-		                    });
+						$this.data('opos', opos).data('otop', otop);
+						$this.css({'position': 'absolute', 'top': ($(window).scrollTop() + parseInt($this.css('top'))) });
+					});
+
 				} else {
-		                    $fixeditems.each (function () {
-		                        $this = $(this);
-		                        $this.css({'position': $this.data('opos'), 'top': $this.data('otop')});
-		                    });
+					$fixeditems.each (function () {
+						$this = $(this);
+						$this.css({'position': $this.data('opos'), 'top': $this.data('otop')});
+					});
 				}
 			};
 		}
-	})
+	});
 
 }(jQuery);

@@ -253,19 +253,23 @@
 				});
 			}
 
-			$.get(info.url, { jvalue: form.valuesFrom(form.elmsFrom(name))[0], _: $.now() }, function(rsp){
-				
+			$.get(info.url, {
+				jvalue: form.valuesFrom(form.elmsFrom(name))[0], 
+				_: $.now() 
+			}).always(function(){
 				//progress bar
 				if($.support.transition){
 					
-					form.progElm.removeClass('t3-anim-slow').addClass('t3-anim-finish')
-					.one($.support.transition.end, function () {
-						setTimeout(function(){
-							if(form.progElm.hasClass('t3-anim-finish')){
-								$(form.progElm).removeClass('t3-anim-finish');
-							}
-						}, 1000);
-					});
+					form.progElm
+						.removeClass('t3-anim-slow')
+						.addClass('t3-anim-finish')
+						.one($.support.transition.end, function () {
+							setTimeout(function(){
+								if(form.progElm.hasClass('t3-anim-finish')){
+									$(form.progElm).removeClass('t3-anim-finish');
+								}
+							}, 1000);
+						});
 
 				} else {
 					$(form.progElm).stop(true).animate({
@@ -275,6 +279,8 @@
 					});
 				}
 
+			}).done(function(rsp){
+				
 				var parts = ctrl.info.func.split('.'),
 					fobj = window;
 
