@@ -74,7 +74,6 @@ JHtml::_('behavior.caption');
 
 	<?php if (!empty($this->intro_items)) : ?>
 	<?php foreach ($this->intro_items as $key => &$item) : ?>
-	<?php
 		<?php $rowcount = ((int) $count % (int) $this->columns) + 1; ?>
 		<?php if ($rowcount == 1) : ?>
 			<?php $row = $counter / $this->columns; ?>
