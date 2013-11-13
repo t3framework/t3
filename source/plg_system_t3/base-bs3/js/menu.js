@@ -153,10 +153,11 @@
 						}
 					}
 				}
-
 			}
 
-			$('.nav > li, li.mega').hover(function(event) {
+
+			// only work with dropdown and mega
+			$('.nav').has('.dropdown-menu').children('li').add('li.mega').hover(function(event) {
 				var $this = $(this);
 				if ($this.hasClass ('mega')) {
 

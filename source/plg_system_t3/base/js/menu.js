@@ -66,23 +66,36 @@
 						align_offset = offset.left;
 					} else if(align == 'center'){
 						align_offset = offset.left + (width - sub_width) / 2;
+
+						if(!$.support.t3transform){
+							sub.css(mm_rtl ? 'right' : 'left', (width - sub_width) / 2);
+						}
+
 					} else if(align == 'right'){
 						align_offset = offset.left + width - sub_width;
 					}
 				}
 
 				if (level == 1) {
-					if (mm_rtl) {
-						if(align_offset + sub_width > screen_width && align == 'left'){
-							sub.css('left', Math.max(-align_offset, offset.left + sub_width - screen_width));
-						} else if(align_offset - sub_width < 0){
-							sub.css('right', Math.min(screen_width - offset.left - width, sub_width - align_offset));
+					if ((mm_rtl && align != 'right') || (!mm_rtl && align == 'right')) {
+
+						if(align_offset < 0){
+							align_offset = align_offset + (align == 'center' ? width / 2 : 0);
+							sub.css('right', align_offset);
+						}
+
+						if(align_offset + sub_width > screen_width){
+							sub.css('right', align_offset + sub_width - screen_width + (align == 'center' ? width / 2 : 0));
 						}
 					} else {
-						if(align_offset < 0 && align == 'right'){
-							sub.css('right', Math.max(align_offset, offset.left + width - screen_width));
-						} else if(Math.max(0, align_offset) + sub_width > screen_width){
-							sub.css('left', Math.max(-align_offset + (align == 'center' ? width / 2 : 0), screen_width - Math.max(0, align_offset) - sub_width));
+
+						if(align_offset + sub_width > screen_width){
+							align_offset = screen_width - align_offset - sub_width + (align == 'center' ? width / 2 : 0);
+							sub.css('left', align_offset);
+						}
+
+						if(align_offset < 0){
+							sub.css('left', -align_offset + (align == 'center' ? width / 2 : 0));
 						}
 					}
 				} else {
@@ -140,10 +153,11 @@
 						}
 					}
 				}
-
 			}
 
-			$('.nav > li, li.mega').hover(function(event) {
+
+			// only work with dropdown and mega
+			$('.nav').has('.dropdown-menu').children('li').add('li.mega').hover(function(event) {
 				var $this = $(this);
 				if ($this.hasClass ('mega')) {
 
