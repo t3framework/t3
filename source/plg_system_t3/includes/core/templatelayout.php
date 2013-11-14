@@ -425,7 +425,8 @@ class T3TemplateLayout extends T3Template
 				//check for width of this position
 				$width = $this->maxgrid;
 				if(preg_match($this->spancls, $cls, $match)){
-					$width = array_pop(array_filter($match, 'is_numeric'));
+					$match = array_filter($match, 'is_numeric');
+					$width = array_pop($match);
 					$width = (isset($width[0]) ? $width[0] : $this->maxgrid);
 				}
 
