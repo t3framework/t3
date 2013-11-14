@@ -229,7 +229,7 @@ if (!$editoroptions)
 							<?php echo $this->form->getLabel('tags'); ?>
 						</div>
 						<div class="controls">
-							<?php echo $this->form->getInput('tags'); ?>
+							<?php echo str_replace('span12', '', $this->form->getInput('tags')); ?>
 						</div>
 					</div>
 					<?php if ($params->get('save_history', 0)) : ?>
@@ -272,7 +272,7 @@ if (!$editoroptions)
 								<?php echo $this->form->getLabel('publish_up'); ?>
 							</div>
 							<div class="controls">
-								<?php echo $this->form->getInput('publish_up'); ?>
+								<?php echo str_replace('class="btn"', 'class="btn btn-default"', $this->form->getInput('publish_up')); ?>
 							</div>
 						</div>
 						<div class="control-group">
@@ -280,7 +280,7 @@ if (!$editoroptions)
 								<?php echo $this->form->getLabel('publish_down'); ?>
 							</div>
 							<div class="controls">
-								<?php echo $this->form->getInput('publish_down'); ?>
+								<?php echo str_replace('class="btn"', 'class="btn btn-default"', $this->form->getInput('publish_down')); ?>
 							</div>
 						</div>
 					<?php endif; ?>
@@ -344,7 +344,7 @@ if (!$editoroptions)
 					</button>
 				</div>
 				<div class="btn-group">
-					<button type="button" class="btn" onclick="Joomla.submitbutton('article.cancel')">
+					<button type="button" class="btn btn-default" onclick="Joomla.submitbutton('article.cancel')">
 						<span class="icon-cancel"></span>&#160;<?php echo JText::_('JCANCEL') ?>
 					</button>
 				</div>
