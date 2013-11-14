@@ -107,18 +107,28 @@
   }
 
   // Group Title
-  .mega-nav .mega-group > .mega-group-title,
-  .dropdown-menu .mega-nav .mega-group > .mega-group-title,
-  .dropdown-menu .active .mega-nav .mega-group > .mega-group-title {
-    background: inherit;
-    color: inherit;
-    font-weight: bold;
-    padding: 0;
+  // We use BS3 "dropdown-header"
+  //.mega-nav .mega-group > .mega-group-title,
+  //.dropdown-menu .mega-nav .mega-group > .mega-group-title,
+  //.dropdown-menu .active .mega-nav .mega-group > .mega-group-title
+  .dropdown-header {
     margin: 0;
-
-    &:hover, &:active, &:focus {
+    padding: 0;
+    background: @t3-module-title-bg;
+    color: @t3-module-title-color;
+    font-size: @font-size-large;
+    line-height: normal;
+    // Reset Link in Dropdown Header
+    > a {
       background: inherit;
       color: inherit;
+      font-size: inherit;
+      margin: 0;
+      // Link states
+      &:hover, &:active, &:focus {
+        background: inherit;
+        color: inherit;
+      }
     }
   }
 
@@ -174,7 +184,7 @@
   .dropdown-menu .mega-nav > li a {
     white-space: normal;
     display: block;
-    padding: 3px ( @t3-global-padding / 2 );
+    padding: 5px;
 
     &:hover,
     &:focus {
@@ -186,7 +196,7 @@
 
   .mega-nav > li .separator {
     display: block;
-    padding: 3px ( @t3-global-padding / 2 );
+    padding: 5px;
   }
 
   // Nav in Group
@@ -226,7 +236,8 @@
 
   // Module Title
   .t3-module .module-title {
-    margin-bottom: 0;
+    .dropdown-header(); // Make the Module Title look like Dropdown Header
+    margin-bottom: 5px;
   }
 
   // Module Content
