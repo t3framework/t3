@@ -11,281 +11,474 @@
  *------------------------------------------------------------------------------
  */
  
-
 // --------------------------------------------------
-// CORE TYPOGRAPHY (type.less)
+// BOOTSTRAP COMPONENTS STYLES
 // --------------------------------------------------
 
 //
-// BODY TEXT
+// TITLES
 // --------------------------------------------------
 
-// Paragraphs
-// ----------
-p {
-  margin: 0 0 (@line-height-computed / 2);
-}
-
-.lead {
-  margin-bottom: @line-height-computed;
-  font-size: (@font-size-base * 1.15);
-  font-weight: 200;
-  line-height: 1.4;
-  @media (min-width: 768px) {
-    font-size: (@font-size-base * 1.5);
-  }
-}
-
-
-// Emphasis & misc
-// ---------------
-
-// Ex: 14px base font * 85% = about 12px
-small   { font-size: 85%; }
-
-// Undo browser default styling
-cite    { font-style: normal; }
-
-// Contextual emphasis
-.text-muted          { color: @text-muted; }
-.text-primary        { color: @brand-primary; }
-.text-warning        { color: @state-warning-text; }
-.text-danger         { color: @state-danger-text; }
-.text-success        { color: @state-success-text; }
-.text-info           { color: @state-info-text; }
-
-// Alignment
-.text-left           { text-align: left; }
-.text-right          { text-align: right; }
-.text-center         { text-align: center; }
-
-// Highlight
-.highlight {
-  background-color: #FFC;
-  font-weight: bold;
-  padding: 1px 4px;
-}
-
-
-
-//
-// HEADINGSS
-// ------------------------------------------------------
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: @headings-font-family;
-  font-weight: @headings-font-weight;
-  line-height: @headings-line-height;
-  small {
-    font-weight: normal;
-    line-height: 1;
-    color: @headings-small-color;
-  }
-}
-
-h1,
-h2,
-h3 {
-  margin-top: @line-height-computed;
-  margin-bottom: (@line-height-computed / 2);
-}
-
-h4,
-h5,
-h6 {
-  margin-top: (@line-height-computed / 2);
-  margin-bottom: (@line-height-computed / 2);
-}
-
-h1, .h1 { font-size: floor(@font-size-base * 2.60); } // ~36px
-h2, .h2 { font-size: floor(@font-size-base * 2.15); } // ~30px
-h3, .h3 { font-size: ceil(@font-size-base * 1.70); } // ~24px
-h4, .h4 { font-size: ceil(@font-size-base * 1.25); } // ~18px
-h5, .h5 { font-size:  @font-size-base; }
-h6, .h6 { font-size: ceil(@font-size-base * 0.85); } // ~12px
-
-h1 small, .h1 small { font-size: ceil(@font-size-base * 1.70); } // ~24px
-h2 small, .h2 small { font-size: ceil(@font-size-base * 1.25); } // ~18px
-h3 small, .h3 small,
-h4 small, .h4 small { font-size: @font-size-base; }
-
-
-
-//
-// LISTS
-// --------------------------------------------------
-
-// Unordered and Ordered lists
-// ----------------------------
-ul,
-ol {
-  margin-top: 0;
-  margin-bottom: (@line-height-computed / 2);
-  ul,
-  ol{
-    margin-bottom: 0;
-  }
-}
-
-// List options
-// Unstyled keeps list items block level, just removes default browser padding and list-style
-.list-unstyled {
-  padding-left: 0;
-  list-style: none;
-}
-
-// Inline turns list items into inline-block
-.list-inline {
-  .list-unstyled();
-  > li {
-    display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-
-// Description Lists
-dl {
-  margin-bottom: @line-height-computed;
-}
-
-dt,
-dd {
-  line-height: @line-height-base;
-}
-
-dt {
-  font-weight: bold;
-}
-
-dd {
-  margin-left: 0; // Undo browser default
-}
-
-// Horizontal description lists
-//
-// Defaults to being stacked without any of the below styles applied, until the
-// grid breakpoint is reached (default of ~768px).
-
-@media (min-width: @grid-float-breakpoint) {
-  .dl-horizontal {
-    dt {
-      float: left;
-      width: (@component-offset-horizontal - 20);
-      clear: left;
-      text-align: right;
-      .text-overflow();
-    }
-    dd {
-      margin-left: @component-offset-horizontal;
-      .clearfix(); // Clear the floated `dt` if an empty `dd` is present
-    }
-  }
-}
-
-
-
-//
-// MISC
-// --------------------------------------------------
-
-// Abbreviations and acronyms
-// --------------------------
-abbr[title],
-// Added data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
-abbr[data-original-title] {
-  cursor: help;
-  border-bottom: 1px dotted @abbr-border-color;
-}
-abbr.initialism {
-  font-size: 90%;
-  text-transform: uppercase;
-}
-
-
-// Blockquotes
+// Page header
 // -----------
-blockquote {
-  padding: (@line-height-computed / 2) @line-height-computed;
-  margin: 0 0 @line-height-computed;
-  border-left: 5px solid @blockquote-border-color;
-  p {
-    font-size: (@font-size-base * 1.25);
-    font-weight: 300;
-    line-height: 1.25;
-  }
-  p:last-child {
-    margin-bottom: 0;
-  }
-  small {
-    display: block;
-    line-height: @line-height-base;
-    color: @blockquote-small-color;
-    &:before {
-      content: '\2014 \00A0';// EM DASH, NBSP
-    }
-  }
+.page-header {
+  padding-bottom: ((@line-height-computed / 2) - 1);
+  margin: 0 0 @t3-global-margin;
+  border-bottom: 1px solid @page-header-border-color;
+}
 
-  // Float right with text-align: right
-  &.pull-right {
-    padding-right: 15px;
-    padding-left: 0;
-    border-right: 5px solid @blockquote-border-color;
-    border-left: 0;
-    p,
-    small {
-      text-align: right;
-    }
-    small {
-      &:before {
-        content: '';
-      }
-      &:after {
-        content: '\00A0 \2014';// NBSP, EM DASH
-      }
-    }
-  }
+.page-title,
+.page-header h1 {
+  line-height: 1;
+  margin: 0;
 }
 
 
-// Quotes
-// ------
-q:before,
-q:after,
-blockquote:before,
-blockquote:after {
-  content: "";
+// Page Subheader
+// --------------
+.page-subheader {
+  border-bottom: 1px solid @t3-border-color;
+  margin: 0 0 @t3-global-margin;
+  .clearfix();
+}
+
+.page-subtitle,
+.page-subheader h2 {
+  line-height: 1;
+  margin: 0;
+}
+
+.page-header + .page-subheader {
+  margin-top: -@t3-global-margin; //If there is page header, then omit the space before page subheader
 }
 
 
-// Addresses
-// ---------
-address {
-  display: block;
-  margin-bottom: @line-height-computed;
-  font-style: normal;
-  line-height: @line-height-base;
+// Article Header
+// --------------
+.article-header {
+}
+
+.article-title,
+.article-header h1, {
+  margin: 0 0 @t3-global-margin 0;
+}
+
+// Smaller "Article Title" in Blog and List layout
+h2.article-title,
+.article-header h2 {
+}
+
+
+// Item Header
+// -----------
+.item-title {
+  font-weight: bold;
 }
 
 
 
 //
-// CODE (inline and block) (code.less)
-// -----------------------------------
-// Inline and block code styles
-code,
-kbd,
-pre,
-samp {
-  font-family: @font-family-monospace;
+// MASHEAD & JUMBOTRON
+// --------------------------------------------------
+
+// Mashead
+// --------
+.masthead {
+  padding: (@t3-global-padding * 4) 0 (@t3-global-padding * 3);
+  text-align: center;
+
+  h1 {
+    font-size: @font-size-base * 7;
+  }
+
+  p {
+    font-size: @font-size-base * 2;
+  }
+
+  // Big mashead btn
+  .btn-lg {
+    margin-top: @line-height-computed;
+    padding: 18px 42px;
+    font-size: @font-size-base * 1.5;
+  }
+
+  @media screen and (max-width: @screen-sm-min) {
+    .btn-lg {
+      padding: @padding-base-vertical @padding-base-horizontal;
+      font-size: @font-size-base;
+    }
+  }
+
 }
 
-// Inline code
-code {
+
+// Jumbotron (jumbotron.less)
+// --------------------------
+.jumbotron {
+
+  h1, h2, h3 {
+    margin-top: 0;
+  }
+
+  p {
+  }
+
+  .container & {
+    border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    .container & {
+    }
+    h1 {
+    }
+  }
+
 }
 
-// Blocks of code
-pre {
+
+
+//
+// LABELS & BADGES
+// --------------------------------------------------
+
+// Labels (labels.less)
+// --------------------
+
+.label {
+
+  // Add hover effects, but only for links
+  &[href] {
+    &:hover,
+    &:focus {
+    }
+  }
+
+  // Empty labels collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
 }
+
+// Colors
+// Contextual variations (linked labels get darker on :hover)
+
+.label-default {
+}
+
+.label-primary {
+}
+
+.label-success {
+}
+
+.label-info {
+}
+
+.label-warning {
+}
+
+.label-danger {
+}
+
+
+// Badges (badges.less)
+// --------------------
+
+// Base classes
+.badge {
+
+  // Empty badges collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+}
+
+// Hover state, but only for links
+a.badge {
+  &:hover,
+  &:focus {
+  }
+}
+
+// Quick fix for labels/badges in buttons
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+
+// Quick fix for labels/badges in page-header- NNTH
+.page-header {
+  .label, .badge {
+    vertical-align: middle;
+  }
+}
+
+
+
+//
+// THUMBNAILS  (thumbnails.less)
+// --------------------------------------------------
+
+// Mixin and adjust the regular image class
+.thumbnail {
+  > img {
+  }
+}
+
+// Add a hover state for linked versions only
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+}
+
+// Image captions
+.thumbnail .caption {
+}
+
+
+
+//
+// ALERTS (alerts.less)
+// --------------------------------------------------
+
+// Base styles
+// -------------------------
+.alert {
+
+  // Headings for larger alerts
+  h4 {
+    color: inherit;
+  }
+
+  // Provide class for links that match alerts
+  .alert-link {
+  }
+
+}
+
+
+// Dismissable alerts
+// ------------------
+.alert-dismissable {
+}
+
+
+// Alternate styles
+// ---------------
+.alert-success {
+}
+
+.alert-info {
+}
+
+.alert-warning {
+}
+
+.alert-danger {
+}
+
+
+
+//
+// MEDIA OBJECTS (media.less)
+// Source: http://stubbornella.org/content/?p=497
+// --------------------------------------------------
+
+// Common styles
+// -------------------------
+.media,
+.media .media {
+}
+
+.media:first-child {
+  margin-top: 0;
+}
+
+.media-object {
+  display: block;
+}
+
+.media-heading {
+  margin: 0 0 5px;
+}
+
+
+// Media image alignment
+// -------------------------
+.media {
+  > .pull-left {
+    margin-right: 10px;
+  }
+  > .pull-right {
+    margin-left: 10px;
+  }
+}
+
+
+// Media list variation
+// -------------------------
+.media-list {
+}
+
+
+
+//
+// WELLS (wells.less)
+// --------------------------------------------------
+// Base class
+.well {
+  blockquote {
+  }
+}
+
+// Sizes
+.well-lg {
+}
+
+.well-sm {
+}
+
+
+
+//
+// TOOLTIPS (tooltips.less)
+// --------------------------------------------------
+
+// Base class
+.tooltip {
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+}
+
+// Arrows
+.tooltip-arrow {
+}
+
+
+
+//
+// ROW LISTS
+// -------------------------------------------------------
+// List types using in Joomla! Core
+
+// Alternating Rows
+.row-even,
+.row-odd {
+  padding: 5px;
+  width: 99%;
+  border-bottom: 1px solid @table-border-color;
+}
+
+.row-odd {
+  background-color: @table-bg;
+}
+
+.row-even {
+  background-color: @table-bg-accent;
+}
+
+.blog-row-rule,
+.blog-item-rule {
+  border: 0;
+}
+
+// Row reveal
+.row-fluid .row-reveal {
+  visibility: hidden;
+}
+
+.row-fluid:hover .row-reveal {
+  visibility: visible;
+}
+
+// Nav List Offset
+.nav-list > li.offset > a {
+  padding-left: 30px;
+  font-size: 12px;
+}
+
+
+// Striped
+// -------
+.list-striped,
+.row-striped {
+  list-style: none;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+  border-top: 1px solid @table-border-color;
+  margin-left: 0;
+}
+
+.list-striped li,
+.list-striped dd,
+.row-striped .row,
+.row-striped .row-fluid {
+  border-bottom: 1px solid @table-border-color;
+  padding: 10px 15px;
+}
+
+.list-striped li:nth-child(odd),
+.list-striped dd:nth-child(odd),
+.row-striped .row:nth-child(odd),
+.row-striped .row-fluid:nth-child(odd) {
+  background-color: @table-bg-accent;
+}
+
+.list-striped li:hover,
+.list-striped dd:hover,
+.row-striped .row:hover,
+.row-striped .row-fluid:hover {
+  background-color: @table-bg-hover;
+}
+
+.row-striped .row-fluid {
+  width: 97%; // lower than 100% since we have padding
+}
+
+.row-striped .row-fluid [class*="span"] {
+  min-height: 10px;
+}
+
+.row-striped .row-fluid [class*="span"] {
+  margin-left: 8px;
+}
+
+.row-striped .row-fluid [class*="span"]:first-child {
+  margin-left: 0;
+}
+
+
+// Condensed
+// ---------
+.list-condensed {
+  li {
+    padding: 5px 10px;
+  }
+}
+
+.row-condensed {
+  .row, .row-fluid {
+    padding: 5px 10px;
+  }
+}
+
+
+// Bordered
+// --------
+.list-bordered,
+.row-bordered {
+  list-style: none;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+  margin-left: 0;
+  border: 1px solid @table-border-color;
+}
+
+
+
 
