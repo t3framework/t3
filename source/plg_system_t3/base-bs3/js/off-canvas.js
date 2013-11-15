@@ -11,141 +11,106 @@
  *------------------------------------------------------------------------------
  */
 
- !function($){
+var OffcanvasMenu = function($, opt){
+    var options = $.extend({
+        mainnav: '.t3-megamenu',
+        action: '.navbar-toggle',
+        style: 'st-effect-1'
+    }, opt);
 
- 	$(document).ready(function(){
+    var cloneMenu = function () {
 
-		//detect transform (https://github.com/cubiq/)
-		$.support.t3transform =  (function () {
-			var style = document.createElement('div').style,
-			vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
-			transform, i = 0, l = vendors.length;
+        var menu = $(options.mainnav).find ('ul.level0').clone(),
+            lis = menu.find('li[data-id]'),
+            liactive = lis.filter('.current');
+        // clean class
+        lis.removeClass ('mega dropdown mega-align-left mega-align-right mega-align-center mega-align-adjust');
+        // rebuild
+        lis.each (function (){
+            // get firstchild - a or span
+            var $li = $(this),
+                $child = $li.find('>:first-child');
 
-			for ( ; i < l; i++ ) {
-				transform = vendors[i] + 'ransform';
-				if ( transform in style ) {
-					return transform;
-				}
-			}
+            if ($child[0].nodeName == 'DIV') {
+                $child.find('>:first-child').prependTo ($li);
+                $child.remove();
+            }
 
-			return false;
-		})();
+            // find subnav and inject into one ul
+            var subul = $li.find ('ul.level' + $li.data('level'));
+            if (subul.length) {
+                // create subnav
+                $ul = $('<ul class="level'+$li.data('level') + '">').appendTo ($li);
+                subul.each (function (){
+                    $(this).find('>li').appendTo($ul);
+                });
+            }
 
-		if ($.support.t3transform !== false) {
+            // remove all child div
+            $li.find('>div').remove();
+            // clear all attributes
+            $li.removeAttr('class');
+            for (var x in $li.data()) {$li.removeAttr('data-'+x)}
+            $child.removeAttr('class');
+            for (var x in $child.data()) {$child.removeAttr('data-'+x)}
+            // remove carret
+            $child.find ('b').remove();
+        });
 
-			var $btn = $('.navbar-toggle[data-toggle="collapse"]'),
-				$nav = null,
-				$fixeditems = null;
+        // update class current
+        liactive.addClass ('current');
 
-			if (!$btn.length){
-				return;
-			}
+        var styles = ['st-effect-3','st-effect-6','st-effect-7','st-effect-8','st-effect-14'];
+        // append wrapper for current content
+        $(document.body).children().appendTo ($('<div class="st-content" />').appendTo ($('<div class="st-pusher" />').appendTo (document.body)));
+        if ($.inArray (options.style, styles) == -1) {
+            // menu outside pusher
+            menu.appendTo ($('<nav class="st-menu" />').appendTo($('body')));
+        } else {
+            // menu inside pusher
+            menu.appendTo ($('<nav class="st-menu" />').appendTo($('.st-pusher')));
+        }
 
-			//mark that we have off-canvas menu
-			$(document.documentElement).addClass('off-canvas-ready');
+        // wrap all into a wrapper
+        $(document.body).children().appendTo ($('<div id="st-container" class="st-container" />').appendTo (document.body));
 
-			$nav = $('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo(document.body));
+        // add effect style
+        $('html').addClass (options.style);
+    };
 
-			//not all btn-navbar is used for off-canvas
-			var $navcollapse = $btn.parent().find($btn.data('target') + ':first');
-			if(!$navcollapse.length){
-				$navcollapse = $($btn.data('target') + ':first');
-			}
-			$navcollapse.clone().appendTo($nav);
-			
-			$btn.click (function(e){
-				if ($(this).data('off-canvas') == 'show') {
-					hideNav();
-				} else {
-					showNav();
-				}
+    var showNav = function () {
+        $('.st-container').addClass ('st-menu-open');
+        $('.st-pusher').on ('click', hideNav);
+        // cancel touch move
+        $('.st-pusher').on ('touchmove', cancelEvent);
+    };
 
-				return false;
-			});
+    var hideNav = function () {
+        $('.st-container').removeClass ('st-menu-open');
+        $('.st-pusher').off ('click', hideNav);
+        // enable touch move
+        $('.st-pusher').off ('touchmove', cancelEvent);
+    };
 
-			var posNav = function () {
-				var t = $(window).scrollTop();
-				if (t < $nav.position().top) $nav.css('top', t);
-			},
+    var cancelEvent = function (e) {
+        e.preventDefault();
+        return false;
+    };
 
-			bdHideNav = function (e) {
-				e.preventDefault();
-				hideNav();
-				return false;
-			},
+    var init = function () {
+        $(options.action).click (function (e) {
+            // check if sidebar menu is built
+            if ($('.st-container').length == 0) {
+                cloneMenu();
+                setTimeout (showNav, 100);
+                e.preventDefault();
+                return false;
+            }
+            showNav();
+            e.preventDefault();
+            return false;
+        })
+    };
 
-			showNav = function () {
-				$('html').addClass ('off-canvas');
-
-				$nav.css('top', $(window).scrollTop());
-				wpfix(1);
-				
-				setTimeout (function(){
-					$btn.data('off-canvas', 'show');
-					$('html').addClass ('off-canvas-enabled');
-					$(window).bind('scroll touchmove', posNav);
-
-					// hide when click on off-canvas-nav
-					$('#off-canvas-nav').bind ('click', function (e) {
-						e.stopPropagation();
-					});
-					
-					$('#off-canvas-nav a').bind ('click', hideNav);
-					$('body').bind ('click', bdHideNav);
-				}, 50);
-
-				setTimeout (function(){
-					wpfix(2);
-				}, 1000);
-			},
-
-			hideNav = function () {
-				$(window).unbind('scroll touchmove', posNav);
-				$('#off-canvas-nav').unbind ('click');
-				$('#off-canvas-nav a').unbind ('click', hideNav);
-				$('body').unbind ('click', bdHideNav);
-				
-				$('html').removeClass ('off-canvas-enabled');
-				$btn.data('off-canvas', 'hide');
-
-				setTimeout (function(){
-					$('html').removeClass ('off-canvas');
-				}, 600);
-			},
-
-			wpfix = function (step) {
-				// check if need fixed
-				if ($fixeditems == -1){
-					return;// no need to fix
-				}
-
-				if (!$fixeditems) {
-					$fixeditems = $('body').children().filter(function(){ return $(this).css('position') === 'fixed' });
-					if (!$fixeditems.length) {
-						$fixeditems = -1;
-						return;
-					}
-				}
-
-				if (step==1) {
-					$fixeditems.each (function () {
-						var $this = $(this);
-						var style = $this.attr('style'),
-						opos = style && style.test('position') ? $this.css('position'):'',
-						otop = style && style.test('top') ? $this.css('top'):'';
-
-						$this.data('opos', opos).data('otop', otop);
-						$this.css({'position': 'absolute', 'top': ($(window).scrollTop() + parseInt($this.css('top'))) });
-					});
-
-				} else {
-					$fixeditems.each (function () {
-						$this = $(this);
-						$this.css({'position': $this.data('opos'), 'top': $this.data('otop')});
-					});
-				}
-			};
-		}
-	});
-
-}(jQuery);
+    init ();
+};

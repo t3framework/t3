@@ -818,8 +818,9 @@ class T3Template extends ObjectExtendable
 
 		// add css/js for off-canvas
 		if ($offcanvas && $responsive) {
-			$this->addCss('off-canvas', false);
-			$this->addScript(T3_URL . '/js/off-canvas.js');
+			//$this->addCss('off-canvas', false);
+			//$this->addScript(T3_URL . '/js/off-canvas.js');
+			$this->loadBlock('head-offcanvas');
 		}
 
 		$this->addScript(T3_URL . '/js/script.js');
