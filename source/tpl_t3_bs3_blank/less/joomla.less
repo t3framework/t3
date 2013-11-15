@@ -814,16 +814,47 @@ article aside .btn-group {
 
 // PageBreak Index
 // ---------------
-#article-index {
-  float: right;
+#article-index,
+.article-index {
   margin: 0 0 @t3-global-margin @t3-global-margin;
   padding: 10px;
-  width: 30%;
+  width: 25%;
   border: 1px solid @t3-border-color;
   border-radius: @border-radius-base;
   
   ul {
-    margin: 0 0 0 20px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    > li {
+      border: 0;
+      margin-top: 2px;
+    }
+
+    // Link
+    > li > a {
+      border: 0;
+      padding: 5px;
+      border-radius: @nav-pills-border-radius;
+      // Link states
+      &:hover, &:active, &:focus {
+      }
+    }
+
+    // Active
+    > .active > a {
+      border: 0;
+      background: @nav-pills-active-link-hover-bg;
+      color: @nav-pills-active-link-hover-color;
+      // Link states
+      &:hover, &:active, &:focus {
+        border: 0;
+        background: @nav-pills-active-link-hover-bg;
+        color: @nav-pills-active-link-hover-color;
+      }
+    }
+
   }
 }
 
@@ -835,27 +866,28 @@ article aside .btn-group {
   padding: 0;
   list-style: none;
 
-  li {
+  > li {
     margin: 0;
     padding: 0;
     float: left;
   }
   
-  li.pagenav-prev {
+  > li.pagenav-prev,
+  > li.previous {
     margin-right: 10px;
   }
   
-  li.pagenav-next {
+  > li.pagenav-next,
+  > li.next {
   }
 
-  li a {
+  li > a {
     padding: (@t3-global-padding / 2) @t3-global-padding;
     line-height: normal;
-    border: 1px solid @t3-border-color;
+    border: 1px solid @pagination-border;
     border-radius: @border-radius-base;
     &:hover, &:active, &:focus {
-      background-color: @navbar-default-link-hover-bg;
-      color: @navbar-default-link-hover-color;
+      background-color: @pagination-hover-bg;
     }
   }
 
@@ -928,8 +960,7 @@ article aside .btn-group {
   dd {
     font-weight: bold;
   }
-  
-  
+
   dd.message ul,
   dd.error ul,
   dd.notice ul {
@@ -946,6 +977,7 @@ article aside .btn-group {
   }
 }
 
+
 // System Standard Messages
 // ------------------------
 #system-message dd.message ul {
@@ -961,6 +993,7 @@ article aside .btn-group {
 
 #system-message dd.error ul {
 }
+
 
 // System Notice Messages
 // ----------------------
