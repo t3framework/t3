@@ -1,4 +1,3 @@
-<?php
 /** 
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
@@ -11,11 +10,13 @@
  * @Link:         http://t3-framework.org 
  *------------------------------------------------------------------------------
  */
+ 
 
+// ------------------------------------------------------
+// POPUP WINDOWS STYLES
+// ------------------------------------------------------
+.com_content body,
+.com_mailto body {
+  padding-top: 0;
+}
 
-// no direct access
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
-
-include(dirname(__FILE__) . '/index.php');
-
-$this->addCss(T3_TEMPLATE_URL . '/css/windows.css');
