@@ -488,11 +488,11 @@ class T3Template extends ObjectExtendable
 	function snippet()
 	{
 
-		$places = array();
+		$places   = array();
 		$contents = array();
-
+		
 		if (($openhead = $this->getParam('snippet_open_head', ''))) {
-			$places[] = '<head>';
+			$places[] = '<head>';	//not sure that any attritube can be place in head open tag, profile is not support in html5
 			$contents[] = "<head>\n" . $openhead;
 		}
 		if (($closehead = $this->getParam('snippet_close_head', ''))) {
@@ -500,8 +500,14 @@ class T3Template extends ObjectExtendable
 			$contents[] = $closehead . "\n</head>";
 		}
 		if (($openbody = $this->getParam('snippet_open_body', ''))) {
-			$places[] = '<body>';
-			$contents[] = "<body>\n" . $openbody;
+			if(strpos($body, '<body>') !== false){
+				$places[] = '<body>';
+				$contents[] = "<body>\n" . $openbody;
+			} else {	//in case the body has other attribute
+				$body = JResponse::getBody();
+				$body = preg_replace('@<body[^>]*?>@msU', "$0\n" . $openbody, $body);
+				JResponse::setBody($body);
+			}
 		}
 		
 		// append modules in debug position
