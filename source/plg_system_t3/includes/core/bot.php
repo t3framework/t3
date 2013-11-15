@@ -244,9 +244,7 @@ class T3Bot extends JObject
 				$params = $app->getTemplate(true)->params;
 				$params->set ('mm_config', $mm_config);
 				$app->setTemplate (T3_TEMPLATE, $params);
-				if ($input->get('tplparams')) {
-					$input->set('tplparams', $app->getTemplate(true)->params);
-				}
+				T3::setTplParams($app->getTemplate(true)->params);
 
 				//get all other styles that have the same template
 				$db = JFactory::getDBO();

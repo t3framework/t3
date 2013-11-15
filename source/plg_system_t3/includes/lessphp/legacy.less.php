@@ -548,7 +548,7 @@ class T3Less extends lessc
 		}
 		
 		// compile rtl css
-		$tplparams = T3::getTemplateParams();
+		$tplparams = T3::getTplParams();
 		if($tplparams && $tplparams->get('build_rtl', 0)){
 			// compile default
 			if (!$theme || $theme == 'default') {

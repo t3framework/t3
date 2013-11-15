@@ -159,7 +159,7 @@ class T3TemplateLayout extends T3Template
 	 *            )
 	 * @return  none  render spotlight block
 	 */
-	function spotlight($name, $positions, $info = array())
+	function spotlight($name, $positions, array $info = array())
 	{
 		$vars = is_array($info) ? $info : array();
 		$defpos = $poss = preg_split('/\s*,\s*/', $positions);

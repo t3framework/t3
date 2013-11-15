@@ -24,9 +24,11 @@ class T3Admin {
 	 * @return render success or not
 	 */
 	public function render(){
-		$body = JResponse::getBody();
+		$input  = JFactory::getApplication()->input;
+		$body   = JResponse::getBody();
 		$layout = T3_ADMIN_PATH . '/admin/tpls/default.php';
-		if(file_exists($layout) && JFactory::getApplication()->input->getCmd('view') == 'style'){
+
+		if(file_exists($layout) && 'style' == $input->getCmd('view')){
 			
 			ob_start();
 			$this->renderAdmin();
@@ -54,39 +56,13 @@ class T3Admin {
 			$body = $open . $buffer . $close;
 		}
 
-		$body = $this->replaceToolbar($body);
+		if(!$input->getCmd('file')){
+			$body = $this->replaceToolbar($body);
+		}
+
 		$body = $this->replaceDoctype($body);
 
 		JResponse::setBody($body);
-	}
-
-	public function getTplParams(){
-		static $params;
-
-		if(!isset($params)){
-			$db     = JFactory::getDbo();
-			$input  = JFactory::getApplication()->input;
-			$params = new JRegistry;
-
-			//get params of templates
-			$query = $db->getQuery(true);
-			$query
-				->select('params')
-				->from('#__template_styles');
-
-			if($input->get('view') == 'style'){
-				$query->where('id='. $input->get('id'));
-			} else {
-				$query->where('template='. $db->quote(T3_TEMPLATE));
-			}
-
-			$query->limit(0, 1);
-
-			$db->setQuery($query);
-			$params->loadString($db->loadResult());
-		}
-
-		return $params;
 	}
 
 	public function addAssets(){
@@ -131,10 +107,11 @@ class T3Admin {
 			'updateCompare' => JText::_('T3_OVERVIEW_TPL_COMPARE')
 		);
 		
-		$japp = JFactory::getApplication();
-		$jdoc = JFactory::getDocument();
-		$db   = JFactory::getDbo();
-		
+		$japp   = JFactory::getApplication();
+		$jdoc   = JFactory::getDocument();
+		$db     = JFactory::getDbo();
+		$params = T3::getTplParams();
+
 		//get extension id of framework and template
 		$query = $db->getQuery(true);
 		$query
@@ -189,9 +166,9 @@ class T3Admin {
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/layout/js/layout.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
 
-		$params = $this->getTplParams();
+		
 
-		JFactory::getDocument()->addScriptDeclaration ( '
+		$jdoc->addScriptDeclaration ( '
 			T3Admin = window.T3Admin || {};
 			T3Admin.adminurl = \'' . JUri::getInstance()->toString() . '\';
 			T3Admin.t3adminurl = \'' . T3_ADMIN_URL . '\';
@@ -297,7 +274,7 @@ class T3Admin {
 			$helpurl = JHelp::createURL($input->getCmd('view') == 'template' ? 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_TEMPLATES_EDIT' : 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_STYLES_EDIT');
 			$helpurl = htmlspecialchars($helpurl, ENT_QUOTES);
 			
-			$params  = $this->getTplParams();
+			$params  = T3::getTplParams();
 
 			//render our toolbar
 			ob_start();

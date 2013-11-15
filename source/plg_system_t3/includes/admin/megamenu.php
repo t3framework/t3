@@ -20,7 +20,7 @@ class T3AdminMegamenu
 		$input = JFactory::getApplication()->input;
 		
 		//params
-		$tplparams = T3::getTemplateParams();
+		$tplparams = T3::getTplParams();
 		
 		//menu type
 		$menutype = $input->get('t3menu', 'mainmenu');
@@ -89,7 +89,7 @@ class T3AdminMegamenu
 		$input         = JFactory::getApplication()->input;
 		$template      = $input->get('template');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$tplparams     = T3::getTemplateParams();
+		$tplparams     = T3::getTplParams();
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
@@ -146,7 +146,7 @@ class T3AdminMegamenu
 		$template      = $input->get('template');
 		$mmconfig      = $input->getString('config');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$tplparams     = T3::getTemplateParams();
+		$tplparams     = T3::getTplParams();
 
 		if(get_magic_quotes_gpc() && !is_null($mmconfig)){
 			$mmconfig  = stripslashes($mmconfig);
@@ -288,7 +288,7 @@ class T3AdminMegamenu
 	 */
 	public static function megamenu()
 	{
-		$tplparams = T3::getTemplateParams();
+		$tplparams = T3::getTplParams();
 		
 		$url = JFactory::getURI();
 		$url->delVar('t3action');

@@ -25,6 +25,7 @@ class T3 {
 	
 	protected static $t3app = null;
 
+	protected static $tmpl  = null;
 	/**
 	 * Import T3 Library
 	 *
@@ -207,22 +208,14 @@ class T3 {
 			
 			// get template name
 			$tplname = '';
-			if($input->getCmd ('t3action') && ($styleid = $input->getInt('styleid', ''))) {
-				$db = JFactory::getDbo();
-				$query = $db->getQuery(true);
-				$query->select('template, params');
-				$query->from('#__template_styles');
-				$query->where('client_id = 0');
-				$query->where('id = '.$styleid);
 
-				$db->setQuery($query);
-				$template = $db->loadObject();
+			if($input->getCmd ('t3action') && $input->getInt('styleid', '')) {
+				
+				$template = self::getTplParams(false);
 				if ($template) {
 					$tplname = $template->template;
-					$registry = new JRegistry;
-					$registry->loadString($template->params);
-					$input->set ('tplparams', $registry);
 				}
+
 			} elseif ($app->isAdmin()) {
 				// if not login, do nothing
 				$user = JFactory::getUser();
@@ -231,23 +224,25 @@ class T3 {
 				}
 
 				if($input->getCmd('option') == 'com_templates' && 
-					(preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
-					){
-					$db = JFactory::getDBO();
+					(preg_match('/style\./', $input->getCmd('task')) || 
+						$input->getCmd('view') == 'style' || 
+						$input->getCmd('view') == 'template')){
+
+					$db    = JFactory::getDBO();
 					$query = $db->getQuery(true);
-					$id = $input->getInt('id');
+					$id    = $input->getInt('id');
 
 					//when in POST the view parameter does not set
 					if ($input->getCmd('view') == 'template') {
 						$query
-						->select('element')
-						->from('#__extensions')
-						->where('extension_id='.(int)$id . ' AND type=' . $db->quote('template'));
+							->select('element')
+							->from('#__extensions')
+							->where('extension_id='.(int)$id . ' AND type=' . $db->quote('template'));
 					} else {
 						$query
-						->select('template')
-						->from('#__template_styles')
-						->where('id='.(int)$id);
+							->select('template')
+							->from('#__template_styles')
+							->where('id='.(int)$id);
 					}
 
 					$db->setQuery($query);
@@ -306,32 +301,56 @@ class T3 {
 	 *
 	 * Ge template style params
 	 */
-	public static function getTemplateParams()
+	public static function getTplParams($params = true)
 	{
-		$app    = JFactory::getApplication();
-		$input  = $app->input;
-		$params = $input->get('tplparams', '', 'raw'); //check for tplparams first
+		if(!isset(self::$tmpl) || !self::$tmpl){
 
-		if(!($params instanceof JRegistry)){
-			$id = $input->getCmd('styleid', $input->getCmd('id'));
+			$app    = JFactory::getApplication();
+			$input  = $app->input;
+			$id     = $input->getCmd('styleid', $input->getCmd('id'));
+				
 			if($id){
 				$db    = JFactory::getDbo();
 				$query = $db->getQuery(true);
 				$query
 					->select('template, params')
 					->from('#__template_styles')
-					->where('client_id = 0')
-					->where('id = ' . $id);
+					->where('client_id = 0');
+
+				if($app->isAdmin() && $input->get('view') == 'template' && defined('T3_TEMPLATE')){
+					$query->where('template='. $db->quote(T3_TEMPLATE));
+				} else {
+					$query->where('id='. $id);
+				}
+
 				$db->setQuery($query);
 				$template = $db->loadObject();
 				
 				if ($template) {
-					$params = new JRegistry;
-					$params->loadString($template->params);
+					$registry = new JRegistry;
+					$registry->loadString($template->params);
+					$template->params = $registry;
 				}
+
+				self::$tmpl = $template;
 			}
 		}
+
+		if($params){
+			return self::$tmpl->params;
+		}
 		
-		return $params instanceof JRegistry ? $params : null;
+		return self::$tmpl;
+	}
+
+	public static function setTplParams($name = '', $params = ''){
+		if(!self::$tmpl){
+			self::$tmpl = new stdClass;
+		}
+
+		if($name && $param){
+			self::$tmpl->template = $name;
+			self::$tmpl->params = $params;
+		}
 	}
 }
