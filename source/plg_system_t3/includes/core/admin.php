@@ -111,9 +111,10 @@ class T3Admin {
 		$jdoc   = JFactory::getDocument();
 		$db     = JFactory::getDbo();
 		$params = T3::getTplParams();
+		$input  = $japp->input;
 
 		//get extension id of framework and template
-		$query = $db->getQuery(true);
+		$query  = $db->getQuery(true);
 		$query
 			->select('extension_id')
 			->from('#__extensions')
@@ -152,6 +153,10 @@ class T3Admin {
 
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j30.css');
+
+			if($input->get('file') && version_compare(JVERSION, '3.2', 'ge')){
+				$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/file-manager.css');
+			}
 		} else {
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j25.css');
 		}
@@ -166,7 +171,6 @@ class T3Admin {
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/layout/js/layout.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
 
-		
 
 		$jdoc->addScriptDeclaration ( '
 			T3Admin = window.T3Admin || {};
