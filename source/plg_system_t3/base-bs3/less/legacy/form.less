@@ -1,9 +1,5 @@
-
-
 // Make all forms have space below them
-form {
-  margin: 0 0 @line-height-computed;
-}
+form {}
 
 /*
 fieldset {
@@ -29,8 +25,7 @@ legend {
   
   // Small
   small {
-    font-size: @line-height-computed * .75;
-    color: @gray-light;
+    font-size: @font-size-small;
   }
 }
 
@@ -40,21 +35,17 @@ input,
 button,
 select,
 textarea {
-  font-size: @font-size-base;
-  font-weight: normal;
-  line-height: @line-height-computed;
 }
+
 input,
 button,
 select,
 textarea {
-  font-family: @font-family-base; // And only set font-family here for those that need it (note the missing label element)
 }
 
 // Identify controls by their labels
 label {
   display: block;
-  margin-bottom: 5px;
 }
 
 // Form controls
@@ -532,7 +523,6 @@ select:focus:invalid {
 
 // SEARCH FORM
 // -----------
-
 input.search-query {
   padding-right: 14px;
   padding-left: 14px;
@@ -566,7 +556,6 @@ input.search-query {
 
 // Common properties
 // -----------------
-
 .form-search,
 .form-inline,
 .form-horizontal {
@@ -632,7 +621,6 @@ legend + .control-group {
 
 // Horizontal-specific styles
 // --------------------------
-
 .form-horizontal {
   // Increase spacing between groups
   .control-group {
