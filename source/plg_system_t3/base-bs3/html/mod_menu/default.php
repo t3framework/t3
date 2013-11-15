@@ -9,9 +9,10 @@
 defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
-?>
 
-<ul class="nav nav-pills nav-stacked <?php echo $class_sfx;?>"<?php
+$is_navbar = strpos(' ' . $class_sfx . ' ', ' navbar-nav ') !== false;
+?>
+<ul class="nav <?php echo ($is_navbar ? '' : ' nav-pills nav-stacked '),  $class_sfx;?>"<?php
 	$tag = '';
 	if ($params->get('tag_id') != null)
 	{

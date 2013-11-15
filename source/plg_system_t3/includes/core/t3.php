@@ -135,6 +135,7 @@ class T3 {
 			// import renderer
 			T3::import('renderer/pageclass');
 			T3::import('renderer/megamenu');
+			T3::import('renderer/t3bootstrap');
 		} else {
 
 		}

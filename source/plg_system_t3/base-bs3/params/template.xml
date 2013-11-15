@@ -146,24 +146,49 @@
 		<fieldset name="navigation_params" label="T3_NAVIGATION_LABEL" description="T3_NAVIGATION_DESC">
 			<field name="navigation_group_default" type="t3depend" function="@group">
 				<option for="navigation_type" value="megamenu">
-					mm_type,navigation_animation,navigation_animation_duration
-				</option>
-				<option
-						for="navigation_trigger" value="hover">
 					navigation_animation,navigation_animation_duration
 				</option>
-				<option
-						for="navigation_animation" value="fading,slide,zoom,elastic">
+				<option for="navigation_trigger" value="hover">
+					navigation_animation,navigation_animation_duration
+				</option>
+				<option for="navigation_animation" value="fading,slide,zoom,elastic">
 					navigation_animation_duration
 				</option>
 			</field>
+
+			<field name="mm_type" type="menu" default="mainmenu"
+				   label="T3_NAVIGATION_MM_TYPE_LABEL"
+				   description="T3_NAVIGATION_MM_TYPE_DESC" />
+
+			<field name="navigation_type" type="list" class="btn-group" default="megamenu"
+				   label="T3_NAVIGATION_TYPE_LABEL"
+				   description="T3_NAVIGATION_TYPE_DESC">
+				<option value="t3bootstrap">T3_NAVIGATION_BOOTSTRAP</option>
+				<option value="megamenu">T3_NAVIGATION_MEGAMENU</option>
+			</field>
+
+			<field name="navigation_animation" type="list" default=""
+				   global="1"
+				   label="T3_NAVIGATION_ANIMATION_LABEL"
+				   description="T3_NAVIGATION_ANIMATION_DESC">
+				<option value="">None</option>
+				<option value="fading">Fading</option>
+				<option value="slide">Slide</option>
+				<option value="zoom">Zoom</option>
+				<option value="elastic">Elastic</option>
+			</field>
+
+			<field name="navigation_animation_duration" type="text" default="400"
+				   global="1"
+				   label="T3_NAVIGATION_ANIMATION_DURATION_LABEL"
+				   description="T3_NAVIGATION_ANIMATION_DURATION_DESC"/>
 
 			<field name="navigation_trigger" type="list" default="hover"
 				   global="1"
 				   label="T3_NAVIGATION_TRIGGER_LABEL"
 				   description="T3_NAVIGATION_TRIGGER_DESC">
-				<option value="hover">Mouse Hover</option>
-				<option value="click">Mouse Click</option>
+				<option value="hover">T3_NAVIGATION_TRIG_HOVER</option>
+				<option value="click">T3_NAVIGATION_TRIG_CLICK</option>
 			</field>
 
 			<field name="navigation_collapse_offcanvas" type="radio" default="1"
@@ -182,37 +207,9 @@
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field name="navigation_type" type="list" class="btn-group" default="joomla"
-				   label="T3_NAVIGATION_TYPE_LABEL"
-				   description="T3_NAVIGATION_TYPE_DESC">
-				<option value="joomla">Joomla Module</option>
-				<option value="megamenu">Megamenu</option>
-			</field>
-
-			<field name="navigation_animation" type="list" default=""
-				   global="1"
-				   label="T3_NAVIGATION_ANIMATION_LABEL"
-				   description="T3_NAVIGATION_ANIMATION_DESC">
-				<option value="">None</option>
-				<option value="fading">Fading</option>
-				<option value="slide">Slide</option>
-				<option value="zoom">Zoom</option>
-				<option value="elastic">Elastic</option>
-			</field>
-			<field name="navigation_animation_duration" type="text" default="400"
-				   global="1"
-				   label="T3_NAVIGATION_ANIMATION_DURATION_LABEL"
-				   description="T3_NAVIGATION_ANIMATION_DURATION_DESC"/>
-
-			<field name="mm_type" type="menu" default="mainmenu"
-				   label="T3_NAVIGATION_MM_TYPE_LABEL"
-				   description="T3_NAVIGATION_MM_TYPE_DESC"
-					/>
-
 			<field name="mm_config" type="hidden" hide="true" global="1"
 				   label=""
-				   description=""
-					/>
+				   description="" />
 
 		</fieldset>
 

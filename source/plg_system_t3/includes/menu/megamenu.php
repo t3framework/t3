@@ -12,7 +12,9 @@
  *------------------------------------------------------------------------------
  */
 
-T3::import('menu/megamenu.tpl');
+if(!class_exists('T3MenuMegamenuTpl', false)){
+	T3::import('menu/megamenu.tpl');
+}
 
 class T3MenuMegamenu {
 
