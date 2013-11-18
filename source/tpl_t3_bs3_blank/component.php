@@ -18,4 +18,4 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include(dirname(__FILE__) . '/index.php');
 
-$this->addCss(T3_TEMPLATE_URL . '/css/windows.css');
+T3::getApp()->addCss('windows');

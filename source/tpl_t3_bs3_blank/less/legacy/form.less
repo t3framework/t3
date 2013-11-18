@@ -642,12 +642,13 @@ legend + .control-group {
     .clearfix();
   }
   // Float the labels left
-  .control-label {
+  div.control-label {
     float: left;
-    width: @component-offset-horizontal - 20;
     padding-top: 5px;
     text-align: right;
+    width: @component-offset-horizontal - 20;
   }
+
   // Move over all input controls and content
   .controls {
     // Super jank IE7 fix to ensure the inputs in .input-append and input-prepend

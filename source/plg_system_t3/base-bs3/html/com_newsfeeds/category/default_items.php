@@ -50,7 +50,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 			</fieldset>
 		<?php endif; ?>
-		<ul class="category unstyled list-striped">
+		<ul class="category unstyled list-striped list-unstyled">
 			<?php foreach ($this->items as $i => $item) : ?>
 				<?php if ($this->items[$i]->published == 0) : ?>
 					<li class="system-unpublished cat-list-row<?php echo $i % 2; ?>">

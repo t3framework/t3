@@ -30,7 +30,7 @@ if(!defined('T3_TPL_COMPONENT')){
   <body>
     <section id="t3-mainbody" class="container t3-mainbody">
       <div class="row">
-        <div id="t3-content" class="t3-content span12">
+        <div id="t3-content" class="t3-content col-xs-12">
           <jdoc:include type="message" />
           <jdoc:include type="component" />
         </div>

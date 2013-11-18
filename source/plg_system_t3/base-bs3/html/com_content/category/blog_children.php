@@ -13,7 +13,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('bootstrap.tooltip');
 }
 
-$lang	= JFactory::getLanguage();
+$lang  = JFactory::getLanguage();
 $class = ' class="first"';
 
 if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?>
