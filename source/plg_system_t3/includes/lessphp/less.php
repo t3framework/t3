@@ -15,6 +15,8 @@
 // No direct access
 defined('_JEXEC') or die();
 
+T3::import('lessphp/less/LessCache');
+T3::import('lessphp/less/Less');
 
 /**
  * T3Less class compile less
@@ -25,40 +27,6 @@ class T3Less
 {
 	function __construct(){
 
-		$less_lib_path = T3_ADMIN_PATH . '/includes/lessphp/Less';
-		$files = JFolder::files($less_lib_path, '.php', false, true);
-		foreach($files as $file){
-			include_once $file;
-		}
-
-		$files = JFolder::files($less_lib_path . '/Node', '.php', false, true);
-		usort($files,function($a, $b){
-			return strlen($a) - strlen($b);
-		});
-		foreach($files as $file){
-			include_once $file;
-		}
-
-		$files = JFolder::files($less_lib_path . '/Node/Mixin', '.php', false, true);
-		usort($files,function($a, $b){
-			return strlen($a) - strlen($b);
-		});
-		foreach($files as $file){
-			include_once $file;
-		}
-
-		foreach(JFolder::files($less_lib_path . '/Exception', '.php', false, true) as $file){
-			include_once $file;
-		}
-
-
-		$files = JFolder::files($less_lib_path . '/Visitor', '.php', false, true);
-		usort($files,function($a, $b){
-			return strlen($a) - strlen($b);
-		});
-		foreach($files as $file){
-			include_once $file;
-		}
 	}
 
 	/**
@@ -349,7 +317,7 @@ class T3Less
 
 
 		// common place
-		$importdirs[T3_TEMPLATE_PATH . '/less'] = T3_TEMPLATE_URL . '/css/';
+		$importdirs[T3_TEMPLATE_PATH . '/less'] = T3_TEMPLATE_URL . '/less/';
 
 		// myself
 		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = $root . '/' . dirname($path) . '/';
@@ -357,6 +325,7 @@ class T3Less
 
 		// compile less to css using lessphp
 		$parser->SetImportDirs($importdirs);
+		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, $root . '/' . dirname($path) . '/');
 		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
 		$parser->parse($source);
 		$output = $parser->getCss();
