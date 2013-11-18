@@ -117,7 +117,7 @@
 // -------------------------
 .article-footer {
   color: @gray-light;
-  font-size: @t3-font-size-small;
+  font-size: @font-size-small;
   margin-bottom: @t3-global-margin;
 }
 
@@ -128,14 +128,14 @@ article img[align=left],
 .img_caption.left,
 .pull-left.item-image {
   .img-responsive(); // Make the image reponsive
-  margin: 0 @padding-base-horizontal @t3-global-margin 0;
+  margin: 0 @t3-global-margin @t3-global-margin 0;
 }
 
 article img[align=right],
 .img_caption.right,
 .pull-right.item-image {
   .img-responsive(); // Make the image reponsive
-  margin: 0 0 @t3-global-margin @padding-base-horizontal;
+  margin: 0 0 @t3-global-margin @t3-global-margin;
 }
 
 .img-intro-none,
@@ -161,12 +161,12 @@ article img[align=right],
 
 .img-fulltext-left {
   float: left;
-  margin-right: @padding-base-horizontal;
+  margin-right: @t3-global-margin;
 }
 
 .img-fulltext-right {
   float: right;
-  margin-left: @padding-base-horizontal;
+  margin-left: @t3-global-margin;
 }
 
 .img-intro-none img,
@@ -186,7 +186,7 @@ article img[align=right],
 .img_caption p.img_caption {
   background: @gray-lighter;
   color: @gray;
-  font-size: @t3-font-size-smaller;
+  font-size: @font-size-small;
   width: 100%;
   margin: 0;
   padding: 5px;
@@ -228,7 +228,7 @@ article aside .btn-group {
   }
 
   > .dropdown-toggle .caret {
-    margin-left: 5px;
+    margin-left: 2px;
   }
 }
 
@@ -282,7 +282,7 @@ article aside .btn-group {
 .list-striped,
 .row-striped {
   list-style: none;
-  line-height: 18px;
+  line-height: @line-height-computed;
   text-align: left;
   vertical-align: middle;
   border-top: 1px solid @table-border-color;
@@ -679,6 +679,29 @@ article aside .btn-group {
   .highlight {
   }
 }
+
+
+
+//
+// SMART SEARCH
+// ---------------------------------------------------------
+.finder {
+
+  #search-form {
+  }
+
+  #advancedSearch {
+  }
+
+
+  // The Form
+  // --------
+  #finder-search {
+  }
+
+
+}
+
 
 
 
