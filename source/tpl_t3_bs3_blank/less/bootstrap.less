@@ -20,12 +20,14 @@
 
 // Core CSS
 @import "../../../plugins/system/t3/base-bs3/bootstrap/less/scaffolding.less";
-//@import "../../../plugins/system/t3/base-bs3/bootstrap/less/type.less";				//T3 Note: Already in typo-core.less;
+//@import "../../../plugins/system/t3/base-bs3/bootstrap/less/type.less";       //T3 Note: Already in t3/typo-core.less;
 @import "../../../plugins/system/t3/base-bs3/bootstrap/less/code.less";
 @import "../../../plugins/system/t3/base-bs3/bootstrap/less/grid.less";
-@import "../../../plugins/system/t3/base-bs3/bootstrap/less/tables.less";
-@import "../../../plugins/system/t3/base-bs3/bootstrap/less/forms.less";
-@import "../../../plugins/system/t3/base-bs3/bootstrap/less/buttons.less";
+@import "../../../plugins/system/t3/base-bs3/bootstrap/less/tables.less";         
+//@import "../../../plugins/system/t3/base-bs3/bootstrap/less/forms.less";      //T3 Note: Already in t3/forms.less;
+//@import "../../../plugins/system/t3/base-bs3/bootstrap/less/buttons.less";    //T3 Note: Already in t3/forms.less;
+@import "forms.less";                                                           //T3 Note: Using t3/forms.less;
+
 
 // Components
 @import "../../../plugins/system/t3/base-bs3/bootstrap/less/component-animations.less";
