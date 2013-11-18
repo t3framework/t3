@@ -18,13 +18,8 @@ defined('_JEXEC') or die;
 			</button>
 		</div>
 
-		<div
-			class="t3-navbar collapse navbar-collapse <?php echo $this->getParam('navigation_collapse_showsub', 1) ? ' always-show' : '' ?>">
-			<?php if ($this->getParam('navigation_type') == 'megamenu') : ?>
-				<jdoc:include type="megamenu" />
-			<?php else : ?>
-				<jdoc:include type="modules" name="<?php $this->_p('mainnav') ?>" style="raw" />
-			<?php endif ?>
+		<div class="t3-navbar collapse navbar-collapse <?php echo $this->getParam('navigation_collapse_showsub', 1) ? ' always-show' : '' ?>">
+			<jdoc:include type="<?php echo $this->getParam('navigation_type', 'megamenu') ?>" name="<?php echo $this->getParam('mm_type', 'mainmenu') ?>" />
 		</div>
 
 	</div>

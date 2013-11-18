@@ -274,11 +274,10 @@ class T3Admin {
 		if(file_exists($t3toolbar) && class_exists('JToolBar')){
 			//get the existing toolbar html
 			jimport('joomla.language.help');
+			$params  = T3::getTplParams();
 			$toolbar = JToolBar::getInstance('toolbar')->render('toolbar');
 			$helpurl = JHelp::createURL($input->getCmd('view') == 'template' ? 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_TEMPLATES_EDIT' : 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_STYLES_EDIT');
 			$helpurl = htmlspecialchars($helpurl, ENT_QUOTES);
-			
-			$params  = T3::getTplParams();
 
 			//render our toolbar
 			ob_start();

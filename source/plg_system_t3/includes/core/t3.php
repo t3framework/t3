@@ -212,10 +212,7 @@ class T3 {
 
 			if($input->getCmd ('t3action') && $input->getInt('styleid', '')) {
 				
-				$template = self::getTplParams(false);
-				if ($template) {
-					$tplname = $template->template;
-				}
+				$tplname = self::getTemplate(true);
 
 			} elseif ($app->isAdmin()) {
 				// if not login, do nothing
@@ -302,13 +299,13 @@ class T3 {
 	 *
 	 * Ge template style params
 	 */
-	public static function getTplParams($params = true)
+	public static function getTemplate($name = false)
 	{
 		if(!isset(self::$tmpl) || !self::$tmpl){
 
-			$app    = JFactory::getApplication();
-			$input  = $app->input;
-			$id     = $input->getCmd('styleid', $input->getCmd('id'));
+			$app   = JFactory::getApplication();
+			$input = $app->input;
+			$id    = $input->getCmd('styleid', $input->getCmd('id'));
 				
 			if($id){
 				$db    = JFactory::getDbo();
@@ -337,14 +334,14 @@ class T3 {
 			}
 		}
 
-		if($params){
-			return self::$tmpl->params;
+		if($name && self::$tmpl){
+			return self::$tmpl->template;
 		}
 		
 		return self::$tmpl;
 	}
 
-	public static function setTplParams($name = '', $params = ''){
+	public static function setTemplate($name = '', $params = ''){
 		if(!self::$tmpl){
 			self::$tmpl = new stdClass;
 		}
@@ -353,5 +350,11 @@ class T3 {
 			self::$tmpl->template = $name;
 			self::$tmpl->params = $params;
 		}
+	}
+
+	public static function getTplParams()
+	{
+		$tmpl = self::getTemplate();
+		return $tmpl ? $tmpl->params : false;
 	}
 }

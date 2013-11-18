@@ -31,6 +31,7 @@ class T3Bootstrap
 	function __construct($menutype = 'mainmenu')
 	{
 		$this->menutype = $menutype;
+		$this->menu = '';
 	}
 
 	/**
@@ -38,11 +39,13 @@ class T3Bootstrap
 	 */
 	function render()
 	{
-		ob_start();
-		T3BootstrapTpl::render($this->getList());
-		$this->menu = ob_get_contents();
-		ob_end_clean();
-
+		if(!$this->menu){
+			ob_start();
+			T3BootstrapTpl::render($this->getList());
+			$this->menu = ob_get_contents();
+			ob_end_clean();	
+		}
+		
 		return $this->menu;
 	}
 

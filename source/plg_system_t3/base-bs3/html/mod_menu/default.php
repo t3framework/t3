@@ -41,6 +41,10 @@ if (is_array($list)) :
 			}
 		}
 
+		if ($item->type == 'separator') {
+			$class .= ' divider';
+		}
+
 		if ($item->deeper) {
 			if ($item->level > 1){
 				$class .= ' dropdown-submenu';

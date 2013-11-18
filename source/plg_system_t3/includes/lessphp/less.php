@@ -592,7 +592,7 @@ class T3Less
 	public static function compileAll($theme = null)
 	{
 		$less     = T3Less::getInstance();
-		$params   = T3::getTemplateParams();
+		$params   = T3::getTplParams();
 
 		// get files need to compile
 		$files    = array();
