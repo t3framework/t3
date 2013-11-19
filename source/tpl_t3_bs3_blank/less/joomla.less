@@ -608,16 +608,10 @@ article aside .btn-group {
 // ------------
 .profile-edit {
   input {
-    .make-sm-column(4);
-     // Redefine padding
-    padding-right: @padding-base-horizontal;
-    padding-left: @padding-base-horizontal;
+    .make-sm-column(4, @padding-base-horizontal);  // Make the input have the same width
   }
   select {
-    .make-sm-column(6);
-    // Redefine padding
-    padding-right: @padding-base-horizontal;
-    padding-left: @padding-base-horizontal;
+    .make-sm-column(6, @padding-base-horizontal);  // Make the select have the same width
   }
 }
 
@@ -831,24 +825,48 @@ article aside .btn-group {
 }
 
 
+
 //
-// EDIT CONTENT FORM
+// EDIT & SUBMIT ARTICLE FORM
 // ---------------------------------------------------------
 .edit {
+
   fieldset {
   }
   
   fieldset legend {
   }
   
+  label {
+  }
+
+  .inputbox,
+  select,
+  input[type="text"] {
+    @media (min-width: @screen-sm) {
+      width: 50%;
+    }
+  }
+
   textarea {
-    .box-sizing (border-box);
+    width: 100%;
+  }
+
+}
+
+
+// Tabs
+// -----------------------
+.edit {
+  .nav-tabs {
+    margin-bottom: @t3-global-margin;
   }
 }
 
 
+
 // Editor Buttons
-// --------------
+// ----------------------
 #editor-xtd-buttons {
 }
 

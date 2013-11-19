@@ -178,7 +178,7 @@ input[type="color"],
 }
 
 // Legacy class below
-// Reset Width for Legacy Classes
+// Reset Width for Legacy Classes in Medium Screen
 select,
 textarea,
 input[type="text"],
@@ -196,7 +196,9 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .inputbox {
-  width: auto;
+  @media (min-width: @screen-sm) {
+    width: auto;
+  }
 }
 
 
