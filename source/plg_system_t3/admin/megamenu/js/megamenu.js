@@ -500,7 +500,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	}
 
 	toolbox_type = function () {
-		return currentSelected.hasClass ('nav-child') ? 'sub' : (currentSelected[0].tagName == 'DIV' ? 'col':'item');
+		return currentSelected.hasClass ('nav-child') ? 'sub' : (!currentSelected.hasClass('mega-group-title') && currentSelected[0].tagName == 'DIV' ? 'col':'item');
 	}
 
 	hide_toolbox = function (show_intro) {

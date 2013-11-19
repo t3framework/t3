@@ -253,10 +253,12 @@ body.bd {
 
 
 /* The group ---*/
+.t3-megamenu .mega-nav .mega-group-title,
 .t3-megamenu .mega-nav .mega-group > .mega-group-title,
 .t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title {
-  padding: 5px 20px 5px 10px;
+  padding: 2px 0px;
   cursor: pointer;
+  border: 1px dotted #ccc;
 }
 
 .t3-megamenu .mega-group-ct {
@@ -380,11 +382,16 @@ body.bd {
 
 /* Open Item ---*/
 .t3-megamenu .nav > li.open > a,
-.t3-megamenu .open > a {
+.t3-megamenu .open > a,
+.t3-megamenu .open > .mega-group-title {
   background: #07b !important;
   border-color: #07b !important;
   color: #fff !important;
   text-shadow: none !important;
+}
+
+.t3-megamenu .open > .mega-group-title > a {
+  color: #fff !important;
 }
 
 .t3-megamenu .nav > li.open > a > .caret,
