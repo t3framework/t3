@@ -29,20 +29,22 @@ JHtml::_('behavior.formvalidation');
 
 		<fieldset>
 			<?php foreach ($this->form->getFieldset($fieldset->name) as $name => $field) : ?>
-				<div class="control-group">
-					<div class="control-label">
-						<?php echo $field->label; ?>
-					</div>
-					<div class="controls">
-						<?php echo $field->input; ?>
-					</div>
+			<div class="form-group">
+				<div class="col-sm-3 control-label">
+					<?php echo $field->label; ?>
 				</div>
+				<div class="col-sm-9">
+					<?php echo $field->input; ?>
+				</div>
+			</div>
 			<?php endforeach; ?>
 		</fieldset>
 		<?php endforeach; ?>
-		<div class="form-actions">
-			<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JSUBMIT'); ?></button>
-			<?php echo JHtml::_('form.token'); ?>
+		<div class="form-group form-actions">
+			<div class="col-sm-offset-3 col-sm-10">
+				<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JSUBMIT'); ?></button>
+				<?php echo JHtml::_('form.token'); ?>
+			</div>
 		</div>
 	</form>
 </div>
