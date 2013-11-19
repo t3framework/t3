@@ -33,20 +33,20 @@ $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 		<?php endif;?>
 		<?php foreach ($fields as $field):// Iterate through the fields in the set and display them.?>
 			<?php if ($field->hidden):// If the field is hidden, just display the input.?>
-				<div class="control-group">
-					<div class="controls">
+				<div class="form-group">
+					<div class="col-sm-12 controls">
 						<?php echo $field->input;?>
 					</div>
 				</div>
 			<?php else:?>
-				<div class="control-group">
-					<div class="control-label">
+				<div class="form-group">
+					<div class="col-sm-3 control-label">
 						<?php echo $field->label; ?>
 						<?php if (!$field->required && $field->type != 'Spacer') : ?>
 						<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL'); ?></span>
 						<?php endif; ?>
 					</div>
-					<div class="controls">
+					<div class="col-sm-9 controls">
 						<?php echo $field->input; ?>
 					</div>
 				</div>
@@ -56,7 +56,8 @@ $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 	<?php endif;?>
 <?php endforeach;?>
 
-		<div class="form-actions">
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9 form-actions">
 			<button type="submit" class="btn btn-primary validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
 			<a class="btn" href="<?php echo JRoute::_(''); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
 
@@ -64,5 +65,7 @@ $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 			<input type="hidden" name="task" value="profile.save" />
 			<?php echo JHtml::_('form.token'); ?>
 		</div>
+	</div>
+
 	</form>
 </div>
