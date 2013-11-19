@@ -60,17 +60,9 @@ var OffcanvasMenu = function($, opt){
         // update class current
         liactive.addClass ('current');
 
-        var styles = ['st-effect-3','st-effect-6','st-effect-7','st-effect-8','st-effect-14'];
         // append wrapper for current content
         $(document.body).children().appendTo ($('<div class="st-content" />').appendTo ($('<div class="st-pusher" />').appendTo (document.body)));
-        if ($.inArray (options.style, styles) == -1) {
-            // menu outside pusher
-            menu.appendTo ($('<nav class="st-menu" />').appendTo($('body')));
-        } else {
-            // menu inside pusher
-            menu.appendTo ($('<nav class="st-menu" />').appendTo($('.st-pusher')));
-        }
-
+        menu.appendTo ($('<nav class="st-menu" />').appendTo($('body')));
         // wrap all into a wrapper
         $(document.body).children().appendTo ($('<div id="st-container" class="st-container" />').appendTo (document.body));
 
@@ -99,15 +91,14 @@ var OffcanvasMenu = function($, opt){
 
     var init = function () {
         $(options.action).click (function (e) {
+            e.preventDefault();
             // check if sidebar menu is built
             if ($('.st-container').length == 0) {
                 cloneMenu();
-                setTimeout (showNav, 100);
-                e.preventDefault();
+                setTimeout (showNav, 200);
                 return false;
             }
             showNav();
-            e.preventDefault();
             return false;
         })
     };
