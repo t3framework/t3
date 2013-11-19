@@ -847,7 +847,8 @@ article aside .btn-group {
     }
   }
 
-  select {
+  select,
+  select.inputbox {
     @media (min-width: @screen-sm) {
       width: 200px;
     }
@@ -855,6 +856,22 @@ article aside .btn-group {
 
   textarea {
     width: 100%;
+  }
+
+
+  // Fixed for Chosen
+  .chzn-container {
+    display: block;
+  }
+
+  .chzn-container-multi .chzn-choices .search-field input,
+  .chzn-container-single .chzn-search input {
+    height: 25px;
+  }
+
+  .chzn-container-single .chzn-drop,
+  .chzn-container .chzn-drop {
+    .box-sizing (content-box) !important;
   }
 
 }
