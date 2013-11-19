@@ -430,6 +430,10 @@ body.bd {
   border-left-color: #333333;
 }
 
+/* The caret */
+.t3-megamenu .mega-nav .divider .separator {
+  display: none;
+}
 
 /* Selected Item ---*/
 .t3-megamenu .selected {

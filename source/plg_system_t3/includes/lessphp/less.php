@@ -50,6 +50,9 @@ class T3Less
 	 */
 	function getCss($path)
 	{
+		//build vars once
+		self::buildVarsOnce();
+
 		// get vars last-modified
 		$vars_lm = JFactory::getApplication()->getUserState('vars_last_modified', 0);
 		
@@ -174,7 +177,6 @@ class T3Less
 		$rsplitbegin  = '@^\s*\#';
 		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
 		$rswitchrtl   = '@/less/(themes/[^/]*/)?@';
-
 
 		$kfilepath    = 'less-file-path';
 		$kvarsep      = 'less-content-separator';
@@ -467,13 +469,19 @@ class T3Less
 		
 		if ($app->getUserState('vars_last_modified' . $rtl) != $last_modified . $theme . $rtl) {
 			$app->setUserState('vars_last_modified' . $rtl, $last_modified . $theme . $rtl);
-		} else {
-			return $app->getUserState('vars_content' . $rtl);
 		}
 		
 		$app->setUserState('vars_content' . $rtl, $vars);
 	}
 
+	public static function buildVarsOnce(){
+		// build less vars, once only
+		static $vars_built = false;
+		if (!$vars_built) {
+			self::buildVars();
+			$vars_built = true;
+		}
+	}
 
 	/**
 	 * Wrapper function to add a stylesheet to html document
@@ -481,13 +489,10 @@ class T3Less
 	 */
 	public static function addStylesheet($lesspath)
 	{
-		// build less vars, once only
-		static $vars_built = false;
-		if (!$vars_built) {
-			self::buildVars();
-			$vars_built = true;
-		}
-		
+		//build vars once
+		self::buildVarsOnce();
+
+
 		$app   = JFactory::getApplication();
 		$doc   = JFactory::getDocument();
 		$tpl   = $app->getTemplate(true);

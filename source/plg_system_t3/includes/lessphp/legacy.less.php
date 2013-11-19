@@ -37,6 +37,9 @@ class T3Less extends lessc
 	
 	function getCss($path)
 	{
+		//build vars once
+		self::buildVarsOnce();
+
 		// get vars last-modified
 		$vars_lm = JFactory::getApplication()->getUserState('vars_last_modified', 0);
 		
@@ -119,8 +122,8 @@ class T3Less extends lessc
 		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
 		$rspace       = '@[\r?\n]{2,}@';
 		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')\/less\/(vars|variables)\.less@';
-		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')\/less\/@';
+		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables)\.less@';
+		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')/less/@';
 		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
 
 		$rsplitbegin  = '@^\s*\#';
@@ -418,41 +421,44 @@ class T3Less extends lessc
 		
 		if ($app->getUserState('vars_last_modified' . $rtl) != $last_modified . $theme . $rtl) {
 			$app->setUserState('vars_last_modified' . $rtl, $last_modified . $theme . $rtl);
-		} else {
-			return $app->getUserState('vars_content' . $rtl);
 		}
 		
 		$app->setUserState('vars_content' . $rtl, $vars);
 	}
 	
-	public static function addStylesheet($lesspath)
-	{
+	public static function buildVarsOnce(){
 		// build less vars, once only
 		static $vars_built = false;
-		$t3less = T3Less::getInstance();
 		if (!$vars_built) {
 			self::buildVars();
 			$vars_built = true;
 		}
+	}
+	
+	public static function addStylesheet($lesspath)
+	{
+		//build vars once
+		self::buildVarsOnce();
 		
-		$app   = JFactory::getApplication();
-		$doc   = JFactory::getDocument();
-		$tpl   = $app->getTemplate(true);
-		$theme = $tpl->params->get('theme');
+		$t3less = T3Less::getInstance();
+		$app    = JFactory::getApplication();
+		$doc    = JFactory::getDocument();
+		$tpl    = $app->getTemplate(true);
+		$theme  = $tpl->params->get('theme');
 
 		if (defined('T3_THEMER') && $tpl->params->get('themermode', 1)) {
 			// in Themer mode, using js to parse less for faster
 			$doc->addStylesheet(JURI::base(true) . '/' . T3Path::cleanPath($lesspath), 'text/less');
 
-			if(!defined('LESS_JS')){
+			if(!defined('T3_LESS_JS')){
 				// Add lessjs to process lesscss
-				$doc->addScript(T3_URL . '/js/less-1.3.3.js');
+				$doc->addScript(T3_URL . '/js/less.js');
 
 				if($doc->direction == 'rtl'){
 					$doc->addScript(T3_URL . '/js/cssjanus.js');
 				}
 
-				define('LESS_JS', 1);
+				define('T3_LESS_JS', 1);
 			}
 			
 		} else {

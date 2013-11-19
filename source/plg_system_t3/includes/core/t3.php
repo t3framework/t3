@@ -346,7 +346,7 @@ class T3 {
 			self::$tmpl = new stdClass;
 		}
 
-		if($name && $param){
+		if($name && $params){
 			self::$tmpl->template = $name;
 			self::$tmpl->params = $params;
 		}
