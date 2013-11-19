@@ -325,18 +325,6 @@ input[type="checkbox"],
 }
 
 
-// T3 Note: Form Actions
-//
-// Adding the legacy "form-actions" from BS2
-
-.form-actions {
-  padding: @t3-global-padding;
-  margin: @t3-global-margin 0;
-  background-color: @gray-lighter;
-}
-
-
-
 // Inline forms
 //
 // Make forms appear inline(-block) by adding the `.form-inline` class. Inline
@@ -423,6 +411,141 @@ input[type="checkbox"],
     .control-label {
       text-align: right;
     }
+  }
+}
+
+
+
+
+//
+// T3 Note: LEGACY CLASSES FROM BS2
+// ------------------------------------------------------
+
+// FORM ACTIONS
+// ------------
+// Adding the legacy "form-actions" from BS2
+
+.form-actions {
+  padding: @t3-global-padding;
+  margin: @t3-global-margin 0;
+  background-color: @gray-lighter;
+}
+
+
+// INPUT GROUPS
+// ------------
+
+// Allow us to put symbols and text within the input field for a cleaner look
+.input-append,
+.input-prepend {
+  display: inline-block;
+  margin-bottom: @line-height-base / 2;
+  vertical-align: middle;
+  font-size: 0; // white space collapse hack
+  white-space: nowrap; // Prevent span and input from separating
+
+  // Reset the white space collapse hack
+  input,
+  select,
+  .uneditable-input,
+  .dropdown-menu,
+  .popover {
+    font-size: @font-size-base;
+  }
+
+  input,
+  select,
+  .uneditable-input {
+    position: relative; // placed here by default so that on :focus we can place the input above the .add-on for full border and box-shadow goodness
+    margin-bottom: 0; // prevent bottom margin from screwing up alignment in stacked forms
+    *margin-left: 0;
+    vertical-align: top;
+    border-radius: 0 @input-border-radius @input-border-radius 0;
+    // Make input on top when focused so blue border and shadow always show
+    &:focus {
+      z-index: 2;
+    }
+  }
+  .add-on {
+    display: inline-block;
+    width: auto;
+    height: @input-height-base;
+    min-width: 16px;
+    padding: 4px 5px;
+    font-size: @font-size-base;
+    font-weight: normal;
+    line-height: @line-height-base;
+    text-align: center;
+    background-color: @grayLighter;
+    border: 1px solid #ccc;
+  }
+  .add-on,
+  .btn,
+  .btn-group > .dropdown-toggle {
+    vertical-align: top;
+    border-radius: 0;
+  }
+  .active {
+    background-color: lighten(@green, 30);
+    border-color: @green;
+  }
+}
+
+.input-prepend {
+  .add-on,
+  .btn {
+    margin-right: -1px;
+  }
+  .add-on:first-child,
+  .btn:first-child {
+    // FYI, `.btn:first-child` accounts for a button group that's prepended
+    border-radius: @input-border-radius 0 0 @input-border-radius;
+  }
+}
+
+.input-append {
+  input,
+  select,
+  .uneditable-input {
+    border-radius: @input-border-radius 0 0 @input-border-radius;
+    + .btn-group .btn:last-child {
+      border-radius: 0 @input-border-radius @input-border-radius 0;
+    }
+  }
+  .add-on,
+  .btn,
+  .btn-group {
+    margin-left: -1px;
+  }
+  .add-on:last-child,
+  .btn:last-child,
+  .btn-group:last-child > .dropdown-toggle {
+    border-radius: 0 @input-border-radius @input-border-radius 0;
+  }
+}
+
+// Remove all border-radius for inputs with both prepend and append
+.input-prepend.input-append {
+  input,
+  select,
+  .uneditable-input {
+    border-radius: 0;
+    + .btn-group .btn {
+      border-radius: 0 @input-border-radius @input-border-radius 0;
+    }
+  }
+  .add-on:first-child,
+  .btn:first-child {
+    margin-right: -1px;
+    border-radius: @input-border-radius 0 0 @input-border-radius;
+  }
+  .add-on:last-child,
+  .btn:last-child {
+    margin-left: -1px;
+    border-radius: 0 @input-border-radius @input-border-radius 0;
+  }
+  .btn-group:first-child {
+    margin-left: 0;
   }
 }
 
