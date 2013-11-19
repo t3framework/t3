@@ -115,29 +115,26 @@ output {
 
 
 // Common form controls
-//
-// Shared size and type resets for form controls. Apply `.form-control` to any
-// of the following form controls:
-//
-// select
-// textarea
-// input[type="text"]
-// input[type="password"]
-// input[type="datetime"]
-// input[type="datetime-local"]
-// input[type="date"]
-// input[type="month"]
-// input[type="time"]
-// input[type="week"]
-// input[type="number"]
-// input[type="email"]
-// input[type="url"]
-// input[type="search"]
-// input[type="tel"]
-// input[type="color"]
+// --------------------
 
 .form-control,
-// Legacy class blow
+// Legacy class below
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
 .inputbox {
   display: block;
   width: 100%;
@@ -178,6 +175,28 @@ output {
   textarea& {
     height: auto;
   }
+}
+
+// Legacy class below
+// Reset Width for Legacy Classes
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.inputbox {
+  width: auto;
 }
 
 
@@ -333,9 +352,11 @@ input[type="checkbox"],
     }
 
     // Legacy class below
-    .inputbox {
+    .inputbox,
+    select,
+    textarea,
+    input {
       display: inline-block;
-      width: auto;
     }
 
     // Remove default margin on radios/checkboxes that were used for stacking, and
