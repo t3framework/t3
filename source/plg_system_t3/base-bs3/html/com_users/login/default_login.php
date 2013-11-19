@@ -43,18 +43,18 @@ JHtml::_('behavior.keepalive');
   		<fieldset class="well">
   			<?php foreach ($this->form->getFieldset('credentials') as $field): ?>
   				<?php if (!$field->hidden): ?>
-  					<div class="control-group">
-  						<div class="control-label">
+  					<div class="form-group">
+  						<div class="col-sm-3 control-label">
   							<?php echo $field->label; ?>
   						</div>
-  						<div class="controls">
+  						<div class="col-sm-9">
   							<?php echo $field->input; ?>
   						</div>
   					</div>
   				<?php endif; ?>
   			<?php endforeach; ?>
-  			<div class="control-group">
-  				<div class="controls">
+  			<div class="form-group">
+  				<div class="col-sm-offset-3 col-sm-9">
   					<button type="submit" class="btn btn-primary"><?php echo JText::_('JLOGIN'); ?></button>
   				</div>
   			</div>

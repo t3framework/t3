@@ -29,11 +29,11 @@ JHtml::_('behavior.formvalidation');
 
 		<fieldset>
 			<?php foreach ($this->form->getFieldset($fieldset->name) as $name => $field): ?>
-				<div class="control-group">
-					<div class="control-label">
+				<div class="form-group">
+					<div class="col-sm-3 control-label">
 						<?php echo $field->label; ?>
 					</div>
-					<div class="controls">
+					<div class="col-sm-9">
 						<?php echo $field->input; ?>
 					</div>
 				</div>

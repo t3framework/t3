@@ -33,14 +33,14 @@ JHtml::_('behavior.formvalidation');
 				<?php if ($field->hidden):// If the field is hidden, just display the input.?>
 					<?php echo $field->input;?>
 				<?php else:?>
-					<div class="control-group">
-						<div class="control-label">
+					<div class="form-group">
+						<div class="col-sm-3 control-label">
 						<?php echo $field->label; ?>
 						<?php if (!$field->required && $field->type != 'Spacer') : ?>
 							<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL');?></span>
 						<?php endif; ?>
 						</div>
-						<div class="controls">
+						<div class="col-sm-9">
 							<?php echo $field->input;?>
 						</div>
 					</div>
