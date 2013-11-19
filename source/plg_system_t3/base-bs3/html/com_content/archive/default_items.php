@@ -127,7 +127,7 @@ $params = $this->params;
 		</div>
 	<?php endforeach; ?>
 </div>
-<div class="pagination">
+<div class="pagination-wrap">
 	<p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
 	<?php echo $this->pagination->getPagesLinks(); ?>
 </div>

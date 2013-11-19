@@ -148,7 +148,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 			<?php echo JHtml::_('icon.create', $item, $item->params); ?>
 		<?php  endif; */ ?>
 		<?php if ($this->params->get('show_pagination')) : ?>
-		 <div class="pagination">
+		 <div class="pagination-wrap">
 			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
 				<p class="counter">
 					<?php echo $this->pagination->getPagesCounter(); ?>

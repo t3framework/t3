@@ -43,6 +43,6 @@ defined('_JEXEC') or die;
 	<?php endforeach; ?>
 </dl>
 
-<div class="pagination">
+<div class="pagination-wrap">
 	<?php echo $this->pagination->getPagesLinks(); ?>
 </div>
