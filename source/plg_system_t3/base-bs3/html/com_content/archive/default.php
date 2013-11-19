@@ -24,7 +24,7 @@ JHtml::_('behavior.caption');
 	<?php endif; ?>
 	<form id="adminForm" action="<?php echo JRoute::_('index.php') ?>" method="post" class="form-inline">
 		<fieldset class="filters">
-			<div class="filter-search alert alert-info">
+			<div class="filter-search form-group">
 				<?php if ($this->params->get('filter_field') != 'hide') : ?>
 					<div class="form-group">
 						<label class="filter-search-lbl"

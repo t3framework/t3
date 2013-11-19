@@ -57,13 +57,13 @@ $params = $this->params;
 							<?php if ($params->get('show_publish_date')) : ?>
 								<dd class="published">
 									<span
-										class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', '<strong>' . JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3')) . '<strong>'); ?>
+										class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', '<strong>' . JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3')) . '</strong>'); ?>
 								</dd>
 							<?php endif; ?>
 
 							<?php if ($params->get('show_create_date')) : ?>
 								<dd class="create">
-									<?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', '<strong>' . JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3')) . '<strong>'); ?>
+									<?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', '<strong>' . JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3')) . '</strong>'); ?>
 								</dd>
 							<?php endif; ?>
 
@@ -72,9 +72,9 @@ $params = $this->params;
 									<?php    $title = $this->escape($item->parent_title);
 									$url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)) . '">' . $title . '</a>';?>
 									<?php if ($params->get('link_parent_category') && $item->parent_slug) : ?>
-										<?php echo JText::sprintf('COM_CONTENT_PARENT', '<strong>' . $url . '<strong>'); ?>
+										<?php echo JText::sprintf('COM_CONTENT_PARENT', '<strong>' . $url . '</strong>'); ?>
 									<?php else : ?>
-										<?php echo JText::sprintf('COM_CONTENT_PARENT', '<strong>' . $title . '<strong>'); ?>
+										<?php echo JText::sprintf('COM_CONTENT_PARENT', '<strong>' . $title . '</strong>'); ?>
 									<?php endif; ?>
 								</dd>
 							<?php endif; ?>
@@ -84,9 +84,9 @@ $params = $this->params;
 									<?php    $title = $this->escape($item->category_title);
 									$url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '">' . $title . '</a>'; ?>
 									<?php if ($params->get('link_category') && $item->catslug) : ?>
-										<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<strong>' . $url . '<strong>'); ?>
+										<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<strong>' . $url . '</strong>'); ?>
 									<?php else : ?>
-										<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<strong>' . $title . '<strong>'); ?>
+										<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<strong>' . $title . '</strong>'); ?>
 									<?php endif; ?>
 								</dd>
 							<?php endif; ?>
@@ -108,13 +108,13 @@ $params = $this->params;
 
 							<?php if ($params->get('show_modify_date')) : ?>
 								<div class="btn-group modified">
-									<i class="fa fa-calendar"></i> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', '<strong>' . JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3')) . '<strong>'); ?>
+									<i class="fa fa-calendar"></i> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', '<strong>' . JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3')) . '</strong>'); ?>
 								</div>
 							<?php endif; ?>
 
 							<?php if ($params->get('show_hits')) : ?>
 								<div class="btn-group hits">
-									<i class="fa fa-eye"></i> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', '<strong>' . $item->hits . '<strong>'); ?>
+									<i class="fa fa-eye"></i> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', '<strong>' . $item->hits . '</strong>'); ?>
 								</div>
 							<?php endif; ?>
 
