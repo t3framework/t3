@@ -177,9 +177,22 @@ class plgSystemT3 extends JPlugin
 	function onContentPrepareForm($form, $data)
 	{
 		if(defined('T3_PLUGIN')){
-			if (T3::detect() && $form->getName() == 'com_templates.style') {
+			if (T3::detect() && (
+				$form->getName() == 'com_templates.style'
+				|| $form->getName() == 'com_config.templates' 
+			)) {
 				JForm::addFormPath(T3_PATH . '/params');
 				$form->loadFile('template', false);
+				
+				//search for global parameters and store in user state
+				$japp = JFactory::getApplication();
+				$pglobals = array();
+				foreach($form->getGroup('params') as $param){
+					if($form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
+						$pglobals[] = array('name' => $param->fieldname, 'value' => $form->getValue($param->fieldname, 'params')); 
+					}
+				}
+				$japp->setUserState('oparams', $pglobals);
 			}
 
 			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
@@ -208,9 +221,11 @@ class plgSystemT3 extends JPlugin
 
 			//check for changed params
 			$pchanged = array();
-			foreach ($oparams as $oparam) {
-				if ($params->get($oparam['name']) != $oparam['value']) {
-					$pchanged[] = $oparam['name'];
+			if (is_array ($oparams)) {
+				foreach ($oparams as $oparam) {
+					if ($params->get($oparam['name']) != $oparam['value']) {
+						$pchanged[] = $oparam['name'];
+					}
 				}
 			}
 
