@@ -12,6 +12,349 @@
  */
 
 
+// ------------------------------------------------------
+// FORM ELEMENTS
+// ------------------------------------------------------
+
+//
+// GENERIC STYLES (forms.less)
+// --------------------------------------------------
+
+form {
+}
+
+fieldset {
+}
+
+legend {
+}
+
+label {
+}
+
+
+// Adjust output element
+output {
+}
+
+
+// Common form controls
+// --------------------
+// Shared size and type resets for form controls. Apply `.form-control` to any
+// of the following form controls:
+//
+// select
+// textarea
+// input[type="text"]
+// input[type="password"]
+// input[type="datetime"]
+// input[type="datetime-local"]
+// input[type="date"]
+// input[type="month"]
+// input[type="time"]
+// input[type="week"]
+// input[type="number"]
+// input[type="email"]
+// input[type="url"]
+// input[type="search"]
+// input[type="tel"]
+// input[type="color"]
+.form-control {
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  .form-control-focus();
+
+  // Placeholder
+  .placeholder();
+
+  // Disabled and read-only inputs
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+  }
+
+  // Reset height for `textarea`s
+  textarea& {
+    height: auto;
+  }
+}
+
+
+// Form groups
+// -----------
+.form-group {
+  margin-bottom: @t3-global-margin;
+}
+
+
+// Checkboxes and radios
+// ---------------------
+.radio,
+.checkbox {
+  label {
+    display: inline;
+  }
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+}
+
+.radio + .radio,
+.checkbox + .checkbox {
+}
+
+// Radios and checkboxes on same line
+.radio-inline,
+.checkbox-inline {
+}
+
+.radio-inline + .radio-inline,
+.checkbox-inline + .checkbox-inline {
+}
+
+
+// Form control sizing
+// -------------------
+.input-sm {
+}
+
+.input-lg {
+}
+
+
+// Form control feedback states
+// ----------------------------
+// Apply contextual and semantic states to individual form controls.
+
+// Warning
+.has-warning {
+}
+// Error
+.has-error {
+}
+// Success
+.has-success {
+}
+
+
+// Static form control text
+// ------------------------
+// Apply class to a `p` element to make any string of text align with labels in
+// a horizontal form layout.
+
+.form-control-static {
+  margin-bottom: 0; // Remove default margin from `p`
+}
+
+
+// Help text
+// ---------
+// Apply to any element you wish to create light text for placement immediately
+// below a form control. Use for general help, formatting, or instructional text.
+
+.help-block {
+}
+
+
+
+// Inline forms
+// ------------
+// Make forms appear inline(-block) by adding the `.form-inline` class. Inline
+// forms begin stacked on extra small (mobile) devices and then go inline when
+// viewports reach <768px.
+//
+// Requires wrapping inputs and labels with `.form-group` for proper display of
+// default HTML form controls and our custom form controls (e.g., input groups).
+//
+// Heads up! This is mixin-ed into `.navbar-form` in navbars.less.
+
+.form-inline {
+
+  @media (min-width: @screen-sm) {
+
+    .form-group  {
+      display: inline-block;
+    }
+
+    // In navbar-form, allow folks to *not* use `.form-group`
+    .form-control {
+      display: inline-block;
+    }
+
+    // Remove default margin on radios/checkboxes that were used for stacking, and
+    // then undo the floating of radios and checkboxes to match (which also avoids
+    // a bug in WebKit: https://github.com/twbs/bootstrap/issues/1969).
+    .radio,
+    .checkbox {
+    }
+
+    .radio input[type="radio"],
+    .checkbox input[type="checkbox"] {
+      float: none;
+    }
+
+  }
+
+  // End
+}
+
+
+// Horizontal forms
+// ----------------
+// Horizontal forms are built on grid classes and allow you to create forms with
+// labels on the left and inputs on the right.
+
+.form-horizontal {
+
+  // Consistent vertical alignment of labels, radios, and checkboxes
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: (@padding-base-vertical + 1); // Default padding plus a border
+  }
+
+  // Make form groups behave like rows
+  .form-group {
+  }
+
+  .form-control-static {
+    padding-top: (@padding-base-vertical + 1);
+  }
+
+}
+
+
+//
+// INPUT GROUPS (input-groups.less)
+// --------------------------------------------------
+// T3 Note: See "bootstrap/input-group.less"
+//  if you want to style this components
+
+
+
+//
+// BUTTONS (buttons.less)
+// --------------------------------------------------
+
+// Base styles
+// --------------------------------------------------
+
+// Core styles
+.btn {
+
+  &:focus {
+  }
+
+  &:hover,
+  &:focus {
+  }
+
+  &:active,
+  &.active {
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+  }
+
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-default {
+}
+
+.btn-primary {
+}
+
+// Warning appears as orange
+.btn-warning {
+}
+
+// Danger and error appear as red
+.btn-danger {
+}
+
+// Success appears as green
+.btn-success {
+}
+
+// Info appears as blue-green
+.btn-info {
+}
+
+
+// Link buttons
+// --------------------------------------------------
+// Make a button look and behave like a link
+.btn-link {
+
+  &,
+  &:active,
+  &[disabled],
+  fieldset[disabled] & {
+  }
+
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+  }
+
+  &:hover,
+  &:focus {
+  }
+
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+    }
+  }
+
+}
+
+
+// Button Sizes
+// --------------------------------------------------
+.btn-lg {
+}
+
+.btn-sm,
+.btn-xs {
+}
+
+.btn-xs {
+}
+
+
+// Block button
+// --------------------------------------------------
+.btn-block {
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+
+
+//
+// BUTTON GROUPS (button-groups.less)
+// --------------------------------------------------
+// T3 Note: See "bootstrap/buttons-group.less"
+//  if you want to style this components
 
 
 
@@ -19,7 +362,7 @@
 // T3 Note: We added legacy form elements to get better
 // compatibility with Joomla Core.
 
-// 
+// ------------------------------------------------------
 // LEGACY FORM ELEMENTS
 // ------------------------------------------------------
 
@@ -97,12 +440,23 @@ input[type="color"],
 // Legacy Input Size
 // -------------------
 // General classes for quick sizes
-.input-mini       {}
-.input-small      {}
-.input-medium     {}
-.input-large      {}
-.input-xlarge     {}
-.input-xxlarge    {}
+.input-mini {
+}
+
+.input-small {
+}
+
+.input-medium {
+}
+
+.input-large {
+}
+
+.input-xlarge {
+}
+
+.input-xxlarge {
+}
 
 
 

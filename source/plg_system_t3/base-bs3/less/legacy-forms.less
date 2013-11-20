@@ -160,6 +160,11 @@ input[type="color"],
   margin: @t3-global-margin 0;
   background-color: @gray-lighter;
   border-radius: @base-border-radius;
+  // Reset the padding of offset col
+  [class*="col-sm-offset-"],
+  [class*="col-md-offset-"] {
+    padding-left: 5px !important;
+  }
 }
 
 
