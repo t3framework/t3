@@ -167,7 +167,7 @@ var T3Admin = window.T3Admin || {};
 
 		hideDisabled: function(){
 			$('#style-form').find(':input[disabled="disabled"]').filter(function(){
-				return this.name.match(/^.*?\[params\]\[(.*?)\]/)
+				return this.name && this.name.match(/^.*?\[params\]\[(.*?)\]/)
 			}).closest('.control-group').hide();
 		},
 

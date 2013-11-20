@@ -584,6 +584,8 @@ class T3Template extends ObjectExtendable
 		$input    =  $app->input;
 
 		if($input->getCmd('option') == 'com_content'){
+			$messages = $app->getMessageQueue();
+
 			return !empty($messages);
 		}
 		

@@ -143,12 +143,12 @@ input[type="color"],
 
 // Margin to space out fieldsets
 .control-group {
-  margin-bottom: @line-height-base / 2;
+  margin-bottom: @line-height-computed / 2;
 }
 
 // Legend collapses margin, so next element is responsible for spacing
 legend + .control-group {
-  margin-top: @line-height-base;
+  margin-top: @line-height-computed;
   -webkit-margin-top-collapse: separate;
 }
 
@@ -158,15 +158,17 @@ legend + .control-group {
 .form-horizontal {
 
   .control-group {
-    margin-bottom: @line-height-base;
+    margin-bottom: @line-height-computed;
     .clearfix();
 
     // Float the labels left
     .control-label {
       display: block;
       width: 100%;
+
       @media (min-width: @screen-sm-min) {
         display: inline-block;
+        float: left;
         width: @component-offset-horizontal - 20;
         padding-top: 5px;
         text-align: right;
