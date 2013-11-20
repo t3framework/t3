@@ -14,17 +14,3 @@
 
 // No direct access
 defined('_JEXEC') or die;
-?>
-
-<?php
-$this->addCss('off-canvas', false);
-$this->addScript(T3_URL . '/js/off-canvas.js');
-?>
-
-<!-- OFF-CANVAS NAVIGATION -->
-<script type="text/javascript">
-	jQuery(document).ready(function ($) {
-		new OffcanvasMenu($, {style: '<?php echo $this->getParam('navigation_collapse_offcanvas_effect', 'st-effect-4') ?>'});
-	});
-</script>
-<!-- //OFF-CANVAS NAVIGATION -->

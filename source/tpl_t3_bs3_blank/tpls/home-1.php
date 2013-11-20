@@ -27,14 +27,21 @@ defined('_JEXEC') or die;
 </head>
 
 <body>
+<div class="t3-wrapper">
+	<div class="t3-wrapper-inner">
+		<div class="t3-wrapper-content">
 
-<?php $this->loadBlock('header') ?>
+			<?php $this->loadBlock('off-canvas') ?>
 
-<?php $this->loadBlock('mainnav') ?>
+			<?php $this->loadBlock('header') ?>
 
-<?php $this->loadBlock('mainbody-home-1') ?>
+			<?php $this->loadBlock('mainnav') ?>
 
-<?php $this->loadBlock('footer') ?>
+			<?php $this->loadBlock('mainbody-home-1') ?>
 
+			<?php $this->loadBlock('footer') ?>
+		</div>
+	</div>
+</div>
 </body>
 </html>

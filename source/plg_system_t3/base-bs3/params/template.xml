@@ -202,24 +202,24 @@
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field name="navigation_collapse_offcanvas_effect" type="list" default="st-effect-4"
+			<field name="navigation_collapse_offcanvas_effect" type="list" default="off-canvas-effect-4"
 				   global="1"
 				   label="T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT"
 				   description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_DESC">
-				<option value="st-effect-1">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_1</option>
-				<option value="st-effect-2">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_2</option>
-				<option value="st-effect-3">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_3</option>
-				<option value="st-effect-4">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_4</option>
-				<option value="st-effect-5">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_5</option>
-				<option value="st-effect-6">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_6</option>
-				<option value="st-effect-7">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_7</option>
-				<option value="st-effect-8">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_8</option>
-				<option value="st-effect-9">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_9</option>
-				<option value="st-effect-10">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_10</option>
-				<option value="st-effect-11">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_11</option>
-				<option value="st-effect-12">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_12</option>
-				<option value="st-effect-13">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_13</option>
-				<option value="st-effect-14">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_14</option>
+				<option value="off-canvas-effect-1">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_1</option>
+				<option value="off-canvas-effect-2">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_2</option>
+				<option value="off-canvas-effect-3">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_3</option>
+				<option value="off-canvas-effect-4">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_4</option>
+				<option value="off-canvas-effect-5">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_5</option>
+				<option value="off-canvas-effect-6">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_6</option>
+				<option value="off-canvas-effect-7">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_7</option>
+				<option value="off-canvas-effect-8">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_8</option>
+				<option value="off-canvas-effect-9">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_9</option>
+				<option value="off-canvas-effect-10">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_10</option>
+				<option value="off-canvas-effect-11">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_11</option>
+				<option value="off-canvas-effect-12">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_12</option>
+				<option value="off-canvas-effect-13">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_13</option>
+				<option value="off-canvas-effect-14">T3_NAVIGATION_COLLAPSE_OFFCANVAS_EFFECT_14</option>
 			</field>
 
 			<field name="navigation_collapse_showsub" type="radio" default="1"
