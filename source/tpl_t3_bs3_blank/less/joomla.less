@@ -125,23 +125,28 @@
 // Article Images
 // -------------------------
 
-// Make the image reponsive.
-// Remove if you don't want article images to be responsived.
-.article-intro img,
-.article-content img {
-  .img-responsive();
-}
+.article-intro,
+.article-content {
 
-article img[align=left],
-.img_caption.left,
-.pull-left.item-image {
-  margin: 0 @t3-global-margin @t3-global-margin 0;
-}
+  // Make the image reponsive.
+  // Remove if you don't want article images to be responsived.
+  img {
+    .img-responsive();
+  }
 
-article img[align=right],
-.img_caption.right,
-.pull-right.item-image {
-  margin: 0 0 @t3-global-margin @t3-global-margin;
+  // Add proper margin
+  img[align=left],
+  .img_caption.left,
+  .pull-left.item-image {
+    margin: 0 @t3-global-margin @t3-global-margin 0;
+  }
+
+  img[align=right],
+  .img_caption.right,
+  .pull-right.item-image {
+    margin: 0 0 @t3-global-margin @t3-global-margin;
+  }
+
 }
 
 .img-intro-none,
