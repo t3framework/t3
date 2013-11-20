@@ -135,13 +135,51 @@ input[type="color"],
 }
 
 
-// Horizontal forms
-//
-// Horizontal forms are built on grid classes and allow you to create forms with
-// labels on the left and inputs on the right.
+// HORIZONTAL & VERTICAL FORMS
+// ---------------------------
 
+// Common properties
+// -----------------
+
+// Margin to space out fieldsets
+.control-group {
+  margin-bottom: @line-height-base / 2;
+}
+
+// Legend collapses margin, so next element is responsible for spacing
+legend + .control-group {
+  margin-top: @line-height-base;
+  -webkit-margin-top-collapse: separate;
+}
+
+
+// Horizontal-specific styles
+// --------------------------
 .form-horizontal {
-  // To be added later
+
+  .control-group {
+    margin-bottom: @line-height-base;
+    .clearfix();
+
+    // Float the labels left
+    .control-label {
+      display: block;
+      width: 100%;
+      @media (min-width: @screen-sm-min) {
+        display: inline-block;
+        width: @component-offset-horizontal - 20;
+        padding-top: 5px;
+        text-align: right;
+      }
+    }
+
+    // Move over all input controls and content
+    .controls {
+      margin-left: @component-offset-horizontal;
+    }
+
+  }
+
 }
 
 

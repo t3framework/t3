@@ -39,8 +39,8 @@ JHtml::_('behavior.keepalive');
   	<?php endif; ?>
 
   	<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.login'); ?>" method="post" class="form-horizontal">
-
-  		<fieldset class="well">
+  		
+      <fieldset class="well">
   			<?php foreach ($this->form->getFieldset('credentials') as $field): ?>
   				<?php if (!$field->hidden): ?>
   					<div class="form-group">
@@ -61,27 +61,24 @@ JHtml::_('behavior.keepalive');
   			<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url', $this->form->getValue('return'))); ?>" />
   			<?php echo JHtml::_('form.token'); ?>
   		</fieldset>
+
   	</form>
+
   </div>
 
-  <div class="other-links">
-  	<ul>
-  		<li>
-  			<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
-  			<?php echo JText::_('COM_USERS_LOGIN_RESET'); ?></a>
-  		</li>
-  		<li>
-  			<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-  			<?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?></a>
-  		</li>
-  		<?php
-  		$usersConfig = JComponentHelper::getParams('com_users');
-  		if ($usersConfig->get('allowUserRegistration')) : ?>
-  		<li>
-  			<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-  				<?php echo JText::_('COM_USERS_LOGIN_REGISTER'); ?></a>
-  		</li>
-  		<?php endif; ?>
-  	</ul>
+  <div class="other-links btn-group">
+		<a class="btn btn-link" href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
+			<?php echo JText::_('COM_USERS_LOGIN_RESET'); ?></a>
+
+		<a class="btn btn-link" href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
+			<?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?></a>
+
+		<?php
+		$usersConfig = JComponentHelper::getParams('com_users');
+		if ($usersConfig->get('allowUserRegistration')) : ?>
+		<a class="btn btn-link" href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
+				<?php echo JText::_('COM_USERS_LOGIN_REGISTER'); ?></a>
+		<?php endif; ?>
   </div>
+
 </div>
