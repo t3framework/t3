@@ -100,6 +100,10 @@ hr {
   text-shadow: none;
 }
 
+.t3-admin-form {
+  background-color: white;
+}
+
 
 /* Title & Toolbar
 /* ---------------- */
@@ -213,7 +217,7 @@ h1.page-title small {
 /* THE NAV
 ----------- */
 .t3-admin-nav .nav-tabs {
-  margin: 0 0 0 -1px; /*margin: 0 -1px;*/
+  margin: 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   background: #eee;

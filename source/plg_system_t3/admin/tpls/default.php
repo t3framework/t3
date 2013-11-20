@@ -34,7 +34,7 @@ $iswritable = is_writable('t3test.txt');
 		<div class="controls-row">
 			<div class="control-group t3-control-group">
 				<div class="control-label t3-control-label">
-					<label id="t3-styles-list-lbl" for="t3-styles-list" class="hasTip" title="<?php echo JText::_('T3_SELECT_STYLE_DESC'); ?>"><?php echo JText::_('T3_SELECT_STYLE_LABEL'); ?></label>
+					<label id="t3-styles-list-lbl" for="t3-styles-list" class="hasTooltip" title="<?php echo JText::_('T3_SELECT_STYLE_DESC'); ?>"><?php echo JText::_('T3_SELECT_STYLE_LABEL'); ?></label>
 				</div>
 				<div class="controls t3-controls">
 					<?php echo JHTML::_('select.genericlist', $styles, 't3-styles-list', 'autocomplete="off"', 'id', 'title', $input->get('id')); ?>
@@ -67,7 +67,7 @@ $iswritable = is_writable('t3test.txt');
 			</div>
 			<div class="control-group t3-control-group">
 				<div class="control-label t3-control-label">
-					<?php echo $form->getLabel('home'); ?>
+					<?php echo str_replace('<label', '<label data-placement="bottom" ', $form->getLabel('home')); ?>
 				</div>
 				<div class="controls t3-controls">
 					<?php echo $form->getInput('home'); ?>
@@ -76,37 +76,37 @@ $iswritable = is_writable('t3test.txt');
 		</div>
 	</div>
 	<fieldset>
-    <div class="t3-admin clearfix">
-    	<div class="t3-admin-nav">
-			<ul class="nav nav-tabs">
-				<li<?php echo $t3lock == 'overview_params' ? ' class="active"' : ''?>><a href="#overview_params" data-toggle="tab"><?php echo JText::_('T3_OVERVIEW_LABEL');?></a></li>
-				<?php
-				$fieldSets = $form->getFieldsets('params');
-				foreach ($fieldSets as $name => $fieldSet) :
-					$label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_TEMPLATES_'.$name.'_FIELDSET_LABEL';
-				?>
-					<li<?php echo $t3lock == preg_replace( '/\s+/', ' ', $name) ? ' class="active"' : ''?>><a href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>" data-toggle="tab"><?php echo JText::_($label) ?></a></li>
-				<?php
-				endforeach;
-				?>
-				<?php if ($user->authorise('core.edit', 'com_menu') && ($form->getValue('client_id') == 0)):?>
-					<?php if ($canDo->get('core.edit.state')) : ?>
-						<li<?php echo $t3lock == 'assignment' ? ' class="active"' : ''?>><a href="#assignment_params" data-toggle="tab"><?php echo JText::_('T3_MENUS_ASSIGNMENT_LABEL');?></a></li>
-					<?php endif; ?>
-				<?php endif;?>
-			</ul>
-		</div>
-		<div class="t3-admin-tabcontent tab-content clearfix">
-			<div class="tab-pane tab-overview clearfix<?php echo $t3lock == 'overview_params' ? ' active' : ''?>" id="overview_params">
-				<?php
-				$default_overview_override = T3_TEMPLATE_PATH . '/admin/default_overview.php';
-                if(file_exists($default_overview_override)) {
-                    include $default_overview_override;
-                } else {
-					include T3_ADMIN_PATH . '/admin/tpls/default_overview.php';
-				}
-				?>
+		<div class="t3-admin clearfix">
+			<div class="t3-admin-nav">
+				<ul class="nav nav-tabs">
+					<li<?php echo $t3lock == 'overview_params' ? ' class="active"' : ''?>><a href="#overview_params" data-toggle="tab"><?php echo JText::_('T3_OVERVIEW_LABEL');?></a></li>
+					<?php
+					$fieldSets = $form->getFieldsets('params');
+					foreach ($fieldSets as $name => $fieldSet) :
+						$label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_TEMPLATES_'.$name.'_FIELDSET_LABEL';
+					?>
+						<li<?php echo $t3lock == preg_replace( '/\s+/', ' ', $name) ? ' class="active"' : ''?>><a href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>" data-toggle="tab"><?php echo JText::_($label) ?></a></li>
+					<?php
+					endforeach;
+					?>
+					<?php if ($user->authorise('core.edit', 'com_menu') && ($form->getValue('client_id') == 0)):?>
+						<?php if ($canDo->get('core.edit.state')) : ?>
+							<li<?php echo $t3lock == 'assignment' ? ' class="active"' : ''?>><a href="#assignment_params" data-toggle="tab"><?php echo JText::_('T3_MENUS_ASSIGNMENT_LABEL');?></a></li>
+						<?php endif; ?>
+					<?php endif;?>
+				</ul>
 			</div>
+			<div class="t3-admin-tabcontent tab-content clearfix">
+				<div class="tab-pane tab-overview clearfix<?php echo $t3lock == 'overview_params' ? ' active' : ''?>" id="overview_params">
+					<?php
+						$default_overview_override = T3_TEMPLATE_PATH . '/admin/default_overview.php';
+						if(file_exists($default_overview_override)) {
+							include $default_overview_override;
+						} else {
+							include T3_ADMIN_PATH . '/admin/tpls/default_overview.php';
+						}
+					?>
+				</div>
 			<?php
 			foreach ($fieldSets as $name => $fieldSet) : ?>
 				<div class="tab-pane<?php echo $t3lock == preg_replace( '/\s+/', ' ', $name) ? ' active' : ''?>" id="<?php echo preg_replace( '/\s+/', ' ', $name); ?>">
@@ -118,20 +118,20 @@ $iswritable = is_writable('t3test.txt');
 
 					foreach ($form->getFieldset($name) as $field) :
 						$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
-                        $fieldinput = $field->input;
+						$fieldinput = $field->input;
 
-                        // add placeholder to Text input
-                        if ($field->type == 'Text') {
-                            $placeholder = $form->getFieldAttribute($field->fieldname, 'placeholder', '', $field->group);
-                            if(empty($placeholder)){
-                                $placeholder = $form->getFieldAttribute($field->fieldname, 'default', '', $field->group);
-                            } else {
-                                $placeholder = JText::_($placeholder);
-                            }
+						// add placeholder to Text input
+						if ($field->type == 'Text') {
+							$placeholder = $form->getFieldAttribute($field->fieldname, 'placeholder', '', $field->group);
+							if(empty($placeholder)){
+								$placeholder = $form->getFieldAttribute($field->fieldname, 'default', '', $field->group);
+							} else {
+								$placeholder = JText::_($placeholder);
+							}
 
-                            if(!empty($placeholder)){
-                                $fieldinput = str_replace ('/>', ' placeholder="' . $placeholder . '"/>', $fieldinput);
-                            }
+							if(!empty($placeholder)){
+								$fieldinput = str_replace ('/>', ' placeholder="' . $placeholder . '"/>', $fieldinput);
+							}
 						}
 
 						$global = $form->getFieldAttribute($field->fieldname, 'global', 0, $field->group);
@@ -160,7 +160,7 @@ $iswritable = is_writable('t3test.txt');
 				<?php endif; ?>
 			<?php endif;?>
 		</div>
-  </div>
+		</div>
 	</fieldset>
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>

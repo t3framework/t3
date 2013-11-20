@@ -154,6 +154,9 @@
 				<option for="navigation_animation" value="fading,slide,zoom,elastic">
 					navigation_animation_duration
 				</option>
+				<option for="navigation_collapse_offcanvas" value="1">
+					navigation_collapse_offcanvas_effect
+				</option>
 			</field>
 
 			<field name="mm_type" type="menu" default="mainmenu"
