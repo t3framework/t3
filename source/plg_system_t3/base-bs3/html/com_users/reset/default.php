@@ -41,7 +41,7 @@ JHtml::_('behavior.formvalidation');
 		</fieldset>
 		<?php endforeach; ?>
 
-		<div class="form-group form-actions">
+		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-9">
 				<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JSUBMIT'); ?></button>
 				<?php echo JHtml::_('form.token'); ?>

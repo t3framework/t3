@@ -11,21 +11,14 @@
  *------------------------------------------------------------------------------
  */
 
-//
-// T3 Note
-// We needed to ovveride BS3 form elements to get
-// better compatibility with BS2 form elements in Joomla core.
-//
-// To see the original, look for "plugins/system/t3/base-bs3/bootstrap/less/forms.less"
-
 
 // ------------------------------------------------------
-// FORM ELEMENTS
+// LEGACY FORM ELEMENTS
 // ------------------------------------------------------
 
 
 //
-// GENERIC STYLES (forms.less)
+// GENERIC STYLES
 // ------------------------------------------------------
 
 // Common form controls
@@ -102,55 +95,18 @@ input[type="color"],
   }
 }
 
-// Form control sizing
-.input-sm {
-  .input-size(@input-height-small; @padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
-}
 
-.input-lg {
-  .input-size(@input-height-large; @padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
-}
+// LEGACY INPUT SIZES
+// -------------------
 
+// General classes for quick sizes
+.input-mini       { width: 60px; }
+.input-small      { width: 90px; }
+.input-medium     { width: 150px; }
+.input-large      { width: 210px; }
+.input-xlarge     { width: 270px; }
+.input-xxlarge    { width: 530px; }
 
-// Form control feedback states
-//
-// Apply contextual and semantic states to individual form controls.
-
-// Warning
-.has-warning {
-  .form-control-validation(@state-warning-text; @state-warning-text; @state-warning-bg);
-}
-// Error
-.has-error {
-  .form-control-validation(@state-danger-text; @state-danger-text; @state-danger-bg);
-}
-// Success
-.has-success {
-  .form-control-validation(@state-success-text; @state-success-text; @state-success-bg);
-}
-
-
-// Static form control text
-//
-// Apply class to a `p` element to make any string of text align with labels in
-// a horizontal form layout.
-
-.form-control-static {
-  margin-bottom: 0; // Remove default margin from `p`
-}
-
-
-// Help text
-//
-// Apply to any element you wish to create light text for placement immediately
-// below a form control. Use for general help, formatting, or instructional text.
-
-.help-block {
-  display: block; // account for any element using help-block
-  margin-top: 5px;
-  margin-bottom: 10px;
-  color: lighten(@text-color, 25%); // lighten the text some for contrast
-}
 
 
 // Inline forms
@@ -168,40 +124,12 @@ input[type="color"],
 
   // Kick in the inline
   @media (min-width: @screen-sm) {
-    // Inline-block all the things for "inline"
-    .form-group  {
-      display: inline-block;
-      margin-bottom: 0;
-      vertical-align: middle;
-    }
-
-    // In navbar-form, allow folks to *not* use `.form-group`
-    .form-control {
-      display: inline-block;
-    }
-
     // Legacy class below
     .inputbox,
     select,
     textarea,
     input {
       display: inline-block;
-    }
-
-    // Remove default margin on radios/checkboxes that were used for stacking, and
-    // then undo the floating of radios and checkboxes to match (which also avoids
-    // a bug in WebKit: https://github.com/twbs/bootstrap/issues/1969).
-    .radio,
-    .checkbox {
-      display: inline-block;
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-left: 0;
-    }
-    .radio input[type="radio"],
-    .checkbox input[type="checkbox"] {
-      float: none;
-      margin-left: 0;
     }
   }
 }
@@ -213,40 +141,13 @@ input[type="color"],
 // labels on the left and inputs on the right.
 
 .form-horizontal {
-
-  // Consistent vertical alignment of labels, radios, and checkboxes
-  .control-label,
-  .radio,
-  .checkbox,
-  .radio-inline,
-  .checkbox-inline {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: (@padding-base-vertical + 1); // Default padding plus a border
-  }
-
-  // Make form groups behave like rows
-  .form-group {
-    .make-row();
-  }
-
-  .form-control-static {
-    padding-top: (@padding-base-vertical + 1);
-  }
-
-  // Only right align form labels here when the columns stop stacking
-  @media (min-width: @screen-sm-min) {
-    .control-label {
-      text-align: right;
-    }
-  }
+  // To be added later
 }
 
 
 
-
 //
-// T3 Note: LEGACY CLASSES FROM BS2
+// OTHER LEGACY CLASSES FROM BS2
 // ------------------------------------------------------
 
 // FORM ACTIONS
@@ -254,9 +155,11 @@ input[type="color"],
 // Adding the legacy "form-actions" from BS2
 
 .form-actions {
+  .clearfix();
   padding: @t3-global-padding;
   margin: @t3-global-margin 0;
   background-color: @gray-lighter;
+  border-radius: @base-border-radius;
 }
 
 
@@ -380,183 +283,45 @@ input[type="color"],
 
 
 //
-// BUTTONS (buttons.less)
+// BUTTONS
 // ------------------------------------------------------
 
-//
-// To see the original, look for "plugins/system/t3/base-bs3/bootstrap/less/buttons.less"
-
-// Base styles
+// Lagacy Button Sizes
 // --------------------------------------------------
 
-// Core styles
-.btn {
-  display: inline-block;
-  margin-bottom: 0; // For input.btn
-  font-weight: @btn-font-weight;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-  border: 1px solid transparent;
-  white-space: nowrap;
-  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
-  .user-select(none);
+// Large
+.btn-large {
+  padding: @padding-large-vertical @padding-large-horizontal;
+  font-size: @font-size-large;
+  border-radius: @border-radius-large;
+}
 
-  &:focus {
-    .tab-focus();
-  }
+.btn-large [class^="icon-"],
+.btn-large [class*=" icon-"] {
+  margin-top: 4px;
+}
 
-  &:hover,
-  &:focus {
-    color: @btn-default-color;
-    text-decoration: none;
-  }
+// Small
+.btn-small {
+  padding: @padding-small-vertical @padding-small-horizontal;
+  font-size: @font-size-small;
+  border-radius: @border-radius-small;
+}
 
-  &:active,
-  &.active {
-    outline: 0;
-    background-image: none;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-  }
-
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    cursor: not-allowed;
-    pointer-events: none; // Future-proof disabling of clicks
-    .opacity(.65);
-    .box-shadow(none);
-  }
-
+.btn-small [class^="icon-"],
+.btn-small [class*=" icon-"] {
+  margin-top: 0;
 }
 
 
-// Alternate buttons
-// --------------------------------------------------
-
-.btn-default {
-  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
-}
-.btn-primary {
-  .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
-}
-// Warning appears as orange
-.btn-warning {
-  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
-}
-// Danger and error appear as red
-.btn-danger {
-  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
-}
-// Success appears as green
-.btn-success {
-  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
-}
-// Info appears as blue-green
-.btn-info {
-  .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+// Mini
+.btn-mini {
+  padding: 2px 4px;
+  font-size: @font-size-small;
+  border-radius: @border-radius-small;
 }
 
-
-// Link buttons
-// -------------------------
-
-// Make a button look and behave like a link
-.btn-link {
-  color: @link-color;
-  font-weight: normal;
-  cursor: pointer;
-  border-radius: 0;
-
-  &,
-  &:active,
-  &[disabled],
-  fieldset[disabled] & {
-    background-color: transparent;
-    .box-shadow(none);
-  }
-  &,
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: transparent;
-  }
-  &:hover,
-  &:focus {
-    color: @link-hover-color;
-    text-decoration: underline;
-    background-color: transparent;
-  }
-  &[disabled],
-  fieldset[disabled] & {
-    &:hover,
-    &:focus {
-      color: @btn-link-disabled-color;
-      text-decoration: none;
-    }
-  }
+.btn-mini [class^="icon-"],
+.btn-mini [class*=" icon-"] {
+  margin-top: -1px;
 }
-
-
-// Button Sizes
-// --------------------------------------------------
-
-.btn-lg {
-  // line-height: ensure even-numbered height of button next to large input
-  .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
-}
-.btn-sm,
-.btn-xs {
-  // line-height: ensure proper height of button next to small input
-  .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
-}
-.btn-xs {
-  padding: 1px 5px;
-}
-
-
-// Block button
-// --------------------------------------------------
-
-.btn-block {
-  display: block;
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-// Vertically space out multiple block buttons
-.btn-block + .btn-block {
-  margin-top: 5px;
-}
-
-// Specificity overrides
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-  &.btn-block {
-    width: 100%;
-  }
-}
-
-
-
-//
-// FORM VALIDATION
-// -------------------------------------------------------
-
-// Invalid
-// -----------------------
-.invalid {
-  border-color: @red;
-}
-
-label.invalid {
-  color: @red;
-}
-
-input.invalid {
-  border: 1px solid @red;
-}
-

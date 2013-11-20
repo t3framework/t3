@@ -1,0 +1,262 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+
+
+
+
+// T3 Note: We added legacy form elements to get better
+// compatibility with Joomla Core.
+
+// 
+// LEGACY FORM ELEMENTS
+// ------------------------------------------------------
+
+
+//
+// GENERIC STYLES
+// ------------------------------------------------------
+
+// Common form controls
+// --------------------
+
+// Legacy class below
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.inputbox {
+
+  // Focus states
+  &:focus {}
+
+  // Placeholder
+  .placeholder();
+
+  // Disabled and read-only inputs
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+  }
+
+  // Reset height for `textarea`s
+  textarea& {
+    height: auto;
+  }
+}
+
+
+// Legacy class below
+// Reset Width for Legacy Classes in Medium Screen
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.inputbox {
+  @media (min-width: @screen-sm) {
+    width: auto;
+  }
+}
+
+
+// Legacy Input Size
+// -------------------
+// General classes for quick sizes
+.input-mini       {}
+.input-small      {}
+.input-medium     {}
+.input-large      {}
+.input-xlarge     {}
+.input-xxlarge    {}
+
+
+
+// Inline forms
+// ------------
+.form-inline {
+}
+
+
+// Horizontal forms
+// ----------------
+.form-horizontal {
+}
+
+
+
+//
+// OTHER LEGACY CLASSES FROM BS2
+// ------------------------------------------------------
+
+// FORM ACTIONS
+// ------------
+// Adding the legacy "form-actions" from BS2
+.form-actions {
+}
+
+
+// INPUT GROUPS
+// ------------
+// Allow us to put symbols and text within the input field for a cleaner look
+.input-append,
+.input-prepend {
+
+  input,
+  select,
+  .uneditable-input {
+    // Focus state
+    &:focus {
+    }
+  }
+
+  .add-on {
+  }
+
+  .active {
+    background-color: lighten(@green, 30);
+    border-color: @green;
+  }
+
+}
+
+.input-prepend {
+
+  .add-on,
+  .btn {
+  }
+
+  .add-on:first-child,
+  .btn:first-child {
+  }
+
+}
+
+.input-append {
+
+  input,
+  select,
+  .uneditable-input {
+  }
+
+  .add-on,
+  .btn,
+  .btn-group {
+  }
+
+  .add-on:last-child,
+  .btn:last-child,
+  .btn-group:last-child > .dropdown-toggle {
+  }
+
+}
+
+
+.input-prepend.input-append {
+
+  input,
+  select,
+  .uneditable-input {
+  }
+
+  .add-on:first-child,
+  .btn:first-child {
+  }
+
+  .add-on:last-child,
+  .btn:last-child {
+  }
+
+  .btn-group:first-child {
+  }
+
+}
+
+
+
+//
+// BUTTONS
+// ------------------------------------------------------
+
+// Lagacy Button Sizes
+// --------------------------------------------------
+
+// Large
+.btn-large {
+}
+
+.btn-large [class^="icon-"],
+.btn-large [class*=" icon-"] {
+}
+
+// Small
+.btn-small {
+}
+
+.btn-small [class^="icon-"],
+.btn-small [class*=" icon-"] {
+}
+
+
+// Mini
+.btn-mini {
+}
+
+.btn-mini [class^="icon-"],
+.btn-mini [class*=" icon-"] {
+}
+
+
+
+
+//
+// FORM VALIDATION
+// -------------------------------------------------------
+
+// Invalid
+// -----------------------
+.invalid {
+  border-color: @red;
+}
+
+label.invalid {
+  color: @red;
+}
+
+input.invalid {
+  border: 1px solid @red;
+}
