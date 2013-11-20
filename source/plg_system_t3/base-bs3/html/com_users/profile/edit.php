@@ -56,8 +56,8 @@ $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 	<?php endif;?>
 <?php endforeach;?>
 
-	<div class="form-group">
-		<div class="col-sm-offset-3 col-sm-9 form-actions">
+	<div class="form-group form-actions">
+		<div class="col-sm-offset-3 col-sm-9">
 			<button type="submit" class="btn btn-primary validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
 			<a class="btn" href="<?php echo JRoute::_(''); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
 
