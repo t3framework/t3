@@ -163,11 +163,21 @@
 				   label="T3_NAVIGATION_MM_TYPE_LABEL"
 				   description="T3_NAVIGATION_MM_TYPE_DESC" />
 
-			<field name="navigation_type" type="list" class="btn-group" default="megamenu"
-				   label="T3_NAVIGATION_TYPE_LABEL"
-				   description="T3_NAVIGATION_TYPE_DESC">
-				<option value="t3bootstrap">T3_NAVIGATION_BOOTSTRAP</option>
-				<option value="megamenu">T3_NAVIGATION_MEGAMENU</option>
+            <field name="navigation_trigger" type="list" default="hover"
+                   global="1"
+                   label="T3_NAVIGATION_TRIGGER_LABEL"
+                   description="T3_NAVIGATION_TRIGGER_DESC">
+                <option value="hover">T3_NAVIGATION_TRIG_HOVER</option>
+                <option value="click">T3_NAVIGATION_TRIG_CLICK</option>
+            </field>
+
+            <field type="t3depend" function="@legend" label="T3_NAVIGATION_MM_GROUP_LABEL" description="T3_NAVIGATION_MM_GROUP_DESC" />
+
+			<field name="navigation_type" type="radio" class="btn-group" default="megamenu"
+				   label="T3_NAVIGATION_MM_ENABLE_LABEL"
+				   description="T3_NAVIGATION_MM_ENABLE_DESC">
+                <option value="t3bootstrap" class="off">JNO</option>
+                <option value="megamenu" class="on">JYES</option>
 			</field>
 
 			<field name="navigation_animation" type="list" default=""
@@ -186,14 +196,6 @@
 				   label="T3_NAVIGATION_ANIMATION_DURATION_LABEL"
 				   description="T3_NAVIGATION_ANIMATION_DURATION_DESC"/>
 
-			<field name="navigation_trigger" type="list" default="hover"
-				   global="1"
-				   label="T3_NAVIGATION_TRIGGER_LABEL"
-				   description="T3_NAVIGATION_TRIGGER_DESC">
-				<option value="hover">T3_NAVIGATION_TRIG_HOVER</option>
-				<option value="click">T3_NAVIGATION_TRIG_CLICK</option>
-			</field>
-
 			<field name="mm_config" type="hidden" hide="true" global="1"
 				   label=""
 				   description="" />
@@ -208,34 +210,38 @@
                 <option value="1" class="on">JYES</option>
             </field>
 
-            <field type="t3depend" function="@legend" label="T3_NAVIGATION_OFFCANVAS_GROUP_LABEL" description="T3_NAVIGATION_OFFCANVAS_GROUP_DESC" />
+		</fieldset>
 
-            <field name="navigation_offcanvas_enable" type="radio" default="1"
+        <fieldset name="addon_params" label="T3_ADDON_LABEL" description="T3_ADDON_DESC">
+
+            <field type="t3depend" function="@legend" label="T3_ADDON_OFFCANVAS_GROUP_LABEL" description="T3_ADDON_OFFCANVAS_GROUP_DESC" />
+
+            <field name="addon_offcanvas_enable" type="radio" default="1"
                    global="1"
-                   label="T3_NAVIGATION_OFFCANVAS_ENABLE_LABEL"
-                   description="T3_NAVIGATION_OFFCANVAS_ENABLE_DESC">
+                   label="T3_ADDON_OFFCANVAS_ENABLE_LABEL"
+                   description="T3_ADDON_OFFCANVAS_ENABLE_DESC">
                 <option value="0" class="off">JNO</option>
                 <option value="1" class="on">JYES</option>
             </field>
 
-            <field name="navigation_offcanvas_effect" type="list" default="off-canvas-effect-4"
+            <field name="addon_offcanvas_effect" type="list" default="off-canvas-effect-4"
                    global="1"
-                   label="T3_NAVIGATION_OFFCANVAS_EFFECT_LABEL"
-                   description="T3_NAVIGATION_OFFCANVAS_EFFECT_DESC">
-                <option value="off-canvas-effect-1">T3_NAVIGATION_OFFCANVAS_EFFECT_1</option>
-                <option value="off-canvas-effect-2">T3_NAVIGATION_OFFCANVAS_EFFECT_2</option>
-                <option value="off-canvas-effect-3">T3_NAVIGATION_OFFCANVAS_EFFECT_3</option>
-                <option value="off-canvas-effect-4">T3_NAVIGATION_OFFCANVAS_EFFECT_4</option>
-                <option value="off-canvas-effect-5">T3_NAVIGATION_OFFCANVAS_EFFECT_5</option>
-                <option value="off-canvas-effect-6">T3_NAVIGATION_OFFCANVAS_EFFECT_6</option>
-                <option value="off-canvas-effect-7">T3_NAVIGATION_OFFCANVAS_EFFECT_7</option>
-                <option value="off-canvas-effect-8">T3_NAVIGATION_OFFCANVAS_EFFECT_8</option>
-                <option value="off-canvas-effect-9">T3_NAVIGATION_OFFCANVAS_EFFECT_9</option>
-                <option value="off-canvas-effect-10">T3_NAVIGATION_OFFCANVAS_EFFECT_10</option>
-                <option value="off-canvas-effect-11">T3_NAVIGATION_OFFCANVAS_EFFECT_11</option>
-                <option value="off-canvas-effect-12">T3_NAVIGATION_OFFCANVAS_EFFECT_12</option>
-                <option value="off-canvas-effect-13">T3_NAVIGATION_OFFCANVAS_EFFECT_13</option>
-                <option value="off-canvas-effect-14">T3_NAVIGATION_OFFCANVAS_EFFECT_14</option>
+                   label="T3_ADDON_OFFCANVAS_EFFECT_LABEL"
+                   description="T3_ADDON_OFFCANVAS_EFFECT_DESC">
+                <option value="off-canvas-effect-1">T3_ADDON_OFFCANVAS_EFFECT_1</option>
+                <option value="off-canvas-effect-2">T3_ADDON_OFFCANVAS_EFFECT_2</option>
+                <option value="off-canvas-effect-3">T3_ADDON_OFFCANVAS_EFFECT_3</option>
+                <option value="off-canvas-effect-4">T3_ADDON_OFFCANVAS_EFFECT_4</option>
+                <option value="off-canvas-effect-5">T3_ADDON_OFFCANVAS_EFFECT_5</option>
+                <option value="off-canvas-effect-6">T3_ADDON_OFFCANVAS_EFFECT_6</option>
+                <option value="off-canvas-effect-7">T3_ADDON_OFFCANVAS_EFFECT_7</option>
+                <option value="off-canvas-effect-8">T3_ADDON_OFFCANVAS_EFFECT_8</option>
+                <option value="off-canvas-effect-9">T3_ADDON_OFFCANVAS_EFFECT_9</option>
+                <option value="off-canvas-effect-10">T3_ADDON_OFFCANVAS_EFFECT_10</option>
+                <option value="off-canvas-effect-11">T3_ADDON_OFFCANVAS_EFFECT_11</option>
+                <option value="off-canvas-effect-12">T3_ADDON_OFFCANVAS_EFFECT_12</option>
+                <option value="off-canvas-effect-13">T3_ADDON_OFFCANVAS_EFFECT_13</option>
+                <option value="off-canvas-effect-14">T3_ADDON_OFFCANVAS_EFFECT_14</option>
             </field>
 
 		</fieldset>
