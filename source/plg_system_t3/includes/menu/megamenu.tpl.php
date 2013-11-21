@@ -18,10 +18,11 @@ class T3MenuMegamenuTpl
 	{
 		$menu          = $vars['menu'];
 		$animation     = $menu->getParam('navigation_animation', '');
+		$trigger       = $menu->getParam('navigation_trigger', 'hover');
 		$responsive    = $menu->getParam('responsive', 1);
 		$anim_duration = $menu->getParam('navigation_animation_duration', 0);
 
-		$cls  = ' class="t3-megamenu' . ($animation ? ' animate ' . $animation : '') . '"';
+		$cls  = ' class="t3-megamenu' . ($trigger == 'hover' && $animation ? ' animate ' . $animation : '') . '"';
 		$data = $animation && $anim_duration ? ' data-duration="' . $anim_duration . '"' : '';
 		$data = $data . ($responsive ? ' data-responsive="true"' : '');
 
