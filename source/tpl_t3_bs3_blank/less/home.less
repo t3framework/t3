@@ -23,15 +23,28 @@
 .home {
   color: @gray;
 
+  // Heading
+  h1, h2, h3 {
+    color: @gray-dark;
+  }
+
+  h1 {
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: floor(@font-size-base * 1.5);
+    // Bigger font size on Tablet / Desktop
+    @media screen and (min-width: @screen-sm) {
+      font-size: floor(@font-size-base * 2.15);
+    }
+  }
+
+  // Home Jumbotron
   .jumbotron {
     background-color: transparent;
     position: relative;
     margin-bottom: 0;
-    
-    // Heading
-    h1, h2, h3 {
-      color: @gray-dark;
-    }
   }
 
   // 
@@ -42,7 +55,8 @@
   // -----------
   .t3-sl-1 {
     padding: 0;
-    background: @gray-lighter;
+    background: #fff;
+    border-bottom: 1px solid @t3-border-color;
 
     // jumbotron
     .jumbotron {
@@ -53,23 +67,6 @@
       }
     }
 
-    // social buttons
-    .t3-social {
-      background: @gray-lighter;
-      padding: @t3-global-padding 0;
-
-      .t3-social-btns {
-        margin: 0;
-        height: 20px;
-        text-align: center;
-      }
-
-      .t3-social-btns li {
-        display: inline-block;
-        margin: 0 10px;
-        height: 20px;
-      }
-    }
   }
 
   // Spotlight 2
@@ -82,7 +79,7 @@
     }
 
     p {
-      // Bigger Font size in Desktop
+      // Bigger Font size in Tablet / Desktop
       @media screen and (min-width: @screen-sm) {
         font-size: @t3-font-size-bigger;
         line-height: floor(@t3-font-size-bigger * @line-height-base);
@@ -92,13 +89,21 @@
 
   // Spotlight 3 & 4
   // ---------------
+  .t3-sl-3 p > img {
+    margin-top: @line-height-computed;
+    @media screen and (min-width: @screen-md) {
+      margin-top: 0;
+    }
+  }
+
+
   .t3-sl-3,
   .t3-sl-4 {
     border-top: 1px solid @t3-border-color;
     text-align: center;
 
     p {
-      // Bigger Font size in Desktop
+      // Bigger Font size in Tablet / Desktop
       @media screen and (min-width: @screen-sm) {
         font-size: @t3-font-size-bigger;
         line-height: floor(@t3-font-size-bigger * @line-height-base);
@@ -118,7 +123,7 @@
         font-size: @font-size-large;
         line-height: 1.25;
         color: @gray-light;
-        // Bigger Font size in Desktop
+        // Bigger Font size in Tablet / Desktop
         @media screen and (min-width: @screen-sm) {
           font-size: ceil(@font-size-base * 1.5);
         }
@@ -131,7 +136,7 @@
   // Spotlight 5
   // -----------
   .t3-sl-5 {
-    background: @gray-lighter;
+    background: #fff;
     border-top: 1px solid @t3-border-color;
     padding: 0;
 

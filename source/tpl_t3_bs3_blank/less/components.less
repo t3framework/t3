@@ -24,7 +24,7 @@
 // -----------
 .page-header {
   padding-bottom: ((@line-height-computed / 2) - 1);
-  margin: 0 0 @t3-global-margin;
+  margin: 0 0 @line-height-computed;
   border-bottom: 1px solid @page-header-border-color;
 }
 
@@ -39,7 +39,7 @@
 // --------------
 .page-subheader {
   border-bottom: 1px solid @t3-border-color;
-  margin: 0 0 @t3-global-margin;
+  margin: 0 0 @line-height-computed;
   .clearfix();
 }
 
@@ -50,7 +50,7 @@
 }
 
 .page-header + .page-subheader {
-  margin-top: -@t3-global-margin; //If there is page header, then omit the space before page subheader
+  margin-top: -@line-height-computed; //If there is page header, then omit the space before page subheader
 }
 
 
@@ -61,7 +61,7 @@
 
 .article-title,
 .article-header h1, {
-  margin: 0 0 @t3-global-margin 0;
+  margin: 0 0 @line-height-computed 0;
 }
 
 // Smaller "Article Title" in Blog and List layout

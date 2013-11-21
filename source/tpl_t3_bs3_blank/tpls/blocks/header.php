@@ -17,9 +17,9 @@ if (!$sitename) {
 	$sitename = JFactory::getConfig()->get('sitename');
 }
 
-$logosize = 'col-md-12';
+$logosize = 'col-sm-12';
 if ($headright = $this->countModules('head-search or languageswitcherload')) {
-	$logosize = 'col-md-8';
+	$logosize = 'col-sm-8';
 }
 ?>
 
@@ -42,7 +42,7 @@ if ($headright = $this->countModules('head-search or languageswitcherload')) {
 		<!-- //LOGO -->
 
 		<?php if ($headright): ?>
-			<div class="col-xs-12 col-md-4">
+			<div class="col-xs-12 col-sm-4">
 				<?php if ($this->countModules('head-search')) : ?>
 					<!-- HEAD SEARCH -->
 					<div class="head-search <?php $this->_c('head-search') ?>">

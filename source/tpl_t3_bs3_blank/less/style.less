@@ -28,19 +28,27 @@
 // Logo
 // ----
 .logo {
-  float: left;
+
+  text-align: center;
+
+  // Left align the logo on  Tablets / Desktop
+  @media screen and (min-width: @screen-sm) {
+    text-align: left;
+  }
+
   a {
     display: inline-block;
     line-height: 1;
     margin: 0;
   }
+
 }
 
 // Logo Image
 // ----------
 .logo-image {
   overflow: hidden;
-  //hide sitename and slogan
+  // Hide sitename and slogan
   span, small {
     display: none;
   }
@@ -75,12 +83,12 @@
 // Head Search
 // -----------
 .head-search {
-  float: right;
+
   margin-top: @t3-global-margin;
+  .clearfix();
 
   form {
     margin: 0;
-    float: right;
   }
   
   label {
@@ -99,16 +107,27 @@
       top: 6px;
       color: @gray;
     }
+    // Float to right on Tablets / Desktop
+    @media screen and (min-width: @screen-sm) {
+      float: right;
+    }
   }
   
   .form-control {
-    width: 150px;
+    width : 100%;
     padding-left: 30px;
-    // focus state
-    &:focus {
-      width: 200px;
+
+    // Width Control on Tablets / Desktop
+    @media screen and (min-width: @screen-sm) {
+      width: 150px;
+      // focus state
+      &:focus {
+        width: 200px;
+      }
     }
+
   }
+
 }
 
 
@@ -118,8 +137,13 @@
 // ---------------------------------------------------------
 
 .t3-sl {
-  padding-bottom: @t3-global-padding * 3;
-  padding-top: @t3-global-padding * 3;
+  padding-bottom: @t3-global-padding * 2;
+  padding-top: @t3-global-padding * 2;
+  // Larger padding in Tablet / Desktop
+  @media screen and (min-width: @screen-sm) {
+    padding-bottom: @t3-global-padding * 3;
+    padding-top: @t3-global-padding * 3;
+  }
 }
 
 // Spotlight 1
@@ -201,7 +225,7 @@
 
   padding: @t3-global-padding 0;
 
-  // Larger padding on Desktop
+  // Larger padding on Tablet / Desktop
   @media screen and (min-width: @screen-sm) {
     padding: (@t3-global-padding * 2) 0;
   }
@@ -250,7 +274,7 @@
 .poweredby {
   .clearfix();
 
-  // Align right on Desktop
+  // Align right on Tablet / Desktop
   @media screen and (min-width: @screen-sm) {
     text-align: right;
   }
