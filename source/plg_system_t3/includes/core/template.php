@@ -844,7 +844,7 @@ class T3Template extends ObjectExtendable
 		}
 
 		if($frontedit){
-			$this->addScript(T3_URL . '/js/frontedit.js');
+			$this->addScript(T3_URL . '/js/frontend-edit.js');
 		}
 
 		//check and add additional assets

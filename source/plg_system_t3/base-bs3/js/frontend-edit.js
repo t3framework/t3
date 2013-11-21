@@ -25,27 +25,14 @@
 
 				input.prop('checked', true).trigger('change');
 			}
+		}).addClass(function(){
+			return $(this).next().length ? 'off' : 'on'
 		});
 
-		$('fieldset.radio')
-			.removeClass('btn-group')
-			.find('label').removeClass('btn btn-success btn-danger btn-primary');
-
-
+		//initial state
 		$('.radio input[checked=checked]').each(function(){
 			$('label[for=' + $(this).attr('id') + ']').addClass('active');
 		});
-
-		$('.t3-admin-form').on('update', 'input[type=radio]', function(){
-			if(this.checked){
-				$(this)
-					.closest('.radio')
-					.find('label').removeClass('active')
-					.filter('[for="' + this.id + '"]')
-						.addClass('active');
-			}
-		});
-
 		
 	});
 	
