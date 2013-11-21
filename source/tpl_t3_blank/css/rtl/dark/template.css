@@ -223,6 +223,9 @@ a.thumbnail:hover {
   width: auto;
   clear: both;
 }
+.tab-content {
+  overflow: visible;
+}
 
 body {
   background-color: #222;
@@ -2655,6 +2658,9 @@ article aside .btn-group > .dropdown-toggle:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.edit.item-page fieldset .form-actions {
+  clear: both;
+}
 .button2-left,
 .button2-left div {
   float: right;
@@ -2699,7 +2705,7 @@ article aside .btn-group > .dropdown-toggle:focus {
   color: #444;
   text-decoration: none;
 }
-.edit.item-page .control-group a.modal {
+.control-group a.modal {
   position: inherit;
   width: auto !important;
   margin-right: 0 !important;
@@ -2708,6 +2714,22 @@ article aside .btn-group > .dropdown-toggle:focus {
 .controls img.calendar {
   cursor: pointer;
   margin-right: 5px;
+}
+#imageForm #upbutton {
+  margin-top: -18px;
+}
+.view-imagesList body {
+  padding-top: 0;
+}
+.view-imagesList .t3-mainbody {
+  padding: 0;
+}
+.view-imagesList .manager.thumbnails {
+  overflow: hidden;
+}
+.view-imagesList .manager.thumbnails li {
+  float: right;
+  margin: 0 10px 20px;
 }
 .article-content .pagination ul {
   border-right: 1px solid #444;

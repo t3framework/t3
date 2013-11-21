@@ -1136,6 +1136,7 @@
   .t3-mainnav .nav-collapse .nav > li > a:hover {
     background-color: #666;
     background-image: none;
+    color: #fff;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   }
   .t3-mainnav .nav-collapse .dropdown-menu a {
@@ -1143,10 +1144,13 @@
     border-bottom: 0;
     font-weight: normal;
     padding: 10px 20px;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   }
+  .t3-mainnav .nav-collapse .dropdown-menu.open a,
   .t3-mainnav .nav-collapse .dropdown-menu a:hover {
     background-color: #666;
     background-image: none;
+    color: #fff;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   }
   .t3-mainnav .nav-collapse .dropdown-menu {

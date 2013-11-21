@@ -202,8 +202,8 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		hideDisabled: function(){
-			$('#style-form').find('[disabled="disabled"]').filter(function(){
-				return this.name.match(/^.*?\[params\]\[(.*?)\]/)
+			$('#style-form').find(':input[disabled="disabled"]').filter(function(){
+				return this.name && this.name.match(/^.*?\[params\]\[(.*?)\]/)
 			}).closest('.control-group').hide();
 		},
 
@@ -282,6 +282,9 @@ var T3Admin = window.T3Admin || {};
 
 					$('.t3-admin-nav .nav li').eq(jpane.index()).toggleClass('t3-changed', !!(!eq || jpane.find('.t3-changed').length));
 
+					if(this.type == 'radio'){
+						jinput = jinput.add(jgroup.find('[name="' + this.name + '"]'));
+					}
 					jinput.data('included', !eq);
 				});
 			}, 500);

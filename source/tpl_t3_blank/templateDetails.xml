@@ -2,8 +2,8 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="2.5" type="template" method="upgrade" client="site">
 	<name>t3_blank</name>
-	<version>1.4.1</version>
-	<creationDate>05 August 2013</creationDate>
+	<version>1.4.3</version>
+	<creationDate>21 November 2013</creationDate>
 	<author>JoomlArt.com</author>
 	<authorEmail>webmaster@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
@@ -31,18 +31,20 @@
 		<filename>favicon.ico</filename>
 		<filename>index.html</filename>
 		<filename>index.php</filename>
-		<filename>thememagic.xml</filename>
-		<filename>templateInfo.php</filename>
 		<filename>template_preview.png</filename>
 		<filename>template_thumbnail.png</filename>
 		<filename>templateDetails.xml</filename>
+		<filename>templateHook.php</filename>
+		<filename>templateInfo.php</filename>
+		<filename>thememagic.xml</filename>	
+		<folder>css</folder>
 		<folder>etc</folder>
 		<folder>fonts</folder>
-		<folder>css</folder>
+		<folder>html</folder>
+		<folder>images</folder>
 		<folder>js</folder>
 		<folder>less</folder>
 		<folder>language</folder>
-		<folder>images</folder>
 		<folder>tpls</folder>
 	</files>
 	

@@ -435,8 +435,15 @@ class T3Template extends ObjectExtendable
 			$contents[] = $closehead . "\n</head>";
 		}
 		if (($openbody = $this->getParam('snippet_open_body', ''))) {
-			$places[] = '<body>';
-			$contents[] = "<body>\n" . $openbody;
+			$body = JResponse::getBody();
+
+			if(strpos($body, '<body>') !== false){
+				$places[] = '<body>';
+				$contents[] = "<body>\n" . $openbody;
+			} else {	//in case the body has other attribute	
+				$body = preg_replace('@<body[^>]*?>@msU', "$0\n" . $openbody, $body);
+				JResponse::setBody($body);
+			}
 		}
 		
 		// append modules in debug position
@@ -646,6 +653,11 @@ class T3Template extends ObjectExtendable
 		$navtrigger = $this->getParam('navigation_trigger', 'hover');
 		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1);
 
+		$frontedit  = in_array(JFactory::getApplication()->input->getCmd('option'), array('com_media', 'com_config'));
+		// FRONTEND EDITING
+		if($frontedit){
+			$this->addCss('frontend-edit');
+		}
 		// BOOTSTRAP CSS
 		$this->addCss('bootstrap', false);
 		// TEMPLATE CSS
@@ -723,6 +735,10 @@ class T3Template extends ObjectExtendable
 		//reponsive script
 		if ($responsive) {
 			$this->addScript(T3_URL . '/js/responsive.js');
+		}
+
+		if($frontedit){
+			$this->addScript(T3_URL . '/js/frontend-edit.js');
 		}
 
 		//check and add additional assets

@@ -14,11 +14,16 @@
 
 class T3MenuMegamenuTpl {
 	static function beginmenu ($vars) {
-		$menu = $vars['menu'];
-		$animation = $menu->getParam ('navigation_animation', '');
-		$animation_duration = $menu->getParam ('navigation_animation_duration', 0);
-		$cls = ' class="t3-megamenu'.($animation ? ' animate '.$animation : '').'"';
-		$data = $animation && $animation_duration ? ' data-duration="'.$animation_duration.'"' : '';
+		$menu          = $vars['menu'];
+		$animation     = $menu->getParam('navigation_animation', '');
+		$trigger       = $menu->getParam('navigation_trigger', 'hover');
+		$responsive    = $menu->getParam('responsive', 1);
+		$anim_duration = $menu->getParam('navigation_animation_duration', 0);
+
+		$cls  = ' class="t3-megamenu' . ($trigger == 'hover' && $animation ? ' animate ' . $animation : '') . '"';
+		$data = $animation && $anim_duration ? ' data-duration="' . $anim_duration . '"' : '';
+		$data = $data . ($responsive ? ' data-responsive="true"' : '');
+
 		return "<div$cls$data>";
 	}
 
@@ -154,7 +159,7 @@ class T3MenuMegamenuTpl {
 
 		if($item->dropdown && $item->level < 2){
 			$vars['class'] .= ' dropdown-toggle';
-			$vars['dropdown'] = ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
+			$vars['dropdown'] .= ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
 			$vars['caret'] = '<b class="caret"></b>';
 		}
 
@@ -220,7 +225,7 @@ class T3MenuMegamenuTpl {
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-				$link = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a class=\"$class\" href=\"$flink\"" . ($vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 

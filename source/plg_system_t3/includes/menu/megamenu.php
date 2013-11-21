@@ -34,6 +34,8 @@ class T3MenuMegamenu {
 		if(isset($settings['access'])){
 			$attributes[] = 'access';
 			$values[]     = $settings['access'];
+		} else {
+			$settings['access'] = array(1);
 		}
 		
 		if(isset($settings['language'])){
@@ -225,12 +227,14 @@ class T3MenuMegamenu {
 		
 		$this->_('beginitem', array(
 			'item' => $item,
-			'setting' => $setting
+			'setting' => $setting,
+			'menu' => $this
 		));
 		
 		$this->menu .= $this->_('item', array(
 			'item' => $item,
-			'setting' => $setting
+			'setting' => $setting,
+			'menu' => $this
 		));
 		
 		if ($item->mega) {
@@ -242,7 +246,6 @@ class T3MenuMegamenu {
 	}
 	
 	function mega($item) {
-		$key       = 'item-' . $item->id;
 		$setting   = $item->setting;
 		$sub       = $setting['sub'];
 		$items     = isset($this->children[$item->id]) ? $this->children[$item->id] : array();
@@ -270,10 +273,14 @@ class T3MenuMegamenu {
 		
 		$firstitemscol = true;
 		foreach ($sub['rows'] as $row) {
-			$this->_('beginrow');
+			$this->_('beginrow', array(
+				'menu' => $this
+			));
+
 			foreach ($row as $col) {
 				$this->_('begincol', array(
-					'setting' => $col
+					'setting' => $col,
+					'menu' => $this
 				));
 				if (isset($col['position'])) {
 					$this->module($col['position']);
@@ -297,10 +304,12 @@ class T3MenuMegamenu {
 		$id    = intval($module);
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
-		$query->from('#__modules AS m');
-		$query->where('m.id = ' . $id);
-		$query->where('m.published = 1');
+		$query
+			->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params')
+			->from('#__modules AS m')
+			->where('m.id = ' . $id)
+			->where('m.published = 1')
+			->where('m.access IN ('.implode(',', $this->settings['access']).')');
 		$db->setQuery($query);
 		$module = $db->loadObject();
 		

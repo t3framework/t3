@@ -16,6 +16,7 @@ JHtml::_('behavior.formvalidation');
 
 if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('formbehavior.chosen', 'select');
+	JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
 }
 
 // Create shortcut to parameters.
@@ -224,14 +225,26 @@ if (!$editoroptions)
 							<?php echo $this->form->getInput('catid'); ?>
 						</div>
 					</div>
-					<div class="control-group">
-						<div class="control-label">
-							<?php echo $this->form->getLabel('tags', 'metadata'); ?>
+					<?php if(version_compare(JVERSION, '3.0', 'ge')) :?>
+						<div class="control-group">
+							<div class="control-label">
+								<?php echo $this->form->getLabel('tags'); ?>
+							</div>
+							<div class="controls">
+								<?php echo $this->form->getInput('tags'); ?>
+							</div>
 						</div>
-						<div class="controls">
-							<?php echo $this->form->getInput('tags', 'metadata'); ?>
+						<?php if ($params->get('save_history', 0)) : ?>
+						<div class="control-group">
+							<div class="control-label">
+								<?php echo $this->form->getLabel('version_note'); ?>
+							</div>
+							<div class="controls">
+								<?php echo $this->form->getInput('version_note'); ?>
+							</div>
 						</div>
-					</div>
+						<?php endif; ?>
+					<?php endif; ?>
 
 					<div class="control-group">
 						<div class="control-label">

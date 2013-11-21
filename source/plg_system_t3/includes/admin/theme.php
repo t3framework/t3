@@ -174,14 +174,15 @@ class T3AdminTheme
 	 */
 	public static function thememagic($path)
 	{
-		$app = JFactory::getApplication();
-		$isadmin = $app->isAdmin();
-		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
-		$url .= (preg_match('/\?/', $url) ? '&' : '?').'themer=1';
-		// show thememagic form
-
+		$app       = JFactory::getApplication();
+		$input     = $app->input;
 		//todo: Need to optimize here
 		$tplparams = JFactory::getApplication('site')->getTemplate(true)->params;
+		$isadmin   = $app->isAdmin();
+		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
+		$url .= (preg_match('/\?/', $url) ? '&' : '?') . 'themer=1';
+		$url .= ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '');
+		$url .= '&t3tmid=' . $input->getCmd('id');
 
 		$assetspath = T3_TEMPLATE_PATH;
 		$themepath = $assetspath . '/less/themes';
@@ -382,13 +383,15 @@ class T3AdminTheme
 				
 				//should we provide a list of less path
 				foreach (array(T3_TEMPLATE_PATH . '/less', T3_TEMPLATE_PATH . '/fonts/font-awesome/less', T3_PATH . '/bootstrap/less', T3_PATH . '/less') as $lesspath) {
-					$lessfiles = JFolder::files($lesspath, '.less', true, true);
-					if(is_array($lessfiles)){
-						foreach ($lessfiles as $less) {
-							$path            = ltrim(str_replace(array(JPATH_ROOT, '\\'), array('', '/'), $less), '/');
-							$path            = T3Path::cleanPath($path);
-							$fullurl         = $baseurl . preg_replace('@(\\+)|(/+)@', '/', $path);
-							$cache[$fullurl] = JFile::read($less);
+					if(is_dir($lesspath)){
+						$lessfiles = JFolder::files($lesspath, '.less', true, true);
+						if(is_array($lessfiles)){
+							foreach ($lessfiles as $less) {
+								$path            = ltrim(str_replace(array(JPATH_ROOT, '\\'), array('', '/'), $less), '/');
+								$path            = T3Path::cleanPath($path);
+								$fullurl         = $baseurl . preg_replace('@(\\+)|(/+)@', '/', $path);
+								$cache[$fullurl] = JFile::read($less);
+							}
 						}
 					}
 				}

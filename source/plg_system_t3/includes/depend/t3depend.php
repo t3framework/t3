@@ -59,7 +59,9 @@ class JFormFieldT3Depend extends JFormField
 					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
 					$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 				}
+			}
 
+			if(JFactory::getApplication()->isSite() || !defined('T3_TEMPLATE')){
 				$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
 				$jdoc->addScript(T3_ADMIN_URL . '/includes/depend/js/depend.js');
 			}
@@ -299,14 +301,25 @@ class JFormFieldT3Depend extends JFormField
 		$this->loadAsset();
 
 		preg_match_all('/jform\\[([^\]]*)\\]/', $this->name, $matches);
-		$group_name = 'jform';
-		
+		$group_name = '';
+
 		if(!isset($matches[1]) || empty($matches[1])){
 			preg_match_all('/t3form\\[([^\]]*)\\]/', $this->name, $matches);
-			$group_name = 't3form';
+		} else {
+			$group_name = 'jform' . '[' . @$matches[1][0] . ']';
 		}
-		
-		if(isset($matches[1]) && !empty($matches[1])):
+
+		if(isset($matches[1]) || !empty($matches[1])){
+			
+			if(preg_match('/params\\[([^\]]*)\\]/', $this->name)){
+				$group_name = 'params';
+			}
+
+		} else {
+			$group_name = 'jform' . '[' . @$matches[1][0] . ']';
+		}
+
+		if($group_name):
 		?>
 		<script type="text/javascript">
 			jQuery(document).ready(function(){
@@ -318,7 +331,7 @@ class JFormFieldT3Depend extends JFormField
 				T3Depend.add('<?php echo $option['for']; ?>', {
 					vals: '<?php echo $vals ?>',
 					elms: '<?php echo $elms?>',
-					group: '<?php echo $group_name . '[' . @$matches[1][0] . ']'; ?>'
+					group: '<?php echo $group_name; ?>'
 				});
 			<?php
 				endforeach;
