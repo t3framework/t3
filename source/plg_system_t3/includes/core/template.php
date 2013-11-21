@@ -743,11 +743,18 @@ class T3Template extends ObjectExtendable
 		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1);
 		$bs2compat  = $this->getParam('bs2compat', 0);
 
+		$frontedit  = in_array(JFactory::getApplication()->input->getCmd('option'), array('com_media', 'com_config'));
+
 		// BOOTSTRAP 2 COMPATIBLE
 		if($bs2compat){
 			$this->addStyleSheet(T3_URL . '/css/legacy-grid.css');
 			$this->addCss('compat'); //should be in template 'less' folder
 			$this->addStyleSheet(T3_URL . '/fonts/font-awesome/css/font-awesome.css');
+		}
+
+		// FRONTEND EDITING
+		if($frontedit){
+			$this->addCss('frontedit');
 		}
 
 		// BOOTSTRAP CSS
@@ -788,7 +795,6 @@ class T3Template extends ObjectExtendable
 			// megamenu.css override in template
 			$this->addCss('megamenu');
 		}
-
 
 		// Add scripts
 		if (version_compare(JVERSION, '3.0', 'ge')) {
@@ -838,6 +844,10 @@ class T3Template extends ObjectExtendable
 			$this->addScript(T3_URL . '/js/responsive.js');
 		}
 
+		if($frontedit){
+			$this->addScript(T3_URL . '/js/frontedit.js');
+		}
+
 		//check and add additional assets
 		$this->addExtraAssets();
 	}
@@ -855,7 +865,6 @@ class T3Template extends ObjectExtendable
 		$themermode = $this->getParam('themermode', 1) && defined('T3_THEMER');
 		$theme = $this->getParam('theme', '');
 		$minify = $this->getParam('minify', 0);
-
 
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded
@@ -927,7 +936,6 @@ class T3Template extends ObjectExtendable
 		if (!$devmode && !$themermode && !$theme && !$minify && !$is_rtl) {
 			return;
 		}
-
 
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);

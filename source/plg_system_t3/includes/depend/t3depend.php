@@ -210,14 +210,14 @@ class JFormFieldT3Depend extends JFormField
 					<span class="icon-help editlinktip hasTip" title="'.htmlentities($_description).'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<a class="toggle-btn open" title="'.JText::_('Expand all').'" onclick="T3Depend.showseg(\''.$regionID.'\', \'level'.$level.'\'); return false;">'.JText::_('Expand all').'</a>
 					<a class="toggle-btn close" title="'.JText::_('Collapse all').'" onclick="T3Depend.showseg(\''.$regionID.'\', \'level'.$level.'\'); return false;">'.JText::_('Collapse all').'</a>
-		    	</h4>';
+		    </h4>';
 		} else {
 			$html = '
 				<h4 rel="'.$level.'" class="block-head block-head-'.$class_name.' open '.$class.' " '.$group.' id="'.$regionID.'">
 					<span class="block-setting" >'.$_title.$_url.'</span> 
 					<span class="icon-help editlinktip hasTip" title="'.htmlentities($_description).'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<a class="toggle-btn" title="'.JText::_('Click here to expand or collapse').'" onclick="T3Depend.segment(\''.$regionID.'\', \'level'.$level.'\'); return false;">open</a>
-		    	</h4>';
+		    </h4>';
 		} 
 		//<div class="block-des '.$class.'"  id="desc-'.$regionID.'">'.$_description.'</div>';
 		
@@ -300,26 +300,9 @@ class JFormFieldT3Depend extends JFormField
 	function group(){
 		$this->loadAsset();
 
-		preg_match_all('/jform\\[([^\]]*)\\]/', $this->name, $matches);
-		$group_name = '';
+		if(preg_match_all('@\[([^\]]*)\]@', $this->name, $matches)):
 
-		if(!isset($matches[1]) || empty($matches[1])){
-			preg_match_all('/t3form\\[([^\]]*)\\]/', $this->name, $matches);
-		} else {
-			$group_name = 'jform' . '[' . @$matches[1][0] . ']';
-		}
-
-		if(isset($matches[1]) || !empty($matches[1])){
-			
-			if(preg_match('/params\\[([^\]]*)\\]/', $this->name)){
-				$group_name = 'params';
-			}
-
-		} else {
-			$group_name = 'jform' . '[' . @$matches[1][0] . ']';
-		}
-
-		if($group_name):
+			$group_name = str_replace(end($matches[0]), '', $this->name);
 		?>
 		<script type="text/javascript">
 			jQuery(document).ready(function(){
