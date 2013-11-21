@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 
 		<?php if ($this->getParam('navigation_collapse_enable')) :
 			$this->addScript(T3_URL.'/js/nav-collapse.js');
-			?>
+		?>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar-collapse">
 				<i class="fa fa-bars"></i>
