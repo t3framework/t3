@@ -154,9 +154,6 @@
 				<option for="navigation_animation" value="fading,slide,zoom,elastic">
 					navigation_animation_duration
 				</option>
-				<option for="navigation_collapse_offcanvas" value="1">
-					navigation_collapse_offcanvas_effect
-				</option>
 			</field>
 
 			<field name="mm_type" type="menu" default="mainmenu"
@@ -213,6 +210,11 @@
 		</fieldset>
 
         <fieldset name="addon_params" label="T3_ADDON_LABEL" description="T3_ADDON_DESC">
+            <field name="addon_group_default" type="t3depend" function="@group">
+                <option for="addon_offcanvas_enable" value="1">
+                    addon_offcanvas_effect
+                </option>
+            </field>
 
             <field type="t3depend" function="@legend" label="T3_ADDON_OFFCANVAS_GROUP_LABEL" description="T3_ADDON_OFFCANVAS_GROUP_DESC" />
 
