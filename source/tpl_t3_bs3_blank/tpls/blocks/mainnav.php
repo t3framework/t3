@@ -12,13 +12,18 @@ defined('_JEXEC') or die;
 <nav id="t3-mainnav" class="wrap navbar navbar-default t3-mainnav">
 	<div class="container">
 
+		<?php if ($this->getParam('navigation_collapse_enable')) :
+			$this->addScript(T3_URL.'/js/nav-collapse.js');
+			?>
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar-collapse">
 				<i class="fa fa-bars"></i>
 			</button>
 		</div>
+		<div class="t3-navbar-collapse collapse navbar-collapse"></div>
+		<?php endif ?>
 
-		<div class="t3-navbar collapse navbar-collapse <?php echo $this->getParam('navigation_collapse_showsub', 1) ? ' always-show' : '' ?>">
+		<div class="t3-navbar">
 			<jdoc:include type="<?php echo $this->getParam('navigation_type', 'megamenu') ?>" name="<?php echo $this->getParam('mm_type', 'mainmenu') ?>" />
 		</div>
 

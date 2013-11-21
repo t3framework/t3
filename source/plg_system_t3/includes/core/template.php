@@ -740,7 +740,7 @@ class T3Template extends ObjectExtendable
 		$responsive = $this->getParam('responsive', 1);
 		$navtype    = $this->getParam('navigation_type', 'joomla');
 		$navtrigger = $this->getParam('navigation_trigger', 'hover');
-		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1);
+		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1) || $this->getParam('navigation_offcanvas_enable', 1);
 		$bs2compat  = $this->getParam('bs2compat', 0);
 
 		// BOOTSTRAP 2 COMPATIBLE
@@ -821,9 +821,8 @@ class T3Template extends ObjectExtendable
 
 		// add css/js for off-canvas
 		if ($offcanvas && $responsive) {
-			//$this->addCss('off-canvas', false);
-			//$this->addScript(T3_URL . '/js/off-canvas.js');
-			$this->loadBlock('head-offcanvas');
+			$this->addCss('off-canvas', false);
+			$this->addScript(T3_URL . '/js/off-canvas.js');
 		}
 
 		$this->addScript(T3_URL . '/js/script.js');

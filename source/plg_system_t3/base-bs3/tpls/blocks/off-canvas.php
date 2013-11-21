@@ -8,8 +8,7 @@
 defined('_JEXEC') or die;
 ?>
 <?php
-$this->addCss('off-canvas', false);
-$this->addScript (T3_URL.'/js/off-canvas.js');
+	if (!$this->getParam('navigation_offcanvas_enable')) return ;
 ?>
 <button class="off-canvas-btn" type="button" data-nav="#off-canvas" data-effect="<?php echo $this->getParam('navigation_collapse_offcanvas_effect', 'off-canvas-effect-4') ?>">
 	<i class="fa fa-bars"></i>
