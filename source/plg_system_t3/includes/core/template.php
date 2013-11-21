@@ -754,7 +754,7 @@ class T3Template extends ObjectExtendable
 
 		// FRONTEND EDITING
 		if($frontedit){
-			$this->addCss('frontedit');
+			$this->addCss('frontend-edit');
 		}
 
 		// BOOTSTRAP CSS
