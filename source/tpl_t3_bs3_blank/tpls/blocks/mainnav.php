@@ -20,10 +20,10 @@ defined('_JEXEC') or die;
 				<i class="fa fa-bars"></i>
 			</button>
 		</div>
-		<div class="t3-navbar-collapse collapse navbar-collapse"></div>
+		<div class="t3-navbar-collapse collapse"></div>
 		<?php endif ?>
 
-		<div class="t3-navbar">
+		<div class="t3-navbar collapse navbar-collapse">
 			<jdoc:include type="<?php echo $this->getParam('navigation_type', 'megamenu') ?>" name="<?php echo $this->getParam('mm_type', 'mainmenu') ?>" />
 		</div>
 
