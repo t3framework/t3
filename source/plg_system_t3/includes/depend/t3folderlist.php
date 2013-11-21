@@ -54,6 +54,7 @@ class JFormFieldT3FolderList extends JFormFieldFolderList
 		{
 			$this->directory = $this->element['directory'] =  T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
 		}
+
 		if(!is_dir($this->element['directory'])){
 			$hideDefault = (string) $this->element['hide_default'];
 
