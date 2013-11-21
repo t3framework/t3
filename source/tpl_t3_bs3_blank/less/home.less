@@ -26,6 +26,7 @@
   .jumbotron {
     background-color: transparent;
     position: relative;
+    margin-bottom: 0;
     
     // Heading
     h1, h2, h3 {
@@ -42,16 +43,10 @@
   .t3-sl-1 {
     padding: 0;
     background: @gray-lighter;
-    border-bottom: 1px solid @t3-border-color;
 
     // jumbotron
     .jumbotron {
       border-radius: 0;
-
-      h1 {
-        font-weight: bold;
-      }
-
       //jumbotron btn
       .btn {
         margin-top: @line-height-computed;
@@ -87,40 +82,50 @@
     }
 
     p {
-      font-size: @t3-font-size-bigger;
-      line-height: @line-height-computed + 2px;
+      // Bigger Font size in Desktop
+      @media screen and (min-width: @screen-sm) {
+        font-size: @t3-font-size-bigger;
+        line-height: floor(@t3-font-size-bigger * @line-height-base);
+      }
     }
   }
 
   // Spotlight 3 & 4
   // ---------------
-  .t3-sl-3 p img {
-    margin-bottom: @t3-global-margin;
-  }
-
   .t3-sl-3,
   .t3-sl-4 {
     border-top: 1px solid @t3-border-color;
     text-align: center;
 
     p {
-      font-size: @t3-font-size-bigger;
-      line-height: @line-height-computed + 2px;
+      // Bigger Font size in Desktop
+      @media screen and (min-width: @screen-sm) {
+        font-size: @t3-font-size-bigger;
+        line-height: floor(@t3-font-size-bigger * @line-height-base);
+      }
     }
 
-    // jumbotron
+    // Jumbotron Header
     .jumbotron {
       padding-top: 0;
+
       h1 {
-        margin-bottom: @t3-global-margin / 2;
+        margin-bottom: @line-height-computed / 2;
         margin-top: 0;
       }
+
       p {
-        font-size: @font-size-base * 1.5;
-        line-height: 1.275;
+        font-size: @font-size-large;
+        line-height: 1.25;
         color: @gray-light;
+        // Bigger Font size in Desktop
+        @media screen and (min-width: @screen-sm) {
+          font-size: ceil(@font-size-base * 1.5);
+        }
       }
+
     }
+
   }
 
   // Spotlight 5
@@ -138,75 +143,3 @@
   }
 
 }
-
-
-
-//
-// RESPONSIVE HOME
-// -------------------------------------------------------------
-@media (max-width: @screen-xs-max) {
-
-  // -----------------------------------------------------------
-  // HOME SPOTLIGHTS
-  // -----------------------------------------------------------
-
-  .home {
-
-    // Spotlight 1 + 5
-    // ---------------
-    .t3-sl-1,
-    .t3-sl-5 {
-
-      //jumbotron
-      .jumbotron {
-        padding-top: 30px;
-        padding-bottom: 10px;
-        //jumbotron btn
-        .btn-large {
-          font-size: @font-size-base + 2;
-          padding: (@font-size-base - 2px) (@font-size-base + 2px);
-        }
-      }
-    }
-
-
-    // Spotlight 2
-    // -----------
-    .t3-sl-2 {
-      text-align: center;
-      p {
-        font-size: @font-size-base;
-        line-height: @line-height-computed;
-      }
-    }
-
-
-    // Spotlight 3 & 4
-    // ---------------
-    .t3-sl-3 p img {
-      margin-bottom: 0;
-      margin-top: @t3-global-margin;
-    }
-
-    .t3-sl-3,
-    .t3-sl-4 {
-      p {
-        font-size: @font-size-base;
-        line-height: @line-height-computed;
-      }
-
-      //jumbotron
-      .jumbotron {
-        padding-bottom: 0;
-        h1 {
-          margin-bottom: @t3-global-margin / 2;
-          margin-top: @t3-global-margin / 2;
-        }
-        p {
-          font-size: @font-size-base;
-        }
-      }
-    }
-  }
-}
-

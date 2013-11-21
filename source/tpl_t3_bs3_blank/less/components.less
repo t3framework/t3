@@ -82,37 +82,6 @@ h2.article-title,
 // MASHEAD & JUMBOTRON
 // --------------------------------------------------
 
-// Mashead
-// --------
-.masthead {
-  padding: (@t3-global-padding * 4) 0 (@t3-global-padding * 3);
-  text-align: center;
-
-  h1 {
-    font-size: @font-size-base * 7;
-  }
-
-  p {
-    font-size: @font-size-base * 2;
-  }
-
-  // Big mashead btn
-  .btn-lg {
-    margin-top: @line-height-computed;
-    padding: 18px 42px;
-    font-size: @font-size-base * 1.5;
-  }
-
-  @media screen and (max-width: @screen-sm-min) {
-    .btn-lg {
-      padding: @padding-base-vertical @padding-base-horizontal;
-      font-size: @font-size-base;
-    }
-  }
-
-}
-
-
 // Jumbotron (jumbotron.less)
 // --------------------------
 .jumbotron {
@@ -122,6 +91,10 @@ h2.article-title,
   }
 
   p {
+    // Remove margin on last paragraph
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .container & {
@@ -132,6 +105,40 @@ h2.article-title,
     .container & {
     }
     h1 {
+    }
+  }
+
+}
+
+// Mashead
+// --------
+.masthead {
+  padding: (@t3-global-padding * 2) 0;
+  text-align: center;
+
+  p {
+    // Remove margin on last paragraph
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: @screen-sm) {
+    padding: (@t3-global-padding * 4) 0;
+
+    h1 {
+      font-size: @font-size-base * 7;
+    }
+
+    p {
+      font-size: @font-size-base * 2;
+    }
+
+    // Bigger mashead btn
+    .btn-lg {
+      margin-top: @line-height-computed;
+      padding: 18px 42px;
+      font-size: @font-size-base * 1.5;
     }
   }
 
