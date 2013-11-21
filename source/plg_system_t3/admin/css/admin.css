@@ -479,6 +479,7 @@ input[type="color"]:focus,
   background: #f2f2f2;
   padding: 15px 20px 15px 22%;
   border: 0;
+  margin-top: -1px;
   margin-bottom: 0;
   line-height: normal;
   box-sizing: border-box;
@@ -525,7 +526,7 @@ input[type="color"]:focus,
 .t3-admin-form .form-horizontal .t3-control-group {
   margin: 0;
   padding: 0;
-  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   background: #fff;
 }
 
@@ -1074,8 +1075,8 @@ button.btn-primary:active {
   line-height: normal;
   padding: 3px 5px;
   border-radius: 2px;
-  background: #07b;
-  color: #fff;
+  background: #ddd;
+  color: #666;
   text-shadow: none;
   margin-left: 10px;
   top: -2px;

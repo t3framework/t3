@@ -27,19 +27,27 @@ defined('_JEXEC') or die;
 
 <body>
 
-<?php $this->loadBlock('header') ?>
+<!-- Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
+<div class="t3-wrapper"><div class="t3-wrapper-inner"><div class="t3-wrapper-content">
+<!-- // Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
 
-<?php $this->loadBlock('mainnav') ?>
+  <?php $this->loadBlock('header') ?>
 
-<?php $this->loadBlock('spotlight-1') ?>
+  <?php $this->loadBlock('mainnav') ?>
 
-<?php $this->loadBlock('mainbody-content-right') ?>
+  <?php $this->loadBlock('spotlight-1') ?>
 
-<?php $this->loadBlock('spotlight-2') ?>
+  <?php $this->loadBlock('mainbody-content-right') ?>
 
-<?php $this->loadBlock('navhelper') ?>
+  <?php $this->loadBlock('spotlight-2') ?>
 
-<?php $this->loadBlock('footer') ?>
+  <?php $this->loadBlock('navhelper') ?>
+
+  <?php $this->loadBlock('footer') ?>
+
+<!-- Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
+</div></div></div>
+<!-- // Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
 
 </body>
 
