@@ -79,7 +79,7 @@ if (is_array($list)) :
 
 		// The next item is deeper.
 		if ($item->deeper) {
-			echo '<ul class="nav-child unstyled small dropdown-menu">';
+			echo '<ul class="dropdown-menu">';
 		}
 		// The next item is shallower.
 		elseif ($item->shallower) {
