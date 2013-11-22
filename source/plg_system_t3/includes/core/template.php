@@ -675,13 +675,13 @@ class T3Template extends ObjectExtendable
 				if(!empty($param->$device)){
 					$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
 					$posfix = $this->responcls ? '' : '"';
-					$data .= $prefix . trim($param->device) . $posfix;
+					$data .= $prefix . trim($param->$device) . $posfix;
 				}
 			}
 			
 			$defdv = $this->defdv;
 			if(!$this->responcls && !empty($data)){
-				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon' . substr($data, 0, strrpos($data, '"'));
+				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon"' . $data;
 			}
 		}
 
