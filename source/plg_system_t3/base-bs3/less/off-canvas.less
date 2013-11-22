@@ -12,6 +12,7 @@
  */
 
 
+//
 // VARIABLES & MIXINS
 // ------------------
 
@@ -27,13 +28,10 @@
 // T3 Base mixins
 @import "mixins.less";
 
-*,
-*:after,
-*::before {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
+//
+// OFF-CANVAS
+// -------------------------------------
 html,
 body,
 .t3-wrapper,
@@ -45,7 +43,8 @@ body,
 .t3-wrapper-content {
   position: relative;
   overflow-y: scroll;
-  background: #FFF;
+  background: @t3-off-canvas-background; // Need a background. Otherwise the sidebar will overlap.
+  color: @t3-off-canvas-text-color;
 }
 
 .t3-wrapper {
@@ -95,7 +94,6 @@ body,
   visibility: hidden;
   width: @t3-off-canvas-width;
   height: 100%;
-  background: #48a770;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -121,39 +119,23 @@ body,
   transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 }
 
-/* content style */
 
+
+//
+// OFF-CANVAS CONTENT STYLES
+// -------------------------------------
+
+// Navigations
+// ------------
 .off-canvas ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.off-canvas h2 {
-  margin: 0;
-  padding: 1em;
-  color: rgba(0,0,0,0.4);
-  text-shadow: 0 0 1px rgba(0,0,0,0.1);
-  font-weight: 300;
-  font-size: 2em;
-}
 
 .off-canvas ul li a {
   display: block;
-  padding: 1em 1em 1em 1.2em;
-  outline: none;
-  box-shadow: inset 0 -1px rgba(0,0,0,0.2);
-  color: #f3efe0;
-  text-transform: uppercase;
-  text-shadow: 0 0 1px rgba(255,255,255,0.1);
-  letter-spacing: 1px;
-  font-weight: 400;
-  -webkit-transition: background 0.3s, box-shadow 0.3s;
-  transition: background 0.3s, box-shadow 0.3s;
-}
-
-.off-canvas ul li:first-child a {
-  box-shadow: inset 0 -1px rgba(0,0,0,0.2), inset 0 1px rgba(0,0,0,0.2);
 }
 
 .off-canvas ul li a:hover {
@@ -162,9 +144,18 @@ body,
   color: #fff;
 }
 
-/* Individual effects */
 
-/* Effect 1: Slide in on top */
+// Modules
+// ---------
+
+
+
+//
+// OFF-CANVAS EFFECTS
+// -------------------------------------
+
+// Effect 1: Slide in on top
+// -------------------------
 .off-canvas-effect-1.off-canvas {
   visibility: visible;
   -webkit-transform: translate3d(-100%, 0, 0);
@@ -181,7 +172,9 @@ body,
   display: none;
 }
 
-/* Effect 2: Reveal */
+
+// Effect 2: Reveal
+// ----------------
 .off-canvas-effect-2.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
@@ -201,7 +194,9 @@ body,
   display: none;
 }
 
-/* Effect 3: Push*/
+
+// Effect 3: Push
+// --------------
 .off-canvas-effect-3.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
@@ -222,7 +217,9 @@ body,
   display: none;
 }
 
-/* Effect 4: Slide along */
+
+// Effect 4: Slide along
+// ---------------------
 .off-canvas-effect-4.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
@@ -246,7 +243,9 @@ body,
   display: none;
 }
 
-/* Effect 5: Reverse slide out */
+
+// Effect 5: Reverse slide out
+// ---------------------------
 .off-canvas-effect-5.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
@@ -266,8 +265,9 @@ body,
   transform: translate3d(0, 0, 0);
 }
 
-/* Effect 6: Rotate pusher */
 
+// Effect 6: Rotate pusher
+// -----------------------
 .off-canvas-effect-6.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -306,8 +306,9 @@ body,
   display: none;
 }
 
-/* Effect 7: 3D rotate in */
 
+// Effect 7: 3D rotate in
+// ----------------------
 .off-canvas-effect-7.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -342,8 +343,9 @@ body,
   transform: translate3d(-100%, 0, 0) rotateY(0deg);
 }
 
-/* Effect 8: 3D rotate out */
 
+// Effect 8: 3D rotate out
+// -----------------------
 .off-canvas-effect-8.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -382,8 +384,9 @@ body,
   display: none;
 }
 
-/* Effect 9: Scale down pusher */
 
+// Effect 9: Scale down pusher
+// ---------------------------
 .off-canvas-effect-9.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -417,8 +420,9 @@ body,
   display: none;
 }
 
-/* Effect 10: Scale up */
 
+// Effect 10: Scale up
+// -------------------
 .off-canvas-effect-10.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -446,8 +450,9 @@ body,
   transform: translate3d(0, 0, 0);
 }
 
-/* Effect 11: Scale and rotate pusher */
 
+// Effect 11: Scale and rotate pusher
+// ----------------------------------
 .off-canvas-effect-11.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -481,8 +486,9 @@ body,
   display: none;
 }
 
-/* Effect 12: Open door */
 
+// Effect 12: Open door
+// --------------------
 .off-canvas-effect-12.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -518,8 +524,9 @@ body,
   display: none;
 }
 
-/* Effect 13: Fall down */
 
+// Effect 13: Fall down
+// --------------------
 .off-canvas-effect-13.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -551,8 +558,9 @@ body,
   transition-speed: 0.2s;
 }
 
-/* Effect 14: Delayed 3D rotate */
 
+// Effect 14: Delayed 3D rotate
+// ----------------------------
 .off-canvas-effect-14.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
@@ -591,7 +599,11 @@ body,
   transform: translate3d(-100%, 0, 0) rotateY(0deg);
 }
 
-/* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
+
+//
+// Fallback example for browsers
+// that don't support 3D transforms (and no JS fallback)
+// -----------------------------------------------------
 .no-csstransforms3d .t3-wrapper-inner,
 .no-js .t3-wrapper-inner {
   padding-left: @t3-off-canvas-width;
