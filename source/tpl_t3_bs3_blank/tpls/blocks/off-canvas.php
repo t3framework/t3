@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 <?php
 	if (!$this->getParam('addon_offcanvas_enable')) return ;
 ?>
-<button class="btn btn-default off-canvas-toggle" type="button" data-nav="#t3-off-canvas" data-effect="<?php echo $this->getParam('addon_offcanvas_effect', 'off-canvas-effect-4') ?>">
+<button class="btn btn-default off-canvas-toggle" type="button" data-nav="#t3-off-canvas" data-effect="<?php echo $this->getParam('addon_offcanvas_effect1', 'off-canvas-effect-4') ?>">
 	<i class="fa fa-bars"></i>
 </button>
 
