@@ -35,6 +35,7 @@ defined('_JEXEC') or die;
   <?php $this->loadBlock('header') ?>
 
   <?php $this->loadBlock('mainnav') ?>
+    <?php $this->loadBlock('off-canvas') ?>
 
   <?php $this->loadBlock('mainbody-home-2') ?>
 
