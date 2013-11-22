@@ -1,41 +1,43 @@
-<h2>Version: 1.4.3 (22/11/2013)</h2>
+<h2>Version: 1.4.3 (11/22/2013)</h2>
 
 <h3>Improvement</h3>
-- Megamenu: Add align responsive | <a href="https://github.com/t3framework/t3/commit/1119779e4453568b08f503807bba4c77d7e33ca6">Link</a>
+- Megamenu: add add responsive alignment | <a href="https://github.com/t3framework/t3/commit/1119779e4453568b08f503807bba4c77d7e33ca6">Link</a>
 	
 <h3>Fix bugs</h3>
-- ThemeMagic: Fix compatible J3.2 | <a href="https://github.com/t3framework/t3/commit/4d99961c32d13dc00dd61607f707b75590ef2a51">Link</a>
-- T3: Fix injection after body when body tag has attribute | <a href="https://github.com/t3framework/t3/commit/515d9beb62081185a21074fb9bef2c78d082fe00">Link</a>
+- ThemeMagic: Fix Joomla 3.2 compatibility | <a href="https://github.com/t3framework/t3/commit/4d99961c32d13dc00dd61607f707b75590ef2a51">Link</a>
+- T3: fix "After <body>" when body tag has attribute | <a href="https://github.com/t3framework/t3/commit/515d9beb62081185a21074fb9bef2c78d082fe00">Link</a>
 - Optimize frontend-edit | <a href="https://github.com/t3framework/t3/commit/f5943efc22888e9efa03aa6330948e3bda884abf">Link</a>
 - Fix thememagic color | <a href="https://github.com/t3framework/t3/commit/48a590f4de28324ea29693112518f416ea77af52">Link</a>
-- Remove truncate footnav.tpl | <a href="https://github.com/t3framework/t3/commit/85388c0ac8cfa9074929266e76149af43f09fc60">Link</a>
+- Remove truncate in footnav.tpl | <a href="https://github.com/t3framework/t3/commit/85388c0ac8cfa9074929266e76149af43f09fc60">Link</a>
 
 
 
-<h2>Version: 1.4.2 (07/11/2013)</h2>
+<h2>Version: 1.4.2 (11/07/2013)</h2>
 
 <h3>New features</h3>
 - Megamenu: Add <jdoc:include type=megamenu /> | <a href="https://github.com/t3framework/t3/commit/2a94d2ccd3de7f9cbd0b2139e6ae552413fea557">Link</a>
-		
+	
+	
 <h3>Improvement</h3>
-- Add mapping for Joomla3 icon classes | <a href="https://github.com/t3framework/t3/commit/bb441f8333e7f14a7d41f5047c8aab6c0844bfc3">Link</a>
+- Add mapping for Joomla 3 icon classes | <a href="https://github.com/t3framework/t3/commit/bb441f8333e7f14a7d41f5047c8aab6c0844bfc3">Link</a>
 - Megamenu: Update core style of megamenu group | <a href="https://github.com/t3framework/t3/commit/6b1a34994aba727d22773480e2335f2b6cc03371">Link</a>
+
 	
 <h3>Fix bugs</h3>
 - Update language string | <a href="https://github.com/t3framework/t3/commit/5b0f2d54cfc6a9bb5cb0352df3339de845266e5e">Link</a>
-- Font Awesome: Update included font for J3.0 compatible | <a href="https://github.com/t3framework/t3/commit/881d84fb17e327c943c42a56ca5a86b24c30c5c2">Link</a>
+- Font Awesome: Update included font for Joomla 3.0 compatibility | <a href="https://github.com/t3framework/t3/commit/881d84fb17e327c943c42a56ca5a86b24c30c5c2">Link</a>
 - Overwrite: Fix Joomla options show_category_heading_title_text | <a href="https://github.com/t3framework/t3/commit/0e0e539ddc792659d04371259842aa09f6e4e704">Link</a>
-- ThemeMagic: Fix frontend view thememagic ?tm=1 when themermode is dis… | <a href="https://github.com/t3framework/t3/commit/606330bbb689f05a6a857ce71eb105c0b3513e61">Link</a>
+- ThemeMagic: Fix frontend view thememagic ?tm=1 when themermode is disabled| <a href="https://github.com/t3framework/t3/commit/606330bbb689f05a6a857ce71eb105c0b3513e61">Link</a>
 - Avoid tooltip right margin creating horiz. scroll | <a href="https://github.com/t3framework/t3/commit/7672bda0590bccd5355f97a6c663fdb291749834">Link</a>
-- Update t3 (many bug fixes) | <a href="https://github.com/t3framework/t3/commit/8b3ec6df08162897f09d15ffb9fd100284896264">Link</a>
-- T3Depend: Update Joomla 3.2 compatible | <a href="https://github.com/t3framework/t3/commit/a28cc7e932cec0d6c6af30b187fd4b01a74cfea9">Link</a>
+- Update t3 (number of minor bug fixes) | <a href="https://github.com/t3framework/t3/commit/8b3ec6df08162897f09d15ffb9fd100284896264">Link</a>
 
 
 
-<h2>Version: 1.4.1 (05/08/2013)</h2>
+<h2>Version: 1.4.1 (08/05/2013)</h2>
 
 <h3>New features</h3>
-- T3: Add new Hook feature and support T3 plugins | <a href="https://github.com/t3framework/t3/commit/468d78e76cf13dd08a747924fbb84074d9659ffb">Link</a>
+T3: Add new Hook feature and support T3 plugins	https://github.com/t3framework/t3/commit/468d78e76cf13dd08a747924fbb84074d9659ffb
+	
 	
 <h3>Improvement</h3>
 - T3 Blank: Change less and language file structure | <a href="https://github.com/t3framework/t3/commit/de90fd3c0ea15ce09bcf91310d86840c754149a4">Link</a>
@@ -63,7 +65,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 
 
 
-<h2>Version: 1.4.0 (15/07/2013)</h2>
+<h2>Version: 1.4.0 (07/15/2013)</h2>
 
 <h3>Improvement</h3>
 - Module chrome: Support Joomla 3.0 advanced feature | <a href="https://github.com/t3framework/t3/commit/ba5b9a29ffc3355e9ba8b7eccab39a6f8b9f1667">Link</a>
@@ -78,7 +80,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Megamenu: Fix Magic Quote Gpc enabled | <a href="https://github.com/t3framework/t3/commit/13ab309e04742f7bfe84c33fda2c52bf71602335">Link</a>
 
 
-<h2>Version: 1.3.1 (05/07/2013)</h2>
+<h2>Version: 1.3.1 (07/05/2013)</h2>
 
 <h3>New features</h3>
 - RTL support | <a href="https://github.com/t3framework/t3/commit/b5cf12b2225025b0a5910887c19a66ee3f2ff9e4">Link</a>
@@ -95,7 +97,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Less: Fix build RTL | <a href="https://github.com/t3framework/t3/commit/ad88a06751ffed6a9d2cd16d3de7739fc052379b">Link</a>
 
 
-<h2>Version: 1.3.0 (01/07/2013)</h2>
+<h2>Version: 1.3.0 (07/01/2013)</h2>
 
 <h3>New features</h3>
 - Allow user put some codesnippet into some special positions (top-head, bottom-head, top-body, bottom-body) | <a href="https://github.com/t3framework/t3/commit/c0043b543138949a4bb4d2c7081a1a0dea80fc98">Link</a>
@@ -122,7 +124,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Megamenu: Fix hide submenu item if its parent does not show | <a href="https://github.com/t3framework/t3/commit/c19f27ee516104a3d3e10309f3d5e84092ed236e">Link</a>
 - Megamenu: Fix auto detect switch menu configuration based on language | <a href="https://github.com/t3framework/t3/commit/c4916b4a6d5a3689e426a80b0d9a352f1ab9e329">Link</a>
 
-<h2>Version: 1.2.6 (04/06/2013)</h2>
+<h2>Version: 1.2.6 (06/04/2013)</h2>
 
 <h3>New features</h3>
 - T3Blank: Update Font Awesone to version 3.1.1 | <a href="https://github.com/t3framework/t3/commit/ce9521cd380389cc4299dee94a78695f07ee2263">Link</a>
@@ -140,7 +142,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - T3Less: Fix compile font-awesone v3.1 | <a href="https://github.com/t3framework/t3/commit/f2774854693809471bc83951d5ad718673240f3e">Link</a>
 - Language: Add language for Overview tab | <a href="https://github.com/t3framework/t3/commit/adcf0ad39967166fbb981e2b43cdc071066dacc6">Link</a>
 
-<h2>Version: 1.2.5 (10/05/2013)</h2>
+<h2>Version: 1.2.5 (05/10/2013)</h2>
 
 <h3>New features</h3>
 - T3Ajax: Add new ajax feature | <a href="https://github.com/t3framework/t3/commit/fec48599026b890fba631931e04b82643adabafb">Link</a>
@@ -160,14 +162,14 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - T3Minify: Fix error Undefined variable: ret | <a href="https://github.com/t3framework/t3/commit/d186e819d0d367cfe13eeab8ccc793bbe20de902">Link</a>
 - T3Path: Fix clean url path | <a href="https://github.com/t3framework/t3/commit/98de029f3f8257732f2750a941fff14eed67f8cc">Link</a>
 
-<h2>Version: 1.2.4 (26/04/2013)</h2>
+<h2>Version: 1.2.4 (04/26/2013)</h2>
 
 <h3>Bugs Fix</h3>
 - Overwrite: Add com_tag fix on Joomla 3.1 beta 5 | <a href="https://github.com/t3framework/t3/commit/30b7586935d06605b0aba6d87ddae948b96c6df8">Link</a>
 - Overwrite: Add tag support for editing article layout | <a href="https://github.com/t3framework/t3/commit/dffaa0079d599f9840b36a54132125d5d9d7b2de">Link</a>
 
 
-<h2>Version: 1.2.3 (18/04/2013)</h2>
+<h2>Version: 1.2.3 (04/18/2013)</h2>
 
 <h3>New features</h3>
 - Caption for Menu Item | <a href="https://github.com/t3framework/t3/commit/9c29cc55e09ae86de8b71f78b6ce2db7d3d99822">Link</a>
@@ -184,7 +186,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Overwrite: Correct check for when render tags | <a href="https://github.com/t3framework/t3/commit/997d90c2f8def40b6c7a470fc672cf35c692a625">Link</a>
 - Off-canvas: Remove off-canvas when disabled responsive | <a href="https://github.com/t3framework/t3/commit/74798ba4075c292cd6d22ef1c76386d57fe21dfc">Link</a>
 
-<h2>Version: 1.2.2 (09/04/2013)</h2>
+<h2>Version: 1.2.2 (04/09/2013)</h2>
 
 <h3>Improvements</h3>
 - Improve off-canvas menu for mobile | <a href="https://github.com/t3framework/t3/commit/ff0d587e13e29fd6e99fa45897c81ffc9fdf88ac">Link</a>
@@ -220,7 +222,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - ThemeMagic: Remove default proerty in thememagic xml to get default value | <a href="https://github.com/t3framework/t3/commit/97fcd3e85262876677191d224ad03873b6153b06">Link</a>
 
 
-<h2>Version: 1.2.1 (22/03/2013)</h2>
+<h2>Version: 1.2.1 (03/22/2013)</h2>
 
 <h3>New Features</h3>
 - Add 2 classes: navbar-collapse-fixed-top and navbar-collapse-fixed-bottom | <a href="https://github.com/t3framework/t3/commit/c5ceef1414e5b9ebda9423780ebeca66402e5ff3">Link</a>
@@ -243,7 +245,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Normal collapsed menu cannot scroll down when navbar is fixed | <a href="https://github.com/t3framework/t3/commit/42205393be23207f181b444d3373b97f8b4dbfdf">Link</a>
 - T3Layout: Add load language for current template layout | <a href="https://github.com/t3framework/t3/commit/ad3daf61ae34f059c768ae89feb836e625c3107d">Link</a>
 
-<h2>Version: 1.2.0 (15/03/2013)</h2>
+<h2>Version: 1.2.0 (03/15/2013)</h2>
 
 <h3>New Features</h3>
 - Ability to have multiple base HTML override packages | <a href="https://github.com/t3framework/t3/commit/57d8030e6dddbe5a3490dc08e8fa2a70a46efb5b">Link</a>
@@ -271,7 +273,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Layout: Fix span width detect for row-fluid | <a href="https://github.com/t3framework/t3/commit/d696fe4b56275275ddc6efcb7c0255b88f63bf20">Link</a>
 - Refine "Newsfeed Style" in joomla.less | <a href="https://github.com/t3framework/t3/commit/84cc3e5622e5f80e5fd1ba223678138dc5d09775">Link</a>
 
-<h2>Version: 1.1.0 Stable (22/02/2013)</h2>
+<h2>Version: 1.1.0 Stable (02/22/2013)</h2>
 
 <h3>New Features</h3>
 - Upgrade Bootstrap 2.3.0 | <a href="https://github.com/t3framework/t3/commit/3a6807b02ed37a2c3f188964f75a9fc5e50898d4">Link</a>
@@ -304,7 +306,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Menu: Fix touch menu behavior | <a href="https://github.com/t3framework/t3/commit/029dd912faae0410c841cb2edacadca1fa3b26b5">Link</a>
 - Thememagic does not work in Firefox version 19.x | <a href="https://github.com/t3framework/t3/issues/40">Link</a>
 
-<h2>Version: 1.1.0 RC2 (05/02/2013)</h2>
+<h2>Version: 1.1.0 RC2 (02/05/2013)</h2>
 
 <h3>New Features</h3>
 - Megamenu: Support Bootstrap Icon for menu item
@@ -349,7 +351,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Fix jQuery conflict | <a href="https://github.com/t3framework/t3/commit/5be36725b5edb0d9f159b338ba6d430fda258239">Link</a>
 - Single preload T3 Plugin language | <a href="https://github.com/t3framework/t3/commit/da67a5aa9d6af2b9796bcf9e8e8cfd0dae2530a9">Link</a>
 
-<h2>Version: 1.1.0 RC1 (25/01/2013)</h2>
+<h2>Version: 1.1.0 RC1 (01/25/2013)</h2>
 
 <h3>Bug Fix</h3>
 - Megamenu is now fully integrated
