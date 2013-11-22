@@ -43,7 +43,8 @@ body,
 .t3-wrapper-content {
   position: relative;
   overflow-y: scroll;
-  background: #fff;
+  background: @t3-off-canvas-background; // Need a background. Otherwise the sidebar will overlap.
+  color: @t3-off-canvas-text-color;
 }
 
 .t3-wrapper {
