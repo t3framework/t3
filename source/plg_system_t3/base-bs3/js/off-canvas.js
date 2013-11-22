@@ -12,8 +12,8 @@
  */
 
 jQuery (document).ready(function($){
-    var $wrapper = $('body'),
-        $inner = $('.t3-wrapper'),
+    var $wrapper = $('.t3-wrapper'),
+        $inner = $('.t3-wrapper-inner'),
         $toggles = $('.off-canvas-toggle'),
         $btn=null;
     // no wrapper, just exit

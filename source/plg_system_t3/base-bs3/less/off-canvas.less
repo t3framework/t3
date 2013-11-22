@@ -34,25 +34,25 @@
 // -------------------------------------
 html,
 body,
-body,
 .t3-wrapper,
-.t3-wrapper-inner {
+.t3-wrapper-inner,
+.t3-wrapper-content {
   height: 100%;
 }
 
-.t3-wrapper-inner {
+.t3-wrapper-content {
   position: relative;
   overflow-y: scroll;
   background: @t3-off-canvas-background; // Need a background. Otherwise the sidebar will overlap.
   color: @t3-off-canvas-text-color;
 }
 
-body {
+.t3-wrapper {
   position: relative;
   overflow: hidden;
 }
 
-.t3-wrapper {
+.t3-wrapper-inner {
   position: relative;
   left: 0;
   z-index: 99;
@@ -61,7 +61,7 @@ body {
   transition: transform 0.5s;
 }
 
-.t3-wrapper::after {
+.t3-wrapper-inner::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -74,7 +74,7 @@ body {
   transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 }
 
-.off-canvas-open .t3-wrapper::after {
+.off-canvas-open .t3-wrapper-inner::after {
   width: 100%;
   height: 100%;
   opacity: 1;
@@ -82,7 +82,7 @@ body {
   transition: opacity 0.5s;
 }
 
-.off-canvas-open .t3-wrapper {
+.off-canvas-open .t3-wrapper-inner {
  height: auto;
 }
 
@@ -175,7 +175,7 @@ body {
 
 // Effect 2: Reveal
 // ----------------
-.off-canvas-effect-2.off-canvas-open .t3-wrapper {
+.off-canvas-effect-2.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -197,7 +197,7 @@ body {
 
 // Effect 3: Push
 // --------------
-.off-canvas-effect-3.off-canvas-open .t3-wrapper {
+.off-canvas-effect-3.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -220,7 +220,7 @@ body {
 
 // Effect 4: Slide along
 // ---------------------
-.off-canvas-effect-4.off-canvas-open .t3-wrapper {
+.off-canvas-effect-4.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -246,7 +246,7 @@ body {
 
 // Effect 5: Reverse slide out
 // ---------------------------
-.off-canvas-effect-5.off-canvas-open .t3-wrapper {
+.off-canvas-effect-5.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -268,19 +268,19 @@ body {
 
 // Effect 6: Rotate pusher
 // -----------------------
-.off-canvas-effect-6body {
+.off-canvas-effect-6.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
 }
 
-.off-canvas-effect-6 .t3-wrapper {
+.off-canvas-effect-6 .t3-wrapper-inner {
   -webkit-transform-origin: 0% 50%;
   transform-origin: 0% 50%;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-6.off-canvas-open .t3-wrapper {
+.off-canvas-effect-6.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0) rotateY(-15deg);
   transform: translate3d(@t3-off-canvas-width, 0, 0) rotateY(-15deg);
 }
@@ -309,19 +309,19 @@ body {
 
 // Effect 7: 3D rotate in
 // ----------------------
-.off-canvas-effect-7body {
+.off-canvas-effect-7.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
   -webkit-perspective-origin: 0% 50%;
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-7 .t3-wrapper {
+.off-canvas-effect-7 .t3-wrapper-inner {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-7.off-canvas-open .t3-wrapper {
+.off-canvas-effect-7.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -346,19 +346,19 @@ body {
 
 // Effect 8: 3D rotate out
 // -----------------------
-.off-canvas-effect-8body {
+.off-canvas-effect-8.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
   -webkit-perspective-origin: 0% 50%;
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-8 .t3-wrapper {
+.off-canvas-effect-8 .t3-wrapper-inner {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-8.off-canvas-open .t3-wrapper {
+.off-canvas-effect-8.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -387,17 +387,17 @@ body {
 
 // Effect 9: Scale down pusher
 // ---------------------------
-.off-canvas-effect-9body {
+.off-canvas-effect-9.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
 }
 
-.off-canvas-effect-9 .t3-wrapper {
+.off-canvas-effect-9 .t3-wrapper-inner {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-9.off-canvas-open .t3-wrapper {
+.off-canvas-effect-9.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(0, 0, -@t3-off-canvas-width);
   transform: translate3d(0, 0, -@t3-off-canvas-width);
 }
@@ -423,14 +423,14 @@ body {
 
 // Effect 10: Scale up
 // -------------------
-.off-canvas-effect-10body {
+.off-canvas-effect-10.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
   -webkit-perspective-origin: 0% 50%;
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-10.off-canvas-open .t3-wrapper {
+.off-canvas-effect-10.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -453,17 +453,17 @@ body {
 
 // Effect 11: Scale and rotate pusher
 // ----------------------------------
-.off-canvas-effect-11body {
+.off-canvas-effect-11.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
 }
 
-.off-canvas-effect-11 .t3-wrapper {
+.off-canvas-effect-11 .t3-wrapper-inner {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-11.off-canvas-open .t3-wrapper {
+.off-canvas-effect-11.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(100px, 0, -600px) rotateY(-20deg);
   transform: translate3d(100px, 0, -600px) rotateY(-20deg);
 }
@@ -489,19 +489,19 @@ body {
 
 // Effect 12: Open door
 // --------------------
-.off-canvas-effect-12body {
+.off-canvas-effect-12.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
 }
 
-.off-canvas-effect-12 .t3-wrapper {
+.off-canvas-effect-12 .t3-wrapper-inner {
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-12.off-canvas-open .t3-wrapper {
+.off-canvas-effect-12.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: rotateY(-10deg);
   transform: rotateY(-10deg);
 }
@@ -527,14 +527,14 @@ body {
 
 // Effect 13: Fall down
 // --------------------
-.off-canvas-effect-13body {
+.off-canvas-effect-13.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
   -webkit-perspective-origin: 0% 50%;
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-13.off-canvas-open .t3-wrapper {
+.off-canvas-effect-13.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -561,19 +561,19 @@ body {
 
 // Effect 14: Delayed 3D rotate
 // ----------------------------
-.off-canvas-effect-14body {
+.off-canvas-effect-14.t3-wrapper {
   -webkit-perspective: 1500px;
   perspective: 1500px;
   -webkit-perspective-origin: 0% 50%;
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-14 .t3-wrapper {
+.off-canvas-effect-14 .t3-wrapper-inner {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-14.off-canvas-open .t3-wrapper {
+.off-canvas-effect-14.off-canvas-open .t3-wrapper-inner {
   -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
   transform: translate3d(@t3-off-canvas-width, 0, 0);
 }
@@ -604,7 +604,7 @@ body {
 // Fallback example for browsers
 // that don't support 3D transforms (and no JS fallback)
 // -----------------------------------------------------
-.no-csstransforms3d .t3-wrapper,
-.no-js .t3-wrapper {
+.no-csstransforms3d .t3-wrapper-inner,
+.no-js .t3-wrapper-inner {
   padding-left: @t3-off-canvas-width;
 }
