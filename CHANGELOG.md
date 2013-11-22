@@ -1,4 +1,4 @@
-<h2>Version: 1.4.3 (22/11/2013)</h2>
+<h2>Version: 1.4.3 (11/22/2013)</h2>
 
 <h3>Improvement</h3>
 - Megamenu: add add responsive alignment | <a href="https://github.com/t3framework/t3/commit/1119779e4453568b08f503807bba4c77d7e33ca6">Link</a>
