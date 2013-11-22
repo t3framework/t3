@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
             var subul = $li.find('ul.level' + $li.data('level'));
             if (subul.length) {
                 // create subnav
-                $ul = $('<ul class="level' + $li.data('level') + '">').appendTo($li);
+                $ul = $('<ul class="level' + $li.data('level') + ' dropdown-menu">').appendTo($li);
                 subul.each(function () {
                     $(this).find('>li').appendTo($ul);
                 });
@@ -55,8 +55,17 @@ jQuery(document).ready(function ($) {
                 $child.removeAttr('data-' + x)
             }
             // remove carret
-            $child.find('b').remove();
+            // $child.find('b').remove();
         });
+
+        //so we have all structure, add standard bootstrap class
+        $menu
+            .find('ul.dropdown-menu')
+            .prev('a')//.attr('data-toggle', 'dropdown')
+            .parent('li')
+            .addClass(function(){
+                return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
+            });
 
         // update class current
         liactive.addClass('current');
@@ -64,7 +73,7 @@ jQuery(document).ready(function ($) {
         // clone for bootstrap menu
         $menu = $navwrapper.find ('ul.nav').clone();
         // remove all dropdown, dropdown-menu, dropdown-submenu class
-        $menu.find ('.dropdown, .dropdown-menu, .dropdown-submenu').removeClass ('dropdown dropdown-menu dropdown-submenu');
+        //$menu.find ('.dropdown, .dropdown-menu, .dropdown-submenu').removeClass ('dropdown dropdown-menu dropdown-submenu');
     }
 
     // inject into .t3-navbar-collapse
