@@ -1,8 +1,41 @@
+<h2>Version: 1.4.3 (22/11/2013)</h2>
+
+<h3>Improvement</h3>
+- Megamenu: Add align responsive | <a href="https://github.com/t3framework/t3/commit/1119779e4453568b08f503807bba4c77d7e33ca6">Link</a>
+	
+<h3>Fix bugs</h3>
+- ThemeMagic: Fix compatible J3.2 | <a href="https://github.com/t3framework/t3/commit/4d99961c32d13dc00dd61607f707b75590ef2a51">Link</a>
+- T3: Fix injection after body when body tag has attribute | <a href="https://github.com/t3framework/t3/commit/515d9beb62081185a21074fb9bef2c78d082fe00">Link</a>
+- Optimize frontend-edit | <a href="https://github.com/t3framework/t3/commit/f5943efc22888e9efa03aa6330948e3bda884abf">Link</a>
+- Fix thememagic color | <a href="https://github.com/t3framework/t3/commit/48a590f4de28324ea29693112518f416ea77af52">Link</a>
+- Remove truncate footnav.tpl | <a href="https://github.com/t3framework/t3/commit/85388c0ac8cfa9074929266e76149af43f09fc60">Link</a>
+
+
+
+<h2>Version: 1.4.2 (07/11/2013)</h2>
+
+<h3>New features</h3>
+- Megamenu: Add <jdoc:include type=megamenu /> | <a href="https://github.com/t3framework/t3/commit/2a94d2ccd3de7f9cbd0b2139e6ae552413fea557">Link</a>
+		
+<h3>Improvement</h3>
+- Add mapping for Joomla3 icon classes | <a href="https://github.com/t3framework/t3/commit/bb441f8333e7f14a7d41f5047c8aab6c0844bfc3">Link</a>
+- Megamenu: Update core style of megamenu group | <a href="https://github.com/t3framework/t3/commit/6b1a34994aba727d22773480e2335f2b6cc03371">Link</a>
+	
+<h3>Fix bugs</h3>
+- Update language string | <a href="https://github.com/t3framework/t3/commit/5b0f2d54cfc6a9bb5cb0352df3339de845266e5e">Link</a>
+- Font Awesome: Update included font for J3.0 compatible | <a href="https://github.com/t3framework/t3/commit/881d84fb17e327c943c42a56ca5a86b24c30c5c2">Link</a>
+- Overwrite: Fix Joomla options show_category_heading_title_text | <a href="https://github.com/t3framework/t3/commit/0e0e539ddc792659d04371259842aa09f6e4e704">Link</a>
+- ThemeMagic: Fix frontend view thememagic ?tm=1 when themermode is dis… | <a href="https://github.com/t3framework/t3/commit/606330bbb689f05a6a857ce71eb105c0b3513e61">Link</a>
+- Avoid tooltip right margin creating horiz. scroll | <a href="https://github.com/t3framework/t3/commit/7672bda0590bccd5355f97a6c663fdb291749834">Link</a>
+- Update t3 (many bug fixes) | <a href="https://github.com/t3framework/t3/commit/8b3ec6df08162897f09d15ffb9fd100284896264">Link</a>
+- T3Depend: Update Joomla 3.2 compatible | <a href="https://github.com/t3framework/t3/commit/a28cc7e932cec0d6c6af30b187fd4b01a74cfea9">Link</a>
+
+
+
 <h2>Version: 1.4.1 (05/08/2013)</h2>
 
 <h3>New features</h3>
-T3: Add new Hook feature and support T3 plugins	https://github.com/t3framework/t3/commit/468d78e76cf13dd08a747924fbb84074d9659ffb
-	
+- T3: Add new Hook feature and support T3 plugins | <a href="https://github.com/t3framework/t3/commit/468d78e76cf13dd08a747924fbb84074d9659ffb">Link</a>
 	
 <h3>Improvement</h3>
 - T3 Blank: Change less and language file structure | <a href="https://github.com/t3framework/t3/commit/de90fd3c0ea15ce09bcf91310d86840c754149a4">Link</a>
