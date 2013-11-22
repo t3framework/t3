@@ -12,7 +12,10 @@
  */
 
 jQuery (document).ready(function($){
-    var $wrapper = $('.t3-wrapper'), $btn=null;
+    var $wrapper = $('body'),
+        $inner = $('.t3-wrapper'),
+        $toggles = $('.off-canvas-toggle'),
+        $btn=null;
     // no wrapper, just exit
     if (!$wrapper.length) return ;
 
@@ -20,7 +23,7 @@ jQuery (document).ready(function($){
     $wrapper.data('oclass', $wrapper[0].className);
 
     // add effect class for nav
-    $('.off-canvas-toggle').each (function () {
+    $toggles.each (function () {
         var $this = $(this),
             $nav = $($this.data('nav')),
             effect = $this.data('effect');
@@ -28,13 +31,13 @@ jQuery (document).ready(function($){
         // move to outside wrapper-content
         var inside_effect = ['off-canvas-effect-3','off-canvas-effect-6','off-canvas-effect-7','off-canvas-effect-8','off-canvas-effect-14'];
         if ($.inArray(effect, inside_effect) == -1) {
-            $nav.parent().parent().before($nav);
+            $inner.before($nav);
         } else {
-            $nav.parent().before($nav);
+            $inner.prepend($nav);
         }
     });
 
-    $('.off-canvas-toggle').click (function(e){
+    $toggles.click (function(e){
         if ($btn) {
             // toggle
             oc_hide();
