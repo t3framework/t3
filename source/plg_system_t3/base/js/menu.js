@@ -34,6 +34,10 @@
 			var mm_timeout = mm_duration ? 100 + mm_duration : 500;
 			var mm_rtl = $('html').attr('dir') == 'rtl';
 
+			if(!$.support.transition){
+				$('.t3-megamenu').removeClass('animate');
+			}
+
 			function position_menu(item){
 
 				var sub = item.children('.mega-dropdown-menu'),
@@ -56,7 +60,8 @@
 				if(level == 1){
 
 					var align = item.data('alignsub'),
-						align_offset = 0;
+						align_offset = 0,
+						new_offset = 0;
 
 					if(!align){
 						align = mm_rtl ? 'right' : 'left';
@@ -80,8 +85,9 @@
 					if ((mm_rtl && align != 'right') || (!mm_rtl && align == 'right')) {
 
 						if(align_offset < 0){
-							align_offset = align_offset + (align == 'center' ? width / 2 : 0);
-							sub.css('right', align_offset);
+							new_offset = align_offset + (align == 'center' ? width / 2 : 0);
+							align_offset = align_offset + new_offset;
+							sub.css('right', new_offset);
 						}
 
 						if(align_offset + sub_width > screen_width){
@@ -90,8 +96,9 @@
 					} else {
 
 						if(align_offset + sub_width > screen_width){
-							align_offset = screen_width - align_offset - sub_width + (align == 'center' ? width / 2 : 0);
-							sub.css('left', align_offset);
+							new_offset = screen_width - align_offset - sub_width + (align == 'center' ? width / 2 : 0);
+							align_offset = align_offset + new_offset;
+							sub.css('left', new_offset);
 						}
 
 						if(align_offset < 0){
