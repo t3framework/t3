@@ -4,20 +4,20 @@
   padding: 0;
 }
 .home .t3-sl-1 .jumbotron {
-  background-color: #eeeeee;
-  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#eeeeee));
-  background-image: -webkit-radial-gradient(circle, #ffffff, #eeeeee);
-  background-image: -moz-radial-gradient(circle, #ffffff, #eeeeee);
-  background-image: -o-radial-gradient(circle, #ffffff, #eeeeee);
+  background-color: #eee;
+  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#fff),to(#eee));
+  background-image: -webkit-radial-gradient(circle,#fff,#eee);
+  background-image: -moz-radial-gradient(circle,#fff,#eee);
+  background-image: -o-radial-gradient(circle,#fff,#eee);
   background-repeat: no-repeat;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
 }
 .home .t3-sl-1 .jumbotron .btn-large {
   font-size: 24.5px;
   padding: 18px 44.5px;
 }
 .home .t3-sl-1 .t3-social {
-  background: #eeeeee;
+  background: #eee;
   padding: 20px 0;
 }
 .home .t3-sl-1 .t3-social .t3-social-btns {
@@ -42,7 +42,7 @@
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
   text-align: center;
 }
 .home .t3-sl-3 p,
@@ -63,11 +63,11 @@
 .home .t3-sl-4 .jumbotron p {
   font-size: 21px;
   line-height: 1.275;
-  color: #999999;
+  color: #999;
 }
 .home .t3-sl-5 {
-  background: #eeeeee;
-  border-top: 1px solid #dddddd;
+  background: #eee;
+  border-top: 1px solid #ddd;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron .btn-large {
@@ -75,7 +75,7 @@
   padding: 18px 44.5px;
 }
 .home .t3-sl-5 .section-arrow-alt {
-  background: url("/T3/t3mb/templates/t3_blank/images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
+  background: url("../../../images/arrow-section-alt.png") no-repeat center -1px #eee;
   width: 37px;
   height: 19px;
   position: absolute;
@@ -88,33 +88,32 @@
   margin-top: -1px;
 }
 .home .t3-sl-1 .jumbotron {
-  background-color: #ff8800;
-  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffa033), to(#ff8800));
-  background-image: -webkit-radial-gradient(circle, #ffa033, #ff8800);
-  background-image: -moz-radial-gradient(circle, #ffa033, #ff8800);
-  background-image: -o-radial-gradient(circle, #ffa033, #ff8800);
+  background-color: #f80;
+  background-image: -webkit-gradient(radial,center center,0,center center,460,from(#ffa033),to(#f80));
+  background-image: -webkit-radial-gradient(circle,#ffa033,#f80);
+  background-image: -moz-radial-gradient(circle,#ffa033,#f80);
+  background-image: -o-radial-gradient(circle,#ffa033,#f80);
   background-repeat: no-repeat;
-  color: #eeeeee;
+  color: #eee;
 }
 .home .t3-sl-1 .jumbotron h1 {
-  color: #ffffff;
+  color: #fff;
 }
 .home .t3-sl-1 .jumbotron .btn-large {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
   background-color: #363636;
-  background-image: -moz-linear-gradient(top, #444444, #222222);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
-  background-image: -webkit-linear-gradient(top, #444444, #222222);
-  background-image: -o-linear-gradient(top, #444444, #222222);
-  background-image: linear-gradient(to bottom, #444444, #222222);
+  background-image: -moz-linear-gradient(top,#444,#222);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#444),to(#222));
+  background-image: -webkit-linear-gradient(top,#444,#222);
+  background-image: -o-linear-gradient(top,#444,#222);
+  background-image: linear-gradient(to bottom,#444,#222);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
-  border-color: #222222 #222222 #000000;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #222222;
+  border-color: #222 #222 #000000;
+  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
   
-
+  *background-color: #222;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .home .t3-sl-1 .jumbotron .btn-large:hover,
@@ -123,11 +122,12 @@
 .home .t3-sl-1 .jumbotron .btn-large.active,
 .home .t3-sl-1 .jumbotron .btn-large.disabled,
 .home .t3-sl-1 .jumbotron .btn-large[disabled] {
-  color: #ffffff;
-  background-color: #222222;
+  color: #fff;
+  background-color: #222;
   *background-color: #151515;
 }
 .home .t3-sl-1 .jumbotron .btn-large:active,
 .home .t3-sl-1 .jumbotron .btn-large.active {
   background-color: #090909 \9;
 }
+

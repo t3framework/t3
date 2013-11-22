@@ -1,13 +1,13 @@
-/** 
+/**
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
  * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         http://t3-framework.org
  *------------------------------------------------------------------------------
  */
 
@@ -19,4 +19,15 @@
 .wrap {
   width: auto;
   clear: both;
+}
+
+// Avoid horiz. scroll-bars on tabs when e.g. tooltip is shown near right margin
+.tab-content {
+  overflow: visible; // allow content to exceed div boundaries
+                     // In most web designs, height is left to grow to fit content,
+                     // and text normally wraps within width.
+                     // Bootstrap's auto will result in scroll bars on the div which is unsightly.
+                     // Window scroll bars should activate if needed.
+                     // This should be either visible (to allow e.g. tooltips to overflow into the margins)
+                     // or hidden (in which case e.g. tooltips will be clipped).
 }

@@ -10,5 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
+<div class="module">
 <small><?php echo $lineone; ?> Designed by <a href="http://www.joomlart.com/" title="Visit Joomlart.com!" rel="nofollow">JoomlArt.com</a>.</small>
 <small><?php echo JText::_( 'MOD_FOOTER_LINE2' ); ?></small>
+</div>
