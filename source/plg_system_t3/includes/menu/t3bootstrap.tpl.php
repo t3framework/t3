@@ -78,7 +78,7 @@ class T3BootstrapTpl
 
 				// The next item is deeper.
 				if ($item->deeper) {
-					echo '<ul class="nav-child unstyled small dropdown-menu">';
+					echo '<ul class="dropdown-menu" role="menu">';
 				} // The next item is shallower.
 				elseif ($item->shallower) {
 					echo '</li>';
