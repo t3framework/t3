@@ -19,7 +19,7 @@
 
 // EXTEND STYLE IN BASE
 // --------------------
-@import "../../../plugins/system/t3/base-bs3/less/off-canvav.less";
+@import "../../../plugins/system/t3/base-bs3/less/off-canvas.less";
 
 
 
@@ -29,78 +29,103 @@
 
 // Toggle Button
 // -------------------
+.off-canvas-toggle {
+  border-radius: 0;
+  border: 0;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  padding: 0;
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+  &:focus {
+    outline: none;
+  }
+}
+
 
 
 //
 // OFF-CANVAS CONTENT STYLES
 // -------------------------------------
-
 .t3-off-canvas {
 
   // Generic
-  // ------------
+  // -----------------------------------
   background: @t3-off-canvas-background-color;
   color: @t3-off-canvas-text-color;
-  overflow-y: scroll;
 
 
   // Header
-  // ------------
+  // -----------------------------------
   .t3-off-canvas-header {
     background: @t3-off-canvas-header-background;
-    color: @@t3-off-canvas-header-text-color;
-    padding: @padding-base-vertical @padding-base-horizontal;
+    color: @t3-off-canvas-header-text-color;
+    padding: 0 0 0 @padding-base-horizontal;
+    height: 30px;
+
+    // Title
     h2 {
       margin: 0;
+      line-height: 30px;
+      font-size: @font-size-base;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    // Close Button
+    .close {
+      margin: 0;
+      height: 30px;
+      line-height: 30px;
+      width: 30px;
+      background: darken(@t3-off-canvas-header-background, 20%);
     }
   }
 
 
   // Body
-  // ------------
+  // -----------------------------------
   .t3-off-canvas-body {
-    padding: @padding-base-horizontal;
-  }
 
+    padding: (@padding-base-vertical * 4)  @padding-base-horizontal;
 
-  // Links
-  // ------------
-  .t3-off-canvas-body a {
-    color: @t3-off-canvas-link-color;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      color: @t3-off-canvas-link-hover-color;
+    // Links
+    // ------------
+    a {
+      color: @t3-off-canvas-link-color;
       text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: @t3-off-canvas-link-hover-color;
+        text-decoration: none;
+      }
+
+      &:focus {
+        .tab-focus();
+      }
     }
 
-    &:focus {
-      .tab-focus();
+
+    // Navigations
+    // ------------
+    .nav {
     }
+
+    // Dropdown Menu
+    .dropdown-menu {
+    }
+
+
+    // Modules
+    // ------------
+    .t3-module {
+    }
+
+  // End Off-Canvas Body
   }
 
-
-  // Navigations
-  // ------------
-  .t3-off-canvas-body .nav {
-  }
-
-  // Always show Dropdown Menu in Off-Canvas Sidebar
-  .t3-off-canvas-body .dropdown-menu {
-    position: static;
-    float: none;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    .box-shadow(none);
-  }
-
-
-  // Modules
-  // ------------
-  .t3-off-canvas-body .t3-module {
-  }
-
+// End Off-Canvas Content Styles
 }

@@ -35,7 +35,8 @@
 
 // Toggle Button
 // -------------------
-
+.off-canvas-toggle {
+}
 
 
 // The Wrapper
@@ -142,71 +143,79 @@ body,
 .t3-off-canvas {
 
   // Generic
-  // ------------
+  // -----------------------------------
   background: @t3-off-canvas-background;
   color: @t3-off-canvas-text-color;
   overflow-y: scroll;
 
 
   // Header
-  // ------------
+  // -----------------------------------
   .t3-off-canvas-header {
     background: @t3-off-canvas-header-background;
-    color: @@t3-off-canvas-header-text-color;
+    color: @t3-off-canvas-header-text-color;
     padding: @padding-base-vertical @padding-base-horizontal;
+
+    // Title
     h2 {
       margin: 0;
+    }
+
+    // Close Button
+    .close {
     }
   }
 
 
   // Body
-  // ------------
+  // ----------------------------------
   .t3-off-canvas-body {
-    padding: @padding-base-horizontal;
-  }
 
+    padding: @padding-base-vertical @padding-base-horizontal;
 
-  // Links
-  // ------------
-  .t3-off-canvas-body a {
-    color: @t3-off-canvas-link-color;
-    text-decoration: none;
+    // Links
+    // ------------
+    a {
+      color: @t3-off-canvas-link-color;
 
-    &:hover,
-    &:focus {
-      color: @t3-off-canvas-link-hover-color;
-      text-decoration: none;
+      &:hover,
+      &:focus {
+        color: @t3-off-canvas-link-hover-color;
+      }
+
+      &:focus {
+        .tab-focus();
+      }
     }
 
-    &:focus {
-      .tab-focus();
+
+    // Navigations
+    // ------------
+    .nav {
     }
+
+    // Dropdown Menu
+    // Always show Dropdown Menu in Off-Canvas Sidebar
+    .dropdown-menu {
+      position: static;
+      float: none;
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      .box-shadow(none);
+    }
+
+
+    // Modules
+    // ------------
+    .t3-module {
+    }
+
+  // End Off-Canvas Body
   }
 
-
-  // Navigations
-  // ------------
-  .t3-off-canvas-body .nav {
-  }
-
-  // Always show Dropdown Menu in Off-Canvas Sidebar
-  .t3-off-canvas-body .dropdown-menu {
-    position: static;
-    float: none;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    .box-shadow(none);
-  }
-
-
-  // Modules
-  // ------------
-  .t3-off-canvas-body .t3-module {
-  }
-
+// End Off-Canvas Content Styles
 }
 
 
