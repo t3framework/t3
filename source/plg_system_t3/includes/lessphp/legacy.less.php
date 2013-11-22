@@ -122,9 +122,9 @@ class T3Less extends lessc
 		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
 		$rspace       = '@[\r?\n]{2,}@';
 		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables)\.less@';
+		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables|mixins)\.less@';
 		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')/less/@';
-		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
+		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars|mixins)\.less"\s*;@im';
 
 		$rsplitbegin  = '@^\s*\#';
 		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';

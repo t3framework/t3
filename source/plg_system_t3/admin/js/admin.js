@@ -20,7 +20,7 @@ var T3Admin = window.T3Admin || {};
 		initToolbar: function(){
 			//t3 added
 			$('#t3-admin-tb-compile-all').on('click', function(){
-				T3Admin.compileLESS('all');
+				T3Admin.compileLESS();
 				return false;
 			});
 
@@ -564,7 +564,7 @@ var T3Admin = window.T3Admin || {};
 
 			$.ajax({
 				url: T3Admin.adminurl,
-				data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid, 'theme': theme || 'all' }
+				data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid, 'theme': theme || '' }
 			}).always(function(){
 				
 				//progress bar
