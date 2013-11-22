@@ -15,6 +15,7 @@
 
 defined('_JEXEC') or die;
 ?>
+
 <?php
   if (!$this->getParam('addon_offcanvas_enable')) return ;
 ?>
@@ -24,6 +25,15 @@ defined('_JEXEC') or die;
 
 <!-- OFF-CANVAS SIDEBAR -->
 <div id="t3-off-canvas" class="t3-off-canvas">
-  <jdoc:include type="modules" name="<?php $this->_p('off-canvas') ?>" style="T3Xhtml" />
+
+  <div class="t3-off-canvas-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2 class="t3-off-canvas-header-title">Sidebar</h2>
+  </div>
+
+  <div class="t3-off-canvas-body">
+    <jdoc:include type="modules" name="<?php $this->_p('off-canvas') ?>" style="T3Xhtml" />
+  </div>
+
 </div>
 <!-- //OFF-CANVAS SIDEBAR -->

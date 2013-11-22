@@ -1,0 +1,106 @@
+/**
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org
+ *------------------------------------------------------------------------------
+ */
+
+
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less"; // Include Variables and Mixins
+
+
+// EXTEND STYLE IN BASE
+// --------------------
+@import "../../../plugins/system/t3/base-bs3/less/off-canvav.less";
+
+
+
+//
+// OFF-CANVAS
+// -------------------------------------
+
+// Toggle Button
+// -------------------
+
+
+//
+// OFF-CANVAS CONTENT STYLES
+// -------------------------------------
+
+.t3-off-canvas {
+
+  // Generic
+  // ------------
+  background: @t3-off-canvas-background-color;
+  color: @t3-off-canvas-text-color;
+  overflow-y: scroll;
+
+
+  // Header
+  // ------------
+  .t3-off-canvas-header {
+    background: @t3-off-canvas-header-background;
+    color: @@t3-off-canvas-header-text-color;
+    padding: @padding-base-vertical @padding-base-horizontal;
+    h2 {
+      margin: 0;
+    }
+  }
+
+
+  // Body
+  // ------------
+  .t3-off-canvas-body {
+    padding: @padding-base-horizontal;
+  }
+
+
+  // Links
+  // ------------
+  .t3-off-canvas-body a {
+    color: @t3-off-canvas-link-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: @t3-off-canvas-link-hover-color;
+      text-decoration: none;
+    }
+
+    &:focus {
+      .tab-focus();
+    }
+  }
+
+
+  // Navigations
+  // ------------
+  .t3-off-canvas-body .nav {
+  }
+
+  // Always show Dropdown Menu in Off-Canvas Sidebar
+  .t3-off-canvas-body .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    .box-shadow(none);
+  }
+
+
+  // Modules
+  // ------------
+  .t3-off-canvas-body .t3-module {
+  }
+
+}
