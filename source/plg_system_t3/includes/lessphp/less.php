@@ -585,10 +585,12 @@ class T3Less
 
 		//check if we need to rebuild
 		$rebuild = false;
+		$vars_lm = $app->getUserState('vars_last_modified', 0);
 
 		//check for this file and rtl
 		$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $path) . '.css';
-		if(is_file($cssfile) && filemtime($cssfile) >= filemtime(JPATH_ROOT . '/' . $path)){
+		$css_lm  = filemtime($cssfile);
+		if(is_file($cssfile) && $css_lm >= $vars_lm && $css_lm >= filemtime(JPATH_ROOT . '/' . $path)){
 			$doc->addStylesheet($cssfile);
 		}
 
@@ -600,7 +602,9 @@ class T3Less
 				$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
 				if(is_file(JPATH_ROOT . '/' . $url)){
 					$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $url) . '.css';
-					if(!is_file($cssfile) || filemtime($cssfile) < filemtime(JPATH_ROOT . '/' . $url)){
+					$css_lm  = filemtime($cssfile);
+
+					if(!is_file($cssfile) || $css_lm < $vars_lm || $css_lm < filemtime(JPATH_ROOT . '/' . $url)){
 						$rebuild = true;
 						break;
 					} else {
