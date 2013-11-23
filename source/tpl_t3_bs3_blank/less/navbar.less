@@ -19,7 +19,6 @@
 // Base Navbars
 // --------------------------------------------------
 .navbar {
-
   @media (min-width: @grid-float-breakpoint) {
   }
 }
@@ -28,7 +27,6 @@
 // Navbar heading
 // --------------
 .navbar-header {
-
   @media (min-width: @grid-float-breakpoint) {
   }
 }
@@ -37,7 +35,6 @@
 // Navbar collapse (body)
 // ----------------------
 .navbar-collapse {
-
   @media (min-width: @grid-float-breakpoint) {
   }
 }
@@ -46,15 +43,12 @@
 // Brand/project name
 // ------------------
 .navbar-brand {
-
   // Link states
   &:hover,
   &:focus {
   }
-
   @media (min-width: @grid-float-breakpoint) {
   }
-
 }
 
 
@@ -64,15 +58,17 @@
 
   float: left; // T3 Note: Override toggle position to the left
   margin-right: auto; // T3 Note: Override toggle position to the left
+  padding: 0;
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
   margin-left: @navbar-padding-horizontal;
 
   // Bars
-  .icon-bar {
+  .fa-bars {
   }
 
-  .icon-bar + .icon-bar {
-  }
-
+  // Hide on breakpoint
   @media (min-width: @grid-float-breakpoint) {
     display: none;
   }
