@@ -9,6 +9,7 @@
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
  * @Link:         http://t3-framework.org 
+ * @credits       Mary Lou - http://tympanus.net/codrops/2013/08/28/transitions-for-off-canvas-navigations/
  *------------------------------------------------------------------------------
  */
 
