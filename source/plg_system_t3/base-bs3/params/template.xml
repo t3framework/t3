@@ -96,7 +96,7 @@
 				   filter=".*"
 				   directory="less/themes"
 				   stripext="true"
-				   hide_none="false"/>
+				   hide_none="true"/>
 
 			<field name="logotype" type="list" default="image"
 				   label="T3_THEME_LOGOTYPE_LABEL"
@@ -137,7 +137,7 @@
 				   filter=".*\.php"
 				   directory="tpls"
 				   stripext="true"
-				   hide_none="false"
+				   hide_none="true"
 				   hide_default="true"
 					/>
 

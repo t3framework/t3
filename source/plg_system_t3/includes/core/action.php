@@ -46,8 +46,7 @@ class T3Action
 		$path = JFactory::getApplication()->input->getString ('s');
 
 		T3::import ('core/less');
-		$t3less = T3Less::getInstance();
-		$css = $t3less->getCss($path);
+		$css = T3Less::getCss($path);
 
 		header("Content-Type: text/css");
 		header("Content-length: ".strlen($css));

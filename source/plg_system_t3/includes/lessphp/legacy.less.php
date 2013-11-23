@@ -35,7 +35,7 @@ class T3Less extends lessc
 		return $t3less;
 	}
 	
-	function getCss($path)
+	public static function getCss($path)
 	{
 		//build vars once
 		self::buildVarsOnce();
@@ -61,7 +61,8 @@ class T3Less extends lessc
 		}
 		
 		// not cached, build & store it
-		$data = $this->compileCss($path) . "\n";
+		$t3less = self::getInstance();
+		$data   = $t3less->compileCss($path) . "\n";
 		$cache->store($data, $key, $group);
 		
 		return $data;
@@ -505,7 +506,7 @@ class T3Less extends lessc
 	
 	public static function compileAll($theme = null)
 	{
-		$less     = new self;
+		$less     = self::getInstance();
 		// compile all css files
 		$files    = array();
 		$lesspath = 'templates/' . T3_TEMPLATE . '/less/';

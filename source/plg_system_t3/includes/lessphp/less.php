@@ -25,22 +25,29 @@ T3::import('lessphp/less/Less');
  */
 class T3Less
 {
-	function __construct(){
 
-	}
+	public static function requirement(){
+		static $setup;
 
-	/**
-	 * Singleton constructor
-	 * @return T3Less
-	 */
+		if(isset($setup)){
 
-	public static function getInstance()
-	{
-		static $t3less = null;
-		if (!$t3less) {
-			$t3less = new T3Less;
+			@ini_set('pcre.backtrack_limit', '2M');
+
+			$mem_limit = @ini_get('memory_limit');
+			if (preg_match('@^(\d+)(.)$@', $mem_limit, $matches)) {
+				if ($matches[2] == 'M') {
+					$mem_limit = $matches[1] * 1024 * 1024;
+				} else if ($matches[2] == 'K') {
+					$mem_limit = $matches[1] * 1024;
+				}
+			}
+
+			if((int)$mem_limit < 128 * 1024 * 1024) {
+				@ini_set('memory_limit', '128M');
+			}
+
+			$setup = true;
 		}
-		return $t3less;
 	}
 
 	/**
@@ -48,7 +55,7 @@ class T3Less
 	 * @param   $path   the file path of less file
 	 * @return  string  the css compiled content
 	 */
-	function getCss($path)
+	public static function getCss($path)
 	{
 		//build vars once
 		self::buildVarsOnce();
@@ -74,7 +81,7 @@ class T3Less
 		}
 		
 		// not cached, build & store it
-		$data = $this->compileCss($path) . "\n";
+		$data = self::compileCss($path) . "\n";
 		$cache->store($data, $key, $group);
 		
 		return $data;
@@ -85,7 +92,7 @@ class T3Less
 	 * @param   $path   the less file to compile
 	 * @return  string  url to css file
 	 */
-	function buildCss($path)
+	public static function buildCss($path)
 	{
 		$app     = JFactory::getApplication();
 		$theme   = $app->getUserState('vars_theme', '');
@@ -122,7 +129,7 @@ class T3Less
 		}
 		
 		// not cached, build & store it
-		if (!$this->compileCss($path, $cssfile)) {
+		if (!self::compileCss($path, $cssfile)) {
 			T3::error(JText::sprintf('T3_MSG_DEVFOLDER_NOT_WRITABLE', T3_DEV_FOLDER));
 		}
 		
@@ -134,22 +141,10 @@ class T3Less
 	 * @param   string  $topath  file path of output css file
 	 * @return  bool|mixed       compile result or the css compiled content
 	 */
-	function compileCss($path, $topath = '')
+	public static function compileCss($path, $topath = '')
 	{
-		@ini_set('pcre.backtrack_limit', '2M');
-
-		$mem_limit = @ini_get('memory_limit');
-		if (preg_match('@^(\d+)(.)$@', $mem_limit, $matches)) {
-			if ($matches[2] == 'M') {
-				$mem_limit = $matches[1] * 1024 * 1024;
-			} else if ($matches[2] == 'K') {
-				$mem_limit = $matches[1] * 1024;
-			}
-		}
-
-		if((int)$mem_limit < 128 * 1024 * 1024) {
-			@ini_set('memory_limit', '128M');
-		}
+		//check system
+		self::requirement();
 
 
 		//reset import dirs
@@ -222,7 +217,7 @@ class T3Less
 		}
 		
 		// variables & mixin
-		$vars       = $this->getVars();
+		$vars       = self::getVars();
 		$output     = $content;
 		$importdirs = array();
 		
@@ -349,7 +344,6 @@ class T3Less
 		//update url of needed
 		$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), T3_TEMPLATE_URL . '/css') : T3_TEMPLATE_URL . '/css/');
 
-
 		if ($is_rtl) {
 			
 			if($rtlcontent){
@@ -386,7 +380,7 @@ class T3Less
 	 * Get less variables
 	 * @return mixed
 	 */
-	function getVars()
+	public static function getVars()
 	{
 		$app  = JFactory::getApplication();
 		$rtl  = $app->getUserState('DIRECTION') == 'rtl' ? '_rtl' : '';
@@ -516,45 +510,296 @@ class T3Less
 			
 		} else {
 
-			$t3less = T3Less::getInstance();
-
 			// in development mode, using php to compile less for a better view of development
 			if (preg_match('#(template(-responsive)?.less)#', $lesspath)) {
-				// Development mode is on, try to include less file inside folder less/
-				// get the less content
-				$lessContent = JFile::read(JPATH_ROOT . '/' . $lesspath);
-				$path        = dirname($lesspath);
 				
-				// parse less content
-				if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {
-					foreach ($matches[1] as $url) {
-						if ($url == 'vars.less') {
-							continue;
-						}
-						$url    = $path . '/' . $url;
-						$cssurl = $t3less->buildCss(T3Path::cleanPath($url));
-						$doc->addStyleSheet($cssurl);
-					}
-				}
-				
-				// check and add theme, rtl less
-				if ($theme) {
-					$themepath = str_replace('/less/', '/less/themes/' . $theme . '/', $lesspath);
-					if (is_file(JPATH_ROOT . '/' . $themepath)) {
-						$cssurl = $t3less->buildCss(T3Path::cleanPath($themepath));
-						$doc->addStyleSheet($cssurl);
-					}
-				} elseif ($doc->direction == 'rtl' && !preg_match('/rtl/', $lesspath)) {
-					$rtlpath = str_replace('/less/', '/less/rtl/', $lesspath);
-					if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
-						$cssurl = $t3less->buildCss(T3Path::cleanPath($rtlpath));
-						$doc->addStyleSheet($cssurl);
-					}
-				}
+				self::divide($lesspath, $theme);
 				
 			} else {
-				$cssurl = $t3less->buildCss(T3Path::cleanPath($lesspath));
+				$cssurl = self::buildCss(T3Path::cleanPath($lesspath));
 				$doc->addStyleSheet($cssurl);
+			}
+		}
+	}
+
+	public static function divide($path)
+	{
+		
+		self::requirement();
+
+		//reset import dirs
+		Less_Cache::$import_dirs = array();
+
+		$env    = new Less_Environment();
+		$parser = new Less_Parser($env);
+		$env->setCompress(false);
+
+		$app    = JFactory::getApplication();
+		$doc    = JFactory::getDocument();
+		$tpl    = T3_TEMPLATE;
+		$theme  = $app->getTemplate(true)->params->get('theme');
+		$is_rtl = $doc->direction == 'rtl' && strpos($path, 'rtl/') === false;
+		$subdir = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
+		$topath = T3_DEV_FOLDER . '/' . $subdir;
+		$tofile = null;
+		$root   = JUri::root(true);
+
+		//pattern
+		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
+		$rspace       = '@[\r?\n]{2,}@';
+		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
+		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables)\.less@';
+		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')/less/@';
+		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
+
+		$rsplitbegin  = '@^\s*\#';
+		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
+		$rswitchrtl   = '@/less/(themes/[^/]*/)?@';
+
+		$kfilepath    = 'less-file-path';
+		$kvarsep      = 'less-content-separator';
+		$krtlsep      = 'rtl-less-content';
+
+		if ($topath) {
+			if (!is_dir($topath)) {
+				JFolder::create($topath);
+			}
+		}
+
+		// check path
+		$realpath = realpath(JPATH_ROOT . '/' . $path);
+		if (!is_file($realpath)) {
+			return;
+		}
+
+		// get file content
+		$content = JFile::read($realpath);
+
+		//remove vars.less
+		if (preg_match($rexcludepath, $path)){
+			$content = preg_replace($rimportvars, '', $content);
+		}
+
+		// split into array, separated by the import
+		$split_contents = preg_split($rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+		//check if we need to rebuild
+		$rebuild = false;
+
+		//check for this file and rtl
+		$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $path) . '.css';
+		if(is_file($cssfile) && filemtime($cssfile) >= filemtime(JPATH_ROOT . '/' . $path)){
+			$doc->addStylesheet($cssfile);
+		}
+
+		$import = false;
+		foreach ($split_contents as $chunk) {
+			if ($import) {
+				$import = false;
+				
+				$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
+				if(is_file(JPATH_ROOT . '/' . $url)){
+					$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $url) . '.css';
+					if(!is_file($cssfile) || filemtime($cssfile) < filemtime(JPATH_ROOT . '/' . $url)){
+						$rebuild = true;
+						break;
+					} else {
+						$doc->addStylesheet($cssfile);
+					}
+				}
+
+			} else {
+				$import = true;
+			}
+		}
+
+		// so, no need to rebuild?
+		if(!$rebuild){
+
+			// add RTL css if needed
+			if($is_rtl){
+				$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', str_replace('.less', '-rtl.less', $path)) . '.css';
+				if(is_file($cssfile)){
+					$doc->addStylesheet($cssfile);
+				}
+			}
+
+			return false;
+		}
+		
+		// variables & mixin
+		$vars       = self::getVars();
+		$output     = '';
+		$importdirs = array();
+		
+		// iterate to each chunk and add separator mark
+		$import = false;
+		foreach ($split_contents as $chunk) {
+			if ($import) {
+				$import = false;
+				
+				$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
+				
+				// ignore vars.less and variables.less if they are in template folder
+				// cause there may have other css less file with the same name (eg. font awesome)
+				if (preg_match($rvarscheck, $url)){
+					continue;
+				}
+				
+				// remember this path when lookup for import
+				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
+
+				$output .= "#$kfilepath{content: \"$url\";}\n@import \"$chunk\";\n\n";
+
+			} else {
+				$import = true;
+				$chunk  = trim($chunk);
+				if ($chunk) {
+					$output .= "#$kfilepath{content: \"$path\";}\n$chunk\n\n";
+				}
+			}
+		}
+
+
+		// compile RTL overwrite when in RTL mode
+		if ($is_rtl) {
+
+			$rtlcontent = '';
+
+			// import rtl override
+			$import = false;
+			foreach ($split_contents as $chunk) {
+				if ($import) {
+					$import = false;
+					
+					$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
+					// ignore vars.less and variables.less if they are in template folder
+					// cause there may have other css less file with the same name (eg. font awesome)
+					if (preg_match($rvarscheck, $url)){
+						continue;
+					}
+
+					// process import file
+					$url = preg_replace('@/less/(themes/)?@', '/less/rtl/', $url);
+					
+					// is there overwrite file?
+					if (!is_file(JPATH_ROOT . '/' . $url)){
+						continue;
+					}
+
+					// process import file
+					$importcontent = JFile::read(JPATH_ROOT . '/' . $url);
+					if (preg_match($rexcludepath, $url)){
+						$importcontent = preg_replace($rimportvars, '', $importcontent);
+					}
+
+					// remember this path when lookup for import
+					if (preg_match($rimport, $importcontent)) {
+						$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
+					}
+
+					$rtlcontent .= "\n$importcontent\n\n";
+				} else {
+					$import = true;
+				}
+			}
+			
+			// override in template for this file
+			$rtlpath = preg_replace($rswitchrtl, '/less/rtl/', $path);
+			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
+				// process import file
+				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
+				$rtlcontent   .= "\n$importcontent\n\n";
+				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = $root . '/' . dirname($rtlpath) . '/';
+			}
+
+			// rtl theme
+			if ($theme) {
+				$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $path);
+				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
+					// process import file
+					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
+					$rtlcontent   .= "\n$importcontent\n\n";
+					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = $root . '/' . dirname($rtlthemepath) . '/';
+				}
+			}
+
+			if($rtlcontent){
+				//rtl content will be treat as a new file
+				$rtlfile = str_replace('.less', '-rtl.less', $path);
+				$output = $output . "\n#$kfilepath{content: \"$rtlfile\";}\n\n#$krtlsep{content: \"separator\";}\n\n$rtlcontent\n\n";
+			}
+		}
+
+		// common place
+		$importdirs[T3_TEMPLATE_PATH . '/less'] = T3_TEMPLATE_URL . '/less/';
+
+		// myself
+		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = $root . '/' . dirname($path) . '/';
+
+		// compile less to css using lessphp
+		$parser->SetImportDirs($importdirs);
+		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, $root . '/' . dirname($path) . '/');
+		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
+		$parser->parse($source);
+		$output = $parser->getCss();
+
+		//use cssjanus to transform the content
+		if ($is_rtl) {
+			
+			if($rtlcontent){
+				$output = preg_split($rsplitbegin . $krtlsep . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+				
+				$rtlcontent = isset($output[2]) ? $output[2] : false;
+				$output = $output[0];
+			}
+
+			T3::import('jacssjanus/ja.cssjanus');
+			$output = JACSSJanus::transform($output, true);
+			
+			if($rtlcontent){
+				$output = $output . "\n" . $rtlcontent;
+			}
+		}
+
+		//update path and store to files
+		$split_contents = preg_split($rsplitbegin . $kfilepath . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$file_contents  = array();
+		$output         = '';
+		$file           = $path;	//default
+		$isfile         = false;
+		$relpath        = JURI::base(true) . '/' . dirname($file);
+
+		foreach ($split_contents as $chunk) {
+			if ($isfile) {
+				$isfile  = false;
+				$file    = $chunk;
+				$relpath = $topath ? T3Path::relativePath($topath, dirname($file)) : 
+									JURI::base(true) . '/' . dirname($file);
+			} else {
+				$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . 
+																($file ? T3Path::updateUrl($chunk, $relpath) : $chunk) . "\n\n";
+				$isfile = true;
+			}
+		}
+
+		if(!empty($file_contents)){
+			
+			// remove the dupliate clearfix at the beggining
+			$split_contents = preg_split($rsplitbegin . $kvarsep . $rsplitend, reset($file_contents));
+			// ignore first one, it's clearfix
+			if(is_array($split_contents)){
+				array_shift($split_contents);
+			}
+
+			$file_contents[key($file_contents)] = implode("\n", $split_contents);
+
+			//output the file to content and add to document
+			foreach ($file_contents as $file => $content) {
+				$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $file) . '.css';
+				JFile::write($cssfile, $content);
+
+				$doc->addStylesheet($cssfile);
 			}
 		}
 	}
@@ -565,7 +810,6 @@ class T3Less
 	 */
 	public static function compileAll($theme = null)
 	{
-		$less     = T3Less::getInstance();
 		$params   = T3::getTplParams();
 
 		// get files need to compile
@@ -608,13 +852,13 @@ class T3Less
 
 			// compile all less files in template "less" folder
 			foreach ($files as $file) {
-				$less->compileCss($lesspath . $file . '.less', $csspath . $file . '.css');
+				self::compileCss($lesspath . $file . '.less', $csspath . $file . '.css');
 			}
 
 			// if the template not overwrite the t3 core, we will compile those missing files
 			if(!empty($t3files)){
 				foreach ($t3files as $file) {
-					$less->compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+					self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
 				}
 			}
 		}
@@ -633,12 +877,12 @@ class T3Less
 
 				// compile
 				foreach ($files as $file) {
-					$less->compileCss($lesspath . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . '.css');
+					self::compileCss($lesspath . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . '.css');
 				}
 
 				if(!empty($t3files)){
 					foreach ($t3files as $file) {
-						$less->compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
 					}
 				}
 			}
@@ -652,12 +896,12 @@ class T3Less
 				
 				// compile
 				foreach ($files as $file) {
-					$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $file . '.css');
+					self::compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $file . '.css');
 				}
 
 				if(!empty($t3files)){
 					foreach ($t3files as $file) {
-						$less->compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
 					}
 				}
 			}
@@ -669,12 +913,12 @@ class T3Less
 					
 					// compile
 					foreach ($files as $file) {
-						$less->compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
+						self::compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
 					}
 
 					if(!empty($t3files)){
 						foreach ($t3files as $file) {
-							$less->compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+							self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
 						}
 					}
 				}
