@@ -62,7 +62,7 @@ var T3Admin = window.T3Admin || {};
 
 			$('#t3-admin-tb-megamenu button').on('click', function(){
 				
-				if($('#jform_params_navigation_type').val() != 'megamenu' && !T3Admin.tbmmid){
+				if($('#jform_params_navigation_type :checked').val() != 'megamenu' && !T3Admin.tbmmid){
 					
 					$('#t3-admin-tb-themer button').popover('hide');
 					$(this).popover('show');

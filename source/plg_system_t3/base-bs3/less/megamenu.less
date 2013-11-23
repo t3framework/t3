@@ -325,12 +325,12 @@
   .t3-megamenu.animate {
     .mega {
       > .mega-dropdown-menu {
-        .transition(all 400ms);
         .backface-visibility(hidden);
         opacity: 0;
       }
 
       &.animating > .mega-dropdown-menu {
+        .transition(all 400ms);
         display: block!important;
       }
 
@@ -343,7 +343,7 @@
     &.zoom {
       
       .mega {
-        & > .mega-dropdown-menu {
+        > .mega-dropdown-menu {
           .scale(~"0, 0");
           .transform-origin(20% 20%);
         }
@@ -354,7 +354,7 @@
 
       //special case for level 0
       .level0 > .mega-align-center {
-        &> .mega-dropdown-menu {
+        > .mega-dropdown-menu {
           -webkit-transform: scale(0, 0) translate(-50%, 0);
               -ms-transform: scale(0, 0) translate(-50%, 0);
                   transform: scale(0, 0) translate(-50%, 0);
@@ -384,21 +384,21 @@
 
       .level0 {
 
-        & > .mega > .mega-dropdown-menu {
+        > .mega > .mega-dropdown-menu {
           .scale(~"1, 0");
         }
 
-        & > .mega-align-center {
-          & > .mega-dropdown-menu {
+        > .mega-align-center {
+          > .mega-dropdown-menu {
             transform: scale(1,0) translate(-50%, 0);
             -webkit-transform: scale(1,0) translate(-50%, 0);
             -ms-transform: scale(1,0) translate(-50%, 0);
-            
-            &.open > .mega-dropdown-menu {
-              transform: scale(1,1) translate(-50%, 0);
-              -webkit-transform: scale(1,1) translate(-50%, 0);
-              -ms-transform: scale(1,1) translate(-50%, 0);
-            }
+          }
+
+          &.open > .mega-dropdown-menu {
+            transform: scale(1,1) translate(-50%, 0);
+            -webkit-transform: scale(1,1) translate(-50%, 0);
+            -ms-transform: scale(1,1) translate(-50%, 0);
           }
         }
       }
@@ -410,15 +410,17 @@
         &.animating > .mega-dropdown-menu {
           overflow: hidden;
         }
-        & > .mega-dropdown-menu {
-          & > div {
+        
+        > .mega-dropdown-menu {
+          > div {
             .transition(all 400ms);
             .backface-visibility(hidden);            
             margin-top: -100%;
           }
         }
+
         &.open > .mega-dropdown-menu {
-          & > div {
+          > div {
             margin-top: 0%;
           }
         }
@@ -426,12 +428,13 @@
         /* Level > 0 */
         .mega > .mega-dropdown-menu {
           min-width: 0;
-          & > div {
+          > div {
             min-width: 200px;
             margin-top: 0;
             margin-left: -500px;
           }
         }
+        
         .mega.open > .mega-dropdown-menu > div {
           margin-left: 0;
         }

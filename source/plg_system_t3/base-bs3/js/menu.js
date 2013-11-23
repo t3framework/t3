@@ -20,15 +20,13 @@
 			var mm_duration = $('.t3-megamenu').data('duration') || 0;
 			if (mm_duration) {
 
-				var style = '';
-				style += '.t3-megamenu.animate .mega > .mega-dropdown-menu, .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {'
-				style += 'transition-duration: ' + mm_duration + 'ms;';
-				style += '-webkit-transition-duration: ' + mm_duration + 'ms;';
-				style += '-ms-transition-duration: ' + mm_duration + 'ms;';
-				style += '-o-transition-duration: ' + mm_duration + 'ms;';
-				style += '}';
-
-				$('<style type="text/css">'+style+'</style>').appendTo ('head');
+				$('<style type="text/css">' +
+						'.t3-megamenu.animate .animating > .mega-dropdown-menu,' +
+						'.t3-megamenu.animate.slide .animating > .mega-dropdown-menu > div {' +
+							'transition-duration: ' + mm_duration + 'ms;' +
+							'-webkit-transition-duration: ' + mm_duration + 'ms;' +
+						'}' +
+					'</style>').appendTo ('head');
 			}
 
 			var mm_timeout = mm_duration ? 100 + mm_duration : 500;
@@ -104,24 +102,24 @@
 					sub.css({left : '', right : ''});
 
 					if (mm_rtl) {
-						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-left')) {
+						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
 
 							//should be align to the right as parent
-							item.removeClass('mega-align-right').addClass('mega-align-left');
+							item.removeClass('mega-align-left').addClass('mega-align-right');
 
 							// check if not able => revert the direction
 							if (offset.left + width + sub_width > screen_width) {
-								item.removeClass('mega-align-left'); //should we add align left ? it is th default now
+								item.removeClass('mega-align-right'); //should we add align left ? it is th default now
 
-								if(offset.left + width - sub_width > 0){
-									sub.css('right', sub_width - offset.left - width);
+								if(offset.left - sub_width < 0){
+									sub.css('right', offset.left + width - sub_width);
 								}
 							}
 						} else {
-							if (offset.left + width - sub_width < 0) {
-								item.removeClass('mega-align-right').addClass('mega-align-left');
+							if (offset.left - sub_width < 0) {
+								item.removeClass('mega-align-left').addClass('mega-align-right');
 
-								if(offset.left + sub_width > screen_width){
+								if(offset.left + width + sub_width > screen_width){
 									sub.css('left', screen_width - offset.left - sub_width);
 								}
 							}
@@ -129,25 +127,24 @@
 					} else {
 
 						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
-
 							//should be align to the right as parent
 							item.removeClass('mega-align-left').addClass('mega-align-right');
 
 							// check if not able => revert the direction
-							if (offset.left + width - sub_width < 0) {
+							if (offset.left - sub_width < 0) {
 								item.removeClass('mega-align-right'); //should we add align left ? it is th default now
 
-								if(offset.left + sub_width > screen_width){
-									sub.css('left', screen_width - sub_width - offset.left);
+								if(offset.left + width + sub_width > screen_width){
+									sub.css('left', screen_width - offset.left - sub_width);
 								}
 							}
 						} else {
 
-							if (offset.left + sub_width > screen_width) {
+							if (offset.left + width + sub_width > screen_width) {
 								item.removeClass('mega-align-left').addClass('mega-align-right');
 
-								if(offset.left + width - sub_width < 0){
-									sub.css('right', sub_width - offset.left - width);
+								if(offset.left - sub_width < 0){
+									sub.css('right', offset.left + width - sub_width);
 								}
 							}
 						}
@@ -165,11 +162,11 @@
 					position_menu($this);
 
 					// add class animate
-					setTimeout(function(){$this.addClass ('animating');})
+					setTimeout(function(){$this.addClass ('animating')}, 10);
 
 					clearTimeout ($this.data('animatingTimeout'));
 					$this.data('animatingTimeout', 
-						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
+						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout + 10));
 
 					clearTimeout ($this.data('hoverTimeout'));
 					$this.data('hoverTimeout', 

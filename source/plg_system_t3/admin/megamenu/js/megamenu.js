@@ -587,11 +587,12 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			case 'sub':
 				var liitem = currentSelected.closest('li');
 				$('.toolsub-exclass').attr('value', currentSelected.data ('class') || '');
-
+				$('.toolsub-alignment .toolbox-action').removeClass('active');
+				
 				if (liitem.data('group')) {
 					$('.toolsub-width').attr('value', '').addClass ('disabled');
 					// disable alignment
-					$('.toolitem-alignment').addClass ('disabled');
+					$('.toolsub-alignment').addClass ('disabled');
 				} else {
 					$('.toolsub-width').attr('value', currentSelected.data ('width') || '');
 					// if not top level, allow align-left & right only
