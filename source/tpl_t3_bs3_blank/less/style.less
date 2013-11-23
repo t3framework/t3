@@ -198,8 +198,9 @@
 // FOOTER
 // ---------------------------------------------------------
 .t3-footer {
-  background: @gray-darker;
-  color: @gray;
+  background: @t3-footer-background;
+  border-top: 1px solid @t3-border-color;
+  color: @t3-footer-text-color;
   .clearfix();
 
   // small
@@ -210,10 +211,8 @@
 
   // links
   a {
-    color: @t3-footer-module-color;
     // Link States
     &:hover, &:active, &:focus {
-      color: lighten(@gray,50%);
     }
   }
 
@@ -222,23 +221,25 @@
 // Foot Nav
 // --------
 .t3-footnav {
-
   padding: @t3-global-padding 0;
+  .clearfix();
 
   // Larger padding on Tablet / Desktop
   @media screen and (min-width: @screen-sm) {
     padding: (@t3-global-padding * 2) 0;
   }
 
-  .clearfix();
-
+  // Footnav Modules
   .t3-module {
+    background: @t3-footer-module-background;
+    color: @t3-footer-module-color;
     margin-top: @line-height-computed / 2;
     margin-bottom: @line-height-computed / 2;
 
     .module-title {
       color: @t3-footer-module-title-color;
       font-size: @font-size-large;
+      margin-bottom: @line-height-computed / 2;
     }
 
     ul {
@@ -246,11 +247,20 @@
       margin-left: 0;
       margin-bottom: 0;
       padding-left: 0;
+
+      > li {
+        line-height: 24px;
+        // links
+        > a {
+          color: @t3-footer-module-color;
+          // Link States
+          &:hover, &:active, &:focus {
+            color: @t3-footer-module-color;
+          }
+        }
+      }
     }
-    
-    li {
-      line-height: 24px;
-    }
+
   }
 
 }
@@ -258,7 +268,7 @@
 // Copyright
 // ---------
 .t3-copyright {
-  border-top: 1px solid lighten(@gray-darker,5%);
+  border-top: 1px solid @t3-border-color;
   font-size: @font-size-small;
   padding: (@t3-global-padding * 2) 0 (@t3-global-padding * 4);
   .clearfix();
@@ -281,7 +291,7 @@
 
   .t3-logo,
   .t3-logo-small {
-    opacity: .5;
+    opacity: .8;
     display: inline-block;
   }
 }
