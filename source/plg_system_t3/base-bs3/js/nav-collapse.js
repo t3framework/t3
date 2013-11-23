@@ -61,7 +61,7 @@ jQuery(document).ready(function ($) {
         //so we have all structure, add standard bootstrap class
         $menu
             .find('ul.dropdown-menu')
-            .prev('a')//.attr('data-toggle', 'dropdown')
+            .prev('a').attr('data-toggle', 'dropdown')
             .parent('li')
             .addClass(function(){
                 return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
