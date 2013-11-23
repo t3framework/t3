@@ -361,6 +361,20 @@
   color: #333;
 }
 
+.t3-admin-layout-preview .logo-image span {
+  display: none;
+}
+
+/* Copyright --*/
+.t3-admin-layout-preview .t3-footer .copyright {
+  margin-bottom: 20px;
+}
+
+.t3-admin-layout-preview  .t3-footer .copyright small {
+  font-size: 12px;
+  color: #999;
+}
+
 /* Powered by ---*/
 .poweredby {
   text-align: right;

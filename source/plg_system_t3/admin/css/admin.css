@@ -1524,6 +1524,14 @@ button.btn-primary:active {
   font-family: 'IcoMoon';
 }
 
+/* Fix for new Off-canvas Button */
+.fa-bars:before {
+  font-family: "FontAwesome";
+  content: "\F0C9";
+  font-style: normal;
+  font-weight: normal;
+}
+
 
 /* Tooltips font is too small */
 .tooltip {
