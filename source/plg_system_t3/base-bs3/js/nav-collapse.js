@@ -24,6 +24,12 @@ jQuery(document).ready(function ($) {
         lis.removeClass('mega dropdown mega-align-left mega-align-right mega-align-center mega-align-adjust');
         // rebuild
         lis.each(function () {
+
+            //remove Mootool conflict
+            if(window.MooTools && window.MooTools.More && Element && Element.implement){
+                this.show = null; this.hide = null;
+            }
+
             // get firstchild - a or span
             var $li = $(this),
                 $child = $li.find('>:first-child');
@@ -53,6 +59,12 @@ jQuery(document).ready(function ($) {
 
             // remove all child div
             $li.find('>div').remove();
+
+            // clean caret if there was no real submenu
+            if(!$li.children('ul').length){
+                $child.find('.caret').remove();
+            }
+
             // clear all attributes
             $li.removeAttr('class');
             for (var x in $li.data()) {
@@ -82,5 +94,5 @@ jQuery(document).ready(function ($) {
 
     // inject into .t3-navbar-collapse
     $menu.appendTo ($('.t3-navbar-collapse'));
-    
+
 });
