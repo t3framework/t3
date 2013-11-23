@@ -101,7 +101,7 @@ h2.article-title,
     border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
   }
 
-  @media screen and (min-width: @screen-sm-min) {
+  @media screen and (min-width: @grid-float-breakpoint) {
     .container & {
     }
     h1 {
@@ -123,7 +123,7 @@ h2.article-title,
     }
   }
 
-  @media screen and (min-width: @screen-sm-min) {
+  @media screen and (min-width: @grid-float-breakpoint) {
     padding: (@t3-global-padding * 4) 0;
 
     h1 {

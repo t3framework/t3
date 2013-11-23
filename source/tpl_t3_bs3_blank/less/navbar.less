@@ -83,34 +83,30 @@
   > li > a {
   }
 
+  // T3 Note: Dropdown Menu styles when collapsed
+  // Dropdowns get custom display when collapsed
   @media (max-width: @screen-xs-max) {
-    // Dropdowns get custom display when collapsed
     .open .dropdown-menu {
-
       > li > a,
       .dropdown-header {
       }
-
       > li > a {
-
         // Link states
         &:hover,
         &:focus {
         }
       }
     }
-
   }
 
+  // T3 Note: Main Styles for breakpoint
   // Uncollapse the nav
   @media (min-width: @grid-float-breakpoint) {
     margin: 0;
-
     > li {
       > a {
       }
     }
-
   }
 
   // End
@@ -297,5 +293,55 @@
     padding-right: 0;
   }
 
-  // End
+
+  // Collapse Navbar
+  // ---------------
+  .t3-navbar-collapse {
+
+    // Hide the generated navbar on breakpoint
+    @media (min-width: @grid-float-breakpoint) {
+      display: none !important;
+    }
+
+    // Navbar nav links
+    // ----------------
+    .navbar-nav {
+      margin: 0 -@navbar-padding-horizontal;
+
+      > li > a {
+        border-top: 1px solid @navbar-default-border;
+      }
+
+      > li:first-child  > a {
+        border-top: 0;
+      }
+
+      // Dropdown Menu
+      .open .dropdown-menu {
+
+        > li > a,
+        .dropdown-header {
+        }
+
+        > li > a {
+          // Link states
+          &:hover,
+          &:focus {
+          }
+        }
+
+      }
+
+      // Re-Align the caret on right
+      .dropdown > a .caret {
+        position: absolute;
+        top: 40%;
+        right: @padding-base-horizontal;
+      }
+    }
+
+  // End Collapse Navbar
+  }
+
+// End
 }
