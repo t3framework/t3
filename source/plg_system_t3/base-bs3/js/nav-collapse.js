@@ -33,6 +33,14 @@ jQuery(document).ready(function ($) {
                 $child.remove();
             }
 
+            // remove caret
+            if($li.data('hidewcol')){
+                $child.find('.caret').remove();
+                $child.nextAll().remove();
+
+                return; //that is all for this item
+            }
+
             // find subnav and inject into one ul
             var subul = $li.find('ul.level' + $li.data('level'));
             if (subul.length) {
@@ -54,8 +62,6 @@ jQuery(document).ready(function ($) {
             for (var x in $child.data()) {
                 $child.removeAttr('data-' + x)
             }
-            // remove carret
-            // $child.find('b').remove();
         });
 
         //so we have all structure, add standard bootstrap class
@@ -68,15 +74,13 @@ jQuery(document).ready(function ($) {
             });
 
         // update class current
-        liactive.addClass('current');
+        liactive.addClass('current active');
     } else {
         // clone for bootstrap menu
         $menu = $navwrapper.find ('ul.nav').clone();
-        // remove all dropdown, dropdown-menu, dropdown-submenu class
-        //$menu.find ('.dropdown, .dropdown-menu, .dropdown-submenu').removeClass ('dropdown dropdown-menu dropdown-submenu');
     }
 
     // inject into .t3-navbar-collapse
     $menu.appendTo ($('.t3-navbar-collapse'));
-
-})
+    
+});
