@@ -485,15 +485,21 @@ input[type="color"]:focus,
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  font-size: 20px;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: bold;
   text-indent: 0;
+}
+
+.t3-admin-fieldset-desc + * + .t3-admin-form-legend{
+  border-top: 1px solid #ccc;
+  margin-top: 0;
 }
 
 .t3-admin-form-legend-desc {
   display: block;
   font-weight: normal;
   font-size: 12px;
+  margin-top: 5px;
 }
 
 
