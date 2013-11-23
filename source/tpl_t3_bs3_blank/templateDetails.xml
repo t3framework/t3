@@ -33,6 +33,7 @@
 		<filename>index.php</filename>
 		<filename>thememagic.xml</filename>
 		<filename>templateInfo.php</filename>
+		<filename>templateHook.php</filename>
 		<filename>template_preview.png</filename>
 		<filename>template_thumbnail.png</filename>
 		<filename>templateDetails.xml</filename>
@@ -57,6 +58,7 @@
 		<position>mainnav</position>
 		<position>navhelper</position>
 		<position>breadcrumbs</position>
+		<position>off-canvas</position>
 		<position>sidebar-1</position>
 		<position>sidebar-2</position>
 		<position>mast-col</position>
