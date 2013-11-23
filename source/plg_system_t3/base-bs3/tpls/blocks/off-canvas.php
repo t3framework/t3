@@ -27,8 +27,8 @@ defined('_JEXEC') or die;
 <div id="t3-off-canvas" class="t3-off-canvas">
 
   <div class="t3-off-canvas-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h2 class="t3-off-canvas-header-title">Sidebar</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
 
   <div class="t3-off-canvas-body">

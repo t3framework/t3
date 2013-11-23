@@ -36,9 +36,9 @@
   top: 1px;
   left: 1px;
   padding: 0;
-  height: 30px;
-  line-height: 30px;
-  width: 30px;
+  height: 35px;
+  line-height: 35px;
+  width: 35px;
   &:focus {
     outline: none;
   }
@@ -63,25 +63,29 @@
     background: @t3-off-canvas-header-background;
     color: @t3-off-canvas-header-text-color;
     padding: 0 0 0 @padding-base-horizontal;
-    height: 30px;
+    height: 35px;
 
     // Title
     h2 {
       margin: 0;
-      line-height: 30px;
+      line-height: 35px;
       font-size: @font-size-base;
       font-weight: bold;
       text-transform: uppercase;
     }
 
-    // Close Button
-    .close {
-      margin: 0;
-      height: 30px;
-      line-height: 30px;
-      width: 30px;
-      background: darken(@t3-off-canvas-header-background, 20%);
-    }
+  }
+
+  // Close Button
+  .close {
+    margin: 0;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    background: darken(@t3-off-canvas-header-background, 20%);
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
 
@@ -123,6 +127,10 @@
     // ------------
     .t3-module {
       margin-bottom: @line-height-computed;
+    }
+
+    .module-title  {
+      margin-bottom: @line-height-computed / 2;
     }
 
   // End Off-Canvas Body
