@@ -589,7 +589,7 @@ class T3Less
 
 		//check for this file and rtl
 		$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $path) . '.css';
-		$css_lm  = filemtime($cssfile);
+		$css_lm  = is_file($cssfile) ? filemtime($cssfile) : 0;
 		if(is_file($cssfile) && $css_lm >= $vars_lm && $css_lm >= filemtime(JPATH_ROOT . '/' . $path)){
 			$doc->addStylesheet($cssfile);
 		}
@@ -602,7 +602,7 @@ class T3Less
 				$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
 				if(is_file(JPATH_ROOT . '/' . $url)){
 					$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $url) . '.css';
-					$css_lm  = filemtime($cssfile);
+					$css_lm  = is_file($cssfile) ? filemtime($cssfile) : 0;
 
 					if(!is_file($cssfile) || $css_lm < $vars_lm || $css_lm < filemtime(JPATH_ROOT . '/' . $url)){
 						$rebuild = true;
