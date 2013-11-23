@@ -3,42 +3,37 @@
 .home {
   color: #555555;
 }
+.home h1,
+.home h2,
+.home h3 {
+  color: #333333;
+}
+.home h1 {
+  line-height: 1;
+}
+.home h2 {
+  font-size: 21px;
+}
+@media screen and (min-width: 768px) {
+  .home h2 {
+    font-size: 30px;
+  }
+}
 .home .jumbotron {
   background-color: transparent;
   position: relative;
-}
-.home .jumbotron h1,
-.home .jumbotron h2,
-.home .jumbotron h3 {
-  color: #333333;
+  margin-bottom: 0;
 }
 .home .t3-sl-1 {
   padding: 0;
-  background: #eeeeee;
-  border-bottom: 1px solid #dddddd;
+  background: #fff;
+  border-bottom: 1px solid #eeeeee;
 }
 .home .t3-sl-1 .jumbotron {
   border-radius: 0;
 }
-.home .t3-sl-1 .jumbotron h1 {
-  font-weight: bold;
-}
-.home .t3-sl-1 .jumbotron .btn-large {
+.home .t3-sl-1 .jumbotron .btn {
   margin-top: 20px;
-}
-.home .t3-sl-1 .t3-social {
-  background: #eeeeee;
-  padding: 20px 0;
-}
-.home .t3-sl-1 .t3-social .t3-social-btns {
-  margin: 0;
-  height: 20px;
-  text-align: center;
-}
-.home .t3-sl-1 .t3-social .t3-social-btns li {
-  display: inline-block;
-  margin: 0 10px;
-  height: 20px;
 }
 .home .t3-sl-2 {
   text-align: center;
@@ -46,22 +41,31 @@
 .home .t3-sl-2 .img-responsive {
   display: inline-block;
 }
-.home .t3-sl-2 p {
-  font-size: 16px;
-  line-height: 22px;
+@media screen and (min-width: 768px) {
+  .home .t3-sl-2 p {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
-.home .t3-sl-3 p img {
-  margin-bottom: 20px;
+.home .t3-sl-3 p > img {
+  margin-top: 20px;
+}
+@media screen and (min-width: 992px) {
+  .home .t3-sl-3 p > img {
+    margin-top: 0;
+  }
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #eeeeee;
   text-align: center;
 }
-.home .t3-sl-3 p,
-.home .t3-sl-4 p {
-  font-size: 16px;
-  line-height: 22px;
+@media screen and (min-width: 768px) {
+  .home .t3-sl-3 p,
+  .home .t3-sl-4 p {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 .home .t3-sl-3 .jumbotron,
 .home .t3-sl-4 .jumbotron {
@@ -74,68 +78,22 @@
 }
 .home .t3-sl-3 .jumbotron p,
 .home .t3-sl-4 .jumbotron p {
-  font-size: 21px;
-  line-height: 1.275;
+  font-size: 18px;
+  line-height: 1.25;
   color: #999999;
 }
+@media screen and (min-width: 768px) {
+  .home .t3-sl-3 .jumbotron p,
+  .home .t3-sl-4 .jumbotron p {
+    font-size: 21px;
+  }
+}
 .home .t3-sl-5 {
-  background: #eeeeee;
-  border-top: 1px solid #dddddd;
+  background: #fff;
+  border-top: 1px solid #eeeeee;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron {
+  border-radius: 0;
   margin-bottom: 0;
-}
-.home .t3-sl-5 .jumbotron .btn-large {
-  margin-top: 20px;
-}
-.home .t3-sl-5 .section-arrow-alt {
-  background: url("../images/arrow-section-alt.png") no-repeat center -1px #eeeeee;
-  width: 37px;
-  height: 19px;
-  position: absolute;
-  top: -1px;
-  right: 50%;
-  margin-right: -19px;
-}
-@media (max-width: 767px) {
-  .home .t3-sl-1 .jumbotron,
-  .home .t3-sl-5 .jumbotron {
-    padding-top: 30px;
-    padding-bottom: 10px;
-  }
-  .home .t3-sl-1 .jumbotron .btn-large,
-  .home .t3-sl-5 .jumbotron .btn-large {
-    font-size: 16px;
-    padding: 12px 16px;
-  }
-  .home .t3-sl-2 {
-    text-align: center;
-  }
-  .home .t3-sl-2 p {
-    font-size: 14px;
-    line-height: 20px;
-  }
-  .home .t3-sl-3 p img {
-    margin-bottom: 0;
-    margin-top: 20px;
-  }
-  .home .t3-sl-3 p,
-  .home .t3-sl-4 p {
-    font-size: 14px;
-    line-height: 20px;
-  }
-  .home .t3-sl-3 .jumbotron,
-  .home .t3-sl-4 .jumbotron {
-    padding-bottom: 0;
-  }
-  .home .t3-sl-3 .jumbotron h1,
-  .home .t3-sl-4 .jumbotron h1 {
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-  .home .t3-sl-3 .jumbotron p,
-  .home .t3-sl-4 .jumbotron p {
-    font-size: 14px;
-  }
 }

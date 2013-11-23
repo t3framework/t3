@@ -118,7 +118,7 @@ class T3Minify
 
 			$url = self::fixUrl($url);
 
-			if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
+			if (strpos($url, 'bootstrap.css') === false && $stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
 				$stylesheet['path'] = $csspath;
 				$stylesheet['data'] = JFile::read($csspath);
 

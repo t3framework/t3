@@ -18,7 +18,7 @@ body,
 }
 .t3-wrapper-inner {
   position: relative;
-  left: 0;
+  right: 0;
   z-index: 99;
   height: 100%;
   -webkit-transition: -webkit-transform 0.5s;
@@ -27,7 +27,7 @@ body,
 .t3-wrapper-inner::after {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 0;
   height: 0;
   background: rgba(0, 0, 0, 0.2);
@@ -49,7 +49,7 @@ body,
 .t3-off-canvas {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 100;
   visibility: hidden;
   width: 250px;
@@ -62,7 +62,7 @@ body,
 .t3-off-canvas::after {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
@@ -455,14 +455,14 @@ body,
 }
 .no-csstransforms3d .t3-wrapper-inner,
 .no-js .t3-wrapper-inner {
-  padding-left: 250px;
+  padding-right: 250px;
 }
 .off-canvas-toggle {
   border-radius: 0;
   border: 0;
   position: absolute;
   top: 1px;
-  left: 1px;
+  right: 1px;
   padding: 0;
   height: 35px;
   line-height: 35px;
@@ -477,7 +477,7 @@ body,
 .t3-off-canvas .t3-off-canvas-header {
   background: #eeeeee;
   color: #333333;
-  padding: 0 0 0 12px;
+  padding: 0 12px 0 0;
   height: 35px;
 }
 .t3-off-canvas .t3-off-canvas-header h2 {
@@ -495,7 +495,7 @@ body,
   background: #bbbbbb;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
 }
 .t3-off-canvas .t3-off-canvas-body {
   padding: 24px 12px;
@@ -519,4 +519,23 @@ body,
 }
 .t3-off-canvas .t3-off-canvas-body .module-title {
   margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .off-canvas body > * {
+    left: 0;
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  .off-canvas #off-canvas-nav .t3-mainnav {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  .off-canvas-enabled body > * {
+    -webkit-transform: translateX(-250px);
+    -ms-transform: translateX(-250px);
+    transform: translateX(-250px);
+  }
 }

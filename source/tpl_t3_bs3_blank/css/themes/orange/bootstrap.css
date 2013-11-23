@@ -2617,8 +2617,8 @@ legend + .control-group {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('/T3/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.eot');
-  src: url('/T3/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/T3/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.woff') format('woff'), url('/T3/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/T3/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/github/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.eot');
+  src: url('/github/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/github/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.woff') format('woff'), url('/github/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/github/t3mb/plugins/system/t3/base-bs3/bootstrap/less/../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
