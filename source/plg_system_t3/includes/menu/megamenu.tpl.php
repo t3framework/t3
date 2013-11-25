@@ -98,7 +98,7 @@ class T3MenuMegamenuTpl
 		$setting = isset($vars['setting']) ? $vars['setting'] : array();
 		$width   = isset($setting['width']) ? $setting['width'] : T3_BASE_MAX_GRID;
 		$data    = "data-width=\"$width\"";
-		$cls     = ($vars['menu']->editmode ? 'span' : T3_BASE_WIDTH_PREFIX) . $width;
+		$cls     = ($vars['menu']->editmode ? 'span' : T3_BASE_NONRSP_WIDTH_PREFIX) . $width;
 
 		if (isset($setting['position'])) {
 			$cls  .= " mega-col-module";

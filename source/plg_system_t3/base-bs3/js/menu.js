@@ -29,8 +29,17 @@
 					'</style>').appendTo ('head');
 			}
 
-			var mm_timeout = mm_duration ? 100 + mm_duration : 500;
-			var mm_rtl = $('html').attr('dir') == 'rtl';
+			var mm_timeout = mm_duration ? 100 + mm_duration : 500,
+				mm_rtl = $('html').attr('dir') == 'rtl',
+				sb_width = (function () { 
+				var parent = $('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body'),
+					child = parent.children(),
+					width = child.innerWidth() - child.height(100).innerWidth();
+
+				parent.remove();
+
+				return width;
+			})();
 
 			function position_menu(item){
 
@@ -43,7 +52,7 @@
 
 				var offset = item.offset(),
 					width = item.outerWidth(),
-					screen_width = $(window).width(),
+					screen_width = $(window).width() - sb_width,
 					sub_width = sub.outerWidth(),
 					level = item.data('level');
 

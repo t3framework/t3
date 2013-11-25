@@ -20,19 +20,26 @@
 			var mm_duration = $('.t3-megamenu').data('duration') || 0;
 			if (mm_duration) {
 
-				var style = '';
-				style += '.t3-megamenu.animate .mega > .mega-dropdown-menu, .t3-megamenu.animate.slide .mega > .mega-dropdown-menu > div {'
-				style += 'transition-duration: ' + mm_duration + 'ms;';
-				style += '-webkit-transition-duration: ' + mm_duration + 'ms;';
-				style += '-ms-transition-duration: ' + mm_duration + 'ms;';
-				style += '-o-transition-duration: ' + mm_duration + 'ms;';
-				style += '}';
-
-				$('<style type="text/css">'+style+'</style>').appendTo ('head');
+				$('<style type="text/css">' +
+						'.t3-megamenu.animate .animating > .mega-dropdown-menu,' +
+						'.t3-megamenu.animate.slide .animating > .mega-dropdown-menu > div {' +
+							'transition-duration: ' + mm_duration + 'ms;' +
+							'-webkit-transition-duration: ' + mm_duration + 'ms;' +
+						'}' +
+					'</style>').appendTo ('head');
 			}
 
-			var mm_timeout = mm_duration ? 100 + mm_duration : 500;
-			var mm_rtl = $('html').attr('dir') == 'rtl';
+			var mm_timeout = mm_duration ? 100 + mm_duration : 500,
+				mm_rtl = $('html').attr('dir') == 'rtl',
+				sb_width = (function () { 
+				var parent = $('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body'),
+					child = parent.children(),
+					width = child.innerWidth() - child.height(100).innerWidth();
+
+				parent.remove();
+
+				return width;
+			})();
 
 			function position_menu(item){
 
@@ -45,7 +52,7 @@
 
 				var offset = item.offset(),
 					width = item.outerWidth(),
-					screen_width = $(window).width(),
+					screen_width = $(window).width() - sb_width,
 					sub_width = sub.outerWidth(),
 					level = item.data('level');
 
@@ -56,46 +63,69 @@
 				if(level == 1){
 
 					var align = item.data('alignsub'),
-						align_offset = 0;
+						align_offset = 0,
+						align_delta = 0,
+						align_trans = 0;
 
 					if(!align){
-						align = mm_rtl ? 'right' : 'left';
+						align = 'left';
 					}
 
-					if(align == 'left'){
-						align_offset = offset.left;
-					} else if(align == 'center'){
-						align_offset = offset.left + (width - sub_width) / 2;
+					if(align == 'center'){
+						align_offset = offset.left + (width /2);
 
 						if(!$.support.t3transform){
-							sub.css(mm_rtl ? 'right' : 'left', (width - sub_width) / 2);
+							align_trans = -sub_width /2;
+							sub.css(mm_rtl ? 'right' : 'left', align_trans - width /2);
 						}
 
-					} else if(align == 'right'){
-						align_offset = offset.left + width - sub_width;
+					} else {
+						align_offset = offset.left + (align == 'left' ? 1 : -1) * (mm_rtl ? width : 0);
 					}
-				}
+			
+					if (mm_rtl) {
 
-				if (level == 1) {
-					if ((mm_rtl && align != 'right') || (!mm_rtl && align == 'right')) {
+						if(align == 'right'){
+							if(align_offset + sub_width > screen_width){
+								align_delta = screen_width - align_offset - sub_width - width;
+								sub.css('left', align_delta);
 
-						if(align_offset < 0){
-							align_offset = align_offset + (align == 'center' ? width / 2 : 0);
-							sub.css('right', align_offset);
+								if(screen_width < sub_width){
+									sub.css('left', align_delta + sub_width - screen_width);
+								}
+							}
+						} else {
+							if(align_offset < (align == 'center' ? sub_width /2 : sub_width)){
+								align_delta = align_offset - (align == 'center' ? sub_width /2 : sub_width);
+								sub.css('right', align_delta + align_trans);
+							}
+
+							if(align_offset + (align == 'center' ? sub_width /2 : 0) - align_delta > screen_width){
+								sub.css('right', align_offset + (align == 'center' ? (sub_width + width) /2 : 0) + align_trans - screen_width);
+							}
 						}
 
-						if(align_offset + sub_width > screen_width){
-							sub.css('right', align_offset + sub_width - screen_width + (align == 'center' ? width / 2 : 0));
-						}
 					} else {
 
-						if(align_offset + sub_width > screen_width){
-							align_offset = screen_width - align_offset - sub_width + (align == 'center' ? width / 2 : 0);
-							sub.css('left', align_offset);
-						}
+						if(align == 'right'){
+							if(align_offset < sub_width){
+								align_delta = align_offset - sub_width + width;
+								sub.css('right', align_delta);
 
-						if(align_offset < 0){
-							sub.css('left', -align_offset + (align == 'center' ? width / 2 : 0));
+								if(sub_width > screen_width){
+									sub.css('right', sub_width - screen_width + align_delta);
+								}
+							}
+						} else {
+
+							if(align_offset + (align == 'center' ? sub_width /2 : sub_width) > screen_width){
+								align_delta = screen_width - align_offset -(align == 'center' ? sub_width /2 : sub_width);
+								sub.css('left', align_delta + align_trans);
+							}
+
+							if(align_offset - (align == 'center' ? sub_width /2 : 0) + align_delta < 0){
+								sub.css('left', (align == 'center' ? (sub_width + width) /2 : 0) + align_trans - align_offset);
+							}
 						}
 					}
 				} else {
@@ -104,24 +134,24 @@
 					sub.css({left : '', right : ''});
 
 					if (mm_rtl) {
-						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-left')) {
+						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
 
 							//should be align to the right as parent
-							item.removeClass('mega-align-right').addClass('mega-align-left');
+							item.removeClass('mega-align-left').addClass('mega-align-right');
 
 							// check if not able => revert the direction
 							if (offset.left + width + sub_width > screen_width) {
-								item.removeClass('mega-align-left'); //should we add align left ? it is th default now
+								item.removeClass('mega-align-right'); //should we add align left ? it is th default now
 
-								if(offset.left + width - sub_width > 0){
-									sub.css('right', sub_width - offset.left - width);
+								if(offset.left - sub_width < 0){
+									sub.css('right', offset.left + width - sub_width);
 								}
 							}
 						} else {
-							if (offset.left + width - sub_width < 0) {
-								item.removeClass('mega-align-right').addClass('mega-align-left');
+							if (offset.left - sub_width < 0) {
+								item.removeClass('mega-align-left').addClass('mega-align-right');
 
-								if(offset.left + sub_width > screen_width){
+								if(offset.left + width + sub_width > screen_width){
 									sub.css('left', screen_width - offset.left - sub_width);
 								}
 							}
@@ -129,25 +159,24 @@
 					} else {
 
 						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
-
 							//should be align to the right as parent
 							item.removeClass('mega-align-left').addClass('mega-align-right');
 
 							// check if not able => revert the direction
-							if (offset.left + width - sub_width < 0) {
+							if (offset.left - sub_width < 0) {
 								item.removeClass('mega-align-right'); //should we add align left ? it is th default now
 
-								if(offset.left + sub_width > screen_width){
-									sub.css('left', screen_width - sub_width - offset.left);
+								if(offset.left + width + sub_width > screen_width){
+									sub.css('left', screen_width - offset.left - sub_width);
 								}
 							}
 						} else {
 
-							if (offset.left + sub_width > screen_width) {
+							if (offset.left + width + sub_width > screen_width) {
 								item.removeClass('mega-align-left').addClass('mega-align-right');
 
-								if(offset.left + width - sub_width < 0){
-									sub.css('right', sub_width - offset.left - width);
+								if(offset.left - sub_width < 0){
+									sub.css('right', offset.left + width - sub_width);
 								}
 							}
 						}
@@ -165,11 +194,11 @@
 					position_menu($this);
 
 					// add class animate
-					setTimeout(function(){$this.addClass ('animating');})
+					setTimeout(function(){$this.addClass ('animating')}, 10);
 
 					clearTimeout ($this.data('animatingTimeout'));
 					$this.data('animatingTimeout', 
-						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
+						setTimeout(function(){$this.removeClass ('animating')}, mm_timeout + 10));
 
 					clearTimeout ($this.data('hoverTimeout'));
 					$this.data('hoverTimeout', 
