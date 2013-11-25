@@ -54,46 +54,69 @@
 				if(level == 1){
 
 					var align = item.data('alignsub'),
-						align_offset = 0;
+						align_offset = 0,
+						align_delta = 0,
+						align_trans = 0;
 
 					if(!align){
-						align = mm_rtl ? 'right' : 'left';
+						align = 'left';
 					}
 
-					if(align == 'left'){
-						align_offset = offset.left;
-					} else if(align == 'center'){
-						align_offset = offset.left + (width - sub_width) / 2;
+					if(align == 'center'){
+						align_offset = offset.left + (width /2);
 
 						if(!$.support.t3transform){
-							sub.css(mm_rtl ? 'right' : 'left', (width - sub_width) / 2);
+							align_trans = -sub_width /2;
+							sub.css(mm_rtl ? 'right' : 'left', align_trans - width /2);
 						}
 
-					} else if(align == 'right'){
-						align_offset = offset.left + width - sub_width;
+					} else {
+						align_offset = offset.left + (align == 'left' ? 1 : -1) * (mm_rtl ? width : 0);
 					}
-				}
+			
+					if (mm_rtl) {
 
-				if (level == 1) {
-					if ((mm_rtl && align != 'right') || (!mm_rtl && align == 'right')) {
+						if(align == 'right'){
+							if(align_offset + sub_width > screen_width){
+								align_delta = screen_width - align_offset - sub_width - width;
+								sub.css('left', align_delta);
 
-						if(align_offset < 0){
-							align_offset = align_offset + (align == 'center' ? width / 2 : 0);
-							sub.css('right', align_offset);
+								if(screen_width < sub_width){
+									sub.css('left', align_delta + sub_width - screen_width);
+								}
+							}
+						} else {
+							if(align_offset < (align == 'center' ? sub_width /2 : sub_width)){
+								align_delta = align_offset - (align == 'center' ? sub_width /2 : sub_width);
+								sub.css('right', align_delta + align_trans);
+							}
+
+							if(align_offset + (align == 'center' ? sub_width /2 : 0) - align_delta > screen_width){
+								sub.css('right', align_offset + (align == 'center' ? (sub_width + width) /2 : 0) + align_trans - screen_width);
+							}
 						}
 
-						if(align_offset + sub_width > screen_width){
-							sub.css('right', align_offset + sub_width - screen_width + (align == 'center' ? width / 2 : 0));
-						}
 					} else {
 
-						if(align_offset + sub_width > screen_width){
-							align_offset = screen_width - align_offset - sub_width + (align == 'center' ? width / 2 : 0);
-							sub.css('left', align_offset);
-						}
+						if(align == 'right'){
+							if(align_offset < sub_width){
+								align_delta = align_offset - sub_width + width;
+								sub.css('right', align_delta);
 
-						if(align_offset < 0){
-							sub.css('left', -align_offset + (align == 'center' ? width / 2 : 0));
+								if(sub_width > screen_width){
+									sub.css('right', sub_width - screen_width + align_delta);
+								}
+							}
+						} else {
+
+							if(align_offset + (align == 'center' ? sub_width /2 : sub_width) > screen_width){
+								align_delta = screen_width - align_offset -(align == 'center' ? sub_width /2 : sub_width);
+								sub.css('left', align_delta + align_trans);
+							}
+
+							if(align_offset - (align == 'center' ? sub_width /2 : 0) + align_delta < 0){
+								sub.css('left', (align == 'center' ? (sub_width + width) /2 : 0) + align_trans - align_offset);
+							}
 						}
 					}
 				} else {
