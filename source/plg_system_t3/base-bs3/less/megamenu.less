@@ -24,7 +24,7 @@
 @import "variables.less";
 
 
-
+//
 // BASIC STYLE FOR MEGAMENU
 // -------------------------
 
@@ -36,7 +36,6 @@
   // Global Menu Inner padding
   // -------------------------
   .mega-inner {
-    padding: @t3-global-padding / 2;
     .clearfix();
   }
 
@@ -54,8 +53,6 @@
   }
 
   .row + .row  {
-    padding-top: @t3-global-padding / 2;
-    border-top: 1px solid @hr-border;
   }
 
 
@@ -65,6 +62,7 @@
     min-width: @t3-mega-dropdown-min-width;
     display: none;
   }
+
   .mega.open > .mega-dropdown-menu,
   .mega.dropdown-submenu:hover > .mega-dropdown-menu {
     display: block;
@@ -82,24 +80,38 @@
   .dropdown-submenu > .dropdown-menu {
     top: 0;
     left: 100%;
-    margin-top: -11px;
+    margin-top: -5px;
     margin-left: -1px;
-    border-radius: @border-radius-base;
   }
 
   .dropdown-submenu:hover > .dropdown-menu {
     display: block;
   }
 
-  // Dropdown Sub menus
+
+  // The Sub Menus
   // ------------------
   .dropdown-submenu > .dropdown-menu {
+    border-radius: @border-radius-base;
   }
 
+  // Caret to indicate there is a submenu
   .dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: darken(@dropdown-bg, 20%);
+    margin-top: 5px;
+    margin-right: -10px;
   }
 
   .dropdown-submenu:hover > a:after {
+    border-left-color: @dropdown-link-hover-color;
   }
 
 
@@ -157,17 +169,13 @@
   .col-md-12.mega-col-nav .mega-inner,
   .col-sm-12.mega-col-nav .mega-inner,
   .col-xs-12.mega-col-nav .mega-inner {
-    padding: 5px;
   }
 
   .mega-group .col-lg-12.mega-col-nav .mega-inner,
   .mega-group .col-md-12.mega-col-nav .mega-inner,
   .mega-group .col-sm-12.mega-col-nav .mega-inner,
   .mega-group .col-xs-12.mega-col-nav .mega-inner {
-    padding: 0;
   }
-
-
 
   // The Nav
   .mega-nav,
@@ -250,6 +258,37 @@
   }
 
 
+  // The caption
+  // -----------
+  .mega-caption {
+    display: block;
+    white-space: nowrap;
+  }
+
+
+  // The caret
+  // ---------
+  .nav .caret,
+  .dropdown-submenu .caret,
+  .mega-menu .caret {
+    display: none;
+  }
+
+  // Show the caret on level 0 only
+  .nav > .dropdown > .dropdown-toggle .caret {
+    display: inline-block;
+  }
+
+
+  // The icon
+  // --------
+  .nav [class^="icon-"],
+  .nav [class*=" icon-"],
+  .nav .fa {
+    margin-right: 5px;
+  }
+
+
   // Menu alignment
   // --------------
   .mega-align-left > .dropdown-menu {
@@ -283,37 +322,6 @@
     left: 0;
     margin-left: 0;
     top: auto;
-  }
-  
-
-  // The caption
-  // -----------
-  .mega-caption {
-    display: block;
-    white-space: nowrap;
-  }
-
-
-  // The caret
-  // ---------
-  .nav .caret,
-  .dropdown-submenu .caret,
-  .mega-menu .caret {
-    display: none;
-  }
-
-  // Show the caret on level 0 only
-  .nav > .dropdown > .dropdown-toggle .caret {
-    display: inline-block;
-  }
-
-
-  // The icon
-  // --------
-  .nav [class^="icon-"],
-  .nav [class*=" icon-"],
-  .nav .fa {
-    margin-right: 5px;
   }
 
   // End
@@ -465,7 +473,6 @@
     // Global Menu Inner padding
     // -------------------------
     .mega-inner {
-      padding: (@t3-global-padding / 2) @t3-global-padding;
     }
 
     // Inner Padding for 1 column
