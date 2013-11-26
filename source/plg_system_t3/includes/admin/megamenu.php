@@ -26,13 +26,14 @@ class T3AdminMegamenu
 		$menutype = $input->get('t3menu', 'mainmenu');
 		
 		//accessLevel
-		$accessLevel = array();
 		$t3acl       = (int) $input->get('t3acl', 1);
-		for ($i = 1; $i <= $t3acl; $i++) { 
-			$accessLevel[] = $i;
+		$accessLevel = array(1, $t3acl);
+		if(in_array(3, $accessLevel)){
+			$accessLevel[] = 2;
 		}
-		$accessLevel  = array_unique($accessLevel);
-
+		$accessLevel = array_unique($accessLevel);
+		sort($accessLevel);
+		
 		//languages
 		$languages = array(trim($input->get('t3lang', '*')));
 		if($languages[0] != '*'){
@@ -61,7 +62,7 @@ class T3AdminMegamenu
 		$mmconfig['editmode'] = true;
 		$mmconfig['access']   = $accessLevel;
 		$mmconfig['language'] = $languages;
-		
+
 		//build the menu
 		$menu   = new T3MenuMegamenu($menutype, $mmconfig);
 		$buffer = $menu->render(true);
