@@ -430,9 +430,16 @@ body.bd {
   border-left-color: #333333;
 }
 
-/* The caret */
+/* The seperator */
 .t3-megamenu .mega-nav .divider .separator {
   display: none;
+}
+
+/* The Icons */
+.t3-megamenu .nav [class^="icon-"],
+.t3-megamenu .nav [class*=" icon-"],
+.t3-megamenu .nav .fa {
+  margin-right: 5px;
 }
 
 /* Selected Item ---*/
