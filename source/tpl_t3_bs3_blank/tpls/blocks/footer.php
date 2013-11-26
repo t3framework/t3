@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 	<?php if ($this->checkSpotlight('footnav', 'footer-1, footer-2, footer-3, footer-4, footer-5, footer-6')) : ?>
 		<!-- FOOT NAVIGATION -->
-		<div class="container">
+		<div class="container hidden-xs">
 			<?php $this->spotlight('footnav', 'footer-1, footer-2, footer-3, footer-4, footer-5, footer-6') ?>
 		</div>
 		<!-- //FOOT NAVIGATION -->
