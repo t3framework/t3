@@ -36,7 +36,7 @@ if ($headright = $this->countModules('head-search or languageswitcherload')) {
 					<?php endif ?>
 					<span><?php echo $sitename ?></span>
 				</a>
-				<small class="site-slogan hidden-xs"><?php echo $slogan ?></small>
+				<small class="site-slogan"><?php echo $slogan ?></small>
 			</div>
 		</div>
 		<!-- //LOGO -->
