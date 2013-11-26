@@ -271,10 +271,10 @@ class T3 {
 	 *
 	 * Ge default template style
 	 */
-	public static function getDefaultTemplate(){
-		static $defaultTemplate;
+	public static function getDefaultTemplate($name = false){
+		static $template;
 
-		if (!isset($defaultTemplate)) {
+		if (!isset($template)) {
 
 			$db = JFactory::getDbo();
 			$query = $db->getQuery(true);
@@ -289,10 +289,14 @@ class T3 {
 			$db->setQuery($query);
 			$result = $db->loadObject();
 
-			$defaultTemplate = !empty($result) ? $result->template : false;
+			$template = !empty($result) ? $result : false;
 		}
 
-		return $defaultTemplate;
+		if($name && $template){
+			return $template->template;
+		}
+
+		return $template;
 	}
 
 	/**

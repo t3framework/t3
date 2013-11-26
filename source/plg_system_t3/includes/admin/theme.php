@@ -182,7 +182,9 @@ class T3AdminTheme
 		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
 		$url .= (preg_match('/\?/', $url) ? '&' : '?') . 'themer=1';
 		$url .= ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '');
-		$url .= '&t3tmid=' . $input->getCmd('id');
+		if($isadmin){
+			$url .= '&t3tmid=' . $input->getCmd('id');
+		}
 
 		$assetspath = T3_TEMPLATE_PATH;
 		$themepath = $assetspath . '/less/themes';

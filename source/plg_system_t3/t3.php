@@ -42,10 +42,12 @@ class plgSystemT3 extends JPlugin
 
 		if($input->getCmd('themer', 0) && ($t3tmid = $input->getCmd('t3tmid', 0))){
 			$user = JFactory::getUser();
-			if($t3tmid > 0 && ($user->authorise('core.manage', 'com_templates') || (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], JUri::base()) !== false))){
+
+			if($t3tmid > 0 && ($user->authorise('core.manage', 'com_templates') || 
+					(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], JUri::base()) !== false))){
 
 				$current = T3::getDefaultTemplate();
-				if($current != $t3tmid){
+				if(!$current || ($current->id != $t3tmid)){
 
 					$db = JFactory::getDbo();
 					$query = $db->getQuery(true);
@@ -57,7 +59,7 @@ class plgSystemT3 extends JPlugin
 					$db->setQuery($query);
 					$tm = $db->loadObject();
 
-					if (file_exists(JPATH_THEMES . '/' . $tm->template)) {
+					if (is_object($tm) && file_exists(JPATH_THEMES . '/' . $tm->template)) {
 						$app->setTemplate($tm->template, (new JRegistry($tm->params)));
 					}
 				}
@@ -195,7 +197,7 @@ class plgSystemT3 extends JPlugin
 				$japp->setUserState('oparams', $pglobals);
 			}
 
-			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate() ? T3::getDefaultTemplate() : false);
+			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate(true) ? T3::getDefaultTemplate(true) : false);
 
 			if ($tmpl) {
 				$extended = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl) . '/etc/form/' . $form->getName() . '.xml';
