@@ -70,11 +70,14 @@
     display: block;
   }
 
-  // Sub menus
-  // ---------------------------
+
+  // T3 Note: Extend BS3 Dropdown Menu to multi level
+  // Dropdown Sub Menus
+  // ------------------
   .dropdown-submenu {
     position: relative;
   }
+
   // Default dropdowns
   .dropdown-submenu > .dropdown-menu {
     top: 0;
@@ -83,6 +86,7 @@
     margin-left: -1px;
     border-radius: @border-radius-base;
   }
+
   .dropdown-submenu:hover > .dropdown-menu {
     display: block;
   }
@@ -97,7 +101,6 @@
 
   .dropdown-submenu:hover > a:after {
   }
-  // End 
 
 
   // The Group
@@ -308,7 +311,8 @@
   // The icon
   // --------
   .nav [class^="icon-"],
-  .nav [class*=" icon-"] {
+  .nav [class*=" icon-"],
+  .nav .fa {
     margin-right: 5px;
   }
 
@@ -506,8 +510,8 @@
 
   }
 
-  // MEGAMENU RTL override
-  // --------------------------------------------------------------
+  // MEGAMENU RTL
+  //------------------------------------------------------
   //
   html[dir="rtl"] {
     .t3-megamenu {
@@ -525,4 +529,6 @@
       }
     }
   }
+
+// End
 }

@@ -164,7 +164,8 @@
   display: inline-block;
 }
 .t3-megamenu .nav [class^="icon-"],
-.t3-megamenu .nav [class*=" icon-"] {
+.t3-megamenu .nav [class*=" icon-"],
+.t3-megamenu .nav .fa {
   margin-right: 5px;
 }
 @media (min-width: 768px) {
