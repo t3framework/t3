@@ -71,11 +71,11 @@
 		<fieldset name="grid_params" label="T3_TM_GRID">
 			<!-- Grid -->
 
-			<field name="container-lg" type="text" default="750px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_LG_WIDTH_LABEL" description="T3_TM_VARS_SCFD_LG_WIDTH_DESC" />
+			<field name="container-lg" type="text" default="1170px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_LG_WIDTH_LABEL" description="T3_TM_VARS_SCFD_LG_WIDTH_DESC" />
 
 			<field name="container-md" type="text" default="970px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_MID_WIDTH_LABEL" description="T3_TM_VARS_SCFD_MID_WIDTH_DESC" />
 			
-			<field name="container-sm" type="text" default="1170px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_SM_WIDTH_LABEL" description="T3_TM_VARS_SCFD_SM_WIDTH_DESC" />
+			<field name="container-sm" type="text" default="750px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_SM_WIDTH_LABEL" description="T3_TM_VARS_SCFD_SM_WIDTH_DESC" />
 			
 			<!-- End Grid -->
 		</fieldset>
