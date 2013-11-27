@@ -241,10 +241,13 @@ class T3Bot extends JObject
 				$mm_config = json_encode($currentconfig);
 
 				// update megamenu back to current template style parameter
-				$params = $app->getTemplate(true)->params;
+				$template = $app->getTemplate(true);
+				$params = $template->params;
 				$params->set ('mm_config', $mm_config);
-				$app->setTemplate (T3_TEMPLATE, $params);
-				T3::setTemplate(T3_TEMPLATE, $app->getTemplate(true)->params);
+				$template->params = $params;
+
+				//update the cache
+				T3::setTemplate(T3_TEMPLATE, $params);
 
 				//get all other styles that have the same template
 				$db = JFactory::getDBO();

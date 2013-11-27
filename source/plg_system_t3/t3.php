@@ -60,7 +60,14 @@ class plgSystemT3 extends JPlugin
 					$tm = $db->loadObject();
 
 					if (is_object($tm) && file_exists(JPATH_THEMES . '/' . $tm->template)) {
-						$app->setTemplate($tm->template, (new JRegistry($tm->params)));
+						// we will not use setTemplate as it still have issue
+						// $app->setTemplate($tm->template, (new JRegistry($tm->params)));
+
+						// update the template 
+						$template = $app->getTemplate(true);
+						$template->id = $t3tmid;
+						$template->template = $tm->template;
+						$template->params = new JRegistry($tm->params);
 					}
 				}
 			}
