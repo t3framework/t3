@@ -4,43 +4,43 @@
 class Less_Parser extends Less_Cache{
 
 
-    private $input;		// LeSS input string
-    private $input_len;	// input string length
-    private $pos;		// current index in `input`
-    private $memo;		// temporarily holds `i`, when backtracking
+  private $input;		// LeSS input string
+  private $input_len;	// input string length
+  private $pos;		// current index in `input`
+  private $memo;		// temporarily holds `i`, when backtracking
 
 
-    /**
-     * @var string
-     */
-    private $path;
+  /**
+   * @var string
+   */
+  private $path;
 
-    /**
-     * @var string
-     */
-    private $filename;
+  /**
+   * @var string
+   */
+  private $filename;
 
 
-    /**
-     *
-     */
-    const version = '1.4.2.2';
-    const less_version = '1.4.2';
+  /**
+   *
+   */
+  const version = '1.4.2.2';
+  const less_version = '1.4.2';
 
-    /**
-     * @var Less_Environment
-     */
-    private $env;
-    private $rules = array();
+  /**
+   * @var Less_Environment
+   */
+  private $env;
+  private $rules = array();
 
 	private static $imports = array();
 
 
 
-    /**
-     * @param Environment|null $env
-     */
-    public function __construct( $env = null ){
+  /**
+   * @param Environment|null $env
+   */
+  public function __construct( $env = null ){
 
 		// Top parser on an import tree must be sure there is one "env"
 		// which will then be passed around by reference.
@@ -48,12 +48,13 @@ class Less_Parser extends Less_Cache{
 			$this->env = $env;
 		}else{
 			$this->env = new Less_Environment( $env );
+
 			self::$imports = array();
 			self::$import_dirs = array();
 		}
-
+		
 		$this->pos = 0;
-    }
+  }
 
 
 
@@ -264,6 +265,7 @@ class Less_Parser extends Less_Cache{
 
 
 	static function AddParsedFile($file){
+		$file = realpath($file);
 		self::$imports[] = $file;
 	}
 
@@ -272,7 +274,8 @@ class Less_Parser extends Less_Cache{
 	}
 
 	static function FileParsed($file){
-		return in_array($file,self::$imports);
+		$file = realpath($file);
+		return in_array($file, self::$imports);
 	}
 
 

@@ -165,9 +165,9 @@ class T3Less
 		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
 		$rspace       = '@[\r?\n]{2,}@';
 		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables)\.less@';
-		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')/less/@';
-		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
+		$rvarscheck   = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/(vars|variables|mixins)\.less@';
+		$rexcludepath = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/@';
+		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars|mixins)\.less"\s*;@im';
 
 		$rsplitbegin  = '@^\s*\#';
 		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
@@ -319,6 +319,16 @@ class T3Less
 		// myself
 		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = $root . '/' . dirname($path) . '/';
 
+		// ignore all these files
+		foreach (array(T3_PATH, T3_PATH . '/bootstrap', T3_TEMPLATE_PATH) as $know_path) {
+			foreach (array('vars', 'variables', 'mixins') as $know_file) {
+				$realfile = realpath($know_path . '/less/' . $know_file . '.less');
+				
+				if(is_file($realfile) && !Less_Parser::FileParsed($realfile)){
+					Less_Parser::AddParsedFile($realfile);
+				}
+			}
+		}
 
 		// compile less to css using lessphp
 		$parser->SetImportDirs($importdirs);
@@ -548,9 +558,9 @@ class T3Less
 		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
 		$rspace       = '@[\r?\n]{2,}@';
 		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|bootstrap|'.preg_quote($tpl).')/less/(vars|variables)\.less@';
-		$rexcludepath = '@(base|bootstrap|'.preg_quote($tpl).')/less/@';
-		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars)\.less"\s*;@im';
+		$rvarscheck   = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/(vars|variables|mixins)\.less@';
+		$rexcludepath = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/@';
+		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars|mixins)\.less"\s*;@im';
 
 		$rsplitbegin  = '@^\s*\#';
 		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
