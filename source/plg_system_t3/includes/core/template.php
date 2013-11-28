@@ -748,7 +748,8 @@ class T3Template extends ObjectExtendable
 
 		// BOOTSTRAP 2 COMPATIBLE
 		if($bs2compat){
-			$this->addStyleSheet(T3_URL . '/css/legacy-grid.css');
+			//$this->addStyleSheet(T3_URL . '/css/legacy-grid.css');
+			$this->addCss('legacy-grid');
 			$this->addCss('compat'); //should be in template 'less' folder
 			$this->addStyleSheet(T3_URL . '/fonts/font-awesome/css/font-awesome.css');
 		}

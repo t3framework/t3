@@ -825,10 +825,7 @@ class T3Less
 		$csspath  = 'templates/' . T3_TEMPLATE . '/css/';
 
 		// t3 core plugin files
-		$t3files  = array('megamenu', 'off-canvas');
-		if($params->get('bs2compat', 0)){
-			$t3files[] = 'compat';
-		}
+		$t3files  = array('frontend-edit', 'legacy-grid', 'legacy-form', 'legacy-navigation', 'megamenu', 'off-canvas');
 		
 		// all less file in less folders
 		$lessFiles   = JFolder::files(JPATH_ROOT . '/' . $lesspath, '.less');
@@ -889,7 +886,7 @@ class T3Less
 
 				if(!empty($t3files)){
 					foreach ($t3files as $file) {
-						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . $file . '.css');
 					}
 				}
 			}
@@ -908,7 +905,7 @@ class T3Less
 
 				if(!empty($t3files)){
 					foreach ($t3files as $file) {
-						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'rtl/' . $file . '.css');
 					}
 				}
 			}
@@ -925,7 +922,7 @@ class T3Less
 
 					if(!empty($t3files)){
 						foreach ($t3files as $file) {
-							self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+							self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
 						}
 					}
 				}
