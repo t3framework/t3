@@ -640,11 +640,8 @@ article aside .btn-group {
 // Search Form
 // -----------
 #searchForm {
-  padding: (@t3-global-padding / 2) @t3-global-padding;
-  border: 1px solid @t3-border-color;
-  background: @gray-lighter;
-  border-radius: @border-radius-base;
   .clearfix();
+
   fieldset {
     margin: @t3-global-margin 0;
   }
@@ -652,20 +649,26 @@ article aside .btn-group {
   legend {
     margin-bottom: @t3-global-margin / 2;
   }
+
+  .radio-inline,
+  .checkbox-inline {
+  }
+
 }
 
-.phrases-box input,
-.phrases-box label,
-.form-limit input,
-.form-limit label,
-.only label {
-  display: inline-block;
-  margin-right: 10px;
+// Block level forms elements on Mobile
+@media screen and (max-width: @screen-sm-min) {
+  #searchForm {
+    .radio-inline,
+    .checkbox-inline {
+      display: block;
+      width: 100%;
+      margin-left: 0;
+    }
+  }
 }
 
-.phrases-box input {
-  margin: 0;
-}
+
 
 
 // Search Result
