@@ -12,9 +12,16 @@
  */
 
 jQuery (document).ready(function($){
+    // fix for old ie
+    if ($.browser.msie && $.browser.version < 10) {
+        $('html').addClass ('old-ie');
+    }
+
     var $wrapper = $('body'),
         $inner = $('.t3-wrapper'),
         $toggles = $('.off-canvas-toggle'),
+        $offcanvas = $('.t3-off-canvas'),
+        $close = $('.t3-off-canvas .close'),
         $btn=null;
     // no wrapper, just exit
     if (!$wrapper.length) return ;
@@ -38,15 +45,12 @@ jQuery (document).ready(function($){
     });
 
     $toggles.click (function(e){
-        if ($btn) {
-            if ($btn == $(this)) {
-                // toggle
-                oc_hide();
-                return false;
-            }
+        stopBubble (e);
+        if ($wrapper.hasClass ('off-canvas-open')) {
+            oc_hide (e);
+            return;
         }
-        e.preventDefault();
-        e.stopPropagation();
+
         $btn = $(this);
 
         // update effect class
@@ -58,22 +62,42 @@ jQuery (document).ready(function($){
         $('.t3-off-canvas').css('top',scrollTop);
 
         setTimeout(oc_show, 50);
-        return false;
+
+        return;
     });
     var oc_show = function () {
         $wrapper.addClass ('off-canvas-open');
         $wrapper.on ('click', oc_hide);
+        $close.on ('click', oc_hide);
+        $offcanvas.on ('click', stopBubble);
+
+        // fix for old ie
+        if ($.browser.msie && $.browser.version < 10) {
+            $inner.animate ({'padding-left':$('.t3-off-canvas').width()});
+            $('.t3-off-canvas').animate ({left: 0});
+        }
     };
 
     var oc_hide = function () {
         $wrapper.removeClass ('off-canvas-open');
-        // + $btn.data('effect'));
         $wrapper.off ('click', oc_hide);
+        $close.off ('click', oc_hide);
+        $offcanvas.off ('click', stopBubble);
         setTimeout (function (){
             $wrapper.removeClass ($btn.data('effect'));
             // enable scroll
             $('html').removeClass ('noscroll').css('top', '');
-            $('body').scrollTop ($('html').data('top'));
+            $('html,body').scrollTop ($('html').data('top'));
         }, 550);
+
+        // fix for old ie
+        if ($.browser.msie && $.browser.version < 10) {
+            $inner.animate ({'padding-left':0});
+            $('.t3-off-canvas').animate ({left: -$('.t3-off-canvas').width()});
+        }
     };
+
+    var stopBubble = function (e) {
+        e.stopPropagation();
+    }
 })
