@@ -33,32 +33,21 @@
 .off-canvas-toggle {
   border-radius: 0;
   border: 0;
-  position: absolute;
-  top: 1px;
-  left: 1px;
+  position: relative;
+  top: -(@navbar-height + 1px);
+  left: 0;
   padding: 0;
-  height: 35px;
-  line-height: 35px;
-  width: 35px;
+  width: @navbar-height;
+  height: @navbar-height;
+  line-height: @navbar-height;
   &:focus {
     outline: none;
   }
 
 }
 
-// Re-position on Tablets
+// Make space for Off-canvas Toggle on Tablets
 @media screen and (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-
-  .off-canvas-toggle {
-    position: relative;
-    top: -51px;
-    left: 0;
-    width: @navbar-height;
-    height: @navbar-height;
-    line-height: @navbar-height;
-  }
-
-  // Make space for Off-canvas Toggle on Tablets
   .t3-off-canvas + .t3-wrapper-inner .t3-mainnav  {
     > .container {
       padding-left: 0;
