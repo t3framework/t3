@@ -69,30 +69,20 @@ input[type="color"],
   textarea& {
     height: auto;
   }
-}
 
-// Legacy class below
-// Reset Width for Legacy Classes in Medium Screen
-select,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.inputbox {
-  @media (min-width: @screen-sm) {
+  // Reset Width for Legacy classes in Medium Screen
+  @media screen and (min-width: @screen-sm) {
     width: auto;
   }
+
+}
+
+// Redefine padding for <select>
+select,
+select.form-control,
+select.inputbox,
+select.input {
+  padding-right: 5px;
 }
 
 

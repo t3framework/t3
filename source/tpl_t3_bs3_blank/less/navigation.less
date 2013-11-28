@@ -346,29 +346,31 @@
 // T3 Note: Fix for Joomla! Pagination
 // ------------------------------------
 .pagination {
-
    // re-defined nested class - joomla structure
   .pagination {
     display: inline-block;
   }
-
 }
 
 
 // Counter
-// ----------
+// -------
 .counter {
-  float: right;
+  display: inline-block;
   margin-top: @line-height-computed;
   padding: @padding-base-vertical @padding-base-horizontal;
   background-color: @pagination-bg;
   border: 1px solid @pagination-border;
   border-radius: @border-radius-base;
+  // Right align on Tablets / Desktop
+  @media screen and (min-width: @screen-sm) {
+    float: right;
+  }
 }
 
 
 // Sizing
-// ----------
+// ------
 // Large
 .pagination-lg {
 }
