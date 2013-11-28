@@ -65,6 +65,9 @@
 					sub.css('display', '');
 				}
 
+				//reset custom align
+				sub.css({left : '', right : ''});
+
 				if(level == 1){
 
 					var align = item.data('alignsub'),
@@ -85,7 +88,7 @@
 						}
 
 					} else {
-						align_offset = offset.left + (align == 'left' && mm_rtl ? width : (align == 'right' && !mm_rtl ? -width : 0));
+						align_offset = offset.left + ((align == 'left' && mm_rtl || align == 'right' && !mm_rtl) ? width : 0);
 					}
 			
 					if (mm_rtl) {
@@ -114,7 +117,7 @@
 
 						if(align == 'right'){
 							if(align_offset < sub_width){
-								align_delta = align_offset - sub_width + width;
+								align_delta = align_offset - sub_width;
 								sub.css('right', align_delta);
 
 								if(sub_width > screen_width){
@@ -134,9 +137,6 @@
 						}
 					}
 				} else {
-
-					//reset custom align
-					sub.css({left : '', right : ''});
 
 					if (mm_rtl) {
 						if (item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
