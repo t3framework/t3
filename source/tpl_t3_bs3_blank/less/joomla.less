@@ -615,10 +615,13 @@ article aside .btn-group {
 // ------------
 .profile-edit {
   input {
-    .make-sm-column(4, @padding-base-horizontal);  // Make the input have the same width
+    .make-sm-column(6, @padding-base-horizontal);  // Make the input have the same width
   }
   select {
     .make-sm-column(6, @padding-base-horizontal);  // Make the select have the same width
+  }
+  select + button {
+    margin-left: 5px;
   }
 }
 
@@ -721,6 +724,7 @@ article aside .btn-group {
 // SMART SEARCH
 // ---------------------------------------------------------
 .finder {
+  margin-bottom: @line-height-computed;
 
   #search-form {
   }
@@ -728,12 +732,15 @@ article aside .btn-group {
   #advancedSearch {
   }
 
-
   // The Form
-  // --------
   #finder-search {
   }
 
+  // The result
+  #search-results {
+    #search-query-explained{
+    }
+  }
 
 }
 
@@ -753,16 +760,18 @@ article aside .btn-group {
 //
 // ARCHIVED ITEMS
 // ---------------------------------------------------------
-#archive-items > li {
-  line-height: normal;
-  margin: 0;
-  overflow: visible;
-  padding: 0;
-}
+#archive-items {
+  > li {
+    line-height: normal;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+  }
 
-#archive-items div.intro {
-  clear: both;
-  overflow: hidden;
+  .intro {
+    clear: both;
+    overflow: hidden;
+  }
 }
 
 
@@ -864,15 +873,8 @@ article aside .btn-group {
   label {
   }
 
-  .inputbox,
-  input[type="text"] {
-    @media (min-width: @screen-sm) {
-      width: 250px;
-    }
-  }
-
-  select,
-  select.inputbox {
+  .inputbox, input[type="text"],
+  select.inputbox, select {
     @media (min-width: @screen-sm) {
       width: 250px;
     }
@@ -907,20 +909,24 @@ article aside .btn-group {
 }
 
 
-
 // Editor Buttons
 // ----------------------
-#editor-xtd-buttons {
+#editor-xtd-buttons,
+.toggle-editor {
   margin-top: @line-height-computed;
   margin-bottom: @line-height-computed;
-
   .btn {
     background: @gray-lighter;
   }
 }
 
+#editor-xtd-buttons {
+  margin-right: @grid-gutter-width;
+}
 
-// Lagacy class for Joomla 2.5
+
+// Legacy class for Joomla 2.5
+// ---------------------------
 .button2-left,
 .button2-left div {
   float: left;
@@ -973,17 +979,6 @@ article aside .btn-group {
   text-decoration: none;
 }
 
-.button2-left {
-  .image {
-  }
-  
-  .readmore {
-  }
-  
-  .pagebreak {
-  }
-}
-
 .edit.item-page .control-group a.modal {
   position: inherit;
   width: auto !important;
@@ -998,6 +993,24 @@ article aside .btn-group {
   margin-left: 5px;
 }
 
+
+
+// 
+// FRONTEDIT ELEMENTS 
+// ---------------------------------------------------------
+
+// Frontend Edit Button
+// -------------------- 
+.btn.jmodedit {
+  padding: 0;
+  &:focus, &:active {
+    box-shadow: none;
+  }
+}
+
+
+// Frontend Edit Button
+// -------------------- 
 
 
 // 
@@ -1229,7 +1242,6 @@ article aside .btn-group {
 #system-message dd.notice ul {
 }
 
-
 .alert-message {
   .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
 }
@@ -1272,6 +1284,23 @@ article aside .btn-group {
 
 
 
+// ---------------------------------------------------------
+// MISC
+// ---------------------------------------------------------
+
+// Language 
+// --------
+.languageswitcherload {
+  @media (min-width: @screen-sm) {
+    float: right;
+    width: 100%;
+    .mod-languages {
+      text-align: right;
+    }
+  }
+}
+
+
 
 // ---------------------------------------------------------
 // JOOMLA 3.0 EXTENDING BOOTSTRAP
@@ -1279,53 +1308,32 @@ article aside .btn-group {
 
 // Specific Widths
 .width-10 { width: 10px; }
-
 .width-20 { width: 20px; }
-
 .width-30 { width: 30px; }
-
 .width-40 { width: 40px; }
-
 .width-50 { width: 50px; }
-
 .width-60 { width: 60px; }
-
 .width-70 { width: 70px; }
-
 .width-80 { width: 80px; }
-
 .width-90 { width: 90px; }
-
 .width-100 { width: 100px; }
-
 
 // Specific Heights
 .height-10 { height: 10px; }
-
 .height-20 { height: 20px; }
-
 .height-30 { height: 30px; }
-
 .height-40 { height: 40px; }
-
 .height-50 { height: 50px; }
-
 .height-60 { height: 60px; }
-
 .height-70 { height: 70px; }
-
 .height-80 { height: 80px; }
-
 .height-90 { height: 90px; }
-
 .height-100 { height: 100px; }
-
 
 // iFrames
 .iframe-bordered {
   border: 1px solid @table-border-color;
 }
-
 
 // Fixed for Chosen
 .chzn-container {
@@ -1363,13 +1371,3 @@ article aside .btn-group {
 .btn-group .chzn-results {
   white-space: normal;
 }
-
-//Language 
-.languageswitcherload {
-  float: right;
-  width: 100%;
-  .mod-languages {
-    text-align: right;
-  }
-}
-
