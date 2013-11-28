@@ -33,9 +33,6 @@
 .off-canvas-toggle {
   border-radius: 0;
   border: 0;
-  position: relative;
-  top: -(@navbar-height + 1px);
-  left: 0;
   padding: 0;
   width: @navbar-height;
   height: @navbar-height;
@@ -43,19 +40,7 @@
   &:focus {
     outline: none;
   }
-
 }
-
-// Make space for Off-canvas Toggle on Tablets
-@media screen and (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-  .t3-off-canvas + .t3-wrapper-inner .t3-mainnav  {
-    > .container {
-      padding-left: 0;
-      margin-left: @navbar-height;
-    }
-  }
-
-// End
 }
 
 
