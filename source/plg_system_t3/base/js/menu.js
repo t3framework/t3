@@ -41,6 +41,11 @@
 				return width;
 			})();
 
+			//lt IE 10
+			if(!$.support.transition){
+				mm_timeout = 100;
+			}
+
 			function position_menu(item){
 
 				var sub = item.children('.mega-dropdown-menu'),
@@ -76,18 +81,18 @@
 
 						if(!$.support.t3transform){
 							align_trans = -sub_width /2;
-							sub.css(mm_rtl ? 'right' : 'left', align_trans - width /2);
+							sub.css(mm_rtl ? 'right' : 'left', align_trans + width /2);
 						}
 
 					} else {
-						align_offset = offset.left + (align == 'left' ? 1 : -1) * (mm_rtl ? width : 0);
+						align_offset = offset.left + (align == 'left' && mm_rtl ? width : (align == 'right' && !mm_rtl ? -width : 0));
 					}
 			
 					if (mm_rtl) {
 
 						if(align == 'right'){
 							if(align_offset + sub_width > screen_width){
-								align_delta = screen_width - align_offset - sub_width - width;
+								align_delta = screen_width - align_offset - sub_width;
 								sub.css('left', align_delta);
 
 								if(screen_width < sub_width){

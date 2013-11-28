@@ -979,19 +979,6 @@
   width: 16.6666%;
   float: left;
 }
-.hidden-default {
-  display: none !important;
-}
-@media (min-width: 768px) and (max-width: 979px) {
-  .hidden-default {
-    display: inherit !important;
-  }
-}
-@media (max-width: 767px) {
-  .hidden-default {
-    display: inherit !important;
-  }
-}
 
 .hidden {
   display: none !important;

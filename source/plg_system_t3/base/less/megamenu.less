@@ -292,86 +292,74 @@
       }
     }
 
+
     &.zoom {
-      .level0 > .mega-align-center > .mega-dropdown-menu {
-        transform: scale(0,0) translate(-50%, 0%);
-        -webkit-transform: scale(0,0) translate(-50%, 0);
-        -ms-transform: scale(0,0) translate(-50%, 0);
-        -o-transform: scale(0,0) translate(-50%, 0);
-
-        transform-origin:0% 20%;
-        -webkit-transform-origin:0% 20%;
-        -ms-transform-origin:0% 20%;
-        -o-transform-origin:0% 20%;
-      }
-
+      
       .mega {
-        & > .mega-dropdown-menu {
-          transform: scale(0,0);
-          -webkit-transform: scale(0,0);
-          -ms-transform: scale(0,0);
-          -o-transform: scale(0,0);
-
-          transform-origin:20% 20%;
-          -webkit-transform-origin:20% 20%;
-          -ms-transform-origin:20% 20%;
-          -o-transform-origin:20% 20%;
+        > .mega-dropdown-menu {
+          .scale(~"0, 0");
+          .transform-origin(20% 20%);
         }
         &.open > .mega-dropdown-menu {
-          transform: scale(1,1);
-          -webkit-transform: scale(1,1);
-          -ms-transform: scale(1,1);
-          -o-transform: scale(1,1);
+          .scale(~"1, 1");
         }
       }
 
-      .level0 > .mega-align-center.open > .mega-dropdown-menu {
-        transform: scale(1,1) translate(-50%, 0);
-        -webkit-transform: scale(1,1) translate(-50%, 0);
-        -ms-transform: scale(1,1) translate(-50%, 0);
-        -o-transform: scale(1,1) translate(-50%, 0);
+      //special case for level 0
+      .level0 > .mega-align-center {
+        > .mega-dropdown-menu {
+          -webkit-transform: scale(0, 0) translate(-50%, 0);
+              -ms-transform: scale(0, 0) translate(-50%, 0);
+                  transform: scale(0, 0) translate(-50%, 0);
+
+          .transform-origin(0% 20%);
+        }
+
+        &.open > .mega-dropdown-menu {
+          -webkit-transform: scale(1, 1) translate(-50%, 0);
+              -ms-transform: scale(1, 1) translate(-50%, 0);
+                  transform: scale(1, 1) translate(-50%, 0);
+        }
       }
     }
 
     &.elastic {
-      .level0 > .mega > .mega-dropdown-menu {
-        transform: scale(1,0);
-        -webkit-transform: scale(1,0);
-        -ms-transform: scale(1,0);
-        -o-transform: scale(1,0);
-      }
-
-      .level0 > .mega-align-center > .mega-dropdown-menu {
-        transform: scale(1,0) translate(-50%, 0);
-        -webkit-transform: scale(1,0) translate(-50%, 0);
-        -ms-transform: scale(1,0) translate(-50%, 0);
-        -o-transform: scale(1,0) translate(-50%, 0);
-      }
-
+      
       .mega {
         & > .mega-dropdown-menu {
-          transform: scale(0,1);
-          transform-origin:10% 0;
-          -webkit-transform: scale(0,1);
-          -webkit-transform-origin:10% 0;
-          -ms-transform: scale(0,1);
-          -ms-transform-origin:10% 0;
-          -o-transform: scale(0,1);
-          -o-transform-origin:10% 0;
+          .scale(~"0, 1");
+          -webkit-transform-origin: 10% 0;
+             -moz-transform-origin: 10% 0;
+                  transform-origin: 10% 0;
         }      
         &.open > .mega-dropdown-menu {
-          transform: scale(1,1);
-          -webkit-transform: scale(1,1);
-          -ms-transform: scale(1,1);
-          -o-transform: scale(1,1);
+          .scale(~"1, 1");
         }
       }
 
-      .level0 > .mega-align-center.open > .mega-dropdown-menu {
-        transform: scale(1,1) translate(-50%, 0);
-        -webkit-transform: scale(1,1) translate(-50%, 0);
-        -ms-transform: scale(1,1) translate(-50%, 0);
-        -o-transform: scale(1,1) translate(-50%, 0);
+      .level0 {
+
+        > .mega > .mega-dropdown-menu {
+          .scale(~"1, 0");
+        }
+
+        .open > .mega-dropdown-menu {
+          .scale(~"1, 1");
+        }
+
+        > .mega-align-center {
+          > .mega-dropdown-menu {
+            transform: scale(1,0) translate(-50%, 0);
+            -ms-transform: scale(1,0) translate(-50%, 0);
+            -webkit-transform: scale(1,0) translate(-50%, 0);
+          }
+
+          &.open > .mega-dropdown-menu {
+            transform: scale(1,1) translate(-50%, 0);
+            -ms-transform: scale(1,1) translate(-50%, 0);
+            -webkit-transform: scale(1,1) translate(-50%, 0);
+          }
+        }
       }
     }
 
