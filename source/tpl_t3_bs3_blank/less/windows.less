@@ -15,7 +15,18 @@
 // ------------------------------------------------------
 // POPUP WINDOWS STYLES
 // ------------------------------------------------------
-.com_content body,
-.com_mailto body {
-  padding-top: 0;
+
+// Main Body (component.php)
+// ----------------------------------------
+.window {
+  // Reset the body
+  body {
+    height: auto;
+  }
+  body,
+  .window-mainbody {
+    padding: 0;
+    margin: 0;
+  }
 }
+
