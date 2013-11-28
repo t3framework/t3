@@ -207,12 +207,7 @@
 
 
 // Reponsive Article Images
-// -------------------------
-
-// Mobile
-// ------
-@media (max-width: @screen-xs-max) {
-
+@media screen and (max-width: @screen-xs-max) {
   article img[align=left], .img_caption.left,
   article img[align=right], .img_caption.right,
   .img-fulltext-left, .img-fulltext-right {
@@ -221,7 +216,6 @@
     margin-right: 0;
     width: 100% !important;
   }
-
 }
 
 
@@ -241,6 +235,7 @@ article aside .btn-group {
   > .dropdown-toggle .caret {
     margin-left: 2px;
   }
+
 }
 
 
