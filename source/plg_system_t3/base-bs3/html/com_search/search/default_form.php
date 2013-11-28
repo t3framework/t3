@@ -65,17 +65,15 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 	<?php endif; ?>
 
 	<?php if ($this->total > 0) : ?>
-
 		<div class="form-limit">
 			<label for="limit">
 				<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>
 			</label>
 			<?php echo $this->pagination->getLimitBox(); ?>
+			<p class="counter">
+				<?php echo $this->pagination->getPagesCounter(); ?>
+			</p>
 		</div>
-		<p class="counter">
-			<?php echo $this->pagination->getPagesCounter(); ?>
-		</p>
-
 	<?php endif; ?>
 
 </form>

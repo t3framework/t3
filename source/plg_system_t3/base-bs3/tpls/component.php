@@ -27,15 +27,15 @@ if(!defined('T3_TPL_COMPONENT')){
     <?php $this->loadBlock ('head') ?>  
   </head>
 
-  <body>
-    <section id="t3-mainbody" class="container t3-mainbody">
+  <body class="contentpane modal">
+    <div id="t3-mainbody" class="container t3-mainbody">
       <div class="row">
         <div id="t3-content" class="t3-content col-xs-12">
           <jdoc:include type="message" />
           <jdoc:include type="component" />
         </div>
       </div>
-    </section>
+    </div>
   </body>
 
 </html>

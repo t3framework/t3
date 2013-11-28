@@ -37,7 +37,7 @@ defined('_JEXEC') or die;
 		</dd>
 		<?php if ($this->params->get('show_date')) : ?>
 			<dd class="result-created<?php echo $this->pageclass_sfx; ?>">
-				<?php echo JText::sprintf('JGLOBAL_CREATED_DATE_ON', '<strong>' . $result->created . '<strong>'); ?>
+				<?php echo JText::sprintf('JGLOBAL_CREATED_DATE_ON', '<strong>' . $result->created . '</strong>'); ?>
 			</dd>
 		<?php endif; ?>
 	<?php endforeach; ?>
