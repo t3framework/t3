@@ -670,10 +670,14 @@ body.off-canvas-effect-14 {
 
 
 //
-// Fallback example for browsers
-// that don't support 3D transforms (and no JS fallback)
+// Fallback for old IE (<IE10)
+// that don't support 3D transforms
 // -----------------------------------------------------
-.no-csstransforms3d .t3-wrapper,
-.no-js .t3-wrapper {
-  padding-left: @t3-off-canvas-width;
+
+.old-ie {
+  .t3-off-canvas {
+    z-index: 100;
+    left: -@t3-off-canvas-width;
+    visibility: visible;
+  }
 }
