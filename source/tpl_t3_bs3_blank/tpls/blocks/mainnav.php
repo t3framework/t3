@@ -16,6 +16,9 @@ defined('_JEXEC') or die;
 			$this->addScript(T3_URL.'/js/nav-collapse.js');
 		?>
 		<div class="navbar-header">
+			<button class="btn btn-primary off-canvas-toggle" type="button" data-nav="#t3-off-canvas" data-pos="left" data-effect="<?php echo $this->getParam('addon_offcanvas_effect', 'off-canvas-effect-4') ?>">
+			  <i class="fa fa-bars"></i>
+			</button>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar-collapse">
 				<i class="fa fa-bars"></i>
 			</button>

@@ -22,7 +22,9 @@ jQuery (document).ready(function($){
         $toggles = $('.off-canvas-toggle'),
         $offcanvas = $('.t3-off-canvas'),
         $close = $('.t3-off-canvas .close'),
-        $btn=null;
+        $btn=null,
+        $nav=null,
+        direction = 'left';
     // no wrapper, just exit
     if (!$wrapper.length) return ;
 
@@ -45,6 +47,8 @@ jQuery (document).ready(function($){
     });
 
     $toggles.click (function(e){
+        // detect direction
+
         stopBubble (e);
         if ($wrapper.hasClass ('off-canvas-open')) {
             oc_hide (e);
@@ -52,6 +56,12 @@ jQuery (document).ready(function($){
         }
 
         $btn = $(this);
+        $nav = $($btn.data('nav'))
+
+        direction = ($('html').attr('dir') == 'rtl' && $btn.data('pos')!='right') || ($('html').attr('dir') != 'rtl' && $btn.data('pos')=='right')  ? 'right':'left';
+
+        // add direction class to body
+        $('html').removeClass ('off-canvas-left off-canvas-right').addClass ('off-canvas-' + direction);
 
         // update effect class
         $wrapper[0].className = $wrapper.data('oclass') + ' ' + $btn.data('effect');
@@ -73,8 +83,11 @@ jQuery (document).ready(function($){
 
         // fix for old ie
         if ($.browser.msie && $.browser.version < 10) {
-            $inner.animate ({'padding-left':$('.t3-off-canvas').width()});
-            $('.t3-off-canvas').animate ({left: 0});
+            var p1 = {}, p2 = {};
+            p1['padding-'+direction] = $('.t3-off-canvas').width();
+            p2[direction] = 0;
+            $inner.animate (p1);
+            $nav.animate (p2);
         }
     };
 
@@ -92,8 +105,11 @@ jQuery (document).ready(function($){
 
         // fix for old ie
         if ($.browser.msie && $.browser.version < 10) {
-            $inner.animate ({'padding-left':0});
-            $('.t3-off-canvas').animate ({left: -$('.t3-off-canvas').width()});
+            var p1 = {}, p2 = {};
+            p1['padding-'+direction] = 0;
+            p2[direction] = -$('.t3-off-canvas').width();
+            $inner.animate (p1);
+            $nav.animate (p2);
         }
     };
 

@@ -317,7 +317,13 @@
 // T3 Note: Fix for Joomla! Pagination
 // ------------------------------------
 .pagination {
-   // re-defined nested class - joomla structure
+  .clearfix();
+  display: block;
+  // left align on Tablets / Desktop
+  @media screen and (min-width: @screen-sm) {
+    float: left;
+  }
+  // re-defined nested class - joomla structure
   .pagination {
     display: inline-block;
   }
