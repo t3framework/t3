@@ -741,7 +741,7 @@ class T3Template extends ObjectExtendable
 		$responsive = $this->getParam('responsive', 1);
 		$navtype    = $this->getParam('navigation_type', 'joomla');
 		$navtrigger = $this->getParam('navigation_trigger', 'hover');
-		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 1) || $this->getParam('navigation_offcanvas_enable', 1);
+		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 0) || $this->getParam('navigation_offcanvas_enable', 0);
 		$bs2compat  = $this->getParam('bs2compat', 0);
 
 		$frontedit  = in_array(JFactory::getApplication()->input->getCmd('option'), array('com_media', 'com_config'));
