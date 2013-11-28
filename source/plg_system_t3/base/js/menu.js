@@ -43,6 +43,9 @@
 
 			//lt IE 10
 			if(!$.support.transition){
+				//it is not support animate
+				$('.t3-megamenu').removeClass('animate');
+				
 				mm_timeout = 100;
 			}
 
