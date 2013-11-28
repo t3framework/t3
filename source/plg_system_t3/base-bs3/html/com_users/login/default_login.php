@@ -13,6 +13,7 @@ JHtml::_('behavior.keepalive');
 ?>
 
 <div class="login-wrap">
+
   <div class="login <?php echo $this->pageclass_sfx?>">
   	<?php if ($this->params->get('show_page_heading')) : ?>
   	<div class="page-header">
@@ -40,7 +41,7 @@ JHtml::_('behavior.keepalive');
 
   	<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.login'); ?>" method="post" class="form-horizontal">
   		
-      <fieldset class="well">
+      <fieldset>
   			<?php foreach ($this->form->getFieldset('credentials') as $field): ?>
   				<?php if (!$field->hidden): ?>
   					<div class="form-group">
@@ -62,23 +63,25 @@ JHtml::_('behavior.keepalive');
   			<?php echo JHtml::_('form.token'); ?>
   		</fieldset>
 
+      <div class="other-links form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+        <ul>
+          <li><a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
+            <?php echo JText::_('COM_USERS_LOGIN_RESET'); ?></a></li>
+          <li><a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
+            <?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?></a></li>
+          <?php
+          $usersConfig = JComponentHelper::getParams('com_users');
+          if ($usersConfig->get('allowUserRegistration')) : ?>
+          <li><a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
+              <?php echo JText::_('COM_USERS_LOGIN_REGISTER'); ?></a></li>
+          <?php endif; ?>
+        </ul>
+        </div>
+      </div>
+
   	</form>
 
-  </div>
-
-  <div class="other-links btn-group">
-		<a class="btn btn-link" href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
-			<?php echo JText::_('COM_USERS_LOGIN_RESET'); ?></a>
-
-		<a class="btn btn-link" href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-			<?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?></a>
-
-		<?php
-		$usersConfig = JComponentHelper::getParams('com_users');
-		if ($usersConfig->get('allowUserRegistration')) : ?>
-		<a class="btn btn-link" href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-				<?php echo JText::_('COM_USERS_LOGIN_REGISTER'); ?></a>
-		<?php endif; ?>
   </div>
 
 </div>
