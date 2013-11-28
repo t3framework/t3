@@ -12,8 +12,8 @@
  */
 
 jQuery (document).ready(function($){
-    var $wrapper = $('.t3-wrapper'),
-        $inner = $('.t3-wrapper-inner'),
+    var $wrapper = $('body'),
+        $inner = $('.t3-wrapper'),
         $toggles = $('.off-canvas-toggle'),
         $btn=null;
     // no wrapper, just exit
@@ -39,9 +39,9 @@ jQuery (document).ready(function($){
 
     $toggles.click (function(e){
         if ($btn) {
-            // toggle
-            oc_hide();
             if ($btn == $(this)) {
+                // toggle
+                oc_hide();
                 return false;
             }
         }
@@ -51,6 +51,11 @@ jQuery (document).ready(function($){
 
         // update effect class
         $wrapper[0].className = $wrapper.data('oclass') + ' ' + $btn.data('effect');
+
+        // disable scroll on page
+        var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
+        $('html').addClass('noscroll').css('top',-scrollTop).data('top', scrollTop);
+        $('.t3-off-canvas').css('top',scrollTop);
 
         setTimeout(oc_show, 50);
         return false;
@@ -64,6 +69,11 @@ jQuery (document).ready(function($){
         $wrapper.removeClass ('off-canvas-open');
         // + $btn.data('effect'));
         $wrapper.off ('click', oc_hide);
-        $btn = null;
+        setTimeout (function (){
+            $wrapper.removeClass ($btn.data('effect'));
+            // enable scroll
+            $('html').removeClass ('noscroll').css('top', '');
+            $('body').scrollTop ($('html').data('top'));
+        }, 550);
     };
 })
