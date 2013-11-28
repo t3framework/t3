@@ -20,21 +20,17 @@ if(!defined('T3_TPL_COMPONENT')){
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class='component <jdoc:include type="pageclass" />'>
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class='component window <jdoc:include type="pageclass" />'>
 
   <head>
     <jdoc:include type="head" />
     <?php $this->loadBlock ('head') ?>  
   </head>
 
-  <body class="contentpane modal">
-    <div id="t3-mainbody" class="container t3-mainbody">
-      <div class="row">
-        <div id="t3-content" class="t3-content col-xs-12">
-          <jdoc:include type="message" />
-          <jdoc:include type="component" />
-        </div>
-      </div>
+  <body class="contentpane">
+    <div id="window-mainbody" class="window-mainbody">
+      <jdoc:include type="message" />
+      <jdoc:include type="component" />
     </div>
   </body>
 
