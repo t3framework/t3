@@ -149,11 +149,7 @@ class T3Less
 
 		//reset import dirs
 		Less_Cache::$import_dirs = array();
-
-		$env    = new Less_Environment();
-		$parser = new Less_Parser($env);
-		$env->setCompress(false);
-
+		$parser = new Less_Parser();
 
 		$app    = JFactory::getApplication();
 		$tpl    = T3_TEMPLATE;
@@ -539,10 +535,7 @@ class T3Less
 
 		//reset import dirs
 		Less_Cache::$import_dirs = array();
-
-		$env    = new Less_Environment();
-		$parser = new Less_Parser($env);
-		$env->setCompress(false);
+		$parser = new Less_Parser();
 
 		$app    = JFactory::getApplication();
 		$doc    = JFactory::getDocument();
