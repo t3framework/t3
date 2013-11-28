@@ -70,3 +70,38 @@
   // 6 cols
   .span16 {width: 16.6666%; float: left;}
 }
+
+
+// Visibility utilities
+// For desktops
+.hidden-default      { display: none !important; }
+
+// Wide screen
+@media (min-width: 1200px) {
+  // Hide everything else
+  .hidden-wide       { display: none !important; }
+}
+
+// Normal desktops only
+@media (min-width: 980px) and (max-width: 1199px) {
+  // Hide everything else
+  .hidden-normal     { display: none !important; }
+}
+
+// XTablet only
+@media (min-width: 768px) and (max-width: 979px) {
+  // Hide everything else
+  .hidden-xtablet    { display: none !important; }
+}
+
+// Tablet only
+@media (min-width: 600px) and (max-width: 767px) {
+  // Hide everything else
+  .hidden-tablet     { display: none !important; }
+}
+
+// Phones only
+@media (max-width: 599px) {
+  // Hide everything else
+  .hidden-mobile     { display: none !important; }
+}

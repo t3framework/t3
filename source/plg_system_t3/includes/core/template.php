@@ -669,7 +669,7 @@ class T3Template extends ObjectExtendable
 
 			foreach ($this->maxcol as $device => $span) {
 				//convert hidden class
-				if($this->responcls && !empty($param->$device) && strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
+				if(!empty($param->$device) && strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
 					$param->$device = str_replace(' hidden ', ' hidden-' . $device . ' ', ' ' . $param->$device . ' ');
 				}
 				
@@ -682,7 +682,7 @@ class T3Template extends ObjectExtendable
 			
 			$defdv = $this->defdv;
 			if(!$this->responcls && !empty($data)){
-				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon"' . $data;
+				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon"' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 

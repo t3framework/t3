@@ -18,7 +18,7 @@ defined('_JEXEC') or die();
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
-T3::import('minify/csscompressor');
+//T3::import('minify/csscompressor');
 T3::import('core/path');
 
 /**
@@ -34,6 +34,24 @@ class T3Minify
 	 * @var array
 	 */
 	protected static $cssexts = array('.css', '.css1', '.css2', '.css3');
+
+
+	/**
+	 * Minify
+	 */
+	public static function minify( $css ) {
+		$css = preg_replace( '#\s+#', ' ', $css );
+		$css = preg_replace( '#/\*.*?\*/#s', '', $css );
+		$css = str_replace( '; ', ';', $css );
+		$css = str_replace( ': ', ':', $css );
+		$css = str_replace( ' {', '{', $css );
+		$css = str_replace( '{ ', '{', $css );
+		$css = str_replace( ', ', ',', $css );
+		$css = str_replace( '} ', '}', $css );
+		$css = str_replace( ';}', '}', $css );
+
+		return trim( $css );
+	}
 
 	/**
 	 * 
@@ -118,7 +136,7 @@ class T3Minify
 
 			$url = self::fixUrl($url);
 
-			if (strpos($url, 'bootstrap.css') === false && $stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
+			if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
 				$stylesheet['path'] = $csspath;
 				$stylesheet['data'] = JFile::read($csspath);
 
@@ -217,7 +235,7 @@ class T3Minify
 						$cssdata[] = $furl;
 						$cssdata[] = "================================================================================*/";
 						
-						$cssmin = Minify_CSS_Compressor::process($fsheet['data']);
+						$cssmin = self::minify($fsheet['data']);
 						$cssmin = T3Path::updateUrl($cssmin, T3Path::relativePath($outputurl, dirname($furl)));
 
 						$cssdata[] = $cssmin;
