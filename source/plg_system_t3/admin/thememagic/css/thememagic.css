@@ -198,16 +198,16 @@ textarea, input, select, .btn, button {
 .t3-controls::before {
   content: "\f071"; 
   font-family: "FontAwesome";
-  font-size: 14px;
+  font-size: 16px;
   vertical-align: middle;
-  color: #ffbb00;
+  color: #f80;
   display: none;
   float: right;
-  margin-top: 7px;
+  margin-top: 8px;
 }
 
 .t3-changed .t3-control-label {
-  color: #ffbb00;
+  color: #f80;
 }
 .t3-changed .t3-controls::before {
   display: inline-block;
@@ -253,7 +253,6 @@ textarea, input, select, .btn, button {
 .accordion-heading a:active {
   background: #07b;
   color: #fff;
-  border-bottom: 1px solid #ccc;
 }
 
 .accordion-heading-inner {

@@ -2,26 +2,6 @@
 <form>
 
 	<fields name="thememagic" addfieldpath="/plugins/system/t3/includes/depend">
-		
-		<fieldset name="scaffolding_params" label="T3_TM_SCAFFOLDING">        
-			<field name="body-bg" type="color" class="t3tm-color" label="T3_TM_VARS_BODY_BKG_LABEL" description="T3_TM_VARS_BODY_BKG_DESC" />
-			<field name="text-color" type="color" class="t3tm-color" label="T3_TM_VARS_TEXT_COLOR_LABEL" description="T3_TM_VARS_TEXT_COLOR_DESC" />
-			<field name="link-color" type="color" class="t3tm-color" label="T3_TM_VARS_LINK_COLOR_LABEL" description="T3_TM_VARS_LINK_COLOR_DESC" />
-
-		</fieldset>
-		<fieldset name="visual_params" label="T3_TM_VISUAL">
-
-			<field name="input-border-radius" type="text" class="input-tiny t3tm-dimension" 
-				label="T3_TM_VARS_ELEMENT_RADIUS_LABEL" 
-				description="T3_TM_VARS_ELEMENT_RADIUS_DESC" />
-			</fieldset>
-
-		<fieldset name="module_params" label="T3_TM_MODULE">
-			<field name="t3-module-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_BGCOLOR_DESC" />
-			<field name="t3-module-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_COLOR_LABEL" description="T3_TM_VARS_MODULE_COLOR_DESC" />
-			<field name="t3-module-title-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_BGCOLOR_DESC" />
-			<field name="t3-module-title-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_COLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_COLOR_DESC" />
-		</fieldset>
 
 		<fieldset name="typo_params" label="T3_TM_TYPO">
 			<field name="typo_params_default" type="t3depend" function="@group">
@@ -60,7 +40,30 @@
 				label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
 				description="T3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
 
-		</fieldset> 
+		</fieldset>
+
+		<fieldset name="colors_params" label="T3_TM_COLORS">        
+			<field name="body-bg" type="color" class="t3tm-color" label="T3_TM_VARS_BODY_BKG_LABEL" description="T3_TM_VARS_BODY_BKG_DESC" />
+			<field name="text-color" type="color" class="t3tm-color" label="T3_TM_VARS_TEXT_COLOR_LABEL" description="T3_TM_VARS_TEXT_COLOR_DESC" />
+			<field name="heading-color" type="color" class="t3tm-color" label="T3_TM_VARS_HEADING_COLOR_LABEL" description="T3_TM_VARS_HEADING_COLOR_DESC" />
+			<field name="primary-color" type="color" class="t3tm-color" label="T3_TM_VARS_PRIMARY_COLOR_LABEL" description="T3_TM_VARS_PRIMARY_COLOR_DESC" />
+			<field name="secondary-color" type="color" class="t3tm-color" label="T3_TM_VARS_SECONDARY_COLOR_LABEL" description="T3_TM_VARS_SECONDARY_COLOR_DESC" />
+			<field name="link-color" type="color" class="t3tm-color" label="T3_TM_VARS_LINK_COLOR_LABEL" description="T3_TM_VARS_LINK_COLOR_DESC" />
+		</fieldset>
+
+		<fieldset name="visual_params" label="T3_TM_VISUAL">
+
+			<field name="input-border-radius" type="text" class="input-tiny t3tm-dimension" 
+				label="T3_TM_VARS_ELEMENT_RADIUS_LABEL" 
+				description="T3_TM_VARS_ELEMENT_RADIUS_DESC" />
+			</fieldset>
+
+		<fieldset name="module_params" label="T3_TM_MODULE">
+			<field name="t3-module-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_BGCOLOR_DESC" />
+			<field name="t3-module-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_COLOR_LABEL" description="T3_TM_VARS_MODULE_COLOR_DESC" />
+			<field name="t3-module-title-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_BGCOLOR_DESC" />
+			<field name="t3-module-title-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_COLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_COLOR_DESC" />
+		</fieldset>
 
 		<fieldset name="links_params" label="T3_THEMER_FOOTER">
 			<field name="t3-footer-mtitle-color" type="color" class="t3tm-color" label="T3_VARS_FOOTER_MOD_TCOLOR_LABEL" description="T3_VARS_FOOTER_MOD_TCOLOR_DESC" />
