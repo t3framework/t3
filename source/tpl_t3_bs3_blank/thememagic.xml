@@ -14,8 +14,7 @@
 			<field name="input-border-radius" type="text" class="input-tiny t3tm-dimension" 
 				label="T3_TM_VARS_ELEMENT_RADIUS_LABEL" 
 				description="T3_TM_VARS_ELEMENT_RADIUS_DESC" />
-
-		</fieldset>
+			</fieldset>
 
 		<fieldset name="module_params" label="T3_TM_MODULE">
 			<field name="t3-module-bg" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_BGCOLOR_LABEL" description="T3_TM_VARS_MODULE_BGCOLOR_DESC" />
