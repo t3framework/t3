@@ -30,10 +30,10 @@
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field name="bs2compat" type="radio" default="0"
+			<field name="legacy_css" type="radio" default="0"
 				   global="1"
-				   label="T3_GENERAL_BS2_COMPAT_LABEL"
-				   description="T3_GENERAL_BS2_COMPAT_DESC">
+				   label="T3_GENERAL_LEGACY_CSS_LABEL"
+				   description="T3_GENERAL_LEGACY_CSS_DESC">
 				<option value="0" class="off">JNO</option>
 				<option value="1" class="on">JYES</option>
 			</field>
