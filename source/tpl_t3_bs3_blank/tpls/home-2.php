@@ -23,27 +23,21 @@ defined('_JEXEC') or die;
 	<jdoc:include type="head" />
 	<?php $this->loadBlock('head') ?>
 	<?php $this->addCss('home') ?>
-	<?php $this->addCss('home-responsive') ?>
 </head>
 
 <body>
 
-<!-- Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
-<div class="t3-wrapper">
-<!-- // Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
+<div class="t3-wrapper"> <!-- Need this wrapper for off-canvas menu. Remove if you don't use of-canvas -->
 
   <?php $this->loadBlock('header') ?>
 
   <?php $this->loadBlock('mainnav') ?>
-    <?php $this->loadBlock('off-canvas') ?>
 
   <?php $this->loadBlock('mainbody-home-2') ?>
 
   <?php $this->loadBlock('footer') ?>
 
-<!-- Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
 </div>
-<!-- // Need these wrapper for off-canvas menu. Remove if you don't use of-canvas -->
 
 </body>
 </html>
