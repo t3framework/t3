@@ -65,6 +65,8 @@ jQuery(document).ready(function ($) {
                 $child.find('.caret').remove();
             }
 
+            var divider = $li.hasClass('divider');
+
             // clear all attributes
             $li.removeAttr('class');
             for (var x in $li.data()) {
@@ -73,6 +75,10 @@ jQuery(document).ready(function ($) {
             $child.removeAttr('class');
             for (var x in $child.data()) {
                 $child.removeAttr('data-' + x)
+            }
+
+            if(divider){
+                $li.addClass('divider');
             }
         });
 
@@ -87,6 +93,12 @@ jQuery(document).ready(function ($) {
 
         // update class current
         liactive.addClass('current active');
+
+        //init event for touch
+        if($.fn.touchmenu){
+            $menu.touchmenu();
+        }
+        
     } else {
         // clone for bootstrap menu
         $menu = $navwrapper.find ('ul.nav').clone();
