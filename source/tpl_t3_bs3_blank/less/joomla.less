@@ -775,26 +775,47 @@ article aside .btn-group {
 // CATEGORY LIST
 // ---------------------------------------------------------
 .categories-list {
+  margin-bottom: @line-height-computed;
 }
 
 .category-desc {
 }
 
 
-// Sub Category List
+// Category List
 // -----------------
 .category-item {
-  margin-top: @t3-global-margin;
   .clearfix();
 
   .page-header {
     line-height: normal;
-    padding-bottom: @t3-global-padding/4;
-    margin: 0 0 @t3-global-margin/4;
+    padding: (@line-height-computed / 2) 5px;
+    margin: 0;
+    font-size: @font-size-large;
+    font-weight: normal;
   }
+
   // Sub Categories
   .category-item {
+    margin-bottom: 0;
     margin-left: @grid-gutter-width;
+    .page-header {
+      font-size: @font-size-base;
+    }
+  }
+
+}
+
+// Children Category List
+// -----------------------
+.cat-children {
+  h3 {}
+  .page-header {
+    line-height: normal;
+    padding: (@line-height-computed / 2) 5px;
+    margin: 0;
+    font-size: @font-size-large;
+    font-weight: normal;
   }
 }
 
