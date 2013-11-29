@@ -141,6 +141,7 @@ label, input, button, select, textarea, option {
 
 label {
   font-weight: bold;
+  display: inline-block;
 }
 
 input, select {
@@ -165,6 +166,10 @@ textarea, input, select, .btn, button {
 
 #theme-name {
   margin-top: 10px;
+}
+
+.tooltip {
+  font-family: sans-serif;
 }
 
 /* Variables Form ---*/
