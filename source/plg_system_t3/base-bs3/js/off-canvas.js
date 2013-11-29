@@ -35,10 +35,12 @@ jQuery (document).ready(function($){
     $toggles.each (function () {
         var $this = $(this),
             $nav = $($this.data('nav')),
-            effect = $this.data('effect');
-        $nav.addClass (effect);
+            effect = $this.data('effect'),
+            direction = ($('html').attr('dir') == 'rtl' && $this.data('pos')!='right') || ($('html').attr('dir') != 'rtl' && $this.data('pos')=='right')  ? 'right':'left';
+        $nav.addClass (effect).addClass ('off-canvas-'+direction);
+
         // move to outside wrapper-content
-        var inside_effect = ['off-canvas-effect-3','off-canvas-effect-6','off-canvas-effect-7','off-canvas-effect-8','off-canvas-effect-14'];
+        var inside_effect = ['off-canvas-effect-3','off-canvas-effect-16','off-canvas-effect-7','off-canvas-effect-8','off-canvas-effect-14'];
         if ($.inArray(effect, inside_effect) == -1) {
             $inner.before($nav);
         } else {
@@ -56,15 +58,17 @@ jQuery (document).ready(function($){
         }
 
         $btn = $(this);
-        $nav = $($btn.data('nav'))
+        $nav = $($btn.data('nav'));
+
+        $nav.addClass ('off-canvas-current');
 
         direction = ($('html').attr('dir') == 'rtl' && $btn.data('pos')!='right') || ($('html').attr('dir') != 'rtl' && $btn.data('pos')=='right')  ? 'right':'left';
 
         // add direction class to body
-        $('html').removeClass ('off-canvas-left off-canvas-right').addClass ('off-canvas-' + direction);
+        // $('html').removeClass ('off-canvas-left off-canvas-right').addClass ('off-canvas-' + direction);
 
         // update effect class
-        $wrapper[0].className = $wrapper.data('oclass') + ' ' + $btn.data('effect');
+        $wrapper[0].className = $wrapper.data('oclass') + ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
 
         // disable scroll on page
         var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
@@ -97,10 +101,11 @@ jQuery (document).ready(function($){
         $close.off ('click', oc_hide);
         $offcanvas.off ('click', stopBubble);
         setTimeout (function (){
-            $wrapper.removeClass ($btn.data('effect'));
+            $wrapper.removeClass ($btn.data('effect')).removeClass ('off-canvas-'+direction);
             // enable scroll
             $('html').removeClass ('noscroll').css('top', '');
             $('html,body').scrollTop ($('html').data('top'));
+            $nav.removeClass ('off-canvas-current');
         }, 550);
 
         // fix for old ie
