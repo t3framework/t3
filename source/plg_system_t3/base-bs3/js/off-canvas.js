@@ -28,9 +28,6 @@ jQuery (document).ready(function($){
     // no wrapper, just exit
     if (!$wrapper.length) return ;
 
-    // store original class
-    $wrapper.data('oclass', $wrapper[0].className);
-
     // add effect class for nav
     $toggles.each (function () {
         var $this = $(this),
@@ -68,7 +65,8 @@ jQuery (document).ready(function($){
         // $('html').removeClass ('off-canvas-left off-canvas-right').addClass ('off-canvas-' + direction);
 
         // update effect class
-        $wrapper[0].className = $wrapper.data('oclass') + ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
+        $wrapper[0].className = $wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ').trim() +
+                                ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
 
         // disable scroll on page
         var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
