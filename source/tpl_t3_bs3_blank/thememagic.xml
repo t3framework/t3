@@ -52,8 +52,6 @@
 		</fieldset>
 
 		<fieldset name="visual_params" label="T3_TM_VISUAL">
-
-			<field name="input-border-radius" type="text" class="input-tiny t3tm-dimension" label="T3_TM_VARS_ELEMENT_RADIUS_LABEL" description="T3_TM_VARS_ELEMENT_RADIUS_DESC" />
 			<field name="border-radius-base" type="text" class="input-tiny t3tm-dimension" label="T3_TM_VARS_ELEMENT_RADIUS_BASE_LABEL" description="T3_TM_VARS_ELEMENT_RADIUS_BASE_DESC" />
 			<field name="border-radius-large" type="text" class="input-tiny t3tm-dimension" label="T3_TM_VARS_ELEMENT_RADIUS_LARGE_LABEL" description="T3_TM_VARS_ELEMENT_RADIUS_LARGE_DESC" />
 			<field name="border-radius-small" type="text" class="input-tiny t3tm-dimension" label="T3_TM_VARS_ELEMENT_RADIUS_SMALL_LABEL" description="T3_TM_VARS_ELEMENT_RADIUS_SMALL_DESC" />
