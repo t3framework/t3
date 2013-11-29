@@ -922,6 +922,9 @@ article aside .btn-group {
   .nav-tabs {
     margin-bottom: @t3-global-margin;
   }
+  .tab-pane {
+    .clearfix();
+  }
 }
 
 
@@ -1016,7 +1019,7 @@ article aside .btn-group {
 // ---------------------------------------------------------
 
 // Window Wrapper
-// ------------------------
+// ---------------------------------------
 #sbox-window {
   padding: 10px;
   .box-sizing(content-box); // Reset Box-Sizing model
@@ -1041,7 +1044,7 @@ article aside .btn-group {
 
 
 // Frontend Edit Button
-// ------------------------
+// ---------------------------------------
 .btn.jmodedit {
   padding: 0;
   &:focus, &:active {
@@ -1051,29 +1054,84 @@ article aside .btn-group {
 
 
 // Frontend Edit Elements
-// ------------------------
+// ---------------------------------------
+.window {
 
-// Form Table
-.window form table {
-  border: 1px solid @table-border-color;
-  background: @table-bg-accent;
-  margin-bottom: @line-height-computed;
-  td {
-    padding: @table-cell-padding;
+  // Form Table
+  // ----------
+  form table {
+    border: 1px solid @table-border-color;
+    background: @table-bg-accent;
+    margin-bottom: @line-height-computed;
+    td {
+      padding: @table-cell-padding;
+    }
   }
+
+  // Form Help Block
+  // ---------------
+  form .help-block {
+    font-size: @font-size-small;
+    clear: both;
+    padding-top: 5px;
+  }
+
 }
 
-// Media Manager
-.window .manager {
-  margin: 0;
-  padding: 0;
-  .clearfix();
 
-  .thumbnail {
-    float: left;
-    margin-right: 10px;
-    margin-left: 10px;
+// Media Manager
+// -------------
+.window {
+
+  // Main Form
+  #imageForm {
+    margin: @line-height-computed;
+    width: auto;
+
+    .chzn-container {
+      float: left;
+    }
+
+    #upbutton {
+      border: 1px solid @btn-default-border;
+      float: left;
+      padding: 3px 12px;
+      margin-left: 5px;
+    }
+
+    .pull-right {
+      margin-right: @grid-gutter-width;
+    }
+
   }
+
+  // Upload Form
+  #uploadForm {
+    margin: @line-height-computed;
+    width: auto;
+
+    #upload-file {
+      margin: 10px 0;
+    }
+  }
+
+ 
+  // Images Choser Iframe
+  #imageframe {
+  }
+
+  .manager {
+    margin: 0;
+    padding: 0;
+    .clearfix();
+    .thumbnail {
+      float: left;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+
+
 }
 
 
