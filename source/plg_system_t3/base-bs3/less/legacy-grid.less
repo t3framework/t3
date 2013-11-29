@@ -90,104 +90,36 @@
 .legacy-make-grid(@grid-columns, width);
 .legacy-make-grid(@grid-columns, offset);
 
+
 // responsive utility
-.visible-phone {
-  .responsive-invisibility();
-  @media (max-width: @screen-xs-max) {
-    .responsive-visibility();
-  }
-  &.visible-tablet {
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      .responsive-visibility();
-    }
-  }
-  &.visible-desktop {
-    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-      .responsive-visibility();
-    }
-  }
-}
-.visible-tablet {
-  .responsive-invisibility();
-  &.visible-phone {
-    @media (max-width: @screen-xs-max) {
-      .responsive-visibility();
-    }
-  }
-  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-    .responsive-visibility();
-  }
-  &.visible-desktop {
-    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-      .responsive-visibility();
-    }
-  }
-}
-.visible-desktop {
-  .responsive-invisibility();
-  &.visible-phone {
-    @media (max-width: @screen-xs-max) {
-      .responsive-visibility();
-    }
-  }
-  &.visible-tablet {
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      .responsive-visibility();
-    }
-  }
-  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-    .responsive-visibility();
-  }
+// For desktops
+.visible-phone     { display: none !important; }
+.visible-tablet    { display: none !important; }
+.hidden-phone      { }
+.hidden-tablet     { }
+.hidden-desktop    { display: none !important; }
+.visible-desktop   { display: inherit !important; }
+
+// Tablets & small desktops only
+@media (min-width: 768px) and (max-width: 979px) {
+  // Hide everything else
+  .hidden-desktop    { display: inherit !important; }
+  .visible-desktop   { display: none !important ; }
+  // Show
+  .visible-tablet    { display: inherit !important; }
+  // Hide
+  .hidden-tablet     { display: none !important; }
 }
 
-
-.hidden-phone {
-  .responsive-visibility();
-  @media (max-width: @screen-xs-max) {
-    .responsive-invisibility();
-  }
-  &.hidden-tablet {
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      .responsive-invisibility();
-    }
-  }
-  &.hidden-desktop {
-    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-      .responsive-invisibility();
-    }
-  }
-}
-.hidden-tablet {
-  .responsive-visibility();
-  &.hidden-phone {
-    @media (max-width: @screen-xs-max) {
-      .responsive-invisibility();
-    }
-  }
-  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-    .responsive-invisibility();
-  }
-  &.hidden-desktop {
-    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-      .responsive-invisibility();
-    }
-  }
-}
-.hidden-desktop {
-  .responsive-visibility();
-  &.hidden-phone {
-    @media (max-width: @screen-xs-max) {
-      .responsive-invisibility();
-    }
-  }
-  &.hidden-tablet {
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      .responsive-invisibility();
-    }
-  }
-  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-    .responsive-invisibility();
-  }
+// Phones only
+@media (max-width: 767px) {
+  // Hide everything else
+  .hidden-desktop    { display: inherit !important; }
+  .visible-desktop   { display: none !important; }
+  // Show
+  .visible-phone     { display: inherit !important; } // Use inherit to restore previous behavior
+  // Hide
+  .hidden-phone      { display: none !important; }
 }
 
 
