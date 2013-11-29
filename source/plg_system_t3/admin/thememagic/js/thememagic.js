@@ -229,18 +229,14 @@ var T3Theme = window.T3Theme || {};
 		
 		applyLess: function(force){
 			
-			var jpg = $('#t3-admin-tm-recss-progress');
-			if(jpg.hasClass('invisible')){
-				jpg.removeClass('invisible').addClass('in').find('.bar').width(0);
-			}
+			T3Theme.setProgress(0);
 
 			var nvars = T3Theme.rebuildData(true),
 				jsonstr = JSON.stringify(nvars);
 
 			if(!force && T3Theme.jsonstr === jsonstr){
-				setTimeout(function(){
-					jpg.addClass('invisible').find('.bar').width(0);
-				}, 300);
+	
+				T3Theme.setProgress(100);
 			
 				return false;
 			}
@@ -287,7 +283,7 @@ var T3Theme = window.T3Theme || {};
 				this.applyLess();			//refresh   	
 			}
 			
-            return true;
+			return true;
 		},
 		
 		serializeArray: function(){
@@ -589,27 +585,34 @@ var T3Theme = window.T3Theme || {};
 
 		//simple progress bar
 		setProgress: function(ajax, less){
-			var jpg = $('#t3-admin-tm-recss-progress'),
-				ajaxp = ajax || (jpg.data('ajaxpercent') || 100),
-				lessp = less || (jpg.data('lesspercent') || 100),
+			var jpg = $('#t3-admin-tm-recss'),
+				ajaxp = typeof ajax != 'undefined' ? ajax : ((jpg.data('ajaxpercent') || 100)),
+				lessp = typeof less != 'undefined' ? less : ((jpg.data('lesspercent') || 100)),
 				percent = Math.max((ajaxp + lessp) / 2, 1);
-			
+
+			if(jpg.hasClass('t3-anim-finish')){
+				jpg.removeClass('t3-anim-slow t3-anim-finish').css('width', '0%');
+			}
+
 			jpg
 				.data('ajaxpercent', ajaxp)
 				.data('lesspercent', lessp)
-				.removeClass('invisible')
-				.find('.bar').css('width', percent + '%');
-
+				.addClass('t3-anim-slow')
+				.css('width', percent + '%');
+			
 			clearTimeout(T3Theme.progressid);
 
 			if(percent >= 100){
-				T3Theme.progressid = setTimeout(function(){
-					jpg
-						.data('percent', 0)
-						.data('retain', 0)
-						.addClass('invisible')
-							.find('.bar').width(0);
-				}, 1000);
+				jpg
+					.removeClass('t3-anim-slow')
+					.addClass('t3-anim-finish')
+					.one($.support.transition.end, function () {
+						setTimeout(function(){
+							if(jpg.hasClass('t3-anim-finish')){
+								jpg.removeClass('t3-anim-finish').css('width', '0%');
+							}
+						}, 1000);
+					});
 
 				T3Theme.idle = true;
 			} else {

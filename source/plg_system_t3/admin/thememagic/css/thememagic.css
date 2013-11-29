@@ -79,6 +79,7 @@
 /* Cutomizer Header ---*/
 .t3-admin-tm-header {
   background: #eee;
+  position: relative;
   z-index: 2;
 }
 
@@ -344,16 +345,35 @@ a.themer-minimize.active span {
 
 
 /* Progress ----*/
-.progress {
-  margin: 0;
-  border-radius: 0;
+/* PROGRESS BAR
+--------------- */
+.t3-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 0%;
+  opacity: 0;
+  height: 4px;
+  background: #f80;
+  pointer-events: none;
 }
 
-.progress.invisible {
-  -webkit-transition-duration: 0;
-     -moz-transition-duration: 0;
-       -o-transition-duration: 0;
-          transition-duration: 0;
+.t3-progress.t3-anim-slow {
+  -webkit-transition: width 5s ease-in;
+  transition: width 5s ease-in;
+
+  opacity: 1;
+  z-index: 100;
+}
+
+.t3-progress.t3-anim-finish {
+  -webkit-transition: width 0.5s ease-in, opacity 0.5s 0.5s;
+  transition: width 0.5s ease-in, opacity 0.5s 0.5s;
+  
+  width: 100% !important;
+  opacity: 0;
+  z-index: 100;
 }
 
 /* Radio Button Groups ---*/
