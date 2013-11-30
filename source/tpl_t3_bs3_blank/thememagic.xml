@@ -23,7 +23,7 @@
 				<option value="undefined">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
 			</field>
 
-			<field name="font-family-base-custom" type="text" size="30"
+			<field name="font-family-base-custom" type="text" size="30" class="t3tm-font"
 				label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
 				description="T3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
 
@@ -36,7 +36,7 @@
 				<option value="monospace">T3_TM_VARS_FONTFAMILY_MONOSPACE</option>
 				<option value="undefined">T3_TM_VARS_FONTFAMILY_CUSTOM</option>  
 			</field>
-			<field name="headings-font-family-custom" type="text" size="30"
+			<field name="headings-font-family-custom" type="text" size="30" class="t3tm-font"
 				label="T3_TM_VARS_FONTFAMILY_CUSTOM_LABEL"
 				description="T3_TM_VARS_FONTFAMILY_CUSTOM_DESC" />
 

@@ -417,12 +417,13 @@ var T3Theme = window.T3Theme || {};
 
 			for(var k in json){
 				if(json.hasOwnProperty(k)){
-					if(k.match(/_custom/)){
-						json[k.replace('_custom', '')] = json[k];	
-					}
-
+					
 					if(json[k] == 'undefined' || json[k] == ''){
 						delete json[k];
+					} else {
+						if(k.match(/([_-])custom/)){
+							json[k.replace(/[_-]custom/, '')] = json[k];	
+						}
 					}
 				}
 			}
@@ -458,6 +459,20 @@ var T3Theme = window.T3Theme || {};
 			}
 
 			return val;
+		},
+
+		filterfont: function(val){			
+			val = val.split(',');
+			if(val.length > 1){
+				for(var i = 0; i < val.length; i++){
+					if($.trim(val[i]).indexOf(' ') !== -1){
+						val[i] = '\'' + val[i].replace(/['"]/g, '') + '\'';
+					}
+				}
+			}
+
+			val = val.join(', ');
+			return val.replace(/\s+/g, ' ');
 		},
 
 		padding: function(str, limit, pad){
