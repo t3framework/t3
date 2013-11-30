@@ -20,7 +20,7 @@
 }
 .com_config #templates-form .input-append .btn,
 .com_config #templates-form .input-prepend .btn {
-  border: 1px solid #cccccc;
+  border: 1px solid #1f1f1f;
 }
 .com_config #templates-form .t3-admin-form-legend {
   display: none;
@@ -83,7 +83,7 @@
 }
 #editor-xtd-buttons .btn,
 .toggle-editor .btn {
-  background: #eeeeee;
+  background: #878787;
 }
 #editor-xtd-buttons {
   margin-right: 30px;
@@ -125,7 +125,7 @@
   float: left;
 }
 .window #imageForm #upbutton {
-  border: 1px solid #cccccc;
+  border: 1px solid #1f1f1f;
   float: left;
   padding: 3px 12px;
   margin-left: 5px;
@@ -288,9 +288,9 @@ fieldset.radio label.on.active:after {
 .button2-right a,
 .button2-left span,
 .button2-right span {
-  background: #eeeeee;
-  border: 1px solid #e2e2e2;
-  color: #999999;
+  background: #878787;
+  border: 1px solid #7a7a7a;
+  color: #5a5a5a;
   cursor: pointer;
   display: block;
   float: left;
@@ -299,7 +299,7 @@ fieldset.radio label.on.active:after {
 }
 .button2-left span,
 .button2-right span {
-  color: #999999;
+  color: #5a5a5a;
   cursor: default;
 }
 .button2-left .page a,
@@ -310,8 +310,8 @@ fieldset.radio label.on.active:after {
 }
 .button2-left a:hover,
 .button2-right a:hover {
-  background: #e2e2e2;
-  color: #333333;
+  background: #7a7a7a;
+  color: #2d2d2d;
   text-decoration: none;
 }
 .edit.item-page .control-group a.modal {

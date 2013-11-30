@@ -31,11 +31,3 @@
 .dropdown-submenu:hover > a:after {
   border-left-color: #262626;
 }
-@media screen and (max-width: 767px) {
-  .dropdown-submenu > .dropdown-menu {
-    display: none !important;
-  }
-  .dropdown-submenu > a:after {
-    display: none !important;
-  }
-}

@@ -1,13 +1,5 @@
 
 
-.home {
-  color: #555555;
-}
-.home h1,
-.home h2,
-.home h3 {
-  color: #333333;
-}
 .home h1 {
   line-height: 1;
 }
@@ -26,7 +18,8 @@
 }
 .home .t3-sl-1 {
   padding: 0;
-  background: #fff;
+  background: #cc0000;
+  color: #ffffff;
   border-bottom: 1px solid #eeeeee;
 }
 .home .t3-sl-1 .jumbotron {
@@ -89,26 +82,12 @@
   }
 }
 .home .t3-sl-5 {
-  background: #fff;
+  background: #cc0000;
+  color: #ffffff;
   border-top: 1px solid #eeeeee;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron {
   border-radius: 0;
   margin-bottom: 0;
-}
-
-.home .t3-sl-1 {
-  margin-top: -1px;
-}
-.home .t3-sl-1 .jumbotron {
-  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#ff0000), to(#cc0000));
-  background-image: -webkit-radial-gradient(circle, #ff0000, #cc0000);
-  background-image: -moz-radial-gradient(circle, #ff0000, #cc0000);
-  background-image: radial-gradient(circle, #ff0000, #cc0000);
-  background-repeat: no-repeat;
-  color: #eeeeee;
-}
-.home .t3-sl-1 .jumbotron h1 {
-  color: #ffffff;
 }

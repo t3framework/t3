@@ -20,7 +20,7 @@
 }
 .com_config #templates-form .input-append .btn,
 .com_config #templates-form .input-prepend .btn {
-  border: 1px solid #cccccc;
+  border: 1px solid #1f1f1f;
 }
 .com_config #templates-form .t3-admin-form-legend {
   display: none;
@@ -33,7 +33,7 @@
     width: 250px;
   }
   .com_config #templates-form .control-group .controls {
-    margin-left: 280px;
+    margin-right: 280px;
   }
 }
 @media (min-width: 768px) {
@@ -83,10 +83,10 @@
 }
 #editor-xtd-buttons .btn,
 .toggle-editor .btn {
-  background: #eeeeee;
+  background: #878787;
 }
 #editor-xtd-buttons {
-  margin-right: 30px;
+  margin-left: 30px;
 }
 #sbox-window {
   padding: 0;
@@ -122,16 +122,16 @@
   width: auto;
 }
 .window #imageForm .chzn-container {
-  float: left;
+  float: right;
 }
 .window #imageForm #upbutton {
-  border: 1px solid #cccccc;
-  float: left;
+  border: 1px solid #1f1f1f;
+  float: right;
   padding: 3px 12px;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 .window #imageForm .pull-right {
-  margin-right: 30px;
+  margin-left: 30px;
 }
 .window #uploadForm {
   width: auto;
@@ -156,9 +156,9 @@
   clear: both;
 }
 .window .manager .thumbnail {
-  float: left;
-  margin-right: 10px;
+  float: right;
   margin-left: 10px;
+  margin-right: 10px;
 }
 fieldset.radio {
   width: 90px;
@@ -192,7 +192,7 @@ fieldset.radio label {
   border-radius: 0;
   position: absolute;
   top: -1px;
-  left: -1px;
+  right: -1px;
   z-index: 1;
   text-transform: uppercase;
   background: url(/github/t3mb/plugins/system/t3/base-bs3/less/../imgs/blank.gif) no-repeat transparent;
@@ -226,7 +226,7 @@ fieldset.radio label:after {
 fieldset.radio label:nth-child(2):before,
 fieldset.radio label.off:before {
   content: "OFF";
-  text-align: right;
+  text-align: left;
   color: #555;
 }
 fieldset.radio label.active {
@@ -235,36 +235,36 @@ fieldset.radio label.active {
 fieldset.radio label:nth-child(2):before,
 fieldset.radio label.off:before {
   background: #eee;
-  left: 100%;
+  right: 100%;
 }
 fieldset.radio label.active:nth-child(2):before,
 fieldset.radio label.off.active:before {
-  left: 0%;
+  right: 0%;
 }
 fieldset.radio label:nth-child(4):before,
 fieldset.radio label.on:before {
   background: #690;
-  left: -100%;
+  right: -100%;
 }
 fieldset.radio label.active:nth-child(4):before,
 fieldset.radio label.on.active:before {
-  left: 0%;
+  right: 0%;
 }
 fieldset.radio label:nth-child(2):after,
 fieldset.radio label.off:after {
-  left: 60%;
+  right: 60%;
 }
 fieldset.radio label.active:nth-child(2):after,
 fieldset.radio label.off.active:after {
-  left: 0%;
+  right: 0%;
 }
 fieldset.radio label:nth-child(4):after,
 fieldset.radio label.on:after {
-  left: 0%;
+  right: 0%;
 }
 fieldset.radio label.active:nth-child(4):after,
 fieldset.radio label.on.active:after {
-  left: 60%;
+  right: 60%;
 }
 .icon-eye-open:before,
 .icon-eye:before {
@@ -272,34 +272,34 @@ fieldset.radio label.on.active:after {
 }
 .button2-left,
 .button2-left div {
-  float: left;
+  float: right;
 }
 .button2-right,
 .button2-right div {
-  float: right;
+  float: left;
 }
 .button2-left {
-  margin: 5px 5px 0 0;
+  margin: 5px 0 0 5px;
 }
 .button2-right {
-  margin: 5px 0 0 5px;
+  margin: 5px 5px 0 0;
 }
 .button2-left a,
 .button2-right a,
 .button2-left span,
 .button2-right span {
-  background: #eeeeee;
-  border: 1px solid #e2e2e2;
-  color: #999999;
+  background: #878787;
+  border: 1px solid #7a7a7a;
+  color: #5a5a5a;
   cursor: pointer;
   display: block;
-  float: left;
+  float: right;
   padding: 2px 10px;
   border-radius: 4px;
 }
 .button2-left span,
 .button2-right span {
-  color: #999999;
+  color: #5a5a5a;
   cursor: default;
 }
 .button2-left .page a,
@@ -310,17 +310,17 @@ fieldset.radio label.on.active:after {
 }
 .button2-left a:hover,
 .button2-right a:hover {
-  background: #e2e2e2;
-  color: #333333;
+  background: #7a7a7a;
+  color: #2d2d2d;
   text-decoration: none;
 }
 .edit.item-page .control-group a.modal {
   position: inherit;
   width: auto !important;
-  margin-left: 0 !important;
+  margin-right: 0 !important;
   top: auto !important;
 }
 .controls img.calendar {
   cursor: pointer;
-  margin-left: 5px;
+  margin-right: 5px;
 }

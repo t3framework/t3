@@ -1,13 +1,5 @@
 
 
-.home {
-  color: #555555;
-}
-.home h1,
-.home h2,
-.home h3 {
-  color: #333333;
-}
 .home h1 {
   line-height: 1;
 }
@@ -26,7 +18,8 @@
 }
 .home .t3-sl-1 {
   padding: 0;
-  background: #fff;
+  background: #ffffff;
+  color: #333333;
   border-bottom: 1px solid #eeeeee;
 }
 .home .t3-sl-1 .jumbotron {
@@ -89,7 +82,8 @@
   }
 }
 .home .t3-sl-5 {
-  background: #fff;
+  background: #ffffff;
+  color: #333333;
   border-top: 1px solid #eeeeee;
   padding: 0;
 }

@@ -1,13 +1,5 @@
 
 
-.home {
-  color: #555555;
-}
-.home h1,
-.home h2,
-.home h3 {
-  color: #333333;
-}
 .home h1 {
   line-height: 1;
 }
@@ -26,8 +18,9 @@
 }
 .home .t3-sl-1 {
   padding: 0;
-  background: #fff;
-  border-bottom: 1px solid #333333;
+  background: #1f1f1f;
+  color: #878787;
+  border-bottom: 1px solid #2d2d2d;
 }
 .home .t3-sl-1 .jumbotron {
   border-radius: 0;
@@ -57,7 +50,7 @@
 }
 .home .t3-sl-3,
 .home .t3-sl-4 {
-  border-top: 1px solid #333333;
+  border-top: 1px solid #2d2d2d;
   text-align: center;
 }
 @media screen and (min-width: 768px) {
@@ -80,7 +73,7 @@
 .home .t3-sl-4 .jumbotron p {
   font-size: 18px;
   line-height: 1.25;
-  color: #999999;
+  color: #5a5a5a;
 }
 @media screen and (min-width: 768px) {
   .home .t3-sl-3 .jumbotron p,
@@ -89,8 +82,9 @@
   }
 }
 .home .t3-sl-5 {
-  background: #fff;
-  border-top: 1px solid #333333;
+  background: #1f1f1f;
+  color: #878787;
+  border-top: 1px solid #2d2d2d;
   padding: 0;
 }
 .home .t3-sl-5 .jumbotron {

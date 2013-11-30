@@ -1,6 +1,10 @@
 
 
-.com_content body,
-.com_mailto body {
-  padding-top: 0;
+.window body {
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.window .window-mainbody {
+  padding: 20px;
 }
