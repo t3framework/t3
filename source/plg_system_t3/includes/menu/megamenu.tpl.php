@@ -135,7 +135,7 @@ class T3MenuMegamenuTpl
 
 		if ($item->mega)  $cls .= ' mega';
 		if ($item->group) $cls .= ' mega-group';
-		if ($item->type == 'separator') $cls .= ' divider';
+		if ($item->type == 'separator' && !$item->group && !$item->mega) $cls .= ' divider';
 
 		$data = "data-id=\"{$item->id}\" data-level=\"{$item->level}\"";
 		if ($item->group) $data .= " data-group=\"1\"";
