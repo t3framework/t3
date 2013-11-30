@@ -1,3 +1,51 @@
+
+<h2>Version: 2.0.0 RC (11/30/2013)</h2>
+
+<h3>Improvement</h3>
+
+- T3Less: Ignore variable/mixins files to be re-import | <a href="https://github.com/t3framework/t3/commit/422c0e79d7fbaba90261ed85649329aa7434d27b">Link</a>
+- SEARCH Component and FORMS improvements | <a href="https://github.com/t3framework/t3/commit/c3106faae626ed23079cc72c5d8e629dd83b7257">Link</a>
+- Rebuild off-canvas menu | <a href="https://github.com/t3framework/t3/issues/208">Link</a>
+- Minify: Change to simple minify function | <a href="https://github.com/t3framework/t3/commit/61ac978efacedcc5406937c9ee218db426c7d153">Link</a>
+- Add legacy (bs2) navigation | <a href="https://github.com/t3framework/t3/commit/30efd564be1b0629b1cc0c3641900e29ded6e814">Link</a>
+- Redesign Off-Canvas Toggle | <a href="https://github.com/t3framework/t3/commit/d261b6568a1e0d8440a57264d58ecca750e561c9">Link</a>
+- Support Off-canvas on right sidebar (for RTL language layout) | <a href="https://github.com/t3framework/t3/commit/ea34be32f0e73a08b10357de8a40c3d2e7c1390a">Link</a>
+- T3 Bs3 Blank: Re-struture "mainbody" block | <a href="https://github.com/t3framework/t3/commit/2f3d2c4cd4cf8c4c4d95613a3921fbbcc799b5b1">Link</a>
+- ThemeMagic: Update progress bar | <a href="https://github.com/t3framework/t3/commit/71befce6198c29d2862857e27ba8b1a6434dc514">Link</a>
+- Improve ThemeMagic for T3 BS3 Blank template | <a href="https://github.com/t3framework/t3/commit/e2eef748eef208b58beb44bf65d336357fa87035">Link</a>
+- Add Dark theme for T3 BS3 Blank template | <a href="https://github.com/t3framework/t3/commit/25b09e7cc54e4c45fdb45ca99ce12c37a078ed36">Link</a>
+- Tuning off-canvas | <a href="https://github.com/t3framework/t3/commit/5f779b12f8ff14627f369c5abbc00ae82abc126e">Link</a>
+
+
+<h3>Bug fixes</h3>
+
+- Megamenu: Fix elastic animation | <a href="https://github.com/t3framework/t3/commit/237f7df756a15698ca6c3872fb548bf3a9d544b0">Link</a>
+- Megamenu: Fix alignment | <a href="https://github.com/t3framework/t3/commit/50353f2935c354ddeeb941afe19e3ee1f98d2ffb">Link</a>
+- Megamenu Config: Fix guest level | <a href="https://github.com/t3framework/t3/commit/39ea1edaf9107f58f4ace45bd03d33e7563b3cf0">Link</a>
+- ThemeMagic: Fix frontend error | <a href="https://github.com/t3framework/t3/commit/525156d0509b763de26dd2e4f46d215f63be2163">Link</a>
+- [iPhone] Missing slogan on iPhone | <a href="https://github.com/t3framework/t3/issues/178">Link</a>
+- Icon font is too close to the menu | <a href="https://github.com/t3framework/t3/issues/171">Link</a>
+- [Iphone_portrait] Footer modules do not look good, they need re-styling | <a href="https://github.com/t3framework/t3/issues/191">Link</a>
+- [T3 blank-tpl] don't show caret bullet when it has submenu | <a href="https://github.com/t3framework/t3/issues/177">Link</a>
+- [Ipad/Iphone] Dropdown submenus (menu on sidebar) display in wrong position | <a href="https://github.com/t3framework/t3/issues/188">Link</a>
+- Base: Fix megamenu effects: zoom, elastic | <a href="https://github.com/t3framework/t3/commit/562b21f16ced98faea6383b2f83aaea9c6bc3cdb">Link</a>
+- [Iphone_Advandce Search] this page needs re-styling  | <a href="https://github.com/t3framework/t3/issues/192">Link</a>
+- [Iphone] Login page does not look good, it should be re-styled |	<a href="https://github.com/t3framework/t3/issues/194">Link</a>
+- Base Bs3: Fix less build for RTL | <a href="https://github.com/t3framework/t3/commit/847954e79540e73b6d9eb2952e58eb1aad721763">Link</a>
+- Fix funtion editing in front-end  |	<a href="https://github.com/t3framework/t3/commit/1d1d62f4ff5484101fb02b7f028db2be921f552d">Link</a>
+- [T3blank-tpl] Missing button style after upgrade to T3 version 2.0.0 RC |	<a href="https://github.com/t3framework/t3/issues/206">Link</a>
+- Off-Canvas Navigation doesn't work after upgrade to T3 version 2.0.0 RC | <a href="https://github.com/t3framework/t3/issues/204">Link</a>
+- [Iphone] remove space above menu | <a href="https://github.com/t3framework/t3/issues/196">Link</a>
+- ThemeMagic: Fix tooltip, font awesome  | <a href="https://github.com/t3framework/t3/commit/f2d4973610c2c93ac90d17d1ff3a675f8aa25105">Link</a>
+- Legacy: Update responsive utility	 | <a href="https://github.com/t3framework/t3/commit/46808b28f090d461829a8164bb5c4b783af35113">Link</a>
+- T3 Layout: Back to old layout config when on 'base' theme |	<a href="https://github.com/t3framework/t3/commit/f5a16ccf4dd865a65e6583b46a7c576501a30538">Link</a>
+- Base: Fix megamenu compile error | <a href="https://github.com/t3framework/t3/commit/abf92826534a94ee5d8dca164a2d9b28ed3bd594">Link</a>
+- Fix Mootools More & Bootstrap conflict |	<a href="https://github.com/t3framework/t3/commit/c0f6835ab037f59be39b4cea97e12adca3d6d968">Link</a>
+- T3 Bs3 Blank: Update smart search module style |	<a href="https://github.com/t3framework/t3/commit/6548f10850eb378c24925b7d80df273f4b0e1c3b">Link</a>
+- ThemeMagic: add font value validation |	<a href="https://github.com/t3framework/t3/commit/85fd8710807889f6c9df84de8411ec9618501c62">Link</a>
+- ThemeMagic: Fix custom font |	<a href="https://github.com/t3framework/t3/commit/8b860665b0d5129fb687ea493d9235b78b4028e2">Link</a>
+
+
 <h2>Version: 2.0.0 beta (11/23/2013)</h2>
 
 <h3>New features</h3>
@@ -25,7 +73,7 @@
 - T3 Admin: change "Global" indicator | <a href="https://github.com/t3framework/t3/commit/74496aea02c63a10afe3c17683bbf5f61c39208e">Link</a>
 - T3 Mainnav: update Bootstrap menu style | <a href="https://github.com/t3framework/t3/commit/c6a2e5a55b72bfc0aca1b8a94be4f2e8251bbc23">Link</a>
 
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - ThemeMagic: fix Joomla 3.2 compatibility | <a href="https://github.com/t3framework/t3/commit/4d99961c32d13dc00dd61607f707b75590ef2a51">Link</a>
 - Off-canvas: fix load css RTL off-canvas if there's no overwrite off-canvas.less im template | <a hrefhttps://github.com/t3framework/t3/commit/b47464094bfa249df7cb664cd6ed8d4e8e188d60">Link</a>
 - Cleanup: remove "Global-typo.less", move some styles in "global-typo.less" to template/"typo.less", move T3 Logos styles to "t3.less" | <a href="https://github.com/t3framework/t3/commit/c93da9a14d95ae6856440975b20edae2274864d2">Link</a>
@@ -45,7 +93,7 @@
 <h3>Improvement</h3>
 - Megamenu: add add responsive alignment | <a href="https://github.com/t3framework/t3/commit/1119779e4453568b08f503807bba4c77d7e33ca6">Link</a>
 	
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - ThemeMagic: Fix Joomla 3.2 compatibility | <a href="https://github.com/t3framework/t3/commit/4d99961c32d13dc00dd61607f707b75590ef2a51">Link</a>
 - T3: fix "After <body>" when body tag has attribute | <a href="https://github.com/t3framework/t3/commit/515d9beb62081185a21074fb9bef2c78d082fe00">Link</a>
 - Optimize frontend-edit | <a href="https://github.com/t3framework/t3/commit/f5943efc22888e9efa03aa6330948e3bda884abf">Link</a>
@@ -64,7 +112,7 @@
 - Megamenu: Update core style of megamenu group | <a href="https://github.com/t3framework/t3/commit/6b1a34994aba727d22773480e2335f2b6cc03371">Link</a>
 
 	
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - Update language string | <a href="https://github.com/t3framework/t3/commit/5b0f2d54cfc6a9bb5cb0352df3339de845266e5e">Link</a>
 - Font Awesome: Update included font for Joomla 3.0 compatibility | <a href="https://github.com/t3framework/t3/commit/881d84fb17e327c943c42a56ca5a86b24c30c5c2">Link</a>
 - Overwrite: Fix Joomla options show_category_heading_title_text | <a href="https://github.com/t3framework/t3/commit/0e0e539ddc792659d04371259842aa09f6e4e704">Link</a>
@@ -87,7 +135,7 @@ T3: Add new Hook feature and support T3 plugins	https://github.com/t3framework/t
 - T3Layout: List all positions in all templates and database to user | <a href="https://github.com/t3framework/t3/commit/c60808fc0a0c5657741e69e5c753dfeabbf2db29">Link</a>
 - Add support additional class for spotlight block | <a href="https://github.com/t3framework/t3/commit/293b3eee1bddb716a32c92e49c45c100011cc5d4">Link</a>
 	
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - T3Less: Clean up code and fix @noflip for RTL | <a href="https://github.com/t3framework/t3/commit/e7e0cc7e4107d6f5ed2d1ea6c3ba4bce9e06d13d">Link</a>
 - Spotlight: Add support style param for spotlight Chrome style | <a href="https://github.com/t3framework/t3/commit/b9ab451f084c206db00e380869640982d2cf989d">Link</a>
 - T3Layout: Fix discard changes on close | <a href="https://github.com/t3framework/t3/commit/aa531eedb578a60333e2f131bc0d0718379e30e8">Link</a>
@@ -112,7 +160,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Module chrome: Support Joomla 3.0 advanced feature | <a href="https://github.com/t3framework/t3/commit/ba5b9a29ffc3355e9ba8b7eccab39a6f8b9f1667">Link</a>
 - T3 Blank: Enable languageswitherload position for multilanguage | <a href="https://github.com/t3framework/t3/commit/b0b63fe9386c5f4a7f9dbeb64b33e3bcc5835971">Link</a>
 
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - Fix jQuery conflict with Virtue Mart | <a href="https://github.com/t3framework/t3/commit/5356a49b267eb8330945997926bcb12972eba5e9">Link</a>
 - Fix off-canvas conflict with JomSocial | <a href="https://github.com/t3framework/t3/commit/7ebb3e11ea45bd1e330bd2cc8293502336ebb179">Link</a>
 - Off-canvas: Fix IE9 | <a href="https://github.com/t3framework/t3/commit/b9f2a4673fac64e418bc925cd2f117ddbe3e9fc3">Link</a>
@@ -131,7 +179,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Add Build RTL CSS option to General tab | <a href="https://github.com/t3framework/t3/commit/11974eb14e1ad20bbfe8879e456d56f69f9fc9fa">Link</a>
 - T3Admin: Add support placeholder attribute for text field | <a href="https://github.com/t3framework/t3/commit/de375ea241d820d67bdf3b00c96ed33d0c2c98bb">Link</a>
 	
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - Overwrite: Fix compatible mod_menu J3.1 | <a href="https://github.com/t3framework/t3/commit/c71f59425fbb36c291d375b9860168069a4b98fd">Link</a>
 - Fix navar-collapse-fixed-top | <a href="https://github.com/t3framework/t3/commit/5af8c48523d73b42fee4739111a1b7dcc44ddcb9">Link</a>
 - Megamenu: Fix load module ajax | <a href="https://github.com/t3framework/t3/commit/78c4d0e060c8fb5c930e98709fb8a591acce6be5">Link</a>
@@ -151,7 +199,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - T3Admin: Change css of toolbar in J2.5 | <a href="https://github.com/t3framework/t3/commit/ff61330348eabb20e2a01afaaad9a0174faa66fd">Link</a>
 - Megamenu: Add delete configuration button | <a href="https://github.com/t3framework/t3/commit/e9ef3e9122f5272a6227f1bc640bddb43abc6867">Link</a>
 	
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - Offcanvas: Fix feature detect 'transition' | <a href="https://github.com/t3framework/t3/commit/03b9b0b9656f5644dd7e3dc5cb02bd469f66f42d">Link</a>
 - T3Admin: Fix Firefox script heavy waring when save the template style | <a href="https://github.com/t3framework/t3/commit/a4b1d5f302954820c9e4a38492886ea9c5bb77c7">Link</a>
 - Less: Fix font-awesome build | <a href="https://github.com/t3framework/t3/commit/06d93a2da96482b64db4474676fb21659dac955f">Link</a>
@@ -177,7 +225,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - Module chrome - adds new module chrome to replicate core Bootstrap | <a href="https://github.com/t3framework/t3/commit/45bf03c936059759fe356301871673faeaab4027">Link</a>
 - Update T3 Logo | <a href="https://github.com/t3framework/t3/commit/0669d3f5c5b94d3045421d37f9df328e3ca447e2">Link</a>
 
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - fixes t3framework/t3#92 and prevents loading lessphp twice if multiple Joomla! Plugins use it. | <a href="https://github.com/t3framework/t3/commit/8a73e71cb762cdda966b95b385c85d3d1bd9f59e">Link</a>
 - Overwrite: Fix overwrite edit form J2.5 compatible | <a href="https://github.com/t3framework/t3/commit/db1f7dc178bf08a92334e47c643b672afab06646">Link</a>
 - T3Less: Fix compile font-awesone v3.1 | <a href="https://github.com/t3framework/t3/commit/f2774854693809471bc83951d5ad718673240f3e">Link</a>
@@ -196,7 +244,7 @@ Megamenu: Fix data-toggle=dropdown problem with old bootstrap library (compatibl
 - LESSPHP: Upgrade Lessphp to latest version v0.3.9 | <a href="https://github.com/t3framework/t3/commit/155ae32a39c3b3119df727acd3c0a18bf3ebbf0c">Link</a>
 - T3Form: Add extend T3Form from JForm to allow overwrite list parameter | <a href="https://github.com/t3framework/t3/commit/69822da283fff172b872dc5fcd7cdd0d850773a1">Link</a>
 
-<h3>Fix bugs</h3>
+<h3>Bug fixes</h3>
 - T3Layout: Fix show/hide function | <a href="https://github.com/t3framework/t3/commit/e39795b58b6de0eec0d712d584552d35d8d7d7e3">Link</a>
 - T3Admin: Fix js error when turn off header of backend template | <a href="https://github.com/t3framework/t3/commit/0afbeb178d448e6b6cb56706ab1e9e1980bfda41">Link</a>
 - Megamenu: Correct link to font awesome instead of bootstrap font | <a href="https://github.com/t3framework/t3/commit/ebb40dd035eef50b90c617f3ecbeb2a9030b779c">Link</a>
