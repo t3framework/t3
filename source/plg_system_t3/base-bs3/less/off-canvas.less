@@ -63,6 +63,7 @@ body {
   height: 100%;
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
+  overflow: visible;
 
   &::after {
     position: absolute;
@@ -81,7 +82,7 @@ body {
 .off-canvas-open {
   .t3-wrapper::after {
     width: 100%;
-    height: 100%;
+    height: 10000px;
     opacity: 1;
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
@@ -118,6 +119,13 @@ body {
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
   }
+}
+
+.off-canvas-right.t3-off-canvas {
+  display: none;
+}
+.off-canvas-right .off-canvas-right.t3-off-canvas {
+  display: block;
 }
 
 html[dir="rtl"] .off-canvas-left.t3-off-canvas,
@@ -394,6 +402,7 @@ body.off-canvas-effect-6 {
   transform-origin: 0% 50%;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  height: auto;
   overflow: hidden;
 }
 
@@ -643,6 +652,7 @@ body.off-canvas-effect-11 {
 }
 
 .off-canvas-effect-11 .t3-wrapper {
+  height: auto;
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -672,8 +682,8 @@ body.off-canvas-effect-11 {
 
 // off-canvas on right side
 .off-canvas-right.off-canvas-effect-11.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(100px, 0, -600px) rotateY(20deg);
-  transform: translate3d(100px, 0, -600px) rotateY(20deg);
+  -webkit-transform: translate3d(-100px, 0, -600px) rotateY(20deg);
+  transform: translate3d(-100px, 0, -600px) rotateY(20deg);
 }
 
 .off-canvas-right.off-canvas-effect-11.t3-off-canvas {
@@ -690,6 +700,7 @@ body.off-canvas-effect-12 {
 }
 
 .off-canvas-effect-12 .t3-wrapper {
+  height: auto;
   overflow: hidden;
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;

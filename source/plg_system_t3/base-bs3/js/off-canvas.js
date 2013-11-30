@@ -64,14 +64,17 @@ jQuery (document).ready(function($){
         // add direction class to body
         // $('html').removeClass ('off-canvas-left off-canvas-right').addClass ('off-canvas-' + direction);
 
-        // update effect class
-        $wrapper[0].className = $wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ').trim() +
-                                ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
+        $offcanvas.height($(window).height());
 
         // disable scroll on page
         var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
         $('html').addClass('noscroll').css('top',-scrollTop).data('top', scrollTop);
         $('.t3-off-canvas').css('top',scrollTop);
+
+        $wrapper.scrollTop (scrollTop);
+        // update effect class
+        $wrapper[0].className = $wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ').trim() +
+            ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
 
         setTimeout(oc_show, 50);
 
@@ -100,6 +103,7 @@ jQuery (document).ready(function($){
         $offcanvas.off ('click', stopBubble);
         setTimeout (function (){
             $wrapper.removeClass ($btn.data('effect')).removeClass ('off-canvas-'+direction);
+            $wrapper.scrollTop (0);
             // enable scroll
             $('html').removeClass ('noscroll').css('top', '');
             $('html,body').scrollTop ($('html').data('top'));
