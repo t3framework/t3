@@ -750,8 +750,8 @@ class T3Template extends ObjectExtendable
 		$legacycss  = $this->getParam('legacy_css', 0);
 		$frontedit  = in_array($input->getCmd('option'), array('com_media', 'com_config'))	//com_media or com_config
 										|| in_array($input->getCmd('layout'), array('edit'))								//edit layout
-										|| ($user->id && $app->get('frontediting', 1) && ($user->authorise('core.edit', 'com_modules') 
-																																			|| $user->authorise('core.edit', 'com_menus')));	//frontediting
+										|| (version_compare(JVERSION, '3.2', 'ge') && $user->id && $app->get('frontediting', 1) && 
+												($user->authorise('core.edit', 'com_modules') || $user->authorise('core.edit', 'com_menus')));	//frontediting
 
 		// LEGACY COMPATIBLE
 		if($legacycss){
