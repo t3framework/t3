@@ -1,7 +1,72 @@
-/* Radio
---------*/
-/* Radio Button Groups ---*/
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
 
+
+// Template Form
+// ------------------------------
+.com_config #templates-form {
+  legend {
+  }
+
+  .tip {
+    background: @well-bg;
+    padding: (@padding-base-vertical * 2) @padding-base-horizontal;
+  }
+
+  textarea {
+    height: auto;
+    width: auto;
+    min-height: 100px;
+    min-width: 50%;
+  }
+
+  .input-append,
+  .input-prepend {
+    .add-on {
+      width: 35px;
+    }
+    input {
+      display: inline-block;
+    }
+    .btn {
+      border: 1px solid @btn-default-border;
+    }
+  }
+
+  // Hiding useless elements
+  .t3-admin-form-legend {
+    display: none;
+  }
+
+  // Expand the grid
+  .row-fluid .span6 {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .control-group .control-label {
+      width: 250px;
+    }
+    .control-group .controls {
+      margin-left: 280px;
+    }
+  }
+
+}
+
+
+// Radio Button Groups
+// ------------------------------
 fieldset.radio {
 
   width: 90px;
@@ -120,3 +185,15 @@ fieldset.radio {
     left: 60%;
   }
 }
+
+
+// Fix for missing icons
+// because of the change from Font Awesome 3 to Font Awesome 4
+// -----------------------------------------------------------
+
+.icon-eye-open:before,
+.icon-eye:before {
+  content:"\f06e";
+}
+
+
