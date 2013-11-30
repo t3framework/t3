@@ -886,7 +886,7 @@ class T3Less
 
 				if(!empty($t3files)){
 					foreach ($t3files as $file) {
-						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . $file . '.css');
+						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . '.css');
 					}
 				}
 			}
