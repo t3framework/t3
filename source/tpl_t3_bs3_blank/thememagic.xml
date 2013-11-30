@@ -64,6 +64,11 @@
 			<field name="t3-module-title-color" type="color" class="t3tm-color" label="T3_TM_VARS_MODULE_TITLE_COLOR_LABEL" description="T3_TM_VARS_MODULE_TITLE_COLOR_DESC" />
 		</fieldset>
 
+		<fieldset name="spotlight_params" label="T3_TM_SPOTLIGHT">
+			<field name="t3-spotlight-background" type="color" class="t3tm-color" label="T3_TM_VARS_SPL_BGCOLOR_LABEL" description="T3_TM_VARS_SPL_BGCOLOR_DESC" />
+			<field name="t3-spotlight-text-color" type="color" class="t3tm-color" label="T3_TM_VARS_SPL_COLOR_LABEL" description="T3_TM_VARS_SPL_COLOR_DESC" />
+		</fieldset>
+
 		<fieldset name="links_params" label="T3_TM_FOOTER">
 
 			<field name="t3-footer-background" type="color" class="t3tm-color" label="T3_VARS_FOOTER_BG_LABEL" description="T3_VARS_FOOTER_BG_DESC" />
