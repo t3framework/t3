@@ -110,10 +110,46 @@
 
 	$(document).ready(function(){
 		//remove conflict of mootools more show/hide function of element
-		if(window.MooTools && window.MooTools.More && Element && Element.implement){
-			$('.collapse, .hasTooltip').each(function(){this.show = null; this.hide = null});
-			$('.carousel').each(function(){this.slide = null;});
-		}
+		(function(){
+			if(window.MooTools && window.MooTools.More && Element && Element.implement){
+
+				var mthide = Element.prototype.hide,
+					mthow = Element.prototype.show,
+					mtslide = Element.prototype.slide;
+
+				Element.implement({
+					show: function(args){
+						if(arguments.callee && 
+							arguments.callee.caller && 
+							arguments.callee.caller.toString().indexOf('isPropagationStopped') !== -1){	//jquery mark
+							return this;
+						}
+
+						return mthow.apply(this, args);
+					},
+
+					hide: function(args){
+						if(arguments.callee && 
+							arguments.callee.caller && 
+							arguments.callee.caller.toString().indexOf('isPropagationStopped') !== -1){	//jquery mark
+							return this;
+						}
+
+						return mthide.apply(this, arguments);
+					},
+
+					slide: function(args){
+						if(arguments.callee && 
+							arguments.callee.caller && 
+							arguments.callee.caller.toString().indexOf('isPropagationStopped') !== -1){	//jquery mark
+							return this;
+						}
+
+						return mtslide.apply(this, args);
+					}
+				})
+			}
+		})();
 
 		if(isTouch){
 			$('ul.nav').has('.dropdown-menu').touchmenu();
