@@ -366,6 +366,15 @@ var T3Theme = window.T3Theme || {};
 			
 			return vals;
 		},
+
+		elmsFrom: function(name){
+			var el = document.adminForm[name];
+			if(!el){
+				el = document.adminForm[name + '[]'];
+			}
+			
+			return $(el);
+		},
 		
 		setValues: function(el, vals){
 			var jel = $(el);
@@ -374,7 +383,25 @@ var T3Theme = window.T3Theme || {};
 				jel.val(vals);
 				
 				if($.makeArray(jel.val())[0] != vals[0]){
-					jel.val('-1');
+
+					if(T3Theme.placeholder && T3Theme.data.base[T3Theme.getName(el)] == vals[0]){
+						jel.val('-1');
+					} else {
+						var name = T3Theme.getName(el),
+							celm = T3Theme.elmsFrom('t3form[thememagic][' + name + '-custom]');
+
+						if(!celm.length){
+							celm = T3Theme.elmsFrom('t3form[thememagic][' + name + '_custom]');						
+						}
+
+						if(celm.length){
+							jel.val('undefined').trigger('change.depend');
+
+							//T3Theme.setValues(celm, vals);
+						} else {
+							jel.val('-1');
+						}
+					}
 				}
 			}else {
 				if(jel.prop('type') == 'checkbox' || jel.prop('type') == 'radio'){
@@ -486,7 +513,7 @@ var T3Theme = window.T3Theme || {};
 		},
 		
 		getName: function(el){
-			var matches = el.name.match('t3form\\[thememagic\\]\\[([^\\]]*)\\]');
+			var matches = (el.name || el[0].name).match('t3form\\[thememagic\\]\\[([^\\]]*)\\]');
 			if (matches){
 				return matches[1];
 			}
