@@ -11,6 +11,16 @@
  *------------------------------------------------------------------------------
  */
 
+
+// Darken Grays Value
+// -------------------------
+@gray-darker:            #1f1f1f;
+@gray-dark:              #2d2d2d;
+@gray:                   #4b4b4b;
+@gray-light:             #5a5a5a;
+@gray-lighter:           #878787;
+
+
 // Brand colors
 // -------------------------
 @brand-primary:                 @blue;
@@ -21,39 +31,70 @@
 @body-bg:                       @gray-darker;
 @text-color:                    @gray-lighter;
 
+@headings-color:                #fff;
+@jumbotron-heading-color:       @headings-color;
+
 
 // Links
 // -------------------------
-@link-color:                    lighten(@brand-primary, 20%);
+@link-color:                    #fff;
 
 
-// Typography
+// Dropdowns
 // -------------------------
-@font-size-base:                14px;
-@font-family-base:              sans-serif;
-@headings-font-family:          sans-serif; 
+@dropdown-bg:                    @navbar-inverse-bg;
+@dropdown-border:                @navbar-inverse-border;
+@dropdown-fallback-border:       #555;
+@dropdown-divider-bg:            #333;
+
+@dropdown-link-color:            @gray-dark;
+@dropdown-link-hover-color:      @gray-dark;
+@dropdown-link-hover-bg:         @gray;
+
+@dropdown-caret-color:           @gray-dark;
 
 
-// Navbar
-// -------------------------
-@navbar-default-link-active-bg: @blue;
+// Navbar: Using Navbar Inverse Variables
+// --------------------------------------
+@navbar-default-color:                    @gray-lighter;
+@navbar-default-bg:                       @navbar-inverse-bg;
+@navbar-default-border:                   @navbar-inverse-border;
+
+// Navbar links
+@navbar-default-link-color:               @navbar-inverse-link-color;
+@navbar-default-link-hover-color:         @navbar-inverse-link-hover-color;
+@navbar-default-link-hover-bg:            @navbar-inverse-link-hover-bg;
+@navbar-default-link-active-color:        @navbar-inverse-link-active-color;
+@navbar-default-link-active-bg:           @navbar-inverse-link-active-bg;
+@navbar-default-link-disabled-color:      @navbar-inverse-link-disabled-color;
+@navbar-default-link-disabled-bg:         @navbar-inverse-link-disabled-bg;
+
+// Navbar brand label
+@navbar-default-brand-color:              @navbar-inverse-brand-color;
+@navbar-default-brand-hover-color:        @navbar-inverse-brand-hover-color;
+@navbar-default-brand-hover-bg:           @navbar-inverse-brand-hover-bg;
+
+// Navbar toggle
+@navbar-default-toggle-hover-bg:          @navbar-inverse-toggle-hover-bg;
+@navbar-default-toggle-border-color:      @navbar-inverse-toggle-border-color;
 
 
 // Buttons
 // -------------------------
-@btn-default-bg:                 @gray-dark;
-@btn-default-border:             darken(@gray-dark, 10%);
+@btn-default-bg:                  @gray-dark;
+@btn-default-border:              darken(@gray-dark, 10%);
 
 
 // Forms
 // -------------------------
-@input-bg:                       @gray-dark;
-@input-border:                   @gray;
+@input-bg:                        @gray-dark;
+@input-border:                    @gray;
 
 
 // Hr border color
 // -------------------------
-@hr-border:                      @gray-dark;
+@hr-border:                       @gray-dark;
+
 
 
 //
@@ -62,5 +103,13 @@
 
 // Spotlight Styles
 // -------------------------
-@t3-spotlight-background:        @red;
-@t3-spotlight-text-color:        #fff;
+@t3-spotlight-background:        @body-bg;
+@t3-spotlight-text-color:        @text-color;
+
+
+// Footer Styles
+// -------------------------
+@t3-footer-background:           @body-bg;
+@t3-footer-text-color:           @text-color;
+
+@t3-footer-module-title-color:   @headings-color;

@@ -79,12 +79,20 @@
   //.mega-nav .mega-group > .mega-group-title,
   //.dropdown-menu .mega-nav .mega-group > .mega-group-title,
   //.dropdown-menu .active .mega-nav .mega-group > .mega-group-title
-  .dropdown-header {
-    // Link
-    > a {
-      // States
-      &:hover, &:active, &:focus {
-      } 
+  .dropdown-header,
+  .mega-nav .mega-group > .dropdown-header,
+  .dropdown-menu .mega-nav .mega-group > .dropdown-header,
+  .dropdown-menu .active .mega-nav .mega-group > .dropdown-header {
+    margin: 0;
+    padding: 0;
+    background: @t3-module-title-bg;
+    color: @t3-module-title-color;
+    font-size: @font-size-large;
+    line-height: normal;
+    // Link states
+    &:hover, &:active, &:focus {
+      background: inherit;
+      color: inherit;
     }
   }
 
@@ -170,8 +178,6 @@
   // Module Title
   .t3-module .module-title {
     .dropdown-header(); // Make the Module Title look like Dropdown Header
-    padding-top: 5px;
-    padding-bottom: 5px;
     margin-bottom: 10px;
   }
 
@@ -254,6 +260,13 @@
   .nav [class^="icon-"],
   .nav [class*=" icon-"],
   .nav .fa {
+  }
+
+  // Reset the margin on Input Group Addon
+  .nav .input-group-addon [class^="icon-"],
+  .nav .input-group-addon [class*=" icon-"],
+  .nav .input-group-addon .fa {
+    margin-right: 0;
   }
 
   // End
