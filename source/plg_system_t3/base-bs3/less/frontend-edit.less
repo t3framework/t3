@@ -11,6 +11,19 @@
  *------------------------------------------------------------------------------
  */
 
+// Prevent Bootstrap Upgrading errors
+@import "../bootstrap/less/variables.less";
+
+// Bootstrap mixins
+@import "../bootstrap/less/mixins.less";
+
+// T3 Base variables
+@import "variables.less";
+
+// T3 Base mixins
+@import "mixins.less";
+
+
 
 //
 // TEMPLATES OPTIONS FORM
@@ -175,6 +188,10 @@
   &:focus, &:active {
     box-shadow: none;
   }
+}
+
+.jfedit-menu + .tooltip {
+  min-width: 100px;
 }
 
 
