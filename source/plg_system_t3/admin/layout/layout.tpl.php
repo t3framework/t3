@@ -29,7 +29,9 @@
 			<div class="t3-admin-layout-devices btn-group hide">
 				<?php $t3devices = json_decode(T3_BASE_DEVICES, true); ?>
 				<?php foreach($t3devices as $device) : ?>
-					<button class="btn t3-admin-dv-<?php echo $device ?>" data-device="<?php echo $device ?>" title="<?php echo JText::_('T3_LAYOUT_DVI_' . strtoupper($device)) ?>"><i class="icon-device"></i>  <?php echo JText::_('T3_LAYOUT_DVI_' . strtoupper($device)) ?></button>
+					<?php if((bool)T3_BASE_RSP_IN_CLASS || $device != T3_BASE_DEFAULT_DEVICE) : ?>
+						<button class="btn t3-admin-dv-<?php echo $device ?>" data-device="<?php echo $device ?>" title="<?php echo JText::_('T3_LAYOUT_DVI_' . strtoupper($device)) ?>"><i class="icon-device"></i>  <?php echo JText::_('T3_LAYOUT_DVI_' . strtoupper($device)) ?></button>
+					<?php endif ?>				
 				<?php endforeach; ?>
 			</div>
 			<button class="btn t3-admin-layout-reset-device pull-right hide"><?php echo JText::_('T3_LAYOUT_RESET_PER_DEVICE') ?></button>
