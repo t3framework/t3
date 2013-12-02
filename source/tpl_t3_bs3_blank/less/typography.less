@@ -290,3 +290,69 @@ code {
 pre {
 }
 
+
+
+//
+// FEATURE LIST
+// --------------------------------------------------
+.btn-actions {
+  text-align: center;
+}
+
+.features-list {
+  margin-top: @t3-global-margin * 3;
+
+  .page-header {
+    border: 0;
+    text-align: center;
+
+    h1 {
+      font-size: @t3-font-size-bigger + 30;
+    }
+  }
+
+  /* Features Rows */
+  .feature-row {
+    overflow: hidden;
+    min-height: 200px;
+    color: #696f72;
+    border-top: 1px solid #e0e2e3;
+    padding: (@t3-global-padding * 3) 0 0;
+
+    &:last-child {
+      border-bottom: 1px solid #e0e2e3;
+      margin-bottom: @t3-global-margin * 3;
+    }
+
+    h3 {
+      font-size: @font-size-base * 2;      
+    }
+
+    div:first-child {
+      padding-left: 0;
+    }
+
+    div:last-child {
+      padding-right: 0;
+    }
+
+    div:first-child.feature-img img {
+      float: left;
+    }
+
+    div:last-child.feature-img img {
+      float: right;
+    }
+  }
+}
+
+
+.jumbotron {
+  h2 {
+    font-size: @t3-font-size-bigger + 30;
+  }
+
+  iframe {
+    margin-top: @t3-global-margin;
+  }
+}
