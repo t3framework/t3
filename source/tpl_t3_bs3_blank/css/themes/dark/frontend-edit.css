@@ -195,7 +195,7 @@ fieldset.radio label {
   left: -1px;
   z-index: 1;
   text-transform: uppercase;
-  background: url(/github/t3mb/plugins/system/t3/base-bs3/less/../imgs/blank.gif) no-repeat transparent;
+  background: url(../../../../../plugins/system/t3/base-bs3/less/../imgs/blank.gif) no-repeat transparent;
   text-indent: -999em;
 }
 fieldset.radio label:before,
@@ -269,6 +269,12 @@ fieldset.radio label.on.active:after {
 .icon-eye-open:before,
 .icon-eye:before {
   content: "\f06e";
+}
+.icon-file-add:before {
+  content: "\f0f6";
+}
+.icon-cancel:before {
+  content: "\f00d";
 }
 .button2-left,
 .button2-left div {
