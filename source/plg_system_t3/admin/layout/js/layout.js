@@ -842,7 +842,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 				}
 			});
 
-			jspl.find('.t3-admin-layout-rzhandle').css('right', Math.min(-7, -3.5 - absgap / 2));
+			jspl.find('.t3-admin-layout-rzhandle').css('right', Math.min(T3AdminLayout.layout.responcls ? -3 : -7, -3.5 - absgap / 2));
 		},
 
 		// apply the visibility value for current device - trigger when change device
