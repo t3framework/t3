@@ -72,6 +72,12 @@
 }
 
 @media (max-width: 767px) {
+  .off-canvas .t3-mainnav .nav-collapse {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
   .off-canvas body > * {
     left: 0;
     -webkit-transform: translateX(0%);
