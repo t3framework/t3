@@ -192,16 +192,20 @@ class plgSystemT3 extends JPlugin
 			)) {
 				JForm::addFormPath(T3_PATH . '/params');
 				$form->loadFile('template', false);
-				
+
 				//search for global parameters and store in user state
-				$japp = JFactory::getApplication();
-				$pglobals = array();
-				foreach($form->getGroup('params') as $param){
-					if($form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
-						$pglobals[] = array('name' => $param->fieldname, 'value' => $form->getValue($param->fieldname, 'params')); 
+				if(is_object($data)){
+					$app      = JFactory::getApplication();
+					$fdata    = $data->getProperties();
+					$pglobals = array();
+				
+					foreach($form->getGroup('params') as $param){
+						if($form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
+							$pglobals[] = array('name' => $param->fieldname, 'value' => isset($fdata['params'][$param->fieldname]) ? $fdata['params'][$param->fieldname] : ''); 
+						}
 					}
+					$app->setUserState('oparams', $pglobals);
 				}
-				$japp->setUserState('oparams', $pglobals);
 			}
 
 			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate(true) ? T3::getDefaultTemplate(true) : false);
