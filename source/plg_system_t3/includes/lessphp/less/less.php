@@ -2650,6 +2650,9 @@ class Less_Environment{
 	 */
 	static function NormPath($path){
 
+		return T3Path::cleanPath($path);
+
+		/*
 		$temp = explode('/',$path);
 		$result = array();
 		foreach($temp as $i => $p){
@@ -2668,6 +2671,7 @@ class Less_Environment{
 		}
 
 		return implode('/',$result);
+		*/
 	}
 
 }

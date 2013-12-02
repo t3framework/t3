@@ -136,6 +136,10 @@ class T3Less
 		return $cssurl;
 	}
 
+	public static function relativePath($topath, $path, $default = null){
+		return $topath ? T3Path::relativePath($topath, $path) . '/' : (!empty($default) ? $default : T3_TEMPLATE_URL . '/css/'); 
+	}
+
 	/**
 	 * @param   string  $path    file path of less file to compile
 	 * @param   string  $topath  file path of output css file
@@ -155,6 +159,7 @@ class T3Less
 		$tpl    = T3_TEMPLATE;
 		$theme  = $app->getUserState('vars_theme');
 		$tofile = null;
+		$todir  = null; 
 		$root   = JUri::root(true);
 
 		//pattern
@@ -176,6 +181,8 @@ class T3Less
 		
 		if ($topath) {
 			$tofile = JPATH_ROOT . '/' . $topath;
+			$todir  = dirname($topath);
+
 			if (!is_dir(dirname($tofile))) {
 				JFolder::create(dirname($tofile));
 			}
@@ -232,7 +239,7 @@ class T3Less
 				}
 				
 				// remember this path when lookup for import
-				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
+				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = self::relativePath($todir, dirname($url));
 
 			} else {
 				$import = true;
@@ -274,7 +281,7 @@ class T3Less
 
 					// remember this path when lookup for import
 					if (preg_match($rimport, $importcontent)) {
-						$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
+						$importdirs[dirname(JPATH_ROOT . '/' . $url)] = self::relativePath($todir, dirname($url));
 					}
 
 					$rtlcontent .= "\n$importcontent\n\n";
@@ -289,7 +296,7 @@ class T3Less
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
 				$rtlcontent   .= "\n$importcontent\n\n";
-				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = $root . '/' . dirname($rtlpath) . '/';
+				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = self::relativePath($todir, dirname($rtlpath));
 			}
 
 			// rtl theme
@@ -299,7 +306,7 @@ class T3Less
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
 					$rtlcontent   .= "\n$importcontent\n\n";
-					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = $root . '/' . dirname($rtlthemepath) . '/';
+					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($todir, dirname($rtlthemepath));
 				}
 			}
 
@@ -310,10 +317,10 @@ class T3Less
 
 
 		// common place
-		$importdirs[T3_TEMPLATE_PATH . '/less'] = T3_TEMPLATE_URL . '/less/';
+		$importdirs[T3_TEMPLATE_PATH . '/less'] = self::relativePath($todir, T3_TEMPLATE_URL);
 
 		// myself
-		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = $root . '/' . dirname($path) . '/';
+		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = self::relativePath($todir, dirname($path));
 
 		// ignore all these files
 		foreach (array(T3_PATH, T3_PATH . '/bootstrap', T3_TEMPLATE_PATH) as $know_path) {
@@ -328,7 +335,7 @@ class T3Less
 
 		// compile less to css using lessphp
 		$parser->SetImportDirs($importdirs);
-		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, $root . '/' . dirname($path) . '/');
+		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, self::relativePath($todir, dirname($path)));
 		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
 		$parser->parse($source);
 		$output = $parser->getCss();
@@ -347,8 +354,8 @@ class T3Less
 			$output = preg_replace($rsplitbegin . $kvarsep . $rsplitend, '', $output);
 		}
 
-		//update url of needed
-		$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), T3_TEMPLATE_URL . '/css') : T3_TEMPLATE_URL . '/css/');
+		//update url if needed => no need
+		//$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), dirname($path)) : T3_TEMPLATE_URL . '/css/');
 
 		if ($is_rtl) {
 			
@@ -581,6 +588,14 @@ class T3Less
 		//remove vars.less
 		if (preg_match($rexcludepath, $path)){
 			$content = preg_replace($rimportvars, '', $content);
+		}
+
+		// check and add theme less if not is theme less
+		if ($theme && strpos($path, 'themes/') === false) {
+			$themepath = 'themes/' . $theme . '/' . basename($path);
+			if (is_file(T3_TEMPLATE_PATH . '/less/' . $themepath)) {
+				$content = $content . "\n@import \"$themepath\"; \n\n";
+			}
 		}
 
 		// split into array, separated by the import

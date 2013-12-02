@@ -950,14 +950,14 @@ class T3Template extends ObjectExtendable
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);
 		$current     = JURI::current();
-		$regex       = '#' . T3_TEMPLATE_URL . '/css/([^/]*)\.css((\?|\#).*)?$#i';
+		$regex       = '@' . preg_quote(T3_TEMPLATE_URL) . '/css/(rtl/)?([^/]*)\.css((\?|\#).*)?$@i';
 
 		$stylesheets = array();
 
 		foreach ($doc->_styleSheets as $url => $css) {
 			// detect if this css in template css
 			if (preg_match($regex, $url, $match)) {
-				$fname = $match[1];
+				$fname = $match[2];
 
 				if ($devmode || $themermode) {
 					if (is_file(T3_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
