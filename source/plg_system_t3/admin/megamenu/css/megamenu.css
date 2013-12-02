@@ -177,7 +177,8 @@ body.bd {
 
 
 /* The Nav ---*/
-.t3-megamenu .span12.mega-col-nav .mega-inner {
+.t3-megamenu .span12.mega-col-nav .mega-inner,
+.t3-megamenu .mega-group .span12.mega-col-nav .mega-inner {
   padding: 10px;
 }
 
@@ -256,7 +257,7 @@ body.bd {
 .t3-megamenu .mega-nav .mega-group-title,
 .t3-megamenu .mega-nav .mega-group > .mega-group-title,
 .t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title {
-  padding: 2px 0px;
+  padding: 5px 10px;
   cursor: pointer;
   border: 1px dotted #ccc;
 }
@@ -309,6 +310,7 @@ body.bd {
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 14px;
+  line-height: normal;
 }
 
 .t3-megamenu .t3-module .module-ct {

@@ -28,6 +28,10 @@
   clear: both;
 }
 
+.t3-admin-layout-container {
+  position: relative;
+}
+
 
 /* Reset
 --------*/
@@ -263,6 +267,7 @@
   background: #eee;
   border-color: #ccc;
   border-radius: 0 !important;
+  min-width: 0 !important;
 }
 
 .t3-admin-layout-ncolumns .btn.active,
@@ -328,7 +333,7 @@
 .block-sidebar-4,
 .block-sidebar-5 {
   height: 100px;
-  background: #eef3e2;
+  background: #fff;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -364,6 +369,32 @@
 .t3-admin-layout-preview .logo-image span {
   display: none;
 }
+
+/* Off-Canvas --*/
+.t3-off-canvas {
+  position: absolute;
+  right: -240px;
+  top: 0;
+  width: 220px;
+  background: #f2f2f2;
+  padding: 0 12px;
+}
+
+.t3-off-canvas-header-title {
+}
+
+.t3-off-canvas-header-title:before {
+  content: "Off-Canvas";
+  display: block;
+  font-size: 12px;
+}
+
+.navbar-toggle,
+.off-canvas-toggle,
+.t3-off-canvas-header button.close {
+  display: none;
+}
+
 
 /* Copyright --*/
 .t3-admin-layout-preview .t3-footer .copyright {
