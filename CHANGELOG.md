@@ -1,4 +1,14 @@
 
+<h2>Version: 2.0.0 (12/02/2013)</h2>
+
+<h3>Bug fixes</h3>
+- T3Form: Fix global attribute | <a href="https://github.com/t3framework/t3/commit/70528e3df7482aec20af1bcbbdb4ddbb31ff6a83">Link</a>
+- Fix Megamenu Admin UI | <a href="https://github.com/t3framework/t3/commit/a0724dee675a20322959a93d3970feb9154ff3e7">Link</a>
+- T3Less: Update less build | <a href="https://github.com/t3framework/t3/commit/d0c9d6f19cfc9d0692bb45f3f39176af2d52f7d6">Link</a>
+- Fix: show tags field when edit article | <a href="https://github.com/t3framework/t3/commit/b34b519ea71ea6bf272b8dafb0f72d0380c6d746">Link</a>
+- T3Layout: Update UI | <a href="https://github.com/t3framework/t3/commit/16c187b6702e7247f44317886b85b66ee1c19415">Link</a>
+
+
 <h2>Version: 2.0.0 RC (11/30/2013)</h2>
 
 <h3>Improvement</h3>
