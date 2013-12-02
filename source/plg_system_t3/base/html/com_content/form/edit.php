@@ -226,10 +226,18 @@ if (!$editoroptions)
 					</div>
 					<div class="control-group">
 						<div class="control-label">
-							<?php echo $this->form->getLabel('tags', 'metadata'); ?>
+							<?php if(version_compare(JVERSION, '3.1.5', 'ge')) : ?>
+								<?php echo $this->form->getLabel('tags'); ?>
+							<?php else: ?>	
+							 	<?php echo $this->form->getLabel('tags', 'metadata'); ?>
+							<?php endif ?>
 						</div>
 						<div class="controls">
-							<?php echo $this->form->getInput('tags', 'metadata'); ?>
+							<?php if(version_compare(JVERSION, '3.1.5', 'ge')) : ?>
+								<?php echo $this->form->getInput('tags'); ?>
+							<?php else: ?>
+								<?php echo $this->form->getInput('tags', 'metadata'); ?>
+							<?php endif ?>
 						</div>
 					</div>
 
