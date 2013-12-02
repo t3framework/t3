@@ -289,7 +289,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '23',
-			element : ".t3-admin-nav ul li:eq(6)",
+			element : ".t3-admin-nav ul li:eq(7)",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -343,7 +343,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '28',
-			element : "#t3-admin-mm-intro",
+			element : "#jform_params_navigation_type",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -354,7 +354,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '29',
-			element : "#jform_params_navigation_type_chzn",
+			element : "#jform_params_navigation_collapse_enable",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -365,7 +365,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			id		: '30',
-			element : ".t3-admin-nav ul li:eq(5)",
+			element : ".t3-admin-nav ul li:eq(6)",
 			position: "bottom",
 			highlighter: "", 
 			monitor	: "mouseover",
@@ -383,19 +383,41 @@ defined('_JEXEC') or die;
 			title	: <?php echo json_encode(JText::_('T3_TOUR_GUIDE_31_TITLE')) ?>,
 			text    : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_31_CONTENT')) ?>,
 			dismiss : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_DISMISS_2')) ?>
+		},
+		
+		{
+			id		: '32',
+			element : ".t3-admin-nav ul li:eq(5)",
+			position: "bottom",
+			highlighter: "", 
+			monitor	: "mouseover",
+			title	: <?php echo json_encode(JText::_('T3_TOUR_GUIDE_32_TITLE')) ?>,
+			text    : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_32_CONTENT')) ?>,
+			dismiss : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_DISMISS_2')) ?>
+		},
+		
+		{
+			id		: '33',
+			element : "#jform_params_build_rtl",
+			position: "bottom",
+			highlighter: "", 
+			monitor	: "mouseover",
+			title	: <?php echo json_encode(JText::_('T3_TOUR_GUIDE_33_TITLE')) ?>,
+			text    : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_33_CONTENT')) ?>,
+			dismiss : <?php echo json_encode(JText::_('T3_TOUR_GUIDE_DISMISS_2')) ?>
 		}
 	];
 
 
 	T3Tours.first = {
-		tour: ["1", "2", "31", "3", "4", "5", "6", "7", "11", "14", "25", "30", "23"],
+		tour: ["1", "2", "31", "3", "4", "5", "6", "7", "11", "14", "25", "32", "30", "23"],
 		intro: <?php echo json_encode(JText::_('T3_TOUR_INTRO_FIRST')) ?>
 	}
 
 	T3Tours.plays = [
 		{
 			when: function() {return jQuery('.t3-admin-nav ul li:eq(1)').hasClass('active');},
-			tour: ["8", "9", "10"],
+			tour: ["8", "9", "10", "33"],
 			/*intro	: <?php echo json_encode(JText::_('T3_TOUR_INTRO_TOUR1')) ?>*/
 		},
 		{
@@ -410,7 +432,7 @@ defined('_JEXEC') or die;
 		},
 		{
 			when: function() {return jQuery('.t3-admin-nav ul li:eq(4)').hasClass('active');},
-			tour: ["26", "29", "27", "28"],
+			tour: ["27", "26", "28", "29"],
 			/*intro	: <?php echo json_encode(JText::_('T3_TOUR_INTRO_TOUR4')) ?>*/
 		},
 	];
