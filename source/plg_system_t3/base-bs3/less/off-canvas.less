@@ -852,6 +852,8 @@ body.off-canvas-effect-14.off-canvas-right {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
   transform: translate3d(100%, 0, 0) rotateY(0deg);
 }
+
+
 //
 // Fallback for old IE (<IE10)
 // that don't support 3D transforms
@@ -869,4 +871,12 @@ html[dir="ltr"].off-canvas-right.old-ie {
     right: -@t3-off-canvas-width;
     left: auto;
   }
+}
+
+
+//
+// Fix conflict with modal
+// -----------------------------------------------------
+.modal-open .t3-wrapper {
+  position: static;
 }
