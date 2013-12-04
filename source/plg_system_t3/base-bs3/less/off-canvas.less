@@ -128,7 +128,6 @@ body {
   display: block;
 }
 
-html[dir="rtl"] .off-canvas-left.t3-off-canvas,
 html[dir="ltr"] .off-canvas-right.t3-off-canvas {
   left: auto;
   right: 0;
@@ -865,12 +864,21 @@ body.off-canvas-effect-14.off-canvas-right {
   }
 }
 
-html[dir="rtl"].off-canvas-left.old-ie,
-html[dir="ltr"].off-canvas-right.old-ie {
+
+html[dir="ltr"] .off-canvas-right.old-ie {
   .t3-off-canvas {
     right: -@t3-off-canvas-width;
     left: auto;
   }
+}
+
+//
+// specific hack for safari
+// -----------------------------------------------------
+.safari .off-canvas-left .t3-wrapper,
+.safari .off-canvas-right .t3-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 

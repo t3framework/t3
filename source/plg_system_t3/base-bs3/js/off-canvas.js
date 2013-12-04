@@ -15,6 +15,8 @@ jQuery (document).ready(function($){
     // fix for old ie
     if ($.browser.msie && $.browser.version < 10) {
         $('html').addClass ('old-ie');
+    } else if(/constructor/i.test(window.HTMLElement)){
+        $('html').addClass('safari');
     }
 
     var $wrapper = $('body'),
