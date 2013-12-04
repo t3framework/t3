@@ -25,11 +25,6 @@ jQuery(document).ready(function ($) {
         // rebuild
         lis.each(function () {
 
-            //remove Mootool conflict
-            if(window.MooTools && window.MooTools.More && Element && Element.implement){
-                this.show = null; this.hide = null;
-            }
-
             // get firstchild - a or span
             var $li = $(this),
                 $child = $li.find('>:first-child');

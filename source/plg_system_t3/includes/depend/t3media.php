@@ -218,7 +218,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 			if ($this->value && file_exists(JPATH_ROOT . '/' . $this->value))
 			{
 				$folder = explode('/', $this->value);
-				array_diff_assoc($folder, explode('/', JComponentHelper::getParams('com_media')->get('image_path', 'images')));
+				$folder = array_diff_assoc($folder, explode('/', JComponentHelper::getParams('com_media')->get('image_path', 'images')));
 				array_pop($folder);
 				$folder = implode('/', $folder);
 			}
