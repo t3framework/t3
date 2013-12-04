@@ -115,6 +115,11 @@
         width: 210px;
       }
     }
+
+    .btn {
+      border: 1px solid @btn-default-border;
+      background-color: @gray-lighter;
+    }
   }
 
 }
@@ -140,6 +145,8 @@
   margin-bottom: @line-height-computed;
   .btn {
     background: @gray-lighter;
+    text-shadow: 0 1px 0 #fff; 
+    border-color: #ccc;
   }
 }
 
@@ -475,11 +482,18 @@ fieldset.radio {
   text-decoration: none;
 }
 
-.edit.item-page .control-group a.modal {
+.edit.item-page a.modal {
+  display: inline-block;
   position: inherit;
   width: auto !important;
-  margin-left: 0 !important;
   top: auto !important;
+  
+  &.btn {
+    background: @gray-lighter;
+    text-shadow: 0 1px 0 #fff; 
+    border-color: #ccc;
+    overflow: hidden;
+  }
 }
 
 
