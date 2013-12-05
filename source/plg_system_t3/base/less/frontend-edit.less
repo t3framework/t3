@@ -2,7 +2,7 @@
 --------*/
 /* Radio Button Groups ---*/
 
-fieldset.radio {
+fieldset.t3onoff {
 
   width: 90px;
   height: 30px;
@@ -75,7 +75,6 @@ fieldset.radio {
     background: #fff;
   }
 
-  label:nth-child(2):before,
   label.off:before {
     content: "OFF";
     text-align: right;
@@ -88,45 +87,37 @@ fieldset.radio {
   }
 
   /* off background */
-  label:nth-child(2):before,
   label.off:before {
     background: #eee;
     left: 100%;
   }
 
-  label.active:nth-child(2):before,
   label.off.active:before {
     left: 0%;
   }
 
-  label:nth-child(4):before,
   label.on:before {
     background: #690;
     left: -100%;
   }
 
-  label.active:nth-child(4):before,
   label.on.active:before {
     left: -0%;
   }
 
   /* off switch */
-  label:nth-child(2):after,
   label.off:after {
     left: 60%;
   }
 
-  label.active:nth-child(2):after,
   label.off.active:after {
     left: 0%;
   }
 
-  label:nth-child(4):after,
   label.on:after {
     left: 0%;
   }
 
-  label.active:nth-child(4):after,
   label.on.active:after {
     left: 60%;
   }
