@@ -26,7 +26,8 @@ jQuery (document).ready(function($){
         $close = $('.t3-off-canvas .close'),
         $btn=null,
         $nav=null,
-        direction = 'left';
+        direction = 'left',
+        $fixed = null;
     // no wrapper, just exit
     if (!$wrapper.length) return ;
 
@@ -73,6 +74,18 @@ jQuery (document).ready(function($){
         $('html').addClass('noscroll').css('top',-scrollTop).data('top', scrollTop);
         $('.t3-off-canvas').css('top',scrollTop);
 
+				// make the fixed element become absolute
+				$fixed = $wrapper.find('*').filter (function() {return $(this).css("position") === 'fixed';});
+        $fixed.each (function () {
+            var $this = $(this),
+								$parent = $this.parent(),
+                mtop = 0;						
+						// find none static parent						
+						while (!$parent.is($wrapper) && $parent.css("position") === 'static') $parent = $parent.parent();						
+						mtop = -$parent.offset().top;
+            $this.css ({'position': 'absolute', 'margin-top': mtop});
+        });
+				
         $wrapper.scrollTop (scrollTop);
         // update effect class
         $wrapper[0].className = $wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ').trim() +
@@ -110,6 +123,8 @@ jQuery (document).ready(function($){
             $('html').removeClass ('noscroll').css('top', '');
             $('html,body').scrollTop ($('html').data('top'));
             $nav.removeClass ('off-canvas-current');
+						// restore fixed elements
+            $fixed.css ({'position': '', 'margin-top': ''});
         }, 550);
 
         // fix for old ie
