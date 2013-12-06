@@ -110,10 +110,13 @@ var T3Admin = window.T3Admin || {};
 						return $.inArray(this.value + '', ['0', '1']) !== -1;
 					}).length == 2;
 
-			}).addClass('t3onoff').removeClass('btn-group')
+			}).addClass('t3onoff')
 				.find('label').addClass(function(){
 					return $(this).prev('input').val() == '0' ? 'off' : 'on'
 				});
+
+			//support eplicit define class
+			$('.t3onoff').removeClass('btn-group').find('label').removeClass('btn');
 			
 			//action
 			$('fieldset.radio').find('label').removeClass('btn-success btn-danger btn-primary').unbind('click').click(function() {

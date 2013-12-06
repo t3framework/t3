@@ -46,7 +46,7 @@
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field name="non_responsive_width" type="text" class="btn-group" default="970px"
+			<field name="non_responsive_width" type="text" default="970px"
 				   global="1"
 				   label="T3_GENERAL_NON_RESPON_WIDTH_LABEL"
 				   description="T3_GENERAL_NON_RESPON_WIDTH_DESC"/>
@@ -170,7 +170,7 @@
 
             <field type="t3depend" function="@legend" label="T3_NAVIGATION_MM_GROUP_LABEL" description="T3_NAVIGATION_MM_GROUP_DESC" />
 
-			<field name="navigation_type" type="radio" class="btn-group" default="megamenu"
+			<field name="navigation_type" type="radio" class="t3onoff" default="megamenu"
 				   label="T3_NAVIGATION_MM_ENABLE_LABEL"
 				   description="T3_NAVIGATION_MM_ENABLE_DESC">
                 <option value="t3bootstrap" class="off">JNO</option>
