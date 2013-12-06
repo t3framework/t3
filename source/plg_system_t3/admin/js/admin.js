@@ -71,7 +71,7 @@ var T3Admin = window.T3Admin || {};
 					T3Admin.tbmmid = setTimeout(function(){
 						$('#t3-admin-tb-megamenu button').popover('hide');
 						T3Admin.tbmmid = 0;
-					}, 3000);
+					}, 5000);
 				} else {
 					window.location.href = T3Admin.megamenuUrl;
 				}
