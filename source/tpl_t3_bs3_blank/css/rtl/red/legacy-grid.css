@@ -7,11 +7,7 @@
 .row-fluid:before,
 .row-fluid:after {
   content: " ";
-  
-
   display: table;
-  
-
 }
 .row-fluid:after {
   clear: both;

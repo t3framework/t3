@@ -61,17 +61,18 @@
     width: 210px;
   }
 }
+.edit .input-append .btn,
+.edit .input-prepend .btn {
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
 .edit .nav-tabs {
   margin-bottom: 20px;
 }
 .edit .tab-pane:before,
 .edit .tab-pane:after {
   content: " ";
-  
-
   display: table;
-  
-
 }
 .edit .tab-pane:after {
   clear: both;
@@ -83,7 +84,9 @@
 }
 #editor-xtd-buttons .btn,
 .toggle-editor .btn {
-  background: #eeeeee;
+  background-color: #ffffff;
+  text-shadow: 0 1px 0 #fff;
+  border-color: #cccccc;
 }
 #editor-xtd-buttons {
   margin-right: 30px;
@@ -146,11 +149,7 @@
 .window .manager:before,
 .window .manager:after {
   content: " ";
-  
-
   display: table;
-  
-
 }
 .window .manager:after {
   clear: both;
@@ -160,7 +159,7 @@
   margin-right: 10px;
   margin-left: 10px;
 }
-fieldset.radio {
+.t3onoff {
   width: 90px;
   height: 30px;
   white-space: nowrap;
@@ -181,10 +180,10 @@ fieldset.radio {
   
 
 }
-fieldset.radio input[type=radio] {
+.t3onoff input[type=radio] {
   display: none;
 }
-fieldset.radio label {
+.t3onoff label {
   width: 90px;
   height: 30px;
   overflow: hidden;
@@ -198,8 +197,8 @@ fieldset.radio label {
   background: url(../../../../../plugins/system/t3/base-bs3/less/../imgs/blank.gif) no-repeat transparent;
   text-indent: -999em;
 }
-fieldset.radio label:before,
-fieldset.radio label:after {
+.t3onoff label:before,
+.t3onoff label:after {
   display: block;
   position: absolute;
   top: 0;
@@ -208,7 +207,7 @@ fieldset.radio label:after {
   -webkit-transition: all 250ms;
   transition: all 250ms;
 }
-fieldset.radio label:before {
+.t3onoff label:before {
   content: "ON";
   width: 100%;
   height: 100%;
@@ -217,54 +216,73 @@ fieldset.radio label:before {
   padding: 4px 18px;
   font-weight: normal;
 }
-fieldset.radio label:after {
+.t3onoff label:after {
   content: "";
   width: 40%;
   height: 100%;
   background: #fff;
 }
-fieldset.radio label:nth-child(2):before,
-fieldset.radio label.off:before {
+.t3onoff label.off:before {
   content: "OFF";
   text-align: right;
   color: #555;
 }
-fieldset.radio label.active {
+.t3onoff label.active {
   z-index: 0;
 }
-fieldset.radio label:nth-child(2):before,
-fieldset.radio label.off:before {
+.t3onoff label.off:before {
   background: #eee;
   left: 100%;
 }
-fieldset.radio label.active:nth-child(2):before,
-fieldset.radio label.off.active:before {
+.t3onoff label.off.active:before {
   left: 0%;
 }
-fieldset.radio label:nth-child(4):before,
-fieldset.radio label.on:before {
+.t3onoff label.on:before {
   background: #690;
   left: -100%;
 }
-fieldset.radio label.active:nth-child(4):before,
-fieldset.radio label.on.active:before {
+.t3onoff label.on.active:before {
   left: 0%;
 }
-fieldset.radio label:nth-child(2):after,
-fieldset.radio label.off:after {
+.t3onoff label.off:after {
   left: 60%;
 }
-fieldset.radio label.active:nth-child(2):after,
-fieldset.radio label.off.active:after {
+.t3onoff label.off.active:after {
   left: 0%;
 }
-fieldset.radio label:nth-child(4):after,
-fieldset.radio label.on:after {
+.t3onoff label.on:after {
   left: 0%;
 }
-fieldset.radio label.active:nth-child(4):after,
-fieldset.radio label.on.active:after {
+.t3onoff label.on.active:after {
   left: 60%;
+}
+
+fieldset.radio.btn-group {
+  padding: 0;
+}
+fieldset.radio.btn-group input {
+  display: none;
+}
+fieldset.radio.btn-group label {
+  display: inline-block;
+  min-width: 54px;
+  padding: 0 12px;
+  border: 1px solid #aaa;
+  line-height: 28px;
+  background: #eee;
+  color: #555;
+  border-radius: 0;
+  text-align: center;
+  border-right-width: 0px;
+  text-transform: uppercase;
+}
+fieldset.radio.btn-group label:last-child {
+  border-right-width: 1px;
+}
+fieldset.radio.btn-group label.active {
+  background: #690;
+  border-color: #5c8b00;
+  color: #fff;
 }
 .icon-eye-open:before,
 .icon-eye:before {
@@ -320,11 +338,18 @@ fieldset.radio label.on.active:after {
   color: #333333;
   text-decoration: none;
 }
-.edit.item-page .control-group a.modal {
+.edit.item-page a.modal {
+  display: inline-block;
   position: inherit;
   width: auto !important;
-  margin-left: 0 !important;
   top: auto !important;
+  overflow: hidden;
+}
+.edit.item-page a.modal.btn {
+  background: #ffffff;
+  text-shadow: 0 1px 0 #fff;
+  border-color: #cccccc;
+  overflow: hidden;
 }
 .controls img.calendar {
   cursor: pointer;

@@ -72,7 +72,6 @@ body {
 .off-canvas-right .off-canvas-right.t3-off-canvas {
   display: block;
 }
-html[dir="rtl"] .off-canvas-left.t3-off-canvas,
 html[dir="ltr"] .off-canvas-right.t3-off-canvas {
   left: auto;
   right: 0;
@@ -110,7 +109,7 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
   color: #800000;
 }
 .t3-off-canvas .t3-off-canvas-body a:focus {
-  outline: thin dotted #333;
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -590,10 +589,12 @@ body.off-canvas-effect-14.off-canvas-right {
   z-index: 100!important;
   left: -250px;
 }
-html[dir="rtl"].off-canvas-left.old-ie .t3-off-canvas,
-html[dir="ltr"].off-canvas-right.old-ie .t3-off-canvas {
+html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
   right: -250px;
   left: auto;
+}
+.modal-open .t3-wrapper {
+  position: static;
 }
 .off-canvas-toggle {
   border-radius: 0;
@@ -646,7 +647,7 @@ html[dir="ltr"].off-canvas-right.old-ie .t3-off-canvas {
   text-decoration: none;
 }
 .t3-off-canvas .t3-off-canvas-body a:focus {
-  outline: thin dotted #333;
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
