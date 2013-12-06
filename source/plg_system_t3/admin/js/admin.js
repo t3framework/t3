@@ -102,8 +102,21 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		initRadioGroup: function(){
+
+			//convert to on/off
+			$('fieldset.radio').filter(function(){
 			
-			$('.radio label').unbind('click').click(function() {
+				return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
+						return $.inArray(this.value + '', ['0', '1']) !== -1;
+					}).length == 2;
+
+			}).addClass('t3onoff').removeClass('btn-group')
+				find('label').addClass(function(){
+					return $(this).prev('input').val() == '0' ? 'off' : 'on'
+				});
+			
+			//action
+			$('fieldset.radio').find('label').removeClass('btn-success btn-danger btn-primary').unbind('click').click(function() {
 				var label = $(this),
 					input = $('#' + label.attr('for'));
 
@@ -114,15 +127,12 @@ var T3Admin = window.T3Admin || {};
 				}
 			});
 
-			$('fieldset.radio')
-				.removeClass('btn-group')
-				.find('label').removeClass('btn btn-success btn-danger btn-primary');
-
-
+			//initial state
 			$('.radio input[checked=checked]').each(function(){
 				$('label[for=' + $(this).attr('id') + ']').addClass('active');
 			});
 
+			//update state
 			$('.t3-admin-form').on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)

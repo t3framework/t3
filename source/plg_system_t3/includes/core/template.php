@@ -837,7 +837,7 @@ class T3Template extends ObjectExtendable
 		$this->addScript(T3_URL . '/bootstrap/js/bootstrap.js');
 
 		// add css/js for off-canvas
-		if ($offcanvas && $responsive) {
+		if ($offcanvas && ($this->responcls || $responsive)) {
 			$this->addCss('off-canvas', false);
 			$this->addScript(T3_URL . '/js/off-canvas.js');
 		}

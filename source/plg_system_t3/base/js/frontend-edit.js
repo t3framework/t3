@@ -15,18 +15,22 @@
 	
 	$(document).ready(function(){
 		
-		//frontend edit radio on/off
-		//auto convert on-off radio
+		//frontend edit radio on/off - auto convert on-off radio if applicable
 		$('fieldset.radio').filter(function(){
 			
 			return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
 					return $.inArray(this.value + '', ['0', '1']) !== -1;
 				}).length == 2;
 
-		}).addClass('t3onoff');
+		}).addClass('t3onoff').removeClass('btn-group');
 
+		//add class on/off
+		$('fieldset.t3onoff').find('label').addClass(function(){
+			return $(this).prev('input').val() == '0' ? 'off' : 'on'
+		});
 
-		$('fieldset.t3onoff').find('label').unbind('click').click(function() {
+		//listen to all
+		$('fieldset.radio').find('label').unbind('click').click(function() {
 			var label = $(this),
 				input = $('#' + label.attr('for'));
 
@@ -35,8 +39,6 @@
 
 				input.prop('checked', true).trigger('change');
 			}
-		}).addClass(function(){
-			return $(this).prev('input').val() == '0' ? 'off' : 'on'
 		});
 
 		//initial state

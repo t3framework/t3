@@ -122,3 +122,36 @@ fieldset.t3onoff {
     left: 60%;
   }
 }
+
+/* radio btn group */
+fieldset.radio.btn-group {
+  padding: 0;
+
+  input {
+    display: none;
+  }
+
+  label {
+    display: inline-block;
+    min-width: 54px;
+    padding: 0 12px;
+    border: 1px solid #aaa;
+    line-height: 28px;
+    background: #eee;
+    color: #555;
+    border-radius: 0;
+    text-align: center;
+    border-right-width: 0px;
+    text-transform: uppercase;
+
+    &:last-child {
+      border-right-width: 1px;
+    }
+
+    &.active {
+      background: #690;
+      border-color: #5c8b00;
+      color: #fff;
+    }
+  }
+}

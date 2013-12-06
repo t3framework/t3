@@ -15,12 +15,11 @@ defined('_JEXEC') or die;
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 		
-			<?php if ($this->getParam('navigation_collapse_enable')) :
-				$this->addScript(T3_URL.'/js/nav-collapse.js');
-			?>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar-collapse">
-				<i class="fa fa-bars"></i>
-			</button>
+			<?php if ($this->getParam('navigation_collapse_enable', 1) && $this->getParam('responsive', 1)) : ?>
+				<?php $this->addScript(T3_URL.'/js/nav-collapse.js'); ?>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".t3-navbar-collapse">
+					<i class="fa fa-bars"></i>
+				</button>
 			<?php endif ?>
 
 			<?php if ($this->getParam('addon_offcanvas_enable')) : ?>
