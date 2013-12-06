@@ -111,7 +111,7 @@ var T3Admin = window.T3Admin || {};
 					}).length == 2;
 
 			}).addClass('t3onoff').removeClass('btn-group')
-				find('label').addClass(function(){
+				.find('label').addClass(function(){
 					return $(this).prev('input').val() == '0' ? 'off' : 'on'
 				});
 			
