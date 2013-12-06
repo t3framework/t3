@@ -1,4 +1,20 @@
 
+<h2>Version: 2.0.1 (12/06/2013)</h2>
+
+<h3>New features</h3>
+- Base Bs3: Update bootstrap 3.0.3 | <a href="https://github.com/t3framework/t3/commit/01b5a331fa487963fd5dd181dd02f72ab44aaddb">Link</a>
+
+<h3>Bug fixes</h3>
+- Fix conflict between off-canvas and modal | <a href="https://github.com/t3framework/t3/commit/eb992c52f2fa68fd7c010a5a6c7597424cffaebe">Link</a>
+- T3Bs3: Style modal button conflict | <a href="https://github.com/t3framework/t3/commit/4ee31af2546712557f89cd9e750e7d1db3f2d862">Link</a>
+- Fix J2.5 t3media element not target correct folder | <a href="https://github.com/t3framework/t3/commit/927af997b76a6ecd3e91ce3afc74692741a801f5">Link</a>
+- Legacy nav: Align caret | <a href="https://github.com/t3framework/t3/commit/5e921087e058982cf745c6a6fb003a53ceb81076">Link</a>
+- Apply small style for button | <a href="https://github.com/t3framework/t3/commit/8b273a9a5d6f7e1479f72d5d454acd00ee8568c8">Link</a>
+- Nav Collapse: Align font awesome 4 | <a href="https://github.com/t3framework/t3/commit/e0ae6093241ca586e981cde59e98da9de5296b02">Link</a>
+- T3AdminUI: Add multiple radio btn group style | <a href="https://github.com/t3framework/t3/commit/d2a7f71ce362f02d76ba59923aaeaa659739a7a8">Link</a>
+
+
+
 <h2>Version: 2.0.0 (12/02/2013)</h2>
 
 <h3>Bug fixes</h3>
