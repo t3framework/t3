@@ -306,6 +306,11 @@
     .navbar-nav {
       margin: 0 -@navbar-padding-horizontal;
 
+      //font awesome
+      li > a .fa {
+        margin-right: 5px;
+      }
+
       > li > a {
         border-top: 1px solid @navbar-default-border;
       }
@@ -336,10 +341,6 @@
           position: absolute;
           top: 40%;
           right: @padding-base-horizontal;
-        }
-
-        .fa {
-          margin-right: 5px;
         }
       }
     }

@@ -870,6 +870,9 @@ input.invalid {
 .t3-mainnav .t3-navbar-collapse .navbar-nav {
   margin: 0 -15px;
 }
+.t3-mainnav .t3-navbar-collapse .navbar-nav li > a .fa {
+  margin-right: 5px;
+}
 .t3-mainnav .t3-navbar-collapse .navbar-nav > li > a {
   border-top: 1px solid #1f1f1f;
 }
@@ -880,9 +883,6 @@ input.invalid {
   position: absolute;
   top: 40%;
   right: 12px;
-}
-.t3-mainnav .t3-navbar-collapse .navbar-nav .dropdown > a .fa {
-  margin-right: 5px;
 }
 
 .t3-module {
