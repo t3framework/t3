@@ -822,6 +822,19 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 			var jt3menu = $('.t3-admin-megamenu');
 
+			//convert to on/off
+			jt3menu.find('.radio').filter(function(){
+			
+				return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
+						return $.inArray(this.value + '', ['0', '1']) !== -1;
+					}).length == 2;
+
+			}).addClass('t3onoff').removeClass('btn-group')
+				.find('label').addClass(function(){
+					return $(this).prev('input').val() == '0' ? 'off' : 'on'
+				});
+
+			//action
 			jt3menu.find('.radio label').unbind('click').click(function() {
 				var label = $(this),
 					input = $('#' + label.attr('for'));
@@ -833,6 +846,10 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				}
 			});
 
+			jt3menu.find('.radio input:checked').each(function(){
+				$('label[for=' + $(this).attr('id') + ']').addClass('active');
+			});
+
 			jt3menu.on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
@@ -842,11 +859,6 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 							.addClass('active');
 				}
 			});
-
-			jt3menu.find('.radio input:checked').each(function(){
-				$('label[for=' + $(this).attr('id') + ']').addClass('active');
-			});
-
 
 			//init chosen
 			$('select').chosen({
