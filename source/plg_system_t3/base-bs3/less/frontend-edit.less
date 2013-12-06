@@ -118,7 +118,7 @@
 
     .btn {
       border: 1px solid @btn-default-border;
-      background-color: @gray-lighter;
+      background-color: @btn-default-bg;
     }
   }
 
@@ -144,9 +144,9 @@
   margin-top: @line-height-computed;
   margin-bottom: @line-height-computed;
   .btn {
-    background: @gray-lighter;
+    background-color: @btn-default-bg;
     text-shadow: 0 1px 0 #fff; 
-    border-color: #ccc;
+    border-color: @btn-default-border;
   }
 }
 
@@ -514,9 +514,9 @@ fieldset.radio.btn-group {
   overflow: hidden;
 
   &.btn {
-    background: @gray-lighter;
+    background: @btn-default-bg;
     text-shadow: 0 1px 0 #fff; 
-    border-color: #ccc;
+    border-color: @btn-default-border;
     overflow: hidden;
   }
 }
