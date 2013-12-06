@@ -331,10 +331,16 @@
       }
 
       // Re-Align the caret on right
-      .dropdown > a .caret {
-        position: absolute;
-        top: 40%;
-        right: @padding-base-horizontal;
+      .dropdown > a {
+        .caret {
+          position: absolute;
+          top: 40%;
+          right: @padding-base-horizontal;
+        }
+
+        .fa {
+          margin-right: 5px;
+        }
       }
     }
 
