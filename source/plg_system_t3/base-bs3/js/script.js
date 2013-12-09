@@ -102,7 +102,7 @@
 			if(window.MooTools && window.MooTools.More && Element && Element.implement){
 
 				var mthide = Element.prototype.hide,
-					mthow = Element.prototype.show,
+					mtshow = Element.prototype.show,
 					mtslide = Element.prototype.slide;
 
 				Element.implement({
@@ -113,7 +113,7 @@
 							return this;
 						}
 
-						return mthow.apply(this, args);
+						return $.isFunction(mtshow) && mtshow.apply(this, args);
 					},
 
 					hide: function(){
@@ -123,7 +123,7 @@
 							return this;
 						}
 
-						return mthide.apply(this, arguments);
+						return $.isFunction(mthide) && mthide.apply(this, arguments);
 					},
 
 					slide: function(args){
@@ -133,7 +133,7 @@
 							return this;
 						}
 
-						return mtslide.apply(this, args);
+						return $.isFunction(mtslide) && mtslide.apply(this, args);
 					}
 				})
 			}

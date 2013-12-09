@@ -49,7 +49,7 @@ class T3Admin {
 					}
 
 					$open = $open . '<form' . $value;
-					$close = array_pop($endtags) . '</form>' . $close;
+					//$close = array_pop($endtags) . '</form>' . $close;
 				}
 			}
 
