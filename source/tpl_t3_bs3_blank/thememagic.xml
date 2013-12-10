@@ -88,6 +88,8 @@
 			
 			<field name="container-sm" type="text" default="750px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_SM_WIDTH_LABEL" description="T3_TM_VARS_SCFD_SM_WIDTH_DESC" />
 			
+			<field name="grid-gutter-width" type="text" default="30px" class="t3tm-dimension" label="T3_TM_VARS_SCFD_GUTTER_LABEL" description="T3_TM_VARS_SCFD_GUTTER_DESC" />
+
 			<!-- End Grid -->
 		</fieldset>
 

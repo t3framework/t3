@@ -43,13 +43,23 @@ class T3Admin {
 
 			//should not happend
 			if(count($opentags) > 1){
+	
+				$iopen = 0;
+				$iclose = count($opentags);
+
 				foreach ($opentags as $index => $value) {
-					if(strpos($value, 'name="adminForm"') !== false){
-						break;
+					if($iopen !== -1 && strpos($value, 'name="adminForm"') === false){
+						$iopen++;
+						$open = $open . '<form' . $value;
+					} else {
+						$iopen = -1;
 					}
 
-					$open = $open . '<form' . $value;
-					//$close = array_pop($endtags) . '</form>' . $close;
+					if($iclose !== -1 && strpos($endtags[--$iclose], 'name="adminForm"') === false){
+						$close = $endtags[$iclose] . '</form>' . $close;
+					} else {
+						$iclose = -1;
+					}
 				}
 			}
 
@@ -112,6 +122,11 @@ class T3Admin {
 		$db     = JFactory::getDbo();
 		$params = T3::getTplParams();
 		$input  = $japp->input;
+
+		//just in case
+		if(!($params instanceof JRegistry)){
+			$params = new JRegistry;
+		}
 
 		//get extension id of framework and template
 		$query  = $db->getQuery(true);
