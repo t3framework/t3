@@ -359,6 +359,6 @@ class T3 {
 	public static function getTplParams()
 	{
 		$tmpl = self::getTemplate();
-		return $tmpl ? $tmpl->params : false;
+		return $tmpl ? $tmpl->params : new JRegistry; //empty registry ? or throw error
 	}
 }

@@ -172,7 +172,7 @@ class T3MenuMegamenuTpl
 
 		// Note. It is important to remove spaces between elements.
 		$vars['class']    = $item->anchor_css ? $item->anchor_css : '';
-		$vars['title']    = $item->anchor_title ? 'title="' . $item->anchor_title . '" ' : '';
+		$vars['title']    = $item->anchor_title ? ' title="' . $item->anchor_title . '" ' : '';
 		$vars['dropdown'] = ' data-target="#"';
 		$vars['caret']    = '';
 		$vars['icon']     = '';
@@ -246,7 +246,7 @@ class T3MenuMegamenuTpl
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-				$link = "<a class=\"$class\" href=\"$flink\"" . ($vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a class=\"$class\" href=\"$flink\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 
@@ -293,7 +293,7 @@ class T3MenuMegamenuTpl
 				break;
 			case 2:
 				// window.open
-				$link = "<a class=\"$class\" href=\"{$item->flink}\" onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\" $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a class=\"$class\" href=\"{$item->flink}\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\"" : "") . " $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 		endswitch;
 

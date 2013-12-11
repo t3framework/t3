@@ -427,7 +427,7 @@ class T3TemplateLayout extends T3Template
 				if(preg_match($this->spancls, $cls, $match)){
 					$match = array_filter($match, 'is_numeric');
 					$width = array_pop($match);
-					$width = (isset($width[0]) ? $width[0] : $this->maxgrid);
+					$width = is_numeric($width) ? $width : $this->maxgrid;
 				}
 
 				if (!$this->responcls && intval($width) > 0) {
