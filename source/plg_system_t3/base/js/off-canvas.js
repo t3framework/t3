@@ -115,8 +115,8 @@
 					$fixeditems.each (function () {
 						var $this = $(this);
 						var style = $this.attr('style'),
-						opos = style && style.test('position') ? $this.css('position'):'',
-						otop = style && style.test('top') ? $this.css('top'):'';
+						opos = style && style.match('position') ? $this.css('position'):'',
+						otop = style && style.match('top') ? $this.css('top'):'';
 
 						$this.data('opos', opos).data('otop', otop);
 						$this.css({'position': 'absolute', 'top': ($(window).scrollTop() + parseInt($this.css('top'))) });
