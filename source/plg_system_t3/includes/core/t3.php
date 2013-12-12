@@ -279,7 +279,7 @@ class T3 {
 			$db = JFactory::getDbo();
 			$query = $db->getQuery(true);
 			$query
-				->select('id, template, s.params')
+				->select('id, home, template, s.params')
 				->from('#__template_styles as s')
 				->where('s.client_id = 0')
 				->where('s.home = 1')
