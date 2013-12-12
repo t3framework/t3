@@ -182,8 +182,8 @@
 		}
 
 		// overwrite default tooltip/popover behavior (same as Joomla 3.1.5)
-		$.fn.tooltip.Constructor.DEFAULTS && ($.fn.tooltip.Constructor.DEFAULTS.html = true);
-		$.fn.popover.Constructor.DEFAULTS && ($.fn.popover.Constructor.DEFAULTS.html = true);
+		$.fn.tooltip.Constructor && $.fn.tooltip.Constructor.DEFAULTS && ($.fn.tooltip.Constructor.DEFAULTS.html = true);
+		$.fn.popover.Constructor && $.fn.popover.Constructor.DEFAULTS && ($.fn.popover.Constructor.DEFAULTS.html = true);
 		$.fn.tooltip.defaults && ($.fn.tooltip.defaults.html = true);
 		$.fn.popover.defaults && ($.fn.popover.defaults.html = true);
 	});
