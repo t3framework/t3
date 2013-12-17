@@ -188,7 +188,7 @@ defined('_JEXEC') or die;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="" class="btn cancel" data-dismiss="modal" aria-hidden="true"></a>
+				<a href="" class="btn btn-default cancel" data-dismiss="modal" aria-hidden="true"></a>
 				<a href="" class="btn btn-primary"></a>
 			</div>
 		</div>

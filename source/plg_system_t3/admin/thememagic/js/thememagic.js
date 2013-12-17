@@ -253,14 +253,16 @@ var T3Theme = window.T3Theme || {};
 					wnd.location.href = urlparts.join('#');
 					
 				} else {
-					if(wnd.T3Theme){
-						wnd.T3Theme.applyLess({
+					if(!wnd.T3Theme || !wnd.T3Theme.applyLess({
+							template: T3Theme.template,
 							vars: T3Theme.variables,
 							theme: T3Theme.active,
 							others: T3Theme.themes[T3Theme.active]
+						})){
+
+						T3Theme.showMsg(T3Theme.langs.previewError, '', true, function(option){
+							$('#t3-admin-thememagic-dlg').modal('hide');
 						});
-					} else {
-						T3Theme.alert('error', T3Theme.langs.previewWindowError);
 					}
 				}
 			}, 10);
@@ -767,13 +769,21 @@ var T3Theme = window.T3Theme || {};
 			}, 10000);
 		},
 
-		showMsg: function(msg, type, hideprompt){
+		showMsg: function(msg, type, hideprompt, callback){
+			if(callback && $.isFunction(callback)){
+				T3Theme.modalCallback = callback;
+			}
+
 			var jdialog = $('#t3-admin-thememagic-dlg');
 
 			jdialog.find('.message-block').show().html('<div class="alert fade in">' + msg + '</div>');
 			if(hideprompt){
 				jdialog.find('.prompt-block').hide();
 			}
+			
+			jdialog.find('.cancel').html(T3Theme.langs.lblCancel);
+			jdialog.find('.btn-primary').html(T3Theme.langs.lblOk);
+
 			jdialog.modal('show');
 		},
 

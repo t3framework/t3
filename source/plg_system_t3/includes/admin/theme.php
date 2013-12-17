@@ -413,7 +413,10 @@ class T3AdminTheme
 					
 					//we need to build one - cause the js will have unexpected behavior
 					try{
-						if(window.parent != window && window.parent.T3Theme && window.parent.T3Theme.applyLess){
+						if(window.parent != window && 
+							window.parent.T3Theme && 
+							window.parent.T3Theme.applyLess){
+							
 							window.parent.T3Theme.applyLess(true);
 						} else {
 							less.refresh();
