@@ -321,10 +321,15 @@ class plgSystemT3 extends JPlugin
 	{
 		// Detect layout path in T3 themes
 		if (defined('T3_PLUGIN') && T3::detect()) {
+			
+			T3::import('core.path');
+
 			$tPath = T3Path::getPath('html/' . $module . '/' . $layout . '.php');
-			if ($tPath)
+			if ($tPath) {
 				return $tPath;
+			}
 		}
+		
 		return false;
 	}
 }
