@@ -10,7 +10,12 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
+if(version_compare(JVERSION, '3.0', 'lt')){
+	JHtml::_('formbehavior.chosen', 'select');
+	JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
+} else {
+	JHtml::_('behavior.tooltip');
+}
 JHtml::_('behavior.formvalidation');
 
 // Create shortcut to parameters.

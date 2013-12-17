@@ -10,7 +10,9 @@
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-JHtml::_('behavior.tooltip');
+if(version_compare(JVERSION, '3.0', 'lt')){
+	JHtml::_('behavior.tooltip');
+}
 JHtml::_('behavior.framework');
 
 // Create a shortcut for params.

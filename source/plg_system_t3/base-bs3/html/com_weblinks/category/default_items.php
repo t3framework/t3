@@ -13,7 +13,10 @@ defined('_JEXEC') or die;
 // Create a shortcut for params.
 $params = &$this->item->params;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-JHtml::_('behavior.tooltip');
+
+if(version_compare(JVERSION, '3.0', 'lt')){
+	JHtml::_('behavior.tooltip');
+}
 JHtml::_('behavior.framework');
 
 // Get the user object.

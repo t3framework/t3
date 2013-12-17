@@ -10,8 +10,14 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
+if(version_compare(JVERSION, '3.0', 'ge')){
+	JHtml::_('bootstrap.tooltip');
+	JHtml::_('formbehavior.chosen', 'select');
+} else {
+	JHtml::_('behavior.tooltip');
+}
 JHtml::_('behavior.formvalidation');
+
 //load user_profile plugin language
 $lang = JFactory::getLanguage();
 $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
