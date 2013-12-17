@@ -277,10 +277,13 @@ class T3Template extends ObjectExtendable
 					if(isset($param->$device)){
 						$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
 						$posfix = $this->responcls ? '' : '"';
-						
+
+						if(strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
+							$param->$device = str_replace(' hidden ', ' hidden-' . $device . ' ', ' ' . $param->$device . ' ');
+						}
+
 						$data .= $prefix . $param->$device . $posfix;
 					}
-
 				}
 			} else {
 				$data = isset($param->$defdv) ? ' ' . $param->$defdv : '';
