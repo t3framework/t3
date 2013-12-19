@@ -434,6 +434,23 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
+	 * check if current page is homepage
+	 */
+	function isHomepage(){
+		$menu = JFactory::getApplication()->getMenu();
+		if ($menu) {
+			$active = $menu->getActive();
+			$default = $menu->getDefault();
+
+			if ($active && $default && $active->id == $default->id) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Render page class
 	 *
 	 * @deprecated  Use <jdoc:include type="pageclass" /> instead
