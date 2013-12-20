@@ -39,6 +39,7 @@
 		<filename>templateDetails.xml</filename>
 		<folder>etc</folder>
 		<folder>fonts</folder>
+		<folder>html</folder>
 		<folder>css</folder>
 		<folder>js</folder>
 		<folder>less</folder>
