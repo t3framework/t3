@@ -161,7 +161,18 @@ class T3Template extends ObjectExtendable
 	{
 		$path = T3Path::getPath('tpls/blocks/' . $block . '.php');
 		if ($path) {
-			include $path;
+			if($block == 'footer'){
+				
+				ob_start();
+				include $path;
+				$buffer = ob_get_contents();
+				ob_end_clean();
+				$buffer = T3::fixT3Link($buffer);
+				echo $buffer;
+
+			} else {
+				include $path;
+			}
 		} else {
 			echo "<div class=\"error\">Block [$block] not found!</div>";
 		}
@@ -433,22 +444,6 @@ class T3Template extends ObjectExtendable
 		return $this->_pageclass;
 	}
 
-	/**
-	 * check if current page is homepage
-	 */
-	function isHomepage(){
-		$menu = JFactory::getApplication()->getMenu();
-		if ($menu) {
-			$active = $menu->getActive();
-			$default = $menu->getDefault();
-
-			if ($active && $default && $active->id == $default->id) {
-				return true;
-			}
-		}
-
-		return false;
-	}
 
 	/**
 	 * Render page class

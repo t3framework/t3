@@ -56,7 +56,7 @@ class T3 {
 	}
 
 	/**
-	 * Initialize T3
+	 * initialize T3
 	 */
 	public static function init ($xml) {
 		$app       = JFactory::getApplication();
@@ -155,6 +155,9 @@ class T3 {
 		}
 	}
 
+	/**
+	 * check for t3ajax action
+	 */
 	public static function checkAjax () {
 		// excute action by T3
 		$input = JFactory::getApplication()->input;
@@ -169,11 +172,20 @@ class T3 {
 		}
 	}
 
+	/**
+	 * get T3Admin object
+	 * @return T3Admin
+	 */
 	public static function getAdmin(){
 		T3::import ('core/admin');
 		return new T3Admin();
 	}
 
+	/**
+	 * get T3Template object for frontend
+	 * @param $tpl
+	 * @return bool
+	 */
 	public static function getSite($tpl){
 		//when on site, the JDocumentHTML parameter must be pass
 		if(empty($tpl)){
@@ -188,6 +200,11 @@ class T3 {
 		return new $class($tpl);
 	}
 
+	/**
+	 * @param $msg
+	 * @param int $code
+	 * @throws Exception
+	 */
 	public static function error($msg, $code = 500){
 		if (JError::$legacy) {
 			JError::setErrorHandling(E_ERROR, 'die');
@@ -199,6 +216,10 @@ class T3 {
 		}
 	}
 
+	/**
+	 * detect function to check a current template is T3 template
+	 * @return bool|SimpleXMLElement
+	 */
 	public static function detect(){
 		static $t3;
 
@@ -268,8 +289,7 @@ class T3 {
 	}
 
 	/**
-	 *
-	 * Ge default template style
+	 * get default template style
 	 */
 	public static function getDefaultTemplate($name = false){
 		static $template;
@@ -300,8 +320,9 @@ class T3 {
 	}
 
 	/**
-	 *
-	 * Ge template style params
+	 * get the template object or template name
+	 * @param bool $name
+	 * @return mixed template object or template name
 	 */
 	public static function getTemplate($name = false)
 	{
@@ -345,6 +366,11 @@ class T3 {
 		return self::$tmpl;
 	}
 
+	/**
+	 * set caching template and its parameters
+	 * @param string $name
+	 * @param string $params
+	 */
 	public static function setTemplate($name = '', $params = ''){
 		if(!self::$tmpl){
 			self::$tmpl = new stdClass;
@@ -356,9 +382,63 @@ class T3 {
 		}
 	}
 
+	/**
+	 * get template parameters
+	 * @return JRegistry
+	 */
 	public static function getTplParams()
 	{
 		$tmpl = self::getTemplate();
 		return $tmpl ? $tmpl->params : new JRegistry; //empty registry ? or throw error
 	}
+
+	/**
+	 * check if current page is homepage
+	 */
+	public static function isHome(){
+		$active = JFactory::getApplication()->getMenu()->getActive();
+		return (!$active || $active->home);
+	}
+
+	/**
+	 * fix ja back link
+	 * @param $buffer
+	 * @return mixed
+	 */
+	public static function fixJALink($buffer){
+
+		if(!self::isHome()){
+			$buffer = preg_replace_callback('@<a[^>]*>JoomlArt.com</a>@i', array('T3', 'removeBacklink'), $buffer);
+		}
+
+		return $buffer;
+	}
+
+	/**
+	 * fix t3-framework.org back link
+	 * @param $buffer
+	 * @return mixed
+	 */
+	public static function fixT3Link($buffer){
+		if(!self::isHome()){
+			$buffer = preg_replace_callback('@<a[^>]*>Powered by <strong>T3 Framework</strong></a>@mi', array('T3', 'removeBacklink'), $buffer);
+		}
+
+		return $buffer;
+	}
+
+	/**
+	 * check nofollow attribute
+	 * @param $match
+	 * @return mixed
+	 */
+	public static function removeBacklink($match){
+
+		if($match && isset($match[0]) && strpos($match[0], 'rel="nofollow"') === false){
+			$match[0] = str_replace('<a ', ' rel="nofollow"', $match[0]);
+		}
+
+		return $match[0];
+	}
+
 }

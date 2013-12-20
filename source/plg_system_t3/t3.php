@@ -293,6 +293,12 @@ class plgSystemT3 extends JPlugin
 		static $chromed = false;
 		// Detect layout path in T3 themes
 		if (defined('T3_PLUGIN') && T3::detect()) {
+
+			// fix JA Backlink
+			if($module->module == 'mod_footer'){
+				$module->content = T3::fixJALink($module->content);
+			}
+
 			// Chrome for module
 			if (!$chromed) {
 				$chromed = true;
