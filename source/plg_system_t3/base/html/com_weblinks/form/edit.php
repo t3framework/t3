@@ -10,7 +10,12 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
+if(version_compare(JVERSION, '3.0', 'lt')){
+	JHtml::_('formbehavior.chosen', 'select');
+	JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
+} else {
+	JHtml::_('behavior.tooltip');
+}
 JHtml::_('behavior.formvalidation');
 
 // Create shortcut to parameters.
@@ -19,7 +24,7 @@ $params = $this->state->get('params');
 
 <script type="text/javascript">
 	Joomla.submitbutton = function(task) {
-		if (task == 'weblink.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+		if (task == 'weblink.cancel' || document.formvalidator.isValid(document.getElementById('adminForm'))) {
 			<?php echo $this->form->getField('description')->save(); ?>
 			Joomla.submitform(task);
 		}
@@ -46,6 +51,11 @@ $params = $this->state->get('params');
 					<span class="icon-cancel"></span> <?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
+			<?php if ($params->get('save_history', 0)) : ?>
+				<div class="btn-group">
+					<?php echo $this->form->getInput('contenthistory'); ?>
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<hr class="hr-condensed" />
@@ -81,6 +91,26 @@ $params = $this->state->get('params');
 				<?php echo $this->form->getInput('url'); ?>
 			</div>
 		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<?php echo $this->form->getLabel('tags'); ?>
+			</div>
+			<div class="controls">
+				<?php echo $this->form->getInput('tags'); ?>
+			</div>
+		</div>
+
+		<?php if ($params->get('save_history', 0)) : ?>
+			<div class="control-group">
+				<div class="control-label">
+					<?php echo $this->form->getLabel('version_note'); ?>
+				</div>
+				<div class="controls">
+					<?php echo $this->form->getInput('version_note'); ?>
+				</div>
+			</div>
+		<?php endif; ?>
+
 		<?php if ($this->user->authorise('core.edit.state', 'com_weblinks.weblink')) : ?>
 			<div class="control-group">
 				<div class="control-label">

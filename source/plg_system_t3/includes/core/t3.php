@@ -435,7 +435,7 @@ class T3 {
 	public static function removeBacklink($match){
 
 		if($match && isset($match[0]) && strpos($match[0], 'rel="nofollow"') === false){
-			$match[0] = str_replace('<a ', '<a rel="nofollow "', $match[0]);
+			$match[0] = str_replace('<a ', '<a rel="nofollow" ', $match[0]);
 		}
 
 		return $match[0];
