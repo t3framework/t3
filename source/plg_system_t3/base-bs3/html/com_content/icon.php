@@ -23,8 +23,10 @@ class JHtmlIcon
 	{
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			JHtml::_('bootstrap.tooltip');
+			$tip = 'hasTooltip';
 		} else {
 			JHtml::_('behavior.tooltip');
+			$tip = 'hasTip';
 		}
 		
 		$uri = JUri::getInstance();
@@ -49,7 +51,7 @@ class JHtmlIcon
 
 		$button = JHtml::_('link', JRoute::_($url), $text, $attribs);
 
-		$output = '<span class="hasTip" title="' . htmlspecialchars(JText::_('COM_CONTENT_CREATE_ARTICLE'), ENT_COMPAT, 'UTF-8') . '">' . $button . '</span>';
+		$output = '<span class="' . $tip . '" title="' . htmlspecialchars(JText::_('COM_CONTENT_CREATE_ARTICLE'), ENT_COMPAT, 'UTF-8') . '">' . $button . '</span>';
 		return $output;
 	}
 
@@ -119,8 +121,10 @@ class JHtmlIcon
 
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			JHtml::_('bootstrap.tooltip');
+			$tip = 'hasTooltip';
 		} else {
 			JHtml::_('behavior.tooltip');
+			$tip = 'hasTip';
 		}
 
 		// Show checked_out icon if the article is checked out by a different user
@@ -129,7 +133,7 @@ class JHtmlIcon
 			$button       = JHtml::_('image', 'system/checked_out.png', null, null, true);
 			$date         = JHtml::_('date', $article->checked_out_time);
 			$tooltip      = JText::_('JLIB_HTML_CHECKED_OUT') . ' :: ' . '<strong>' . JText::sprintf('COM_CONTENT_CHECKED_OUT_BY', $checkoutUser->name) . '</strong>' . ' <br /> ' . $date;
-			return '<span class="hasTip" title="' . htmlspecialchars($tooltip, ENT_COMPAT, 'UTF-8') . '">' . $button . '</span>';
+			return '<span class="' . $tip . '" title="' . htmlspecialchars($tooltip, ENT_COMPAT, 'UTF-8') . '">' . $button . '</span>';
 		}
 
 		$url = 'index.php?option=com_content&task=article.edit&a_id=' . $article->id . '&return=' . base64_encode($uri);
@@ -149,7 +153,7 @@ class JHtmlIcon
 		$overlib .= JText::sprintf('COM_CONTENT_WRITTEN_BY', '<strong>' . htmlspecialchars($author, ENT_COMPAT, 'UTF-8') . '</strong>');
 
 		$icon = $article->state ? 'edit' : 'eye-slash';
-		$text = '<i class="hasTip fa fa-' . $icon . ' tip" title="' . JText::_('COM_CONTENT_EDIT_ITEM') . ' :: ' . $overlib . '"></i> ' . JText::_('JGLOBAL_EDIT');
+		$text = '<i class="' . $tip . ' fa fa-' . $icon . ' tip" title="' . JText::_('COM_CONTENT_EDIT_ITEM') . ' :: ' . $overlib . '"></i> ' . JText::_('JGLOBAL_EDIT');
 
 		$output = JHtml::_('link', JRoute::_($url), $text);
 
