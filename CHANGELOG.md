@@ -1,3 +1,23 @@
+<h2>Version: 2.0.2 (12/20/2013)</h2>
+
+<h3>Improvement</h3>
+- Base-bs3: Add condition to load old javascript only in J2.5.x | <a href="https://github.com/t3framework/t3/commit/1f259070698f1a3215d76bcfad06d9f6c3f840e6">Link</a>
+- Add gutter width thememagic | <a href="https://github.com/t3framework/t3/commit/382877c63b98b15551f671d115301291604c8279">Link</a>
+
+
+<h3>Bug fixes</h3>
+- Overwrite: Fix tooltip for edit button | <a href="https://github.com/t3framework/t3/commit/57669048033b49b63fba0d0aec34199298024999">Link</a>
+- Fix mod_search J3.2.1 | <a href="https://github.com/t3framework/t3/commit/7c43096219f693be6ed179c8d9fd252a92c1d6e0">Link</a>
+- [FE] Cant show tag field on submit weblink form | <a href="https://github.com/t3framework/t3/commit/a8239ad7eac075fac4df6828a4840023fd6e4c75">Link</a>
+- Cant load thememagic when switch template style | <a href="https://github.com/t3framework/t3/commit/2b588567c76d841ba2a992aaebb89d524cfae292">Link</a>
+- Fatal error: Class 'T3Path' not found in site/plugins/system/t3/t3.php on line 325 | <a href="https://github.com/t3framework/t3/">Link</commit/529ffb3e87e86b63da25b2985a8c786f4996e472
+- typos for non-reponsive | <a href="https://github.com/t3framework/t3/pull/222">Link</commit>
+- T3 Layout: fix hidden on spotlight | <a href="https://github.com/t3framework/t3/commit/bb8f51a0662e59cfb527fbcc4376d402509d3eca">Link</a>
+- T3 Bs3 Blank: Update show/hide for off-canvas module | <a href="https://github.com/t3framework/t3/commit/30157534ce88ed6834f2034962810ca4f1185085">Link</a>
+- JS Overwrite: prevent conflict if function is overwrite | <a href="https://github.com/t3framework/t3/commit/33fd600432e06c9593c753482d38485f78e14620">Link</a>
+- Fix off-canvas when no mootools load | <a href="https://github.com/t3framework/t3/commit/d8b82d71f0279a871ce3edcbf951da4c1f52f123">Link</a>
+- T3Layout: Fix spotlight error when have 1 position left | <a href="https://github.com/t3framework/t3/commit/fddef19f5c7af84df5e7d4c5013651b6ab10d3c9">Link</a>
+- T3Admin: Fix multiple forms in admin | <a href="https://github.com/t3framework/t3/commit/3710109af49c0379d57959fa7eddc64d7cd5c9a4">Link</a>
 
 <h2>Version: 2.0.1 (12/06/2013)</h2>
 
