@@ -20,6 +20,8 @@ defined('_JEXEC') or die;
 				else :
 					$button = ' <button class="button' . $moduleclass_sfx . ' btn btn-primary" onclick="this.form.searchword.focus();">' . $button_text . '</button>';
 				endif;
+			else :
+				$button = '';
 			endif;
 
 			switch ($button_pos) :
