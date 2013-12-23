@@ -176,9 +176,14 @@ class T3AdminTheme
 	{
 		$app       = JFactory::getApplication();
 		$input     = $app->input;
-		//todo: Need to optimize here
-		$tplparams = JFactory::getApplication('site')->getTemplate(true)->params;
 		$isadmin   = $app->isAdmin();
+		
+		if($isadmin){
+			$tplparams = T3::getTplParams();
+		} else {
+			$tplparams = $app->getTemplate(true)->params;
+		}
+
 		$url = $isadmin ? JUri::root(true).'/index.php' : JUri::current();
 		$url .= (preg_match('/\?/', $url) ? '&' : '?') . 'themer=1';
 		$url .= ($tplparams->get('theme', -1) != -1 ? ('&t3style=' . $tplparams->get('theme')) : '');
