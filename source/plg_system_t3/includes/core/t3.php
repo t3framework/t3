@@ -421,7 +421,7 @@ class T3 {
 	 */
 	public static function fixT3Link($buffer){
 		if(!self::isHome()){
-			$buffer = preg_replace_callback('@<a[^>]*>Powered by <strong>T3 Framework</strong></a>@mi', array('T3', 'removeBacklink'), $buffer);
+			$buffer = preg_replace_callback('@<a[^>]*>([^>]*)>T3 Framework</strong></a>@mi', array('T3', 'removeBacklink'), $buffer);
 		}
 
 		return $buffer;

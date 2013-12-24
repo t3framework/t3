@@ -37,6 +37,7 @@ class T3Template extends ObjectExtendable
 	protected $devices      = array('default', 'wide', 'normal', 'xtablet', 'tablet', 'mobile');
 	protected $maxcol       = array('default' => 6, 'wide' => 6, 'normal' => 6, 'xtablet' => 4, 'tablet' => 3, 'mobile' => 2);
 	protected $minspan      = array('default' => 2, 'wide' => 2, 'normal' => 2, 'xtablet' => 3, 'tablet' => 4, 'mobile' => 6);
+	protected $prefixes     = array('span');
 
 	/**
 	 * Current template instance
@@ -74,6 +75,7 @@ class T3Template extends ObjectExtendable
 		$this->devices      = json_decode(T3_BASE_DEVICES, true);
 		$this->maxcol       = json_decode(T3_BASE_DV_MAXCOL, true);
 		$this->minspan      = json_decode(T3_BASE_DV_MINWIDTH, true);
+		$this->prefixes     = json_decode(T3_BASE_DV_PREFIX, true);
 
 		// layout settings
 		$this->_layoutsettings = new JRegistry;
@@ -193,7 +195,23 @@ class T3Template extends ObjectExtendable
 		JDispatcher::getInstance()->trigger('onT3LoadLayout', array(&$path, $layout));
 
 		if (is_file($path)) {
-			include $path;
+
+			if($this->responcls && !$this->getParam('responsive', 1)){
+
+				ob_start();
+				include $path;
+				$buffer = ob_get_contents();
+				ob_end_clean();
+
+				//replace
+				$buffer = preg_replace_callback('@class\s?=\s?(\'|")(([^\'"]*)(' . implode('|', $this->prefixes) . ')+([^\'"]*))(\'|")@m', array($this, 'responCls'), $buffer);
+
+				//output
+				echo $buffer;
+
+			} else {
+				include $path;	
+			}
 
 			// append modules in debug position
 			if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
@@ -397,7 +415,7 @@ class T3Template extends ObjectExtendable
 					$defcls = $clayout[$col];
 					if(preg_match($this->spancls, $defcls, $match)){
 						$width = array_pop(array_filter($match, 'is_numeric'));
-						$width = (isset($width[0]) ? $width[0] : $this->maxgrid);
+						$width = ($width ? $width : $this->maxgrid);
 					}
 				}
 
@@ -415,6 +433,43 @@ class T3Template extends ObjectExtendable
 
 			return $width[$col];
 		}
+	}
+
+	/**
+	 * Get layout column class
+	 * @param  object  $layout  Layout configuration object
+	 * @param  number  $col     Column number, start from 0
+	 *
+	 * @return string  Block content
+	 */
+	function responCls($class)
+	{
+		$result = $class[2];
+		$queue  = array();
+		
+		//remove all width classes
+		foreach ($this->prefixes as $prefix) {
+			if($result && preg_match_all('@' . preg_quote($prefix) . '[^\s]*@', $result, $match)){
+				$result = preg_replace('@' . preg_quote($prefix) . '[^\s]*@', ' ', $result);
+
+				foreach ($match[0] as $m) {
+					$parts = preg_split('@(\d+)@', $m, -1, PREG_SPLIT_DELIM_CAPTURE);
+					$parts[0] = str_replace($prefix, $this->nonrspprefix, $parts[0]);
+					if(!isset($queue[$parts[0]])){
+						$queue[$parts[0]] = $parts[1];
+					}
+				}
+			}
+		}
+
+		if(!empty($queue)){
+			$result = trim($result); //would be better than preg_replace ?
+			foreach ($queue as $key => $value) {
+				$result .= ' ' . $key . $value;	
+			}
+		}
+
+		return 'class="' . trim($result) . '"';
 	}
 
 

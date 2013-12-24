@@ -40,4 +40,5 @@ define('T3_BASE_DEVICES',             json_encode(array('default', 'wide', 'norm
 define('T3_BASE_DV_MAXCOL',           json_encode(array('default' => 6, 'wide' => 6, 'normal' => 6, 'xtablet' => 4, 'tablet' => 3, 'mobile' => 2)));
 define('T3_BASE_DV_MINWIDTH',         json_encode(array('default' => 2, 'wide' => 2, 'normal' => 2, 'xtablet' => 3, 'tablet' => 4, 'mobile' => 6)));
 define('T3_BASE_DV_UNITSPAN',         json_encode(array('default' => 1, 'wide' => 1, 'normal' => 1, 'xtablet' => 1, 'tablet' => 1, 'mobile' => 6)));
+define('T3_BASE_DV_PREFIX',           json_encode(array('span')));
 define('T3_BASE_LESS_COMPILER',       'legacy.less');
