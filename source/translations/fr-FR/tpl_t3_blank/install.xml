@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" client="site" type="language" method="upgrade">
+	<name>T3 Framework (fr-FR)</name>
+	<tag>fr-FR</tag>
+	<version>1.0.0</version>
+	<creationDate>Decembre 2013</creationDate>
+	<author>Serge Berthier</author>
+	<authorEmail>info@joomlart.com</authorEmail>
+	<authorUrl>http://www.t3-framework.org</authorUrl>
+	<copyright>Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>French translation for T3 Framework</description>
+	<files>
+		<filename>fr-FR.tpl_t3_blank.ini</filename>
+		<filename>fr-FR.tpl_t3_blank.sys.ini</filename>
+
+		<filename file="meta">install.xml</filename>
+		<filename file="meta">fr-FR.xml</filename>
+	</files>
+</extension>

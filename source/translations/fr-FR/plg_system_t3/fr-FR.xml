@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metafile version="2.5" client="administrator">
+	<tag>fr-FR</tag>
+	<name>T3 Framework (fr-FR)</name>
+	<version>1.0.0</version>
+	<creationDate>Decembre 2013</creationDate>
+	<author>Serge Berthier</author>
+	<authorEmail>info@joomlart.com</authorEmail>
+	<authorUrl>http://www.t3-framework.org</authorUrl>
+	<copyright>Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>French translation for T3 Framework</description>
+	<metadata>
+		<name>French (FR)</name>
+		<tag>fr-FR</tag>
+		<rtl>0</rtl>
+		<locale>fr_FR.utf8, fr_FR.UTF-8, fr_FR.UTF-8@euro, fr_FR, fre_FR, fr, france</locale>
+		<firstDay>1</firstDay>
+		<weekEnd>0,6</weekEnd>
+	</metadata>
+	<params />
+</metafile>
