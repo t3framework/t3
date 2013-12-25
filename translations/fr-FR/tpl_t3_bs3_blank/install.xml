@@ -11,10 +11,9 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>French translation for T3 Framework</description>
 	<files>
-		<filename>fr-FR.tpl_t3_blank.ini</filename>
-		<filename>fr-FR.tpl_t3_blank.sys.ini</filename>
+		<filename>fr-FR.tpl_t3_bs3_blank.ini</filename>
+		<filename>fr-FR.tpl_t3_bs3_blank.sys.ini</filename>
 
 		<filename file="meta">install.xml</filename>
-		<filename file="meta">fr-FR.xml</filename>
 	</files>
 </extension>

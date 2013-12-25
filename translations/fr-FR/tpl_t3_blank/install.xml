@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" client="administrator" type="language" method="upgrade">
+<extension version="2.5" client="site" type="language" method="upgrade">
 	<name>T3 Framework (fr-FR)</name>
 	<tag>fr-FR</tag>
 	<version>1.0.0</version>
@@ -11,10 +11,9 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>French translation for T3 Framework</description>
 	<files>
-		<filename>fr-FR.plg_system_t3.ini</filename>
-		<filename>fr-FR.plg_system_t3.sys.ini</filename>
+		<filename>fr-FR.tpl_t3_blank.ini</filename>
+		<filename>fr-FR.tpl_t3_blank.sys.ini</filename>
 
 		<filename file="meta">install.xml</filename>
-		<filename file="meta">fr-FR.xml</filename>
 	</files>
 </extension>
