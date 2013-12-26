@@ -8,10 +8,12 @@
 defined('_JEXEC') or die;
 ?>
 
-<!-- NAV HELPER -->
-<nav class="wrap t3-navhelper <?php $this->_c('navhelper') ?>">
-	<div class="container">
-		<jdoc:include type="modules" name="<?php $this->_p('navhelper') ?>" />
-	</div>
-</nav>
-<!-- //NAV HELPER -->
+<?php if ($this->countModules('navhelper')) : ?>
+	<!-- NAV HELPER -->
+	<nav class="wrap t3-navhelper <?php $this->_c('navhelper') ?>">
+		<div class="container">
+			<jdoc:include type="modules" name="<?php $this->_p('navhelper') ?>" />
+		</div>
+	</nav>
+	<!-- //NAV HELPER -->
+<?php endif ?>
