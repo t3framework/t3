@@ -14,92 +14,105 @@
 jQuery(document).ready(function ($) {
 
     // clone the collapse menu from mainnav (.t3-navbar)
-    var $navwrapper = $('.t3-navbar'), $menu = null;
-    if ($navwrapper.find('.t3-megamenu').length) {
-        // clone for megamenu
-        $menu = $navwrapper.find('ul.level0').clone();
-        var lis = $menu.find('li[data-id]'),
-            liactive = lis.filter('.current');
-        // clean class
-        lis.removeClass('mega dropdown mega-align-left mega-align-right mega-align-center mega-align-adjust');
-        // rebuild
-        lis.each(function () {
+    $('.t3-navbar').each(function(){
+        var $navwrapper  = $(this),
+            $menu        = null,
+            $placeholder = null;
 
-            // get firstchild - a or span
-            var $li = $(this),
-                $child = $li.find('>:first-child');
+        if ($navwrapper.find('.t3-megamenu').length) {
+            
+            // clone for megamenu
+            $menu        = $navwrapper.find('ul.level0').clone(),
+            $placeholder = $navwrapper.prev('.navbar-collapse');
 
-            if ($child[0].nodeName == 'DIV') {
-                $child.find('>:first-child').prependTo($li);
-                $child.remove();
+            if(!$placeholder.length){
+                $placeholder = $navwrapper.closet('.container, .t3-mainnav').find('.navbar-collapse');
             }
+            
+            var lis = $menu.find('li[data-id]'),
+                liactive = lis.filter('.current');
+            
+            // clean class
+            lis.removeClass('mega dropdown mega-align-left mega-align-right mega-align-center mega-align-adjust');
+            // rebuild
+            lis.each(function () {
 
-            // remove caret
-            if($li.data('hidewcol')){
-                $child.find('.caret').remove();
-                $child.nextAll().remove();
+                // get firstchild - a or span
+                var $li = $(this),
+                    $child = $li.find('>:first-child');
 
-                return; //that is all for this item
-            }
+                if ($child[0].nodeName == 'DIV') {
+                    $child.find('>:first-child').prependTo($li);
+                    $child.remove();
+                }
 
-            // find subnav and inject into one ul
-            var subul = $li.find('ul.level' + $li.data('level'));
-            if (subul.length) {
-                // create subnav
-                $ul = $('<ul class="level' + $li.data('level') + ' dropdown-menu">').appendTo($li);
-                subul.each(function () {
-                    $(this).find('>li').appendTo($ul);
-                });
-            }
+                // remove caret
+                if($li.data('hidewcol')){
+                    $child.find('.caret').remove();
+                    $child.nextAll().remove();
 
-            // remove all child div
-            $li.find('>div').remove();
+                    return; //that is all for this item
+                }
 
-            // clean caret if there was no real submenu
-            if(!$li.children('ul').length){
-                $child.find('.caret').remove();
-            }
+                // find subnav and inject into one ul
+                var subul = $li.find('ul.level' + $li.data('level'));
+                if (subul.length) {
+                    // create subnav
+                    $ul = $('<ul class="level' + $li.data('level') + ' dropdown-menu">').appendTo($li);
+                    subul.each(function () {
+                        $(this).find('>li').appendTo($ul);
+                    });
+                }
 
-            var divider = $li.hasClass('divider');
+                // remove all child div
+                $li.find('>div').remove();
 
-            // clear all attributes
-            $li.removeAttr('class');
-            for (var x in $li.data()) {
-                $li.removeAttr('data-' + x)
-            }
-            $child.removeAttr('class');
-            for (var x in $child.data()) {
-                $child.removeAttr('data-' + x)
-            }
+                // clean caret if there was no real submenu
+                if(!$li.children('ul').length){
+                    $child.find('.caret').remove();
+                }
 
-            if(divider){
-                $li.addClass('divider');
-            }
-        });
+                var divider = $li.hasClass('divider');
 
-        //so we have all structure, add standard bootstrap class
-        $menu
-            .find('ul.dropdown-menu')
-            .prev('a').attr('data-toggle', 'dropdown')
-            .parent('li')
-            .addClass(function(){
-                return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
+                // clear all attributes
+                $li.removeAttr('class');
+                for (var x in $li.data()) {
+                    $li.removeAttr('data-' + x)
+                }
+                $child.removeAttr('class');
+                for (var x in $child.data()) {
+                    $child.removeAttr('data-' + x)
+                }
+
+                if(divider){
+                    $li.addClass('divider');
+                }
             });
 
-        // update class current
-        liactive.addClass('current active');
+            //so we have all structure, add standard bootstrap class
+            $menu
+                .find('ul.dropdown-menu')
+                .prev('a').attr('data-toggle', 'dropdown')
+                .parent('li')
+                .addClass(function(){
+                    return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
+                });
 
-        //init event for touch
-        if($.fn.touchmenu){
-            $menu.touchmenu();
+            // update class current
+            liactive.addClass('current active');
+
+            //init event for touch
+            if($.fn.touchmenu){
+                $menu.touchmenu();
+            }
+            
+        } else {
+            // clone for bootstrap menu
+            $menu = $navwrapper.find ('ul.nav').clone();
         }
-        
-    } else {
-        // clone for bootstrap menu
-        $menu = $navwrapper.find ('ul.nav').clone();
-    }
 
-    // inject into .t3-navbar-collapse
-    $menu.appendTo ($('.t3-navbar-collapse'));
+        // inject into .t3-navbar-collapse
 
+        $menu.appendTo ($placeholder);
+    });
 });

@@ -100,8 +100,10 @@ class T3 {
 		}
 
 		if (!$app->isAdmin()) {
-			$t3assets = $app->getTemplate(true)->params->get ('t3-assets', 't3-assets');
-			define ('T3_DEV_FOLDER', $t3assets . '/dev');
+			$params = $app->getTemplate(true)->params;
+			
+			define ('T3_DEV_FOLDER', $params->get ('t3-assets', 't3-assets') . '/dev');
+			define ('T3_DEV_MODE', $params->get ('devmode', 0));
 		}
 
 		if($input->getCmd('t3lock', '')){
