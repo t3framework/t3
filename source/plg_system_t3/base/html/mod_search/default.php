@@ -22,7 +22,6 @@ defined('_JEXEC') or die;
 				endif;
 			else :
 				$button = '';
-			endif;
 
 			switch ($button_pos) :
 				case 'top' :
@@ -44,6 +43,8 @@ defined('_JEXEC') or die;
 					$output = $button.$output;
 					break;
 			endswitch;
+			
+			endif;
 
 			echo $output;
 		?>
