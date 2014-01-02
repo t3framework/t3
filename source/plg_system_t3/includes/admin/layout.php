@@ -107,7 +107,10 @@ class T3AdminLayout
 		//load language for template
 		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
 		
-		ob_clean();
+		//clean all unnecessary datas
+		if(ob_get_length()){
+			@ob_end_clean();
+		}
 		$t3app  = T3::getSite($tpl);
 		$layout = $t3app->getLayout();
 		$t3app->loadLayout($layout);
