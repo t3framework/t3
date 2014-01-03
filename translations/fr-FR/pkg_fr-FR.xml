@@ -3,7 +3,7 @@
 	<name>T3 Framework (fr-FR)</name>
 	<packagename>T3-fr-FR</packagename>
 	<version>1.0.0</version>
-	<creationDate>Decembre 2013</creationDate>
+	<creationDate>Décembre 2013</creationDate>
 	<author>Serge Berthier</author>
 	<authorEmail>info@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
@@ -16,7 +16,7 @@
 		<![CDATA[
 		<div>
 			<h3>T3 Framework: French (fr-FR) Language Package</h3>
-			<h3>T3 Framework: Français (fr-FR) Forfait Langue</h3>
+			<h3>T3 Framework: Français (fr-FR) Pack de Langue</h3>
 		</div>
 		]]>
 	</description>
