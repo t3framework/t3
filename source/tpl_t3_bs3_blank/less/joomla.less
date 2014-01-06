@@ -123,7 +123,6 @@
 
 // Article Images
 // -------------------------
-
 .article-intro,
 .article-content {
 
@@ -207,13 +206,16 @@
 
 // Reponsive Article Images
 @media screen and (max-width: @screen-xs-max) {
-  article img[align=left], .img_caption.left,
-  article img[align=right], .img_caption.right,
-  .img-fulltext-left, .img-fulltext-right {
-    float: none !important;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100% !important;
+  .article-intro,
+  .article-content {
+    img[align=left], .img_caption.left,
+    img[align=right], .img_caption.right,
+    .img-fulltext-left, .img-fulltext-right {
+      float: none !important;
+      margin-left: 0;
+      margin-right: 0;
+      width: 100% !important;
+    }
   }
 }
 
