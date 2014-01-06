@@ -65,7 +65,7 @@ class T3MenuMegamenuTpl
 		$data    = '';
 		if (isset($setting['class'])) $data .= " data-class=\"{$setting['class']}\"";
 		if (isset($setting['alignsub']) && $setting['alignsub'] == 'justify') {
-			$cls .= " span12";
+			$cls  .= ' ' . ($vars['menu']->editmode ? 'span' : T3_BASE_NONRSP_WIDTH_PREFIX) . '12';
 		} else {
 			if (isset($sub['width'])) {
 				if ($item->dropdown) $style = ' style="width: ' . str_replace('px', '', $sub['width']) . 'px"';

@@ -78,6 +78,10 @@
 						align_delta = 0,
 						align_trans = 0;
 
+					if(align == 'justify'){
+						return;	//do nothing
+					}
+
 					if(!align){
 						align = 'left';
 					}
