@@ -97,6 +97,15 @@ select.input {
 .input-xlarge     { width: 270px; }
 .input-xxlarge    { width: 530px; }
 
+// Redefind BS3 Input Sizes
+input.input-sm {
+  .input-size(@input-height-small; @padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+}
+
+input.input-lg {
+  .input-size(@input-height-large; @padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
+}
+
 
 
 // Inline forms
