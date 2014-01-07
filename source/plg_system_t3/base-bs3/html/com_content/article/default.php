@@ -174,7 +174,7 @@ JHtml::_('behavior.caption');
 		<?php
 		$imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext;
 		?>
-		<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> item-image">
+		<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> item-image article-image article-image-full">
 			<img
 				<?php if ($images->image_fulltext_caption): ?>
 					<?php echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"'; ?>

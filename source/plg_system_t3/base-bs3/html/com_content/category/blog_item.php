@@ -142,7 +142,7 @@ $hasCtrl = ($params->get('show_print_icon') ||
 
 			<?php if (isset($images->image_intro) and !empty($images->image_intro)) : ?>
 				<?php $imgfloat = (empty($images->float_intro)) ? $params->get('float_intro') : $images->float_intro; ?>
-				<div class="pull-<?php echo htmlspecialchars($imgfloat); ?>">
+				<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> item-image article-image article-image-intro">
 					<img
 						<?php if ($images->image_intro_caption):
 							echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_intro_caption) . '"';
