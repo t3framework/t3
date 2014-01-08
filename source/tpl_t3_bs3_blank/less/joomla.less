@@ -123,8 +123,8 @@
 
 // Article Images
 // -------------------------
-.article-intro,
-.article-content {
+article,
+.article-intro {
 
   // Make the image reponsive.
   // Remove if you don't want article images to be responsived.
@@ -134,15 +134,19 @@
 
   // Add proper margin
   img[align=left],
+  .img-fulltext-left,
+  .img-intro-left,
   .img_caption.left,
   .pull-left.item-image {
-    margin: 0 @t3-global-margin @t3-global-margin 0;
+    margin-right: @t3-global-margin;
   }
 
   img[align=right],
+  .img-fulltext-right,
   .img_caption.right,
+  .img-intro-right,
   .pull-right.item-image {
-    margin: 0 0 @t3-global-margin @t3-global-margin;
+    margin-left: @t3-global-margin;
   }
 
 }
@@ -155,62 +159,48 @@
 .img-fulltext-right,
 .img_caption {
   position: relative;
-}
-
-.img-intro-none,
-.img-intro-left,
-.img-intro-right,
-.img-fulltext-none,
-.img-fulltext-left,
-.img-fulltext-right,
-.img_caption {
   margin-bottom: @t3-global-margin;
   max-width: 100%;
 }
 
 .img-fulltext-left {
   float: left;
-  margin-right: @t3-global-margin;
 }
 
 .img-fulltext-right {
   float: right;
-  margin-left: @t3-global-margin;
-}
-
-.img-intro-none img,
-.img-intro-left img,
-.img-intro-right img,
-.img-fulltext-none img,
-.img-fulltext-left img,
-.img-fulltext-right img {
-  margin: 0;
 }
 
 // Image caption
-.img_caption img {
-  margin-bottom: 1px !important;
+.img_caption {
+  > img {
+    margin-bottom: 1px !important;
+  }
+  p.img_caption {
+    background: @gray-lighter;
+    color: @gray;
+    font-size: @font-size-small;
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    clear: both;
+  }
 }
 
-.img_caption p.img_caption {
-  background: @gray-lighter;
-  color: @gray;
-  font-size: @font-size-small;
-  width: 100%;
-  margin: 0;
-  padding: 5px;
-  text-align: center;
-  clear: both;
-}
-
-
-// Reponsive Article Images
+// Reponsive Article Images on Mobile
 @media screen and (max-width: @screen-xs-max) {
-  .article-intro,
-  .article-content {
-    img[align=left], .img_caption.left,
-    img[align=right], .img_caption.right,
-    .img-fulltext-left, .img-fulltext-right {
+  article,
+  .article-intro {
+    img, .img_caption,
+    .article-image-full,
+    .article-image-intro,
+    .img-intro-none,
+    .img-intro-left,
+    .img-intro-right,
+    .img-fulltext-none,
+    .img-fulltext-left,
+    .img-fulltext-right, {
       float: none !important;
       margin-left: 0;
       margin-right: 0;
@@ -218,6 +208,7 @@
     }
   }
 }
+
 
 
 // Article Actions
