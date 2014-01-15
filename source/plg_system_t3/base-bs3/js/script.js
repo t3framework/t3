@@ -60,6 +60,11 @@
 						var jitem = $(this),
 							val = !jitem.data('noclick');
 
+						//the sub is already show
+						if(val && jitem.children('.dropdown-menu').is(':visible')){
+							val = 0;
+						}
+
 						// reset all
 						jitems.data('noclick', 0);
 						jitem.data('noclick', val);
