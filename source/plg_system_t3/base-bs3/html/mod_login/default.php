@@ -10,6 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
+require_once JPATH_SITE.'/components/com_users/helpers/route.php';
+
 JHtml::_('behavior.keepalive');
 if (version_compare(JVERSION, '3.0', 'ge')) {
 	JHtml::_('bootstrap.tooltip');
@@ -73,6 +75,29 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 					   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
 			<?php endif; ?>
 			</div>
+			<?php if (isset($twofactormethods) && count($twofactormethods) > 1): ?>
+			<div id="form-login-secretkey" class="form-group">
+				<?php if (!$params->get('usetext')) : ?>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa fa-star hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>"></i>
+					</span>
+					<label for="modlgn-secretkey" class="element-invisible"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
+					<input id="modlgn-secretkey" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
+					<span class="input-group-addon hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+						<i class="fa fa-question-circle"></i>
+					</span>
+				</div>
+				<?php else: ?>
+					<label for="modlgn-secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY') ?></label>
+					<input id="modlgn-secretkey" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
+					<span class="btn btn-default width-auto hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+						<i class="fa fa-question-circle"></i>
+					</span>
+				<?php endif; ?>
+			</div>
+			<?php endif; ?>
+		
 			<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
 				<div id="form-login-remember" class="control-group">
 					<label for="modlgn-remember" class="checkbox">
@@ -86,24 +111,22 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 				<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGIN') ?>"/>
 			</div>
 
-			<?php
-			$usersConfig = JComponentHelper::getParams('com_users');
-			if ($usersConfig->get('allowUserRegistration')) : ?>
-				<ul class="unstyled">
-					<li>
-						<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-							<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="fa fa-arrow-right"></span></a>
-					</li>
-					<li>
-						<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-							<?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
-					</li>
-					<li>
-						<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
-					</li>
-
-				</ul>
-			<?php endif; ?>
+			<?php $usersConfig = JComponentHelper::getParams('com_users'); ?>
+			<ul class="unstyled">
+				<?php if ($usersConfig->get('allowUserRegistration')) : ?>
+				<li>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
+						<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="fa fa-arrow-right"></span></a>
+				</li>
+				<?php endif; ?>
+				<li>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
+						<?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
+				</li>
+				<li>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
+				</li>
+			</ul>
 
 			<input type="hidden" name="option" value="com_users"/>
 			<input type="hidden" name="task" value="user.login"/>

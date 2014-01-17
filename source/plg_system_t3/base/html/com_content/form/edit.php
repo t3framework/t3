@@ -16,6 +16,7 @@ JHtml::_('behavior.formvalidation');
 
 if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('formbehavior.chosen', 'select');
+	JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
 }
 
 // Create shortcut to parameters.

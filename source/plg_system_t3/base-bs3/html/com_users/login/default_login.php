@@ -54,6 +54,33 @@ JHtml::_('behavior.keepalive');
   					</div>
   				<?php endif; ?>
   			<?php endforeach; ?>
+
+			<?php $tfa = JPluginHelper::getPlugin('twofactorauth'); ?>
+
+			<?php if (!is_null($tfa) && $tfa != array()): ?>
+				<div class="form-group">
+					<div class="col-sm-3 control-label">
+						<?php echo $this->form->getField('secretkey')->label; ?>
+					</div>
+					<div class="col-sm-9">
+						<?php echo $this->form->getField('secretkey')->input; ?>
+					</div>
+				</div>
+			<?php endif; ?>
+			
+			<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
+       <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <div class="checkbox">
+            <label>
+              <input id="remember" type="checkbox" name="remember" value="yes"/> 
+              <?php echo JText::_('COM_USERS_LOGIN_REMEMBER_ME') ?>
+            </label>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
+			
   			<div class="form-group">
   				<div class="col-sm-offset-3 col-sm-9">
   					<button type="submit" class="btn btn-primary"><?php echo JText::_('JLOGIN'); ?></button>

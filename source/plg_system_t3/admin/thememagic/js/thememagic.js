@@ -109,7 +109,9 @@ var T3Theme = window.T3Theme || {};
 									T3Theme.changeTheme(val);
 								});
 							} else {
-								T3Theme.changeTheme(val);
+								setTimeout(function(){
+									T3Theme.changeTheme(val);
+								}, 250); //delay to hide popup
 							}
 						});
 					} else {
@@ -560,10 +562,9 @@ var T3Theme = window.T3Theme || {};
 
 					$('#t3-admin-thememagic-dlg').modal('hide');
 				}
-				
 			});
 			
-            return true;
+			return true;
 		},
 		
 		saveTheme: function(){

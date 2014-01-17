@@ -8,6 +8,11 @@
  */
 
 defined('_JEXEC') or die;
+
+if(version_compare(JVERSION, '3.0', 'ge')){
+	JHtml::_('bootstrap.tooltip');
+}
+
 $class = ' class="first"';
 if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 ?>
