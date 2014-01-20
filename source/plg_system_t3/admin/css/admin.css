@@ -1105,7 +1105,7 @@ button.btn-primary:active {
   background: #fff;
   border: 1px solid #aaa;
   border-top: 0;
-  top: 32px;
+  /*top: 32px;*/
   /*left: 0;*/
   box-shadow: none;
 }
@@ -1164,6 +1164,7 @@ button.btn-primary:active {
 }
 
 .chzn-container-single .chzn-drop {
+  margin-top: -2px;
   border-radius: 0;
   box-shadow: 0 2px 3px rgba(0,0,0,.15);
 }

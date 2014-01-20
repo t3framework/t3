@@ -635,6 +635,25 @@ var T3Admin = window.T3Admin || {};
 				recompile.removeClass('loading');
 				T3Admin.systemMessage(T3Admin.langs.unknownError);
 			});
+		},
+
+		initT3ThemeExtras: function(){
+			$('.t3-extra-setting').on('change', function(e, val){
+				if(val.selected == '0' || val.selected == '-1'){
+					$(e.target).val(val.selected).trigger('liszt:updated');
+				} else {
+					var hasExclusive = 0,
+						filterd = $.grep($(e.target).val(), function(val){
+							hasExclusive = hasExclusive || (val == '0' || val == '-1');
+
+							return !(val == '0' || val == '-1'); 
+						});
+
+					if(hasExclusive){
+						$(e.target).val(filterd).trigger('liszt:updated');
+					}
+				}
+			})
 		}
 	});
 	
@@ -649,6 +668,7 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.initPreSubmit();
 		T3Admin.hideDisabled();
 		T3Admin.initChangeStyle();
+		T3Admin.initT3ThemeExtras();
 		//T3Admin.initCheckupdate();
 		T3Admin.switchTab();
 		T3Admin.fixValidate();
