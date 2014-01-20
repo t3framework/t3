@@ -283,4 +283,51 @@ class T3Bot extends JObject
 			}
 		}
 	}
+
+
+	// call when prepare form for template parameter
+	// looking in less/extras folder to render parameters for extended template style
+	public static function prepareForm (&$form) {
+		jimport('joomla.filesystem.folder');
+		jimport('joomla.filesystem.file');
+
+		// load add-ons setting
+		$path = T3_TEMPLATE_PATH . '/less/extras';
+		if (!is_dir ($path)) return ;
+
+		$files = JFolder::files($path, '.less');
+		if (!$files || !count($files)){
+			return ;
+		}
+
+		$extras = array();
+		foreach ($files as $file) {
+			$extras[] = JFile::stripExt($file);
+		}
+		if (count($extras)) {
+			$_xml =
+				'<?xml version="1.0"?>
+				<form>
+					<fields name="params">
+						<fieldset name="addon_params" label="T3_ADDON_LABEL" description="T3_ADDON_DESC">
+					    <field type="t3depend" function="@legend" label="T3_ADDON_THEME_EXTRAS_LABEL" description="T3_ADDON_THEME_EXTRAS_DESC" />
+				';
+							foreach ($extras as $extra) {
+								$_xml .= '
+							<field name="theme_extras_'.$extra.'" global="1" type="menuitem" multiple="1" default="" label="'.$extra.'" description="'.$extra.'" published="true" class="t3-extra-setting">
+									<option value="-1">T3_ADDON_THEME_EXTRAS_ALL</option>
+									<option value="0">T3_ADDON_THEME_EXTRAS_NONE</option>
+							</field>';
+							}
+
+							$_xml .= '
+						</fieldset>
+					</fields>
+				</form>
+				';
+			$xml = simplexml_load_string($_xml);
+			$form->load ($xml, false);
+		}
+
+	}
 }

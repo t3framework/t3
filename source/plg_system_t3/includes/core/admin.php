@@ -242,7 +242,9 @@ class T3Admin {
 			$form->loadFile(T3_PATH . '/params/template.xml');
 			//overwrite / extend with params of template
 			$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
-			
+			// extend parameters
+			T3Bot::prepareForm($form);
+
 			$xml = JFactory::getXML($tplXml);
 			$fxml = JFactory::getXML($frwXml);
 

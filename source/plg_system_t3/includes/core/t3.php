@@ -332,7 +332,7 @@ class T3 {
 
 			$app   = JFactory::getApplication();
 			$input = $app->input;
-			$id    = $input->getCmd('styleid', $input->getCmd('id'));
+			$id    = $input->getInt('styleid', $input->getInt('id'));
 				
 			if($id){
 				$db    = JFactory::getDbo();

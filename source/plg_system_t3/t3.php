@@ -184,6 +184,7 @@ class plgSystemT3 extends JPlugin
 	 */
 	function onContentPrepareForm($form, $data)
 	{
+
 		if(defined('T3_PLUGIN')){
 			if (T3::detect() && (
 				$form->getName() == 'com_templates.style'
@@ -191,6 +192,8 @@ class plgSystemT3 extends JPlugin
 			)) {
 				JForm::addFormPath(T3_PATH . '/params');
 				$form->loadFile('template', false);
+				// extend parameters
+				T3Bot::prepareForm($form);
 
 				//search for global parameters and store in user state
 				if(is_object($data)){
@@ -210,13 +213,27 @@ class plgSystemT3 extends JPlugin
 			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate(true) ? T3::getDefaultTemplate(true) : false);
 
 			if ($tmpl) {
-				$extended = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl) . '/etc/form/' . $form->getName() . '.xml';
+				$formpath = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl) . '/etc/form/';
+				JForm::addFormPath($formpath);
 
+				$extended = $formpath . $form->getName() . '.xml';
 				if (is_file($extended)) {
 					JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
-
-					JForm::addFormPath(dirname($extended));
 					$form->loadFile($form->getName(), false);
+				}
+
+				// load extra fields for specified module in format com_modules.module.module_name.xml
+				if ($form->getName() == 'com_modules.module') {
+					$module = isset($data->module) ? $data->module : '';
+					if (!$module) {
+						$jform = JFactory::getApplication()->input->get ("jform", null, 'array');
+						$module = $jform['module'];
+					}
+					$extended = $formpath . $module . '.xml';
+					if (is_file($extended)) {
+						JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
+						$form->loadFile($module, false);
+					}
 				}
 			}
 		}
