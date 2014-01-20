@@ -924,6 +924,7 @@ class T3Template extends ObjectExtendable
 			$this->addScript(T3_URL . '/js/responsive.js');
 		}
 
+		//some helper javascript functions for frontend edit
 		if($frontedit){
 			$this->addScript(T3_URL . '/js/frontend-edit.js');
 		}
@@ -941,10 +942,11 @@ class T3Template extends ObjectExtendable
 	function updateHead()
 	{
 		//state parameters
-		$devmode = $this->getParam('devmode', 0);
+		$devmode    = $this->getParam('devmode', 0);
 		$themermode = $this->getParam('themermode', 1) && defined('T3_THEMER');
-		$theme = $this->getParam('theme', '');
-		$minify = $this->getParam('minify', 0);
+		$theme      = $this->getParam('theme', '');
+		$minify     = $this->getParam('minify', 0);
+		$minifyjs   = $this->getParam('minify_js', 0);
 
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded
@@ -985,7 +987,8 @@ class T3Template extends ObjectExtendable
 		foreach ($doc->_scripts as $url => $script) {
 			$replace = false;
 
-			if ((strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false && preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)) ||
+			if ((strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false &&
+					preg_match_all('@/jquery/(\d+(\.\d+)*)?/@msU', $url, $jqver)) ||
 				(preg_match_all('@(^|\/)jquery([-_]*(\d+(\.\d+)+))?(\.min)?\.js@i', $url, $jqver))) {
 
 				$idx = strpos($url, '//ajax.googleapis.com/ajax/libs/jquery/') !== false ? 1 : 3;
@@ -1013,15 +1016,14 @@ class T3Template extends ObjectExtendable
 		$is_rtl = ($dir == 'rtl');
 
 		// not in devmode and in default theme, do nothing
-		if (!$devmode && !$themermode && !$theme && !$minify && !$is_rtl) {
+		if (!($devmode || $themermode || $theme || $minify || $minifyjs || $is_rtl)) {
 			return;
 		}
 
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);
 		$current     = JURI::current();
-		$regex       = '@' . preg_quote(T3_TEMPLATE_URL) . '/css/(rtl/)?([^/]*)\.css((\?|\#).*)?$@i';
-
+		$regex       = '@' . preg_quote(T3_TEMPLATE_URL) . '/css/(rtl/)?(.*)\.css((\?|\#).*)?$@i';
 		$stylesheets = array();
 
 		foreach ($doc->_styleSheets as $url => $css) {
@@ -1056,9 +1058,14 @@ class T3Template extends ObjectExtendable
 		$doc->_styleSheets = $stylesheets;
 
 		//only check for minify if devmode is disabled
-		if (!$devmode && $minify) {
+		if (!$devmode && ($minify || $minifyjs)) {
 			T3::import('core/minify');
-			T3Minify::optimizecss($this);
+			if($minify){
+				T3Minify::optimizecss($this);
+			}
+			if($minifyjs){
+				T3Minify::optimizejs($this);
+			}
 		}
 	}
 
@@ -1122,6 +1129,25 @@ class T3Template extends ObjectExtendable
 						}
 					}
 				}
+			}
+		}
+
+		// template extended styles
+		$aparams = $this->_tpl->params->toArray();
+		$extras = array();
+		$itemid = JFactory::getApplication()->input->get ('Itemid');
+		foreach ($aparams as $name => $value) {
+			if (preg_match ('/^theme_extras_(.+)$/', $name, $m)) {
+				$extras[$m[1]] = $value;
+			}
+		}
+		foreach ($extras as $extra => $pages) {
+			if (in_array (0, $pages)) {
+				continue; // disabled
+			}
+			if (in_array (-1, $pages) || in_array($itemid, $pages)) {
+				// load this style
+				$this->addCss ('extras/'.$extra);
 			}
 		}
 	}

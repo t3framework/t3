@@ -6,11 +6,14 @@
 			<field name="t3_template" type="hidden" default="1" value="1"/>
 
 			<field name="general_params_default" type="t3depend" function="@group">
-				<option for="devmode" value="0">
-					minify
+				<option for="devmode" value="0" hide="0">
+					minify, minify_js
 				</option>
 				<option for="responsive" value="0">
 					non_responsive_width
+				</option>
+				<option for="minify_js" value="1">
+					minify_js_tool, minify_exclude
 				</option>
 			</field>
 
@@ -59,14 +62,6 @@
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field name="minify" type="radio" default="0"
-				   global="1"
-				   label="T3_GENERAL_ASSETS_MINIFY_LABEL"
-				   description="T3_GENERAL_ASSETS_MINIFY_DESC">
-				<option value="0" class="off">JNO</option>
-				<option value="1" class="on">JYES</option>
-			</field>
-
 			<field name="t3-assets" type="text" default="t3-assets"
 				   global="1"
 				   label="T3_GENERAL_ASSETS_FOLDER_LABEL"
@@ -79,6 +74,37 @@
 				<option value="0" class="off">JNO</option>
 				<option value="1" class="on">JYES</option>
 			</field>
+
+			<field type="t3depend" function="@legend" label="T3_GENERAL_OPTIMIZE_LABEL" description="T3_GENERAL_OPTIMIZE_DESC" />
+
+			<field name="minify" type="radio" default="0"
+				   global="1"
+				   label="T3_GENERAL_ASSETS_MINIFY_LABEL"
+				   description="T3_GENERAL_ASSETS_MINIFY_DESC">
+				<option value="0" class="off">JNO</option>
+				<option value="1" class="on">JYES</option>
+			</field>
+
+			<field name="minify_js" type="radio" default="0"
+				   global="1"
+				   label="T3_GENERAL_ASSETS_MINIFYJS_LABEL"
+				   description="T3_GENERAL_ASSETS_MINIFYJS_DESC">
+				<option value="0" class="off">JNO</option>
+				<option value="1" class="on">JYES</option>
+			</field>
+
+			<field name="minify_js_tool" type="list" default="jsmin"
+				   global="1"
+				   label="T3_GENERAL_ASSETS_MINIFYJS_TOOL_LABEL"
+				   description="T3_GENERAL_ASSETS_MINIFYJS_TOOL_DESC">
+				<option value="jsmin">T3_GENERAL_ASSETS_MINIFYJS_TOOL_JSMIN</option>
+				<option value="closurecompiler">T3_GENERAL_ASSETS_MINIFYJS_TOOL_CLOSURE</option>
+			</field>
+
+			<field name="minify_exclude" type="text" default=""
+				   global="1"
+				   label="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_LABEL"
+				   description="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_DESC" />
 
 		</fieldset>
 

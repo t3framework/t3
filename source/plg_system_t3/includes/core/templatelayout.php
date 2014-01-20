@@ -267,11 +267,11 @@ class T3TemplateLayout extends T3Template
 	 */
 	function _c($name, $cls = array())
 	{
-		$posparams = $this->getLayoutSetting($name, '');
+		$params = $this->getLayoutSetting($name, '');
 
 		$cinfo = $oinfo = $this->parseVisibility(is_string($cls) ? array($this->defdv => $cls) : (is_array($cls) ? $cls : array()));
-		if (!empty($posparams)) {
-			$cinfo = $this->parseVisibility($posparams);
+		if (!empty($params)) {
+			$cinfo = $this->parseVisibility($params);
 		}
 
 		$data = '';
@@ -281,9 +281,26 @@ class T3TemplateLayout extends T3Template
 			'deft' => $this->extractKey(array($oinfo), 'hidden')
 		);
 
-		if (empty($posparams)) {
+		if (empty($params)) {
 			if (is_string($cls)) {
 				$data = ' ' . $cls;
+			} else if (is_array($cls)) {
+				$params = (object)$cls;
+			}
+		}
+
+		if(!empty($params)){
+			foreach ($this->maxcol as $device => $span) {
+				if(!empty($params->$device)){
+					$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
+					$posfix = $this->responcls ? '' : '"';
+					$data .= $prefix . trim($params->$device) . $posfix;
+				}
+			}
+			
+			$defdv = $this->defdv;
+			if(!$this->responcls && !empty($data)){
+				$data = (isset($params->$defdv) ? ' ' . $params->$defdv : '') . ' t3respon"' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 
