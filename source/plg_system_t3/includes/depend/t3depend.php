@@ -310,11 +310,13 @@ class JFormFieldT3Depend extends JFormField
 			foreach ($this->element->children() as $option):
 				$elms = preg_replace('/\s+/', '', (string)$option[0]);
 				$vals = preg_replace('/\s+/', '', $option['value']);
+				$hide = isset($option['hide']) ? !in_array($option['hide'], array('false', '', '0', 'no', 'off')) : 1;
 			?>
 				T3Depend.add('<?php echo $option['for']; ?>', {
 					vals: '<?php echo $vals ?>',
 					elms: '<?php echo $elms?>',
-					group: '<?php echo $group_name; ?>'
+					group: '<?php echo $group_name; ?>',
+					hide: <?php echo (int)$hide; ?>
 				});
 			<?php
 				endforeach;

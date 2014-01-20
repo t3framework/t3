@@ -17,6 +17,7 @@
 		
 		depends: {},
 		controls: {},
+		infos: {},
 		ajaxs: {},
 
 		register: function(to, depend){
@@ -82,12 +83,13 @@
 		add: function(control, info){
 			
 			var depends = this.depends,
+				infos = this.infos,
 				form = this,
 				name = info.group + '[' + control + ']';
 				
 			info = $.extend({
 				group: 'params',
-				control: name
+				hide: true
 			}, info);
 			
 			$.each(info.elms.split(','), function(el){
@@ -95,6 +97,13 @@
 				
 				if (!depends[elm]) {
 					depends[elm] = {};
+				}
+
+				//save info
+				if (!infos[elm]){
+					infos[elm] = info;
+				} else {
+					$.extend(infos[elm], info);
 				}
 				
 				if (!depends[elm][name]) {
@@ -123,12 +132,20 @@
 		
 		enable: function (el) {
 			el._disabled = false; //selector 'li' is J2.5 compactible
-			$(el).closest('.adminformlist > li, div.control-group').css('display', 'block');
+			if(this.infos[el.name] && this.infos[el.name].hide){
+				$(el).closest('.adminformlist > li, div.control-group').css('display', 'block');
+			} else {
+				$(el).closest('.controls, .t3-controls').children().removeClass('disabled');
+			}
 		},
 		
 		disable: function (el) {
 			el._disabled = true; //selector 'li' is J2.5 compactible
-			$(el).closest('.adminformlist > li, div.control-group').css('display', 'none');
+			if(this.infos[el.name] && this.infos[el.name].hide){
+				$(el).closest('.adminformlist > li, div.control-group').css('display', 'none');
+			} else {
+				$(el).closest('.controls, .t3-controls').children().addClass('disabled');	
+			}
 		},
 		
 		elmsFrom: function(name){
