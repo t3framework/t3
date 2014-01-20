@@ -350,6 +350,62 @@ a.thumbnail.active {
 
 
 //
+// MODALS (modals.less)
+// --------------------------------------------------
+// Container that the modal scrolls within
+.modal {
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+}
+
+// Actual modal
+.modal-content {
+}
+
+// Modal background
+.modal-backdrop {
+  // Fade for backdrop
+  &.fade { .opacity(0); }
+  &.in { .opacity(.5); }
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+}
+// Close icon
+.modal-header .close {
+}
+
+// Title text within header
+.modal-title {
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+}
+
+// Footer (for actions)
+.modal-footer {
+}
+
+// Scale up the modal
+@media screen and (min-width: @screen-sm-min) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    .box-shadow(0 5px 15px rgba(0,0,0,.5));
+  }
+}
+
+
+
+//
 // TOOLTIPS (tooltips.less)
 // --------------------------------------------------
 
