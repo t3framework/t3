@@ -511,13 +511,18 @@ class T3Less extends lessc
 		$files    = array();
 		$lesspath = 'templates/' . T3_TEMPLATE . '/less/';
 		$csspath  = 'templates/' . T3_TEMPLATE . '/css/';
+		$fullpath = JPath::clean(JPATH_ROOT . '/' . $lesspath);
 		
 		// get files need to compile
-		$lessFiles   = JFolder::files(JPATH_ROOT . '/' . $lesspath, '.less');
-		$lessContent = '';
+		$lessFiles    = JFolder::files($fullpath, '.less', true, true, array('rtl', 'themes', '.svn', 'CVS', '.DS_Store', '__MACOSX'));
+		$relLessFiles = array();
+		$lessContent  = '';
 		foreach ($lessFiles as $file) {
-			$lessContent .= JFile::read(JPATH_ROOT . '/' . $lesspath . $file) . "\n";
+			$lessContent .= JFile::read($file) . "\n";
+			$relLessFiles[] = ltrim(str_replace($fullpath, '', $file), '/\\');
 		}
+
+		$lessFiles = $relLessFiles;
 		
 		// get files imported in this list
 		if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {

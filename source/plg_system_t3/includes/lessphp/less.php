@@ -15,8 +15,8 @@
 // No direct access
 defined('_JEXEC') or die();
 
-T3::import('lessphp/less/LessCache');
-T3::import('lessphp/less/Less');
+T3::import('lessphp/less/cache');
+T3::import('lessphp/less/less');
 
 /**
  * T3Less class compile less
@@ -944,16 +944,23 @@ class T3Less
 		$files    = array();
 		$lesspath = 'templates/' . T3_TEMPLATE . '/less/';
 		$csspath  = 'templates/' . T3_TEMPLATE . '/css/';
+		$fullpath = JPath::clean(JPATH_ROOT . '/' . $lesspath);
 
 		// t3 core plugin files
 		$t3files  = array('frontend-edit', 'legacy-grid', 'legacy-form', 'legacy-navigation', 'megamenu', 'off-canvas');
 		
 		// all less file in less folders
-		$lessFiles   = JFolder::files(JPATH_ROOT . '/' . $lesspath, '.less');
-		$lessContent = '';
+		$lessFiles    = JFolder::files($fullpath, '.less', true, true, array('rtl', 'themes', '.svn', 'CVS', '.DS_Store', '__MACOSX'));
+
+		$lessContent  = '';
+		$relLessFiles = array();
+
 		foreach ($lessFiles as $file) {
-			$lessContent .= JFile::read(JPATH_ROOT . '/' . $lesspath . $file) . "\n";
+			$lessContent .= JFile::read($file) . "\n";
+			$relLessFiles[] = ltrim(str_replace($fullpath, '', $file), '/\\');
 		}
+
+		$lessFiles = $relLessFiles;
 		
 		// get files imported in this list
 		if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {
