@@ -109,6 +109,7 @@ jQuery(document).ready(function ($) {
         } else {
             // clone for bootstrap menu
             $menu = $navwrapper.find ('ul.nav').clone();
+            $placeholder = $('.t3-navbar-collapse');
         }
 
         // inject into .t3-navbar-collapse
