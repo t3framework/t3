@@ -905,6 +905,8 @@ class T3Template extends ObjectExtendable
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
 		$this->addScript(T3_URL . '/bootstrap/js/bootstrap.js');
+		// a jquery tap plugin
+		$this->addScript(T3_URL . '/js/jquery.tap.min.js');
 
 		// add css/js for off-canvas
 		if ($offcanvas && ($this->responcls || $responsive)) {

@@ -48,7 +48,7 @@ jQuery (document).ready(function($){
         }
     });
 
-    $toggles.click (function(e){
+    $toggles.on('tap', function(e){
         // detect direction
 
         stopBubble (e);
@@ -98,7 +98,7 @@ jQuery (document).ready(function($){
     });
     var oc_show = function () {
         $wrapper.addClass ('off-canvas-open');
-        $wrapper.on ('click', oc_hide);
+        $wrapper.on ('tap', oc_hide);
         $close.on ('click', oc_hide);
         $offcanvas.on ('click', stopBubble);
 
@@ -114,7 +114,7 @@ jQuery (document).ready(function($){
 
     var oc_hide = function () {
         $wrapper.removeClass ('off-canvas-open');
-        $wrapper.off ('click', oc_hide);
+        $wrapper.off ('tap', oc_hide);
         $close.off ('click', oc_hide);
         $offcanvas.off ('click', stopBubble);
         setTimeout (function (){
