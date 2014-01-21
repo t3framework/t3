@@ -40,7 +40,7 @@ class T3BootstrapTpl
 					}
 				}
 
-				if ($item->type == 'separator') {
+				if ($item->type == 'separator' || $item->type == 'heading') {
 					$class .= ' divider';
 				}
 

@@ -207,6 +207,7 @@ class T3MenuMegamenuTpl
 
 		switch ($item->type) {
 			case 'separator':
+			case 'heading':
 				$html = self::item_separator($vars);
 				break;
 			case 'component':
