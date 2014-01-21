@@ -1143,13 +1143,15 @@ class T3Template extends ObjectExtendable
 				$extras[$m[1]] = $value;
 			}
 		}
-		foreach ($extras as $extra => $pages) {
-			if (in_array (0, $pages)) {
-				continue; // disabled
-			}
-			if (in_array (-1, $pages) || in_array($itemid, $pages)) {
-				// load this style
-				$this->addCss ('extras/'.$extra);
+		if (count ($extras)) {
+			foreach ($extras as $extra => $pages) {
+				if (!is_array($pages) || !count($pages) || in_array (0, $pages)) {
+					continue; // disabled
+				}
+				if (in_array (-1, $pages) || in_array($itemid, $pages)) {
+					// load this style
+					$this->addCss ('extras/'.$extra);
+				}
 			}
 		}
 	}

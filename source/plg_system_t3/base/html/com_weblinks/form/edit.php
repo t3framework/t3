@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-if(version_compare(JVERSION, '3.0', 'lt')){
+if (version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('formbehavior.chosen', 'select');
 	JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
 } else {
