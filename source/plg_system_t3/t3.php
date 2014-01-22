@@ -192,6 +192,7 @@ class plgSystemT3 extends JPlugin
 			)) {
 				JForm::addFormPath(T3_PATH . '/params');
 				$form->loadFile('template', false);
+
 				// extend parameters
 				T3Bot::prepareForm($form);
 
@@ -213,7 +214,8 @@ class plgSystemT3 extends JPlugin
 			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate(true) ? T3::getDefaultTemplate(true) : false);
 
 			if ($tmpl) {
-				$formpath = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl) . '/etc/form/';
+				$tplpath  = JPATH_ROOT . '/templates/' . (is_object($tmpl) && !empty($tmpl->tplname) ? $tmpl->tplname : $tmpl);
+				$formpath = $tplpath . '/etc/form/';
 				JForm::addFormPath($formpath);
 
 				$extended = $formpath . $form->getName() . '.xml';
@@ -235,6 +237,9 @@ class plgSystemT3 extends JPlugin
 						$form->loadFile($module, false);
 					}
 				}
+
+				//extend extra fields
+				T3Bot::extraFields($form, $data, $tplpath);
 			}
 		}
 	}

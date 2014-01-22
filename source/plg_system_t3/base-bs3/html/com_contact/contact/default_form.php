@@ -69,11 +69,13 @@ if (isset($this->error)) : ?>
 							<?php if ($field->hidden) : ?>
 								<?php echo $field->input;?>
 							<?php else:?>
-								<?php echo $field->label; ?>
+								<?php echo preg_replace($regex, $label, $field->label); ?>
+								<div class="col-sm-10">
 								<?php if (!$field->required && $field->type != "Spacer") : ?>
 									<span class="optional"><?php echo JText::_('COM_CONTACT_OPTIONAL');?></span>
 								<?php endif; ?>
 								<?php echo $field->input;?>
+								</div>
 							<?php endif;?>
 						</div>
 					<?php endforeach;?>
