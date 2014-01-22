@@ -153,7 +153,7 @@ class JHtmlIcon
 		$overlib .= JText::sprintf('COM_CONTENT_WRITTEN_BY', '<strong>' . htmlspecialchars($author, ENT_COMPAT, 'UTF-8') . '</strong>');
 
 		$icon = $article->state ? 'edit' : 'eye-slash';
-		$text = '<i class="' . $tip . ' fa fa-' . $icon . ' tip" title="' . JText::_('COM_CONTENT_EDIT_ITEM') . ' :: ' . $overlib . '"></i> ' . JText::_('JGLOBAL_EDIT');
+		$text = '<i class="' . $tip . ' fa fa-' . $icon . ' tip" title="' . (method_exists('JHtml', 'tooltipText') ? JHtml::tooltipText(JText::_('COM_CONTENT_EDIT_ITEM'), $overlib, 0) : JText::_('COM_CONTENT_EDIT_ITEM') . ' :: ' . $overlib) . '"></i> ' . JText::_('JGLOBAL_EDIT');
 
 		$output = JHtml::_('link', JRoute::_($url), $text);
 

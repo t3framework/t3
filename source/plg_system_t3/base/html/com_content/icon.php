@@ -144,7 +144,7 @@ class JHtmlIcon
 				$overlib .= JText::sprintf('COM_CONTENT_WRITTEN_BY', htmlspecialchars($author, ENT_COMPAT, 'UTF-8'));
 
 		$icon	= $article->state ? 'edit' : 'eye-close';
-		$text = '<i class="' . $tip . ' icon-'.$icon.' tip" title="'.JText::_('COM_CONTENT_EDIT_ITEM').' :: '.$overlib.'"></i> '.JText::_('JGLOBAL_EDIT');
+		$text = '<i class="' . $tip . ' icon-'.$icon.' tip" title="' . (method_exists('JHtml', 'tooltipText') ? JHtml::tooltipText(JText::_('COM_CONTENT_EDIT_ITEM'), $overlib, 0) : JText::_('COM_CONTENT_EDIT_ITEM') . ' :: ' . $overlib) . '"></i> '.JText::_('JGLOBAL_EDIT');
 
 		$output = JHtml::_('link', JRoute::_($url), $text);
 
