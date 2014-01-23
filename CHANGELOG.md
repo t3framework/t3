@@ -1,3 +1,48 @@
+<h2>Version: 2.0.3 (01/23/2014)</h2>
+
+
+<h3>New features</h3>	
+- Add French translation package for T3 Framework | <a href="https://github.com/t3framework/t3/commit/d060ed0661fbf5c73c8f76d769aa51a0630b223d">Link</a>
+- Add new feature: Support add-ons for T3 | <a href="https://github.com/t3framework/t3/commit/7f4d113f6b0b31fecd930b9c2d609c5cfaea0eee">Link</a>
+- Add new sub feature: JS Minify | <a href="https://github.com/t3framework/t3/commit/74da444d653653d07b7e0f419050f6df88bb55df">Link</a>
+- New small feature: Extend Joomla com_content with extra fields | <a href="https://github.com/t3framework/t3/commit/541e47e9b471480f33552ae08f70b7095fe42002">Link</a>
+	
+
+<h3>Improvement</h3>
+- Update Less JS v1.6.1, Less PHP v1.5.1, Respon.js v1.4.0 | <a href="https://github.com/t3framework/t3/commit/d2e7165633835f8cf457095e62d5cbe8dd94d901">Link</a>
+- Support disabled state for t3depend | <a href="https://github.com/t3framework/t3/commit/03c0d787df5282f8363fc1efeae546f2e0f44b27">Link</a>
+	
+
+<h3>Fix bugs</h3>
+- Update default_form.php to Font Awesone v4 | <a href="https://github.com/t3framework/t3/commit/57d7425f2dfb4efc2c0205aeaae0ccf2b2de7cfc">Link</a>
+- T3 Bs3 Blank: Fix small less issue | <a href="https://github.com/t3framework/t3/commit/869e0c2f1437bf18fe54641a90c8881cfe149739">Link</a>
+- Fix: correct theme when open thememagic | <a href="https://github.com/t3framework/t3/commit/d61fda9a2534e964f01af439724bd54320c2d37c">Link</a>
+- Fix: Non responsive | <a href="https://github.com/t3framework/t3/commit/c75773e09424ecda5e481d68efbe517fc7f8a7a7">Link</a>
+- Fix T3 footer language | <a href="https://github.com/t3framework/t3/commit/5769ebe06fb5491e23fb177f1d32851e834e146c">Link</a>
+Megamenu Duration not working in current Firefox | <a href="https://github.com/t3framework/t3/issues/217
+- Update navhelper.php | <a href="http">Link</a>s://github.com/t3framework/t3/commit/7baf5a18f61066997240302bf9cd38986d025308">Link</a>
+- BaseBs3: Fix less overwrite build | <a href="https://github.com/t3framework/t3/commit/edd9f7b8ef5d44390a0d7acd5c694b3a81c701e8">Link</a>
+- Fix PHP clean buffer call | <a href="https://github.com/t3framework/t3/commit/5c11536ca39c90a3d523e9d68b8532d3d0c16368">Link</a>
+- Fix com_content featured grid | <a href="https://github.com/t3framework/t3/commit/c6d937c8e817ebdc8fa186122276259ce9859f36">Link</a>
+- Add Joomla compatible font-awesome | <a href="https://github.com/t3framework/t3/commit/1b9514ef6afc0daf3da11e1f51815106dcd2beda">Link</a>
+- Fix justify megamenu alignment | <a href="https://github.com/t3framework/t3/commit/c5a761cc93374eb36e2e0aa29fb5a273c919398d">Link</a>
+- Minor change for Article Images | <a href="https://github.com/t3framework/t3/commit/573a4fa3a26d63408effc0f8b22aed0345dc54a2">Link</a>
+- Minor change for Caret in Dropdown Menu | <a href="https://github.com/t3framework/t3/commit/638ab51294f276ef28209d9d1e034ad93c0b546a">Link</a>
+- Base-Bs3: Fix second click to open parent link on off-canvas menu | <a href="https://github.com/t3framework/t3/commit/e3ab0b2f5b4a7a1586eda8564876d74933529988">Link</a>
+- Fix base theme compatible with J3.2 | <a href="https://github.com/t3framework/t3/commit/b728d697c9f9026a148a7a38ad0881296c7c3e13">Link</a>
+- Add Modals Style to T3 Components | <a href="https://github.com/t3framework/t3/commit/af43fb5234d6bdd402e326be0046a2bffbd1dc4c">Link</a>
+- Add List-Group and Panels Styles to T3 Components | <a href="https://github.com/t3framework/t3/commit/66a12ad481f9729cd532979d2fdaa984322ff3d0">Link</a>
+- Fix nav-collapse error when not use megamenu | <a href="https://github.com/t3framework/t3/commit/df9568631e129eee44d27c0e6817422cc6f6ca6f">Link</a>
+- T3Admin: Update T3 add-ons dropdown behavior | <a href="https://github.com/t3framework/t3/commit/0c4a9e61d013b23f63ba2da5ffdfd42064f77698">Link</a>
+- Added "Inverse" style for Button | <a href="https://github.com/t3framework/t3/commit/c759974cf21c6f1ab8f25edf4afd7a1096a0e678">Link</a>
+- Ipad: Fix off-canvas close when click on gray area | <a href="https://github.com/t3framework/t3/commit/b7d7fe4ea14cc1cf56bb777a3c1cc26fd721563d">Link</a>
+- Fix error on com_weblinks overwrite | <a href="https://github.com/t3framework/t3/commit/9091b71a089344d5b2e5552bd9a068695e698410">Link</a>
+- Update edit icon tooltip | <a href="https://github.com/t3framework/t3/commit/d85f9613a4dd9cd5579d85312875f6127b6fc32a">Link</a>
+- Fixed FrontentEdit Icon. Added Primary Jumbotron. | <a href="https://github.com/t3framework/t3/commit/49bfb7cb9678349f4d6c45ddb8aea05400fe5d9b">Link</a>
+- Updated Default Categoty View HTML | <a href="https://github.com/t3framework/t3/commit/e6d3b580f03973052f4316a916cc9b9237048791">Link</a>
+- Base: add overrwite smartsearch | <a href="https://github.com/t3framework/t3/commit/0f977ef45e6208134fab5b17ba73af368ee2ae80">Link</a>
+
+
 <h2>Version: 2.0.2 (12/20/2013)</h2>
 
 <h3>Improvement</h3>
