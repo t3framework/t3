@@ -234,6 +234,18 @@ a.thumbnail:hover {
 .tab-content {
   overflow: visible;
 }
+.accordion-body.collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height .35s ease;
+  -moz-transition: height .35s ease;
+  -o-transition: height .35s ease;
+  transition: height .35s ease;
+}
+.accordion-body.collapse.in {
+  height: auto;
+}
 
 body {
   background-color: #fff;
@@ -1892,6 +1904,11 @@ input.invalid {
   padding: 10px 20px;
   text-shadow: none;
 }
+.t3-mainnav .navbar .nav > li > .separator,
+.t3-mainnav .navbar .nav > li > span {
+  padding: 10px 20px;
+  display: inline-block;
+}
 .t3-mainnav .navbar .nav > li > a:focus,
 .t3-mainnav .navbar .nav > li > a:hover {
   background-color: #666;
@@ -1987,6 +2004,9 @@ input.invalid {
 }
 .t3-mainnav .navbar .nav > li > .dropdown-menu:after {
   display: none;
+}
+.t3-mainnav .dropdown-submenu > .dropdown-menu {
+  margin-top: 0;
 }
 .t3-mainnav .dropdown-menu .disabled > a,
 .t3-mainnav .dropdown-menu .disabled > a:hover {
@@ -2485,6 +2505,20 @@ article aside .btn-group > .dropdown-toggle:focus {
 #searchForm legend {
   margin-bottom: 10px;
 }
+#searchForm .phrases-box input[type="radio"] {
+  vertical-align: top;
+  margin-top: 3px;
+}
+#search-form ul#finder-filter-select-list {
+  margin-right: 0;
+}
+#search-form ul#finder-filter-select-list li {
+  list-style: none;
+  padding: 10px 0;
+}
+#search-form ul#finder-filter-select-list li label {
+  width: 150px;
+}
 .phrases-box input,
 .phrases-box label,
 .form-limit input,
@@ -2601,6 +2635,10 @@ article aside .btn-group > .dropdown-toggle:focus {
 }
 .edit.item-page fieldset .form-actions {
   clear: both;
+  margin-top: 40px;
+}
+.com_media #imageForm #upbutton {
+  margin-top: 5px;
 }
 .button2-left,
 .button2-left div {

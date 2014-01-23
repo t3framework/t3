@@ -41,7 +41,7 @@ if (isset($this->error)) : ?>
 			</div>
 			<?php if ($this->params->get('show_email_copy')) { ?>
 				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('contact_email_copy'); ?></div>
+					<div class="control-label email_copy"><?php echo $this->form->getLabel('contact_email_copy'); ?></div>
 					<div class="controls"><?php echo $this->form->getInput('contact_email_copy'); ?></div>
 				</div>
 			<?php } ?>

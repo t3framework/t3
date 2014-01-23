@@ -1148,6 +1148,10 @@
   .t3-mainnav .nav-collapse .nav > li > a {
     margin-bottom: 0;
   }
+  .t3-mainnav .nav-collapse .nav > li > span {
+    padding: 10px 20px;
+    display: inline-block;
+  }
   .t3-mainnav .nav-collapse .nav > li > a,
   .t3-mainnav .nav-collapse .dropdown-menu a {
     border-bottom: 1px solid #eee;
@@ -1212,6 +1216,36 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 979px) {
+  #search-form .word a.btn {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .article-content iframe {
+    width: 100% !important;
+    height: auto;
+  }
+  .contact .form-horizontal .control-label.email_copy {
+    float: right;
+    margin-left: 5px;
+  }
+  .contact .thumbnail.pull-right {
+    width: 100%;
+    float: none;
+  }
+  .contact .thumbnail.pull-right img {
+    width: 100%;
+  }
+  .contact .dl-horizontal dt {
+    float: right;
+    margin-left: 5px;
+  }
+  .login-wrap .login_form fieldset,
+  .login-wrap .login fieldset {
+    padding-right: 20px;
+  }
+}
 @media (max-width: 599px) {
   article img[align=left],
   .img_caption.left,
@@ -1223,6 +1257,21 @@
     margin-right: 0;
     margin-left: 0;
     width: 100% !important;
+  }
+  a#advanced-search-toggle {
+    margin-top: 10px;
+  }
+  #search-form .word a.btn {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 360px) {
+  button.button {
+    margin-top: 10px;
+  }
+  #search-form .word button.btn,
+  #search-form .word a.btn {
+    margin-top: 10px;
   }
 }
 

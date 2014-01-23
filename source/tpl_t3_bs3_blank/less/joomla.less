@@ -123,8 +123,9 @@
 
 // Article Images
 // -------------------------
-article,
-.article-intro {
+
+.article-intro,
+.article-content {
 
   // Make the image reponsive.
   // Remove if you don't want article images to be responsived.
@@ -134,19 +135,15 @@ article,
 
   // Add proper margin
   img[align=left],
-  .img-fulltext-left,
-  .img-intro-left,
   .img_caption.left,
   .pull-left.item-image {
-    margin-right: @t3-global-margin;
+    margin: 0 (@t3-global-margin*1.5) @t3-global-margin 0;
   }
 
   img[align=right],
-  .img-fulltext-right,
   .img_caption.right,
-  .img-intro-right,
   .pull-right.item-image {
-    margin-left: @t3-global-margin;
+    margin: 0 0 @t3-global-margin (@t3-global-margin* 1.5);
   }
 
 }
@@ -159,56 +156,66 @@ article,
 .img-fulltext-right,
 .img_caption {
   position: relative;
+}
+
+.img-intro-none,
+.img-intro-left,
+.img-intro-right,
+.img-fulltext-none,
+.img-fulltext-left,
+.img-fulltext-right,
+.img_caption {
   margin-bottom: @t3-global-margin;
   max-width: 100%;
 }
 
 .img-fulltext-left {
   float: left;
+  margin-right: @t3-global-margin;
 }
 
 .img-fulltext-right {
   float: right;
+  margin-left: @t3-global-margin;
+}
+
+.img-intro-none img,
+.img-intro-left img,
+.img-intro-right img,
+.img-fulltext-none img,
+.img-fulltext-left img,
+.img-fulltext-right img {
+  margin: 0;
 }
 
 // Image caption
-.img_caption {
-  > img {
-    margin-bottom: 1px !important;
-  }
-  p.img_caption {
-    background: @gray-lighter;
-    color: @gray;
-    font-size: @font-size-small;
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-    text-align: center;
-    clear: both;
-  }
+.img_caption img {
+  margin-bottom: 1px !important;
 }
 
-// Reponsive Article Images on Mobile
+.img_caption p.img_caption {
+  background: @gray-lighter;
+  color: @gray;
+  font-size: @font-size-small;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  clear: both;
+}
+
+
+// Reponsive Article Images
 @media screen and (max-width: @screen-xs-max) {
-  article,
-  .article-intro {
-    img, .img_caption,
-    .article-image-full,
-    .article-image-intro,
-    .img-intro-none,
-    .img-intro-left,
-    .img-intro-right,
-    .img-fulltext-none,
-    .img-fulltext-left,
-    .img-fulltext-right, {
-      float: none !important;
-      margin-left: 0;
-      margin-right: 0;
-      width: 100% !important;
-    }
+  article img[align=left], .img_caption.left,
+  article img[align=right], .img_caption.right,
+  .img-fulltext-left, .img-fulltext-right {
+    float: none !important;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100% !important;
   }
 }
-
 
 
 // Article Actions
@@ -656,6 +663,23 @@ article aside .btn-group {
 
 }
 
+#search-form {
+  ul#finder-filter-select-list {
+    margin-left: 0;
+    padding-left: 0;
+    li {
+      list-style: none;
+      padding: (@t3-global-padding / 2) 0;
+      label {
+        width: 150px;
+      }
+    }
+  }
+  .word .form-group {
+    margin-bottom: @t3-global-margin / 2;
+  }
+}
+
 // Block level forms elements on Mobile
 @media screen and (max-width: @screen-sm-min) {
   #searchForm {
@@ -675,6 +699,8 @@ article aside .btn-group {
 // -------------
 .search-results {
   margin-top: @t3-global-margin;
+  margin-left: 0;
+  padding-left: 0;
 
   // Title
   .result-title {
@@ -731,17 +757,72 @@ div.finder {
 
 }
 
+#searchForm {
+  .phrases-box input[type="radio"] {
+    vertical-align: top;
+    margin-top: 3px;
+  }
+}
 
 
 //
 // CONTACT
 // ---------------------------------------------------------
-.contact {}
+.contact {
+  .thumbnail.pull-right {
+    @media (max-width: @screen-sm) {    
+      width: 100%;
+    }
+  }
+
+  .dl-horizontal {
+    > dt {
+      @media (max-width: @screen-sm) {          
+        float: left;
+        margin-right: 5px;
+        width: auto;
+      }
+    }
+
+    >dd {
+      @media (max-width: @screen-sm) {          
+        margin-left: 0;
+      }
+    }
+  }
+}
 
 .contact .accordion-heading .accordion-toggle {
   font-weight: bold;
 }
 
+.contact-form {
+  .form-group  {
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      @media (max-width: @screen-sm) {    
+        max-width: 65%;
+      }
+
+      @media (max-width: @screen-xs){
+        max-width: 55%;
+      }
+    }
+    
+  }
+
+  legend {
+    @media (max-width: @screen-sm) {
+      font-size: 17px;
+      max-width: 90%;
+    }
+
+    @media (max-width: @screen-xs){
+      max-width: 60%;
+    }
+  }
+}
 
 
 //
@@ -1160,6 +1241,15 @@ div.calendar {
   width: 187px;
 }
 
+// Edit 
+// --------
+.edit.item-page {
+  fieldset {
+    .btn-toolbar {
+      margin-top: (@t3-global-margin / 2);
+    }
+  }
+}
 
 // ---------------------------------------------------------
 // JOOMLA 3.0 EXTENDING BOOTSTRAP

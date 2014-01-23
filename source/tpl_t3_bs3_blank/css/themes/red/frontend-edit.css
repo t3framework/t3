@@ -170,15 +170,10 @@
   border: 1px solid #aaa;
   border-radius: 0;
   
-
   
-
   
-
   
-
   
-
 }
 .t3onoff input[type=radio] {
   display: none;
@@ -194,7 +189,7 @@
   left: -1px;
   z-index: 1;
   text-transform: uppercase;
-  background: url(../../../../../plugins/system/t3/base-bs3/less/../imgs/blank.gif) no-repeat transparent;
+  background: url(../../../../../plugins/system/t3/base-bs3/imgs/blank.gif) no-repeat transparent;
   text-indent: -999em;
 }
 .t3onoff label:before,
@@ -287,12 +282,15 @@ fieldset.radio.btn-group label.active {
 .icon-eye-open:before,
 .icon-eye:before {
   content: "\f06e";
+  font-family: "FontAwesome";
 }
 .icon-file-add:before {
   content: "\f0f6";
+  font-family: "FontAwesome";
 }
 .icon-cancel:before {
   content: "\f00d";
+  font-family: "FontAwesome";
 }
 .button2-left,
 .button2-left div {
@@ -313,7 +311,7 @@ fieldset.radio.btn-group label.active {
 .button2-left span,
 .button2-right span {
   background: #eeeeee;
-  border: 1px solid #e2e2e2;
+  border: 1px solid #e1e1e1;
   color: #999999;
   cursor: pointer;
   display: block;
@@ -334,18 +332,20 @@ fieldset.radio.btn-group label.active {
 }
 .button2-left a:hover,
 .button2-right a:hover {
-  background: #e2e2e2;
+  background: #e1e1e1;
   color: #333333;
   text-decoration: none;
 }
-.edit.item-page a.modal {
+.edit.item-page a.modal,
+.com_config form a.modal {
   display: inline-block;
   position: inherit;
   width: auto !important;
   top: auto !important;
   overflow: hidden;
 }
-.edit.item-page a.modal.btn {
+.edit.item-page a.modal.btn,
+.com_config form a.modal.btn {
   background: #ffffff;
   text-shadow: 0 1px 0 #fff;
   border-color: #cccccc;

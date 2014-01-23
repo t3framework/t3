@@ -248,9 +248,7 @@
   }
   .t3-megamenu.animate.slide .mega {
     
-  
     
-  
   }
   .t3-megamenu.animate.slide .mega.animating > .mega-dropdown-menu {
     overflow: hidden;
@@ -354,6 +352,9 @@
 .t3-megamenu .mega-group-ct .row {
   margin-right: -15px;
   margin-left: -15px;
+}
+.t3-megamenu .dropdown-menu .mega-group .mega-nav > li.active a {
+  color: #2d2d2d;
 }
 .t3-megamenu .mega-nav .dropdown-submenu > a::after {
   margin-left: 0;

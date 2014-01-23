@@ -213,7 +213,6 @@ article aside .btn-group {
 
 
 
-
 // ---------------------------------------------------------
 // COMMON JOOMLA STYLE
 // ---------------------------------------------------------
@@ -479,6 +478,23 @@ article aside .btn-group {
     margin-bottom: @T3globalMargin / 2;
   }
 
+  .phrases-box input[type="radio"] {
+    vertical-align: top;
+    margin-top: 3px;
+  }
+
+}
+#search-form {
+  ul#finder-filter-select-list {
+    margin-left: 0;
+    li {
+      list-style: none;
+      padding: (@T3globalPadding / 2) 0;
+      label {
+        width: 150px;
+      }
+    }
+  }
 }
 
 .phrases-box input,
@@ -528,6 +544,7 @@ article aside .btn-group {
   .highlight {
   }
 }
+
 
 
 
@@ -648,10 +665,14 @@ article aside .btn-group {
   fieldset {
     .form-actions {
       clear: both;
+      margin-top: @T3globalMargin*2;
     }
   }
 }
 
+.com_media #imageForm #upbutton {
+  margin-top: 5px;
+}
 
 // Editor Buttons
 // --------------

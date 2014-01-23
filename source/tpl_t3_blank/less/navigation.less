@@ -55,6 +55,12 @@
     text-shadow: none;
   }
 
+  .navbar .nav > li > .separator,
+  .navbar .nav > li > span {
+    padding: ((@navbarHeight - @T3globalPadding) / 2) @T3globalPadding;
+    display: inline-block;
+  }
+
   // Hover
   .navbar .nav > li > a:focus,
   .navbar .nav > li > a:hover {
@@ -137,6 +143,10 @@
     &:after {
       display: none;
     }
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    margin-top: 0;
   }
 
 

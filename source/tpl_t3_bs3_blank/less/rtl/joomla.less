@@ -6,3 +6,21 @@
   width: 0px;
   left: auto;
 }
+
+.article-intro,
+.article-content {
+
+  // Add proper margin
+  img[align=left],
+  .img_caption.left,
+  .pull-left.item-image {
+    margin: 0 @t3-global-margin*1.5 @t3-global-margin 0;
+  }  
+
+  img[align=right],
+  .img_caption.right,
+  .pull-right.item-image {
+    margin: 0 0 @t3-global-margin @t3-global-margin*1.5 ;
+  }
+
+}

@@ -279,64 +279,40 @@
   .controls-row [class*="span"] + [class*="span"] {
     margin-left: 40px;
   }
-  input.span12,
-  textarea.span12,
-  .uneditable-input.span12 {
+  input.span12, textarea.span12, .uneditable-input.span12 {
     width: 918px;
   }
-  input.span11,
-  textarea.span11,
-  .uneditable-input.span11 {
+  input.span11, textarea.span11, .uneditable-input.span11 {
     width: 837px;
   }
-  input.span10,
-  textarea.span10,
-  .uneditable-input.span10 {
+  input.span10, textarea.span10, .uneditable-input.span10 {
     width: 756px;
   }
-  input.span9,
-  textarea.span9,
-  .uneditable-input.span9 {
+  input.span9, textarea.span9, .uneditable-input.span9 {
     width: 675px;
   }
-  input.span8,
-  textarea.span8,
-  .uneditable-input.span8 {
+  input.span8, textarea.span8, .uneditable-input.span8 {
     width: 594px;
   }
-  input.span7,
-  textarea.span7,
-  .uneditable-input.span7 {
+  input.span7, textarea.span7, .uneditable-input.span7 {
     width: 513px;
   }
-  input.span6,
-  textarea.span6,
-  .uneditable-input.span6 {
+  input.span6, textarea.span6, .uneditable-input.span6 {
     width: 432px;
   }
-  input.span5,
-  textarea.span5,
-  .uneditable-input.span5 {
+  input.span5, textarea.span5, .uneditable-input.span5 {
     width: 351px;
   }
-  input.span4,
-  textarea.span4,
-  .uneditable-input.span4 {
+  input.span4, textarea.span4, .uneditable-input.span4 {
     width: 270px;
   }
-  input.span3,
-  textarea.span3,
-  .uneditable-input.span3 {
+  input.span3, textarea.span3, .uneditable-input.span3 {
     width: 189px;
   }
-  input.span2,
-  textarea.span2,
-  .uneditable-input.span2 {
+  input.span2, textarea.span2, .uneditable-input.span2 {
     width: 108px;
   }
-  input.span1,
-  textarea.span1,
-  .uneditable-input.span1 {
+  input.span1, textarea.span1, .uneditable-input.span1 {
     width: 27px;
   }
 }
@@ -982,14 +958,29 @@
 .hidden-default {
   display: none !important;
 }
-@media (min-width: 768px) and (max-width: 979px) {
-  .hidden-default {
-    display: inherit !important;
+@media (min-width: 1200px) {
+  .hidden-wide {
+    display: none !important;
   }
 }
-@media (max-width: 767px) {
-  .hidden-default {
-    display: inherit !important;
+@media (min-width: 980px) and (max-width: 1199px) {
+  .hidden-normal {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  .hidden-xtablet {
+    display: none !important;
+  }
+}
+@media (min-width: 600px) and (max-width: 767px) {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+@media (max-width: 599px) {
+  .hidden-mobile {
+    display: none !important;
   }
 }
 
@@ -1157,6 +1148,10 @@
   .t3-mainnav .nav-collapse .nav > li > a {
     margin-bottom: 0;
   }
+  .t3-mainnav .nav-collapse .nav > li > span {
+    padding: 10px 20px;
+    display: inline-block;
+  }
   .t3-mainnav .nav-collapse .nav > li > a,
   .t3-mainnav .nav-collapse .dropdown-menu a {
     border-bottom: 1px solid #444;
@@ -1184,6 +1179,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   }
   .t3-mainnav .nav-collapse .dropdown-menu.open a,
+  .t3-mainnav .nav-collapse .dropdown-submenu.open > a,
   .t3-mainnav .nav-collapse .dropdown-menu a:hover {
     background-color: #666;
     background-image: none;
@@ -1246,6 +1242,36 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 979px) {
+  #search-form .word a.btn {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .article-content iframe {
+    width: 100% !important;
+    height: auto;
+  }
+  .contact .form-horizontal .control-label.email_copy {
+    float: left;
+    margin-right: 5px;
+  }
+  .contact .thumbnail.pull-right {
+    width: 100%;
+    float: none;
+  }
+  .contact .thumbnail.pull-right img {
+    width: 100%;
+  }
+  .contact .dl-horizontal dt {
+    float: left;
+    margin-right: 5px;
+  }
+  .login-wrap .login_form fieldset,
+  .login-wrap .login fieldset {
+    padding-left: 20px;
+  }
+}
 @media (max-width: 599px) {
   article img[align=left],
   .img_caption.left,
@@ -1257,6 +1283,21 @@
     margin-left: 0;
     margin-right: 0;
     width: 100% !important;
+  }
+  a#advanced-search-toggle {
+    margin-top: 10px;
+  }
+  #search-form .word a.btn {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 360px) {
+  button.button {
+    margin-top: 10px;
+  }
+  #search-form .word button.btn,
+  #search-form .word a.btn {
+    margin-top: 10px;
   }
 }
 
