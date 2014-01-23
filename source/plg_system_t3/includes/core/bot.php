@@ -305,6 +305,12 @@ class T3Bot extends JObject
 			$extras[] = JFile::stripExt($file);
 		}
 		if (count($extras)) {
+			
+			//load languages
+			if(!defined('T3_TEMPLATE')){
+				JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+			}
+
 			$_xml =
 				'<?xml version="1.0"?>
 				<form>
