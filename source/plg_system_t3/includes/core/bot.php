@@ -353,6 +353,12 @@ class T3Bot extends JObject
 			if (count($extras)) {
 
 				if ($form->getName() == 'com_categories.categorycom_content'){
+					
+					//load languages
+					if(!defined('T3_TEMPLATE')){
+						JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+					}
+
 					$_xml =
 						'<?xml version="1.0"?>
 						<form>
@@ -360,8 +366,9 @@ class T3Bot extends JObject
 								<fieldset name="t3_extrafields_params" label="T3_EXTRA_FIELDS_GROUP_LABEL" description="T3_EXTRA_FIELDS_GROUP_DESC">
 									<field name="t3_extrafields" type="list" default="" show_none="true" label="T3_EXTRA_FIELDS_LABEL" description="T3_EXTRA_FIELDS_DESC">
 										<option value="">JNONE</option>';
+									
 									foreach ($extras as $extra) {
-										$_xml .= '<option value="' . $extra . '">T3_EXTRA_FIELDS_' . $extra . '</option>';
+										$_xml .= '<option value="' . $extra . '">' . ucfirst($extra) . '</option>';
 									}
 
 									$_xml .= '
@@ -372,11 +379,12 @@ class T3Bot extends JObject
 						';
 					$xml = simplexml_load_string($_xml);
 					$form->load ($xml, false);
+
 				} else {
 					
 					$app   = JFactory::getApplication();
 					$input = $app->input;
-					$fdata = empty($data) ? $input->post->get('jform', array(), 'array') : $data->getProperties();
+					$fdata = empty($data) ? $input->post->get('jform', array(), 'array') : (is_object($data) ? $data->getProperties() : false);
 					$catid = $input->getInt('catid', $app->getUserState('com_content.articles.filter.category_id'));
 
 					if(!$catid && !empty($fdata)){
