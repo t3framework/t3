@@ -1184,6 +1184,12 @@ ul.latestusers li {
 .article-content .pull-right.item-image {
   margin: 0 30px 20px 0;
 }
+@media (max-width: 768px) {
+  .article-content iframe {
+    width: 100% !important;
+    height: auto;
+  }
+}
 .img-intro-none,
 .img-intro-left,
 .img-intro-right,
