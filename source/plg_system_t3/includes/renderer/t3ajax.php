@@ -87,7 +87,7 @@ class JDocumentRendererT3Ajax extends JDocumentRenderer
 	protected function htmlModule($info, $params = array(), $content = null)
 	{		
 		$input = JFactory::getApplication()->input;
-		$mid = $input->getCmd('m');
+		$mid = $input->getInt('m');
 
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);

@@ -74,7 +74,7 @@ JHtml::_('behavior.keepalive');
           <div class="checkbox">
             <label>
               <input id="remember" type="checkbox" name="remember" value="yes"/> 
-              <?php echo JText::_('COM_USERS_LOGIN_REMEMBER_ME') ?>
+              <?php echo JText::_(version_compare(JVERSION, '3.0', 'ge') ? 'COM_USERS_LOGIN_REMEMBER_ME' : 'JGLOBAL_REMEMBER_ME') ?>
             </label>
           </div>
         </div>

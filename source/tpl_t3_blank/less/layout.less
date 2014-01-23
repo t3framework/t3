@@ -31,3 +31,14 @@
                      // This should be either visible (to allow e.g. tooltips to overflow into the margins)
                      // or hidden (in which case e.g. tooltips will be clipped).
 }
+
+// overwrite
+.accordion-body.collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  .transition(height .35s ease);
+  &.in {
+    height: auto;
+  }
+}
