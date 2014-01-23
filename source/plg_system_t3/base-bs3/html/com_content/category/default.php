@@ -17,18 +17,22 @@ JHtml::_('behavior.caption');
 <div class="category-list<?php echo $this->pageclass_sfx;?>">
 
 	<?php if ($this->params->get('show_page_heading')) : ?>
-	<h1>
-		<?php echo $this->escape($this->params->get('page_heading')); ?>
-	</h1>
+	<div class="page-header">
+		<h1>
+			<?php echo $this->escape($this->params->get('page_heading')); ?>
+		</h1>
+	</div>
 	<?php endif; ?>
 
 	<?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
-	<h2>
-		<?php echo $this->escape($this->params->get('page_subheading')); ?>
-		<?php if ($this->params->get('show_category_title')) : ?>
-			<span class="subheading-category"><?php echo $this->category->title;?></span>
-		<?php endif; ?>
-	</h2>
+	<div class="page-subheader">
+		<h2>
+			<?php echo $this->escape($this->params->get('page_subheading')); ?>
+			<?php if ($this->params->get('show_category_title')) : ?>
+				<span class="subheading-category"><?php echo $this->category->title;?></span>
+			<?php endif; ?>
+		</h2>
+	</div>
 	<?php endif; ?>
 
 	<?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
