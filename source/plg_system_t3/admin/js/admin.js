@@ -643,7 +643,8 @@ var T3Admin = window.T3Admin || {};
 					$(e.target).val(val.selected).trigger('liszt:updated');
 				} else {
 					var hasExclusive = 0,
-						filterd = $.grep($(e.target).val(), function(val){
+						vals = $(e.target).val(),
+						filterd = $.isArray(vals) && $.grep(vals, function(val){
 							hasExclusive = hasExclusive || (val == '0' || val == '-1');
 
 							return !(val == '0' || val == '-1'); 

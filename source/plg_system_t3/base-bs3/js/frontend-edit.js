@@ -26,7 +26,7 @@
 
 		//add class on/off
 		$('fieldset.t3onoff').find('label').addClass(function(){
-			return $(this).prev('input').val() == '0' ? 'off' : 'on'
+			return $(this).hasClass('off') || $(this).prev('input').val() == '0' ? 'off' : 'on'
 		});
 
 		//listen to all
