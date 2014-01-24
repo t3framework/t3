@@ -1,4 +1,4 @@
-<h2>Version: 2.1.0 (01/23/2014)</h2>
+<h2>Version: 2.1.0 (01/24/2014)</h2>
 
 
 <h3>New features</h3>	
@@ -41,7 +41,9 @@ Megamenu Duration not working in current Firefox | <a href="https://github.com/t
 - Fixed FrontentEdit Icon. Added Primary Jumbotron. | <a href="https://github.com/t3framework/t3/commit/49bfb7cb9678349f4d6c45ddb8aea05400fe5d9b">Link</a>
 - Updated Default Categoty View HTML | <a href="https://github.com/t3framework/t3/commit/e6d3b580f03973052f4316a916cc9b9237048791">Link</a>
 - Base: add overrwite smartsearch | <a href="https://github.com/t3framework/t3/commit/0f977ef45e6208134fab5b17ba73af368ee2ae80">Link</a>
-
+- Fix off-canvas close when Always Show sub disabled | <a href="https://github.com/t3framework/t3/commit/9a1f21c9ee9a2519693ed2e0d6d07963dfd82f56">Link</a>
+- Fix extrafields when have multiple languages | <a href="https://github.com/t3framework/t3/commit/f7a1e224ac32c772afd88537798ebdc8b4017c45">Link</a>
+- Fix LESSJS compatible with Mootools | <a href="https://github.com/t3framework/t3/commit/21ee43b67a707184029e8fc189c08c7f8e2720c4">Link</a>
 
 <h2>Version: 2.0.2 (12/20/2013)</h2>
 
