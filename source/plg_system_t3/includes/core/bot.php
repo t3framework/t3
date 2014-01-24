@@ -398,6 +398,11 @@ class T3Bot extends JObject
 					}
 
 					if($catid){
+
+						if(version_compare(JVERSION, '3.0', 'lt')){
+							jimport('joomla.application.categories');
+						}
+
 						$categories = JCategories::getInstance('Content', array('countItems' => 0 ));
 						$category = $categories->get($catid);
 						$params = $category->params;
