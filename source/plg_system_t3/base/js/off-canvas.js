@@ -83,7 +83,15 @@
 				}, 1000);
 			},
 
-			hideNav = function () {
+			hideNav = function (e) {
+
+				//prevent close on the first click of parent item
+				if(e && e.type == 'click' 
+					&& e.target.tagName.toUpperCase() == 'A' 
+					&& $(e.target).parent('li').data('noclick')){
+					return true;
+				}
+
 				$(window).unbind('scroll touchmove', posNav);
 				$('#off-canvas-nav').unbind ('click');
 				$('#off-canvas-nav a').unbind ('click', hideNav);
