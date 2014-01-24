@@ -2566,6 +2566,31 @@ function _math(fn, unit, n) {
     return new(tree.Dimension)(fn(parseFloat(n.value)), unit);
 }
 
+//T3: Overwrite
+if(window.MooTools){
+	_math.bind = function (oThis) {
+	  if (typeof this !== 'function') {
+			throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+	  }
+
+	  var aArgs = Array.prototype.slice.call(arguments, 1), 
+	      fToBind = this, 
+	      fNOP = function () {},
+	      fBound = function () {
+	        return fToBind.apply(this instanceof fNOP && oThis
+	                               ? this
+	                               : oThis,
+	                             aArgs.concat(Array.prototype.slice.call(arguments)));
+	      };
+
+	  fNOP.prototype = this.prototype;
+	  fBound.prototype = new fNOP();
+
+	  return fBound;
+	}
+}
+//End T3
+
 // ~ End of Math
 
 // Color Blending
