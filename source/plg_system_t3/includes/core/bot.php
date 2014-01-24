@@ -393,7 +393,7 @@ class T3Bot extends JObject
 					$fdata = empty($data) ? $input->post->get('jform', array(), 'array') : (is_object($data) ? $data->getProperties() : $data);
 					$catid = $input->getInt('catid', $app->getUserState('com_content.articles.filter.category_id'));
 
-					if(!$catid && is_array($data) && !empty($fdata)){
+					if(!$catid && is_array($fdata) && !empty($fdata)){
 						$catid = $fdata['catid'];
 					}
 
