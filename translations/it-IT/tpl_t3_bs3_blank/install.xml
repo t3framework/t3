@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" client="site" type="language" method="upgrade">
+	<name>T3 Framework (it-IT)</name>
+	<tag>it-IT</tag>
+	<version>1.0.0</version>
+	<creationDate>Decembre 2013</creationDate>
+	<author>Andrea Mercati</author>
+	<authorEmail>andreamercati@gmail.com</authorEmail>
+	<authorUrl>http://www.t3-framework.org</authorUrl>
+	<copyright>Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>Italian translation for T3 Framework</description>
+	<files>
+		<filename>it-IT.tpl_t3_bs3_blank.ini</filename>
+		<filename>it-IT.tpl_t3_bs3_blank.sys.ini</filename>
+
+		<filename file="meta">install.xml</filename>
+	</files>
+</extension>
