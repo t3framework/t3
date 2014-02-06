@@ -840,7 +840,7 @@ class T3Template extends ObjectExtendable
 		// TEMPLATE CSS
 		$this->addCss('template', false);
 
-		if (!$responsive) {
+		if (!$responsive && $this->responcls) {
 			$this->addCss('non-responsive'); //no responsive
 
 			$nonrespwidth = $this->getParam('non_responsive_width', '970px');
