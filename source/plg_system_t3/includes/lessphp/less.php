@@ -15,7 +15,6 @@
 // No direct access
 defined('_JEXEC') or die();
 
-T3::import('lessphp/less/cache');
 T3::import('lessphp/less/less');
 
 /**
@@ -154,10 +153,7 @@ class T3Less
 		//check system
 		self::requirement();
 
-		//reset import dirs
-		Less_Cache::$import_dirs = array();
 		$parser = new Less_Parser();
-
 		$app    = JFactory::getApplication();
 		$tpl    = T3_TEMPLATE;
 		$theme  = $app->getUserState('vars_theme');
@@ -579,10 +575,7 @@ class T3Less
 		//check system
 		self::requirement();
 
-		//reset import dirs
-		Less_Cache::$import_dirs = array();
 		$parser = new Less_Parser();
-
 		$app    = JFactory::getApplication();
 		$doc    = JFactory::getDocument();
 		$tpl    = T3_TEMPLATE;
