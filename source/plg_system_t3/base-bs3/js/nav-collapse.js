@@ -26,7 +26,7 @@ jQuery(document).ready(function ($) {
             $placeholder = $navwrapper.prev('.navbar-collapse');
 
             if(!$placeholder.length){
-                $placeholder = $navwrapper.closet('.container, .t3-mainnav').find('.navbar-collapse');
+                $placeholder = $navwrapper.closest('.container, .t3-mainnav').find('.navbar-collapse');
             }
             
             var lis = $menu.find('li[data-id]'),
