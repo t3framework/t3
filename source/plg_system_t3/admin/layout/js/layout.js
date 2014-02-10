@@ -824,7 +824,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 				grid: gridsize + absgap,
 				gap: absgap,
 				minwidth: gridsize,
-				maxwidth: (minsize + absgap) * cmaxcol - absgap + 6
+				maxwidth: (gridsize + absgap) * T3AdminLayout.layout.maxgrid - absgap + 6
 			});
 
 			jspl.find('.t3-admin-layout-unit').each(function(idx){
