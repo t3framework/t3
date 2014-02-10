@@ -90,7 +90,7 @@ defined('_JEXEC') or die;
 				<button name="Search" type="submit" class="btn btn-primary disabled"><span class="fa fa-search"></span> <?php echo JText::_('JSEARCH_FILTER_SUBMIT');?></button>
 			<?php endif; ?>
 			<?php if ($this->params->get('show_advanced', 1)) : ?>
-				<a href="#advancedSearch" data-toggle="collapse" class="btn"><span class="fa fa-list"></span> <?php echo JText::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?></a>
+				<a href="#advancedSearch" data-toggle="collapse" class="btn btn-default"><span class="fa fa-list"></span> <?php echo JText::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?></a>
 			<?php endif; ?>
 		</div>
 </fieldset>
