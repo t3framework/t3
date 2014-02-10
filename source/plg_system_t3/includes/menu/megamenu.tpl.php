@@ -63,7 +63,10 @@ class T3MenuMegamenuTpl
 		$cls     = 'nav-child ' . ($item->dropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-ct');
 		$style   = '';
 		$data    = '';
-		if (isset($setting['class'])) $data .= " data-class=\"{$setting['class']}\"";
+		if (isset($setting['class'])) {
+			$data .= " data-class=\"{$sub['class']}\"";
+			$cls  .= " {$sub['class']}";
+		}
 		if (isset($setting['alignsub']) && $setting['alignsub'] == 'justify') {
 			$cls  .= ' ' . ($vars['menu']->editmode ? 'span' : T3_BASE_NONRSP_WIDTH_PREFIX) . '12';
 		} else {
