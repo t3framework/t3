@@ -113,10 +113,17 @@ jQuery (document).ready(function($){
     };
 
     var oc_hide = function () {
-        $wrapper.removeClass ('off-canvas-open');
+        
+        //remove events
         $wrapper.off ('tap', oc_hide);
         $close.off ('click', oc_hide);
         $offcanvas.off ('click', stopBubble);
+
+        //delay for click action
+        setTimeout(function(){
+            $wrapper.removeClass ('off-canvas-open');
+        }, 100);
+
         setTimeout (function (){
             $wrapper.removeClass ($btn.data('effect')).removeClass ('off-canvas-'+direction);
             $wrapper.scrollTop (0);
