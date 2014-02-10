@@ -199,6 +199,7 @@
 						 description="T3_NAVIGATION_MM_GROUP_DESC"/>
 
 			<field name="navigation_type" type="radio" class="t3onoff" default="megamenu"
+						 global="1"
 						 label="T3_NAVIGATION_MM_ENABLE_LABEL"
 						 description="T3_NAVIGATION_MM_ENABLE_DESC">
 				<option value="t3bootstrap" class="off">JNO</option>
