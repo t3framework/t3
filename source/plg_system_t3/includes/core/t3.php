@@ -132,6 +132,12 @@ class T3 {
 				if (!class_exists('JModuleHelper', false)) T3::import ('joomla25/modulehelper');
 				// JPagination
 				if (!class_exists('JPagination', false)) T3::import ('joomla25/pagination');
+
+				//register layout
+				JLoader::register('JLayout',       T3_ADMIN_PATH . '/includes/joomla25/layout/layout.php');
+				JLoader::register('JLayoutBase',   T3_ADMIN_PATH . '/includes/joomla25/layout/base.php');
+				JLoader::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
+				JLoader::register('JLayoutHelper', T3_ADMIN_PATH . '/includes/joomla25/layout/helper.php');
 			}
 
 			// import renderer
