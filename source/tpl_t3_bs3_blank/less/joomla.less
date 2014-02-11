@@ -781,16 +781,16 @@ div.finder {
 }
 
 
+
 //
 // CONTACT
 // ---------------------------------------------------------
 .contact {
-  .thumbnail.pull-right {
+  .thumbnail {
     @media (max-width: @screen-sm) {    
       width: 100%;
     }
   }
-
   .dl-horizontal {
     > dt {
       @media (max-width: @screen-sm) {          
@@ -799,8 +799,7 @@ div.finder {
         width: auto;
       }
     }
-
-    >dd {
+    > dd {
       @media (max-width: @screen-sm) {          
         margin-left: 0;
       }
@@ -808,37 +807,28 @@ div.finder {
   }
 }
 
-.contact .accordion-heading .accordion-toggle {
+.contact-form {
+  // Fixed for Input and Text Area not display properly
+  #jform_contact_emailmsg {
+    width: 100%;
+  }
+  #jform_contact_message {
+    width: 100%;
+    height: auto;
+  }
+  // Hide the Capcha Label on Small Screen
+  @media (max-width: @screen-sm) {
+    #jform_captcha-lbl {
+      display: none;
+    }
+  }
+}
+
+// The Accordion Title
+.contact .accordion-toggle {
   font-weight: bold;
 }
 
-.contact-form {
-  .form-group  {
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      @media (max-width: @screen-sm) {    
-        max-width: 65%;
-      }
-
-      @media (max-width: @screen-xs){
-        max-width: 55%;
-      }
-    }
-    
-  }
-
-  legend {
-    @media (max-width: @screen-sm) {
-      font-size: 17px;
-      max-width: 90%;
-    }
-
-    @media (max-width: @screen-xs){
-      max-width: 60%;
-    }
-  }
-}
 
 
 //
