@@ -137,7 +137,7 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ICON', 'T3_NAVIGATION_MM_ICON_DESC') ?>">
+                  <label class="hasTip" data-placement="right" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ICON', 'T3_NAVIGATION_MM_ICON_DESC') ?>">
                     <a href="http://fortawesome.github.io/Font-Awesome/icons" target="_blank"><i class="icon-search"></i>  <?php echo JText::_('T3_NAVIGATION_MM_ICON') ?></a>
                   </label>
                   <fieldset class="">
