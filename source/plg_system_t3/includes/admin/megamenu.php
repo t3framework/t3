@@ -322,4 +322,57 @@ class T3AdminMegamenu
 		
 		exit;
 	}
+
+	/**
+	 * Copy from Joomla 3.x
+	 */
+	public static function tooltipText($title = '', $content = '', $translate = 1, $escape = 1)
+	{
+	  // Return empty in no title or content is given.
+	  if ($title == '' && $content == '')
+	  {
+	    return '';
+	  }
+
+	  // Split title into title and content if the title contains '::' (old Mootools format).
+	  if ($content == '' && !(strpos($title, '::') === false))
+	  {
+	    list($title, $content) = explode('::', $title, 2);
+	  }
+
+	  // Pass texts through the JText.
+	  if ($translate)
+	  {
+	    $title = JText::_($title);
+	    $content = JText::_($content);
+	  }
+
+	  // Escape the texts.
+	  if ($escape)
+	  {
+	    $title = str_replace('"', '&quot;', $title);
+	    $content = str_replace('"', '&quot;', $content);
+	  }
+
+	  // Return only the content if no title is given.
+	  if ($title == '')
+	  {
+	    return $content;
+	  }
+
+	  // Return only the title if title and text are the same.
+	  if ($title == $content)
+	  {
+	    return '<strong>' . $title . '</strong>';
+	  }
+
+	  // Return the formated sting combining the title and  content.
+	  if ($content != '')
+	  {
+	    return '<strong>' . $title . '</strong><br />' . $content;
+	  }
+
+	  // Return only the title.
+	  return $title;
+	}
 }

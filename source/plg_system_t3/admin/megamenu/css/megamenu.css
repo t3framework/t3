@@ -114,6 +114,8 @@ body.bd {
 #t3-admin-mm-tb .admin-toolbox li > label {
   font-size: 11px;
   color: #999999;
+  display: inline-block;
+
 }
 
 #t3-admin-mm-tb .btn [class^="icon-"],

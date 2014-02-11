@@ -45,7 +45,7 @@ defined('_JEXEC') or die;
       <div class="controls-row">
         <div class="control-group t3-control-group">
           <div class="control-label t3-control-label">
-            <label id="menu-type-lbl" for="menu-type" class="hasTip" title="<?php echo JText::_('T3_NAVIGATION_MM_TYPE_LABEL'), '::', JTexT::_('T3_NAVIGATION_MM_TYPE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_TYPE_LABEL'); ?></label>
+            <label id="menu-type-lbl" for="menu-type" class="hasTip" data-placement="right" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_TYPE_LABEL', 'T3_NAVIGATION_MM_TYPE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_TYPE_LABEL'); ?></label>
           </div>
           <div class="controls t3-controls">
             <select id="menu-type" name="menu-type">
@@ -57,10 +57,9 @@ defined('_JEXEC') or die;
         </div>
         <div class="control-group t3-control-group">
           <div class="control-label t3-control-label">
-            <label id="access-level-lbl" for="access-level" class="hasTip" title="<?php echo JText::_('T3_NAVIGATION_ACL_LABEL'), '::', JTexT::_('T3_NAVIGATION_ACL_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_ACL_LABEL'); ?></label>
+            <label id="access-level-lbl" for="access-level" class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_ACL_LABEL', 'T3_NAVIGATION_ACL_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_ACL_LABEL'); ?></label>
           </div>
           <div class="controls t3-controls">
-            <?php //echo JHtml::_('access.level', 'access-level', '', 'multiple="multiple"', array(), 'access-level') ?>
             <select id="access-level" name="access-level">
               <?php foreach (self::access() as $access) : ?>
                 <option value="<?php echo $access->value ?>"><?php echo $access->text ?></option>
@@ -90,47 +89,47 @@ defined('_JEXEC') or die;
         <div class="t3-admin-mm-row clearfix">
 
           <div id="t3-admin-mm-intro" class="pull-left">
-            <h3><?php echo JTexT::_('T3_NAVIGATION_MM_TOOLBOX') ?></h3>
-            <p><?php echo JTexT::_('T3_NAVIGATION_MM_TOOLBOX_DESC') ?></p>
+            <h3><?php echo JText::_('T3_NAVIGATION_MM_TOOLBOX') ?></h3>
+            <p><?php echo JText::_('T3_NAVIGATION_MM_TOOLBOX_DESC') ?></p>
           </div>
 
           <div id="t3-admin-mm-tb">
             <div id="t3-admin-mm-toolitem" class="admin-toolbox">
-              <h3><?php echo JTexT::_('T3_NAVIGATION_MM_ITEM_CONF') ?></h3>
+              <h3><?php echo JText::_('T3_NAVIGATION_MM_ITEM_CONF') ?></h3>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_SUBMENU'), '::', JTexT::_('T3_NAVIGATION_MM_SUBMENU_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMENU') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_SUBMENU', 'T3_NAVIGATION_MM_SUBMENU_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_SUBMENU') ?></label>
                   <fieldset class="radio btn-group toolitem-sub">
                     <input type="radio" id="toggleSub0" class="toolbox-toggle" data-action="toggleSub" name="toggleSub" value="0"/>
-                    <label for="toggleSub0"><?php echo JTexT::_('JNO') ?></label>
+                    <label for="toggleSub0"><?php echo JText::_('JNO') ?></label>
                     <input type="radio" id="toggleSub1" class="toolbox-toggle" data-action="toggleSub" name="toggleSub" value="1" checked="checked"/>
-                    <label for="toggleSub1"><?php echo JTexT::_('JYES') ?></label>
+                    <label for="toggleSub1"><?php echo JText::_('JYES') ?></label>
                   </fieldset>
                 </li>
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_GROUP'), '::', JTexT::_('T3_NAVIGATION_MM_GROUP_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_GROUP') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_GROUP', 'T3_NAVIGATION_MM_GROUP_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_GROUP') ?></label>
                   <fieldset class="radio btn-group toolitem-group">
                     <input type="radio" id="toggleGroup0" class="toolbox-toggle" data-action="toggleGroup" name="toggleGroup" value="0"/>
-                    <label for="toggleGroup0"><?php echo JTexT::_('JNO') ?></label>
+                    <label for="toggleGroup0"><?php echo JText::_('JNO') ?></label>
                     <input type="radio" id="toggleGroup1" class="toolbox-toggle" data-action="toggleGroup" name="toggleGroup" value="1" checked="checked"/>
-                    <label for="toggleGroup1"><?php echo JTexT::_('JYES') ?></label>
+                    <label for="toggleGroup1"><?php echo JText::_('JYES') ?></label>
                   </fieldset>
                 </li>
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_POSITIONS'), '::', JTexT::_('T3_NAVIGATION_MM_POSITIONS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_POSITIONS') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_POSITIONS', 'T3_NAVIGATION_MM_POSITIONS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_POSITIONS') ?></label>
                   <fieldset class="btn-group">
-                    <a href="" class="btn toolitem-moveleft toolbox-action" data-action="moveItemsLeft" title="<?php echo JTexT::_('T3_NAVIGATION_MM_MOVE_LEFT') ?>"><i class="icon-arrow-left"></i></a>
-                    <a href="" class="btn toolitem-moveright toolbox-action" data-action="moveItemsRight" title="<?php echo JTexT::_('T3_NAVIGATION_MM_MOVE_RIGHT') ?>"><i class="icon-arrow-right"></i></a>
+                    <a href="" class="btn toolitem-moveleft toolbox-action" data-action="moveItemsLeft" title="<?php echo JText::_('T3_NAVIGATION_MM_MOVE_LEFT') ?>"><i class="icon-arrow-left"></i></a>
+                    <a href="" class="btn toolitem-moveright toolbox-action" data-action="moveItemsRight" title="<?php echo JText::_('T3_NAVIGATION_MM_MOVE_RIGHT') ?>"><i class="icon-arrow-right"></i></a>
                   </fieldset>
                 </li>
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS'), '::', JTexT::_('T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_EX_CLASS', 'T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolitem-exclass toolbox-input" name="toolitem-exclass" data-name="class" value="" />
                   </fieldset>
@@ -138,8 +137,8 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ICON'), '::', JTexT::_('T3_NAVIGATION_MM_ICON_DESC') ?>">
-                    <a href="http://fortawesome.github.io/Font-Awesome/#icons-web-app" target="_blank"><i class="icon-search"></i>  <?php echo JTexT::_('T3_NAVIGATION_MM_ICON') ?></a>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ICON', 'T3_NAVIGATION_MM_ICON_DESC') ?>">
+                    <a href="http://fortawesome.github.io/Font-Awesome/icons" target="_blank"><i class="icon-search"></i>  <?php echo JText::_('T3_NAVIGATION_MM_ICON') ?></a>
                   </label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
@@ -148,8 +147,8 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_CAPTION'), '::', JTexT::_('T3_NAVIGATION_MM_CAPTION_DESC') ?>">
-                    <?php echo JTexT::_('T3_NAVIGATION_MM_CAPTION') ?>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_CAPTION', 'T3_NAVIGATION_MM_CAPTION_DESC') ?>">
+                    <?php echo JText::_('T3_NAVIGATION_MM_CAPTION') ?>
                   </label>
                   <fieldset class="">
                     <input type="text" class="input-large toolitem-caption toolbox-input" name="toolitem-caption" data-name="caption" value="" />
@@ -159,10 +158,10 @@ defined('_JEXEC') or die;
             </div>
 
             <div id="t3-admin-mm-toolsub" class="admin-toolbox">
-              <h3><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_CONF') ?></h3>
+              <h3><?php echo JText::_('T3_NAVIGATION_MM_SUBMNEU_CONF') ?></h3>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID'), '::', JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_SUBMNEU_GRID', 'T3_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
                   <fieldset class="btn-group">
                     <a href="" class="btn toolsub-addrow toolbox-action" data-action="addRow"><i class="icon-plus"></i></a>
                   </fieldset>
@@ -170,18 +169,18 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE'), '::', JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_HIDE_COLLAPSE', 'T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
                   <fieldset class="radio btn-group toolsub-hidewhencollapse">
                     <input type="radio" id="togglesubHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="togglesubHideWhenCollapse" value="0" checked="checked"/>
-                    <label for="togglesubHideWhenCollapse0"><?php echo JTexT::_('JNO') ?></label>
+                    <label for="togglesubHideWhenCollapse0"><?php echo JText::_('JNO') ?></label>
                     <input type="radio" id="togglesubHideWhenCollapse1" class="toolbox-toggle" data-action="hideWhenCollapse" name="togglesubHideWhenCollapse" value="1"/>
-                    <label for="togglesubHideWhenCollapse1"><?php echo JTexT::_('JYES') ?></label>
+                    <label for="togglesubHideWhenCollapse1"><?php echo JText::_('JYES') ?></label>
                   </fieldset>
                 </li>
               </ul>                    
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX'), '::', JTexT::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX', 'T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX') ?></label>
                   <fieldset class="">
                     <input type="text" class="toolsub-width toolbox-input input-small" name="toolsub-width" data-name="width" value="" />
                   </fieldset>
@@ -189,20 +188,20 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ALIGN'), '::', JTexT::_('T3_NAVIGATION_MM_ALIGN_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_ALIGN') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ALIGN', 'T3_NAVIGATION_MM_ALIGN_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_ALIGN') ?></label>
                   <fieldset class="toolsub-alignment">
                     <div class="btn-group">
-                      <a class="btn toolsub-align-left toolbox-action" href="#" data-action="alignment" data-align="left" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ALIGN_LEFT') ?>"><i class="icon-align-left"></i></a>
-                      <a class="btn toolsub-align-right toolbox-action" href="#" data-action="alignment" data-align="right" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ALIGN_RIGHT') ?>"><i class="icon-align-right"></i></a>
-                      <a class="btn toolsub-align-center toolbox-action" href="#" data-action="alignment" data-align="center" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ALIGN_CENTER') ?>"><i class="icon-align-center"></i></a>
-                      <a class="btn toolsub-align-justify toolbox-action" href="#" data-action="alignment" data-align="justify" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ALIGN_JUSTIFY') ?>"><i class="icon-align-justify"></i></a>
+                      <a class="btn toolsub-align-left toolbox-action" href="#" data-action="alignment" data-align="left" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_LEFT') ?>"><i class="icon-align-left"></i></a>
+                      <a class="btn toolsub-align-right toolbox-action" href="#" data-action="alignment" data-align="right" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_RIGHT') ?>"><i class="icon-align-right"></i></a>
+                      <a class="btn toolsub-align-center toolbox-action" href="#" data-action="alignment" data-align="center" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_CENTER') ?>"><i class="icon-align-center"></i></a>
+                      <a class="btn toolsub-align-justify toolbox-action" href="#" data-action="alignment" data-align="justify" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_JUSTIFY') ?>"><i class="icon-align-justify"></i></a>
                     </div>
                   </fieldset>
                 </li>
               </ul>          
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS'), '::', JTexT::_('T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_EX_CLASS', 'T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
                   <fieldset class="">
                     <input type="text" class="toolsub-exclass toolbox-input input-medium" name="toolsub-exclass" data-name="class" value="" />
                   </fieldset>
@@ -211,10 +210,10 @@ defined('_JEXEC') or die;
             </div>
 
             <div id="t3-admin-mm-toolcol" class="admin-toolbox">
-              <h3><?php echo JTexT::_('T3_NAVIGATION_MM_COLUMN_CONF') ?></h3>
+              <h3><?php echo JText::_('T3_NAVIGATION_MM_COLUMN_CONF') ?></h3>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN'), '::', JTexT::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN', 'T3_NAVIGATION_MM_ADD_REMOVE_COLUMN_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN') ?></label>
                   <fieldset class="btn-group">
                     <a href="" class="btn toolcol-addcol toolbox-action" data-action="addColumn"><i class="icon-plus"></i></a>
                     <a href="" class="btn toolcol-removecol toolbox-action" data-action="removeColumn"><i class="icon-minus"></i></a>
@@ -223,18 +222,18 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE'), '::', JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_HIDE_COLLAPSE', 'T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
                   <fieldset class="radio btn-group toolcol-hidewhencollapse">
                     <input type="radio" id="toggleHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="toggleHideWhenCollapse" value="0" checked="checked"/>
-                    <label for="toggleHideWhenCollapse0"><?php echo JTexT::_('JNO') ?></label>
+                    <label for="toggleHideWhenCollapse0"><?php echo JText::_('JNO') ?></label>
                     <input type="radio" id="toggleHideWhenCollapse1" class="toolbox-toggle" data-action="hideWhenCollapse" name="toggleHideWhenCollapse" value="1"/>
-                    <label for="toggleHideWhenCollapse1"><?php echo JTexT::_('JYES') ?></label>
+                    <label for="toggleHideWhenCollapse1"><?php echo JText::_('JYES') ?></label>
                   </fieldset>
                 </li>
               </ul>          
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_WIDTH_SPAN'), '::', JTexT::_('T3_NAVIGATION_MM_WIDTH_SPAN_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_WIDTH_SPAN') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_WIDTH_SPAN', 'T3_NAVIGATION_MM_WIDTH_SPAN_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_WIDTH_SPAN') ?></label>
                   <fieldset class="">
                     <select class="toolcol-width toolbox-input toolbox-select input-mini" name="toolcol-width" data-name="width">
                       <option value="1">1</option>
@@ -255,9 +254,9 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_MODULE'), '::', JTexT::_('T3_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_MODULE') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_MODULE', 'T3_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_MODULE') ?></label>
                   <fieldset class="">
-                    <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JTexT::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
+                    <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JText::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
                       <option value=""></option>
                       <?php foreach (T3AdminMegamenu::modules() as $module): ?>
                         <option value="<?php echo $module->id ?>"><?php echo $module->title ?></option>
@@ -268,7 +267,7 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS'), '::', JTexT::_('T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JTexT::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
+                  <label class="hasTip" title="<strong><?php echo self::tooltipText('T3_NAVIGATION_MM_EX_CLASS', 'T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolcol-exclass toolbox-input" name="toolcol-exclass" data-name="class" value="" />
                   </fieldset>
@@ -279,8 +278,8 @@ defined('_JEXEC') or die;
 
           <div class="toolbox-actions-group hidden">
             <button class="t3-admin-tog-fullscreen toolbox-action toolbox-togglescreen" data-action="toggleScreen" data-iconfull="icon-resize-full" data-iconsmall="icon-resize-small"><i class="icon-resize-full"></i></button>
-            <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i>  <?php echo JTexT::_('T3_NAVIGATION_MM_SAVE') ?></button>
-            <!--button class="btn btn-danger toolbox-action toolbox-resetConfig"><i class="icon-undo"></i><?php echo JTexT::_('T3_NAVIGATION_MM_RESET') ?></button-->
+            <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i>  <?php echo JText::_('T3_NAVIGATION_MM_SAVE') ?></button>
+            <!--button class="btn btn-danger toolbox-action toolbox-resetConfig"><i class="icon-undo"></i><?php echo JText::_('T3_NAVIGATION_MM_RESET') ?></button-->
           </div>
 
         </div>
@@ -302,16 +301,16 @@ defined('_JEXEC') or die;
     <div id="t3-admin-megamenu-dlg" class="modal fade hide">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3><?php echo JTexT::_('T3_NAVIGATION_ASK_DELETE') ?></h3>
+        <h3><?php echo JText::_('T3_NAVIGATION_ASK_DELETE') ?></h3>
       </div>
       <div class="modal-body">
         <div class="message-block">
-          <p class="msg"><?php echo JTexT::_('T3_NAVIGATION_ASK_DELETE_DESC') ?></p>
+          <p class="msg"><?php echo JText::_('T3_NAVIGATION_ASK_DELETE_DESC') ?></p>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn cancel" data-dismiss="modal"><?php echo JTexT::_('JCANCEL') ?></button>
-        <button class="btn btn-danger yes"><?php echo JTexT::_('T3_NAVIGATION_LABEL_DELETEIT') ?></button>
+        <button class="btn cancel" data-dismiss="modal"><?php echo JText::_('JCANCEL') ?></button>
+        <button class="btn btn-danger yes"><?php echo JText::_('T3_NAVIGATION_LABEL_DELETEIT') ?></button>
       </div>
     </div>
   </div>
@@ -329,6 +328,11 @@ defined('_JEXEC') or die;
     setInterval(function(){
       $.get('index.php');
     }, <?php echo $refreshTime; ?>);
+
+    //init tooltip
+    $('.hasTip').tooltip({
+      html: true
+    });
 
     //]]>
   </script>
