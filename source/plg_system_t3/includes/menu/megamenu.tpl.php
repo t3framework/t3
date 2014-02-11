@@ -63,7 +63,7 @@ class T3MenuMegamenuTpl
 		$cls     = 'nav-child ' . ($item->dropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-ct');
 		$style   = '';
 		$data    = '';
-		if (isset($setting['class'])) {
+		if (isset($sub['class'])) {
 			$data .= " data-class=\"{$sub['class']}\"";
 			$cls  .= " {$sub['class']}";
 		}
