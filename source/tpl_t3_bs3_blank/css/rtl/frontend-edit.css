@@ -237,7 +237,7 @@
   right: -100%;
 }
 .t3onoff label.on.active:before {
-  right: 0%;
+  right: -0%;
 }
 .t3onoff label.off:after {
   right: 60%;

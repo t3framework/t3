@@ -237,7 +237,7 @@
   left: -100%;
 }
 .t3onoff label.on.active:before {
-  left: 0%;
+  left: -0%;
 }
 .t3onoff label.off:after {
   left: 60%;

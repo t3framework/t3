@@ -4,14 +4,6 @@
   margin-right: -15px;
   margin-left: -15px;
 }
-.row-fluid:before,
-.row-fluid:after {
-  content: " ";
-  display: table;
-}
-.row-fluid:after {
-  clear: both;
-}
 [class*="span"] {
   float: right;
 }
@@ -113,7 +105,7 @@
     display: inherit !important;
   }
   .visible-desktop {
-    display: none !important ;
+    display: none !important;
   }
   .visible-tablet {
     display: inherit !important;

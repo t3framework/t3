@@ -586,7 +586,7 @@ body.off-canvas-effect-14.off-canvas-right {
   transform: translate3d(100%, 0, 0) rotateY(0deg);
 }
 .old-ie .t3-off-canvas {
-  z-index: 100!important;
+  z-index: 100 !important;
   left: -250px;
 }
 html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
@@ -650,6 +650,9 @@ html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
+}
+.t3-off-canvas .t3-off-canvas-body .active.dropdown-submenu a {
+  background: transparent;
 }
 .t3-off-canvas .t3-off-canvas-body .t3-module {
   margin-bottom: 20px;

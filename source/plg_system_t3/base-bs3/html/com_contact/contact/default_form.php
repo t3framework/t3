@@ -13,6 +13,7 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidation');
 
 $regex = '@class="([^"]*)"@';
+$lbreg = '@" class="([^"]*)"@';
 $label = 'class="$1 col-sm-2 control-label"';
 $input = 'class="$1 form-control"';
 
@@ -69,7 +70,7 @@ if (isset($this->error)) : ?>
 							<?php if ($field->hidden) : ?>
 								<?php echo $field->input;?>
 							<?php else:?>
-								<?php echo preg_replace($regex, $label, $field->label); ?>
+								<?php echo preg_replace($lbreg, '" ' . $label, $field->label); ?>
 								<div class="col-sm-10">
 								<?php if (!$field->required && $field->type != "Spacer") : ?>
 									<span class="optional"><?php echo JText::_('COM_CONTACT_OPTIONAL');?></span>

@@ -181,7 +181,7 @@
   .t3-megamenu.animate .mega.animating > .mega-dropdown-menu {
     -webkit-transition: all 400ms;
     transition: all 400ms;
-    display: block!important;
+    display: block !important;
   }
   .t3-megamenu.animate .mega.open > .mega-dropdown-menu,
   .t3-megamenu.animate .mega.animating.open > .mega-dropdown-menu {
@@ -193,6 +193,7 @@
     transform: scale(0, 0);
     -webkit-transform-origin: 20% 20%;
     -moz-transform-origin: 20% 20%;
+    -ms-transform-origin: 20% 20%;
     transform-origin: 20% 20%;
   }
   .t3-megamenu.animate.zoom .mega.open > .mega-dropdown-menu {
@@ -206,6 +207,7 @@
     transform: scale(0, 0) translate(-50%, 0);
     -webkit-transform-origin: 0% 20%;
     -moz-transform-origin: 0% 20%;
+    -ms-transform-origin: 0% 20%;
     transform-origin: 0% 20%;
   }
   .t3-megamenu.animate.zoom .level0 > .mega-align-center.open > .mega-dropdown-menu {
@@ -219,6 +221,7 @@
     transform: scale(0, 1);
     -webkit-transform-origin: 10% 0;
     -moz-transform-origin: 10% 0;
+    -ms-transform-origin: 10% 0;
     transform-origin: 10% 0;
   }
   .t3-megamenu.animate.elastic .mega.open > .mega-dropdown-menu {
@@ -271,6 +274,7 @@
     min-width: 200px;
     margin-top: 0;
     margin-left: -500px;
+    width: 100%;
   }
   .t3-megamenu.animate.slide .mega .mega.open > .mega-dropdown-menu > div {
     margin-left: 0;

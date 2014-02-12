@@ -145,7 +145,8 @@ p {
     font-size: 21px;
   }
 }
-small {
+small,
+.small {
   font-size: 85%;
 }
 cite {
@@ -532,7 +533,7 @@ fieldset[disabled] .btn-inverse.active {
 }
 .btn-inverse .badge {
   color: #2d2d2d;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .btn-block + .btn-block {
   margin-top: 5px;
@@ -734,6 +735,13 @@ input.invalid {
 }
 .breadcrumb > .active {
   color: #ffffff;
+}
+.breadcrumb > .active + li:before {
+  content: "";
+  padding: 0;
+}
+.breadcrumb > .active .hasTooltip {
+  padding-right: 10px;
 }
 .breadcrumb .divider {
   display: none;
@@ -1294,6 +1302,7 @@ article aside .btn-group > .dropdown-toggle .caret {
   vertical-align: middle;
   border-top: 1px solid #dddddd;
   margin-left: 0;
+  padding-left: 0;
 }
 .list-striped li,
 .list-striped dd,
@@ -1562,6 +1571,10 @@ article aside .btn-group > .dropdown-toggle .caret {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.search-results .result-url {
+  color: #4b4b4b;
+  margin-top: 20px;
+}
 .search-results .result-created {
   font-size: 12px;
   color: #5a5a5a;
@@ -1574,7 +1587,7 @@ div.finder {
   margin-top: 3px;
 }
 @media (max-width: 768px) {
-  .contact .thumbnail.pull-right {
+  .contact .thumbnail {
     width: 100%;
   }
 }
@@ -1590,33 +1603,20 @@ div.finder {
     margin-left: 0;
   }
 }
-.contact .accordion-heading .accordion-toggle {
+.contact-form #jform_contact_emailmsg {
+  width: 100%;
+}
+.contact-form #jform_contact_message {
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .contact-form #jform_captcha-lbl {
+    display: none;
+  }
+}
+.contact .accordion-toggle {
   font-weight: bold;
-}
-@media (max-width: 768px) {
-  .contact-form .form-group input[type="text"],
-  .contact-form .form-group input[type="email"],
-  .contact-form .form-group textarea {
-    max-width: 65%;
-  }
-}
-@media (max-width: 480px) {
-  .contact-form .form-group input[type="text"],
-  .contact-form .form-group input[type="email"],
-  .contact-form .form-group textarea {
-    max-width: 55%;
-  }
-}
-@media (max-width: 768px) {
-  .contact-form legend {
-    font-size: 17px;
-    max-width: 90%;
-  }
-}
-@media (max-width: 480px) {
-  .contact-form legend {
-    max-width: 60%;
-  }
 }
 #archive-items > li {
   line-height: normal;
