@@ -1614,6 +1614,15 @@ div.finder {
   .contact-form #jform_captcha-lbl {
     display: none;
   }
+  .contact-form #recaptcha_image {
+    width: 220px;
+  }
+  .contact-form #recaptcha_image img {
+    max-width: 220px;
+  }
+  .contact-form #recaptcha_response_field {
+    max-width: 220px;
+  }
 }
 .contact .accordion-toggle {
   font-weight: bold;

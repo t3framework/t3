@@ -651,7 +651,7 @@ html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.t3-off-canvas .t3-off-canvas-body .active.dropdown-submenu a {
+.t3-off-canvas .t3-off-canvas-body .dropdown-menu .active a {
   background: transparent;
 }
 .t3-off-canvas .t3-off-canvas-body .t3-module {

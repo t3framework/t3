@@ -2710,6 +2710,9 @@ article aside .btn-group > .dropdown-toggle:focus {
   float: left;
   margin: 0 10px 20px;
 }
+table.adminlist th a {
+  color: #690;
+}
 .article-content .pagination ul {
   border-left: 1px solid #ddd;
 }
