@@ -816,10 +816,21 @@ div.finder {
     width: 100%;
     height: auto;
   }
-  // Hide the Capcha Label on Small Screen
+  // Fixed for Capcha on Small Screen
   @media (max-width: @screen-sm) {
+    // Hide the Capcha Label on Small Screen
     #jform_captcha-lbl {
       display: none;
+    }
+    // The capcha image
+    #recaptcha_image {
+      width: 220px;
+    }
+    #recaptcha_image img {
+      max-width: 220px;
+    }
+    #recaptcha_response_field {
+      max-width: 220px;
     }
   }
 }
