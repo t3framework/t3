@@ -1,3 +1,33 @@
+<h2>Version: 2.1.1 (02/12/2014)</h2>
+
+<h3>New features</h3>	
+- Extend JLayout for Joomla v2.5 | <a href="https://github.com/t3framework/t3/commit/0329b39a5bc114727e9057c5c340cc5610200d6f">Link</a>
+	
+<h3>Improvement</h3>
+- Add Italian translation package | <a href="https://github.com/t3framework/t3/commit/82daf2cb01e0b8f8e6f68795f34740bc0b8f1295">Link</a>
+- Base-bs3: Update Bootstrap v3.1.0 | <a href="https://github.com/t3framework/t3/commit/94fdab9987572cd0c324c817a111b6fded28fed6">Link</a>
+- Update Less PHP Builder v1.6.1 | <a href="https://github.com/t3framework/t3/commit/3441016de2b44288633ff5cbd551193c898e4188">Link</a>
+- Update Respond js | <a href="https://github.com/t3framework/t3/commit/679c6d1305ab4482b0f10bdbbf8410c9f04b8ee4">Link</a>
+	
+<h3>Fix bugs</h3>
+- Fix - remove 970px for 'base' | <a href="https://github.com/t3framework/t3/commit/81d1381642086aeabe01932598bcf14ba773c045">Link</a>
+- https://github.com/t3framework/t3/issues/249 | <a href="https://github.com/t3framework/t3/commit/290f00c5c2efd71d66d440a63c41c2cf1c051023">Link</a>
+- Update breakcrumps overwrite | <a href="https://github.com/t3framework/t3/commit/e640415f4d0960cc4df4b2448e1fadcb69fb6e09">Link</a>
+- https://github.com/t3framework/t3/issues/245 | <a href="https://github.com/t3framework/t3/commit/24568d62b0ba1c23760106676395525ebd243359">Link</a>
+- Add glyphicon for Megamenu configuration | <a href="https://github.com/t3framework/t3/commit/c5527bf0a75a5456c9ec17f5c67af21aa4e9b9ed">Link</a>
+- Update form-search | <a href="https://github.com/t3framework/t3/commit/d84a258d99d1aa10cb6f1d986bf9e18a213966be">Link</a>
+- Fix megamenu extra class for submenu | <a href="https://github.com/t3framework/t3/commit/0e8443fd8789f73fab115365802d04463a8d21b5">Link</a>
+- https://github.com/t3framework/t3/issues/248 | <a href="https://github.com/t3framework/t3/commit/df9c79343368a5f9a0e8a791b93f1b10c0d23676">Link</a>
+- Change behavior of Navigation Style to global | <a href="https://github.com/t3framework/t3/commit/2862d021da82846ad4d0029588020ce19ba367ea">Link</a>
+- Fix overwrite com_finder search form | <a href="https://github.com/t3framework/t3/commit/86387442a71419334916b79e83903552033f0944">Link</a>
+- Small improment for Joomla Search Result | <a href="https://github.com/t3framework/t3/commit/6bf9497fc44747916b9326161c8b812f03005de5">Link</a>
+- Fix megamenu tooltip | <a href="https://github.com/t3framework/t3/commit/a68ad4515d3ac89ea897bd8e4e8e5bc4388005f6">Link</a>
+- Small fix assignment UI J2.5 | <a href="https://github.com/t3framework/t3/commit/e370c61a5a7de069304b99a270d62504d3bdfcbd">Link</a>
+- Fix toolip alignment | <a href="https://github.com/t3framework/t3/commit/5ad29101fd5dc9a4433e25d5f6948d5faa50808c">Link</a>
+- Fix smartsearch overwrite | <a href="https://github.com/t3framework/t3/commit/13edfb41e5593b992c8300a2e7ce71f9ed8667bb">Link</a>
+- Contact Form updated | <a href="https://github.com/t3framework/t3/commit/fa413bff439c7062b77547cec64f6a20c644817d">Link</a>
+
+
 <h2>Version: 2.1.0 (01/24/2014)</h2>
 
 
