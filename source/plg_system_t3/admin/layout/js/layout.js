@@ -803,8 +803,8 @@ T3AdminLayout = window.T3AdminLayout || {};
 			var jspl = $(spl),
 				layout = T3AdminLayout.layout.clayout,
 				cmaxcol = T3AdminLayout.layout.maxcol[layout],
-				junitspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.layout.unitspan[layout]) + '"></div>').appendTo(jspl),
-				jminspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.layout.minspan[layout]) + '"></div>').appendTo(jspl),
+				junitspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(T3AdminLayout.layout.unitspan[layout], layout)) + '"></div>').appendTo(jspl),
+				jminspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(T3AdminLayout.layout.minspan[layout], layout)) + '"></div>').appendTo(jspl),
 				gridgap = parseInt(junitspan.css('marginLeft')),
 				absgap = Math.abs(gridgap),
 				gridsize = Math.floor(junitspan.outerWidth())
@@ -824,7 +824,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 				grid: gridsize + absgap,
 				gap: absgap,
 				minwidth: gridsize,
-				maxwidth: (gridsize + absgap) * T3AdminLayout.layout.maxgrid - absgap + 6
+				maxwidth: (gridsize + absgap) * (T3AdminLayout.layout.maxgrid / T3AdminLayout.layout.unitspan[layout])  - absgap + 6
 			});
 
 			jspl.find('.t3-admin-layout-unit').each(function(idx){

@@ -30,7 +30,7 @@ define('T3_BASE_MAX_GRID',            12);
 define('T3_BASE_WIDTH_PREFIX',        'col-md-');
 define('T3_BASE_NONRSP_WIDTH_PREFIX', 'col-xs-');
 define('T3_BASE_WIDTH_PATTERN',       'col-{device}-{width}');
-define('T3_BASE_WIDTH_REGEX',         '@(\s*)col-(lg|md|sm|xs)-(\d+)(\s*)@');
+define('T3_BASE_WIDTH_REGEX',         '/(\s*)col-(lg|md|sm|xs)-(\d+)(\s*)/');
 define('T3_BASE_HIDDEN_PATTERN',      'hidden');
 define('T3_BASE_FIRST_PATTERN',       '');
 define('T3_BASE_ROW_FLUID_PREFIX',    'row');
