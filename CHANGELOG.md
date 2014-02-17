@@ -1,3 +1,11 @@
+<h2>Version: 2.1.2 (02/17/2014)</h2>
+
+<h3>Fix bugs</h3>	
+- Fix error Layout for mobile responsive | <a href="https://github.com/t3framework/t3/commit/4eff85f134e700073def302b5e966d343b24ad60">Link</a>
+- Change behavior of dropdown menu | <a href="https://github.com/t3framework/t3/commit/b442082f67c98acfa7f7a898a690622dc89d44a7">Link</a>
+- Fix dropdown of article action | <a href="https://github.com/t3framework/t3/commit/ae71ea6bd38929c3986efc22a270a0500859371e">Link</a>
+	
+
 <h2>Version: 2.1.1 (02/12/2014)</h2>
 
 <h3>New features</h3>	

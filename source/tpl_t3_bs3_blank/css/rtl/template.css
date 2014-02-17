@@ -6,6 +6,9 @@
     display: block !important;
     position: static;
   }
+  .open .dropdown-menu {
+    display: block;
+  }
 }
 .t3-logo,
 .t3-logo-small {
@@ -42,6 +45,12 @@
 }
 .t3-logo-small.t3-logo-light {
   background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-light.png");
+}
+#community-wrap .collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  display: block;
 }
 
 input,
