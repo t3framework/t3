@@ -29,19 +29,19 @@
 		return false;
 	})();
 
-	
+/*
 	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
-	
+
 	if(isTouch){
 
 		$.fn.touchmenu = function(){
-			
+
 			if(!$(document).data('touchmenu')){
 				$(document).data('touchmenu', 1).data('touchitems', $()).on('click hidesub', function(){
 					$(document).data('touchitems').data('noclick', 0).removeClass('open');
 				});
 
-				if (navigator.userAgent.match(/(iPad|iPhone);.*CPU.*OS 6_\d/i)){ 
+				if (navigator.userAgent.match(/(iPad|iPhone);.*CPU.*OS 6_\d/i)){
 					$(document.body).children(':not(.nav)').on('click', function(){
 						$(document).trigger('hidesub');
 					});
@@ -56,7 +56,7 @@
 					},
 					onTouch = function(e){
 						e.stopPropagation();
-						
+
 						var jitem = $(this),
 							val = !jitem.data('noclick');
 
@@ -89,7 +89,7 @@
 							}
 						}
 					};
-				
+
 				jitems.on('mouseenter', onTouch).data('noclick', 0).find('[data-toggle="dropdown"]').removeAttr('data-toggle');
 				$(this).find('li').on('click', onClick);
 
@@ -97,9 +97,11 @@
 			});
 		};
 	}
+*/
 
-	$('html').addClass(isTouch ? 'touch' : 'no-touch');
-
+	//basic detect
+	$('html').addClass('ontouchstart' in window ? 'touch' : 'no-touch');
+	
 	$(document).ready(function(){
 
 		//remove conflict of mootools more show/hide function of element
@@ -112,8 +114,8 @@
 
 				Element.implement({
 					show: function(args){
-						if(arguments.callee && 
-							arguments.callee.caller && 
+						if(arguments.callee &&
+							arguments.callee.caller &&
 							arguments.callee.caller.toString().indexOf('isPropagationStopped') !== -1){	//jquery mark
 							return this;
 						}
@@ -122,8 +124,8 @@
 					},
 
 					hide: function(){
-						if(arguments.callee && 
-							arguments.callee.caller && 
+						if(arguments.callee &&
+							arguments.callee.caller &&
 							arguments.callee.caller.toString().indexOf('isPropagationStopped') !== -1){	//jquery mark
 							return this;
 						}
@@ -132,8 +134,8 @@
 					},
 
 					slide: function(args){
-						if(arguments.callee && 
-							arguments.callee.caller && 
+						if(arguments.callee &&
+							arguments.callee.caller &&
 							arguments.callee.caller.toString().indexOf('isPropagationStopped') !== -1){	//jquery mark
 							return this;
 						}
@@ -143,30 +145,63 @@
 				})
 			}
 		})();
-		
 
-		if(isTouch){
-			$('ul.nav').has('.dropdown-menu').touchmenu();
-		} else {
-			$(document.body).on('click', '[data-toggle="dropdown"]' ,function(){
-				//if this link has 'open' (second click) class or when we are in collapsed menu and have always-show
-				if($(this).parent().hasClass('open') && this.href && this.href != '#' || 
-					($('.btn-navbar').is(':visible') && $(this).closest('.always-show').length)){
-					window.location.href = this.href;
-				}
-			});
-		}
 
+		$(document.body).on('click', '[data-toggle="dropdown"]' ,function(e){
+			//if this link has 'open' (second click) class or when we are in collapsed menu and have always-show
+			if($(this).parent().hasClass('open') && this.href && this.href != '#' ||
+				($('.btn-navbar').is(':visible') && $(this).closest('.always-show').length)){
+				window.location.href = this.href;
+			}
+
+			e.stopPropagation();
+			return false;
+		});
+	
 		// overwrite default tooltip/popover behavior (same as Joomla 3.1.5)
 		$.fn.tooltip.Constructor && $.fn.tooltip.Constructor.DEFAULTS && ($.fn.tooltip.Constructor.DEFAULTS.html = true);
 		$.fn.popover.Constructor && $.fn.popover.Constructor.DEFAULTS && ($.fn.popover.Constructor.DEFAULTS.html = true);
 		$.fn.tooltip.defaults && ($.fn.tooltip.defaults.html = true);
 		$.fn.popover.defaults && ($.fn.popover.defaults.html = true);
+
+		//fix JomSocial navbar-collapse toggle
+		(function(){
+			if(window.jomsQuery && jomsQuery.fn.collapse){
+			
+				$('.navbar-toggle').on('click', function(e){
+					
+					//toggle manual
+					$($(this).attr('data-target')).eq(0).collapse('toggle');
+					
+					//stop
+					e.stopPropagation();
+
+					return false;
+				});
+
+				//remove conflict on touch screen
+				jomsQuery('html, body').off('touchstart.dropdown.data-api');
+			}	
+		})();
+
 	});
 
-	//fix animation for navbar-collapse-fixed-top||bottom
 	$(window).load(function(){
-		
+
+		// simple handle click for dropdown menu item
+		var $dropdown_item = $('.nav .dropdown > a');
+		$dropdown_item.on ('click', function(e) {
+			e.stopPropagation();
+			var $this = $(this);
+
+			if (!$this.parent().children('.dropdown-menu').is(':visible')) {
+				e.preventDefault();
+				$dropdown_item.parent().removeClass ('open');
+				$this.parent().addClass ('open');
+			}
+		});
+
+		//fix animation for navbar-collapse-fixed-top||bottom
 		if(!$(document.documentElement).hasClass('off-canvas-ready') &&
 			($('.navbar-collapse-fixed-top').length ||
 			$('.navbar-collapse-fixed-bottom').length)){

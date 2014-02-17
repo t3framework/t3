@@ -26,7 +26,8 @@ jQuery(document).ready(function ($) {
             $placeholder = $navwrapper.prev('.navbar-collapse');
 
             if(!$placeholder.length){
-                $placeholder = $navwrapper.closest('.container, .t3-mainnav').find('.navbar-collapse');
+                //get the empty one
+                $placeholder = $navwrapper.closest('.container, .t3-mainnav').find('.navbar-collapse:empty');
             }
             
             var lis = $menu.find('li[data-id]'),
@@ -89,31 +90,27 @@ jQuery(document).ready(function ($) {
                 }
             });
 
-            //so we have all structure, add standard bootstrap class
-            $menu
-                .find('ul.dropdown-menu')
-                .prev('a').attr('data-toggle', 'dropdown')
-                .parent('li')
-                .addClass(function(){
-                    return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
-                });
-
             // update class current
             liactive.addClass('current active');
-
-            //init event for touch
-            if($.fn.touchmenu){
-                $menu.touchmenu();
-            }
             
         } else {
             // clone for bootstrap menu
             $menu = $navwrapper.find ('ul.nav').clone();
-            $placeholder = $('.t3-navbar-collapse');
+            $placeholder = $('.t3-navbar-collapse:empty, .navbar-collapse:empty').eq(0);
         }
+        
+        //so we have all structure, add standard bootstrap class
+        $menu.find ('a[data-toggle="dropdown"]').removeAttr('data-toggle').removeAttr('data-target');
+        $menu
+            .find('> li > ul.dropdown-menu')
+            .prev('a').attr('data-toggle', 'dropdown').attr('data-target', '#')
+            .parent('li')
+            .addClass(function(){
+                return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
+            });
 
         // inject into .t3-navbar-collapse
-
         $menu.appendTo ($placeholder);
+
     });
 });
