@@ -146,18 +146,6 @@
 			}
 		})();
 
-
-		$(document.body).on('click', '[data-toggle="dropdown"]' ,function(e){
-			//if this link has 'open' (second click) class or when we are in collapsed menu and have always-show
-			if($(this).parent().hasClass('open') && this.href && this.href != '#' ||
-				($('.btn-navbar').is(':visible') && $(this).closest('.always-show').length)){
-				window.location.href = this.href;
-			}
-
-			e.stopPropagation();
-			return false;
-		});
-	
 		// overwrite default tooltip/popover behavior (same as Joomla 3.1.5)
 		$.fn.tooltip.Constructor && $.fn.tooltip.Constructor.DEFAULTS && ($.fn.tooltip.Constructor.DEFAULTS.html = true);
 		$.fn.popover.Constructor && $.fn.popover.Constructor.DEFAULTS && ($.fn.popover.Constructor.DEFAULTS.html = true);
