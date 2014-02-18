@@ -113,7 +113,10 @@
 
 			<field name="theme_params_default" type="t3depend" function="@group">
 				<option for="logotype" value="image">
-					logoimage
+					logoimage, logoimage_sm
+				</option>
+				<option for="enable_logoimage_sm" value="1">
+					logoimage_sm
 				</option>
 			</field>
 
@@ -146,6 +149,17 @@
 			<field name="logoimage" type="t3media" default=""
 						 label="T3_THEME_LOGOIMAGE_LABEL"
 						 description="T3_THEME_LOGOIMAGE_DESC"/>
+
+			<field name="enable_logoimage_sm" type="radio" class="t3onoff" default="0"
+						 label="T3_THEME_ENABLE_LOGOIMAGE_SM_LABEL"
+						 description="T3_THEME_ENABLE_LOGOIMAGE_SM_DESC">
+				<option value="0" class="off">JNO</option>
+				<option value="1" class="on">JYES</option>
+			</field>
+
+			<field name="logoimage_sm" type="t3media" default=""
+						 label="T3_THEME_LOGOIMAGE_SM_LABEL"
+						 description="T3_THEME_LOGOIMAGE_SM_DESC"/>
 
 		</fieldset>
 

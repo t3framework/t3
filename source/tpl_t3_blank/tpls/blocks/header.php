@@ -6,13 +6,11 @@
  */
 
 defined('_JEXEC') or die;
-$sitename = $this->params->get('sitename') ? $this->params->get('sitename') : JFactory::getConfig()->get('sitename');
-$slogan = $this->params->get('slogan');
-$logotype = $this->params->get('logotype', 'text');
-$logoimage = $logotype == 'image' ? $this->params->get('logoimage', '') : '';
-if ($logoimage) {
-  $logoimage = ' style="background-image:url('.JURI::base(true).'/'.$logoimage.');"';
-}
+$sitename  = $this->params->get('sitename') ? $this->params->get('sitename') : JFactory::getConfig()->get('sitename');
+$slogan    = $this->params->get('slogan');
+$logotype  = $this->params->get('logotype', 'text');
+$logoimage = $logotype == 'image' ? $this->params->get('logoimage', 'templates/' . T3_TEMPLATE . '/images/logo.png') : '';
+$logoimgsm = ($logotype == 'image' && $this->params->get('enable_logoimage_sm', 0)) ? $this->params->get('logoimage_sm', '') : false;
 ?>
 
 <!-- HEADER -->
@@ -21,8 +19,14 @@ if ($logoimage) {
 
     <!-- LOGO -->
     <div class="span8 logo">
-      <div class="logo-<?php echo $logotype ?>">
-        <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>"<?php echo $logoimage ?>>
+      <div class="logo-<?php echo $logotype, ($logoimgsm ? ' logo-control' : '') ?>">
+        <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>">
+          <?php if($logotype == 'image'): ?>
+            <img class="logo-img" src="<?php echo JURI::base(true) . '/' . $logoimage ?>" alt="<?php echo strip_tags($sitename) ?>" />
+          <?php endif ?>
+          <?php if($logoimgsm) : ?>
+            <img class="logo-img-sm" src="<?php echo JURI::base(true) . '/' . $logoimgsm ?>" alt="<?php echo strip_tags($sitename) ?>" />
+          <?php endif ?>
           <span><?php echo $sitename ?></span>
         </a>
         <small class="site-slogan hidden-phone"><?php echo $slogan ?></small>

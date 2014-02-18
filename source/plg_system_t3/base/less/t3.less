@@ -25,3 +25,26 @@
     position: static;
   }
 }
+
+
+// Logo control class
+// ---------------------------------------------------------
+.logo-control {
+  @media (max-width: @navbarCollapseWidth) {
+    .logo-img-sm {
+      display: block;
+    }
+    .logo-img {
+      display: none;
+    }
+  }
+
+  @media (min-width: @navbarCollapseWidth) {
+    .logo-img-sm {
+      display: none;
+    }
+    .logo-img {
+      display: block;
+    }
+  }
+}
