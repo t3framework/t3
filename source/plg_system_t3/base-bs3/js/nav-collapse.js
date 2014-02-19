@@ -59,10 +59,15 @@ jQuery(document).ready(function ($) {
                 var subul = $li.find('ul.level' + $li.data('level'));
                 if (subul.length) {
                     // create subnav
-                    $ul = $('<ul class="level' + $li.data('level') + ' dropdown-menu">').appendTo($li);
+                    $ul = $('<ul class="level' + $li.data('level') + ' dropdown-menu">');
                     subul.each(function () {
+                        // check if the ul not in a hide when collapsed column
+                        if ($(this).parents('.mega-col-nav').data('hidewcol')) return ;
                         $(this).find('>li').appendTo($ul);
                     });
+                    if ($ul.children().length) {
+                        $ul.appendTo($li);
+                    }
                 }
 
                 // remove all child div
@@ -76,7 +81,7 @@ jQuery(document).ready(function ($) {
                 var divider = $li.hasClass('divider');
 
                 // clear all attributes
-                $li.removeAttr('class');
+                // $li.removeAttr('class');
                 for (var x in $li.data()) {
                     $li.removeAttr('data-' + x)
                 }
