@@ -19,7 +19,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 	if ($params->get('showHere', 1)) {
 		echo '<li class="active">' . JText::_('MOD_BREADCRUMBS_HERE') . '&#160;</li>';
 	} else {
-		echo '<li class="active"><span class="hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip" title="' . JText::_('MOD_BREADCRUMBS_HERE') . '"></i></span></li>';
+		echo '<li class="active"><span class="hasTooltip"><i class="icon-map-marker" data-toggle="tooltip" title="' . JText::_('MOD_BREADCRUMBS_HERE') . '"></i></span></li>';
 	}
 
 	// Get rid of duplicated entries on trail including home page when using multilanguage
