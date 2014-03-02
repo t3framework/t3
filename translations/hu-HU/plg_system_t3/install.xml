@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" client="administrator" type="language" method="upgrade">
+	<name>T3 Framework (hu-HU)</name>
+	<tag>hu-HU</tag>
+	<version>2.1.2</version>
+	<creationDate>2014-03-01</creationDate>
+	<author>Jozsef Tamas Herczeg</author>
+	<authorEmail>jtherczeg@gmail.com</authorEmail>
+	<authorUrl>http://www.t3-framework.org</authorUrl>
+	<copyright>Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>Hungarian translation for T3 Framework</description>
+	<files>
+		<filename>hu-HU.plg_system_t3.ini</filename>
+		<filename>hu-HU.plg_system_t3.sys.ini</filename>
+
+		<filename file="meta">install.xml</filename>
+	</files>
+</extension>

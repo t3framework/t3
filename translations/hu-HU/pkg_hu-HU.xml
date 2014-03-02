@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="2.5">
+	<name>T3 Framework (hu-HU)</name>
+	<packagename>T3-hu-HU</packagename>
+	<version>2.1.2</version>
+	<creationDate>2014-03-01</creationDate>
+	<author>Jozsef Tamas Herczeg</author>
+	<authorEmail>info@joomlart.com</authorEmail>
+	<authorUrl>http://www.t3-framework.org</authorUrl>
+	<copyright>Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<url></url>
+	<packager>JoomlArt</packager>
+	<packagerurl>https://github.com/t3framework/t3</packagerurl>
+	<description>
+		<![CDATA[
+		<div>
+			<h3>T3 Framework: Hungarian (hu-HU) Language Package</h3>
+			<h3>T3 Framework: Magyar (hu-HU) nyelvi csomag</h3>
+		</div>
+		]]>
+	</description>
+	<files>
+		<file type="language" client="site" id="t3-blank-hu-HU">tpl_t3_blank</file>
+		<file type="language" client="site" id="t3-bs3-blank-hu-HU">tpl_t3_bs3_blank</file>
+		<file type="language" client="administrator" id="t3-hu-HU">plg_system_t3</file>
+	</files>
+
+</extension>
