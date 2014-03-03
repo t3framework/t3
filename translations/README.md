@@ -22,4 +22,4 @@ Credits, Copyright and License
 ------------------------------
   * Copyright (C) 2005 - 2013 T3-Framework.org. All rights reserved.
   * Distributed under the GNU General Public License version 2 or later
-  * Speical Thanks to Anthony & JoomlaBammbo team for their continous support & Contribution. 
+  * Speical Thanks to Anthony & JoomlaBamboo team for their continous support & Contribution. 
