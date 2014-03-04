@@ -406,9 +406,16 @@ class T3AdminTheme
 				}
 			}
 
+			//workaround for bootstrap icon path
+			$sparams = new JRegistry;
+			if(defined('T3_BASE_RSP_IN_CLASS') && T3_BASE_RSP_IN_CLASS){
+				$sparams->set('icon-font-path', '"' . JUri::base() . 'plugins/system/t3/base-bs3/bootstrap/fonts/"');
+			}
+
 			$jdoc->addScriptDeclaration('
 				var T3Theme = window.T3Theme || {};
 				T3Theme.vars = ' . json_encode($params->toArray()) . ';
+				T3Theme.svars = ' . json_encode($sparams->toArray()) . ';
 				T3Theme.others = ' . json_encode($themeinfo) . ';
 				T3Theme.theme = \'' . $theme . '\';
 				T3Theme.template = \'' . T3_TEMPLATE . '\';

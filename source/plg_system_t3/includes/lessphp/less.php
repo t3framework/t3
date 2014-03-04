@@ -380,7 +380,7 @@ class T3Less
 
 		//update url if needed
 		if(defined('T3_DEV_MODE') && T3_DEV_MODE){
-			$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), dirname($path)) : T3_TEMPLATE_URL . '/css/');
+			$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), dirname($path) . ($theme? '/themes/' . $theme : '')) : T3_TEMPLATE_URL . '/css/');
 		}
 
 		if ($is_rtl) {
