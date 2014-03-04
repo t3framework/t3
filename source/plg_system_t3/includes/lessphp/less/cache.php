@@ -2,6 +2,13 @@
 
 require_once( dirname(__FILE__).'/version.php');
 
+/**
+ * Utility for handling the generation and caching of css files
+ *
+ * @package Less
+ * @subpackage cache
+ *
+ */
 class Less_Cache{
 
 	public static $cache_dir = false;		// directory less.php can use for storing data
@@ -19,17 +26,17 @@ class Less_Cache{
 	 */
 	public static function Get( $less_files, $parser_options = array(), $use_cache = true ){
 
+
 		//check $cache_dir
+		if( isset($parser_options['cache_dir']) ){
+			Less_Cache::$cache_dir = $parser_options['cache_dir'];
+		}
+
 		if( empty(Less_Cache::$cache_dir) ){
 			throw new Exception('cache_dir not set');
 		}
 
-		Less_Cache::$cache_dir = str_replace('\\','/',Less_Cache::$cache_dir);
-		Less_Cache::$cache_dir = rtrim(Less_Cache::$cache_dir,'/').'/';
-
-		if( !is_dir(Less_Cache::$cache_dir) ){
-			throw new Exception('cache_dir does not exist');
-		}
+		self::CheckCacheDir();
 
 		// generate name for compiled css file
 		$less_files = (array)$less_files;
@@ -135,28 +142,27 @@ class Less_Cache{
 
 
 	public static function SetCacheDir( $dir ){
+		Less_Cache::$cache_dir = $dir;
+	}
 
-		Less_Cache::$cache_dir = null;
+	public static function CheckCacheDir(){
 
-		if( is_string($dir) ){
+		Less_Cache::$cache_dir = str_replace('\\','/',Less_Cache::$cache_dir);
+		Less_Cache::$cache_dir = rtrim(Less_Cache::$cache_dir,'/').'/';
 
-			if( !file_exists($dir) ){
-				if( !mkdir($dir) ){
-					throw new Less_Exception_Parser('Less.php cache directory couldn\'t be created: '.$dir);
-				}
-
-			}elseif( !is_dir($dir) ){
-				throw new Less_Exception_Parser('Less.php cache directory doesn\'t exist: '.$dir);
-
-			}elseif( !is_writable($dir) ){
-				throw new Less_Exception_Parser('Less.php cache directory isn\'t writable: '.$dir);
-
+		if( !file_exists(Less_Cache::$cache_dir) ){
+			if( !mkdir(Less_Cache::$cache_dir) ){
+				throw new Less_Exception_Parser('Less.php cache directory couldn\'t be created: '.Less_Cache::$cache_dir);
 			}
 
-			$dir = str_replace('\\','/',$dir);
-			Less_Cache::$cache_dir = rtrim($dir,'/').'/';
+		}elseif( !is_dir(Less_Cache::$cache_dir) ){
+			throw new Less_Exception_Parser('Less.php cache directory doesn\'t exist: '.Less_Cache::$cache_dir);
+
+		}elseif( !is_writable(Less_Cache::$cache_dir) ){
+			throw new Less_Exception_Parser('Less.php cache directory isn\'t writable: '.Less_Cache::$cache_dir);
+
 		}
-		return true;
+
 	}
 
 
