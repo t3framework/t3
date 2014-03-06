@@ -918,6 +918,10 @@ class T3Template extends ObjectExtendable
 
 		//menu control script
 		if ($navtrigger == 'hover') {
+			$this->addPageClass('mm-hover');
+		}
+
+		if($navtrigger == 'hover' || $this->responcls){
 			$this->addScript(T3_URL . '/js/menu.js');
 		}
 

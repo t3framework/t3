@@ -101,9 +101,8 @@ body {
   width: @t3-off-canvas-width;
   height: 100%;
 
-  overflow-x: hidden;
-  overflow-y: auto;
-
+  overflow: hidden;
+  
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 
@@ -145,6 +144,10 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
   .off-canvas-current {
     visibility: visible;
   }
+
+  .t3-off-canvas {
+    overflow-y: auto;
+  }
 }
 
 
@@ -159,7 +162,6 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
   // -----------------------------------
   background: @t3-off-canvas-background;
   color: @t3-off-canvas-text-color;
-
 
   // Header
   // -----------------------------------

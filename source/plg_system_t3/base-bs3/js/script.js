@@ -14,94 +14,30 @@
 !function($){
 
 	//detect transform (https://github.com/cubiq/)
-	$.support.t3transform = (function () {
-		var style = document.createElement('div').style,
-		vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
-		transform, i = 0, l = vendors.length;
+	(function(){
+		$.support.t3transform = (function () {
+			var style = document.createElement('div').style,
+			vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
+			transform, i = 0, l = vendors.length;
 
-		for ( ; i < l; i++ ) {
-			transform = vendors[i] + 'ransform';
-			if ( transform in style ) {
-				return transform;
-			}
-		}
-
-		return false;
-	})();
-
-/*
-	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
-
-	if(isTouch){
-
-		$.fn.touchmenu = function(){
-
-			if(!$(document).data('touchmenu')){
-				$(document).data('touchmenu', 1).data('touchitems', $()).on('click hidesub', function(){
-					$(document).data('touchitems').data('noclick', 0).removeClass('open');
-				});
-
-				if (navigator.userAgent.match(/(iPad|iPhone);.*CPU.*OS 6_\d/i)){
-					$(document.body).children(':not(.nav)').on('click', function(){
-						$(document).trigger('hidesub');
-					});
+			for ( ; i < l; i++ ) {
+				transform = vendors[i] + 'ransform';
+				if ( transform in style ) {
+					return transform;
 				}
 			}
 
-			return this.each(function(){
-				var	itemsel = $(this).has('.mega').length ? 'li.mega' : 'li.parent, li.dropdown',
-					jitems = $(this).find(itemsel),
-					reset = function(){
-						$(this).data('noclick', 0);
-					},
-					onTouch = function(e){
-						e.stopPropagation();
+			return false;
+		})();
 
-						var jitem = $(this),
-							val = !jitem.data('noclick');
-
-						//the sub is already show
-						if(val && jitem.children('.dropdown-menu').is(':visible')){
-							val = 0;
-						}
-
-						// reset all
-						jitems.data('noclick', 0);
-						jitem.data('noclick', val);
-
-						if(val){
-							$(this) //reset, sometime the mouseenter does not refire, so we reset to enable click
-								.data('rsid', setTimeout($.proxy(reset, this), 500))
-								.parent().parentsUntil('.nav').filter(itemsel).addClass('open');
-						}
-					},
-					onClick = function(e){
-						e.stopPropagation();
-
-						if($(this).data('noclick')){
-							e.preventDefault();
-							jitems.removeClass('open');
-							$(this).addClass('open').parentsUntil('.nav').filter(itemsel).addClass('open');
-						} else {
-							var href = $(this).children('a').attr('href');
-							if(href){
-								window.location.href = href;
-							}
-						}
-					};
-
-				jitems.on('mouseenter', onTouch).data('noclick', 0).find('[data-toggle="dropdown"]').removeAttr('data-toggle');
-				$(this).find('li').on('click', onClick);
-
-				$(document).data('touchitems', $(document).data('touchitems').add(jitems));
-			});
-		};
-	}
-*/
-
-	//basic detect
-	$('html').addClass('ontouchstart' in window ? 'touch' : 'no-touch');
+	})();
 	
+	//basic detect touch
+	(function(){
+		$('html').addClass('ontouchstart' in window ? 'touch' : 'no-touch');
+	})();
+	
+	//document ready
 	$(document).ready(function(){
 
 		//remove conflict of mootools more show/hide function of element
@@ -175,19 +111,6 @@
 	});
 
 	$(window).load(function(){
-
-		// simple handle click for dropdown menu item
-		var $dropdown_item = $('.nav .dropdown > a');
-		$dropdown_item.on ('click', function(e) {
-			e.stopPropagation();
-			var $this = $(this);
-
-			if (!$this.parent().children('.dropdown-menu').is(':visible')) {
-				e.preventDefault();
-				$dropdown_item.parent().removeClass ('open');
-				$this.parent().addClass ('open');
-			}
-		});
 
 		//fix animation for navbar-collapse-fixed-top||bottom
 		if(!$(document.documentElement).hasClass('off-canvas-ready') &&
