@@ -114,7 +114,8 @@ class T3Admin {
 			'updateCheckUpdate' => JText::_('T3_OVERVIEW_CHECK_UPDATE'),
 			'updateChkComplete' => JText::_('T3_OVERVIEW_CHK_UPDATE_OK'),
 			'updateHasNew' => JText::_('T3_OVERVIEW_TPL_NEW'),
-			'updateCompare' => JText::_('T3_OVERVIEW_TPL_COMPARE')
+			'updateCompare' => JText::_('T3_OVERVIEW_TPL_COMPARE'),
+			'switchResponsiveMode' => JText::_('T3_MSG_SWITCH_RESPONSIVE_MODE')
 		);
 		
 		$japp   = JFactory::getApplication();

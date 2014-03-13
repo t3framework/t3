@@ -60,7 +60,7 @@ class T3Less
 		self::buildVarsOnce();
 
 		// get vars last-modified
-		$vars_lm = JFactory::getApplication()->getUserState('vars_last_modified', 0);
+		$vars_lm = self::getState('vars_last_modified', 0);
 		
 		// less file last-modified
 		$filepath = JPATH_ROOT . '/' . $path;
@@ -94,10 +94,10 @@ class T3Less
 	public static function buildCss($path)
 	{
 		$app     = JFactory::getApplication();
-		$theme   = $app->getUserState('vars_theme', '');
+		$theme   = $app->getUserState('current_theme', '');
 		
 		// less file last-modified
-		$is_rtl      = ($app->getUserState('DIRECTION') == 'rtl');
+		$is_rtl      = ($app->getUserState('current_direction') == 'rtl');
 		$filepath    = JPATH_ROOT . '/' . $path;
 		$less_lm     = is_file($filepath) ? filemtime($filepath) : 0;
 		$less_lm_rtl = 0;
@@ -110,8 +110,7 @@ class T3Less
 		}
 
 		// get vars last-modified
-		$vars_lm = $app->getUserState('vars_last_modified', 0);
-		
+		$vars_lm = self::getState('vars_last_modified', 0);
 		// get css cached file
 		$subdir  = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
 		$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $path) . '.css';
@@ -119,7 +118,6 @@ class T3Less
 		$csspath = JPATH_ROOT . '/' . $cssfile;
 		if (is_file($csspath)){
 			$css_lm = filemtime($csspath);
-
 			if($css_lm > $less_lm &&
 			$css_lm > $vars_lm &&
 			$css_lm > $less_lm_rtl) {
@@ -156,7 +154,7 @@ class T3Less
 		$parser = new Less_Parser();
 		$app    = JFactory::getApplication();
 		$tpl    = T3_TEMPLATE;
-		$theme  = $app->getUserState('vars_theme');
+		$theme  = $app->getUserState('current_theme');
 		$tofile = null;
 		$todir  = null;
 
@@ -259,7 +257,7 @@ class T3Less
 		}
 		
 		$rtlcontent = '';
-		$is_rtl     = $app->getUserState('DIRECTION') == 'rtl' && strpos($path, 'rtl/') === false;
+		$is_rtl     = $app->getUserState('current_direction') == 'rtl' && strpos($path, 'rtl/') === false;
 
 		// convert to RTL if using RTL
 		if ($is_rtl) {
@@ -422,11 +420,44 @@ class T3Less
 	 */
 	public static function getVars()
 	{
-		$app  = JFactory::getApplication();
-		$rtl  = $app->getUserState('DIRECTION') == 'rtl' ? '_rtl' : '';
-		$vars = $app->getUserState('vars_content' . $rtl);
+		return self::getState('vars_content');
+	}
 
-		return $vars;
+	/**
+	 * get value from cache
+	 */
+	public static function getState ($key, $default = null) {
+		$app = JFactory::getApplication();
+		$keysfx = $app->getUserState('current_key_sufix');
+		// cache key
+		$ckey   = $key.$keysfx;
+		$group = 't3';
+		$cache = JCache::getInstance('output', array(
+			'lifetime' => 25200,
+			'caching'	=> true
+		));
+
+		// get cache
+		$data  = $cache->get($ckey, $group);
+		if ($data) {
+			return $data ? $data : $default;
+		}
+	}
+
+	/**
+	 * store value to cache
+	 */
+	public static function setState ($key, $value) {
+		$app = JFactory::getApplication();
+		$keysfx = $app->getUserState('current_key_sufix');
+		// cache key
+		$ckey   = $key.$keysfx;
+		$group = 't3';
+		$cache = JCache::getInstance('output', array(
+			'lifetime' => 25200,
+			'caching'	=> true
+		));
+		$cache->store($value, $ckey, $group);
 	}
 
 	/**
@@ -437,19 +468,51 @@ class T3Less
 	public static function buildVars($theme = null, $dir = null)
 	{
 		$app  = JFactory::getApplication();
+		$params = null;
+		if ($app->isAdmin()) {
+			$params = $app->getUserState ('current_template_params');
+		} else {
+			$tpl   =  $app->getTemplate(true);
+			$params = $tpl->params;
+		}
+		if (!$params) {
+			T3::error(JText::_('T3_MSG_CANNOT_DETECT_TEMPLATE'));
+			exit;
+		}
+
+		$responsive = $params->get('responsive', 1);
+		// theme style
+		if ($theme === null) {
+			$theme = $params->get('theme');
+		}
+		// detect RTL
+		if ($dir === null) {
+			$doc = JFactory::getDocument();
+			$dir = $doc->direction;
+		}
+		$app->setUserState('current_theme', $theme);
+		$app->setUserState('current_direction', $dir);
+		$app->setUserState('current_key_sufix', "_{$theme}_{$dir}");
+
 		$path = T3_TEMPLATE_PATH . '/less/vars.less';
 		if(!is_file($path)){
 			T3::error(JText::_('T3_MSG_LESS_NOT_VALID'));
 			exit;
 		}
 
-		// get last-modified
-		$last_modified = filemtime($path);
+		// force re-build less if switch responsive mode and get last modified time
+		if ($responsive !== $app->getUserState('current_responsive')) {
+			$app->setUserState('current_responsive', $responsive);
+			$last_modified = time();
+			touch($path, $last_modified);
+		} else {
+			$last_modified = filemtime($path);
+		}
+
 		$vars          = JFile::read($path);
-	
+
 		preg_match_all('#^\s*@import\s+"([^"]*)"#im', $vars, $matches);
 		if (count($matches[0])) {
-
 			$vars = '';
 			foreach ($matches[1] as $url) {
 				$path = T3Path::cleanPath(T3_TEMPLATE_PATH . '/less/' . $url);
@@ -460,20 +523,7 @@ class T3Less
 			}
 		}
 
-		// theme style
-		if ($theme === null) {
-			$tpl   = $app->getTemplate(true);
-			$theme = $tpl->params->get('theme');
-		}
-		$app->setUserState('vars_theme', $theme);
-		
-		// detect RTL
-		if ($dir === null) {
-			$doc = JFactory::getDocument();
-			$dir = $doc->direction;
-		}
-		$app->setUserState('DIRECTION', $dir);
-		
+
 		if ($theme) {
 			// add theme variables.less and variables-custom.less
 			foreach (array('variables.less', 'variables-custom.less') as $file) {
@@ -501,11 +551,28 @@ class T3Less
 			$rtl = '_rtl';
 		}
 
-		if ($app->getUserState('vars_last_modified' . $rtl) != $last_modified . $theme . $rtl) {
-			$app->setUserState('vars_last_modified' . $rtl, $last_modified . $theme . $rtl);
+		// Non-responsive variables
+		if (!$responsive) {
+			$file = '/less/non-responsive-variables.less';
+			$path = T3_PATH . $file;
+			if (is_file($path)) {
+				$last_modified = max($last_modified, filemtime($path));
+				// append rtl file into vars
+				$vars .= JFile::read($path);
+			}
+			$path = T3_TEMPLATE_PATH . $file;
+			if (is_file($path)) {
+				$last_modified = max($last_modified, filemtime($path));
+				// append rtl file into vars
+				$vars .= JFile::read($path);
+			}
 		}
-		
-		$app->setUserState('vars_content' . $rtl, $vars);
+
+		if (self::getState('vars_last_modified') != $last_modified) {
+			self::setState('vars_last_modified', $last_modified);
+		}
+		self::setState('vars_content', $vars);
+
 	}
 
 	/**
@@ -633,7 +700,7 @@ class T3Less
 
 		//check if we need to rebuild
 		$rebuild = false;
-		$vars_lm = $app->getUserState('vars_last_modified', 0);
+		$vars_lm = self::getState('vars_last_modified', 0);
 		$file_lm = @filemtime(JPATH_ROOT . '/' . $path);
 
 		//check for this file and rtl
@@ -932,6 +999,7 @@ class T3Less
 	public static function compileAll($theme = null)
 	{
 		$params   = T3::getTplParams();
+		JFactory::getApplication()->setUserState ('current_template_params', $params);
 
 		// get files need to compile
 		$files    = array();

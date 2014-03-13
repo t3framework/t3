@@ -841,16 +841,17 @@ class T3Template extends ObjectExtendable
 		$this->addCss('template', false);
 
 		if (!$responsive && $this->responcls) {
+			// not responsive for BS3
 			$this->addCss('non-responsive'); //no responsive
 
 			$nonrespwidth = $this->getParam('non_responsive_width', '970px');
 			if(preg_match('/^(-?\d*\.?\d+)(px|%|em|rem|pc|ex|in|deg|s|ms|pt|cm|mm|rad|grad|turn)?/', $nonrespwidth, $match)){
 				$nonrespwidth = $match[1] . (!empty($match[2]) ? $match[2] : 'px');
 			}
-			$this->addStyleDeclaration('.container {width: ' . $nonrespwidth . ' !important;}');
+			$this->addStyleDeclaration('.container {width: ' . $nonrespwidth . ' !important;} .t3-wrapper, .wrap {min-width: ' . $nonrespwidth . ' !important;}');
 		
-		} else if(!$this->responcls){
-			
+		} else if($responsive && !$this->responcls){
+			// responsive for BS2
 			// BOOTSTRAP RESPONSIVE CSS
 			$this->addCss('bootstrap-responsive');
 			

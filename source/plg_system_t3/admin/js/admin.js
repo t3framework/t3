@@ -655,7 +655,17 @@ var T3Admin = window.T3Admin || {};
 					}
 				}
 			})
-		}
+		},
+
+        noticeChange: function () {
+            // show notice message when responsive mode change
+            $('input[name="jform[params][responsive]"]').on('change', function(){
+                // this is radio
+                if ($(this).data('org-val') != $(this).prop('checked')) {
+                    T3Admin.systemMessage(T3Admin.langs['switchResponsiveMode']);
+                }
+            })
+        }
 	});
 	
 	$(document).ready(function(){
@@ -673,6 +683,7 @@ var T3Admin = window.T3Admin || {};
 		//T3Admin.initCheckupdate();
 		T3Admin.switchTab();
 		T3Admin.fixValidate();
+        T3Admin.noticeChange ();
 	});
 	
 }(jQuery);
