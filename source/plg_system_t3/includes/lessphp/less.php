@@ -439,9 +439,7 @@ class T3Less
 
 		// get cache
 		$data  = $cache->get($ckey, $group);
-		if ($data) {
-			return $data ? $data : $default;
-		}
+		return $data===false ? $app->getUserState($ckey, $default) : $data;
 	}
 
 	/**
@@ -457,7 +455,9 @@ class T3Less
 			'lifetime' => 25200,
 			'caching'	=> true
 		));
-		$cache->store($value, $ckey, $group);
+		if (!$cache->store($value, $ckey, $group)) {
+			$app->setUserState($ckey, $value);
+		}
 	}
 
 	/**
