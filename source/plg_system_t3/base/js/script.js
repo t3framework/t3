@@ -186,6 +186,14 @@
 		$.fn.popover.Constructor && $.fn.popover.Constructor.DEFAULTS && ($.fn.popover.Constructor.DEFAULTS.html = true);
 		$.fn.tooltip.defaults && ($.fn.tooltip.defaults.html = true);
 		$.fn.popover.defaults && ($.fn.popover.defaults.html = true);
+
+		//fix chosen select
+		(function(){
+			if($.fn.chosen && $(document.documentElement).attr('dir') == 'rtl'){
+				$('select').addClass('chosen-rtl');
+			}	
+		})();
+
 	});
 
 	//fix animation for navbar-collapse-fixed-top||bottom

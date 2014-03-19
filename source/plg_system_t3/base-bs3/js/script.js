@@ -108,6 +108,14 @@
 			}	
 		})();
 
+
+		//fix chosen select
+		(function(){
+			if($.fn.chosen && $(document.documentElement).attr('dir') == 'rtl'){
+				$('select').addClass('chosen-rtl');
+			}	
+		})();
+
 	});
 
 	$(window).load(function(){
