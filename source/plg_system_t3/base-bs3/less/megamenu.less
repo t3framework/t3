@@ -427,7 +427,7 @@
 //
 // MEGAMENU RESPONSIVE
 // --------------------------------------------------------------
-@media (max-width: @screen-xs-max) {
+@media (max-width: @grid-float-breakpoint-max) {
 
   .t3-megamenu {
 
@@ -473,13 +473,12 @@
     .sub-hidden-collapse > a:after {
       display: none !important;
     }
-
-    // Hide the captions too
-    .mega-caption {
-      display: none !important;
-    }
-
   }
+	
+	// Hide the captions too
+	.mega-caption {
+		display: none !important;
+	}
 
   // MEGAMENU RTL
   //------------------------------------------------------
