@@ -47,7 +47,12 @@ class T3AdminTheme
 		$theme = JFactory::getApplication()->input->getCmd('theme');
 		$from = JFactory::getApplication()->input->getCmd('from');
 		if (!$theme) {
-		   return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
+		  return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
+		}
+
+		//incase empty from
+		if(!$from){
+			$from = 'base';
 		}
 
 		$file = $path . '/less/themes/' . $theme . '/variables-custom.less';
@@ -64,7 +69,7 @@ class T3AdminTheme
 			$type = 'overwrite';
 		} else {
 
-			if(JFolder::exists($path . '/less/themes/' . $from)){
+			if($theme != $from && JFolder::exists($path . '/less/themes/' . $from)){
 				if(@JFolder::copy($path . '/less/themes/' . $from, $path . '/less/themes/' . $theme) != true){
 					return self::error(JText::_('T3_TM_NOT_FOUND'));
 				}
