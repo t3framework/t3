@@ -426,7 +426,7 @@
 		}
 
 		//get ready
-		$('.nav').t3menu({
+		$('.nav').has('.dropdown-menu').t3menu({
 			duration: mm_duration,
 			timeout: mm_timeout,
 			rtl: mm_rtl,
@@ -438,7 +438,7 @@
 		$(window).load(function(){
 			
 			//check we miss any nav
-			$('.nav').t3menu({
+			$('.nav').has('.dropdown-menu').t3menu({
 				duration: mm_duration,
 				timeout: mm_timeout,
 				rtl: mm_rtl,
