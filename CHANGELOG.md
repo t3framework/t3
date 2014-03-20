@@ -1,3 +1,24 @@
+<h2>Version: 2.1.3 (03/20/2014)</h2>
+
+<h3>Improvement</h3>
+- Improvement: non-responsive mode | <a href="https://github.com/t3framework/t3/commit/00abeb8cc9f2ade0070ed5c51610d8852189ec9d">Link</a>
+- T3 Hungarian translations committed | <a href="https://github.com/t3framework/t3/commit/ccc9b46f0a098ed40dbe91de55735572eeac994a">Link</a>
+- Update French language file | <a href="https://github.com/t3framework/t3/commit/69ae61babc4c0d822b9b593a3fee1de2f68c5c1e">Link</a>
+
+<h3>Fix bugs</h3>
+- Hide Enable Small Logo option with Text logo Type | <a href="https://github.com/t3framework/t3/commit/4a87c9b424fa7da5e28514c8faf35cb2a430bc6b">Link</a>
+- Fix theme saving error | <a href="https://github.com/t3framework/t3/commit/da1f83459bba485973da2f1fa23f2086b7e2048a">Link</a>
+- Cant show spotlights on small screen | <a href="https://github.com/t3framework/t3/commit/d55790da98a197fa61c7ed0b0c9b4233a4667141">Link</a>
+- Hide menu caption on collapsed nav | <a href="https://github.com/t3framework/t3/commit/f5fdad63c2e66b42b6010873e5766e9ebdc44d9e">Link</a>
+- Add chosen rtl class | <a href="https://github.com/t3framework/t3/commit/118e425bec06a5e8be5ac7fc60fb43726aac6e4d">Link</a>
+- Leave nav-tabs to bootstrap default behavior | <a href="https://github.com/t3framework/t3/commit/3ea0fe6b6f201dcfdc27a825ce79c1e624e08786">Link</a>
+- Caption for Menu Item | <a href="https://github.com/t3framework/t3/commit/9c29cc55e09ae86de8b71f78b6ce2db7d3d99822">Link</a>
+- Wrong block displays in layout configuration | <a href="https://github.com/t3framework/t3/commit/8a056edf80e161220207a70d04ef1b199e2f014d">Link</a>
+- Wrong message display when delete theme | <a href="https://github.com/t3framework/t3/commit/db31400a055d1ead0770c23a42c81cc53afb6a3e">Link</a>
+- Fix bug Tags fields is not well displayed | <a href="https://github.com/t3framework/t3/commit/533ba9a1e0502b93cf25efdcb91d59193e3641e4">Link</a>
+- Fix thememagic wrong property | <a href="https://github.com/t3framework/t3/commit/003de54759315e4ae995bd73c52cf5ce3ce6fcdb">Link</a>
+
+
 <h2>Version: 2.1.2 (02/17/2014)</h2>
 
 <h3>Fix bugs</h3>	
