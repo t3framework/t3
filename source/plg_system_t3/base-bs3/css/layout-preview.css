@@ -132,22 +132,10 @@
   min-height: 1px;
   padding-left: 6px;
   padding-right: 6px;
+	float: left;
 }
 .t3-admin-layout-preview.xs {
   width: 450px;
-}
-.t3-admin-layout-preview .col-xs-1,
-.t3-admin-layout-preview .col-xs-2,
-.t3-admin-layout-preview .col-xs-3,
-.t3-admin-layout-preview .col-xs-4,
-.t3-admin-layout-preview .col-xs-5,
-.t3-admin-layout-preview .col-xs-6,
-.t3-admin-layout-preview .col-xs-7,
-.t3-admin-layout-preview .col-xs-8,
-.t3-admin-layout-preview .col-xs-9,
-.t3-admin-layout-preview .col-xs-10,
-.t3-admin-layout-preview .col-xs-11 {
-  float: left;
 }
 .t3-admin-layout-preview .col-xs-1 {
   width: 8.333333333333332%;
