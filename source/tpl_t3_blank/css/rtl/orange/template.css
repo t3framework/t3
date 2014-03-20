@@ -226,6 +226,22 @@ a.thumbnail:hover {
     position: static;
   }
 }
+@media (max-width: 767px) {
+  .logo-control .logo-img-sm {
+    display: block;
+  }
+  .logo-control .logo-img {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .logo-control .logo-img-sm {
+    display: none;
+  }
+  .logo-control .logo-img {
+    display: block;
+  }
+}
 
 .wrap {
   width: auto;
@@ -2710,6 +2726,9 @@ article aside .btn-group > .dropdown-toggle:focus {
   float: right;
   margin: 0 10px 20px;
 }
+table.adminlist th a {
+  color: #f80;
+}
 .article-content .pagination ul {
   border-right: 1px solid #ddd;
 }
@@ -2952,7 +2971,6 @@ article aside .btn-group > .dropdown-toggle:focus {
   overflow: hidden;
 }
 .logo-image a {
-  background-image: url("../../../images/logo.png");
   background-repeat: no-repeat;
   width: 204px;
   height: 65px;

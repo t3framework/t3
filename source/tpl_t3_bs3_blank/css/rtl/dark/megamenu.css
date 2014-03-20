@@ -13,7 +13,7 @@
   display: none;
 }
 .t3-megamenu .mega.open > .mega-dropdown-menu,
-.t3-megamenu .mega.dropdown-submenu:hover > .mega-dropdown-menu {
+.t3-megamenu .mega.dropdown-submenu.open > .mega-dropdown-menu {
   display: block;
 }
 .t3-megamenu .mega-group:before,
@@ -30,7 +30,7 @@
 .t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .dropdown-header {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   color: inherit;
   font-size: 18px;
   line-height: normal;
@@ -105,7 +105,7 @@
 .t3-megamenu .t3-module .module-title {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   color: inherit;
   font-size: 18px;
   line-height: normal;
@@ -302,7 +302,7 @@
   .t3-megamenu .sub-hidden-collapse > a:after {
     display: none !important;
   }
-  .t3-megamenu .mega-caption {
+  .mega-caption {
     display: none !important;
   }
   html[dir="rtl"] .t3-megamenu .row,
@@ -333,7 +333,7 @@
 .t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .dropdown-header {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   color: inherit;
   font-size: 18px;
   line-height: normal;
@@ -366,7 +366,7 @@
 .t3-megamenu .t3-module .module-title {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   color: inherit;
   font-size: 18px;
   line-height: normal;

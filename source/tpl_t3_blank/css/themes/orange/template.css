@@ -226,6 +226,22 @@ a.thumbnail:hover {
     position: static;
   }
 }
+@media (max-width: 767px) {
+  .logo-control .logo-img-sm {
+    display: block;
+  }
+  .logo-control .logo-img {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .logo-control .logo-img-sm {
+    display: none;
+  }
+  .logo-control .logo-img {
+    display: block;
+  }
+}
 
 .wrap {
   width: auto;
@@ -2955,7 +2971,6 @@ table.adminlist th a {
   overflow: hidden;
 }
 .logo-image a {
-  background-image: url("../../../images/logo.png");
   background-repeat: no-repeat;
   width: 204px;
   height: 65px;

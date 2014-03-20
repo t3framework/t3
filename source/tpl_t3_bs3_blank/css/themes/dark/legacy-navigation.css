@@ -9,7 +9,7 @@
   margin-top: -5px;
   margin-left: -1px;
 }
-.dropdown-submenu:hover > .dropdown-menu {
+.dropdown-submenu.open > .dropdown-menu {
   display: block;
 }
 .dropdown-submenu > .dropdown-menu {
@@ -28,7 +28,7 @@
   margin-top: 5px;
   margin-right: -5px;
 }
-.dropdown-submenu:hover > a:after {
+.dropdown-submenu.open > a:after {
   border-left-color: #ffffff;
 }
 

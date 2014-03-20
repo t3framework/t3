@@ -49,8 +49,7 @@ body {
   visibility: hidden;
   width: 250px;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -85,6 +84,9 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 }
 .off-canvas-open .off-canvas-current {
   visibility: visible;
+}
+.off-canvas-open .t3-off-canvas {
+  overflow-y: auto;
 }
 .t3-off-canvas {
   background: #ffffff;
@@ -661,7 +663,7 @@ html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .off-canvas body > * {
     left: 0;
     -webkit-transform: translateX(0%);
