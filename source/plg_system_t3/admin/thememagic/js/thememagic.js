@@ -732,9 +732,9 @@ var T3Theme = window.T3Theme || {};
 							}
 
 							try {
-								delete T3Theme.theme[result.theme];
+								delete T3Theme.themes[result.theme];
 							} catch(e){
-								T3Theme.theme[result.theme] = null;
+								T3Theme.themes[result.theme] = null;
 							}
 
 							jel.options[0].selected = true;					
