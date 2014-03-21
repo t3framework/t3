@@ -594,7 +594,7 @@ class T3TemplateLayout extends T3Template
 	{
 		//convert back - width of mobile should be [33%,] 50% and 100%
 		//there might be some case when we enter the width of other device ( < 12) => return 100% (12)
-		return $device == 'mobile' ? ($width < 12 ? 12 : floor($width / 100 * 12)) : $width;
+		return $device == 'mobile' ? ($width <= 12 ? 12 : floor($width / 100 * 12)) : $width;
 	}
 
 	/**
