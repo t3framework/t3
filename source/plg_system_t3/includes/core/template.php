@@ -1044,7 +1044,9 @@ class T3Template extends ObjectExtendable
 							$newurl = T3_TEMPLATE_URL . '/less/' . $fname . '.less';
 							$css['mime'] = 'text/less';
 						} else {
-							$newurl = $current . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
+							// $newurl = $current . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
+							T3::import('core/less');
+							$newurl = T3Less::buildCss(T3Path::cleanPath('templates/'.T3_TEMPLATE.'/less/'.$fname.'.less'));
 						}
 						$stylesheets[$newurl] = $css;
 						continue;
