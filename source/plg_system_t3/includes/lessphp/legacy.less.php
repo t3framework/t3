@@ -106,7 +106,7 @@ class T3Less extends lessc
 		
 		// not cached, build & store it
 		if (!$this->compileCss($path, $cssfile)) {
-			T3::error(JText::sprintf('T3_MSG_DEVFOLDER_NOT_WRITABLE', T3_DEV_FOLDER));
+			return null;
 		}
 		
 		return $cssurl;
@@ -145,7 +145,7 @@ class T3Less extends lessc
 		// check path
 		$realpath = realpath(JPATH_ROOT . '/' . $path);
 		if (!is_file($realpath)) {
-			return;
+			return null;
 		}
 
 		// get file content
@@ -335,10 +335,12 @@ class T3Less extends lessc
 		$output = preg_replace($rspace, "\n\n", $output);
 
 		if ($tofile) {
-			$ret = JFile::write($tofile, $output);
-			@chmod($tofile, 0644);
-			
-			return $ret;
+			if (!JFile::write($tofile, $output)) {
+				T3::error(JText::sprintf('T3_MSG_DEVFOLDER_NOT_WRITABLE', T3_DEV_FOLDER));
+				return false;
+			}			
+			@chmod($tofile, 0644);			
+			return null;
 		}
 		
 		return $output;
