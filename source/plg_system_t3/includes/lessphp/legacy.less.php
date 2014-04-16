@@ -145,7 +145,7 @@ class T3Less extends lessc
 		// check path
 		$realpath = realpath(JPATH_ROOT . '/' . $path);
 		if (!is_file($realpath)) {
-			return null;
+			return false;
 		}
 
 		// get file content
@@ -340,7 +340,7 @@ class T3Less extends lessc
 				return false;
 			}			
 			@chmod($tofile, 0644);			
-			return null;
+			return true;
 		}
 		
 		return $output;

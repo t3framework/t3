@@ -186,7 +186,7 @@ class T3Less
 		// check path
 		$realpath = realpath(JPATH_ROOT . '/' . $path);
 		if (!is_file($realpath)) {
-			return null;
+			return false;
 		}
 
 		// get file content
@@ -411,7 +411,7 @@ class T3Less
 			
 			@chmod($tofile, 0644);
 			
-			return null;
+			return true;
 		}
 		
 		return $output;
