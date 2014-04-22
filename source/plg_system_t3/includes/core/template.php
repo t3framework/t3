@@ -196,27 +196,21 @@ class T3Template extends ObjectExtendable
 
 		if (is_file($path)) {
 
+			ob_start();
+			include $path;
+			$buffer = ob_get_contents();
+			ob_end_clean();
 			if($this->responcls && !$this->getParam('responsive', 1)){
-
-				ob_start();
-				include $path;
-				$buffer = ob_get_contents();
-				ob_end_clean();
-
 				//replace
 				$buffer = preg_replace_callback('@class\s?=\s?(\'|")(([^\'"]*)(' . implode('|', $this->prefixes) . ')+([^\'"]*))(\'|")@m', array($this, 'responCls'), $buffer);
-
-				//output
-				echo $buffer;
-
-			} else {
-				include $path;	
 			}
-
-			// append modules in debug position
-			if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
-				$this->getBuffer('modules', 'debug');
+			// check if exist megamenu renderer, place megamenurender on the top to render megamenu before render head
+			if (preg_match ('/(<jdoc:include type="megamenu"[^>]*>)/i', $buffer, $match)) {
+				$buffer = str_replace ('type="megamenu"', 'type="megamenurender"', $match[1]).$buffer;
+				T3::import('renderer/megamenurender');
 			}
+			//output
+			echo $buffer;
 
 		} else {
 			echo "<div class=\"error\">Layout [$layout] or [Default] not found!</div>";
