@@ -13,6 +13,30 @@
 
 !function($){
 
+	// Detect grid-float-breakpoint value and put to $(body) data
+	$(document).ready(function(){
+		var fromClass = 'body-data-holder',
+				prop = 'content',
+				$inspector = $('<div>').css('display', 'none').addClass(fromClass).appendTo($('body'));
+				
+    try {
+			var attrs = window.getComputedStyle(
+					$inspector[0], ':before'
+				).getPropertyValue(prop),
+				matches = attrs.match(/([\da-z\-]+)/gi),
+				data = {};
+				if (matches && matches.length) {
+					for (var i=0; i<matches.length; i++) {
+						data[matches[i++]] = i<matches.length ? matches[i] : null;
+					}
+				}
+				$('body').data (data);
+    } finally {
+        $inspector.remove(); // and remove from DOM
+    }
+	});
+	
+	
 	//detect transform (https://github.com/cubiq/)
 	$.support.t3transform = (function () {
 		var style = document.createElement('div').style,
