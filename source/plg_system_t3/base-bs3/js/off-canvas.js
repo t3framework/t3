@@ -147,5 +147,6 @@ jQuery (document).ready(function($){
 
     var stopBubble = function (e) {
         e.stopPropagation();
-    }
+				e.preventDefault();
+		}
 })
