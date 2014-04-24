@@ -2,12 +2,12 @@
 <extension type="package" version="2.5">
 	<name>T3 Framework (fr-FR)</name>
 	<packagename>T3-fr-FR</packagename>
-	<version>1.0.0</version>
-	<creationDate>Décembre 2013</creationDate>
+	<version>2.1.3</version>
+	<creationDate>Mars 2014</creationDate>
 	<author>Serge Berthier</author>
 	<authorEmail>info@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
-	<copyright>Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<url></url>
 	<packager>JoomlArt</packager>
