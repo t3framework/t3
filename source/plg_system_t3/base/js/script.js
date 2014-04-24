@@ -13,27 +13,50 @@
 
 !function($){
 
+	// detect & add ie version to html tag
+	if (match = navigator.userAgent.match (/MSIE ([0-9]{1,}[\.0-9]{0,})/) || navigator.userAgent.match (/Trident.*rv:([0-9]{1,}[\.0-9]{0,})/)) {
+			$('html').addClass('ie'+parseInt (match[1]));
+	}
+
 	// Detect grid-float-breakpoint value and put to $(body) data
 	$(document).ready(function(){
-		var fromClass = 'body-data-holder',
-				prop = 'content',
-				$inspector = $('<div>').css('display', 'none').addClass(fromClass).appendTo($('body'));
-				
-    try {
-			var attrs = window.getComputedStyle(
-					$inspector[0], ':before'
-				).getPropertyValue(prop),
-				matches = attrs.match(/([\da-z\-]+)/gi),
-				data = {};
-				if (matches && matches.length) {
-					for (var i=0; i<matches.length; i++) {
-						data[matches[i++]] = i<matches.length ? matches[i] : null;
+			if (!window.getComputedStyle) {
+					window.getComputedStyle = function(el, pseudo) {
+							this.el = el;
+							this.getPropertyValue = function(prop) {
+									var re = /(\-([a-z]){1})/g;
+									if (prop == 'float') prop = 'styleFloat';
+									if (re.test(prop)) {
+											prop = prop.replace(re, function () {
+													return arguments[2].toUpperCase();
+											});
+									}
+									return el.currentStyle[prop] ? el.currentStyle[prop] : null;
+							}
+							return this;
 					}
-				}
-				$('body').data (data);
-    } finally {
-        $inspector.remove(); // and remove from DOM
-    }
+			}
+			var fromClass = 'body-data-holder',
+					prop = 'content',
+					$inspector = $('<div>').css('display', 'none').addClass(fromClass).appendTo($('body'));
+
+			try {
+					var attrs = window.getComputedStyle(
+							$inspector[0], ':before'
+					).getPropertyValue(prop);
+					if(attrs){
+							var matches = attrs.match(/([\da-z\-]+)/gi),
+									data = {};
+							if (matches && matches.length) {
+									for (var i=0; i<matches.length; i++) {
+											data[matches[i++]] = i<matches.length ? matches[i] : null;
+									}
+							}
+							$('body').data (data);
+					}
+			} finally {
+					$inspector.remove(); // and remove from DOM
+			}
 	});
 	
 	
