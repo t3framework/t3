@@ -99,6 +99,43 @@ var T3Admin = window.T3Admin || {};
 			$('#t3-admin-tb-close').on('click', function(){
 				Joomla.submitbutton(($(this).hasClass('template') ? 'template' : 'style') + '.cancel');
 			});
+
+            // menu assignment toggle
+            $('.menu-assignment-toggle').on ('click', function () {
+               var $this = $(this),
+                   $parent = $this.parents('label').length ? $this.parents('label') : $this.parents('h5'),
+                   level = $parent.data('level');
+                $parent.nextAll().each (function () {
+                   if (!level || $(this).data('level') > level) {
+                       var chk = $(this).find ('.chk-menulink');
+                       chk.prop('checked', !chk.prop('checked'));
+                   } else {
+                       return false;
+                   }
+               });
+            });
+
+            // menu tree toggle
+            $('.menu-tree-toggle').on ('click', function () {
+               var $this = $(this),
+                   $parent = $this.parents('label'),
+                   level = $parent.data('level'),
+                   status = $this.data('status');
+                $parent.nextAll().each (function () {
+                   if ($(this).data('level') > level) {
+                       if (status == 'hide') $(this).removeClass ('hide'); else $(this).addClass('hide');
+                   } else {
+                       return false;
+                   }
+               });
+               if (status == 'hide') {
+                   $this.data('status', 'show');
+                   $this.addClass ('icon-minus').removeClass ('icon-plus');
+               } else {
+                   $this.data('status', 'hide');
+                   $this.removeClass ('icon-minus').addClass ('icon-plus');
+               }
+            });
 		},
 
 		initRadioGroup: function(){
@@ -665,7 +702,9 @@ var T3Admin = window.T3Admin || {};
                     T3Admin.systemMessage(T3Admin.langs['switchResponsiveMode']);
                 }
             })
-        }
+        },
+
+
 	});
 	
 	$(document).ready(function(){

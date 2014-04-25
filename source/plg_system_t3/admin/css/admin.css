@@ -1492,6 +1492,21 @@ button.btn-primary:active {
   margin: 3px 5px 0 0;
 }
 
+.t3-admin-assignment .level1 {
+    padding-left: 0px;
+}
+.t3-admin-assignment .level2 {
+    padding-left: 30px;
+}
+.t3-admin-assignment .level3 {
+    padding-left: 60px;
+}
+.t3-admin-assignment .level4 {
+    padding-left: 90px;
+}
+.t3-admin-assignment .level5 {
+    padding-left: 120px;
+}
 
 /* Fix for Joomla! Default Admin Template
 --------------------------------------------------*/
