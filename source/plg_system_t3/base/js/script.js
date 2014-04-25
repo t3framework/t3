@@ -13,50 +13,27 @@
 
 !function($){
 
-	// detect & add ie version to html tag
-	if (match = navigator.userAgent.match (/MSIE ([0-9]{1,}[\.0-9]{0,})/) || navigator.userAgent.match (/Trident.*rv:([0-9]{1,}[\.0-9]{0,})/)) {
-			$('html').addClass('ie'+parseInt (match[1]));
-	}
-
 	// Detect grid-float-breakpoint value and put to $(body) data
 	$(document).ready(function(){
-			if (!window.getComputedStyle) {
-					window.getComputedStyle = function(el, pseudo) {
-							this.el = el;
-							this.getPropertyValue = function(prop) {
-									var re = /(\-([a-z]){1})/g;
-									if (prop == 'float') prop = 'styleFloat';
-									if (re.test(prop)) {
-											prop = prop.replace(re, function () {
-													return arguments[2].toUpperCase();
-											});
-									}
-									return el.currentStyle[prop] ? el.currentStyle[prop] : null;
-							}
-							return this;
+		var fromClass = 'body-data-holder',
+				prop = 'content',
+				$inspector = $('<div>').css('display', 'none').addClass(fromClass).appendTo($('body'));
+				
+    try {
+			var attrs = window.getComputedStyle(
+					$inspector[0], ':before'
+				).getPropertyValue(prop),
+				matches = attrs.match(/([\da-z\-]+)/gi),
+				data = {};
+				if (matches && matches.length) {
+					for (var i=0; i<matches.length; i++) {
+						data[matches[i++]] = i<matches.length ? matches[i] : null;
 					}
-			}
-			var fromClass = 'body-data-holder',
-					prop = 'content',
-					$inspector = $('<div>').css('display', 'none').addClass(fromClass).appendTo($('body'));
-
-			try {
-					var attrs = window.getComputedStyle(
-							$inspector[0], ':before'
-					).getPropertyValue(prop);
-					if(attrs){
-							var matches = attrs.match(/([\da-z\-]+)/gi),
-									data = {};
-							if (matches && matches.length) {
-									for (var i=0; i<matches.length; i++) {
-											data[matches[i++]] = i<matches.length ? matches[i] : null;
-									}
-							}
-							$('body').data (data);
-					}
-			} finally {
-					$inspector.remove(); // and remove from DOM
-			}
+				}
+				$('body').data (data);
+    } finally {
+        $inspector.remove(); // and remove from DOM
+    }
 	});
 	
 	
@@ -219,11 +196,12 @@
 		if(isTouch){
 			$('ul.nav').has('.dropdown-menu').touchmenu();
 		} else {
-			$(document.body).on('click', '[data-toggle="dropdown"]' ,function(){
+			$(document.body).on('click', '[data-toggle="dropdown"]' ,function(e){
 				//if this link has 'open' (second click) class or when we are in collapsed menu and have always-show
 				if($(this).parent().hasClass('open') && this.href && this.href != '#' || 
 					($('.btn-navbar').is(':visible') && $(this).closest('.always-show').length)){
-					window.location.href = this.href;
+					e.stopPropagation();
+					return true;
 				}
 			});
 		}
