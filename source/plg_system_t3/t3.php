@@ -197,18 +197,15 @@ class plgSystemT3 extends JPlugin
 				T3Bot::prepareForm($form);
 
 				//search for global parameters and store in user state
-				if(is_object($data)){
-					$app      = JFactory::getApplication();
-					$fdata    = $data->getProperties();
-					$pglobals = array();
-				
-					foreach($form->getGroup('params') as $param){
-						if($form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
-							$pglobals[] = array('name' => $param->fieldname, 'value' => isset($fdata['params'][$param->fieldname]) ? $fdata['params'][$param->fieldname] : ''); 
-						}
+				$app      = JFactory::getApplication();
+				$gparams = array();				
+				foreach($form->getGroup('params') as $param){
+					if($form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
+						$gparams[] = $param->fieldname; 
 					}
-					$app->setUserState('oparams', $pglobals);
 				}
+				$app->setUserState('gparams', $gparams);
+				$this->gparams = $gparams;
 			}
 
 			$tmpl = T3::detect() ? T3::detect() : (T3::getDefaultTemplate(true) ? T3::getDefaultTemplate(true) : false);
@@ -250,21 +247,9 @@ class plgSystemT3 extends JPlugin
 			//get new params value
 			$japp = JFactory::getApplication();
 			$params = new JRegistry;
-			$params->loadString($data->params);
-			$oparams = $japp->getUserState('oparams');
-
-			//check for changed params
-			$pchanged = array();
-			if (is_array ($oparams)) {
-				foreach ($oparams as $oparam) {
-					if ($params->get($oparam['name']) != $oparam['value']) {
-						$pchanged[] = $oparam['name'];
-					}
-				}
-			}
-
+			$params->loadString($data->params);						
 			//if we have any changed, we will update to global
-			if (count($pchanged)) {
+			if (isset($this->gparams) && count($this->gparams)) {
 
 				//get all other styles that have the same template
 				$db = JFactory::getDBO();
@@ -282,7 +267,7 @@ class plgSystemT3 extends JPlugin
 					$registry = new JRegistry;
 					$registry->loadString($theme->params);
 
-					foreach ($pchanged as $pname) {
+					foreach ($this->gparams as $pname) {
 						$registry->set($pname, $params->get($pname)); //overwrite with new value
 					}
 

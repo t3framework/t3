@@ -269,6 +269,7 @@ class T3Admin {
 
 			include $jtpl;
 			
+			/*
 			//search for global parameters
 			$japp = JFactory::getApplication();
 			$pglobals = array();
@@ -278,6 +279,7 @@ class T3Admin {
 				}
 			}
 			$japp->setUserState('oparams', $pglobals);
+			*/
 
 			return true;
 		}
