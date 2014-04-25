@@ -339,12 +339,14 @@ class T3Template extends ObjectExtendable
 	 */
 	function megamenu($menutype)
 	{
-		T3::import('renderer/megamenu');
+		T3::import('renderer/megamenurender');
 
 		$doc      = JFactory::getDocument();
-		$renderer = new JDocumentRendererMegamenu($doc);
+		$renderer = new JDocumentRendererMegamenuRender($doc);
 
-		echo $renderer->render(null, array('menutype' => $menutype));
+		$renderer->render(null, array('name' => $menutype));
+		
+		echo $this->getBuffer('megamenu', $menutype, null);
 	}
 
 	/**

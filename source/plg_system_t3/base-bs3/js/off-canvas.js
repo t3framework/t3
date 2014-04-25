@@ -70,7 +70,17 @@ jQuery (document).ready(function($){
 
         $offcanvas.height($(window).height());
 
-
+				// disable scroll event
+				var events = $(window).data('events');
+				if (events && events.scroll) {
+					// store current handler for scroll
+					var handlers = [];
+					events.scroll.each(function(h, i){
+						handlers[i] = h.handler;
+					});
+					$(window).data('scroll-events', handlers);
+					$(window).off ('scroll');
+				}
         // disable scroll on page
         var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
         $('html').addClass('noscroll').css('top',-scrollTop).data('top', scrollTop);
@@ -133,6 +143,10 @@ jQuery (document).ready(function($){
             $nav.removeClass ('off-canvas-current');
             // restore fixed elements
             $fixed.css ({'position': '', 'margin-top': ''});
+						// re-enable scroll
+						if ($(window).data('scroll-events')) {
+							$(window).on ('scroll', $(window).data('scroll-events'));
+						}
         }, 550);
 
         // fix for old ie

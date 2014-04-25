@@ -32,7 +32,7 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 		$t3app = T3::getApp();
 
 		//we will check from params
-		$menutype      = empty($params['menutype']) ? $t3app->getParam('mm_type', 'mainmenu') : $params['menutype'];
+		$menutype      = empty($params['name']) ? $t3app->getParam('mm_type', 'mainmenu') : $params['name'];
 		$currentconfig = json_decode($t3app->getParam('mm_config', ''), true);
 
 		//force to array
@@ -100,7 +100,7 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 		$mmconfig['access'] = $viewLevels;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $t3app->_tpl->params);
 		
-		$t3app->setBuffer($menu->render(true), 'megamenu', $menutype, null);
+		$t3app->setBuffer($menu->render(true), 'megamenu', empty($params['name']) ? null : $params['name'], null);
 		return '';
 	}
 }
