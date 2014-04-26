@@ -4,6 +4,7 @@
 - Improve the way using module less file | <a href="https://github.com/t3framework/t3/commit/4a1643b49d632401b78b56b258e4d9e5f28bc05c">Link</a>
 
 <h3>Fix bugs</h3>
+- Update off-canvas.js| <a href="https://github.com/t3framework/t3/commit/30c28c97d1ac76eec37f4a3d0bc561f39ed8e809">Link</a>
 - Fix bug cannot click menu item in off-canvas | <a href="https://github.com/t3framework/t3/commit/875d724d4be34ec486ed642dd9e5420dc5b8d9b2">Link</a>
 - Update megamenu render | <a href="https://github.com/t3framework/t3/commit/a04ac22561928b4aa0a3cb7c48e9714a871746a5">Link</a>
 - Fix bug cannot save global params to all styles | <a href="https://github.com/t3framework/t3/commit/f6969b70a4816c8767370eaf543aa60ef3c7309e">Link</a>
