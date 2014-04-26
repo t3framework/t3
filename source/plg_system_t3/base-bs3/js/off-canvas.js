@@ -13,7 +13,7 @@
 
 jQuery (document).ready(function($){
     // fix for old ie
-    if ($.browser.msie && $.browser.version < 10) {
+    if (/MSIE\s([\d.]+)/.test(navigator.userAgent) ? new Number(RegExp.$1) < 10 : false) {
         $('html').addClass ('old-ie');
     } else if(/constructor/i.test(window.HTMLElement)){
         $('html').addClass('safari');
@@ -151,7 +151,7 @@ jQuery (document).ready(function($){
         }, 550);
 
         // fix for old ie
-        if ($.browser.msie && $.browser.version < 10) {
+        if ($('html').hasClass ('old-ie')) {
             var p1 = {}, p2 = {};
             p1['padding-'+direction] = 0;
             p2[direction] = -$('.t3-off-canvas').width();
