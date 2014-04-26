@@ -1,3 +1,26 @@
+<h2>Version: 2.1.4 (04/26/2014)</h2>
+
+<h3>Improvement</h3>
+- Improve the way using module less file | <a href="https://github.com/t3framework/t3/commit/4a1643b49d632401b78b56b258e4d9e5f28bc05c">Link</a>
+
+<h3>Fix bugs</h3>
+- Fix bug cannot click menu item in off-canvas | <a href="https://github.com/t3framework/t3/commit/875d724d4be34ec486ed642dd9e5420dc5b8d9b2">Link</a>
+- Update megamenu render | <a href="https://github.com/t3framework/t3/commit/a04ac22561928b4aa0a3cb7c48e9714a871746a5">Link</a>
+- Fix bug cannot save global params to all styles | <a href="https://github.com/t3framework/t3/commit/f6969b70a4816c8767370eaf543aa60ef3c7309e">Link</a>
+- Fix bug cannot open new window for menu item | <a href="https://github.com/t3framework/t3/commit/e885e003d10771a8f29aa9d0a9fae1d4d5c839be">Link</a>
+- Enhancement menu assignment UI | <a href="https://github.com/t3framework/t3/commit/0ce27bf9ad8ece2047a62e867b264030429e8851">Link</a>
+- Fix off-canvas toggle on IOS | <a href="https://github.com/t3framework/t3/commit/be0a1f9ee02ab45925bcfd91b2fb513a9726b2e1">Link</a>
+- detect & add ie version class to html tag | <a href="https://github.com/t3framework/t3/commit/ec854c2448d34b6b4f06357cd66735b065700b29">Link</a>
+- Allow javascript get some less variables value | <a href="https://github.com/t3framework/t3/commit/44998f9142bc6dbe0758c6bb5fb6f70287803211">Link</a>
+- Fix bug cannot load css/js for module in megamenu | <a href="https://github.com/t3framework/t3/commit/badba6a23e4a2b0e7dc905704e14aa17ae8c4030">Link</a>
+- Update image path for compiled css in themes, rtl | <a href="https://github.com/t3framework/t3/commit/a359d6571e2b32bbb092a6b98a6ab965963fb831">Link</a>
+- Update logic code for build less in devmode | <a href="https://github.com/t3framework/t3/commit/6836c37ac016d7f6375e13cc36eb04daaad111bd">Link</a>
+- Update Less PHP Builder v1.7.0.1 | <a href="https://github.com/t3framework/t3/commit/1b173e4dd3aff7e36e00a533ebc07b67893ca9ae">Link</a>
+- Update logic code | <a href="https://github.com/t3framework/t3/commit/fc3b0f49fc87b20e0fbb79e0f21e4e9c999d5e77">Link</a>
+- Update fr-FR.plg_system_t3.ini | <a href="https://github.com/t3framework/t3/commit/303b4d9266979ba83b1cc9842f175107915ab4ff">Link</a>
+- Fix bug Mobile module width reset to span6| <a href="https://github.com/t3framework/t3/commit/70c624ca72c63092ee6fa9c448ecdfc030b7f748">Link</a>
+
+
 <h2>Version: 2.1.3 (03/20/2014)</h2>
 
 <h3>Improvement</h3>
