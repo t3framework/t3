@@ -48,13 +48,14 @@ jQuery (document).ready(function($){
         }
     });
 
-    $toggles.on('tap', function(e){
+    $toggles.on('click', function(e){
         // detect direction
 
         stopBubble (e);
+
         if ($wrapper.hasClass ('off-canvas-open')) {
             oc_hide (e);
-            return;
+            return false;
         }
 
         $btn = $(this);
@@ -72,12 +73,12 @@ jQuery (document).ready(function($){
 
 				// disable scroll event
 				var events = $(window).data('events');
-				if (events && events.scroll) {
+				if (events && events.scroll && events.scroll.length) {
 					// store current handler for scroll
 					var handlers = [];
-					events.scroll.each(function(h, i){
-						handlers[i] = h.handler;
-					});
+					for (var i=0; i<events.scroll.length; i++){
+						handlers[i] = events.scroll[i].handler;
+					}
 					$(window).data('scroll-events', handlers);
 					$(window).off ('scroll');
 				}
@@ -104,11 +105,11 @@ jQuery (document).ready(function($){
 
         setTimeout(oc_show, 50);
 
-        return;
+        return false;
     });
     var oc_show = function () {
         $wrapper.addClass ('off-canvas-open');
-        $wrapper.on ('tap', oc_hide);
+        $inner.on ('click', oc_hide);
         $close.on ('click', oc_hide);
         $offcanvas.on ('click', stopBubble);
 
@@ -125,7 +126,7 @@ jQuery (document).ready(function($){
     var oc_hide = function () {
         
         //remove events
-        $wrapper.off ('tap', oc_hide);
+        $inner.off ('tab', oc_hide);
         $close.off ('click', oc_hide);
         $offcanvas.off ('click', stopBubble);
 
@@ -161,6 +162,6 @@ jQuery (document).ready(function($){
 
     var stopBubble = function (e) {
         e.stopPropagation();
-				e.preventDefault();
+				return true;
 		}
 })
