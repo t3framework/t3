@@ -359,7 +359,7 @@ class T3Less
 		$parser->SetImportDirs($importdirs);
 		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, self::relativePath($todir, dirname($path)));
 		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
-		$parser->parse($source);
+		$parser->parse($source, self::relativePath($todir, $path));
 		$output = $parser->getCss();
 		
 		// remove the duplicate clearfix at the beginning if not bootstrap.css file
@@ -377,7 +377,7 @@ class T3Less
 		}
 
 		//update url if needed
-		$output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), dirname($path)) : T3_TEMPLATE_URL . '/css/');
+		// $output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), dirname($path)) : T3_TEMPLATE_URL . '/css/');
 
 		if ($is_rtl) {
 			
