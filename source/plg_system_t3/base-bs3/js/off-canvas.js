@@ -71,17 +71,17 @@ jQuery (document).ready(function($){
 
         $offcanvas.height($(window).height());
 
-				// disable scroll event
-				var events = $(window).data('events');
-				if (events && events.scroll && events.scroll.length) {
-					// store current handler for scroll
-					var handlers = [];
-					for (var i=0; i<events.scroll.length; i++){
-						handlers[i] = events.scroll[i].handler;
-					}
-					$(window).data('scroll-events', handlers);
-					$(window).off ('scroll');
-				}
+        // disable scroll event
+        var events = $(window).data('events');
+        if (events && events.scroll && events.scroll.length) {
+          // store current handler for scroll
+          var handlers = [];
+          for (var i=0; i<events.scroll.length; i++){
+            handlers[i] = events.scroll[i].handler;
+          }
+          $(window).data('scroll-events', handlers);
+          $(window).off ('scroll');
+        }
         // disable scroll on page
         var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
         $('html').addClass('noscroll').css('top',-scrollTop).data('top', scrollTop);
@@ -144,10 +144,14 @@ jQuery (document).ready(function($){
             $nav.removeClass ('off-canvas-current');
             // restore fixed elements
             $fixed.css ({'position': '', 'margin-top': ''});
-						// re-enable scroll
-						if ($(window).data('scroll-events')) {
-							$(window).on ('scroll', $(window).data('scroll-events'));
-						}
+            // re-enable scroll
+            if ($(window).data('scroll-events')) {
+              var handlers = $(window).data('scroll-events');
+              for (var i=0; i<handlers.length; i++) {
+                $(window).on ('scroll', handlers[i]);
+              }
+              $(window).data('scroll-events', null);
+            }
         }, 550);
 
         // fix for old ie
@@ -162,6 +166,6 @@ jQuery (document).ready(function($){
 
     var stopBubble = function (e) {
         e.stopPropagation();
-				return true;
-		}
+        return true;
+    }
 })
