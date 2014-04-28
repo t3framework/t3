@@ -48,7 +48,7 @@ jQuery (document).ready(function($){
         }
     });
 
-    $toggles.on('click', function(e){
+    $toggles.on('tap', function(e){
         // detect direction
 
         stopBubble (e);
