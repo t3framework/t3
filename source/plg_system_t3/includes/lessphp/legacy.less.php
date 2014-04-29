@@ -68,8 +68,9 @@ class T3Less extends lessc
 		return $data;
 	}
 	
-	function buildCss($path)
+	public static function buildCss($path)
 	{
+		$t3less = self::getInstance();
 		$app     = JFactory::getApplication();
 		$theme   = $app->getUserState('vars_theme', '');
 		
@@ -105,7 +106,7 @@ class T3Less extends lessc
 		}
 		
 		// not cached, build & store it
-		if (!$this->compileCss($path, $cssfile)) {
+		if (!$t3less->compileCss($path, $cssfile)) {
 			return null;
 		}
 		
