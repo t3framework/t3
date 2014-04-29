@@ -1,3 +1,9 @@
+<h2>Version: 2.1.5 (04/29/2014)</h2>
+
+<h3>Fix bugs</h3>
+- [Fix] devmode for templates base on bootstrap 2 | <a href="https://github.com/t3framework/t3/commit/09c4eb241f9ec6f642422c41bb0ab5b274e4f22c">Link</a>
+
+
 <h2>Version: 2.1.4 (04/26/2014)</h2>
 
 <h3>Improvement</h3>
