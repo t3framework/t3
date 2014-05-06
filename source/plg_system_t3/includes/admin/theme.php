@@ -14,6 +14,8 @@
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
+// add new Less format class to work with joomla 3.3
+T3::import('format/less3.3');
 
 /**
  *
