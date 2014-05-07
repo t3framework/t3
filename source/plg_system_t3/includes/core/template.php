@@ -205,9 +205,11 @@ class T3Template extends ObjectExtendable
 				$buffer = preg_replace_callback('@class\s?=\s?(\'|")(([^\'"]*)(' . implode('|', $this->prefixes) . ')+([^\'"]*))(\'|")@m', array($this, 'responCls'), $buffer);
 			}
 			// check if exist megamenu renderer, place megamenurender on the top to render megamenu before render head
-			if (preg_match ('/(<jdoc:include type="megamenu"[^>]*>)/i', $buffer, $match)) {
-				$buffer = str_replace ('type="megamenu"', 'type="megamenurender"', $match[1]).$buffer;
-				T3::import('renderer/megamenurender');
+			if (preg_match_all ('/(<jdoc:include type="megamenu"[^>]*>)/i', $buffer, $match)) {
+        foreach ($match[1] as $m) {
+          $buffer = str_replace ('type="megamenu"', 'type="megamenurender"', $m).$buffer;
+          T3::import('renderer/megamenurender');
+        }
 			}
 			//output
 			echo $buffer;
@@ -335,18 +337,11 @@ class T3Template extends ObjectExtendable
 	 * Render megamenu markup
 	 * @param  string  $menutype  The menutype to render
 	 *
-	 * @deprecated  Use <jdoc:include type="megamenu" menutype="$menutype" /> instead
+	 * @deprecated  Use <jdoc:include type="megamenu" name="$menutype" /> instead
 	 */
 	function megamenu($menutype)
 	{
-		T3::import('renderer/megamenurender');
-
-		$doc      = JFactory::getDocument();
-		$renderer = new JDocumentRendererMegamenuRender($doc);
-
-		$renderer->render(null, array('name' => $menutype));
-		
-		echo $this->getBuffer('megamenu', $menutype, null);
+    echo "<jdoc:include type=\"megamenu\" name=\"{$menutype}\" />";
 	}
 
 	/**
