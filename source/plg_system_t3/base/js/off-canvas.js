@@ -67,15 +67,15 @@
 				setTimeout (function(){
 					$btn.data('off-canvas', 'show');
 					$('html').addClass ('off-canvas-enabled');
-					$(window).bind('scroll touchmove', posNav);
+					$(window).on('scroll touchmove', posNav);
 
 					// hide when click on off-canvas-nav
-					$('#off-canvas-nav').bind ('click', function (e) {
+					$('#off-canvas-nav').on ('click', function (e) {
 						e.stopPropagation();
 					});
 					
-					$('#off-canvas-nav a').bind ('click', hideNav);
-					$('body').bind ('click', bdHideNav);
+					//$('#off-canvas-nav a').on ('click', hideNav);
+					$('body').on ('click', bdHideNav);
 				}, 50);
 
 				setTimeout (function(){
@@ -92,10 +92,10 @@
 					return true;
 				}
 
-				$(window).unbind('scroll touchmove', posNav);
-				$('#off-canvas-nav').unbind ('click');
-				$('#off-canvas-nav a').unbind ('click', hideNav);
-				$('body').unbind ('click', bdHideNav);
+				$(window).off('scroll touchmove', posNav);
+				$('#off-canvas-nav').off ('click');
+				//$('#off-canvas-nav a').off ('click', hideNav);
+				$('body').off ('click', bdHideNav);
 				
 				$('html').removeClass ('off-canvas-enabled');
 				$btn.data('off-canvas', 'hide');
