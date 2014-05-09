@@ -268,7 +268,14 @@ var T3Theme = window.T3Theme || {};
 					}
 				}
 			}, 10);
-				
+
+      // trigger preview window resize event to update display
+      setTimeout(function(){
+        var wnd = (document.getElementById('t3-admin-tm-ifr-preview').contentWindow || window.frames['t3-admin-tm-ifr-preview']),
+          _$ = wnd.jQuery;
+          _$(wnd).trigger('resize');
+			}, 10000);			
+            
 			return false;
 		},
 		
