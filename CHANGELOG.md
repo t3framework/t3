@@ -1,3 +1,13 @@
+<h2>Version: 2.1.6 (05/09/2014)</h2>
+
+<h3>Fix bugs</h3>
+- Fix 500 Unable to load format class | <a href="https://github.com/t3framework/t3/commit/1c019f4219dbb4352c0057e6507dda3919760343">Link</a>
+- Specify for Joomla 3.3 only | <a href="https://github.com/t3framework/t3/commit/86e76d3c9fee60d5d7634aa4af3799b2e9f1f8ea">Link</a>
+- Fix lost sidebar menu in JA Magz | <a href="https://github.com/t3framework/t3/commit/e73ead5fca8bf789fe4bf0a87e9baedbddd4cfa8">Link</a>
+- Fix bug two megamenus scheme missed | <a href="https://github.com/t3framework/t3/commit/d3926f1086fed52896576d2a80a489f7d52a1174">Link</a>
+- Fix bug for off-canvas menu on bootstrap 2 base | <a href="https://github.com/t3framework/t3/commit/fd576c8a1627fb40fb40e3acfacf8a38f2d45325">Link</a>
+- Fire resize event for ThemeMagic preview window | <a href="https://github.com/t3framework/t3/commit/f92fe75f0561d077216a97fd1c53029954890fa0">Link</a>
+
 <h2>Version: 2.1.5 (04/29/2014)</h2>
 
 <h3>Fix bugs</h3>
