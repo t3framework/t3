@@ -1062,6 +1062,10 @@ class T3Template extends ObjectExtendable
 			T3::import('core/minify');
 			if($minify){
 				T3Minify::optimizecss($this);
+				//Possible to have this
+				//T3Minify::optimizecss($this, 'print'); //http://docs.joomla.org/JDocument/addStyleSheet
+				//$media String: all or print
+				
 			}
 			if($minifyjs){
 				T3Minify::optimizejs($this);
