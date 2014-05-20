@@ -41,7 +41,17 @@ class T3 {
 			trigger_error('T3::import not found object: ' . $package, E_USER_ERROR);
 		}
 	}
-
+  
+	/**
+	 * Register class with Joomla Loader. Override joomla core if $import_key avaiable
+	 *
+	 * @return void
+	 */
+  public static function register ($class, $path, $import_key = null) {
+    if (!empty($import_key)) jimport($import_key);
+    JLoader::register ($class, $path);
+  }
+ 
 	/**
 	 * @param   object  $tpl  template object to initialize if needed
 	 * @return  bool|null|T3Admin
@@ -113,31 +123,35 @@ class T3 {
 
 		// load core library
 		T3::import ('core/path');
-		
+		T3::import ('core/t3j');
+
 		if (!$app->isAdmin()) {
-			
 			if(version_compare(JVERSION, '3.0', 'ge')){
 				// override core joomla class
 				// JViewLegacy
-				if (!class_exists('JViewLegacy', false)) T3::import ('joomla30/viewlegacy');
+        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');        
 				// JModuleHelper
-				if (!class_exists('JModuleHelper', false)) T3::import ('joomla30/modulehelper');
+        T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla30/modulehelper.php');        
 				// JPagination
-				if (!class_exists('JPagination', false)) T3::import ('joomla30/pagination');
+        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla30/pagination.php');        
+        // Register T3 Layout File to put a t3 base layer for layout files
+        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');        
 			} else {
 				// override core joomla class
 				// JView
-				if (!class_exists('JView', false)) T3::import ('joomla25/view');
+				T3::register('JView',       T3_ADMIN_PATH . '/includes/joomla25/view.php', 'joomla.application.component.view');
 				// JModuleHelper
-				if (!class_exists('JModuleHelper', false)) T3::import ('joomla25/modulehelper');
+				T3::register('JModuleHelper',       T3_ADMIN_PATH . '/includes/joomla25/modulehelper.php', 'joomla.application.module.helper');
 				// JPagination
-				if (!class_exists('JPagination', false)) T3::import ('joomla25/pagination');
+				T3::register('JPagination',       T3_ADMIN_PATH . '/includes/joomla25/pagination.php', 'joomla.html.pagination');
 
 				//register layout
-				JLoader::register('JLayout',       T3_ADMIN_PATH . '/includes/joomla25/layout/layout.php');
-				JLoader::register('JLayoutBase',   T3_ADMIN_PATH . '/includes/joomla25/layout/base.php');
-				JLoader::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
-				JLoader::register('JLayoutHelper', T3_ADMIN_PATH . '/includes/joomla25/layout/helper.php');
+				T3::register('JLayout',       T3_ADMIN_PATH . '/includes/joomla25/layout/layout.php');
+				T3::register('JLayoutBase',   T3_ADMIN_PATH . '/includes/joomla25/layout/base.php');
+				T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
+				T3::register('JLayoutHelper', T3_ADMIN_PATH . '/includes/joomla25/layout/helper.php');
+				T3::register('JHtmlBootstrap', T3_ADMIN_PATH . '/includes/joomla25/html/bootstrap.php');
+        T3::register('JHtmlString', T3_ADMIN_PATH . '/includes/joomla25/html/string.php');
 			}
 
 			// import renderer
@@ -154,7 +168,7 @@ class T3 {
 			$input->set('t3task', 'thememagic');
 		}
 	}
-
+ 
 	public static function checkAction () {
 		// excute action by T3
 		if ($action = JFactory::getApplication()->input->getCmd ('t3action')) {

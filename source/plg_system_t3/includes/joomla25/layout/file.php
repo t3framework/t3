@@ -364,9 +364,9 @@ class JLayoutFile extends JLayoutBase
 		$this->includePaths = array();
 
 		// (1 - lower priority) Frontend base layouts
-		
-		// T3 extend => Should be end here
-		//$this->addIncludePaths(JPATH_ROOT . '/layouts');
+		$this->addIncludePaths(JPATH_ROOT . '/layouts');
+
+		// (2.1) - T3 base layout overridden
 		$this->addIncludePaths(T3_PATH . '/html/layouts');
 
 		// (2) Standard Joomla! layouts overriden

@@ -104,7 +104,22 @@ $n = count($this->items);
 			<?php endif; ?>
 			<?php if ($this->params->get('all_tags_show_tag_hits')) : ?>
 				<span class="list-hits badge badge-info">
-					<?php echo JText::sprintf('JGLOBAL_HITS_COUNT', $item->hits); ?>
+					<?php 
+					if (version_compare(JVERSION, '3.0', 'ge'))
+					{
+						 echo JText::sprintf('JGLOBAL_HITS_COUNT', $item->hits);
+
+					}
+					else if (version_compare(JVERSION, '2.5', 'ge'))
+					{
+						echo JText::sprintf('JAGLOBAL_HITS_COUNT', $item->hits);
+
+					}
+					else
+					{
+						echo JText::sprintf('JAGLOBAL_HITS_COUNT', $item->hits);
+
+					}  ?>
 				</span>
 			<?php endif; ?>
 		</div>
@@ -119,7 +134,23 @@ $n = count($this->items);
 
 <?php // Add pagination links ?>
 <?php if (!empty($this->items)) : ?>
-	<?php if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
+	<?php 
+	if (version_compare(JVERSION, '3.0', 'ge'))
+	{
+		$pagesTotal = $this->pagination->pagesTotal;
+
+	}
+	else if (version_compare(JVERSION, '2.5', 'ge'))
+	{
+		$pagesTotal = $this->pagination->get('pages.total');
+
+	}
+	else
+	{
+		$pagesTotal = $this->pagination->get('pages.total');
+
+	}
+	if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($pagesTotal > 1)) : ?>
 	<div class="pagination-wrap">
 
 		<?php if ($this->params->def('show_pagination_results', 1)) : ?>

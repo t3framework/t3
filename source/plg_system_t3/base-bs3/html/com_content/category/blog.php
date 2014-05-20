@@ -14,7 +14,7 @@ JHtml::addIncludePath(T3_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
 JHtml::_('behavior.caption');
 ?>
-<div class="blog<?php echo $this->pageclass_sfx;?>">
+<div class="blog<?php echo $this->pageclass_sfx;?>" itemscope itemtype="http://schema.org/Blog">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
 	<div class="page-header clearfix">
 		<h1 class="page-title"> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -31,8 +31,7 @@ JHtml::_('behavior.caption');
 	<?php endif; ?>
 	
 	<?php if ($this->params->get('show_tags', 1) && !empty($this->category->tags->itemTags)) : ?>
-		<?php $this->category->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
-		<?php echo $this->category->tagLayout->render($this->category->tags->itemTags); ?>
+		<?php echo JLayoutHelper::render('joomla.content.tags', $this->category->tags->itemTags); ?>
 	<?php endif; ?>
 	
 	<?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
@@ -56,7 +55,8 @@ JHtml::_('behavior.caption');
 	<?php if (!empty($this->lead_items)) : ?>
 	<div class="items-leading">
 		<?php foreach ($this->lead_items as &$item) : ?>
-		<div class="leading leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
+		<div class="leading leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
+				 itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');
@@ -80,7 +80,8 @@ JHtml::_('behavior.caption');
 		<div class="items-row cols-<?php echo (int) $this->columns;?> <?php echo 'row-'.$row; ?> row">
 		<?php endif; ?>
 			<div class="col-sm-<?php echo round((12 / $this->columns));?>">
-				<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
+				<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
+					itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 					<?php
 					$this->item = &$item;
 					echo $this->loadTemplate('item');

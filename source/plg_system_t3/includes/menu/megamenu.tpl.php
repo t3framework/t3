@@ -271,7 +271,7 @@ class T3MenuMegamenuTpl
 
 		$class .= " separator";
 
-		return "<span class=\"$class\">$icon$title $linktype$caption</span>";
+		return "<span class=\"$class\" $title $dropdown>$icon$title $linktype$caret$caption</span>";
 	}
 
 	static function item_component($vars)

@@ -17,7 +17,7 @@ JHtml::_('behavior.caption');
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space
 ?>
-<div class="blog-featured<?php echo $this->pageclass_sfx;?>">
+<div class="blog-featured<?php echo $this->pageclass_sfx;?>" itemscope itemtype="http://schema.org/Blog">
 <?php if ($this->params->get('show_page_heading') != 0) : ?>
 <div class="page-header">
 	<h1>
@@ -28,15 +28,15 @@ JHtml::_('behavior.caption');
 
 <?php $leadingcount = 0; ?>
 <?php if (!empty($this->lead_items)) : ?>
-<div class="items-leading">
+<div class="items-leading clearfix">
 	<?php foreach ($this->lead_items as &$item) : ?>
-		<div class="leading leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
+		<div class="leading leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
+				itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');
 			?>
 		</div>
-		<hr class="divider-vertical" />
 		<?php
 			$leadingcount++;
 		?>
@@ -59,7 +59,8 @@ JHtml::_('behavior.caption');
 
 		<div class="items-row cols-<?php echo (int) $this->columns;?> <?php echo 'row-'.$row; ?> row-fluid">
 		<?php endif; ?>
-			<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?> span<?php echo round((12 / $this->columns));?>">
+			<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?> span<?php echo round((12 / $this->columns));?>"
+				itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');
@@ -70,7 +71,6 @@ JHtml::_('behavior.caption');
 			<?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
 
 		</div>
-		<hr class="divider-vertical" />
 		<?php endif; ?>
 
 	<?php endforeach; ?>
@@ -81,16 +81,15 @@ JHtml::_('behavior.caption');
 		<h3><?php echo JText::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
 		<?php echo $this->loadTemplate('links'); ?>
 	</section>
-	<hr class="divider-vertical" />
 <?php endif; ?>
 
 <?php if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $this->pagination->get('pages.total') > 1)) : ?>
 	<nav class="pagination">
 
 		<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-			<p class="counter pull-right">
+			<div class="counter">
 				<?php echo $this->pagination->getPagesCounter(); ?>
-			</p>
+			</div>
 		<?php  endif; ?>
 				<?php echo $this->pagination->getPagesLinks(); ?>
 	</nav>

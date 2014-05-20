@@ -9,13 +9,15 @@
 
 defined('JPATH_BASE') or die;
 
+$item = $displayData['item'];
+$params = $displayData['params'];
+$title = $this->escape($item->parent_title);
 ?>
-			<dd class="parent-category-name">
-				<?php $title = $this->escape($displayData['item']->parent_title);
-				$url = '<a href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($displayData['item']->parent_slug)).'">'.$title.'</a>';?>
-				<?php if ($displayData['params']->get('link_parent_category') && !empty($displayData['item']->parent_slug)) : ?>
-					<?php echo JText::sprintf('COM_CONTENT_PARENT', $url); ?>
+			<dd class="parent-category-name hasTooltip" title="<?php echo JText::sprintf('COM_CONTENT_PARENT', ''); ?>">
+				<i class="icon-folder-close"></i>
+				<?php if ($params->get('link_parent_category') && !empty($item->parent_slug)) : ?>
+					<?php echo JHtml::_('link', JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)), '<span itemprop="genre">'.$title.'</span>'); ?>
 				<?php else : ?>
-					<?php echo JText::sprintf('COM_CONTENT_PARENT', $title); ?>
+					<span itemprop="genre"><?php echo $title ?></span>
 				<?php endif; ?>
 			</dd>

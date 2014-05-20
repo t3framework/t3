@@ -3,17 +3,15 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-if(version_compare(JVERSION, '3.0', 'ge')){
-	JHtml::_('bootstrap.tooltip');
-}
+JHtml::_('bootstrap.tooltip');
 
-$lang  = JFactory::getLanguage();
+$lang	= JFactory::getLanguage();
 $class = ' class="first"';
 ?>
 
@@ -31,7 +29,7 @@ $class = ' class="first"';
 			<?php if ($lang->isRTL()) : ?>
 			<h3 class="page-header item-title">
 				<?php if ( $this->params->get('show_cat_num_articles', 1)) : ?>
-					<span class="badge badge-info tip hasTooltip" rel="tooltip" title="<?php echo JText::_('COM_CONTENT_NUM_ITEMS'); ?>">
+					<span class="badge badge-info tip hasTooltip" title="<?php echo T3J::tooltipText('COM_CONTENT_NUM_ITEMS'); ?>">
 						<?php echo $child->getNumItems(true); ?>
 					</span>
 				<?php endif; ?>
@@ -39,20 +37,20 @@ $class = ' class="first"';
 				<?php echo $this->escape($child->title); ?></a>
 
 				<?php if (count($child->getChildren()) > 0) : ?>
-					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-default btn-xs pull-right"><span class="fa fa-plus"></span></a>
+					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right"><span class="fa fa-plus"></span></a>
 				<?php endif;?>
 			</h3>
 			<?php else : ?>
 			<h3 class="page-header item-title"><a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($child->id));?>">
 				<?php echo $this->escape($child->title); ?></a>
 				<?php if ( $this->params->get('show_cat_num_articles', 1)) : ?>
-				<span class="badge badge-info tip hasTooltip" rel="tooltip" title="<?php echo JText::_('COM_CONTENT_NUM_ITEMS'); ?>">
-					<?php echo $child->getNumItems(true); ?>
-				</span>
-				<?php endif ; ?>
-				
+					<span class="badge badge-info tip hasTooltip" title="<?php echo T3J::tooltipText('COM_CONTENT_NUM_ITEMS'); ?>">
+						<?php echo $child->getNumItems(true); ?>
+					</span>
+				<?php endif; ?>
+
 				<?php if (count($child->getChildren()) > 0) : ?>
-					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-default btn-xs pull-right"><span class="fa fa-plus"></span></a>
+					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right"><span class="fa fa-plus"></span></a>
 				<?php endif;?>
 			<?php endif;?>
 			</h3>

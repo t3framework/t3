@@ -9,10 +9,7 @@
 
 defined('_JEXEC') or die;
 
-if(version_compare(JVERSION, '3.0', 'ge')){
-	JHtml::_('bootstrap.tooltip');
-}
-
+JHtml::_('bootstrap.tooltip');
 $lang  = JFactory::getLanguage();
 $class = ' class="first"';
 

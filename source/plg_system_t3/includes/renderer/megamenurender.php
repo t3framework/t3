@@ -32,7 +32,7 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 		$t3app = T3::getApp();
 
 		//we will check from params
-    $menutype      = empty($params['menutype']) ? (empty($params['name']) ? $t3app->getParam('mm_type', 'mainmenu') : $params['name']) : $params['menutype'];
+		$menutype      = empty($params['menutype']) ? (empty($params['name']) ? $t3app->getParam('mm_type', 'mainmenu') : $params['name']) : $params['menutype'];
 		$currentconfig = json_decode($t3app->getParam('mm_config', ''), true);
 
 		//force to array
