@@ -31,11 +31,11 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 	    <?php if ($topInfo || $icons) : ?>
 	    <aside class="article-aside clearfix">
 	      <?php if ($topInfo): ?>
-	      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
+	      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $item, 'params' => $params, 'position' => 'above')); ?>
 	      <?php endif; ?>
 	      
 	      <?php if ($icons): ?>
-	      <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params)); ?>
+	      <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $item, 'params' => $params)); ?>
 	      <?php endif; ?>
 	    </aside>  
 	    <?php endif; ?>
@@ -48,7 +48,7 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
     <!-- footer -->
     <?php if ($botInfo) : ?>
     <footer class="article-footer clearfix">
-      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
+      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $item, 'params' => $params, 'position' => 'below')); ?>
     </footer>
     <?php endif; ?>
     <!-- //footer -->
