@@ -56,7 +56,15 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 		</article>
 	<?php endforeach; ?>
 </div>
-<div class="pagination">
-	<p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
-	<?php echo $this->pagination->getPagesLinks(); ?>
-</div>
+
+<?php if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $this->pagination->get('pages.total') > 1)) : ?>
+  <nav class="pagination-wrap clearfix">
+
+    <?php if ($this->params->def('show_pagination_results', 1)) : ?>
+      <div class="counter">
+        <?php echo $this->pagination->getPagesCounter(); ?>
+      </div>
+    <?php  endif; ?>
+        <?php echo $this->pagination->getPagesLinks(); ?>
+  </nav>
+<?php endif; ?>
