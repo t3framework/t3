@@ -242,6 +242,10 @@ a.thumbnail:hover {
     display: block;
   }
 }
+.body-data-holder:before {
+  display: none;
+  content: "grid-float-breakpoint:767px screen-xs:600px screen-sm:736px screen-md:932px screen-lg:1196px";
+}
 
 .wrap {
   width: auto;
