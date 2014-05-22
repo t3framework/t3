@@ -1,3 +1,17 @@
+<h2>Version: 2.2.0 (05/22/2014)</h2>
+
+<h3>New features</h3>
+- Support Joomla layouts for both Joomla 2.5 & Joomla 3.x | <a href="https://github.com/t3framework/t3/commit/3298b218e0f61c8b3cba2ea8a23d4c52b4c203d9">Link</a>
+- Update com_content & com_contact templates to support Microdata | <a href="https://github.com/t3framework/t3/commit/3298b218e0f61c8b3cba2ea8a23d4c52b4c203d9">Link</a>
+
+<h3>Improvement</h3>
+- Improvement com_content & com_contact templates | <a href="https://github.com/t3framework/t3/commit/3298b218e0f61c8b3cba2ea8a23d4c52b4c203d9">Link</a>
+
+<h3>Fix bugs</h3>
+- Prevent font-awesome conflict when load 2 versions | <a href="https://github.com/t3framework/t3/commit/47f2ab94c9f39ad83c7889db347ea7da6bba48ef">Link</a>
+- Update com_content layout | <a href="https://github.com/t3framework/t3/commit/824e06f6ab3b1d00f09a83174301479cf2d2a4c3">Link</a>
+- Update style for pagination | <a href="https://github.com/t3framework/t3/commit/6ae987720a966a142d9742ba7153bfef7a241705">Link</a>
+
 <h2>Version: 2.1.6 (05/09/2014)</h2>
 
 <h3>Fix bugs</h3>
