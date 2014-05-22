@@ -34,6 +34,7 @@
 	<languages folder="language">
 		<language tag="en-GB">en-GB/en-GB.plg_system_t3.ini</language>
 		<language tag="en-GB">en-GB/en-GB.plg_system_t3.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_t3.j25.compat.ini</language>
 	</languages>
 	<config>
 		<fields name="params">

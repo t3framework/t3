@@ -172,23 +172,7 @@ if (!empty($this->items))
 					<?php if ($this->params->get('list_show_hits', 1)) : ?>
 						<td headers="categorylist_header_hits" class="list-hits">
 							<span class="badge badge-info">
-								<?php
-								if (version_compare(JVERSION, '3.0', 'ge'))
-								{
-									 echo JText::sprintf('JGLOBAL_HITS_COUNT', $article->hits);
-
-								}
-								else if (version_compare(JVERSION, '2.5', 'ge'))
-								{
-									echo JText::sprintf('JAGLOBAL_HITS_COUNT', $article->hits);
-
-								}
-								else
-								{
-									echo JText::sprintf('JAGLOBAL_HITS_COUNT', $article->hits);
-
-								} 
-								?>
+								<?php echo JText::sprintf('JGLOBAL_HITS_COUNT', $article->hits); ?>
 							</span>
 						</td>
 					<?php endif; ?>
@@ -213,21 +197,7 @@ if (!empty($this->items))
 <?php // Add pagination links ?>
 <?php if (!empty($this->items)) : ?>
 	<?php 
-	if (version_compare(JVERSION, '3.0', 'ge'))
-	{
-		$pagesTotal = $this->pagination->pagesTotal;
-
-	}
-	else if (version_compare(JVERSION, '2.5', 'ge'))
-	{
-		$pagesTotal = $this->pagination->get('pages.total');
-
-	}
-	else
-	{
-		$pagesTotal = $this->pagination->get('pages.total');
-
-	}
+	$pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $pagesTotal = $this->pagination->get('pages.total');
 	if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($pagesTotal > 1)) : ?>
 	<div class="pagination">
 

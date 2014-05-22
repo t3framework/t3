@@ -10,7 +10,7 @@
 defined('JPATH_BASE') or die;
 JHtml::_('bootstrap.tooltip');
 
-$blockPosition = $displayData['params']->get('info_block_position', 0);
+$blockPosition = $displayData['params']->get('info_block_position', 2);
 ?>
 	<dl class="article-info  muted">
 
