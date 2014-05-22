@@ -30,7 +30,7 @@
 .t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .dropdown-header {
   margin: 0;
   padding: 0;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   color: inherit;
   font-size: 18px;
   line-height: normal;
@@ -105,7 +105,7 @@
 .t3-megamenu .t3-module .module-title {
   margin: 0;
   padding: 0;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   color: inherit;
   font-size: 18px;
   line-height: normal;
@@ -333,7 +333,7 @@
 .t3-megamenu .dropdown-menu .active .mega-nav .mega-group > .dropdown-header {
   margin: 0;
   padding: 0;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   color: inherit;
   font-size: 18px;
   line-height: normal;
@@ -366,7 +366,7 @@
 .t3-megamenu .t3-module .module-title {
   margin: 0;
   padding: 0;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   color: inherit;
   font-size: 18px;
   line-height: normal;

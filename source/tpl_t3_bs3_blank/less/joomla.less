@@ -148,7 +148,7 @@
 
 }
 
-.article-content{
+.article-content {
   iframe {
     @media (max-width: @screen-sm) {
       width: 100% !important; 
@@ -974,30 +974,35 @@ div.finder {
 .article-content .pagination {
 
   ul {
-    border-left: 1px solid @t3-border-color;
+    display: block;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+
+    li {
+      border: 1px solid @t3-border-color;
+      float: left;
+      line-height: normal;
+      margin-right: (@t3-global-margin / 2);
+      padding: (@t3-global-padding / 2) @t3-global-padding;
+
+      // Hover state
+      &:hover {
+      }
+    }
+
+    li a {
+      border: 0;
+      text-decoration: none;
+      background-color: transparent;
+      line-height: normal;
+      padding: 0;
+      // Link States
+      &:hover, &:focus, &:active {
+      }
+    }
   }
   
-  li {
-    float: left;
-    padding: (@t3-global-padding / 2) @t3-global-padding;
-    line-height: normal;
-    border: 1px solid @t3-border-color;
-    border-left: 0;
-    // Hover state
-    &:hover {
-    }
-  }
-
-  li a {
-    border: 0;
-    text-decoration: none;
-    background-color: transparent;
-    line-height: normal;
-    padding: 0;
-    // Link States
-    &:hover, &:focus, &:active {
-    }
-  }
 }
 
 .pagenavcounter {
@@ -1010,13 +1015,15 @@ div.finder {
 // ---------------
 #article-index,
 .article-index {
-  margin: 0 0 @t3-global-margin @t3-global-margin;
-  padding: 10px;
-  width: 25%;
   border: 1px solid @t3-border-color;
   border-radius: @border-radius-base;
+  float: right;
+  padding: 10px;
+  margin: 0 0 @t3-global-margin @t3-global-margin;
+  width: 25%;
   
   ul {
+    list-style: none;
     margin: 0;
     padding: 0;
     border: 0;
