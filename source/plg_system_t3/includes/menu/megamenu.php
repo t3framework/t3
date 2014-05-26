@@ -15,6 +15,9 @@
 if(!class_exists('T3MenuMegamenuTpl', false)){
 	T3::import('menu/megamenu.tpl');
 }
+if (is_file(T3_TEMPLATE_PATH.'/html/megamenu.php')) {
+	require_once T3_TEMPLATE_PATH.'/html/megamenu.php';
+}
 
 class T3MenuMegamenu {
 
@@ -336,11 +339,7 @@ class T3MenuMegamenu {
 	
 	function _($tmpl, $vars = array()) {
 		$vars['menu'] = $this;
-		if (method_exists('T3MenuMegamenuTpl', $tmpl)) {
-			$this->menu .= T3MenuMegamenuTpl::$tmpl($vars) . "\n";
-		} else {
-			$this->menu .= "$tmpl\n";
-		}
+		$this->menu .= T3MenuMegamenuTpl::_($tmpl, $vars);
 	}
 	
 	function get($prop) {

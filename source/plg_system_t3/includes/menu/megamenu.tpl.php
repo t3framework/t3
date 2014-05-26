@@ -211,14 +211,14 @@ class T3MenuMegamenuTpl
 		switch ($item->type) {
 			case 'separator':
 			case 'heading':
-				$html = self::item_separator($vars);
+				$html = self::_('item_separator', $vars);
 				break;
 			case 'component':
-				$html = self::item_component($vars);
+				$html = self::_('item_component', $vars);
 				break;
 			case 'url':
 			default:
-				$html = self::item_url($vars);
+				$html = self::_('item_url', $vars);
 		}
 
 		return $html;
@@ -302,5 +302,15 @@ class T3MenuMegamenuTpl
 		endswitch;
 
 		return $link;
+	}
+
+	static function _($tmpl, $vars) {
+		if (function_exists($func = 'T3MenuMegamenuTpl_'.$tmpl)) {
+			return $func($vars) . "\n";
+		} else if (method_exists('T3MenuMegamenuTpl', $tmpl)) {
+			return T3MenuMegamenuTpl::$tmpl($vars) . "\n";
+		} else {
+			return "$tmpl\n";
+		}
 	}
 }
