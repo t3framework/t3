@@ -15,7 +15,6 @@ JHtml::addIncludePath(dirname(dirname(__FILE__)));
 
 // Create shortcuts to some parameters.
 $params   = $this->item->params;
-$params->set('link_titles', false);
 $images   = json_decode($this->item->images);
 $urls     = json_decode($this->item->urls);
 $canEdit  = $params->get('access-edit');
