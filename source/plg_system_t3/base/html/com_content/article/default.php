@@ -15,7 +15,6 @@ JHtml::addIncludePath(dirname(dirname(__FILE__)));
 
 // Create shortcuts to some parameters.
 $params   = $this->item->params;
-$params->set('link_titles', false);
 $images   = json_decode($this->item->images);
 $urls     = json_decode($this->item->urls);
 $user     = JFactory::getUser();
@@ -25,6 +24,13 @@ $aInfo2 = ($params->get('show_create_date') || $params->get('show_modify_date') 
 $topInfo = ($aInfo1 && $info != 1) || ($aInfo2 && $info == 0);
 $botInfo = ($aInfo1 && $info == 1) || ($aInfo2 && $info != 0);
 $icons = !empty($this->print) || $params->get('access-edit') || $params->get('show_print_icon') || $params->get('show_email_icon');
+
+// override link_titles option if set in template
+$app = JFactory::getApplication();
+$tmpl = $app->getTemplate(true);
+if ($tmpl->params->get('link_titles') !== NULL) {
+	$params->set('link_titles', $tmpl->params->get('link_titles'));
+}
 
 JHtml::_('behavior.caption');
 JHtml::_('bootstrap.tooltip');

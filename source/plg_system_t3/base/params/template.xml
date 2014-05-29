@@ -92,6 +92,19 @@
 						 label="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_LABEL"
 						 description="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_DESC"/>
 
+
+            <field type="t3depend" function="@legend" label="T3_GENERAL_JCORE_LABEL"
+                   description="T3_GENERAL_JCORE_DESC"/>
+
+            <field name="link_titles" type="list" global="1"
+                   description="T3_GENERAL_JCORE_LINKED_TITLES_DESC"
+                   label="T3_GENERAL_JCORE_LINKED_TITLES_LABEL"
+                    >
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
 		</fieldset>
 
 		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">
