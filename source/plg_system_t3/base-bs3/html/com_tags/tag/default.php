@@ -49,7 +49,9 @@ $isSingleTag = (count($this->item) == 1);
 <?php endif; ?>
 
 <?php echo $this->loadTemplate('items'); ?>
-	<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
+	<?php 
+  $pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
+  if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($pagesTotal > 1)) : ?>
 	<div class="pagination-wrap">
 		<?php  if ($this->params->def('show_pagination_results', 1)) : ?>
 		<p class="counter pull-right"> <?php echo $this->pagination->getPagesCounter(); ?> </p>

@@ -86,7 +86,9 @@ JHtml::_('behavior.caption');
 <?php if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $this->pagination->get('pages.total') > 1)) : ?>
 	<nav class="pagination-wrap clearfix">
 
-		<?php if ($this->params->def('show_pagination_results', 1) && $this->pagination->get('pages.total') > 1) : ?>
+		<?php 
+    $pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
+    if ($this->params->def('show_pagination_results', 1) && $pagesTotal > 1) : ?>
 			<div class="counter">
 				<?php echo $this->pagination->getPagesCounter(); ?>
 			</div>

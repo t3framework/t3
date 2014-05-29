@@ -135,21 +135,7 @@ $n = count($this->items);
 <?php // Add pagination links ?>
 <?php if (!empty($this->items)) : ?>
 	<?php 
-	if (version_compare(JVERSION, '3.0', 'ge'))
-	{
-		$pagesTotal = $this->pagination->pagesTotal;
-
-	}
-	else if (version_compare(JVERSION, '2.5', 'ge'))
-	{
-		$pagesTotal = $this->pagination->get('pages.total');
-
-	}
-	else
-	{
-		$pagesTotal = $this->pagination->get('pages.total');
-
-	}
+  $pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
 	if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($pagesTotal > 1)) : ?>
 	<div class="pagination-wrap">
 
