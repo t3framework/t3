@@ -1,75 +1,74 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package     Joomla.Libraries
  * @subpackage  Pagination
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Pagination Class. Provides a common interface for content pagination for the
- * Joomla! Platform.
+ * Pagination Class. Provides a common interface for content pagination for the Joomla! CMS.
  *
- * @package     Joomla.Platform
+ * @package     Joomla.Libraries
  * @subpackage  Pagination
- * @since       11.1
+ * @since       1.5
  */
 class JPagination
 {
 	/**
 	 * @var    integer  The record number to start displaying from.
-	 * @since  11.1
+	 * @since  1.5
 	 */
 	public $limitstart = null;
 
 	/**
 	 * @var    integer  Number of rows to display per page.
-	 * @since  11.1
+	 * @since  1.5
 	 */
 	public $limit = null;
 
 	/**
 	 * @var    integer  Total number of rows.
-	 * @since  11.1
+	 * @since  1.5
 	 */
 	public $total = null;
 
 	/**
 	 * @var    integer  Prefix used for request variables.
-	 * @since  11.1
+	 * @since  1.6
 	 */
 	public $prefix = null;
 
 	/**
-	 * @var    integer
-	 * @since  12.2
+	 * @var    integer  Value pagination object begins at
+	 * @since  3.0
 	 */
 	public $pagesStart;
 
 	/**
-	 * @var    integer
-	 * @since  12.2
+	 * @var    integer  Value pagination object ends at
+	 * @since  3.0
 	 */
 	public $pagesStop;
 
 	/**
-	 * @var    integer
-	 * @since  12.2
+	 * @var    integer  Current page
+	 * @since  3.0
 	 */
 	public $pagesCurrent;
 
 	/**
-	 * @var    integer
-	 * @since  12.2
+	 * @var    integer  Total number of pages
+	 * @since  3.0
 	 */
 	public $pagesTotal;
 
 	/**
 	 * @var    boolean  View all flag
-	 * @since  12.1
+	 * @since  3.0
 	 */
 	protected $viewall = false;
 
@@ -78,7 +77,7 @@ class JPagination
 	 * may be useful for filters and extra values when dealing with lists and GET requests.
 	 *
 	 * @var    array
-	 * @since  12.1
+	 * @since  3.0
 	 */
 	protected $additionalUrlParams = array();
 
@@ -90,7 +89,7 @@ class JPagination
 	 * @param   integer  $limit       The number of items to display per page.
 	 * @param   string   $prefix      The prefix used for request variables.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function __construct($total, $limitstart, $limit, $prefix = '')
 	{
@@ -130,13 +129,16 @@ class JPagination
 		// Set the pagination iteration loop values.
 		$displayedPages = 10;
 		$this->pagesStart = $this->pagesCurrent - ($displayedPages / 2);
+
 		if ($this->pagesStart < 1)
 		{
 			$this->pagesStart = 1;
 		}
+
 		if ($this->pagesStart + $displayedPages > $this->pagesTotal)
 		{
 			$this->pagesStop = $this->pagesTotal;
+
 			if ($this->pagesTotal < $displayedPages)
 			{
 				$this->pagesStart = 1;
@@ -167,7 +169,7 @@ class JPagination
 	 *
 	 * @return  mixed  The old value for the parameter.
 	 *
-	 * @since   11.1
+	 * @since   1.6
 	 */
 	public function setAdditionalUrlParam($key, $value)
 	{
@@ -195,7 +197,7 @@ class JPagination
 	 *
 	 * @return  mixed  The value if it exists or null if it does not.
 	 *
-	 * @since   11.1
+	 * @since   1.6
 	 */
 	public function getAdditionalUrlParam($key)
 	{
@@ -211,7 +213,7 @@ class JPagination
 	 *
 	 * @return  integer  Rationalised offset for a row with a given index.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getRowOffset($index)
 	{
@@ -223,15 +225,17 @@ class JPagination
 	 *
 	 * @return  object   Pagination data object.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getData()
 	{
 		static $data;
+
 		if (!is_object($data))
 		{
 			$data = $this->_buildDataObject();
 		}
+
 		return $data;
 	}
 
@@ -240,15 +244,17 @@ class JPagination
 	 *
 	 * @return  string   Pagination pages counter string.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getPagesCounter()
 	{
 		$html = null;
+
 		if ($this->pagesTotal > 1)
 		{
 			$html .= JText::sprintf('JLIB_HTML_PAGE_CURRENT_OF_TOTAL', $this->pagesCurrent, $this->pagesTotal);
 		}
+
 		return $html;
 	}
 
@@ -257,7 +263,7 @@ class JPagination
 	 *
 	 * @return  string   Pagination result set counter string.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getResultsCounter()
 	{
@@ -293,7 +299,7 @@ class JPagination
 	 *
 	 * @return  string  Pagination page list string.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getPagesLinks()
 	{
@@ -308,16 +314,19 @@ class JPagination
 		$itemOverride = false;
 		$listOverride = false;
 
+		// $chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/pagination.php';
 		// T3: detect if chrome pagination.php in template or in plugin
-		$chromePath = T3Path::getPath ('html/pagination.php');		
-		//$chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/pagination.php';
+		$chromePath = T3Path::getPath ('html/pagination.php');
+
 		if (file_exists($chromePath))
 		{
 			include_once $chromePath;
+
 			if (function_exists('pagination_item_active') && function_exists('pagination_item_inactive'))
 			{
 				$itemOverride = true;
 			}
+
 			if (function_exists('pagination_list_render'))
 			{
 				$listOverride = true;
@@ -346,6 +355,7 @@ class JPagination
 			$list['start']['active'] = false;
 			$list['start']['data'] = ($itemOverride) ? pagination_item_inactive($data->start) : $this->_item_inactive($data->start);
 		}
+
 		if ($data->previous->base !== null)
 		{
 			$list['previous']['active'] = true;
@@ -359,6 +369,7 @@ class JPagination
 
 		// Make sure it exists
 		$list['pages'] = array();
+
 		foreach ($data->pages as $i => $page)
 		{
 			if ($page->base !== null)
@@ -406,37 +417,116 @@ class JPagination
 	}
 
 	/**
+	 * Get the pagination links
+	 *
+	 * @param   string  $layoutId  Layout to render the links
+	 * @param   array   $options   Optional array with settings for the layout
+	 *
+	 * @return  string  Pagination links.
+	 *
+	 * @since   3.3
+	 */
+	public function getPaginationLinks($layoutId = 'joomla.pagination.links', $options = array())
+	{
+		// Allow to receive a null layout
+		$layoutId = (null === $layoutId) ? 'joomla.pagination.links' : $layoutId;
+
+		$app = JFactory::getApplication();
+
+		$list = array(
+			'prefix'       => $this->prefix,
+			'limit'        => $this->limit,
+			'limitstart'   => $this->limitstart,
+			'total'        => $this->total,
+			'limitfield'   => $this->getLimitBox(),
+			'pagescounter' => $this->getPagesCounter(),
+			'pages'        => $this->getPaginationPages()
+		);
+
+		return JLayoutHelper::render($layoutId, array('list' => $list, 'options' => $options));
+	}
+
+	/**
+	 * Create and return the pagination page list string, ie. Previous, Next, 1 2 3 ... x.
+	 *
+	 * @return  string  Pagination page list string.
+	 *
+	 * @since   3.3
+	 */
+	public function getPaginationPages()
+	{
+		$list = array();
+
+		if ($this->total > $this->limit)
+		{
+			// Build the page navigation list.
+			$data = $this->_buildDataObject();
+
+			// All
+			$list['all']['active'] = (null !== $data->all->base);
+			$list['all']['data']   = $data->all;
+
+			// Start
+			$list['start']['active'] = (null !== $data->start->base);
+			$list['start']['data']   = $data->start;
+
+			// Previous link
+			$list['previous']['active'] = (null !== $data->previous->base);
+			$list['previous']['data']   = $data->previous;
+
+			// Make sure it exists
+			$list['pages'] = array();
+
+			foreach ($data->pages as $i => $page)
+			{
+				$list['pages'][$i]['active'] = (null !== $page->base);
+				$list['pages'][$i]['data']   = $page;
+			}
+
+			$list['next']['active'] = (null !== $data->next->base);
+			$list['next']['data']   = $data->next;
+
+			$list['end']['active'] = (null !== $data->end->base);
+			$list['end']['data']   = $data->end;
+		}
+
+		return $list;
+	}
+
+	/**
 	 * Return the pagination footer.
 	 *
-	 * @return  string   Pagination footer.
+	 * @return  string  Pagination footer.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getListFooter()
 	{
-		$app = JFactory::getApplication();
-
-		$list = array();
-		$list['prefix'] = $this->prefix;
-		$list['limit'] = $this->limit;
-		$list['limitstart'] = $this->limitstart;
-		$list['total'] = $this->total;
-		$list['limitfield'] = $this->getLimitBox();
-		$list['pagescounter'] = $this->getPagesCounter();
-		$list['pageslinks'] = $this->getPagesLinks();
-
+		// Keep B/C for overrides done with chromes
+		// $chromePath = JPATH_THEMES . '/' . JFactory::getApplication()->getTemplate() . '/html/pagination.php';
 		// T3: detect if chrome pagination.php in template or in plugin
-		$chromePath = T3Path::getPath ('html/pagination.php');		
-		//$chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/pagination.php';
+		$chromePath = T3Path::getPath ('html/pagination.php');
+
 		if (file_exists($chromePath))
 		{
+			$list = array();
+			$list['prefix'] = $this->prefix;
+			$list['limit'] = $this->limit;
+			$list['limitstart'] = $this->limitstart;
+			$list['total'] = $this->total;
+			$list['limitfield'] = $this->getLimitBox();
+			$list['pagescounter'] = $this->getPagesCounter();
+			$list['pageslinks'] = $this->getPagesLinks();
+
 			include_once $chromePath;
+
 			if (function_exists('pagination_list_footer'))
 			{
 				return pagination_list_footer($list);
 			}
 		}
-		return $this->_list_footer($list);
+
+		return $this->getPaginationLinks();
 	}
 
 	/**
@@ -444,7 +534,7 @@ class JPagination
 	 *
 	 * @return  string  The HTML for the limit # input box.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function getLimitBox()
 	{
@@ -456,6 +546,7 @@ class JPagination
 		{
 			$limits[] = JHtml::_('select.option', "$i");
 		}
+
 		$limits[] = JHtml::_('select.option', '50', JText::_('J50'));
 		$limits[] = JHtml::_('select.option', '100', JText::_('J100'));
 		$limits[] = JHtml::_('select.option', '0', JText::_('JALL'));
@@ -469,7 +560,7 @@ class JPagination
 				'select.genericlist',
 				$limits,
 				$this->prefix . 'limit',
-				'class="input input-mini" size="1" onchange="Joomla.submitform();"',
+				'class="inputbox input-mini" size="1" onchange="Joomla.submitform();"',
 				'value',
 				'text',
 				$selected
@@ -481,12 +572,13 @@ class JPagination
 				'select.genericlist',
 				$limits,
 				$this->prefix . 'limit',
-				'class="input input-mini" size="1" onchange="this.form.submit()"',
+				'class="inputbox input-mini" size="1" onchange="this.form.submit()"',
 				'value',
 				'text',
 				$selected
 			);
 		}
+
 		return $html;
 	}
 
@@ -502,7 +594,7 @@ class JPagination
 	 *
 	 * @return  string   Either the icon to move an item up or a space.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function orderUpIcon($i, $condition = true, $task = 'orderup', $alt = 'JLIB_HTML_MOVE_UP', $enabled = true, $checkbox = 'cb')
 	{
@@ -529,7 +621,7 @@ class JPagination
 	 *
 	 * @return  string   Either the icon to move an item down or a space.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	public function orderDownIcon($i, $n, $condition = true, $task = 'orderdown', $alt = 'JLIB_HTML_MOVE_DOWN', $enabled = true, $checkbox = 'cb')
 	{
@@ -550,7 +642,7 @@ class JPagination
 	 *
 	 * @return  string  HTML for a list footer
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	protected function _list_footer($list)
 	{
@@ -573,7 +665,7 @@ class JPagination
 	 *
 	 * @return  string  HTML for a list start, previous, next,end
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	protected function _list_render($list)
 	{
@@ -581,10 +673,12 @@ class JPagination
 		$html = '<ul>';
 		$html .= '<li class="pagination-start">' . $list['start']['data'] . '</li>';
 		$html .= '<li class="pagination-prev">' . $list['previous']['data'] . '</li>';
+
 		foreach ($list['pages'] as $page)
 		{
 			$html .= '<li>' . $page['data'] . '</li>';
 		}
+
 		$html .= '<li class="pagination-next">' . $list['next']['data'] . '</li>';
 		$html .= '<li class="pagination-end">' . $list['end']['data'] . '</li>';
 		$html .= '</ul>';
@@ -597,29 +691,32 @@ class JPagination
 	 *
 	 * @param   JPaginationObject  $item  The object with which to make an active link.
 	 *
-	 * @return   string  HTML link
+	 * @return  string  HTML link
 	 *
-	 * @since    11.1
+	 * @since   1.5
 	 */
 	protected function _item_active(JPaginationObject $item)
 	{
 		$app = JFactory::getApplication();
+
+		$title = '';
+		$class = '';
+
+		if (!is_numeric($item->text))
+		{
+			JHtml::_('bootstrap.tooltip');
+			$title = ' title="' . $item->text . '"';
+			$class = 'hasTooltip ';
+		}
+
 		if ($app->isAdmin())
 		{
-			if ($item->base > 0)
-			{
-				return "<a title=\"" . $item->text . "\" onclick=\"document.adminForm." . $this->prefix . "limitstart.value=" . $item->base
-					. "; Joomla.submitform();return false;\">" . $item->text . "</a>";
-			}
-			else
-			{
-				return "<a title=\"" . $item->text . "\" onclick=\"document.adminForm." . $this->prefix
-					. "limitstart.value=0; Joomla.submitform();return false;\">" . $item->text . "</a>";
-			}
+			return '<a' . $title . ' href="#" onclick="document.adminForm.' . $this->prefix
+			. 'limitstart.value=' . ($item->base > 0 ? $item->base : '0') . '; Joomla.submitform();return false;">' . $item->text . '</a>';
 		}
 		else
 		{
-			return "<a title=\"" . $item->text . "\" href=\"" . $item->link . "\" class=\"pagenav\">" . $item->text . "</a>";
+			return '<a' . $title . ' href="' . $item->link . '" class="' . $class . 'pagenav">' . $item->text . '</a>';
 		}
 	}
 
@@ -630,18 +727,19 @@ class JPagination
 	 *
 	 * @return  string
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	protected function _item_inactive(JPaginationObject $item)
 	{
 		$app = JFactory::getApplication();
+
 		if ($app->isAdmin())
 		{
-			return "<span>" . $item->text . "</span>";
+			return '<span>' . $item->text . '</span>';
 		}
 		else
 		{
-			return "<span class=\"pagenav\">" . $item->text . "</span>";
+			return '<span class="pagenav">' . $item->text . '</span>';
 		}
 	}
 
@@ -650,7 +748,7 @@ class JPagination
 	 *
 	 * @return  object  Pagination data object.
 	 *
-	 * @since   11.1
+	 * @since   1.5
 	 */
 	protected function _buildDataObject()
 	{
@@ -658,6 +756,7 @@ class JPagination
 
 		// Build the additional URL parameters string.
 		$params = '';
+
 		if (!empty($this->additionalUrlParams))
 		{
 			foreach ($this->additionalUrlParams as $key => $value)
@@ -667,6 +766,7 @@ class JPagination
 		}
 
 		$data->all = new JPaginationObject(JText::_('JLIB_HTML_VIEW_ALL'), $this->prefix);
+
 		if (!$this->viewall)
 		{
 			$data->all->base = '0';
@@ -707,24 +807,24 @@ class JPagination
 
 		$data->pages = array();
 		$stop = $this->pagesStop;
+
 		for ($i = $this->pagesStart; $i <= $stop; $i++)
 		{
 			$offset = ($i - 1) * $this->limit;
 
-			// Set the empty for removal from route
-			// @todo remove code: $offset = $offset == 0 ? '' : $offset;
-
 			$data->pages[$i] = new JPaginationObject($i, $this->prefix);
+
 			if ($i != $this->pagesCurrent || $this->viewall)
 			{
 				$data->pages[$i]->base = $offset;
 				$data->pages[$i]->link = JRoute::_($params . '&' . $this->prefix . 'limitstart=' . $offset);
 			}
-			elseif ($i = $this->pagesCurrent)
+			else
 			{
 				$data->pages[$i]->active = true;
 			}
 		}
+
 		return $data;
 	}
 
@@ -736,8 +836,8 @@ class JPagination
 	 *
 	 * @return  void
 	 *
-	 * @since   12.2
-	 * @deprecated  13.3  Access the properties directly.
+	 * @since   3.0
+	 * @deprecated  4.0  Access the properties directly.
 	 */
 	public function set($property, $value = null)
 	{
@@ -749,6 +849,7 @@ class JPagination
 			$prop[1] = ucfirst($prop[1]);
 			$property = implode($prop);
 		}
+
 		$this->$property = $value;
 	}
 
@@ -760,8 +861,8 @@ class JPagination
 	 *
 	 * @return  mixed    The value of the property.
 	 *
-	 * @since   12.2
-	 * @deprecated  13.3  Access the properties directly.
+	 * @since   3.0
+	 * @deprecated  4.0  Access the properties directly.
 	 */
 	public function get($property, $default = null)
 	{
@@ -773,10 +874,12 @@ class JPagination
 			$prop[1] = ucfirst($prop[1]);
 			$property = implode($prop);
 		}
+
 		if (isset($this->$property))
 		{
 			return $this->$property;
 		}
+
 		return $default;
 	}
 }
