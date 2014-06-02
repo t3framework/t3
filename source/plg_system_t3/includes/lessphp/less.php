@@ -129,7 +129,7 @@ class T3Less
 		if (!self::compileCss($path, $cssfile)) {
 			return null;
 		}
-		
+
 		return $cssurl;
 	}
 
@@ -214,6 +214,8 @@ class T3Less
 		
 		// variables & mixin
 		$vars       = self::getVars();
+		$vars_theme       = self::getVars('theme');
+		$vars_dir       = self::getVars('dir');
 		$output     = '';
 		$importdirs = array();
 		
@@ -358,7 +360,7 @@ class T3Less
 		// compile less to css using lessphp
 		$parser->SetImportDirs($importdirs);
 		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, self::relativePath($todir, dirname($path)));
-		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
+		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output . "\n\n" . $vars_theme . "\n\n" . $vars_dir;
 		$parser->parse($source, self::relativePath($todir, $path));
 		$output = $parser->getCss();
 		
@@ -420,9 +422,9 @@ class T3Less
 	 * Get less variables
 	 * @return mixed
 	 */
-	public static function getVars()
+	public static function getVars($name = '')
 	{
-		return self::getState('vars_content');
+		return self::getState('vars_' . ($name ? $name.'_' : '') . 'content');
 	}
 
 	/**
@@ -436,7 +438,8 @@ class T3Less
 		$group = 't3';
 		$cache = JCache::getInstance('output', array(
 			'lifetime' => 25200,
-			'caching'	=> true
+			'caching'	=> true,
+			'cachebase' => JPATH_ROOT.'/'.T3_DEV_FOLDER
 		));
 
 		// get cache
@@ -455,7 +458,8 @@ class T3Less
 		$group = 't3';
 		$cache = JCache::getInstance('output', array(
 			'lifetime' => 25200,
-			'caching'	=> true
+			'caching'	=> true,
+			'cachebase' => JPATH_ROOT.'/'.T3_DEV_FOLDER
 		));
 		if (!$cache->store($value, $ckey, $group)) {
 			$app->setUserState($ckey, $value);
@@ -503,8 +507,8 @@ class T3Less
 		}
 
 		// force re-build less if switch responsive mode and get last modified time
-		if ($responsive !== $app->getUserState('current_responsive')) {
-			$app->setUserState('current_responsive', $responsive);
+		if ($responsive !== self::getState('current_responsive')) {
+			self::setState('current_responsive', $responsive);
 			$last_modified = time();
 			touch($path, $last_modified);
 		} else {
@@ -512,6 +516,7 @@ class T3Less
 		}
 
 		$vars          = JFile::read($path);
+    $vars_theme = $vars_dir = '';
 
 		preg_match_all('#^\s*@import\s+"([^"]*)"#im', $vars, $matches);
 		if (count($matches[0])) {
@@ -532,7 +537,7 @@ class T3Less
 				$path = T3_TEMPLATE_PATH . '/less/themes/' . $theme . '/' . $file;
 				if (is_file($path)) {
 					$last_modified = max($last_modified, filemtime($path));
-					$vars .= JFile::read($path);
+					$vars_theme .= JFile::read($path);
 				}
 			}
 		}
@@ -546,7 +551,7 @@ class T3Less
 				if (is_file($path)) {
 					$last_modified = max($last_modified, filemtime($path));
 					// append rtl file into vars
-					$vars .= JFile::read($path);
+					$vars_dir .= JFile::read($path);
 				}
 			}
 			
@@ -574,6 +579,8 @@ class T3Less
 			self::setState('vars_last_modified', $last_modified);
 		}
 		self::setState('vars_content', $vars);
+		self::setState('vars_theme_content', $vars_theme);
+		self::setState('vars_dir_content', $vars_dir);
 
 	}
 
@@ -625,7 +632,7 @@ class T3Less
 			// in development mode, using php to compile less for a better view of development
 			if (preg_match('#(template(-responsive)?.less)#', $lesspath)) {
 				
-				self::divide($lesspath, $theme);
+				self::divide(T3Path::cleanPath($lesspath));
 				
 			} else {
 				$cssurl = self::buildCss(T3Path::cleanPath($lesspath));
@@ -648,7 +655,8 @@ class T3Less
 		$app    = JFactory::getApplication();
 		$doc    = JFactory::getDocument();
 		$tpl    = T3_TEMPLATE;
-		$theme  = $app->getTemplate(true)->params->get('theme');
+		//$theme  = $app->getTemplate(true)->params->get('theme');
+		$theme  = $app->getUserState('current_theme');
 		$is_rtl = $doc->direction == 'rtl' && strpos($path, 'rtl/') === false;
 		$subdir = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
 		$topath = T3_DEV_FOLDER . '/' . $subdir;
@@ -797,6 +805,8 @@ class T3Less
 		
 		// variables & mixin
 		$vars       = self::getVars();
+		$vars_theme       = self::getVars('theme');
+		$vars_dir       = self::getVars('dir');
 		$output     = '';
 		$importdirs = array();
 		
@@ -815,7 +825,7 @@ class T3Less
 				}
 				
 				// remember this path when lookup for import
-				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = $root . '/' . dirname($url) . '/';
+				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = self::relativePath($topath, dirname($url));
 
 				$output .= "#$kfilepath{content: \"$url\";}\n@import \"$chunk\";\n\n";
 
@@ -824,7 +834,7 @@ class T3Less
 					$theme_rel  = 'themes/' . $theme . '/' . basename($url);
 					$theme_path = T3_TEMPLATE_PATH . '/less/' . $theme_rel;
 					if (is_file($theme_path)) {
-						$importdirs[dirname($theme_path)] = T3_TEMPLATE_URL . dirname($theme_rel) . '/';
+						$importdirs[dirname($theme_path)] = self::relativePath($topath, 'templates/' . $tpl . '/less/themes/' . $theme . '/');
 
 						$output .= "#$kfilepath{content: \"" . ('templates/' . T3_TEMPLATE . '/less/' . $theme_rel) . "\";}\n@import \"$theme_rel\";\n\n";
 					}
@@ -873,7 +883,7 @@ class T3Less
 
 					// remember this path when lookup for import
 					if (preg_match($rimport, $importcontent)) {
-						$importdirs[dirname(JPATH_ROOT . '/' . $rtl_url)] = $root . '/' . dirname($rtl_url) . '/';
+						$importdirs[dirname(JPATH_ROOT . '/' . $rtl_url)] = self::relativePath($topath, dirname($rtl_url));
 					}
 
 					$rtlcontent .= "\n$importcontent\n\n";
@@ -886,7 +896,7 @@ class T3Less
 							// process import file
 							$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
 							$rtlcontent   .= "\n$importcontent\n\n";
-							$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = $root . '/' . dirname($rtlthemepath) . '/';
+							$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($topath,  dirname($rtlthemepath));
 						}
 					}
 
@@ -901,7 +911,7 @@ class T3Less
 				// process import file
 				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
 				$rtlcontent   .= "\n$importcontent\n\n";
-				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = $root . '/' . dirname($rtlpath) . '/';
+				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = self::relativePath($topath, dirname($rtlpath));
 			}
 
 			// rtl theme
@@ -911,7 +921,7 @@ class T3Less
 					// process import file
 					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
 					$rtlcontent   .= "\n$importcontent\n\n";
-					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = $root . '/' . dirname($rtlthemepath) . '/';
+					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($topath, dirname($rtlthemepath));
 				}
 			}
 
@@ -923,18 +933,17 @@ class T3Less
 		}
 
 		// common place
-		$importdirs[T3_TEMPLATE_PATH . '/less'] = T3_TEMPLATE_URL . '/less/';
+    	$importdirs[T3_TEMPLATE_PATH . '/less'] = self::relativePath($topath, T3_TEMPLATE_URL);
 
 		// myself
-		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = $root . '/' . dirname($path) . '/';
+    	$importdirs[dirname(JPATH_ROOT . '/' . $path)] = self::relativePath($topath, dirname($path));
 
 		// compile less to css using lessphp
 		$parser->SetImportDirs($importdirs);
-		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, $root . '/' . dirname($path) . '/');
-		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output;
-		$parser->parse($source);
+		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, self::relativePath($topath, dirname($path)));
+		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output . "\n\n" . $vars_theme . "\n\n" . $vars_dir;
+		$parser->parse($source, self::relativePath($topath, $path));
 		$output = $parser->getCss();
-
 		//use cssjanus to transform the content
 		if ($is_rtl) {
 			
@@ -967,8 +976,7 @@ class T3Less
 				$relpath = $topath ? T3Path::relativePath($topath, dirname($file)) :
 									JURI::base(true) . '/' . dirname($file);
 			} else {
-				$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . 
-																($file ? T3Path::updateUrl($chunk, $relpath) : $chunk) . "\n\n";
+				$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . $chunk . "\n\n";
 				$isfile = true;
 			}
 		}

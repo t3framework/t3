@@ -114,6 +114,10 @@ class T3 {
 			
 			define ('T3_DEV_FOLDER', $params->get ('t3-assets', 't3-assets') . '/dev');
 			define ('T3_DEV_MODE', $params->get ('devmode', 0));
+			if (!is_dir(JPATH_ROOT.'/'.T3_DEV_FOLDER)) {
+				jimport('joomla.filesystem.folder');
+				JFolder::create(JPATH_ROOT.'/'.T3_DEV_FOLDER);
+			}
 		}
 
 		if($input->getCmd('t3lock', '')){
