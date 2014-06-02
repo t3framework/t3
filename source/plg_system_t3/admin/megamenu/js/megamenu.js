@@ -471,7 +471,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				template: T3AdminMegamenu.template,
 
 				mmkey: $('#megamenu-key').val(),
-				config: JSON.stringify(config)
+				config: JSON.stringify(config),
+				rand: Math.random()
 			}
 		}).done(function(rsp){
 
@@ -715,7 +716,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 								t3menu: $('#menu-type').val(),
 								t3acl: $('#access-level').val(),
-								t3lang: $('#menu-type :selected').attr('data-language') || '*'
+								t3lang: $('#menu-type :selected').attr('data-language') || '*',
+								rand: Math.random()
 							}
 						}).done(function ( data ) {
 							if(data){
@@ -890,7 +892,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 							t3menu: $('#menu-type').val(),
 							t3acl: $('#access-level').val(),
-							t3lang: $('#menu-type :selected').attr('data-language') || '*'
+							t3lang: $('#menu-type :selected').attr('data-language') || '*',
+							rand: Math.random()
 						},
 
 						beforeSend: function(){
@@ -995,7 +998,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 							styleid: T3AdminMegamenu.styleid,
 							template: T3AdminMegamenu.template,
 
-							mmkey: $('#megamenu-key').val()
+							mmkey: $('#megamenu-key').val(),
+							rand: Math.random()
 						}
 					}).done(function(rsp){
 

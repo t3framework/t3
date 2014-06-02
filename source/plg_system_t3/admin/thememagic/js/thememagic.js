@@ -691,7 +691,8 @@ var T3Theme = window.T3Theme || {};
 				$.param($.extend(params, {
 					t3action: 'theme',
 					t3template: T3Theme.template,
-					styleid: T3Theme.templateid
+					styleid: T3Theme.templateid,
+					rand: Math.random()
 				})) , data, function(result){
 					
 				T3Theme.run = false;
