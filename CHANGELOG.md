@@ -1,3 +1,17 @@
+<h2>Version: 2.2.1 (06/02/2014)</h2>
+
+<h3>Improvement</h3>
+- Improve performance in DEVMODE | <a href="https://github.com/t3framework/t3/commit/8baebbe5041e5396f2e0f983f60dfdb098cd9e88">Link</a>
+
+<h3>Fix bugs</h3>
+- Update layout in base | <a href="https://github.com/t3framework/t3/commit/9f9fa1fa79ae8b851f250dfb12953beddb7825fa">Link</a>
+- Prevent auto align for subnav in megamenu | <a href="https://github.com/t3framework/t3/commit/bbc29f24fe09c30b26eed26fb482405badd4f06d">Link</a>
+- Ignore cache when loading config in backend | <a href="https://github.com/t3framework/t3/commit/1bc6d5103d8c00c109480850de0d0a7b95449b57">Link</a>
+- Update JPagination class to latest version | <a href="https://github.com/t3framework/t3/commit/0294094bca647766a52acb2713b57127cefe6f5a">Link</a>
+- Fix deprecated error when using pagination->get() | <a href="https://github.com/t3framework/t3/commit/21152e00f8ca8fc7ff830a94b8ae59b6c3a6c363">Link</a>
+- Add option "Article view Link title" in General | <a href="https://github.com/t3framework/t3/commit/9c8c7a913a6d6ae92f29a9d3768e247a27215017">Link</a>
+- Allow override T3 Megamenu layout | <a href="https://github.com/t3framework/t3/commit/2cc46dbc70cb6ab640de74942628ccc3139452e4">Link</a>
+
 <h2>Version: 2.2.0 (05/22/2014)</h2>
 
 <h3>New features</h3>
