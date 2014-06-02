@@ -24,7 +24,7 @@ $prefix = $uri->toString(array('scheme', 'host', 'port'));
 
 <header class="article-header clearfix">
 	<<?php echo $title_tag; ?> class="article-title" itemprop="name">
-		<?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
+		<?php if ($params->get('link_titles')) : ?>
 			<a href="<?php echo $url ?>" itemprop="url" title="<?php echo htmlentities($item->title); ?>">
 				<?php echo $this->escape($item->title); ?></a>
 		<?php else : ?>
