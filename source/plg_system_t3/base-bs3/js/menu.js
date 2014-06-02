@@ -314,7 +314,7 @@
 					if ($item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
 
 						//should be align to the right as parent
-						$item.removeClass('mega-align-left').addClass('mega-align-right');
+						// $item.removeClass('mega-align-left').addClass('mega-align-right');
 
 						// check if not able => revert the direction
 						if (offset.left + width + sub_width > screen_width) {
@@ -337,7 +337,7 @@
 
 					if ($item.closest('.mega-dropdown-menu').parent().hasClass('mega-align-right')) {
 						//should be align to the right as parent
-						$item.removeClass('mega-align-left').addClass('mega-align-right');
+						// $item.removeClass('mega-align-left').addClass('mega-align-right');
 
 						// check if not able => revert the direction
 						if (offset.left - sub_width < 0) {
