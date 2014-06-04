@@ -105,6 +105,10 @@ class T3 {
 		define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
 		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
 
+		define ('T3_CUSTOM_URL', T3_TEMPLATE_URL . '/' . T3_CUSTOM_DIR);
+		define ('T3_CUSTOM_PATH', T3_TEMPLATE_PATH . '/' . T3_CUSTOM_DIR);
+		define ('T3_CUSTOM_REL', T3_TEMPLATE_REL . '/' . T3_CUSTOM_DIR);
+
 		if ($input->getCmd('themer', 0)){
 			define ('T3_THEMER', 1);
 		}

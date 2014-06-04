@@ -127,9 +127,10 @@ class T3AdminLayout
 		if (!$template || !$layout) {
 			return self::error(JText::_('T3_LAYOUT_INVALID_DATA_TO_SAVE'));
 		}
-		
-		$file = JPATH_ROOT . '/templates/' . $template . '/etc/layout/' . $layout . '.ini';
-		
+
+		// store layout configuration into custom directory
+		$file = T3_CUSTOM_PATH. '/etc/layout/' . $layout . '.ini';
+
 		if (!is_dir(dirname($file))) {
 			JFolder::create(dirname($file));
 		}
@@ -163,21 +164,25 @@ class T3AdminLayout
 		if (!$template || !$original || !$layout) {
 			return self::error(JText::_('T3_LAYOUT_INVALID_DATA_TO_SAVE'));
 		}
-		
-		$srcpath = JPATH_ROOT . '/templates/' . $template . '/tpls/';
-		$source  = $srcpath . $original . '.php';
-		$dest    = $srcpath . $layout . '.php';
-		
-		$confpath = JPATH_ROOT . '/templates/' . $template . '/etc/layout/';
-		$confdest = $confpath . $layout . '.ini';
-		
+
+
+		// clone to CUSTOM dir
+		$source = T3Path::getPath('tpls/' . $original . '.php');
+		$dest 	= T3_CUSTOM_PATH . '/tpls/' . $layout . '.php';
+		$confsource = T3Path::getPath('etc/layout/'. $layout . '.ini');
+		$confdest = T3_CUSTOM_PATH . '/etc/layout/'. $layout . '.ini';
+
 		$params = new JRegistry();
 		$params->loadObject($_POST);
 		
 		$data = $params->toString('INI');
 		
-		if (!is_dir($confpath)) {
-			JFolder::create($confpath);
+		if (!is_dir(dirname($confdest))) {
+			JFolder::create(dirname($confdest));
+		}
+
+		if (!is_dir(dirname($dest))) {
+			JFolder::create(dirname($dest));
 		}
 		
 		if ($data && !@JFile::write($confdest, $data)) {
@@ -190,11 +195,10 @@ class T3AdminLayout
 			if (!JFile::exists($dest)) {
 				if (!JFile::copy($source, $dest)) {
 					return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
-				} else {
-					//clone configuration file, we only copy if the target file does not exist
-					if (!JFile::exists($confdest) && JFile::exists($confpath . $original . '.ini')) {
-						JFile::copy($confpath . $original . '.ini', $confdest);
-					}
+				}
+				//clone configuration file, we only copy if the target file does not exist
+				if (!JFile::exists($confdest) && JFile::exists($confsource)) {
+					JFile::copy($confsource, $confdest);
 				}
 			} else {
 				return self::error(JText::_('T3_LAYOUT_EXISTED'));
@@ -222,21 +226,48 @@ class T3AdminLayout
 			return self::error(JText::_('T3_LAYOUT_UNKNOW_ACTION'));
 		}
 		
-		$layoutfile = JPATH_ROOT . '/templates/' . $template . '/tpls/' . $layout . '.php';
-		$initfile   = JPATH_ROOT . '/templates/' . $template . '/etc/layout/' . $layout . '.ini';
-		
-		$return = false;
-		if (!JFile::exists($layoutfile)) {
-			return self::error(JText::sprintf('T3_LAYOUT_NOT_FOUND', $layout));
-		}
-		
-		$return = @JFile::delete($layoutfile);
-		
-		if (!$return) {
+		// delete custom layout
+		$layoutfile = T3_CUSTOM_PATH . '/tpls/' . $layout . '.php';
+		$initfile   = T3_CUSTOM_PATH . '/etc/layout/' . $layout . '.ini';
+
+		if (!@JFile::delete($layoutfile)) {
 			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
 		} else {
 			@JFile::delete($initfile);
 			
+			return self::response(array(
+				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
+				'layout' => $layout,
+				'type' => 'delete'
+			));
+		}
+	}
+
+	public static function purge()
+	{
+		// Initialize some variables
+		$input    = JFactory::getApplication()->input;
+		$layout   = $input->getCmd('layout');
+		$template = $input->getCmd('template');
+
+		if (!$layout) {
+			return self::error(JText::_('T3_LAYOUT_UNKNOW_ACTION'));
+		}
+
+		// delete custom layout
+		$layoutfile = T3_CUSTOM_PATH . '/tpls/' . $layout . '.php';
+		$initfile   = T3_CUSTOM_PATH . '/etc/layout/' . $layout . '.ini';
+
+		// delete default layout
+		$defaultlayoutfile = T3_TEMPLATE_PATH . '/tpls/' . $layout . '.php';
+		$defaultinitfile   = T3_TEMPLATE_PATH . '/etc/layout/' . $layout . '.ini';
+
+		if (!@JFile::delete($layoutfile) || !@JFile::delete($defaultlayoutfile)) {
+			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
+		} else {
+			@JFile::delete($initfile);
+			@JFile::delete($defaultinitfile);
+
 			return self::response(array(
 				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
 				'layout' => $layout,

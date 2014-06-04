@@ -24,22 +24,22 @@ $prefix = $uri->toString(array('scheme', 'host', 'port'));
 
 <header class="article-header clearfix">
 	<<?php echo $title_tag; ?> class="article-title" itemprop="name">
-	<?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
-		<a href="<?php echo $url ?>" itemprop="url" title="<?php echo htmlentities($item->title); ?>">
-			<?php echo $this->escape($item->title); ?></a>
-	<?php else : ?>
-		<?php echo $this->escape($item->title); ?>
-		<meta itemprop="url" content="<?php echo $prefix.$url ?>" />
-	<?php endif; ?>
-</<?php echo $title_tag; ?>>
+		<?php if ($params->get('link_titles')) : ?>
+			<a href="<?php echo $url ?>" itemprop="url" title="<?php echo htmlentities($item->title); ?>">
+				<?php echo $this->escape($item->title); ?></a>
+		<?php else : ?>
+			<?php echo $this->escape($item->title); ?>
+			<meta itemprop="url" content="<?php echo $prefix.$url ?>" />
+		<?php endif; ?>
+	</<?php echo $title_tag; ?>>
 
-<?php if ($item->state == 0) : ?>
-	<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
-<?php endif; ?>
-<?php if (strtotime($item->publish_up) > strtotime(JFactory::getDate())) : ?>
-	<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
-<?php endif; ?>
-<?php if ((strtotime($item->publish_down) < strtotime(JFactory::getDate())) && $item->publish_down != '0000-00-00 00:00:00') : ?>
-	<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
-<?php endif; ?>
+	<?php if ($item->state == 0) : ?>
+		<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
+	<?php endif; ?>
+	<?php if (strtotime($item->publish_up) > strtotime(JFactory::getDate())) : ?>
+		<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
+	<?php endif; ?>
+	<?php if ((strtotime($item->publish_down) < strtotime(JFactory::getDate())) && $item->publish_down != '0000-00-00 00:00:00') : ?>
+		<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
+	<?php endif; ?>
 </header>

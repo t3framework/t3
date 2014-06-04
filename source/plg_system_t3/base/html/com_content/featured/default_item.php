@@ -19,8 +19,10 @@ $topInfo = ($aInfo1 && $info != 1) || ($aInfo2 && $info == 0);
 $botInfo = ($aInfo1 && $info == 1) || ($aInfo2 && $info != 0);
 $icons = $params->get('access-edit') || $params->get('show_print_icon') || $params->get('show_email_icon');
 
+
 ?>
-<?php if ($this->item->state == 0) : ?>
+  <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
+	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != '0000-00-00 00:00:00' )) : ?>
 <div class="system-unpublished">
 	<?php endif; ?>
 
@@ -66,10 +68,9 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
     <?php endif; ?>
     <!-- //footer -->
 
-		<?php if ($this->params->get('show_tags', 1) && !empty($this->item->tags)) : ?>
-			<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
-			<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
-		<?php endif; ?>
+    <?php if ($params->get('show_tags', 1) && !empty($this->item->tags)) : ?>
+      <?php echo JLayoutHelper::render('joomla.content.tags', $this->item->tags->itemTags); ?>
+    <?php endif; ?>
 
 		<?php if ($params->get('show_readmore') && $this->item->readmore) :
 			if ($params->get('access-view')) :
@@ -107,7 +108,9 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 	</article>
 	<!-- //Article -->
 
-	<?php if ($this->item->state == 0) : ?>
+
+  <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
+	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != '0000-00-00 00:00:00' )) : ?>
 </div>
 <?php endif; ?>
 <?php echo $this->item->event->afterDisplayContent; ?>

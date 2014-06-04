@@ -33,3 +33,6 @@ define ('T3_CORE_BASE', 'base');
 define ('T3_CORE_BASE_PATH', T3_ADMIN_PATH . '/' . T3_CORE_BASE);
 define ('T3_CORE_BASE_URL', T3_ADMIN_URL . '/' . T3_CORE_BASE);
 define ('T3_CORE_BASE_REL', T3_ADMIN_REL . '/' . T3_CORE_BASE);
+
+// T3 User dir
+define ('T3_CUSTOM_DIR', 'custom');

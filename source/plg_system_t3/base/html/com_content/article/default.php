@@ -42,6 +42,7 @@ JHtml::_('bootstrap.tooltip');
 	</div>
 <?php endif; ?>
 
+
 <div class="item-page<?php echo $this->pageclass_sfx ?> clearfix">
 
 <?php if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->paginationposition && $this->item->paginationrelative) : ?>
@@ -130,7 +131,7 @@ JHtml::_('bootstrap.tooltip');
 		$link = new JURI($link1);
 		?>
 		<section class="readmore">
-			<a href="<?php echo $link; ?>">
+			<a href="<?php echo $link; ?>" itemprop="url">
 						<span>
 						<?php $attribs = json_decode($this->item->attribs); ?>
 						<?php

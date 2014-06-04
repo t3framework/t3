@@ -90,7 +90,7 @@ class T3Template extends ObjectExtendable
 				$layout = $template->params->get('mainlayout', 'default');
 			}
 
-			$fconfig = JPATH_ROOT . '/templates/' . $template->template . '/etc/layout/' . $layout . '.ini';
+			$fconfig = T3Path::getPath('etc/layout/' . $layout . '.ini');
 			if (is_file($fconfig)) {
 				jimport('joomla.filesystem.file');
 				$this->_layoutsettings->loadString(JFile::read($fconfig), 'INI', array('processSections' => true));
@@ -1079,7 +1079,7 @@ class T3Template extends ObjectExtendable
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
 
-		foreach (array(T3_PATH, T3_TEMPLATE_PATH) as $bpath) {
+		foreach (array(T3_PATH, T3_TEMPLATE_PATH, T3_CUSTOM_PATH) as $bpath) {
 			//full path
 			$afile = $bpath . '/etc/assets.xml';
 			if (is_file($afile)) {

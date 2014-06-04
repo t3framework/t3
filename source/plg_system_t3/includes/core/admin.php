@@ -98,6 +98,9 @@ class T3Admin {
 			'askCloneLayout' => JText::_('T3_LAYOUT_ASK_ADD_LAYOUT'),
 			'correctLayoutName' => JText::_('T3_LAYOUT_ASK_CORRECT_NAME'),
 			'askDeleteLayout' => JText::_('T3_LAYOUT_ASK_DEL_LAYOUT'),
+			'askDeleteLayoutDesc' => JText::_('T3_LAYOUT_ASK_DEL_LAYOUT_DESC'),
+			'askPurgeLayout' => JText::_('T3_LAYOUT_ASK_DEL_LAYOUT'),
+			'askPurgeLayoutDesc' => JText::_('T3_LAYOUT_ASK_PURGE_LAYOUT_DESC'),
 
 			'lblDeleteIt' => JText::_('T3_LAYOUT_LABEL_DELETEIT'),
 			'lblCloneIt' => JText::_('T3_LAYOUT_LABEL_CLONEIT'),
@@ -225,6 +228,7 @@ class T3Admin {
 	function renderAdmin(){
 		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
+		$cusXml = T3_CUSTOM_PATH . '/etc/assets.xml';
 		$jtpl = T3_ADMIN_PATH . '/admin/tpls/default.php';
 		
 		if(file_exists($tplXml) && file_exists($jtpl)){
@@ -242,7 +246,10 @@ class T3Admin {
 			//load the template
 			$form->loadFile(T3_PATH . '/params/template.xml');
 			//overwrite / extend with params of template
-			$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
+			$form->loadFile($tplXml, true, '//config');
+			//overwrite / extend with custom config in custom/etc/assets.xml
+			if (file_exists($cusXml))
+				$form->loadFile($cusXml, true, '//config');
 			// extend parameters
 			T3Bot::prepareForm($form);
 

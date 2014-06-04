@@ -240,14 +240,19 @@ T3AdminLayout = window.T3AdminLayout || {};
 				});
 
 			$('#t3-admin-layout-clone-btns')
-				.insertAfter('#jform_params_mainlayout')
-				.find('#t3-admin-layout-clone-copy').on('click', function(){
-					T3AdminLayout.prompt(T3Admin.langs.askCloneLayout, T3AdminLayout.t3clonelayout);
-					return false;
-				}).next().on('click', function(){
-					T3AdminLayout.confirm(T3Admin.langs.askDeleteLayout, T3AdminLayout.t3deletelayout);
-					return false;
-				});
+				.insertAfter('#jform_params_mainlayout');
+			$('#t3-admin-layout-clone-copy').on('click', function(){
+                T3AdminLayout.prompt(T3Admin.langs.askCloneLayout, T3AdminLayout.t3clonelayout);
+                return false;
+            });
+            $('#t3-admin-layout-clone-delete').on('click', function(){
+                T3AdminLayout.confirm(T3Admin.langs.askDeleteLayout, T3Admin.langs.askDeleteLayoutDesc, T3AdminLayout.t3deletelayout);
+                return false;
+            });
+            $('#t3-admin-layout-clone-purge').on('click', function(){
+                T3AdminLayout.confirm(T3Admin.langs.askPurgeLayout, T3Admin.langs.askPurgeLayoutDesc, T3AdminLayout.t3purgelayout);
+                return false;
+            });
 		},
 
 		initModalDialog: function(){
@@ -284,13 +289,13 @@ T3AdminLayout = window.T3AdminLayout || {};
 			.alert();
 		},
 
-		confirm: function(msg, callback){
+		confirm: function(title, msg, callback){
 			T3AdminLayout.modalCallback = callback;
 
 			var jdialog = $('#t3-admin-layout-clone-dlg');
-			jdialog.find('h3').html(msg);
+			jdialog.find('h3').html(title);
 			jdialog.find('.prompt-block').hide();
-			jdialog.find('.message-block').show();
+			jdialog.find('.message-block').show().html(msg);
 			jdialog.find('.btn-danger').show();
 			jdialog.find('.btn-success').hide();
 
@@ -396,6 +401,42 @@ T3AdminLayout = window.T3AdminLayout || {};
 							}
 						}
 					
+						options[0].selected = true;
+						$(mainlayout).trigger('change.less').trigger('liszt:updated');
+					}
+				}
+			});
+		},
+
+		t3purgelayout: function(ok){
+			if(ok != undefined && !ok){
+				return false;
+			}
+
+			var nname = $('#jform_params_mainlayout').val();
+
+			if(nname == ''){
+				return false;
+			}
+
+			T3AdminLayout.submit({
+				t3action: 'layout',
+				t3task: 'purge',
+				template: T3Admin.template,
+				layout: nname
+			}, function(json){
+				if(typeof json == 'object'){
+					if(json.successful && json.layout){
+						var mainlayout = document.getElementById('jform_params_mainlayout'),
+							options = mainlayout.options;
+
+						for(var j = 0, jl = options.length; j < jl; j++){
+							if(options[j].value == json.layout){
+								mainlayout.remove(j);
+								break;
+							}
+						}
+
 						options[0].selected = true;
 						$(mainlayout).trigger('change.less').trigger('liszt:updated');
 					}

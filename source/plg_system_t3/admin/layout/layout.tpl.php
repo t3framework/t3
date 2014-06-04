@@ -56,7 +56,8 @@
 <!-- CLONE BUTTONS -->
 <div id="t3-admin-layout-clone-btns">
 	<button id="t3-admin-layout-clone-copy" class="btn btn-success"><i class="icon-save"></i>  <?php echo JText::_('T3_LAYOUT_LABEL_SAVE_AS_COPY') ?></button>
-	<button id="t3-admin-layout-clone-delete" class="btn"><i class="icon-remove"></i>  <?php echo JText::_('T3_LAYOUT_LABEL_DELETE') ?></button>
+	<button id="t3-admin-layout-clone-delete" class="btn hasTooltip" title="<?php echo JText::_('T3_LAYOUT_DESC_DELETE') ?>"><i class="icon-trash"></i>  <?php echo JText::_('T3_LAYOUT_LABEL_DELETE') ?></button>
+	<button id="t3-admin-layout-clone-purge" class="btn hasTooltip" title="<?php echo JText::_('T3_LAYOUT_DESC_PURGE') ?>"><i class="icon-remove"></i>  <?php echo JText::_('T3_LAYOUT_LABEL_PURGE') ?></button>
 </div>
 
 <!-- MODAL CLONE LAYOUT -->

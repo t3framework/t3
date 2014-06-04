@@ -113,7 +113,9 @@ if (empty ($this->item->catslug)) {
 	</article>
 	<!-- //Article -->
 
-	<?php if ($this->item->state == 0) : ?>
+
+<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
+|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != '0000-00-00 00:00:00' )) : ?>
 </div>
 <?php endif; ?>
 
