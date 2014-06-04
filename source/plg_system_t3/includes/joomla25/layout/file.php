@@ -372,6 +372,9 @@ class JLayoutFile extends JLayoutBase
 		// (2) Standard Joomla! layouts overriden
 		$this->addIncludePaths(JPATH_THEMES . '/' . JFactory::getApplication()->getTemplate() . '/html/layouts');
 
+		// (2.1) - user custom layout overridden
+		$this->addIncludePaths(T3_CUSTOM_PATH . '/html/layouts');
+
 		// Component layouts & overrides if exist
 		$component = $this->options->get('component', null);
 

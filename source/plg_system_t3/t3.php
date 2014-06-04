@@ -190,8 +190,13 @@ class plgSystemT3 extends JPlugin
 				$form->getName() == 'com_templates.style'
 				|| $form->getName() == 'com_config.templates' 
 			)) {
-				JForm::addFormPath(T3_PATH . '/params');
-				$form->loadFile('template', false);
+
+				$_form = clone $form;
+				$_form->loadFile(T3_PATH . '/params/template.xml', false);
+				//custom config in custom/etc/assets.xml
+				$cusXml = T3_CUSTOM_PATH . '/etc/assets.xml';
+				if (file_exists($cusXml))
+					$_form->loadFile($cusXml, true, '//config');
 
 				// extend parameters
 				T3Bot::prepareForm($form);
@@ -199,12 +204,11 @@ class plgSystemT3 extends JPlugin
 				//search for global parameters and store in user state
 				$app      = JFactory::getApplication();
 				$gparams = array();				
-				foreach($form->getGroup('params') as $param){
-					if($form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
+				foreach($_form->getGroup('params') as $param){
+					if($_form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
 						$gparams[] = $param->fieldname; 
 					}
 				}
-				$app->setUserState('gparams', $gparams);
 				$this->gparams = $gparams;
 			}
 
