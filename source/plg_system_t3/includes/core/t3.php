@@ -105,9 +105,9 @@ class T3 {
 		define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
 		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
 
-		define ('T3_CUSTOM_URL', T3_TEMPLATE_URL . '/' . T3_CUSTOM_DIR);
-		define ('T3_CUSTOM_PATH', T3_TEMPLATE_PATH . '/' . T3_CUSTOM_DIR);
-		define ('T3_CUSTOM_REL', T3_TEMPLATE_REL . '/' . T3_CUSTOM_DIR);
+		define ('T3_LOCAL_URL', T3_TEMPLATE_URL . '/' . T3_LOCAL_DIR);
+		define ('T3_LOCAL_PATH', T3_TEMPLATE_PATH . '/' . T3_LOCAL_DIR);
+		define ('T3_LOCAL_REL', T3_TEMPLATE_REL . '/' . T3_LOCAL_DIR);
 
 		if ($input->getCmd('themer', 0)){
 			define ('T3_THEMER', 1);
@@ -115,13 +115,15 @@ class T3 {
 
 		if (!$app->isAdmin()) {
 			$params = $app->getTemplate(true)->params;
-			
 			define ('T3_DEV_FOLDER', $params->get ('t3-assets', 't3-assets') . '/dev');
 			define ('T3_DEV_MODE', $params->get ('devmode', 0));
-			if (!is_dir(JPATH_ROOT.'/'.T3_DEV_FOLDER)) {
-				jimport('joomla.filesystem.folder');
-				JFolder::create(JPATH_ROOT.'/'.T3_DEV_FOLDER);
-			}
+		} else {
+			$params = self::getTemplate()->params;
+			define ('T3_DEV_FOLDER', $params->get ('t3-assets', 't3-assets') . '/dev');
+		}
+		if (!is_dir(JPATH_ROOT.'/'.T3_DEV_FOLDER)) {
+			jimport('joomla.filesystem.folder');
+			JFolder::create(JPATH_ROOT.'/'.T3_DEV_FOLDER);
 		}
 
 		if($input->getCmd('t3lock', '')){
