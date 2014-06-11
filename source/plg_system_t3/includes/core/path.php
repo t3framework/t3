@@ -29,27 +29,67 @@ class T3Path extends JObject
 	/**
 	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
 	 */
-	public static function getPath($file, $default = '', $relative = false)
+	public static function getPath($file, $default = '', $relative = false, $include_custom = true)
 	{
-		$return = '';
-		if (is_file(T3_CUSTOM_PATH . '/' . $file)) $return = ($relative ? T3_CUSTOM_REL : T3_CUSTOM_PATH) . '/' . $file;
-		if (!$return && is_file(T3_TEMPLATE_PATH . '/' . $file)) $return = ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
-		if (!$return && is_file(T3_PATH . '/' . $file)) $return = ($relative ? T3_REL : T3_PATH) . '/' . $file;
-		if (!$return && $default) $return = self::getPath($default);
+		if (!defined('T3_LOCAL_DISABLED') && $include_custom && file_exists (T3_LOCAL_PATH . '/' . $file)) return ($relative ? T3_LOCAL_REL : T3_LOCAL_PATH) . '/' . $file;
+		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
+		if (file_exists (T3_PATH . '/' . $file)) return ($relative ? T3_REL : T3_PATH) . '/' . $file;
+		if ($default) return self::getPath($default);
+		return '';
+	}
+
+	/**
+	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
+	 */
+	public static function getUrl($file, $default = '', $relative = false, $include_custom = true)
+	{
+		if (!defined('T3_LOCAL_DISABLED') && $include_custom && file_exists (T3_LOCAL_PATH . '/' . $file)) return ($relative ? T3_LOCAL_REL : T3_LOCAL_URL) . '/' . $file;
+		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
+		if (file_exists (T3_PATH . '/' . $file)) return ($relative ? T3_REL : T3_URL) . '/' . $file;
+		if ($default) return self::getUrl($default);
+		return '';
+	}
+
+	/**
+	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
+	 */
+	public static function getAllPath($file, $relative = false, $include_custom = true)
+	{
+		$return = array();
+		if (file_exists (T3_PATH . '/' . $file)) $return[] = ($relative ? T3_REL : T3_PATH) . '/' . $file;
+		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) $return[] = ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
+		if (!defined('T3_LOCAL_DISABLED') && $include_custom && file_exists (T3_LOCAL_PATH . '/' . $file)) $return[] = ($relative ? T3_LOCAL_REL : T3_LOCAL_PATH) . '/' . $file;
 		return $return;
 	}
 
 	/**
 	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
 	 */
-	public static function getUrl($file, $default = '', $relative = false)
+	public static function getAllUrl($file, $relative = false, $include_custom = true)
 	{
-		$return = '';
-		if (is_file(T3_CUSTOM_PATH . '/' . $file)) $return = ($relative ? T3_CUSTOM_REL : T3_CUSTOM_URL) . '/' . $file;
-		if (!$return && is_file(T3_TEMPLATE_PATH . '/' . $file)) $return = ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
-		if (!$return && is_file(T3_PATH . '/' . $file)) $return = ($relative ? T3_REL : T3_URL) . '/' . $file;
-		if (!$return && $default) $return = self::getUrl($default);
+		$return = array();
+		if (file_exists (T3_PATH . '/' . $file)) $return[] = ($relative ? T3_REL : T3_URL) . '/' . $file;
+		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) $return[] = ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
+		if (!defined('T3_LOCAL_DISABLED') && $include_custom && file_exists (T3_LOCAL_PATH . '/' . $file)) $return[] = ($relative ? T3_LOCAL_REL : T3_LOCAL_URL) . '/' . $file;
 		return $return;
+	}
+
+	/**
+	 * Get local path. If const T3_LOCAL_DISABLED defined, use template path; other use local path
+	 */
+	public static function getLocalPath($file, $relative = false)
+	{
+		if (!defined('T3_LOCAL_DISABLED')) return ($relative ? T3_LOCAL_REL : T3_LOCAL_PATH) . '/' . $file;
+		return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
+	}
+
+	/**
+	 * Get local path. If const T3_LOCAL_DISABLED defined, use template path; other use local path
+	 */
+	public static function getLocalUrl($file, $relative = false)
+	{
+		if (!defined('T3_LOCAL_DISABLED')) return ($relative ? T3_LOCAL_REL : T3_LOCAL_URL) . '/' . $file;
+		return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
 	}
 
 	/**

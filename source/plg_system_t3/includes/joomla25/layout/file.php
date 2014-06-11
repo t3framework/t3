@@ -373,7 +373,7 @@ class JLayoutFile extends JLayoutBase
 		$this->addIncludePaths(JPATH_THEMES . '/' . JFactory::getApplication()->getTemplate() . '/html/layouts');
 
 		// (2.1) - user custom layout overridden
-		$this->addIncludePaths(T3_CUSTOM_PATH . '/html/layouts');
+		if (!defined('T3_LOCAL_DISABLED')) $this->addIncludePaths(T3_LOCAL_PATH . '/html/layouts');
 
 		// Component layouts & overrides if exist
 		$component = $this->options->get('component', null);

@@ -723,7 +723,7 @@ class JView extends JObject
 					$this->_addPath('template', $fallback);
 
 					//search path for user custom folder
-					$this->_addPath('template', T3_CUSTOM_PATH . '/html/' . $component . '/' . $this->getName());
+					if (!defined('T3_LOCAL_DISABLED')) $this->_addPath('template', T3_LOCAL_PATH . '/html/' . $component . '/' . $this->getName());
 
 				}
 				break;

@@ -194,8 +194,8 @@ class plgSystemT3 extends JPlugin
 				$_form = clone $form;
 				$_form->loadFile(T3_PATH . '/params/template.xml', false);
 				//custom config in custom/etc/assets.xml
-				$cusXml = T3_CUSTOM_PATH . '/etc/assets.xml';
-				if (file_exists($cusXml))
+				$cusXml = T3Path::getPath ('etc/assets.xml');
+				if ($cusXml && file_exists($cusXml))
 					$_form->loadFile($cusXml, true, '//config');
 
 				// extend parameters

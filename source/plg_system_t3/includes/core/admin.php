@@ -228,7 +228,7 @@ class T3Admin {
 	function renderAdmin(){
 		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
-		$cusXml = T3_CUSTOM_PATH . '/etc/assets.xml';
+		$cusXml = T3Path::getPath('etc/assets.xml');
 		$jtpl = T3_ADMIN_PATH . '/admin/tpls/default.php';
 		
 		if(file_exists($tplXml) && file_exists($jtpl)){
@@ -248,7 +248,7 @@ class T3Admin {
 			//overwrite / extend with params of template
 			$form->loadFile($tplXml, true, '//config');
 			//overwrite / extend with custom config in custom/etc/assets.xml
-			if (file_exists($cusXml))
+			if ($cusXml && file_exists($cusXml))
 				$form->loadFile($cusXml, true, '//config');
 			// extend parameters
 			T3Bot::prepareForm($form);

@@ -25,6 +25,17 @@ T3::import('lessphp/less/less');
 class T3Less
 {
 
+	static $kfilepath    = 'less-file-path';
+	static $kvarsep      = 'less-content-separator';
+	static $krtlsep      = 'rtl-less-content';
+	static $rsplitbegin  = '@^\s*\#';
+	static $rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
+	static $rswitchrtl   = '@/less/(themes/[^/]*/)?@';
+	static $rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
+	static $rspace       = '@[\r?\n]{2,}@';
+	static $rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
+	static $rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars|mixins)\.less"\s*;@im';
+
 	public static function requirement(){
 		static $setup;
 
@@ -91,46 +102,57 @@ class T3Less
 	 * @param   $path   the less file to compile
 	 * @return  string  url to css file
 	 */
-	public static function buildCss($path)
-	{
+	public static function buildCss ($path, $return = false) {
 		$app     = JFactory::getApplication();
+		$doc		 = JFactory::getDocument();
 		$theme   = $app->getUserState('current_theme', '');
-		
-		// less file last-modified
 		$is_rtl      = ($app->getUserState('current_direction') == 'rtl');
-		$filepath    = JPATH_ROOT . '/' . $path;
-		$less_lm     = is_file($filepath) ? filemtime($filepath) : 0;
-		$less_lm_rtl = 0;
 
-		if ($is_rtl) {
-			$filepath_rtl = preg_replace('/\/less\/(themes\/)?/', '/less/rtl/', $filepath);
-			if (is_file($filepath_rtl)){
-				$less_lm_rtl = filemtime($filepath_rtl);
-			}
-		}
-
-		// get vars last-modified
-		$vars_lm = self::getState('vars_last_modified', 0);
 		// get css cached file
 		$subdir  = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
-		$cssfile = T3_DEV_FOLDER . '/' . $subdir . str_replace('/', '.', $path) . '.css';
-		$cssurl  = JURI::base(true) . '/' . $cssfile;
-		$csspath = JPATH_ROOT . '/' . $cssfile;
-		if (is_file($csspath)){
-			$css_lm = filemtime($csspath);
-			if($css_lm > $less_lm &&
-			$css_lm > $vars_lm &&
-			$css_lm > $less_lm_rtl) {
-				return $cssurl;
+		$cssdir  = T3_DEV_FOLDER . '/' . $subdir;
+		$cssfile = $cssdir . str_replace('/', '.', $path) . '.css';
+
+		// modified time
+		$less_lm = @filemtime (JPATH_ROOT . '/' . $path);
+		$css_lm = @filemtime ($cssfile);
+		$vars_lm = self::getState('vars_last_modified', 0);
+
+		$list = self::parse($path);
+
+		if (empty ($list)) return false;
+
+		// prepare output list
+		$output_files = array();
+		$output_files [] = $cssfile;
+
+		foreach ($list as $f => $import) {
+			if ($import) {
+				$css = $cssdir . str_replace('/', '.', $f) . '.css';
+				$output_files[] = $css;
+				$less_lm = max ($less_lm, @filemtime(JPATH_ROOT . '/' . $f));
+				$css_lm = max ($css_lm, @filemtime(JPATH_ROOT . '/' . $css));
 			}
 		}
-		
-		// not cached, build & store it
-		if (!self::compileCss($path, $cssfile)) {
-			return null;
+
+		// check modified
+		$rebuild = $vars_lm > $css_lm || $less_lm > $css_lm;
+		if ($rebuild) {
+			if ($return || count($list) == 1) {
+				self::compileCss($path, $cssfile, false, $list);
+			} else {
+				self::compileCss($path, $cssfile, true, $list);
+			}
 		}
 
-		return $cssurl;
+		if (!$return) {
+			// add css
+			foreach ($output_files as $css) {
+				$doc->addStylesheet($css);
+			}
+		} else {
+			return $cssfile;
+		}
 	}
 
 	public static function relativePath($topath, $path, $default = null){
@@ -146,277 +168,110 @@ class T3Less
 	 * @param   string  $topath  file path of output css file
 	 * @return  bool|mixed       compile result or the css compiled content
 	 */
-	public static function compileCss($path, $topath = '')
-	{
-		//check system
-		self::requirement();
+	public static function compileCss($path, $topath = '', $split = false, $list = null) {
+		$app     = JFactory::getApplication();
+		$is_rtl      = ($app->getUserState('current_direction') == 'rtl');
 
-		$parser = new Less_Parser();
-		$app    = JFactory::getApplication();
-		$tpl    = T3_TEMPLATE;
-		$theme  = $app->getUserState('current_theme');
-		$tofile = null;
-		$todir  = null;
-
-		//pattern
-		$rcomment     = '@/\*[^*]*\*+([^/][^*]*\*+)*/@';
-		$rspace       = '@[\r?\n]{2,}@';
-		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/(vars|variables|mixins)\.less@';
-		$rexcludepath = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/@';
-		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars|mixins)\.less"\s*;@im';
-
-		$rsplitbegin  = '@^\s*\#';
-		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
-		$rswitchrtl   = '@/less/(themes/[^/]*/)?@';
-
-		$kvarsep      = 'less-content-separator';
-		$krtlsep      = 'rtl-less-content';
-
-		
-		if ($topath) {
-			$tofile = JPATH_ROOT . '/' . $topath;
-			$todir  = dirname($topath);
-
-			if (!is_dir(dirname($tofile))) {
-				JFolder::create(dirname($tofile));
-			}
-		}
-		
-		// check path
-		$realpath = realpath(JPATH_ROOT . '/' . $path);
-		if (!is_file($realpath)) {
-			return false;
-		}
-
-		// get file content
-		$content = JFile::read($realpath);
-
-		//remove vars.less
-		if (preg_match($rexcludepath, $path)){
-			$content = preg_replace($rimportvars, '', $content);
-		}
-		
-		// remove comments? - we should keep comment for rtl flip
-		//$content = preg_replace($rcomment, '', $content);
-
-		// split into array, separated by the import
-		$arr = preg_split($rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
-		
-		// check and add theme less if not is theme less
-		if ($theme && strpos($path, 'themes/') === false) {
-			$themepath = 'themes/' . $theme . '/' . basename($path);
-			if (is_file(T3_TEMPLATE_PATH . '/less/' . $themepath)) {
-				$arr[] = $themepath;
-				$arr[] = '';
-			}
-		}
-		
-		// variables & mixin
-		$vars       = self::getVars();
-		$vars_theme       = self::getVars('theme');
-		$vars_dir       = self::getVars('dir');
-		$output     = '';
+		if (empty ($list)) $list = self::parse($path);
+		// join $list
+		$content = '';
 		$importdirs = array();
-		
-		// compile chunk
-		$import = false;
-		foreach ($arr as $s) {
+		$todir = $topath ? dirname($topath) : dirname ($path);
+
+		if (!is_dir(JPATH_ROOT . '/' . $todir)) {
+			JFolder::create(JPATH_ROOT . '/' . $todir);
+		}
+
+		$importdirs[JPATH_ROOT . '/' . dirname($path)] = self::relativePath($todir, dirname($path));
+		foreach ($list as $f => $import) {
 			if ($import) {
-				$import = false;
-				
-				$url = T3Path::cleanPath(dirname($path) . '/' . $s);
-				
-				// ignore vars.less and variables.less if they are in template folder
-				// cause there may have other css less file with the same name (eg. font awesome)
-				if (preg_match($rvarscheck, $url)){
-					continue;
-				}
-				
-				// remember this path when lookup for import
-				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = self::relativePath($todir, dirname($url));
-
-				$output .= "\n@import \"$s\";\n\n";
-
-				// check and add theme less
-				if ($theme && strpos($url, 'themes/') === false) {
-					$theme_rel  = 'themes/' . $theme . '/' . basename($url);
-					$theme_path = T3_TEMPLATE_PATH . '/less/' . $theme_rel;
-					if (is_file($theme_path)) {
-						$importdirs[dirname($theme_path)] = self::relativePath($todir, 'templates/' . $tpl . '/less/themes/' . $theme . '/');
-
-						$output .= "\n@import \"$theme_rel\";\n\n";
-					}
-				}
-
+				$importdirs[JPATH_ROOT . '/' . dirname($f)] = self::relativePath($todir, dirname($f));
+				$content .= "#".self::$kfilepath."{content: \"{$f}\";}\n";
+				$content .= "@import \"$import\";\n\n";
 			} else {
-				$import = true;
-				$s  = trim($s);
-				if ($s) {
-					$output .= "\n$s\n\n";
-				}
-			}
-		}
-		
-		$rtlcontent = '';
-		$is_rtl     = $app->getUserState('current_direction') == 'rtl' && strpos($path, 'rtl/') === false;
-
-		// convert to RTL if using RTL
-		if ($is_rtl) {
-
-			// import rtl override
-			// check override for import
-			$import = false;
-			foreach ($arr as $s) {
-				if ($import) {
-					$import = false;
-					
-					$url = T3Path::cleanPath(dirname($path) . '/' . $s);
-					// ignore vars.less and variables.less if they are in template folder
-					// cause there may have other css less file with the same name (eg. font awesome)
-					if (preg_match($rvarscheck, $url)){
-						continue;
-					}
-
-					// process import file
-					$rtl_url = preg_replace('@/less/(themes/)?@', '/less/rtl/', $url);
-					
-					if (!is_file(JPATH_ROOT . '/' . $rtl_url)){
-						continue;
-					}
-
-					// process import file
-					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtl_url);
-					if (preg_match($rexcludepath, $rtl_url)){
-						$importcontent = preg_replace($rimportvars, '', $importcontent);
-					}
-
-					// remember this path when lookup for import
-					if (preg_match($rimport, $importcontent)) {
-						$importdirs[dirname(JPATH_ROOT . '/' . $rtl_url)] = self::relativePath($todir, dirname($rtl_url));
-					}
-
-					$rtlcontent .= "\n$importcontent\n\n";
-
-					// rtl theme overwrite
-					if ($theme && strpos($url, 'themes/') === false) {
-						$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $url);
-
-						if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
-							// process import file
-							$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-							$rtlcontent   .= "\n$importcontent\n\n";
-							$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($todir,  dirname($rtlthemepath));
-						}
-					}
-
-				} else {
-					$import = true;
-				}
-			}
-			
-			// override in template for this file
-			$rtlpath = preg_replace($rswitchrtl, '/less/rtl/', $path);
-			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
-				// process import file
-				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
-				$rtlcontent   .= "\n$importcontent\n\n";
-				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = self::relativePath($todir, dirname($rtlpath));
-			}
-
-			// rtl theme
-			if ($theme) {
-				$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $path);
-				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
-					// process import file
-					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-					$rtlcontent   .= "\n$importcontent\n\n";
-					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($todir, dirname($rtlthemepath));
-				}
-			}
-
-			if($rtlcontent){
-				$output = $output . "\n#$krtlsep{content: \"separator\";}\n\n$rtlcontent\n\n";
+				$content .= "#".self::$kfilepath."{content: \"{$path}\";}\n";
+				$content .= $f . "\n\n";
 			}
 		}
 
-		// common place
-		$importdirs[T3_TEMPLATE_PATH . '/less'] = self::relativePath($todir, T3_TEMPLATE_URL);
+		// get vars
+		$vars       = self::getVars();
+		$vars_theme = self::getVars('theme');
+		$vars_dir   = self::getVars('dir');
 
-		// myself
-		$importdirs[dirname(JPATH_ROOT . '/' . $path)] = self::relativePath($todir, dirname($path));
-
-		// ignore all these files
-		foreach (array(T3_PATH, T3_PATH . '/bootstrap', T3_TEMPLATE_PATH) as $know_path) {
-			foreach (array('vars', 'variables', 'mixins') as $know_file) {
-				$realfile = realpath($know_path . '/less/' . $know_file . '.less');
-				
-				if(is_file($realfile) && !Less_Parser::FileParsed($realfile)){
-					Less_Parser::AddParsedFile($realfile);
-				}
-			}
-		}
-
-		// compile less to css using lessphp
+		// call Less to compile
+		$parser = new Less_Parser();
 		$parser->SetImportDirs($importdirs);
 		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, self::relativePath($todir, dirname($path)));
-		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output . "\n\n" . $vars_theme . "\n\n" . $vars_dir;
+		$source = $vars . "\n#" . self::$kvarsep . "{content: \"separator\";}\n" . $content . "\n\n" . $vars_theme . "\n\n" . $vars_dir;
 		$parser->parse($source, self::relativePath($todir, $path));
 		$output = $parser->getCss();
-		
-		// remove the duplicate clearfix at the beginning if not bootstrap.css file
-		if (strpos($path, $tpl . '/less/bootstrap.less') === false) {
-			$arr = preg_split($rsplitbegin . $kvarsep . $rsplitend, $output);
-			// ignore first one, it's clearfix
-			if(is_array($arr)){
-				array_shift($arr);
-			}
 
-			$output = implode("\n", $arr);
-
-		} else {
-			$output = preg_replace($rsplitbegin . $kvarsep . $rsplitend, '', $output);
-		}
-
-		//update url if needed
-		// $output = T3Path::updateUrl($output, $topath ? T3Path::relativePath(dirname($topath), dirname($path)) : T3_TEMPLATE_URL . '/css/');
-
+		// process content
+		//use cssjanus to transform the content
 		if ($is_rtl) {
-			
-			if($rtlcontent){
-				$output = preg_split($rsplitbegin . $krtlsep . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-				
-				$rtlcontent = isset($output[2]) ? $output[2] : false;
-				$output = $output[0];
-			}
+			$output = preg_split(self::$rsplitbegin . self::$krtlsep . self::$rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+			$rtlcontent = isset($output[2]) ? $output[2] : false;
+			$output = $output[0];
 
 			T3::import('jacssjanus/ja.cssjanus');
 			$output = JACSSJanus::transform($output, true);
 
-			//join again
+			// join with rtl content
 			if($rtlcontent){
 				$output = $output . "\n" . $rtlcontent;
 			}
 		}
+		// skip duplicate clearfix
+		$arr = preg_split(self::$rsplitbegin . self::$kvarsep . self::$rsplitend, $output, 2);
+		if (preg_match ('/bootstrap/', $path)) {
+			$output = implode ("\n", $arr);
+		} else {
+			$output = count($arr) > 1 ? $arr[1] : $arr[0];
+		}
 
 		//remove comments and clean up
-		$output = preg_replace($rcomment, '', $output);
-		$output = preg_replace($rspace, "\n\n", $output);
+		$output = preg_replace(self::$rcomment, '', $output);
+		$output = preg_replace(self::$rspace, "\n\n", $output);
 
-		if ($tofile) {
-			if (!JFile::write($tofile, $output)) {
-				T3::error(JText::sprintf('T3_MSG_DEVFOLDER_NOT_WRITABLE', T3_DEV_FOLDER));
-				return false;
+		// split if needed
+		if ($split) {
+			//update path and store to files
+			$split_contents = preg_split(self::$rsplitbegin . self::$kfilepath . self::$rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+			$file_contents  = array();
+			$file       		= $path;
+			$isfile         = false;
+
+			foreach ($split_contents as $chunk) {
+				if ($isfile) {
+					$isfile  = false;
+					$file = $chunk;
+				} else {
+					$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . $chunk . "\n\n";
+					$isfile = true;
+				}
 			}
-			
-			@chmod($tofile, 0644);
-			
-			return true;
-		}
-		
-		return $output;
-	}
 
+			if(!empty($file_contents)){
+				//output the file to content and add to document
+				foreach ($file_contents as $file => $content) {
+					$content = trim($content);
+					$filename = str_replace('/', '.', $file) . '.css';
+					JFile::write(JPATH_ROOT . '/' . $todir . '/' . $filename, $content);
+				}
+			}
+		} else {
+			$output = preg_replace (self::$rsplitbegin . self::$kfilepath . self::$rsplitend, '', $output);
+			$output = trim($output);
+			if ($topath) {
+				JFile::write(JPATH_ROOT . '/' . $topath, $output);
+			} else {
+				return $output;
+			}
+		}
+		// write to path
+		return true;
+	}
 
 	/**
 	 * Get less variables
@@ -605,7 +460,6 @@ class T3Less
 		//build vars once
 		self::buildVarsOnce();
 
-
 		$app   = JFactory::getApplication();
 		$doc   = JFactory::getDocument();
 		$tpl   = $app->getTemplate(true);
@@ -626,381 +480,11 @@ class T3Less
 
 				define('T3_LESS_JS', 1);
 			}
-			
 		} else {
-
-			// in development mode, using php to compile less for a better view of development
-			if (preg_match('#(template(-responsive)?.less)#', $lesspath)) {
-				
-				self::divide(T3Path::cleanPath($lesspath));
-				
-			} else {
-				$cssurl = self::buildCss(T3Path::cleanPath($lesspath));
-				$doc->addStyleSheet($cssurl);
-			}
+			self::buildCss(T3Path::cleanPath($lesspath));
 		}
 	}
 
-	/**
-	 * Special compilation for template.css file when development mode is on
-	 * @param $path
-	 * @return bool
-	 */
-	public static function divide($path)
-	{
-		//check system
-		self::requirement();
-
-		$parser = new Less_Parser();
-		$app    = JFactory::getApplication();
-		$doc    = JFactory::getDocument();
-		$tpl    = T3_TEMPLATE;
-		//$theme  = $app->getTemplate(true)->params->get('theme');
-		$theme  = $app->getUserState('current_theme');
-		$is_rtl = $doc->direction == 'rtl' && strpos($path, 'rtl/') === false;
-		$subdir = ($is_rtl ? 'rtl/' : '') . ($theme ? $theme . '/' : '');
-		$topath = T3_DEV_FOLDER . '/' . $subdir;
-		$tofile = null;
-		$root   = JUri::root(true);
-
-		//pattern
-		$rimport      = '@^\s*\@import\s+"([^"]*)"\s*;@im';
-		$rvarscheck   = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/(vars|variables|mixins)\.less@';
-		$rexcludepath = '@(base|base-bs3|bootstrap|'.preg_quote($tpl).')/less/@';
-		$rimportvars  = '@^\s*\@import\s+".*(variables-custom|variables|vars|mixins)\.less"\s*;@im';
-
-		$rsplitbegin  = '@^\s*\#';
-		$rsplitend    = '[^\s]*?\s*{\s*[\r\n]*\s*content:\s*"([^"]*)";\s*[\r\n]*\s*}@im';
-		$rswitchrtl   = '@/less/(themes/[^/]*/)?@';
-
-		$kfilepath    = 'less-file-path';
-		$kvarsep      = 'less-content-separator';
-		$krtlsep      = 'rtl-less-content';
-
-		if ($topath) {
-			if (!is_dir(JPATH_ROOT . '/' . $topath)) {
-				JFolder::create(JPATH_ROOT . '/' . $topath);
-			}
-		}
-
-		// check path
-		$realpath = realpath(JPATH_ROOT . '/' . $path);
-		if (!is_file($realpath)) {
-			return;
-		}
-
-		// get file content
-		$content = JFile::read($realpath);
-
-		//remove vars.less
-		if (preg_match($rexcludepath, $path)){
-			$content = preg_replace($rimportvars, '', $content);
-		}
-
-		// check and add theme less if not is theme less
-		if ($theme && strpos($path, 'themes/') === false) {
-			$themepath = 'themes/' . $theme . '/' . basename($path);
-			if (is_file(T3_TEMPLATE_PATH . '/less/' . $themepath)) {
-				$content = $content . "\n@import \"$themepath\"; \n\n";
-			}
-		}
-
-		// split into array, separated by the import
-		$split_contents = preg_split($rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
-
-		//check if we need to rebuild
-		$rebuild = false;
-		$vars_lm = self::getState('vars_last_modified', 0);
-		$file_lm = @filemtime(JPATH_ROOT . '/' . $path);
-
-		//check for this file and rtl
-		$cssfile = $topath . str_replace('/', '.', $path) . '.css';
-		$css_lm  = is_file(JPATH_ROOT . '/' . $cssfile) ? @filemtime(JPATH_ROOT . '/' . $cssfile) : -1;
-
-		//rebuild?
-		if($css_lm < $vars_lm || $css_lm < $file_lm){
-			$rebuild = true;
-		} else {
-			$doc->addStylesheet($root . '/' . $cssfile);
-		}
-
-		//check for rebuild if this rtl overwrite file has just modified
-		if(!$rebuild && $is_rtl){
-			$rtl_url = preg_replace('@/less/(themes/)?@', '/less/rtl/', $path);
-			$rtl_lm  = is_file(JPATH_ROOT . '/' . $rtl_url) ? @filemtime(JPATH_ROOT . '/' . $rtl_url) : 0;
-
-			$rebuild = ($css_lm < $rtl_lm);
-		}
-
-		if(!$rebuild){
-			$import = false;
-			foreach ($split_contents as $chunk) {
-				if ($import) {
-					$import = false;
-
-					$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
-
-					if(is_file(JPATH_ROOT . '/' . $url)){
-						//$css_lm should be the same as templates.css
-						$file_lm = @filemtime(JPATH_ROOT . '/' . $url);
-						$theme_lm     = -1;
-						$rtl_lm       = -1;
-						$theme_rtl_lm = -1;
-
-						if ($theme && strpos($url, 'themes/') === false) {
-							$themepath = 'themes/' . $theme . '/' . basename($path);
-							if (is_file(T3_TEMPLATE_PATH . '/less/' . $themepath)) {
-								$theme_lm = @filemtime(T3_TEMPLATE_PATH . '/less/' . $themepath);
-							}
-
-							if($is_rtl){
-								$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $url);
-								if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
-									$theme_rtl_lm = @filemtime(JPATH_ROOT . '/' . $rtlthemepath);
-								}
-							}
-						}
-
-						if($is_rtl){
-							$rtl_url = preg_replace('@/less/(themes/)?@', '/less/rtl/', $url);
-							if(is_file(JPATH_ROOT . '/' . $rtl_url)){
-								$rtl_lm  = @filemtime(JPATH_ROOT . '/' . $rtl_url);
-							}
-						}
-
-
-
-						if(!is_file(JPATH_ROOT . '/' . $cssfile)    //file not exist
-							|| $css_lm < $vars_lm                     //variables has changed
-							|| $css_lm < $file_lm                     //this import file has changed
-							|| $css_lm < $theme_lm                    //theme && theme overwrite has changed
-							|| $css_lm < $rtl_lm                      //rtl && rtl overwrite has changed
-							|| $css_lm < $theme_rtl_lm                //theme && rtl && theme overwrite has changed
-						){
-							$rebuild = true;  // rebuild for sure
-							break;            //no need further check
-						} else {
-							$doc->addStylesheet($root . '/' . $topath . str_replace('/', '.', $url) . '.css');
-						}
-					}
-
-				} else {
-					$import = true;
-				}
-			}
-		}
-
-		// so, no need to rebuild?
-		if(!$rebuild){
-			// add RTL css if needed
-			if($is_rtl){
-				$cssfile = $topath . str_replace('/', '.', str_replace('.less', '-rtl.less', $path)) . '.css';
-				if(is_file(JPATH_ROOT . '/' . $cssfile)){
-					$doc->addStylesheet($root . '/' . $cssfile);
-				}
-			}
-
-			return false;
-		}
-		
-		// variables & mixin
-		$vars       = self::getVars();
-		$vars_theme       = self::getVars('theme');
-		$vars_dir       = self::getVars('dir');
-		$output     = '';
-		$importdirs = array();
-		
-		// iterate to each chunk and add separator mark
-		$import = false;
-		foreach ($split_contents as $chunk) {
-			if ($import) {
-				$import = false;
-				
-				$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
-				
-				// ignore vars.less and variables.less if they are in template folder
-				// cause there may have other css less file with the same name (eg. font awesome)
-				if (preg_match($rvarscheck, $url)){
-					continue;
-				}
-				
-				// remember this path when lookup for import
-				$importdirs[dirname(JPATH_ROOT . '/' . $url)] = self::relativePath($topath, dirname($url));
-
-				$output .= "#$kfilepath{content: \"$url\";}\n@import \"$chunk\";\n\n";
-
-				// check and add theme less
-				if ($theme && strpos($url, 'themes/') === false) {
-					$theme_rel  = 'themes/' . $theme . '/' . basename($url);
-					$theme_path = T3_TEMPLATE_PATH . '/less/' . $theme_rel;
-					if (is_file($theme_path)) {
-						$importdirs[dirname($theme_path)] = self::relativePath($topath, 'templates/' . $tpl . '/less/themes/' . $theme . '/');
-
-						$output .= "#$kfilepath{content: \"" . ('templates/' . T3_TEMPLATE . '/less/' . $theme_rel) . "\";}\n@import \"$theme_rel\";\n\n";
-					}
-				}
-
-			} else {
-				$import = true;
-				$chunk  = trim($chunk);
-				if ($chunk) {
-					$output .= "#$kfilepath{content: \"$path\";}\n$chunk\n\n";
-				}
-			}
-		}
-
-		// compile RTL overwrite when in RTL mode
-		if ($is_rtl) {
-
-			$rtlcontent = '';
-
-			// import rtl override
-			$import = false;
-			foreach ($split_contents as $chunk) {
-				if ($import) {
-					$import = false;
-					
-					$url = T3Path::cleanPath(dirname($path) . '/' . $chunk);
-					// ignore vars.less and variables.less if they are in template folder
-					// cause there may have other css less file with the same name (eg. font awesome)
-					if (preg_match($rvarscheck, $url)){
-						continue;
-					}
-
-					// process import file
-					$rtl_url = preg_replace('@/less/(themes/)?@', '/less/rtl/', $url);
-					
-					// is there overwrite file?
-					if (!is_file(JPATH_ROOT . '/' . $rtl_url)){
-						continue;
-					}
-
-					// process import file
-					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtl_url);
-					if (preg_match($rexcludepath, $rtl_url)){
-						$importcontent = preg_replace($rimportvars, '', $importcontent);
-					}
-
-					// remember this path when lookup for import
-					if (preg_match($rimport, $importcontent)) {
-						$importdirs[dirname(JPATH_ROOT . '/' . $rtl_url)] = self::relativePath($topath, dirname($rtl_url));
-					}
-
-					$rtlcontent .= "\n$importcontent\n\n";
-
-					// rtl theme overwrite
-					if ($theme && strpos($url, 'themes/') === false) {
-						$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $url);
-
-						if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
-							// process import file
-							$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-							$rtlcontent   .= "\n$importcontent\n\n";
-							$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($topath,  dirname($rtlthemepath));
-						}
-					}
-
-				} else {
-					$import = true;
-				}
-			}
-			
-			// override in template for this file
-			$rtlpath = preg_replace($rswitchrtl, '/less/rtl/', $path);
-			if (is_file(JPATH_ROOT . '/' . $rtlpath)) {
-				// process import file
-				$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlpath);
-				$rtlcontent   .= "\n$importcontent\n\n";
-				$importdirs[dirname(JPATH_ROOT . '/' . $rtlpath)] = self::relativePath($topath, dirname($rtlpath));
-			}
-
-			// rtl theme
-			if ($theme) {
-				$rtlthemepath = preg_replace($rswitchrtl, '/less/rtl/' . $theme . '/', $path);
-				if (is_file(JPATH_ROOT . '/' . $rtlthemepath)) {
-					// process import file
-					$importcontent = JFile::read(JPATH_ROOT . '/' . $rtlthemepath);
-					$rtlcontent   .= "\n$importcontent\n\n";
-					$importdirs[dirname(JPATH_ROOT . '/' . $rtlthemepath)] = self::relativePath($topath, dirname($rtlthemepath));
-				}
-			}
-
-			if($rtlcontent){
-				//rtl content will be treat as a new file
-				$rtlfile = str_replace('.less', '-rtl.less', $path);
-				$output = $output . "\n#$kfilepath{content: \"$rtlfile\";}\n\n#$krtlsep{content: \"separator\";}\n\n$rtlcontent\n\n";
-			}
-		}
-
-		// common place
-    	$importdirs[T3_TEMPLATE_PATH . '/less'] = self::relativePath($topath, T3_TEMPLATE_URL);
-
-		// myself
-    	$importdirs[dirname(JPATH_ROOT . '/' . $path)] = self::relativePath($topath, dirname($path));
-
-		// compile less to css using lessphp
-		$parser->SetImportDirs($importdirs);
-		$parser->SetFileInfo(JPATH_ROOT . '/' . $path, self::relativePath($topath, dirname($path)));
-		$source = $vars . "\n#$kvarsep{content: \"separator\";}\n" . $output . "\n\n" . $vars_theme . "\n\n" . $vars_dir;
-		$parser->parse($source, self::relativePath($topath, $path));
-		$output = $parser->getCss();
-		//use cssjanus to transform the content
-		if ($is_rtl) {
-			
-			if($rtlcontent){
-				$output = preg_split($rsplitbegin . $krtlsep . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-				
-				$rtlcontent = isset($output[2]) ? $output[2] : false;
-				$output = $output[0];
-			}
-
-			T3::import('jacssjanus/ja.cssjanus');
-			$output = JACSSJanus::transform($output, true);
-			
-			if($rtlcontent){
-				$output = $output . "\n" . $rtlcontent;
-			}
-		}
-
-		//update path and store to files
-		$split_contents = preg_split($rsplitbegin . $kfilepath . $rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-		$file_contents  = array();
-		$file           = $path; //default
-		$relpath        = JURI::base(true) . '/' . dirname($file);
-		$isfile         = false;
-
-		foreach ($split_contents as $chunk) {
-			if ($isfile) {
-				$isfile  = false;
-				$file    = $chunk;
-				$relpath = $topath ? T3Path::relativePath($topath, dirname($file)) :
-									JURI::base(true) . '/' . dirname($file);
-			} else {
-				$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . $chunk . "\n\n";
-				$isfile = true;
-			}
-		}
-
-		if(!empty($file_contents)){
-			
-			// remove the duplicate clearfix at the beginning
-			$split_contents = preg_split($rsplitbegin . $kvarsep . $rsplitend, reset($file_contents));
-			// ignore first one, it's clearfix
-			if(is_array($split_contents)){
-				array_shift($split_contents);
-			}
-
-			$file_contents[key($file_contents)] = implode("\n", $split_contents);
-
-			//output the file to content and add to document
-			foreach ($file_contents as $file => $content) {
-				$cssfile = $topath . str_replace('/', '.', $file) . '.css';
-				JFile::write(JPATH_ROOT . '/' . $cssfile, $content);
-
-				$doc->addStylesheet($root . '/' . $cssfile);
-			}
-		}
-	}
 
 	/**
 	 * Compile LESS to CSS for a specific theme or all themes
@@ -1013,8 +497,8 @@ class T3Less
 
 		// get files need to compile
 		$files    = array();
-		$lesspath = 'templates/' . T3_TEMPLATE . '/less/';
-		$csspath  = 'templates/' . T3_TEMPLATE . '/css/';
+		$lesspath = T3_TEMPLATE_REL . '/less/';
+		$csspath  = T3Path::getLocalPath('css/', true);
 		$fullpath = JPath::clean(JPATH_ROOT . '/' . $lesspath);
 
 		// t3 core plugin files
@@ -1128,4 +612,104 @@ class T3Less
 			}
 		}
 	}
+
+
+	/**
+	 * Parse a less file to get all its overrides before compile
+	 * @param  string  $path the less file
+	 */
+	public static function parse($path) {
+		$rtpl_check		= '@'.preg_quote(T3_TEMPLATE_REL, '@') . '/@i';
+		$rtpl_less_check		= '@'.preg_quote(T3_TEMPLATE_REL, '@') . '/less/@i';
+
+		$app    = JFactory::getApplication();
+		$theme  = $app->getUserState('current_theme');
+		$dir  = $app->getUserState('current_dir');
+		$is_rtl = ($dir == 'rtl');
+
+		$less_rel_path = preg_replace($rtpl_less_check, '', $path);
+		$less_rel_dir = dirname($less_rel_path);
+		$less_rel_dir = $less_rel_dir == '.' ? '' : $less_rel_dir . '/';
+
+		// check path
+		$realpath = realpath(JPATH_ROOT . '/' . $path);
+		if (!is_file($realpath)) {
+			return false;
+		}
+
+		// get file content
+		$content = file_get_contents($realpath);
+
+		//remove vars.less
+		$content = preg_replace(self::$rimportvars, '', $content);
+
+		if (!preg_match ($rtpl_less_check, $path) || preg_match ('/bootstrap/', $path)) {
+			// not in the template or bootstrap, just return the content
+			return array ($content => false);
+		}
+
+		// split into array, separated by the import
+		$arr = preg_split(self::$rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$arr[] = $less_rel_path;
+		$arr[] = '';
+
+		$list = array();
+		$rtl_list = array();
+		$list[$path] = '';
+		$import = false;
+
+		foreach ($arr as $chunk) {
+			if ($import) {
+				$import = false;
+				$import_url = T3Path::cleanPath(T3_TEMPLATE_REL.'/less/'.$less_rel_dir.$chunk);
+				// if $url in template, get all its overrides
+				if (preg_match ($rtpl_less_check, $import_url)) {
+					$less_rel_url = T3Path::cleanPath($less_rel_dir.$chunk);
+					$array = T3Path::getAllPath('less/' . $less_rel_url, true);
+					if ($theme) {
+						$array = array_merge($array, T3Path::getAllPath('less/themes/'.$theme.'/'.$less_rel_url, true));
+					}
+
+					foreach ($array as $f) {
+						// add file in template only
+						if (preg_match ($rtpl_check, $f)) {
+							$list [$f] = T3Path::relativePath(dirname($path), $f);
+						}
+					}
+
+					// rtl overrides
+					if ($is_rtl) {
+						$array = T3Path::getAllPath('less/rtl/'.$less_rel_url, true);
+						if ($theme) {
+							$array = array_merge($array, T3Path::getAllPath('less/rtl/themes/'.$theme.'/'.$less_rel_url, true));
+						}
+
+						foreach ($array as $f) {
+							// add file in template only
+							if (preg_match ($rtpl_check, $f)) {
+								$rtl_list [$f] = T3Path::relativePath(dirname($path), $f);
+							}
+						}
+					}
+				} else {
+					$list [$import_url] = $chunk;
+				}
+			} else {
+				$import = true;
+				$list [$chunk] = false;
+			}
+		}
+
+		// remove itself
+		unset($list[$path]);
+
+		// join rtl
+		if ($is_rtl) {
+			$list ["\n\n#" . self::$krtlsep . "{content: \"separator\";}\n\n"] = false;
+			$list = array_merge($list, $rtl_list);
+		}
+
+		return $list;
+	}
+
 }

@@ -763,7 +763,7 @@ class T3Template extends ObjectExtendable
 		$themermode = $this->getParam('themermode', 1);
 		$responsive = $addresponsive && !$this->responcls ? $this->getParam('responsive', 1) : false;
 
-		if (($devmode || ($themermode && defined('T3_THEMER'))) && ($url = T3Path::getUrl('less/' . $name . '.less', '', true))) {
+		if (($devmode || ($themermode && defined('T3_THEMER'))) && ($url = T3Path::getUrl('less/' . $name . '.less', '', true, false))) {
 			T3::import('core/less');
 			T3Less::addStylesheet($url);
 		} else {
@@ -1037,7 +1037,7 @@ class T3Template extends ObjectExtendable
 						} else {
 							// $newurl = $current . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
 							T3::import('core/less');
-							$newurl = T3Less::buildCss(T3Path::cleanPath('templates/'.T3_TEMPLATE.'/less/'.$fname.'.less'));
+							$newurl = T3Less::buildCss(T3Path::cleanPath('templates/'.T3_TEMPLATE.'/less/'.$fname.'.less'), true);
 						}
 						$stylesheets[$newurl] = $css;
 						continue;
@@ -1079,11 +1079,9 @@ class T3Template extends ObjectExtendable
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
 
-		foreach (array(T3_PATH, T3_TEMPLATE_PATH, T3_CUSTOM_PATH) as $bpath) {
-			//full path
-			$afile = $bpath . '/etc/assets.xml';
+    $afiles = T3Path::getAllPath('etc/assets.xml');
+		foreach ($afiles as $afile) {
 			if (is_file($afile)) {
-
 				//load xml
 				$axml = JFactory::getXML($afile);
 

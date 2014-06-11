@@ -129,7 +129,7 @@ class T3AdminLayout
 		}
 
 		// store layout configuration into custom directory
-		$file = T3_CUSTOM_PATH. '/etc/layout/' . $layout . '.ini';
+    $file = T3Path::getLocalPath ('etc/layout/' . $layout . '.ini');
 
 		if (!is_dir(dirname($file))) {
 			JFolder::create(dirname($file));
@@ -168,9 +168,9 @@ class T3AdminLayout
 
 		// clone to CUSTOM dir
 		$source = T3Path::getPath('tpls/' . $original . '.php');
-		$dest 	= T3_CUSTOM_PATH . '/tpls/' . $layout . '.php';
+    $dest   = T3Path::getLocalPath('tpls/' . $layout . '.php');
 		$confsource = T3Path::getPath('etc/layout/'. $layout . '.ini');
-		$confdest = T3_CUSTOM_PATH . '/etc/layout/'. $layout . '.ini';
+    $confdest   = T3Path::getLocalPath('etc/layout/'. $layout . '.ini');
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);
@@ -226,15 +226,13 @@ class T3AdminLayout
 			return self::error(JText::_('T3_LAYOUT_UNKNOW_ACTION'));
 		}
 		
-		// delete custom layout
-		$layoutfile = T3_CUSTOM_PATH . '/tpls/' . $layout . '.php';
-		$initfile   = T3_CUSTOM_PATH . '/etc/layout/' . $layout . '.ini';
+		// delete custom layout    
+		$layoutfile = T3Path::getLocalPath('tpls/' . $layout . '.php');
+		$initfile   = T3Path::getLocalPath('etc/layout/' . $layout . '.ini');
 
-		if (!@JFile::delete($layoutfile)) {
+		if (!@JFile::delete($layoutfile) || !@JFile::delete($initfile)) {
 			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
 		} else {
-			@JFile::delete($initfile);
-			
 			return self::response(array(
 				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
 				'layout' => $layout,
@@ -255,19 +253,18 @@ class T3AdminLayout
 		}
 
 		// delete custom layout
-		$layoutfile = T3_CUSTOM_PATH . '/tpls/' . $layout . '.php';
-		$initfile   = T3_CUSTOM_PATH . '/etc/layout/' . $layout . '.ini';
+		$layoutfile = T3Path::getLocalPath('tpls/' . $layout . '.php');
+		$initfile   = T3Path::getLocalPath('etc/layout/' . $layout . '.ini');
 
 		// delete default layout
 		$defaultlayoutfile = T3_TEMPLATE_PATH . '/tpls/' . $layout . '.php';
 		$defaultinitfile   = T3_TEMPLATE_PATH . '/etc/layout/' . $layout . '.ini';
 
-		if (!@JFile::delete($layoutfile) || !@JFile::delete($defaultlayoutfile)) {
+		if (!@JFile::delete($layoutfile) || !@JFile::delete($defaultlayoutfile)
+        || !@JFile::delete($initfile) || !@JFile::delete($defaultinitfile)
+      ) {
 			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
 		} else {
-			@JFile::delete($initfile);
-			@JFile::delete($defaultinitfile);
-
 			return self::response(array(
 				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
 				'layout' => $layout,

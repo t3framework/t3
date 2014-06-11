@@ -35,4 +35,4 @@ define ('T3_CORE_BASE_URL', T3_ADMIN_URL . '/' . T3_CORE_BASE);
 define ('T3_CORE_BASE_REL', T3_ADMIN_REL . '/' . T3_CORE_BASE);
 
 // T3 User dir
-define ('T3_CUSTOM_DIR', 'custom');
+define ('T3_LOCAL_DIR', 'local');
