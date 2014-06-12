@@ -349,4 +349,27 @@ class plgSystemT3 extends JPlugin
 		
 		return false;
 	}
+
+	/**
+	 * Update params before rendering content
+	 *
+	 * @param   string   $context   The context of the content being passed to the plugin.
+	 * @param   object   &$article  The article object.  Note $article->text is also available
+	 * @param   mixed    &$params   The article params
+	 * @param   integer  $page      The 'page' number
+	 *
+	 * @return  mixed   true if there is an error. Void otherwise.
+	 *
+	 * @since   1.6
+	 */
+	public function onContentPrepare ($context, &$article, &$params, $page = 0) {
+		// update params for Article View
+		if ($context == 'com_content.article') {
+			$app = JFactory::getApplication();
+			$tmpl = $app->getTemplate(true);
+			if ($tmpl->params->get('link_titles') !== NULL) {
+				$article->params->set('link_titles', $tmpl->params->get('link_titles'));
+			}
+		}
+	}
 }
