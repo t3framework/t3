@@ -1091,11 +1091,11 @@ class T3Template extends ObjectExtendable
 						//ignore others node
 						if ($node == 'stylesheets' || $node == 'scripts') {
 							foreach ($nodevalue->file as $file) {
-								$compatible = $file['compatible'];
+								$compatible = (string) $file['compatible'];
 								if ($compatible) {
 									$parts = explode(' ', $compatible);
 									$operator = '='; //exact equal to
-									$operand = $parts[1];
+									$operand = $parts[0];
 									if (count($parts) == 2) {
 										$operator = $parts[0];
 										$operand = $parts[1];
@@ -1118,9 +1118,14 @@ class T3Template extends ObjectExtendable
 
 								if ($url) {
 									if ($node == 'stylesheets') {
-										$this->addStylesheet($url);
+										$type = $file['type'] ? (string) $file['type'] : 'text/css';
+										$media = $file['media'] ? (string) $file['media'] : null;
+										$this->addStylesheet($url, $type, $media);
 									} else {
-										$this->addScript($url);
+										$type = $file['type'] ? (string) $file['type'] : 'text/javascript';
+										$defer = $file['defer'] ? (bool) $file['defer'] : false;
+										$async = $file['async'] ? (bool) $file['async'] : false;
+										$this->addScript($url, $type, $defer, $async);
 									}
 								}
 							}

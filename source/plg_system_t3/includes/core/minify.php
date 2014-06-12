@@ -222,6 +222,7 @@ class T3Minify
 		$doc = JFactory::getDocument();
 
 		//======================= Group css ================= //
+		$mediagroup = array();
 		$cssgroups = array();
 		$stylesheets = array();
 		$ielimit = 4095;
@@ -229,21 +230,57 @@ class T3Minify
 		$regex = '/\{.+?\}|,/s'; //selector counter
 		$csspath = '';
 
+		// group css into media
+		$mediagroup['all'] = array();
+		$mediagroup['screen'] = array();
 		foreach ($doc->_styleSheets as $url => $stylesheet) {
+			$media = $stylesheet['media'] ? $stylesheet['media'] : 'all';
+			if (empty($mediagroup[$media])) {
+				$mediagroup[$media] = array();
+			}
+			$mediagroup[$media][$url] = $stylesheet;
+		}
 
-			$url = self::fixUrl($url);
+		foreach ($mediagroup as $media => $group) {
+			$stylesheets = array(); // empty - begin a new group
+			foreach ($group as $url => $stylesheet) {
+				$url = self::fixUrl($url);
 
-			if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
-				$stylesheet['path'] = $csspath;
-				$stylesheet['data'] = JFile::read($csspath);
+				if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
+					$stylesheet['path'] = $csspath;
+					$stylesheet['data'] = JFile::read($csspath);
 
-				$selcount = preg_match_all($regex, $stylesheet['data'], $matched);
-				if(!$selcount) {
-					$selcount = 1; //just for sure
-				}
+					$selcount = preg_match_all($regex, $stylesheet['data'], $matched);
+					if(!$selcount) {
+						$selcount = 1; //just for sure
+					}
 
-				//if we found an @import rule or reach IE limit css selector count, break into the new group
-				if (preg_match('#@import\s+.+#', $stylesheet['data']) || $selcounts + $selcount >= $ielimit) {
+					//if we found an @import rule or reach IE limit css selector count, break into the new group
+					if (preg_match('#@import\s+.+#', $stylesheet['data']) || $selcounts + $selcount >= $ielimit) {
+						if(count($stylesheets)){
+							$cssgroup = array();
+							$groupname = array();
+							foreach ( $stylesheets as $gurl => $gsheet ) {
+								$cssgroup[$gurl] = $gsheet;
+								$groupname[] = $gurl;
+							}
+
+							$cssgroup['groupname'] = implode('', $groupname);
+							$cssgroup['media'] = $media;
+							$cssgroups[] = $cssgroup;
+						}
+
+						$stylesheets = array($url => $stylesheet); // empty - begin a new group
+						$selcounts = $selcount;
+					} else {
+
+						$stylesheets[$url] = $stylesheet;
+						$selcounts += $selcount;
+					}
+
+				} else {
+					// first get all the stylsheets up to this point, and get them into
+					// the items array
 					if(count($stylesheets)){
 						$cssgroup = array();
 						$groupname = array();
@@ -256,47 +293,26 @@ class T3Minify
 						$cssgroups[] = $cssgroup;
 					}
 
-					$stylesheets = array($url => $stylesheet); // empty - begin a new group
-					$selcounts = $selcount;
-				} else {
-
-					$stylesheets[$url] = $stylesheet;
-					$selcounts += $selcount;
-				}
-
-			} else {
-				// first get all the stylsheets up to this point, and get them into
-				// the items array
-				if(count($stylesheets)){
-					$cssgroup = array();
-					$groupname = array();
-					foreach ( $stylesheets as $gurl => $gsheet ) {
-						$cssgroup[$gurl] = $gsheet;
-						$groupname[] = $gurl;
-					}
-
-					$cssgroup['groupname'] = implode('', $groupname);
+					//mark ignore current stylesheet
+					$cssgroup = array($url => $stylesheet, 'ignore' => true);
 					$cssgroups[] = $cssgroup;
+
+					$stylesheets = array(); // empty - begin a new group
+				}
+			}
+
+			if(count($stylesheets)){
+				$cssgroup = array();
+				$groupname = array();
+				foreach ( $stylesheets as $gurl => $gsheet ) {
+					$cssgroup[$gurl] = $gsheet;
+					$groupname[] = $gurl;
 				}
 
-				//mark ignore current stylesheet
-				$cssgroup = array($url => $stylesheet, 'ignore' => true);
+				$cssgroup['groupname'] = implode('', $groupname);
+				$cssgroup['media'] = $media;
 				$cssgroups[] = $cssgroup;
-
-				$stylesheets = array(); // empty - begin a new group
 			}
-		}
-
-		if(count($stylesheets)){
-			$cssgroup = array();
-			$groupname = array();
-			foreach ( $stylesheets as $gurl => $gsheet ) {
-				$cssgroup[$gurl] = $gsheet;
-				$groupname[] = $gurl;
-			}
-
-			$cssgroup['groupname'] = implode('', $groupname);
-			$cssgroups[] = $cssgroup;
 		}
 
 		//======================= Group css ================= //
@@ -306,18 +322,21 @@ class T3Minify
 			if(isset($cssgroup['ignore'])){
 
 				unset($cssgroup['ignore']);
+				unset($cssgroup['groupname']);
+				unset($cssgroup['media']);
 				foreach ($cssgroup as $furl => $fsheet) {
 					$output[$furl] = $fsheet;
 				}
 
 			} else {
-
+				$media = $cssgroup['media'];
 				$groupname = 'css-' . substr(md5($cssgroup['groupname']), 0, 5) . '.css';
 				$groupfile = $outputpath . '/' . $groupname;
 				$grouptime = JFile::exists($groupfile) ? @filemtime($groupfile) : -1;
 				$rebuild = $grouptime < 0; //filemtime == -1 => rebuild
 
 				unset($cssgroup['groupname']);
+				unset($cssgroup['media']);
 				foreach ($cssgroup as $furl => $fsheet) {
 					if(!$rebuild && @filemtime($fsheet['path']) > $grouptime){
 						$rebuild = true;
@@ -346,7 +365,7 @@ class T3Minify
 
 				$output[$outputurl . '/' . $groupname.'?t='.($grouptime % 1000)] = array(
 					'mime' => 'text/css',
-					'media' => null,
+					'media' => $media == 'all' ? NULL : $media,
 					'attribs' => array()
 					);
 			}
