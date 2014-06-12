@@ -216,6 +216,7 @@ class T3AdminMegamenu
 		$query = $db->getQuery(true)
 			->select('menutype, language')
 			->from($db->quoteName('#__menu'))
+			->where('published = 1')
 			->group('menutype');
 		$db->setQuery($query);
 		$menulangs = $db->loadAssocList('menutype');
@@ -223,7 +224,7 @@ class T3AdminMegamenu
 		$query = $db->getQuery(true)
 			->select('menutype, language')
 			->from($db->quoteName('#__menu'))
-			->where('home = 1');
+			->where('home = 1 and published = 1');
 		$db->setQuery($query);
 		$homelangs = $db->loadAssocList('menutype');
 
