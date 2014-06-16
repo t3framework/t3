@@ -2,8 +2,8 @@
 <extension type="package" version="2.5">
 	<name>T3 Framework (fr-FR)</name>
 	<packagename>T3-fr-FR</packagename>
-	<version>2.1.3</version>
-	<creationDate>Mars 2014</creationDate>
+	<version>2.2.1</version>
+	<creationDate>Juin 2014</creationDate>
 	<author>Serge Berthier</author>
 	<authorEmail>info@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
