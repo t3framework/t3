@@ -45,7 +45,6 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 		$mmkey = $menutype;
 		$mmconfig = array();
 		if (!empty($currentconfig)) {
-
 			//find best fit configuration based on view level
 			$vlevels = array_merge($viewLevels);
 			if (is_array($vlevels) && in_array(3, $vlevels)) { //we assume, if a user is special, they should be registered also
@@ -53,40 +52,27 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 			}
 			$vlevels = array_unique($vlevels);
 			rsort($vlevels);
-
-			if (is_array($vlevels) && count($vlevels)) {
-				//should check for special view level first
-				if (in_array(3, $vlevels)) {
-					array_unshift($vlevels, 3);
-				}
-
-				$found = false;
-				foreach ($vlevels as $vlevel) {
-					$mmkey = $menutype . '-' . $vlevel;
-					if (isset($currentconfig[$mmkey])) {
-						$found = true;
-						break;
-					}
-				}
-
-				//fallback
-				if (!$found) {
-					$mmkey = $menutype;
-				}
-			}
+			if (!is_array($vlevels)) $vlevels = array();
+			$vlevels[] = ''; // extend a blank, default key
 
 			// check if available configuration for language override
-			$langcode = substr(JFactory::getDocument()->language, 0, 2);
-			$langtype = $menutype . '-' . $langcode;
-			$langkey  = $langtype . str_replace($menutype, '', $mmkey);
-			
-			if(isset($currentconfig[$langkey])) {
-				$mmkey    = $langkey;
-				$menutype = $langtype;
-			} else if (isset($currentconfig[$langtype])){
-				$mmkey    = $menutype = $langtype;
-			}
+			$langcode = JFactory::getDocument()->language;
+			$shortlangcode = substr($langcode, 0, 2);
+			$types = array($menutype . '-' . $langcode, $menutype . '-' . $shortlangcode, $menutype);
 
+			foreach ($types as $type) {
+				foreach ($vlevels as $vlevel) {
+					$key  = $type . ($vlevel !== '' ? '-' . $vlevel : '');
+					if(isset($currentconfig[$key])) {
+						$mmkey    = $key;
+						$menutype = $type;
+						break 2;
+					} else if (isset($currentconfig[$type])){
+						$mmkey    = $menutype = $type;
+						break 2;
+					}
+				}
+			}
 			if (isset($currentconfig[$mmkey])) {
 				$mmconfig = $currentconfig[$mmkey];
 				if(!is_array($mmconfig)){
