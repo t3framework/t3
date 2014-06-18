@@ -139,7 +139,7 @@
 		(function(){
 			if(window.jomsQuery && jomsQuery.fn.collapse){
 			
-				$('.navbar-toggle').on('click', function(e){
+				$('[data-toggle="collapse"]').on('click', function(e){
 					
 					//toggle manual
 					$($(this).attr('data-target')).eq(0).collapse('toggle');
