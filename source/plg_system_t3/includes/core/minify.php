@@ -248,7 +248,7 @@ class T3Minify
 
 				if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
 					$stylesheet['path'] = $csspath;
-					$stylesheet['data'] = JFile::read($csspath);
+					$stylesheet['data'] = file_get_contents($csspath);
 
 					$selcount = preg_match_all($regex, $stylesheet['data'], $matched);
 					if(!$selcount) {
@@ -358,7 +358,10 @@ class T3Minify
 					}
 
 					$cssdata = implode("\n", $cssdata);
-					JFile::write($groupfile, $cssdata);
+					if (!JFile::write($groupfile, $cssdata)) {
+						// cannot write file, ignore minify
+						return false;
+					}
 					$grouptime = @filemtime($groupfile);
 					@chmod($groupfile, 0644);
 				}
@@ -409,7 +412,7 @@ class T3Minify
 			if ($script['mime'] == 'text/javascript' && ($jspath = self::jsPath($url))) {
 				
 				$script['path'] = $jspath;
-				$script['data'] = JFile::read($jspath);
+				$script['data'] = file_get_contents($jspath);
 
 				$scripts[$url] = $script;
 
@@ -493,7 +496,10 @@ class T3Minify
 					}
 
 					$jsdata = implode("\n", $jsdata);
-					JFile::write($groupfile, $jsdata);
+					if (!JFile::write($groupfile, $jsdata)) {
+						// cannot write file, ignore optimize
+						return false;
+					}
 					$grouptime = @filemtime($groupfile);
 					@chmod($groupfile, 0644);
 				}
