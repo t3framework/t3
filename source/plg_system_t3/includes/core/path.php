@@ -179,7 +179,7 @@ class T3Path extends JObject
 
 	public static function updateUrl($css, $src)
 	{
-		self::$srcurl = $src;
+		self::$srcurl = rtrim($src, '/');
 
 		$css = preg_replace_callback('/@import\\s+([\'"])(.*?)[\'"]/', array('T3Path', 'replaceurl'), $css);
 		$css = preg_replace_callback('/url\\(\\s*([^\\)\\s]+)\\s*\\)/', array('T3Path', 'replaceurl'), $css);
