@@ -187,7 +187,9 @@
 
                 btn.on('click', function(){
 
-                    var wheight = (window.innerHeight || $(window).height());
+                    var wheight = (window.innerHeight || $(window).height()),
+                        offset = fixedtop ? parseInt(nav.css('top')) + parseInt(nav.css('margin-top')) + parseInt(nav.closest('.navbar-collapse-fixed-top').css('top')) :
+                                parseInt(nav.css('bottom'));
 
                     if(!$.support.transition){
                         nav.parent().css('height', !btn.hasClass('collapsed') && btn.data('t3-clicked') ? '' : wheight);
@@ -196,8 +198,7 @@
 
                     nav
                         .addClass('animate')
-                        .css('max-height', wheight -
-                            (fixedtop ? (parseFloat(nav.css('top')) || 0) : (parseFloat(nav.css('bottom')) || 0)));
+                        .css('max-height', wheight - offset);
                 });
                 nav.on('shown hidden', function(){
                     nav.removeClass('animate');
