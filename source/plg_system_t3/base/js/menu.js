@@ -86,19 +86,25 @@
 
                 if (options.hover) {
                     $item.on('mouseover', function (e) {
-                        if ($item.hasClass('group')) {
-                            return;
-                        }
+                        if ($item.hasClass('group')) return ;
 
-                        e.stopPropagation();
+                        // check and handle only once - replace for stopPropagation
+                        var $target = $(e.target);
+                        if ($target.data('show-processed')) return ;
+                        $target.data('show-processed', true);
+                        setTimeout(function(){$target.data('show-processed', false);}, 10);
+
                         self.show(item);
 
                     }).on('mouseleave', function (e) {
-                        if ($item.hasClass('group')) {
-                            return;
-                        }
+                        if ($item.hasClass('group')) return ;
 
-                        e.stopPropagation();
+                        // check and handle only once - replace for stopPropagation
+                        var $target = $(e.target);
+                        if ($target.data('hide-processed')) return ;
+                        $target.data('hide-processed', true);
+                        setTimeout(function(){$target.data('hide-processed', false);}, 10);
+
                         self.hide(item);
                     });
 
@@ -119,6 +125,7 @@
         },
 
         show: function (item) {
+
             // hide all others menu of this instance
             if($.inArray(item, this.child_open) < this.child_open.length -1){
                 this.hide_others(item);
@@ -160,6 +167,7 @@
         },
 
         hide: function (item) {
+
             clearTimeout(this.timer);		//hide alls
             clearTimeout(item.timer);		//hide this item
             clearTimeout(item.astimer);	//animate timer
