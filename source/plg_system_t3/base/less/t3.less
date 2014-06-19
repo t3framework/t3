@@ -15,37 +15,15 @@
 // INCLUDES VARIOUS FUNCTIONS FOR T3
 // ---------------------------------------------------------
 
-// Always Show Submenu
-// -------------------
-@media (max-width: @navbarCollapseWidth) {
-  // Always show submenu for navigation
-  .always-show .mega > .mega-dropdown-menu,
-  .always-show .dropdown-menu {
-    display: block !important;
-    position: static;
-  }
-}
-
 
 // Logo control class
 // ---------------------------------------------------------
 .logo-control {
-  @media (max-width: @navbarCollapseWidth) {
-    .logo-img-sm {
-      display: block;
-    }
-    .logo-img {
-      display: none;
-    }
+  .logo-img-sm {
+    display: none;
   }
-
-  @media (min-width: @navbarCollapseDesktopWidth) {
-    .logo-img-sm {
-      display: none;
-    }
-    .logo-img {
-      display: block;
-    }
+  .logo-img {
+    display: block;
   }
 }
 
