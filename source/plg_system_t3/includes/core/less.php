@@ -222,20 +222,19 @@ class T3Less
 		}
 
 		// get vars
-		$vars       = self::getVars();
-		$vars_theme = self::getVars('theme');
-		$vars_dir   = self::getVars('dir');
+		$vars_files = explode('|', self::getVars('urls'));
 
 		// build source
 		$source = '';
-		$vars_path = T3Path::relativePath($fromdir, T3_TEMPLATE_REL.'/less');
-		if ($vars_path) $vars_path .= "/";
-		// variables
-		$source .= "@import \"" . $vars_path . "vars.less\";\n" . $vars;
+		// build import vars
+		foreach ($vars_files as $var) {
+			$vars_path = T3Path::relativePath($fromdir, dirname($var));
+			if ($vars_path) $vars_path .= "/";
+			$var_file = $vars_path . basename($var);
+			$source .= "@import \"" . $var_file . "\";\n";
+		}
 		// less content
 		$source .= "\n#" . self::$kvarsep . "{content: \"separator\";}\n" . $content;
-		// overridden variables in theme & rtl
-		$source .= "\n\n" . $vars_theme . "\n\n" . $vars_dir;
 
 		// call Less to compile
 		$output = T3LessCompiler::compile($source, $path, $todir, $importdirs);
@@ -404,7 +403,7 @@ class T3Less
 		}
 
 		$vars_content          = file_get_contents($path);
-		$vars = $vars_theme = $vars_dir = '';
+		$vars_urls = array();
 
 		preg_match_all('#^\s*@import\s+"([^"]*)"#im', $vars_content, $matches);
 		if (count($matches[0])) {
@@ -412,63 +411,48 @@ class T3Less
 				$path = T3Path::cleanPath(T3_TEMPLATE_PATH . '/less/' . $url);
 				if (file_exists($path)) {
 					$last_modified = max($last_modified, filemtime($path));
-					//$vars .= file_get_contents($path);
+					$vars_urls[] = T3Path::cleanPath(T3_TEMPLATE_REL . '/less/' . $url);
 				}
 			}
 		}
 
-
+		// add override variables
+		$paths = array();
 		if ($theme) {
-			// add theme variables.less and variables-custom.less
-			foreach (array('variables.less', 'variables-custom.less') as $file) {
-				$path = T3_TEMPLATE_PATH . '/less/themes/' . $theme . '/' . $file;
-				if (is_file($path)) {
-					$last_modified = max($last_modified, filemtime($path));
-					$vars_theme .= file_get_contents($path);
-				}
-			}
+			$paths[] = T3_TEMPLATE_REL . "/less/themes/{$theme}/variables.less";
+			$paths[] = T3_TEMPLATE_REL . "/less/themes/{$theme}/variables-custom.less";
 		}
-
-		// RTL variables
-		$rtl = '';
 		if ($dir == 'rtl') {
-			// add rtl variables.less and rtl theme variables.less
-			foreach (array('variables.less', $theme . '/variables.less') as $file) {
-				$path = T3_TEMPLATE_PATH . '/less/rtl/' . $file;
-				if (is_file($path)) {
-					$last_modified = max($last_modified, filemtime($path));
-					// append rtl file into vars
-					$vars_dir .= file_get_contents($path);
-				}
+			$paths[] = T3_TEMPLATE_REL . "/less/rtl/variables.less";
+			if ($theme) $paths[] = T3_TEMPLATE_REL . "/less/rtl/themes/{$theme}/variables.less";
+		}
+		if (!defined('T3_LOCAL_DISABLED')) {
+			$paths[] = T3_LOCAL_REL . "/less/variables.less";
+			if ($theme) {
+				$paths[] = T3_LOCAL_REL . "/less/themes/{$theme}/variables.less";
+				$paths[] = T3_LOCAL_REL . "/less/themes/{$theme}/variables-custom.less";
 			}
-
-			$rtl = '_rtl';
+			if ($dir == 'rtl') {
+				$paths[] = T3_LOCAL_REL . "/less/rtl/variables.less";
+				if ($theme) $paths[] = T3_LOCAL_REL . "/less/rtl/themes/{$theme}/variables.less";
+			}
+		}
+		if (!$responsive) {
+			$paths[] = T3_REL . '/less/non-responsive-variables.less';
+			$paths[] = T3_TEMPLATE_REL . '/less/non-responsive-variables.less';
 		}
 
-		// Non-responsive variables
-		if (!$responsive) {
-			$file = '/less/non-responsive-variables.less';
-			$path = T3_PATH . $file;
-			if (is_file($path)) {
-				$last_modified = max($last_modified, filemtime($path));
-				// append rtl file into vars
-				$vars .= file_get_contents($path);
-			}
-			$path = T3_TEMPLATE_PATH . $file;
-			if (is_file($path)) {
-				$last_modified = max($last_modified, filemtime($path));
-				// append rtl file into vars
-				$vars .= file_get_contents($path);
+		foreach ($paths as $file) {
+			if (is_file(JPATH_ROOT . '/' . $file)) {
+				$last_modified = max($last_modified, filemtime(JPATH_ROOT . '/' . $file));
+				$vars_urls[] = $file;
 			}
 		}
 
 		if (self::getState('vars_last_modified') != $last_modified) {
 			self::setState('vars_last_modified', $last_modified);
 		}
-		self::setState('vars_content', $vars);
-		self::setState('vars_theme_content', $vars_theme);
-		self::setState('vars_dir_content', $vars_dir);
-
+		self::setState('vars_urls_content', implode('|', $vars_urls));
 	}
 
 	/**
@@ -656,7 +640,7 @@ class T3Less
 
 		$app    = JFactory::getApplication();
 		$theme  = $app->getUserState('current_theme');
-		$dir  = $app->getUserState('current_dir');
+		$dir  = $app->getUserState('current_direction');
 		$is_rtl = ($dir == 'rtl');
 
 		$less_rel_path = preg_replace($rtpl_less_check, '', $path);

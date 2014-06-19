@@ -83,7 +83,7 @@ class T3Template extends ObjectExtendable
 		if ($template) {
 			$this->_tpl = $template;
 			$this->_extend(array($template));
-			
+
 			// merge layout setting
 			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
 			if (empty($layout)) {
@@ -164,7 +164,7 @@ class T3Template extends ObjectExtendable
 		$path = T3Path::getPath('tpls/blocks/' . $block . '.php');
 		if ($path) {
 			if($block == 'footer'){
-				
+
 				ob_start();
 				include $path;
 				$buffer = ob_get_contents();
@@ -206,10 +206,10 @@ class T3Template extends ObjectExtendable
 			}
 			// check if exist megamenu renderer, place megamenurender on the top to render megamenu before render head
 			if (preg_match_all ('/(<jdoc:include type="megamenu"[^>]*>)/i', $buffer, $match)) {
-        foreach ($match[1] as $m) {
-          $buffer = str_replace ('type="megamenu"', 'type="megamenurender"', $m).$buffer;
-          T3::import('renderer/megamenurender');
-        }
+				foreach ($match[1] as $m) {
+					$buffer = str_replace ('type="megamenu"', 'type="megamenurender"', $m).$buffer;
+					T3::import('renderer/megamenurender');
+				}
 			}
 			//output
 			echo $buffer;
@@ -280,7 +280,7 @@ class T3Template extends ObjectExtendable
 							$param->$device = $var[$device];
 						}
 					}
-					
+
 				}
 
 				$splparams[$i] = $param;
@@ -294,11 +294,11 @@ class T3Template extends ObjectExtendable
 			$param = (object)$splparam;
 
 			$data = '';
-			
+
 			if($responsive){
-					
+
 				foreach($this->devices as $device){
-					
+
 					if(isset($param->$device)){
 						$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
 						$posfix = $this->responcls ? '' : '"';
@@ -312,7 +312,7 @@ class T3Template extends ObjectExtendable
 				}
 			} else {
 				$data = isset($param->$defdv) ? ' ' . $param->$defdv : '';
-				
+
 				if($this->nonrspprefix && ($this->nonrspprefix != $this->widthprefix)){
 					$data = str_replace($this->widthprefix, $this->nonrspprefix, $data);
 				}
@@ -341,7 +341,7 @@ class T3Template extends ObjectExtendable
 	 */
 	function megamenu($menutype)
 	{
-    echo "<jdoc:include type=\"megamenu\" name=\"{$menutype}\" />";
+		echo "<jdoc:include type=\"megamenu\" name=\"{$menutype}\" />";
 	}
 
 	/**
@@ -387,7 +387,7 @@ class T3Template extends ObjectExtendable
 		if($this->responcls){
 			$result     = '';
 			$responsive = $this->getParam('responsive', 1);
-		
+
 			if($responsive){
 				foreach ($layout as $width) {
 					if (!isset ($width[$col]) || !$width[$col]) {
@@ -412,9 +412,9 @@ class T3Template extends ObjectExtendable
 
 				$result = ' ' . $this->nonrspprefix . $width;
 			}
-			
+
 			return $result;
-			
+
 		} else {
 
 			$width = $layout->$defdv;
@@ -437,7 +437,7 @@ class T3Template extends ObjectExtendable
 	{
 		$result = $class[2];
 		$queue  = array();
-		
+
 		//remove all width classes
 		foreach ($this->prefixes as $prefix) {
 			if($result && preg_match_all('@' . preg_quote($prefix) . '[^\s]*@', $result, $match)){
@@ -456,7 +456,7 @@ class T3Template extends ObjectExtendable
 		if(!empty($queue)){
 			$result = trim($result); //would be better than preg_replace ?
 			foreach ($queue as $key => $value) {
-				$result .= ' ' . $key . $value;	
+				$result .= ' ' . $key . $value;
 			}
 		}
 
@@ -532,6 +532,11 @@ class T3Template extends ObjectExtendable
 			}
 		}
 
+		// hover trigger for megamenu
+		if ($this->getParam('navigation_trigger', 'hover') == 'hover') {
+			$this->_pageclass[] = 'mm-hover';
+		}
+
 		$this->_pageclass[] = 'j' . str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
 		$this->_pageclass = array_unique($this->_pageclass);
 
@@ -571,13 +576,13 @@ class T3Template extends ObjectExtendable
 				JResponse::setBody($body);
 			}
 		}
-		
+
 		// append modules in debug position
 		if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
 			$places[] = '</body>';
 			$contents[] = '<div class="t3-debug">' . $this->getBuffer('modules', 'debug') . "</div>\n</body>";
 		}
-		
+
 		if (($closebody = $this->getParam('snippet_close_body', ''))) {
 			$places[] = '</body>';
 			$contents[] = $closebody . "\n</body>";
@@ -649,7 +654,7 @@ class T3Template extends ObjectExtendable
 
 			return !empty($messages);
 		}
-		
+
 		return true;
 	}
 
@@ -733,14 +738,14 @@ class T3Template extends ObjectExtendable
 				if(!empty($param->$device) && strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
 					$param->$device = str_replace(' hidden ', ' hidden-' . $device . ' ', ' ' . $param->$device . ' ');
 				}
-				
+
 				if(!empty($param->$device)){
 					$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
 					$posfix = $this->responcls ? '' : '"';
 					$data .= $prefix . trim($param->$device) . $posfix;
 				}
 			}
-			
+
 			$defdv = $this->defdv;
 			if(!$this->responcls && !empty($data)){
 				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon"' . substr($data, 0, strrpos($data, '"'));
@@ -767,24 +772,7 @@ class T3Template extends ObjectExtendable
 			T3::import('core/less');
 			T3Less::addStylesheet($url);
 		} else {
-
-			$added = false;
-			if ($this->direction == 'rtl') {
-				$url = T3Path::getUrl('css/rtl/' . $name . '.css');
-				// Add this css into template
-				if ($url) {
-					$this->addStyleSheet($url);
-					$added = true;
-				}
-			}
-
-			if(!$added){
-				$url = T3Path::getUrl('css/' . $name . '.css');
-				// Add this css into template
-				if ($url) {
-					$this->addStyleSheet($url);
-				}
-			}
+			$this->addStyleSheet(T3_TEMPLATE_URL . '/css/' . $name . '.css');
 		}
 
 		if ($responsive && !$this->responcls) {
@@ -810,9 +798,9 @@ class T3Template extends ObjectExtendable
 		$offcanvas  = $this->getParam('navigation_collapse_offcanvas', 0) || $this->getParam('addon_offcanvas_enable', 0);
 		$legacycss  = $this->getParam('legacy_css', 0);
 		$frontedit  = in_array($input->getCmd('option'), array('com_media', 'com_config'))	//com_media or com_config
-										|| in_array($input->getCmd('layout'), array('edit'))								//edit layout
-										|| (version_compare(JVERSION, '3.2', 'ge') && $user->id && $app->get('frontediting', 1) && 
-												($user->authorise('core.edit', 'com_modules') || $user->authorise('core.edit', 'com_menus')));	//frontediting
+			|| in_array($input->getCmd('layout'), array('edit'))								//edit layout
+			|| (version_compare(JVERSION, '3.2', 'ge') && $user->id && $app->get('frontediting', 1) &&
+				($user->authorise('core.edit', 'com_modules') || $user->authorise('core.edit', 'com_menus')));	//frontediting
 
 		// LEGACY COMPATIBLE
 		if($legacycss){
@@ -840,12 +828,12 @@ class T3Template extends ObjectExtendable
 				$nonrespwidth = $match[1] . (!empty($match[2]) ? $match[2] : 'px');
 			}
 			$this->addStyleDeclaration('.container {width: ' . $nonrespwidth . ' !important;} .t3-wrapper, .wrap {min-width: ' . $nonrespwidth . ' !important;}');
-		
+
 		} else if($responsive && !$this->responcls){
 			// responsive for BS2
 			// BOOTSTRAP RESPONSIVE CSS
 			$this->addCss('bootstrap-responsive');
-			
+
 			// RESPONSIVE CSS
 			$this->addCss('template-responsive');
 		}
@@ -1021,9 +1009,8 @@ class T3Template extends ObjectExtendable
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);
 		$current     = JURI::current();
-		$regex       = '@' . preg_quote(T3_TEMPLATE_URL) . '/css/(rtl/)?(.*)\.css((\?|\#).*)?$@i';
+		$regex       = '@' . preg_quote(T3_TEMPLATE_REL) . '/css/(rtl/)?(.*)\.css((\?|\#).*)?$@i';
 		$stylesheets = array();
-
 		foreach ($doc->_styleSheets as $url => $css) {
 			// detect if this css in template css
 			if (preg_match($regex, $url, $match)) {
@@ -1043,10 +1030,23 @@ class T3Template extends ObjectExtendable
 						continue;
 					}
 				} else {
-					$subpath = $is_rtl ? 'rtl/' . ($theme ? $theme . '/' : '') : ($theme ? 'themes/' . $theme . '/' : '');
-					if ($subpath && is_file(T3_TEMPLATE_PATH . '/css/' . $subpath . $fname . '.css')) {
-						$newurl = T3_TEMPLATE_URL . '/css/' . $subpath . $fname . '.css';
-						$stylesheets[$newurl] = $css;
+					$uri = null;
+					// detect css available base on direction & theme
+					if ($is_rtl && $theme) {
+						$uri = T3Path::getUrl ('css/rtl/themes' . $theme . '/' . $fname . '.css');
+					}
+					if (!$uri && $is_rtl) {
+						$uri = T3Path::getUrl ('css/rtl/' . $fname . '.css');
+					}
+					if (!$uri && $theme) {
+						$uri = T3Path::getUrl ('css/themes/' . $theme . '/' . $fname . '.css');
+					}
+					if (!$uri) {
+						$uri = T3Path::getUrl ('css/' . $fname . '.css');
+					}
+
+					if ($uri) {
+						$stylesheets[$uri] = $css;
 						continue;
 					}
 				}
@@ -1054,6 +1054,7 @@ class T3Template extends ObjectExtendable
 
 			$stylesheets[$url] = $css;
 		}
+
 		// update back
 		$doc->_styleSheets = $stylesheets;
 
@@ -1079,7 +1080,7 @@ class T3Template extends ObjectExtendable
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
 
-    $afiles = T3Path::getAllPath('etc/assets.xml');
+		$afiles = T3Path::getAllPath('etc/assets.xml');
 		foreach ($afiles as $afile) {
 			if (is_file($afile)) {
 				//load xml
@@ -1235,5 +1236,3 @@ class T3Template extends ObjectExtendable
 		return $result;
 	}
 }
-
-?>
