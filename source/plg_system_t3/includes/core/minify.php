@@ -290,6 +290,7 @@ class T3Minify
 						}
 
 						$cssgroup['groupname'] = implode('', $groupname);
+            			$cssgroup['media'] = $media;
 						$cssgroups[] = $cssgroup;
 					}
 
@@ -320,14 +321,12 @@ class T3Minify
 		$output = array();
 		foreach ($cssgroups as $cssgroup) {
 			if(isset($cssgroup['ignore'])){
-
 				unset($cssgroup['ignore']);
 				unset($cssgroup['groupname']);
 				unset($cssgroup['media']);
 				foreach ($cssgroup as $furl => $fsheet) {
 					$output[$furl] = $fsheet;
 				}
-
 			} else {
 				$media = $cssgroup['media'];
 				$groupname = 'css-' . substr(md5($cssgroup['groupname']), 0, 5) . '.css';
@@ -344,7 +343,6 @@ class T3Minify
 				}
 
 				if($rebuild){
-
 					$cssdata = array();
 					foreach ($cssgroup as $furl => $fsheet) {
 						$cssdata[] = "\n\n/*===============================";
