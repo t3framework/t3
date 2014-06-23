@@ -1,3 +1,31 @@
+<h2>Version: 2.3.0 (06/23/2014)</h2>
+
+<h3>New features</h3>
+- New feature: isolate user settings & customization | <a href="https://github.com/t3framework/t3/commit/90657255199f19517421bfaed42a1177b964df9b">Link</a>
+
+<h3>Improvement</h3>
+- Update param "Link Title for Article View" | <a href="https://github.com/t3framework/t3/commit/52b46b1ecb793ac0b0a77c80efdc0f03f9fda6a2">Link</a>
+- Restructure LESS compiler | <a href="https://github.com/t3framework/t3/commit/4003e71784083032958d6aa61ad014beb1b2f274">Link</a>
+- Improve menu script to handle mouse hover | <a href="https://github.com/t3framework/t3/commit/2953e11191655c945330ca0af1e096782cf0415e">Link</a>
+
+<h3>Fix bugs</h3>
+- Update preview layout in T3 admin | <a href="https://github.com/t3framework/t3/commit/589ce86ed3c1c2aad1edf91fa585ed89c4321c8e">Link</a>
+- Update head and bypass non-existed file | <a href="https://github.com/t3framework/t3/commit/a1efb641e9bd77333ab9f7a40317e261ec21b6d9">Link</a>
+- Fix bug cannot minify css | <a href="https://github.com/t3framework/t3/commit/fcb9c7e3b075c9ccc840fdb79a7f0cff157ea666">Link</a>
+- Fix bug disable reponsive cause menu break on small screen | <a href="https://github.com/t3framework/t3/commit/e1a8e2b439d03b394f3a5ffaf987f78896b7b2e5">Link</a>
+- Improve code: detect megamenu configuration | <a href="https://github.com/t3framework/t3/commit/0e06955365a7921be1e8328af0be9bdde5b16230">Link</a>
+- Fix bug: cannot show last item in collapse menu | <a href="https://github.com/t3framework/t3/commit/2d771d979376b4762bdce87331388c5cb4b4791e">Link</a>
+- Remove unused file | <a href="https://github.com/t3framework/t3/commit/60603009d13a6722c08da58a452fc98ab5719f99">Link</a>
+- Ignore optimize if cannot write minified files | <a href="https://github.com/t3framework/t3/commit/009e174ed613fd5c220c0c591b79118325b78a36">Link</a>
+- Update base bs2 script | <a href="https://github.com/t3framework/t3/commit/1257999c5d1ad24243951603b665869b1d17b7b3</a>
+- Fix bug: nav collapse conflict with jomsocial | <a href="https://github.com/t3framework/t3/commit/774726c7cf3fb944456f2cbcde8d4a25463d7c99">Link</a>
+- Keep media type when optimizing css | <a href="https://github.com/t3framework/t3/commit/c120903cecdc6b6f4c6ca6fe9f8bf8f5d8c8a474">Link</a>
+- The Main menu is not showed in mega menu | <a href="https://github.com/t3framework/t3/commit/5d85830a2df866d5d8be36a9cdf40c385582c677">Link</a>
+- Update item_title.php | <a href="https://github.com/t3framework/t3/commit/33cfef6e2b3e8bb4e5ac2f4ca64a54a8bde7128e">Link</a>
+- Fix compile Less to Css issue | <a href="https://github.com/t3framework/t3/commit/183c0cf026fbc40fdca542775cce2d9bce638d15">Link</a>
+- Fix Pagination issue with K2 + sh404SEF | <a href="https://github.com/t3framework/t3/commit/95d08db60b9e88340b135393bdf5b5cae91b8ee1">Link</a>
+- Update fr-FR.plg_system_t3.ini | <a href="https://github.com/t3framework/t3/commit/db72c5226976a792f11dcd1161fa4bb988c831ee">Link</a>
+
 <h2>Version: 2.2.1 (06/02/2014)</h2>
 
 <h3>Improvement</h3>
