@@ -1001,11 +1001,6 @@ class T3Template extends ObjectExtendable
 		$dir    = $doc->direction;
 		$is_rtl = ($dir == 'rtl');
 
-		// not in devmode and in default theme, do nothing
-		if (!($devmode || $themermode || $theme || $minify || $minifyjs || $is_rtl)) {
-			return;
-		}
-
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);
 		$current     = JURI::current();
@@ -1016,19 +1011,15 @@ class T3Template extends ObjectExtendable
 			if (preg_match($regex, $url, $match)) {
 				$fname = $match[2];
 
-				if ($devmode || $themermode) {
-					if (is_file(T3_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
-						if ($themermode) {
-							$newurl = T3_TEMPLATE_URL . '/less/' . $fname . '.less';
-							$css['mime'] = 'text/less';
-						} else {
-							// $newurl = $current . '?t3action=lessc&amp;s=templates/' . T3_TEMPLATE . '/less/' . $fname . '.less';
-							T3::import('core/less');
-							$newurl = T3Less::buildCss(T3Path::cleanPath('templates/'.T3_TEMPLATE.'/less/'.$fname.'.less'), true);
-						}
-						$stylesheets[$newurl] = $css;
-						continue;
+				if (($devmode || $themermode) && is_file(T3_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
+					if ($themermode) {
+						$newurl = T3_TEMPLATE_URL . '/less/' . $fname . '.less';
+						$css['mime'] = 'text/less';
+					} else {
+						T3::import('core/less');
+						$newurl = T3Less::buildCss(T3Path::cleanPath('templates/'.T3_TEMPLATE.'/less/'.$fname.'.less'), true);
 					}
+					$stylesheets[$newurl] = $css;
 				} else {
 					$uri = null;
 					// detect css available base on direction & theme
@@ -1047,9 +1038,9 @@ class T3Template extends ObjectExtendable
 
 					if ($uri) {
 						$stylesheets[$uri] = $css;
-						continue;
 					}
 				}
+				continue;
 			}
 
 			$stylesheets[$url] = $css;
