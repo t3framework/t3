@@ -822,3 +822,14 @@
   height: auto !important;
   overflow: visible !important;
 }
+
+/* Override css for dropdown menu */
+.t3-admin-layout-preview .t3-admin-layout-section .dropdown-menu {
+  display: block;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+  position: static;
+  box-shadow: none;
+  background: none;
+}
