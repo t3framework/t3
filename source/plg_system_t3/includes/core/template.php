@@ -933,11 +933,14 @@ class T3Template extends ObjectExtendable
 		$theme      = $this->getParam('theme', '');
 		$minify     = $this->getParam('minify', 0);
 		$minifyjs   = $this->getParam('minify_js', 0);
-
+		// detect RTL
+		$doc = JFactory::getDocument();
+		$dir    = $doc->direction;
+		$is_rtl = ($dir == 'rtl');
+    
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded
 		// And upgrade jquery as our Framework require jquery 1.7+ if we are loading jquery from google
-		$doc = JFactory::getDocument();
 		$scripts = array();
 
 		if (version_compare(JVERSION, '3.0', 'ge')) {
@@ -997,10 +1000,6 @@ class T3Template extends ObjectExtendable
 		$doc->_scripts = $scripts;
 		// end update javascript
 
-		// detect RTL
-		$dir    = $doc->direction;
-		$is_rtl = ($dir == 'rtl');
-
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);
 		$current     = JURI::current();
@@ -1024,7 +1023,7 @@ class T3Template extends ObjectExtendable
 					$uri = null;
 					// detect css available base on direction & theme
 					if ($is_rtl && $theme) {
-						$uri = T3Path::getUrl ('css/rtl/themes' . $theme . '/' . $fname . '.css');
+						$uri = T3Path::getUrl ('css/rtl/' . $theme . '/' . $fname . '.css');
 					}
 					if (!$uri && $is_rtl) {
 						$uri = T3Path::getUrl ('css/rtl/' . $fname . '.css');
