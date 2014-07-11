@@ -111,7 +111,7 @@
 
 			<field name="theme_params_default" type="t3depend" function="@group">
 				<option for="logotype" value="image">
-					logoimage, logoimage_sm
+					logoimage, logoimage_sm, enable_logoimage_sm
 				</option>
 				<option for="enable_logoimage_sm" value="1">
 					logoimage_sm
