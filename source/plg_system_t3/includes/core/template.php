@@ -901,9 +901,9 @@ class T3Template extends ObjectExtendable
 			$this->addPageClass('mm-hover');
 		}
 
-		if($navtrigger == 'hover' || $this->responcls){
+		//if($navtrigger == 'hover' || $this->responcls){
 			$this->addScript(T3_URL . '/js/menu.js');
-		}
+		//}
 
 		//reponsive script
 		if ($responsive && !$this->responcls) {
