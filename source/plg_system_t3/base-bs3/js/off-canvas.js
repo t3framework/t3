@@ -126,7 +126,7 @@ jQuery (document).ready(function($){
     var oc_hide = function () {
         
         //remove events
-        $inner.off ('tab', oc_hide);
+        $inner.off ('click', oc_hide);
         $close.off ('click', oc_hide);
         $offcanvas.off ('click', stopBubble);
 
