@@ -1,14 +1,14 @@
 <?php
-/** 
+/**
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
  * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         http://t3-framework.org
  *------------------------------------------------------------------------------
  */
 
@@ -31,27 +31,27 @@ class T3AdminTheme
 	 *
 	 * save Profile
 	 */
-	
+
 	public static function response($data){
 		die(json_encode($data));
 	}
-	
+
 	public static function error($msg){
 		return self::response(array('error' => $msg));
 	}
-	
+
 	public static function save($path)
 	{
 		$result = array();
-		
+
 		if(empty($path)){
 			return self::error(JText::_('T3_TM_UNKNOWN_THEME'));
 		}
-		
+
 		$theme = JFactory::getApplication()->input->getCmd('theme');
 		$from = JFactory::getApplication()->input->getCmd('from');
 		if (!$theme) {
-		  return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
+			return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
 		}
 
 		//incase empty from
@@ -66,7 +66,7 @@ class T3AdminTheme
 		}
 		$variables = new JRegistry();
 		$variables->loadObject($_POST);
-		
+
 		$data = $variables->toString('LESS');
 		$type = 'new';
 		if (JFile::exists($file)) {
@@ -84,7 +84,7 @@ class T3AdminTheme
 				@JFile::write($path . '/less/themes/' . $theme . '/template-responsive.less', $dummydata);
 			}
 		}
-		
+
 		$return = @JFile::write($file, $data);
 
 		if (!$return) {
@@ -110,7 +110,7 @@ class T3AdminTheme
 		$theme = JFactory::getApplication()->input->getCmd('theme');
 		$from = JFactory::getApplication()->input->getCmd('from');
 		$result = array();
-		
+
 		if (empty($theme) || empty($from)) {
 			return self::error(JText::_('T3_TM_INVALID_DATA_TO_SAVE'));
 		}
@@ -119,7 +119,7 @@ class T3AdminTheme
 		if (!JFolder::exists($source)) {
 			return self::error(JText::sprintf('T3_TM_NOT_FOUND', $from));
 		}
-		
+
 		$dest = $path . '/less/themes/' . $theme;
 		if (JFolder::exists($dest)) {
 			return self::error(JText::sprintf('T3_TM_EXISTED', $theme));
@@ -134,7 +134,7 @@ class T3AdminTheme
 		} else {
 			return self::error(JText::_('T3_TM_OPERATION_FAILED'));
 		}
-		
+
 		//LessHelper::compileForTemplate(T3_TEMPLATE_PATH , $theme);
 		T3::import ('core/less');
 		T3Less::compileAll($theme);
@@ -150,7 +150,7 @@ class T3AdminTheme
 		// Initialize some variables
 		$theme = JFactory::getApplication()->input->getCmd('theme');
 		$result = array();
-		
+
 		if (!$theme) {
 			return self::error(JText::_('T3_TM_UNKNOWN_THEME'));
 		}
@@ -160,13 +160,13 @@ class T3AdminTheme
 		if (!JFolder::exists($file)) {
 			return self::error(JText::sprintf('T3_TM_NOT_FOUND', $theme));
 		}
-		
+
 		$return = @JFolder::delete($file);
-		
+
 		if (!$return) {
 			return self::error(JText::sprintf('T3_TM_DELETE_FAIL', $file));
 		} else {
-			
+
 			$result['template'] = '0';
 			$result['success'] = JText::sprintf('T3_TM_DELETE_SUCCESSFULLY', $theme);
 			$result['theme'] = $theme;
@@ -186,7 +186,7 @@ class T3AdminTheme
 		$app       = JFactory::getApplication();
 		$input     = $app->input;
 		$isadmin   = $app->isAdmin();
-		
+
 		if($isadmin){
 			$tplparams = T3::getTplParams();
 		} else {
@@ -241,7 +241,7 @@ class T3AdminTheme
 							//get those developer custom values
 							if($other == 'variables.less'){
 								$params = new JRegistry;
-								$params->loadString(JFile::read($themepath . '/' . $theme . '/variables.less'), 'LESS');								
+								$params->loadString(JFile::read($themepath . '/' . $theme . '/variables.less'), 'LESS');
 							}
 
 							if($other != 'variables-custom.less'){
@@ -254,7 +254,7 @@ class T3AdminTheme
 						if($params){
 							foreach ($cparams->toArray() as $key => $value) {
 								$params->set($key, $value);
-							}	
+							}
 						} else {
 							$params = $cparams;
 						}
@@ -322,7 +322,7 @@ class T3AdminTheme
 		}
 
 		include T3_ADMIN_PATH.'/admin/thememagic/thememagic.tpl.php';
-		
+
 		exit();
 	}
 
@@ -337,12 +337,13 @@ class T3AdminTheme
 
 		$jdoc = JFactory::getDocument();
 		$params = $japp->getTemplate(true)->params;
-		
+		$devmode = $params->get('devmode', 0);
+
 		if(defined('T3_THEMER') && $params->get('themermode', 1)){
 
 			$jdoc->addStyleSheet(T3_URL.'/css/thememagic.css');
 			$jdoc->addScript(T3_URL.'/js/thememagic.js');
-			
+
 			$theme     = $params->get('theme');
 			$params    = new JRegistry;
 			$themeinfo = new stdClass;
@@ -359,7 +360,7 @@ class T3AdminTheme
 					$varfile = T3_TEMPLATE_PATH . '/less/variables.less';
 					if(file_exists($varfile)){
 						$params->loadString(JFile::read($varfile), 'LESS');
-						
+
 						//get all less files in "theme" folder
 						$others = JFolder::files($themepath, '.less');
 						foreach($others as $other){
@@ -383,7 +384,7 @@ class T3AdminTheme
 						//load custom variables
 						$cparams = new JRegistry;
 						$cparams->loadString(JFile::read($themepath . '/variables-custom.less'), 'LESS');
-						
+
 						//and overwrite those defaults variables
 						foreach ($cparams->toArray() as $key => $value) {
 							$params->set($key, $value);
@@ -393,12 +394,12 @@ class T3AdminTheme
 			}
 
 			$cache = array();
-			
+
 			// a little security
 			if($user->authorise('core.manage', 'com_templates') || (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], JUri::base() . 'administrator') !== false)){
 				T3::import('core/path');
 				$baseurl = JUri::base();
-				
+
 				//should we provide a list of less path
 				foreach (array(T3_TEMPLATE_PATH . '/less', T3_PATH . '/bootstrap/less', T3_PATH . '/less') as $lesspath) {
 					if(is_dir($lesspath)){
@@ -419,6 +420,14 @@ class T3AdminTheme
 			$sparams = new JRegistry;
 			if(defined('T3_BASE_RSP_IN_CLASS') && T3_BASE_RSP_IN_CLASS){
 				$sparams->set('icon-font-path', '"' . JUri::base() . 'plugins/system/t3/base-bs3/bootstrap/fonts/"');
+			}
+
+			// enable development mode for less.js
+			if ($devmode) {
+				$jdoc->addScriptDeclaration('
+					var less = window.less || {};
+					less.env = \'development\';
+				');
 			}
 
 			$jdoc->addScriptDeclaration('
