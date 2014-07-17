@@ -24,30 +24,12 @@ T3::import('lessphp/lessc.inc');
  */
 class T3LessCompiler
 {
-	public static function compile ($source, $path, $todir, $importdirs) {
+	public static function compile ($source, $importdirs) {
 		// call Less to compile
 		$parser = new lessc();
 		$parser->setImportDir(array_keys($importdirs));
 		$parser->setPreserveComments(true);
 		$output = $parser->compile($source);
-		// update url
-		$arr    = preg_split(T3Less::$rsplitbegin . T3Less::$kfilepath . T3Less::$rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-		$output = '';
-		$file   = $relpath = '';
-		$isfile = false;
-
-		foreach ($arr as $s) {
-			if ($isfile) {
-				$isfile  = false;
-				$file    = $s;
-				$relpath = T3Less::relativePath($todir, dirname($file));
-				$output .= "\n#".T3Less::$kfilepath."{content: \"{$file}\";}\n";
-			} else {
-				$output .= ($file ? T3Path::updateUrl($s, $relpath) : $s) . "\n\n";
-				$isfile = true;
-			}
-		}
-
-		return $output;
+    return $output;
 	}
 }

@@ -1,14 +1,14 @@
 <?php
-/** 
+/**
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
  * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         http://t3-framework.org
  *------------------------------------------------------------------------------
  */
 
@@ -28,7 +28,6 @@ T3::import('lessphp/' . T3_BASE_LESS_COMPILER);
  */
 class T3Less
 {
-
 	static $kfilepath    = 'less-file-path';
 	static $kvarsep      = 'less-content-separator';
 	static $krtlsep      = 'rtl-less-content';
@@ -170,11 +169,8 @@ class T3Less
 	}
 
 	public static function relativePath($topath, $path, $default = null){
-		if(defined('T3_DEV_MODE') && T3_DEV_MODE){
-			return $topath ? T3Path::relativePath($topath, JUri::root(true) . '/' . $path) . '/' : (!empty($default) ? $default : T3_TEMPLATE_URL . '/css/');
-		} else {
-			return $topath ? T3Path::relativePath($topath, $path) . '/' : (!empty($default) ? $default : T3_TEMPLATE_URL . '/css/');
-		}
+		$rel = T3Path::relativePath($topath, $path);
+		return $rel ? $rel . '/' : './';
 	}
 
 	/**
@@ -199,10 +195,10 @@ class T3Less
 		if (!is_dir(JPATH_ROOT . '/' . $todir)) {
 			JFolder::create(JPATH_ROOT . '/' . $todir);
 		}
-		$importdirs[JPATH_ROOT . '/' . $fromdir] = self::relativePath($todir, $fromdir);
+		$importdirs[JPATH_ROOT . '/' . $fromdir] = './';
 		foreach ($list as $f => $import) {
 			if ($import) {
-				$importdirs[JPATH_ROOT . '/' . dirname($f)] = self::relativePath($todir, dirname($f));
+				$importdirs[JPATH_ROOT . '/' . dirname($f)] = self::relativePath($fromdir, dirname($f));
 				$content .= "\n#".self::$kfilepath."{content: \"{$f}\";}\n";
 				// $content .= "@import \"$import\";\n\n";
 				if (is_file(JPATH_ROOT . '/' . $f)) {
@@ -236,8 +232,9 @@ class T3Less
 		// less content
 		$source .= "\n#" . self::$kvarsep . "{content: \"separator\";}\n" . $content;
 
-		// call Less to compile
-		$output = T3LessCompiler::compile($source, $path, $todir, $importdirs);
+		// call Less to compile,
+		// temporary compile into source path, then update url to destination later
+		$output = T3LessCompiler::compile($source, $importdirs);
 
 		// process content
 		//use cssjanus to transform the content
@@ -266,43 +263,63 @@ class T3Less
 		$output = preg_replace(self::$rcomment, '', $output);
 		$output = preg_replace(self::$rspace, "\n\n", $output);
 
+		// update url for output
+		$file_contents = self::updateUrl ($output, $path, $todir, $split);
+
 		// split if needed
 		if ($split) {
-			//update path and store to files
-			$split_contents = preg_split(self::$rsplitbegin . self::$kfilepath . self::$rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
-			$file_contents  = array();
-			$file       		= $path;
-			$isfile         = false;
-
-			foreach ($split_contents as $chunk) {
-				if ($isfile) {
-					$isfile  = false;
-					$file = $chunk;
-				} else {
-					$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . $chunk . "\n\n";
-					$isfile = true;
-				}
-			}
-
 			if(!empty($file_contents)){
 				//output the file to content and add to document
 				foreach ($file_contents as $file => $content) {
-					$content = trim($content);
-					$filename = str_replace('/', '.', $file) . '.css';
-					JFile::write(JPATH_ROOT . '/' . $todir . '/' . $filename, $content);
+					if ($file) {
+						$content = trim($content);
+						$filename = str_replace('/', '.', $file) . '.css';
+						JFile::write(JPATH_ROOT . '/' . $todir . '/' . $filename, $content);
+					}
 				}
 			}
 		} else {
-			$output = preg_replace (self::$rsplitbegin . self::$kfilepath . self::$rsplitend, '', $output);
-			$output = trim($output);
 			if ($topath) {
-				JFile::write(JPATH_ROOT . '/' . $topath, $output);
+				JFile::write(JPATH_ROOT . '/' . $topath, $file_contents);
 			} else {
 				return $output;
 			}
 		}
 		// write to path
 		return true;
+	}
+
+	/**
+	 * Update url for background, import according to output path
+	 *
+	 * @param $css the compiled css
+	 * @param $path the source less path
+	 * @param $output_dir destination of css file
+	 * @param $split split into small files or not
+	 * @return if $split then return an array of sub file, else return the whole css
+	 */
+	public static function updateUrl ($css, $path, $output_dir, $split) {
+		//update path and store to files
+		$split_contents = preg_split(self::$rsplitbegin . self::$kfilepath . self::$rsplitend, $css, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$file_contents  = array();
+		$file       		= $path;
+		$isfile         = false;
+		$output         = '';
+
+		// split
+		foreach ($split_contents as $chunk) {
+			if ($isfile) {
+				$isfile  = false;
+				$file = $chunk;
+			} else {
+				$content = T3Path::updateUrl (trim($chunk), T3Path::relativePath($output_dir, dirname($file)));
+				$file_contents[$file] = (isset($file_contents[$file]) ? $file_contents[$file] : '') . "\n" . $content . "\n\n";
+				$output .= $content . "\n";
+				$isfile = true;
+			}
+		}
+
+		return $split ? $file_contents : trim($output);
 	}
 
 	/**

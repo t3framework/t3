@@ -24,10 +24,10 @@ T3::import('lessphp/less/less');
  */
 class T3LessCompiler
 {
-	public static function compile ($source, $path, $todir, $importdirs) {
+	public static function compile ($source, $importdirs) {
 		$parser = new Less_Parser();
 		$parser->SetImportDirs($importdirs);
-		$parser->parse($source, T3Less::relativePath($todir, dirname($path)) . basename($path));
+		$parser->parse($source);
 		$output = $parser->getCss();
 		return $output;
 	}
