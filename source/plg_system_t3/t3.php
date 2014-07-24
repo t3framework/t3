@@ -368,7 +368,7 @@ class plgSystemT3 extends JPlugin
 			$app = JFactory::getApplication();
 			$tmpl = $app->getTemplate(true);
 			if ($tmpl->params->get('link_titles') !== NULL) {
-				$article->params->set('link_titles', $tmpl->params->get('link_titles'));
+				if (isset($article->params) && is_object($article->params)) $article->params->set('link_titles', $tmpl->params->get('link_titles'));
 			}
 		}
 	}
