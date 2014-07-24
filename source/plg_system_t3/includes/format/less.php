@@ -40,15 +40,29 @@ class JRegistryFormatLESS
 	{
 		// Initialize variables.
 		$result = array();
+		$import_urls = '';
 
 		// Iterate over the object to set the properties.
 		foreach (get_object_vars($object) as $key => $value)
 		{
 			// If the value is an object then we need to put it in a local section.
-			$result[] = $this->getKey($key) . ': ' . $this->getValue($value);
+			if ($key == 'import-external-urls') {
+				$import_urls = explode ("\n", $value);
+			} else {
+				$result[] = $this->getKey($key) . ': ' . $this->getValue($value);
+			}
 		}
 
-		return implode("\n", $result);
+		$output = '';
+		if (is_array ($import_urls)) {
+			foreach ($import_urls as $url) {
+				$output .= "@import url({$url});\n";
+			}
+		}
+
+		$output .= "\n" . implode("\n", $result);
+
+		return $output;
 	}
 
 	/**
@@ -72,6 +86,7 @@ class JRegistryFormatLESS
 		// Initialize variables.
 		$obj = new stdClass;
 		$lines = explode("\n", $data);
+		$import_urls = array();
 
 		// Process the lines.
 		foreach ($lines as $line)
@@ -82,6 +97,12 @@ class JRegistryFormatLESS
 			// Ignore empty lines and comments.
 			if (empty($line) || (substr($line, 0, 1) == '/') || (substr($line, 0, 1) == '*'))
 			{
+				continue;
+			}
+
+			// if url import
+			if (preg_match ('/@import\s+url\((.+)\);/', $line, $match)) {
+				$import_urls[] = $match[1];
 				continue;
 			}
 
@@ -117,6 +138,10 @@ class JRegistryFormatLESS
 			$value = trim($value);
 			$obj->$key = $value;
 		}
+
+		// update font import
+		$key = 'import-external-urls';
+		$obj->$key = implode ("\n", $import_urls);
 
 		// Cache the string to save cpu cycles -- thus the world :)
 		

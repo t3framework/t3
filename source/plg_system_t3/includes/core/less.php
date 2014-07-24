@@ -505,7 +505,7 @@ class T3Less
 			// just to make sure this function is call once
 			if(!defined('T3_LESS_JS')){
 				// Add lessjs to process lesscss
-				$doc->addScript(T3_URL . '/js/less.js');
+				$doc->addScript(T3_URL . '/js/less.js?v=2');
 
 				if($doc->direction == 'rtl'){
 					$doc->addScript(T3_URL . '/js/cssjanus.js');

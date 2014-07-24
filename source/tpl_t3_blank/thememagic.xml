@@ -96,6 +96,11 @@
 			<!-- End Grid -->
 		</fieldset>
 
-
+    
+		<fieldset name="advanced_params" label="T3_TM_ADVANCED">
+			<field name="import-external-urls" type="textarea" cols="30" rows="5"
+				label="T3_TM_VARS_IMPORT_EXTERNAL_URLS_LABEL"
+				description="T3_TM_VARS_IMPORT_EXTERNAL_URLS_DESC" />
+    </fieldset>
 	</fields>
 </form>

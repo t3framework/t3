@@ -7773,7 +7773,14 @@ function doXHR(url, type, callback, errback) {
         if(vars){
             for (v in vars) {
                 if (vars.hasOwnProperty(v)) {
-                    variables += '@' + v + ': ' + vars[v] + ";\n";
+                    if (v == 'import-external-urls') {
+                        var urls = vars[v].split('\n');
+                        for (i=0; i< urls.length; i++) {
+                            variables += '@import url(' + urls[i] + ');\n';
+                        }
+                    } else {
+                        variables += '@' + v + ': ' + vars[v] + ";\n";
+                    }
                 }
             }
         }
