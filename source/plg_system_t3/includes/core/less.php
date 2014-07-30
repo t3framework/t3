@@ -721,6 +721,13 @@ class T3Less
 					}
 				} else {
 					$list [$import_url] = $chunk;
+					// rtl override
+					if ($is_rtl) {
+						$rtl_url = preg_replace ('/\/less\//', '/less/rtl/', $import_url);
+						if (is_file(JPATH_ROOT.'/'.$rtl_url)) {
+							$rtl_list [$rtl_url] = T3Path::relativePath(dirname($path), $rtl_url);
+						}
+					}
 				}
 			} else {
 				$import = true;
