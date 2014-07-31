@@ -1,3 +1,24 @@
+<h2>Version: 2.3.1 (07/31/2014)</h2>
+
+<h3>Improvement</h3>
+- Upgrade FontAwesome to v4.1.0 | <a href="https://github.com/t3framework/t3/commit/1c13adef4fc0c2ce81e55ccbef19e4521496b31a">Link</a>
+- Allow import external css urls in ThemeMagic | <a href="https://github.com/t3framework/t3/commit/11013fdffb35b0cae44d57063e39b6a164cc070b">Link</a>
+- Upgrade Bootstrap v3.2.0 for base-bs3 | <a href="https://github.com/t3framework/t3/commit/b9e5ee8d17e7b78ae52f2f735a9f2ceddd3f85a7">Link</a>
+
+<h3>Fix bugs</h3>
+- Fix bug cannot load theme for RTL language | <a href="https://github.com/t3framework/t3/commit/4e4ccc8025873b69bcc4948b6b81c8602c2b5ead">Link</a>
+- Hide Enable Small Logo option with Text logo Type for BS2 base template | <a href="https://github.com/t3framework/t3/commit/b7a322020f8db39b37d9a9fe5d3b266519719812">Link</a>
+- Update jQuery tab plugin to fix Off-canvas issue | <a href="https://github.com/t3framework/t3/commit/901049bcea910e155a334d6cfe76f56d43b9e1cc">Link</a>
+- Fix bug cannot clone layout | <a href="https://github.com/t3framework/t3/commit/879a5801c66632db9763f8a4f5aa96c73721ce55">Link</a>
+- Fix bug cannot open link in parent menu item when using mouse click | <a href="https://github.com/t3framework/t3/commit/fa5718f09f08a0b9e9ec6af379fc6c4b8e2ee18f">Link</a>
+- Display less.js error on browser if enable DevMode | <a href="https://github.com/t3framework/t3/commit/998ec256facfca9f8b3eff43e261912162f5a3d0">Link</a>
+- Fix bug wrong url for background image | <a href="https://github.com/t3framework/t3/commit/b44a75ef62b39fe088fd21e9d54f9efaf4520e72">Link</a>
+- Fix conflict with Ohanah Event Component | <a href="https://github.com/t3framework/t3/commit/3512f6025203b430baf9230929c8d16d042e564e">Link</a>
+- Fix path to Iconography fonts | <a href="https://github.com/t3framework/t3/commit/b5c2d4194e5557d17b11cfc1ae7b872bc978565f">Link</a>
+- Allow override less for rtl in base theme | <a href="https://github.com/t3framework/t3/commit/ca9e2853d0ed183031fbe01eac1f26c1a01119ef">Link</a>
+- Add detect IE version for jQuery if not exists | <a href="https://github.com/t3framework/t3/commit/b9df5732802dc60fb3722f0e1bdb382a9bdc4e1c">Link</a>
+
+
 <h2>Version: 2.3.0 (06/23/2014)</h2>
 
 <h3>New features</h3>
