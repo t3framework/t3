@@ -122,6 +122,13 @@
                 clearTimeout(self.timer);
                 self.timer = setTimeout($.proxy(self.hide_alls, self), e.type == 'tap' ? 500 : self.options.hidedelay);
             });
+
+            // ignore click on direct child
+            $menu.find('.mega-dropdown-menu').on('tap hideall.t3menu', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                return false;
+            });
         },
 
         show: function (item) {
