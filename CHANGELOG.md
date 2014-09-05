@@ -1,3 +1,10 @@
+<h2>Version: 2.3.2 (09/05/2014)</h2>
+
+<h3>Fix bugs</h3>
+- Fix bug clone layout in backend | <a href="https://github.com/t3framework/t3/commit/f556d18f6d31529eb97ffc7da6cf31fbe7d10da3">Link</a>
+- Fix bug search module does not work on Megamenu | <a href="https://github.com/t3framework/t3/commit/75443709bdca312472312f03fe9709d366f8e0a1">Link</a>
+- Limit the "Dropdown trigger" to navigation only | <a href="https://github.com/t3framework/t3/commit/c24ca39d09ad8fdab1e789675fa20c8b3952b740">Link</a>
+
 <h2>Version: 2.3.1 (07/31/2014)</h2>
 
 <h3>Improvement</h3>
