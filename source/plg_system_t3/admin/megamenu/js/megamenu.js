@@ -250,7 +250,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 	actions.addRow = function () {
 		if (!currentSelected) return ;
-		var $row = $('<div class="row-fluid"><div class="span12"><div class="mega-inner"></div></div></div>').appendTo(currentSelected.find('[class*="row"]:first').parent()),
+		var $row = $('<div class="row-fluid"><div class="span12"><div class="mega-inner"></div></div></div>').appendTo(currentSelected),
 		$col = $row.children();
 		// bind event
 		bindEvents ($col);
