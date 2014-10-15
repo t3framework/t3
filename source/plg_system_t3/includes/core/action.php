@@ -63,7 +63,8 @@ class T3Action
 			T3Less::compileAll($input->get('theme', ''));
 			$result['successful'] = JText::_('T3_MSG_COMPILE_SUCCESS');
 		}catch(Exception $e){
-			$result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->__toString());
+			// $result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->__toString());
+			$result['error'] = JText::sprintf('T3_MSG_COMPILE_FAILURE', $e->getMessage());
 		}
 		
 		echo json_encode($result);

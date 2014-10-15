@@ -204,7 +204,7 @@ class T3Less
 				if (is_file(JPATH_ROOT . '/' . $f)) {
 					$less_content = file_get_contents(JPATH_ROOT . '/' . $f);
 					// remove vars/mixins for template & t3 less
-					if (preg_match ('@'.preg_quote(T3_TEMPLATE_REL, '@') . '/less/@i', $f) || preg_match ('@'.preg_quote(T3_REL, '@') . '/less/@i', $f)) {
+					if (preg_match ('@'.preg_quote(T3_TEMPLATE_REL, '@') . '/@i', $f) || preg_match ('@'.preg_quote(T3_REL, '@') . '/@i', $f)) {
 						$less_content = preg_replace(self::$rimportvars, '', $less_content);
 					}
 					self::$_path = T3Path::relativePath($fromdir, dirname($f)) . '/';
@@ -224,17 +224,21 @@ class T3Less
 		$source = '';
 		// build import vars
 		foreach ($vars_files as $var) {
-			$vars_path = T3Path::relativePath($fromdir, dirname($var));
-			if ($vars_path) $vars_path .= "/";
-			$var_file = $vars_path . basename($var);
+			$var_file = T3Path::relativePath($fromdir, $var);
 			$source .= "@import \"" . $var_file . "\";\n";
 		}
+		
 		// less content
 		$source .= "\n#" . self::$kvarsep . "{content: \"separator\";}\n" . $content;
 
 		// call Less to compile,
 		// temporary compile into source path, then update url to destination later
-		$output = T3LessCompiler::compile($source, $importdirs);
+		try {
+			$output = T3LessCompiler::compile($source, $importdirs);
+		} catch (Exception $e) {	
+			// echo 'Caught exception: ',  $e->getMessage(), "\n";
+			throw new Exception($path . "<br />\n" . $e->getMessage());
+		}
 
 		// process content
 		//use cssjanus to transform the content
@@ -519,6 +523,22 @@ class T3Less
 	}
 
 
+	public static function getOutputCssPath ($lessPath, $theme = '', $is_rtl = false) {
+		$cssPath = '';
+		$extraPath = '';
+		$extraPath .= $is_rtl ? 'rtl/' : '';
+		$extraPath .= $theme ? 'themes/' . $theme  . '/': '';
+
+		if (preg_match ('/(^|\/)less\//i', $lessPath)) {
+			$cssPath = preg_replace ('/(^|\/)less\//i', '\1css/' . $extraPath, $lessPath);
+		} else {
+			$cssPath = dirname ($lessPath) . '/' . $extraPath . basename($lessPath);
+		}
+		$cssPath = str_replace('.less', '.css', $cssPath);
+		return $cssPath;
+	}
+
+
 	/**
 	 * Compile LESS to CSS for a specific theme or all themes
 	 * @param  string  $theme  the specific theme
@@ -529,40 +549,49 @@ class T3Less
 		JFactory::getApplication()->setUserState ('current_template_params', $params);
 
 		// get files need to compile
-		$files    = array();
-		$lesspath = T3_TEMPLATE_REL . '/less/';
-		$csspath  = T3Path::getLocalPath('css/', true);
-		$fullpath = JPath::clean(JPATH_ROOT . '/' . $lesspath);
+		$files = array();
+		$toPath  = T3Path::getLocalPath('', true);
 
 		// t3 core plugin files
-		$t3files  = array('frontend-edit', 'legacy-grid', 'legacy-navigation', 'megamenu', 'off-canvas');
+		$t3files  = array('less/frontend-edit.less', 'less/legacy-grid.less', 'less/legacy-navigation.less', 'less/megamenu.less', 'less/off-canvas.less');
 
-		// all less file in less folders
-		$lessFiles    = JFolder::files($fullpath, '.less', true, true, array('rtl', 'themes', '.svn', 'CVS', '.DS_Store', '__MACOSX'));
+		// all less file in the template folder
+		$lessFiles    = JFolder::files(T3_TEMPLATE_PATH, '.less', true, true, array('rtl', 'themes', '.svn', 'CVS', '.DS_Store', '__MACOSX'));
 
-		$lessContent  = '';
 		$relLessFiles = array();
 
+		$importedFiles = array();
+
 		foreach ($lessFiles as $file) {
-			$lessContent .= JFile::read($file) . "\n";
-			$relLessFiles[] = ltrim(str_replace($fullpath, '', $file), '/\\');
+			$file = str_replace('\\', '/', $file);
+			$lessContent = file_get_contents($file);
+			$rel = ltrim(str_replace(T3_TEMPLATE_PATH, '', $file), '/');
+			$reldir = dirname ($rel);
+			$ignore = true;
+			if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {
+				foreach ($matches[1] as $if) {
+					$if = T3Path::cleanPath($reldir . '/' . $if);
+					if (!in_array($if, $importedFiles)) $importedFiles[] = $if;
+					// check if this file import anything in main less folder. if yes, put it in the compile list
+					if (preg_match ('@^less/@', $if)) $ignore = false;
+				}
+			}
+			if (!$ignore) $relLessFiles[] = $rel;
 		}
 
 		$lessFiles = $relLessFiles;
 
-		// get files imported in this list
-		if (preg_match_all('#^\s*@import\s+"([^"]*)"#im', $lessContent, $matches)) {
-			foreach ($lessFiles as $f) {
-				if (!in_array($f, $matches[1])) {
-					$files[] = substr($f, 0, -5);
-				}
+		// ignore files which are imported in other file
+		foreach ($lessFiles as $f) {
+			if (!in_array($f, $importedFiles) && !preg_match ('@^less/(themes|rtl)/@i', $f)) {
+				$files[] = $f;
 			}
+		}
 
-			//build t3files
-			foreach ($t3files as $key => $file) {
-				if(in_array($file, $files)){
-					unset($t3files[$key]);
-				}
+		//build t3files
+		foreach ($t3files as $key => $file) {
+			if(in_array($file, $files)){
+				unset($t3files[$key]);
 			}
 		}
 
@@ -571,14 +600,16 @@ class T3Less
 			self::buildVars('', 'ltr');
 
 			// compile all less files in template "less" folder
-			foreach ($files as $file) {
-				self::compileCss($lesspath . $file . '.less', $csspath . $file . '.css');
+			foreach ($files as $lessPath) {
+				$cssPath = self::getOutputCssPath($lessPath);
+				self::compileCss(T3_TEMPLATE_REL . '/' . $lessPath, $toPath . $cssPath);
 			}
 
 			// if the template not overwrite the t3 core, we will compile those missing files
 			if(!empty($t3files)){
-				foreach ($t3files as $file) {
-					self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . $file . '.css');
+				foreach ($t3files as $lessPath) {
+					$cssPath = self::getOutputCssPath($lessPath);
+					self::compileCss(T3_REL . '/' . $lessPath, $toPath . $cssPath);
 				}
 			}
 		}
@@ -586,7 +617,7 @@ class T3Less
 		// build themes
 		if (!$theme) {
 			// get themes
-			$themes = JFolder::folders(JPATH_ROOT . '/' . $lesspath . '/themes');
+			$themes = JFolder::folders(T3_TEMPLATE_PATH . '/less/themes');
 		} else {
 			$themes = $theme != 'default' ? (array)($theme) : array();
 		}
@@ -596,13 +627,15 @@ class T3Less
 				self::buildVars($t, 'ltr');
 
 				// compile
-				foreach ($files as $file) {
-					self::compileCss($lesspath . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . '.css');
+				foreach ($files as $lessPath) {
+					$cssPath = self::getOutputCssPath($lessPath, $t);
+					self::compileCss(T3_TEMPLATE_REL . '/' . $lessPath, $toPath . $cssPath);
 				}
 
 				if(!empty($t3files)){
-					foreach ($t3files as $file) {
-						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'themes/' . $t . '/' . $file . '.css');
+					foreach ($t3files as $lessPath) {
+						$cssPath = self::getOutputCssPath($lessPath, $t);
+						self::compileCss(T3_REL . '/' . $lessPath, $toPath . $cssPath);
 					}
 				}
 			}
@@ -615,13 +648,15 @@ class T3Less
 				self::buildVars('', 'rtl');
 
 				// compile
-				foreach ($files as $file) {
-					self::compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $file . '.css');
+				foreach ($files as $lessPath) {
+					$cssPath = self::getOutputCssPath($lessPath, '', true);
+					self::compileCss(T3_TEMPLATE_REL . '/' . $lessPath, $toPath . $cssPath);
 				}
 
 				if(!empty($t3files)){
-					foreach ($t3files as $file) {
-						self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'rtl/' . $file . '.css');
+					foreach ($t3files as $lessPath) {
+						$cssPath = self::getOutputCssPath($lessPath, '', true);
+						self::compileCss(T3_REL . '/' . $lessPath, $toPath . $cssPath);
 					}
 				}
 			}
@@ -632,20 +667,21 @@ class T3Less
 					self::buildVars($t, 'rtl');
 
 					// compile
-					foreach ($files as $file) {
-						self::compileCss($lesspath . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
+					foreach ($files as $lessPath) {
+						$cssPath = self::getOutputCssPath($lessPath, $t, true);
+						self::compileCss(T3_TEMPLATE_REL . '/' . $lessPath, $toPath . $cssPath);
 					}
 
 					if(!empty($t3files)){
-						foreach ($t3files as $file) {
-							self::compileCss(T3_REL . '/less/' . $file . '.less', $csspath . 'rtl/' . $t . '/' . $file . '.css');
+						foreach ($t3files as $lessPath) {
+							$cssPath = self::getOutputCssPath($lessPath, $t, true);
+							self::compileCss(T3_REL . '/' . $lessPath, $toPath . $cssPath);
 						}
 					}
 				}
 			}
 		}
 	}
-
 
 	/**
 	 * Parse a less file to get all its overrides before compile
@@ -660,10 +696,8 @@ class T3Less
 		$dir  = $app->getUserState('current_direction');
 		$is_rtl = ($dir == 'rtl');
 
-		$less_rel_path = preg_replace($rtpl_less_check, '', $path);
-		$less_rel_dir = dirname($less_rel_path);
-		$less_rel_dir = $less_rel_dir == '.' ? '' : $less_rel_dir . '/';
-
+		$rel_path = preg_replace($rtpl_check, '', $path);
+		$rel_dir = dirname($rel_path);
 		// check path
 		$realpath = realpath(JPATH_ROOT . '/' . $path);
 		if (!is_file($realpath)) {
@@ -678,7 +712,7 @@ class T3Less
 
 		// split into array, separated by the import
 		$arr = preg_split(self::$rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
-		$arr[] = $less_rel_path;
+		$arr[] = $rel_path;
 		$arr[] = '';
 
 		$list = array();
@@ -689,10 +723,10 @@ class T3Less
 		foreach ($arr as $chunk) {
 			if ($import) {
 				$import = false;
-				$import_url = T3Path::cleanPath(T3_TEMPLATE_REL.'/less/'.$less_rel_dir.$chunk);
-				// if $url in template, get all its overrides
+				$import_url = T3Path::cleanPath(T3_TEMPLATE_REL . '/' . $rel_dir . '/' .$chunk);
+				// if $url in less folder, get all its overrides
 				if (preg_match ($rtpl_less_check, $import_url)) {
-					$less_rel_url = T3Path::cleanPath($less_rel_dir.$chunk);
+					$less_rel_url = preg_replace($rtpl_less_check, '', $import_url);
 					$array = T3Path::getAllPath('less/' . $less_rel_url, true);
 					if ($theme) {
 						$array = array_merge($array, T3Path::getAllPath('less/themes/'.$theme.'/'.$less_rel_url, true));
@@ -720,7 +754,7 @@ class T3Less
 						}
 					}
 				} else {
-					$list [$import_url] = $chunk;
+					$list [$import_url] = T3Path::cleanPath($chunk);
 					// rtl override
 					if ($is_rtl) {
 						$rtl_url = preg_replace ('/\/less\//', '/less/rtl/', $import_url);

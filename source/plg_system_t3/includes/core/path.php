@@ -165,7 +165,10 @@ class T3Path extends JObject
 		$path = '';
 		for ($i = 0; $i < min($size1, $size2); $i++) {
 			if ($arr1[$i] == $arr2[$i]) continue;
-			else $path = '../' . $path . $arr2[$i] . '/';
+			else break;
+		}
+		for ($j=$i; $j<min($size1, $size2); $j++) {
+			$path = '../' . $path . $arr2[$j] . '/';
 		}
 		if ($size1 > $size2)
 			for ($i = $size2; $i < $size1; $i++)

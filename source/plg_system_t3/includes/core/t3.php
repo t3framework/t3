@@ -102,7 +102,7 @@ class T3 {
 
 		define ('T3_TEMPLATE', $xml->tplname);
 		define ('T3_TEMPLATE_URL', JURI::root(true).'/templates/'.T3_TEMPLATE);
-		define ('T3_TEMPLATE_PATH', JPATH_ROOT . '/templates/' . T3_TEMPLATE);
+		define ('T3_TEMPLATE_PATH', str_replace ('\\', '/', JPATH_ROOT) . '/templates/' . T3_TEMPLATE);
 		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
 
 		define ('T3_LOCAL_URL', T3_TEMPLATE_URL . '/' . T3_LOCAL_DIR);
@@ -161,6 +161,7 @@ class T3 {
 				T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
 				T3::register('JLayoutHelper', T3_ADMIN_PATH . '/includes/joomla25/layout/helper.php');
 				T3::register('JHtmlBootstrap', T3_ADMIN_PATH . '/includes/joomla25/html/bootstrap.php');
+				T3::register('JHtmlBehavior', T3_ADMIN_PATH . '/includes/joomla25/html/behavior.php');
         T3::register('JHtmlString', T3_ADMIN_PATH . '/includes/joomla25/html/string.php');
         
         // load j25 compat language
