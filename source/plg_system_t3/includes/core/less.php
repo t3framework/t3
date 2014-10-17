@@ -712,7 +712,7 @@ class T3Less
 
 		// split into array, separated by the import
 		$arr = preg_split(self::$rimport, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
-		$arr[] = $rel_path;
+		$arr[] = basename($rel_path);
 		$arr[] = '';
 
 		$list = array();
