@@ -734,3 +734,11 @@ body.bd {
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
 }
+
+/* Fix not hide element in admin when adding hidden class */
+.t3-megamenu ul li,
+.t3-megamenu .mega-group-ct,
+.t3-megamenu .open  > .mega-dropdown-menu,
+.t3-megamenu .mega-col-nav {
+	display: block!important;
+}
