@@ -1046,7 +1046,7 @@ class T3Template extends ObjectExtendable
 				}
 
 				if (!$uri && $theme) {
-					$altfname = preg_replace ('@(^|/)css/@mi', '\1css/' . $theme, $fname);
+					$altfname = preg_replace ('@(^|/)css/@mi', '\1css/themes/' . $theme . '/', $fname);
 					$uri = T3Path::getUrl ($altfname . '.css');
 				}
 
