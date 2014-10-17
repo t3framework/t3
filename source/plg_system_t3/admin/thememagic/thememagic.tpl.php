@@ -218,7 +218,7 @@ defined('_JEXEC') or die;
 			T3Theme.templateid = '<?php echo JFactory::getApplication()->input->getInt('id'); ?>';
 			T3Theme.url = '<?php echo JURI::root(true) . '/administrator/index.php'; ?>';
 			T3Theme.langs = <?php echo json_encode($langs); ?>;
-			T3Theme.active = '<?php echo $tplparams->get('theme', 'base')?>';
+			T3Theme.active = '<?php echo $active_theme ?>';
 			T3Theme.variables = <?php echo ($tplparams->get('theme', -1) == -1 ? '{}' : 'T3Theme.data[T3Theme.active]') ?>;
 			T3Theme.colorimgurl = '<?php echo T3_ADMIN_URL; ?>/admin/plugins/colorpicker/images/ui-colorpicker.png';
 

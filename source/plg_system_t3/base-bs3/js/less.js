@@ -7753,7 +7753,7 @@
                     url.indexOf('themes/' + T3Theme.theme + '/' + fname) == -1 &&   //this file must not be in theme folder
                     url.indexOf('t3/base-bs3') == -1                                //this file must not be in t3/base-bs3 folder
                 ){
-                res.data = res.data + "\n" + '@import "themes/' + T3Theme.theme + '/' + fname + '";' + "\n";
+                res.data = res.data + "\n" + '@import "' + T3Theme.others[fname] + '";' + "\n";
             }
 
             regex = /.*@import\s+\"(.*)vars\.less\".*/;
