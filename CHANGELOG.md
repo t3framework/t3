@@ -3,10 +3,10 @@
 <h3>Improvement</h3>
 - Allow compile less in any folder inside template | <a href="https://github.com/t3framework/t3/commit/78128ac06f713e03ec30605cfb289df106ce3010">Link</a>
 - List folder in the template & local as well | <a href="https://github.com/t3framework/t3/commit/0549890d2044e81711c820777c0780252d60c864">Link</a>
+- Update LESS compiler | <a href="https://github.com/t3framework/t3/commit/17b642e7059c61d9c70077578de14e1772baece8">Link</a>
 
 <h3>Fix bugs</h3>
 - Fix bug: Thememagic get error after delete the active theme | <a href="https://github.com/t3framework/t3/commit/e3d80917a7fe12b9fa0e0e39d14139118daf2bdc">Link</a>
-- Update LESS compiler | <a href="https://github.com/t3framework/t3/commit/17b642e7059c61d9c70077578de14e1772baece8">Link</a>
 - Cannot load RTL theme | <a href="https://github.com/t3framework/t3/commit/d37c9b3549926ca8b0ad377823a0d412ca562c4c">Link</a>
 - Megamenu extra class hidden-desktop | <a href="https://github.com/t3framework/t3/commit/3bf1779c55c0b911407916208922afc6287d8716">Link</a>
 - Add font awesome css | <a href="https://github.com/t3framework/t3/commit/56bfdace2904347828d76544038cd20de3432dad">Link</a>
