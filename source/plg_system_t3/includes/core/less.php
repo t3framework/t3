@@ -527,7 +527,7 @@ class T3Less
 		$cssPath = '';
 		$extraPath = '';
 		$extraPath .= $is_rtl ? 'rtl/' : '';
-		$extraPath .= $theme ? 'themes/' . $theme  . '/': '';
+		$extraPath .= $theme ? ($is_rtl ? '' : 'themes/') . $theme . '/' : '';
 
 		if (preg_match ('/(^|\/)less\//i', $lessPath)) {
 			$cssPath = preg_replace ('/(^|\/)less\//i', '\1css/' . $extraPath, $lessPath);
