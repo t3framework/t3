@@ -12,7 +12,9 @@ defined('JPATH_PLATFORM') or die;
 /**
  * JDocument Megamenu renderer - this is a placeholder for menumenurender
  */
-class JDocumentRendererMegamenu extends JDocumentRenderer
+T3::import('renderer/megamenurender');
+
+class JDocumentRendererMegamenu extends JDocumentRendererMegamenuRender
 {
 	/**
 	 * Render megamenu block
@@ -27,6 +29,7 @@ class JDocumentRendererMegamenu extends JDocumentRenderer
 	 */
 	public function render($info = null, $params = array(), $content = null)
 	{
-		return null;
+		$params['return_result'] = true;
+		return parent::render($info, $params, $content);
 	}
 }

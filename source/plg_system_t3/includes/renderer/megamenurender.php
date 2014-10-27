@@ -67,9 +67,6 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 						$mmkey    = $key;
 						$menutype = $type;
 						break 2;
-					} else if (isset($currentconfig[$type])){
-						$mmkey    = $menutype = $type;
-						break 2;
 					}
 				}
 			}
@@ -85,8 +82,14 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 
 		$mmconfig['access'] = $viewLevels;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $t3app->_tpl->params);
-		
-		$t3app->setBuffer($menu->render(true), 'megamenu', empty($params['name']) ? null : $params['name'], null);
-		return '';
+
+		$buffer = $menu->render(true);
+
+		if (isset($params['return_result']) && $params['return_result']) {
+			return $buffer;
+		} else {
+			$t3app->setBuffer($buffer, 'megamenu', empty($params['name']) ? null : $params['name'], null);
+			return '';
+		}
 	}
 }
