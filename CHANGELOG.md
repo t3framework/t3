@@ -1,3 +1,8 @@
+<h2>Version: 2.4.1 (11/11/2014)</h2>
+
+<h3>Fix bugs</h3>
+- Fix bug: Cannot load setting for Register access menu  | <a href="https://github.com/t3framework/t3/commit/d59f82db4f7c8d0280efc23ae283826f2764cb6f">Link</a>
+
 <h2>Version: 2.4.0 (10/20/2014)</h2>
 
 <h3>Improvement</h3>
