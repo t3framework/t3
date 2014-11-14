@@ -84,6 +84,11 @@
                     });
                 }
 
+                // click on caret, no action on link
+                $item.find ('a > .caret').on ('click tap', function(e) {
+                    item.clickable = false;
+                });
+
                 if (options.hover) {
                     $item.on('mouseover', function (e) {
                         if ($item.hasClass('group')) return ;
