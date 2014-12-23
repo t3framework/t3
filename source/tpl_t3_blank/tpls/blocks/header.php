@@ -9,8 +9,8 @@ defined('_JEXEC') or die;
 $sitename  = $this->params->get('sitename') ? $this->params->get('sitename') : JFactory::getConfig()->get('sitename');
 $slogan    = $this->params->get('slogan');
 $logotype  = $this->params->get('logotype', 'text');
-$logoimage = $logotype == 'image' ? $this->params->get('logoimage', 'templates/' . T3_TEMPLATE . '/images/logo.png') : '';
-$logoimgsm = ($logotype == 'image' && $this->params->get('enable_logoimage_sm', 0)) ? $this->params->get('logoimage_sm', '') : false;
+$logoimage = $logotype == 'image' ? $this->params->get('logoimage', T3Path::getUrl('images/logo.png', '', true)) : '';
+$logoimgsm = ($logotype == 'image' && $this->params->get('enable_logoimage_sm', 0)) ? $this->params->get('logoimage_sm', T3Path::getUrl('images/logo-sm.png', '', true)) : false;
 ?>
 
 <!-- HEADER -->
