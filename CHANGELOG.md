@@ -1,3 +1,16 @@
+<h2>Version: 2.4.2 (12/23/2014)</h2>
+
+<h3>Improvement</h3>
+- Improvement: click on caret to expend/collapse submenu | <a href="https://github.com/t3framework/t3/commit/6ad49412de1c95ed486a832baa4284febe0663ea">Link</a>
+
+<h3>Fix bugs</h3>
+- Can't turn ON/OFF submenu in Megamenu configuration | <a href="https://github.com/t3framework/t3/commit/d878e007d137b0dea0ccc291c9ab5ada72b08607">Link</a>
+- Notice error in t3depend field type | <a href="https://github.com/t3framework/t3/commit/07de3a32555dfa4a7f4a33d1e99ccd7496a552e8">Link</a>
+- Add bootstrap css to top of css files | <a href="https://github.com/t3framework/t3/commit/db21421b2c9377f7e7ad2e0c6524a3fb7d6da076">Link</a>
+- Off-canvas toggle can not click on android 4 | <a href="https://github.com/t3framework/t3/commit/38aaaecac51dd9f025bf1b05294082679f255f28">Link</a>
+- Prevent max_nesting error when compile less | <a href="https://github.com/t3framework/t3/commit/17b489250953f4d975f0551ee50580a760a74266">Link</a>
+- Update font awesome for template admin | <a href="https://github.com/t3framework/t3/commit/6a9d028a0b724b667a4777f4378ff0e707b4163d">Link</a>
+
 <h2>Version: 2.4.1 (11/11/2014)</h2>
 
 <h3>Fix bugs</h3>
