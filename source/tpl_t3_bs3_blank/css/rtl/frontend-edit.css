@@ -189,7 +189,7 @@
   right: -1px;
   z-index: 1;
   text-transform: uppercase;
-  background: url(../imgs/blank.gif) no-repeat rgba(0, 0, 0, 0);
+  background: url(../../../../plugins/system/t3/base-bs3/imgs/blank.gif) no-repeat transparent;
   text-indent: -999em;
 }
 .t3onoff label:before,
