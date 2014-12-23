@@ -736,9 +736,11 @@ body.bd {
 }
 
 /* Fix not hide element in admin when adding hidden class */
-.t3-megamenu ul li,
-.t3-megamenu .mega-group-ct,
-.t3-megamenu .open  > .mega-dropdown-menu,
-.t3-megamenu .mega-col-nav {
-	display: block!important;
+#t3-admin-mm-container .hidden-xs,
+#t3-admin-mm-container .hidden-sm,
+#t3-admin-mm-container .hidden-md,
+#t3-admin-mm-container .hidden-lg,
+#t3-admin-mm-container .hidden-desktop,
+#t3-admin-mm-container .hidden-phone {
+  display: block !important;
 }
