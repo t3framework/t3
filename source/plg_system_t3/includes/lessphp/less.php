@@ -22,6 +22,9 @@ T3::import('lessphp/less/less');
  *
  * @package T3
  */
+// prevent over max_nesting config in some case
+@ini_set('xdebug.max_nesting_level', 120);
+ 
 class T3LessCompiler
 {
 	public static function compile ($source, $importdirs) {
