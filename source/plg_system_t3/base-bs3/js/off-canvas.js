@@ -10,8 +10,17 @@
  * @Link:         http://t3-framework.org
  *------------------------------------------------------------------------------
  */
-
 jQuery (document).ready(function($){
+    function getAndroidVersion(ua) {
+        var ua = ua || navigator.userAgent; 
+        var match = ua.match(/Android\s([0-9\.]*)/);
+        return match ? match[1] : false;
+    };
+    
+    if (parseInt(getAndroidVersion()) == 4) {
+        $('#t3-mainnav').addClass('t3-mainnav-android');
+    }
+    var JA_isLoading = false;
     // fix for old ie
     if (/MSIE\s([\d.]+)/.test(navigator.userAgent) ? new Number(RegExp.$1) < 10 : false) {
         $('html').addClass ('old-ie');
@@ -108,6 +117,10 @@ jQuery (document).ready(function($){
         return false;
     });
     var oc_show = function () {
+        if (JA_isLoading == true) {
+            return;
+        }
+        JA_isLoading=true;
         $wrapper.addClass ('off-canvas-open');
         $inner.on ('click', oc_hide);
         $close.on ('click', oc_hide);
@@ -121,9 +134,14 @@ jQuery (document).ready(function($){
             $inner.animate (p1);
             $nav.animate (p2);
         }
+        setTimeout (function (){JA_isLoading=false;}, 200);
     };
 
     var oc_hide = function () {
+        if (JA_isLoading == true) {
+            return;
+        }
+        JA_isLoading=true;
         
         //remove events
         $inner.off ('click', oc_hide);
@@ -152,7 +170,8 @@ jQuery (document).ready(function($){
               }
               $(window).data('scroll-events', null);
             }
-        }, 550);
+            JA_isLoading=false;
+        }, 700);
 
         // fix for old ie
         if ($('html').hasClass ('old-ie')) {
@@ -162,6 +181,7 @@ jQuery (document).ready(function($){
             $inner.animate (p1);
             $nav.animate (p2);
         }
+        
     };
 
     var stopBubble = function (e) {
