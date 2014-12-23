@@ -813,8 +813,15 @@ class T3Template extends ObjectExtendable
 			$this->addCss('frontend-edit');
 		}
 
+		// Clear current css to put bootstrap css on top
+		$_stylesheets = $this->_styleSheets;
+		$this->_styleSheets = array();
+
 		// BOOTSTRAP CSS
 		$this->addCss('bootstrap', false);
+
+		// Append current css to bootstrap
+		$this->_styleSheets = array_merge($this->_styleSheets, $_stylesheets);
 
 		// TEMPLATE CSS
 		$this->addCss('template', false);

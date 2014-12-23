@@ -36,14 +36,6 @@ class JFormFieldT3Positions extends JFormField
 	function loadAsset(){
 		if (!defined ('_T3_DEPEND_ASSET_')) {
 			define ('_T3_DEPEND_ASSET_', 1);
-			
-			if(!defined('T3')){
-				$t3url = str_replace(DIRECTORY_SEPARATOR, '/', JURI::base(true) . '/' . substr(dirname(__FILE__), strlen(JPATH_SITE)));
-				$t3url = str_replace('/administrator/', '/', $uri);
-				$t3url = str_replace('//', '/', $uri);
-			} else {
-				$t3url = T3_ADMIN_URL;
-			}
 
 			$jdoc = JFactory::getDocument();
 
