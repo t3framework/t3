@@ -242,6 +242,13 @@ class plgSystemT3 extends JPlugin
 				//extend extra fields
 				T3Bot::extraFields($form, $data, $tplpath);
 			}
+
+			// Extended by T3
+			$extended = T3_ADMIN_PATH . '/admin/form/' . $form->getName() . '.xml';
+			if (is_file($extended)) {
+				$form->loadFile($extended, false);
+			}
+
 		}
 	}
 

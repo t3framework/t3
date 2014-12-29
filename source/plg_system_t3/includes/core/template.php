@@ -135,7 +135,26 @@ class T3Template extends ObjectExtendable
 	public function getLayout()
 	{
 		$input = JFactory::getApplication()->input;
-		return $input->getCmd('tmpl') ? $input->getCmd('tmpl') : $this->getParam('mainlayout', 'default');
+		// get override layout by tmpl
+		$layout = $input->getCmd('tmpl');
+		if ($layout && T3Path::getPath('tpls/' . $layout . '.php')) return $layout;
+		// detect if this is menu page or sub-page if set
+		$menu_page = true;
+		$input = JFactory::getApplication()->input;
+		$active = JFactory::getApplication()->getMenu()->getActive();
+		if ($active && isset($active->query)) {
+			foreach ($active->query as $name => $value) {
+				if ($input->get($name, null, 'raw') != $value) {
+					$menu_page = false;
+					break;
+				}
+			}
+		}
+
+		$mainlayout = $this->getParam('mainlayout', 'default');
+		$sublayout = $this->getParam('sublayout', '');
+
+		return !$menu_page && $sublayout ? $sublayout : $mainlayout;
 	}
 
 
