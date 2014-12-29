@@ -224,7 +224,9 @@ class T3Action
 
 		if($buffer){
 			//remove invisibile content, there are more ... but ...
-			$buffer = preg_replace(array( '@<style[^>]*?>.*?</style>@siu', '@<script[^>]*?.*?</script>@siu'), array('', ''), $buffer);
+			if ($input->get('skipjscss')) {
+				$buffer = preg_replace(array( '@<style[^>]*?>.*?</style>@siu', '@<script[^>]*?.*?</script>@siu'), array('', ''), $buffer);
+			}
 
 			echo $buffer;	
 		} else {
