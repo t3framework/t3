@@ -60,7 +60,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field type="t3depend" function="@legend" label="T3_GENERAL_OPTIMIZE_LABEL"
+			<field name="general_optimize_legend" type="t3depend" function="@legend" label="T3_GENERAL_OPTIMIZE_LABEL"
 						 description="T3_GENERAL_OPTIMIZE_DESC"/>
 
 			<field name="minify" type="radio" default="0"
@@ -93,7 +93,7 @@
 						 description="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_DESC"/>
 
 
-            <field type="t3depend" function="@legend" label="T3_GENERAL_JCORE_LABEL"
+            <field name="general_jcore_legend" type="t3depend" function="@legend" label="T3_GENERAL_JCORE_LABEL"
                    description="T3_GENERAL_JCORE_DESC"/>
 
             <field name="link_titles" type="list" global="1"
@@ -179,6 +179,16 @@
 						 hide_none="true"
 						 hide_default="true"
 				/>
+
+            <field name="sublayout" type="t3filelist" default=""
+                   label="T3_LAYOUT_SUBLAYOUT_LABEL"
+                   description="T3_LAYOUT_SUBLAYOUT_DESC"
+                   filter=".*\.php"
+                   directory="tpls"
+                   stripext="true"
+                   hide_none="true"
+                   hide_default="false"
+                    />
 
 		</fieldset>
 

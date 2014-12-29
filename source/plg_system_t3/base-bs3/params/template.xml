@@ -75,7 +75,7 @@
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field type="t3depend" function="@legend" label="T3_GENERAL_OPTIMIZE_LABEL"
+			<field name="general_optimize_legend" type="t3depend" function="@legend" label="T3_GENERAL_OPTIMIZE_LABEL"
 						 description="T3_GENERAL_OPTIMIZE_DESC"/>
 
 			<field name="minify" type="radio" default="0"
@@ -108,7 +108,7 @@
 						 description="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_DESC"/>
 
              
-			<field type="t3depend" function="@legend" label="T3_GENERAL_JCORE_LABEL"
+			<field name="general_jcore_legend" type="t3depend" function="@legend" label="T3_GENERAL_JCORE_LABEL"
 						 description="T3_GENERAL_JCORE_DESC"/>
              
 			<field name="link_titles" type="list" global="1"
@@ -195,6 +195,16 @@
 						 hide_default="true"
 				/>
 
+            <field name="sublayout" type="t3filelist" default=""
+                   label="T3_LAYOUT_SUBLAYOUT_LABEL"
+                   description="T3_LAYOUT_SUBLAYOUT_DESC"
+                   filter=".*\.php"
+                   directory="tpls"
+                   stripext="true"
+                   hide_none="true"
+                   hide_default="false"
+                    />
+
 		</fieldset>
 
 		<fieldset name="navigation_params" label="T3_NAVIGATION_LABEL" description="T3_NAVIGATION_DESC">
@@ -222,7 +232,7 @@
 				<option value="click">T3_NAVIGATION_TRIG_CLICK</option>
 			</field>
 
-			<field type="t3depend" function="@legend" label="T3_NAVIGATION_MM_GROUP_LABEL"
+			<field name="navigation_mm_legend" type="t3depend" function="@legend" label="T3_NAVIGATION_MM_GROUP_LABEL"
 						 description="T3_NAVIGATION_MM_GROUP_DESC"/>
 
 			<field name="navigation_type" type="radio" class="t3onoff" default="megamenu"
@@ -253,7 +263,7 @@
 						 label=""
 						 description=""/>
 
-			<field type="t3depend" function="@legend" label="T3_NAVIGATION_COLLAPSE_GROUP_LABEL"
+			<field name="navigation_collapse_legend" type="t3depend" function="@legend" label="T3_NAVIGATION_COLLAPSE_GROUP_LABEL"
 						 description="T3_NAVIGATION_COLLAPSE_GROUP_DESC"/>
 
 			<field name="navigation_collapse_enable" type="radio" default="1"
@@ -273,7 +283,7 @@
 				</option>
 			</field>
 
-			<field type="t3depend" function="@legend" label="T3_ADDON_OFFCANVAS_GROUP_LABEL"
+			<field name="addon_offcanvas_legend" type="t3depend" function="@legend" label="T3_ADDON_OFFCANVAS_GROUP_LABEL"
 						 description="T3_ADDON_OFFCANVAS_GROUP_DESC"/>
 
 			<field name="addon_offcanvas_enable" type="radio" default="1"
