@@ -136,6 +136,18 @@
        -o-transform: skewX(@x) skewY(@y);
           transform: skewX(@x) skewY(@y);
 }
+.translateY(@y) {
+  -webkit-transform: translateY(@y);
+      -ms-transform: translateY(@y); // IE9 only
+       -o-transform: translateY(@y);
+          transform: translateY(@y);
+}
+.translateX(@x) {
+  -webkit-transform: translateX(@x);
+      -ms-transform: translateX(@x); // IE9 only
+       -o-transform: translateX(@x);
+          transform: translateX(@x);
+}
 .translate(@x; @y) {
   -webkit-transform: translate(@x, @y);
       -ms-transform: translate(@x, @y); // IE9 only
