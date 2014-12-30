@@ -385,7 +385,11 @@
 			var $this = $(this),
 				data = $this.data('megamenu'),
 				options = typeof option == 'object' && option;
-			
+
+			// Ignore off-canvas navigation
+			if ($this.parents('#off-canvas-nav').length) return ;
+			if ($this.parents('#t3-off-canvas').length) return ;
+
 			if (!data) {
 				$this.data('megamenu', (data = new T3Menu(this, options)));
 				
