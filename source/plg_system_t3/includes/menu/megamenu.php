@@ -332,7 +332,20 @@ class T3MenuMegamenu {
 			$content = JModuleHelper::renderModule($module, array(
 				'style' => $style
 			));
-			
+
+			$app = JFactory::getApplication();
+			$frontediting = $app->get('frontediting', 1);
+			$user = JFactory::getUser();
+
+			$canEdit = $user->id && $frontediting && !($app->isAdmin() && $frontediting < 2) && $user->authorise('core.edit', 'com_modules');
+			$menusEditing = ($frontediting == 2) && $user->authorise('core.edit', 'com_menus');
+
+			if ($app->isSite() && $canEdit && trim($content) != '' && $user->authorise('core.edit', 'com_modules.module.' . $module->id))
+			{
+				$displayData = array('moduleHtml' => &$content, 'module' => $module, 'position' => $module->position, 'menusediting' => $menusEditing);
+				JLayoutHelper::render('joomla.edit.frontediting_modules', $displayData);
+			}
+
 			$this->menu .= $content . "\n";
 		}
 	}

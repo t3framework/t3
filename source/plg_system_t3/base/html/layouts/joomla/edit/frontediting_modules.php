@@ -17,7 +17,7 @@ $position     = $displayData['position'];
 $menusEditing = $displayData['menusediting'];
 
 
-if (preg_match('/<(?:div|span|nav|ul|ol|h\d) [^>]*class="[^"]* jmoddiv"/', $moduleHtml))
+if (preg_match('/<(?:div|span|nav|ul|ol|h\d) [^>]*class="[^"]* jmoddiv" data-jmodediturl=".*id=' . (int)$mod->id . '/', $moduleHtml))
 {
 	// Module has already module edit button:
 	return;
