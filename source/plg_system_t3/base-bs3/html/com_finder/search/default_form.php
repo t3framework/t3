@@ -63,14 +63,6 @@ defined('_JEXEC') or die;
 		var completer = new Autocompleter.Request.JSON(document.getElementById("q"), url, {'postVar': 'q'});
 <?php endif; ?>
 
-
-<?php if(!$this->params->get('allow_empty_search')) : ?>
-		/* T3 document */
-		$('#q').change(function(){
-			$('#smartsearch-btn').toggleClass('disabled', $.trim(this.value).length);
-		});
-<?php endif; ?>
-
 	});
 </script>
 
