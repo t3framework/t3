@@ -1,3 +1,15 @@
+<h2>Version: 2.4.3 (12/31/2014)</h2>
+
+<h3>Fix bugs</h3>
+- Remove unused script in smart search form | <a href="https://github.com/t3framework/t3/commit/8ab2b1a74ada229bfa3d864368437297c59c167b">Link</a>
+- Add condition check showing page counter | <a href="https://github.com/t3framework/t3/commit/cafa19fa977d98a82e3210515bb13cf06c1874eb">Link</a>
+- Fix bug: Cannot show module edit icon on frontend | <a href="https://github.com/t3framework/t3/commit/6effad1f305e9922c283b677f7835a09ea85dea5">Link</a>
+- Fix bug cannot click on off-canvas menu item | <a href="https://github.com/t3framework/t3/commit/3c809eed4e0c129511935193a1130a7bd05112a1">Link</a>
+- update font weight variables and translate mixins | <a href="https://github.com/t3framework/t3/commit/0f70725649c13dbf616e0cc5124db9b3991bba2e">Link</a>
+- Add "sub-layout" option | <a href="https://github.com/t3framework/t3/commit/860efd5f314481edfb92cdb74e885e5f80ad4227">Link</a>
+- Add option to skip js/css in ajax result | <a href="https://github.com/t3framework/t3/commit/b20fddbc245eb6d91387ec53b47d3d8e22afe2ab">Link</a>
+- Add name for T3 legend fields | <a href="https://github.com/t3framework/t3/commit/7905df4f93ff7eb53248f04adeb3699d6ef3e04c">Link</a>
+
 <h2>Version: 2.4.2 (12/23/2014)</h2>
 
 <h3>Improvement</h3>
