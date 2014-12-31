@@ -111,7 +111,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 
 		<?php if ($this->params->get('show_pagination')) : ?>
 			<div class="pagination-wrap">
-				<?php if ($this->params->def('show_pagination_results', 1)) : ?>
+				<?php if ($this->params->def('show_pagination_results', 1) && ($this->pagination->getPagesCounter() >=1)) : ?>
 					<p class="counter">
 						<?php echo $this->pagination->getPagesCounter(); ?>
 					</p>
