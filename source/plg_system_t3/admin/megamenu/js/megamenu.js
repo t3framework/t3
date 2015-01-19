@@ -25,7 +25,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		megamenu = $(this).find('.t3-megamenu:first');
 
 		//find all class
-		nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
+		nav_items = megamenu.find('ul[class*="level"]>li.mega>:first-child');
 		nav_subs = megamenu.find('.nav-child');
 		nav_cols = megamenu.find('[class*="span"]');
 		
@@ -131,7 +131,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		} else {
 			unbindEvents(sub);
 			// check if have menu-items in sub
-			if (liitem.find('ul.level'+liitem.data('level')).length > 0) {
+			if (liitem.find('ul.mega-nav.level'+liitem.data('level')).length > 0) {
 				sub.css('display','none');
 				liitem.data('hidesub', 1);
 			} else {
@@ -393,7 +393,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		savebtn.addClass('loading');
 
 		var config = {},
-		items = megamenu.find('ul[class*="level"] > li');
+		items = megamenu.find('ul[class*="level"] > li.mega');
 		items.each (function(){
 			var $this = $(this),
 			id = 'item-'+$this.data('id'),
@@ -416,7 +416,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					$cols = $(this).children('[class*="span"]'),
 					j = 0;
 					$cols.each (function(){
-						var li = $(this).find('ul[class*="level"] > li:first'),
+						var li = $(this).find('ul[class*="level"] > li.mega:first'),
 						col = {};
 						if (li.length) {
 							col['item'] = li.data('id');
@@ -520,7 +520,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		hide_toolbox (false);
 		if (selected) currentSelected = selected;
 		// remove class open for other
-		megamenu.find ('ul[class*="level"] > li').each (function(){
+		megamenu.find ('ul[class*="level"] > li.mega').each (function(){
 			if (!$(this).has (currentSelected).length > 0) $(this).removeClass ('open');
 			else $(this).addClass ('open');
 		});            
@@ -703,7 +703,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 			case 'position':
 				// replace content if this is not menu-items type
-				if (currentSelected.find ('ul[class*="level"]').length == 0) {
+				if (currentSelected.find ('ul.mega-nav[class*="level"]').length == 0) {
 					// get module content
 					if (value) {
 						$.ajax({
