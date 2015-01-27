@@ -49,9 +49,12 @@
 					$inspector = $('<div>').css('display', 'none').addClass(fromClass).appendTo($('body'));
 
 			try {
-					var attrs = window.getComputedStyle(
+				
+				var computedStyle = window.getComputedStyle(
 							$inspector[0], ':before'
-					).getPropertyValue(prop);
+					);
+				if (computedStyle) {
+					var attrs = computedStyle.getPropertyValue(prop);
 					if(attrs){
 							var matches = attrs.match(/([\da-z\-]+)/gi),
 									data = {};
@@ -62,6 +65,7 @@
 							}
 							$('body').data (data);
 					}
+				}
 			} finally {
 					$inspector.remove(); // and remove from DOM
 			}
