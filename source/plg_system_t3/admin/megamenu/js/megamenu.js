@@ -25,7 +25,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		megamenu = $(this).find('.t3-megamenu:first');
 
 		//find all class
-		nav_items = megamenu.find('ul[class*="level"]>li.mega>:first-child');
+		nav_items = megamenu.find('ul[class*="level"]>li[data-id]>:first-child');
+		console.log(nav_items);
 		nav_subs = megamenu.find('.nav-child');
 		nav_cols = megamenu.find('[class*="span"]');
 		
@@ -393,7 +394,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		savebtn.addClass('loading');
 
 		var config = {},
-		items = megamenu.find('ul[class*="level"] > li.mega');
+		items = megamenu.find('ul[class*="level"] > li[data-id]');
 		items.each (function(){
 			var $this = $(this),
 			id = 'item-'+$this.data('id'),
@@ -520,7 +521,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		hide_toolbox (false);
 		if (selected) currentSelected = selected;
 		// remove class open for other
-		megamenu.find ('ul[class*="level"] > li.mega').each (function(){
+		megamenu.find ('ul[class*="level"] > li[data-id]').each (function(){
 			if (!$(this).has (currentSelected).length > 0) $(this).removeClass ('open');
 			else $(this).addClass ('open');
 		});            
