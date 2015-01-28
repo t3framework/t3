@@ -417,7 +417,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					$cols = $(this).children('[class*="span"]'),
 					j = 0;
 					$cols.each (function(){
-						var li = $(this).find('ul[class*="level"] > li.mega:first'),
+						var li = $(this).find('ul[class*="level"] > li[data-id]:first'),
 						col = {};
 						if (li.length) {
 							col['item'] = li.data('id');
