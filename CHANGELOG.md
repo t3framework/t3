@@ -1,3 +1,11 @@
+<h2>Version: 2.4.4 (01/28/2015)</h2>
+
+<h3>Fix bugs</h3>
+- Conflict when using K2_Tools module in Megamenu | <a href="https://github.com/t3framework/t3/commit/8ab2b1a74ada229bfa3d864368437297c59c167b">Link</a>
+- Fix bug cause by commit | <a href="https://github.com/t3framework/t3/commit/383323b00b9ade696ff75f4949edc43db18c825a">Link</a>
+- Fix error window.getComputedStyle null | <a href="https://github.com/t3framework/t3/commit/94c11ab6729bb81245c60585bce568aabbf46d1c">Link</a>
+- Fix megamenu cannot config column | <a href="https://github.com/t3framework/t3/commit/4fd84429ca98220e5ef2dd14ca012cc210a342ec">Link</a>
+
 <h2>Version: 2.4.3 (12/31/2014)</h2>
 
 <h3>Fix bugs</h3>
