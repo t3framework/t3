@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -26,7 +26,7 @@ foreach ($fieldsets as $group => $fieldset): // Iterate through the form fieldse
 		<?php endif;?>
 		<dl class="dl-horizontal">
 		<?php foreach ($fields as $field):
-			if (!$field->hidden) :?>
+			if (!$field->hidden && $field->type != 'Spacer') : ?>
 			<dt><?php echo $field->title; ?></dt>
 			<dd>
 				<?php if (JHtml::isRegistered('users.'.$field->id)):?>

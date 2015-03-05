@@ -80,6 +80,65 @@
 
 
 //
+// MODULES OPTIONS FORM
+// ---------------------------------------------------------
+.com_config #modules-form {
+  .input-append,
+  .input-prepend {
+    .add-on {
+      width: 35px;
+    }
+
+    input {
+      display: inline-block;
+    }
+
+    .btn {
+      border: 1px solid @btn-default-border;
+    }
+  }
+
+  // Accordion group
+  // ---------------
+  .accordion-group {
+    margin-bottom: 20px;
+
+    .accordion-heading {
+      .accordion-toggle {
+        border: 1px solid #ddd;
+        border-radius: 5px 5px 0 0;
+        color: #428bca;
+        display: block;
+        padding: 10px;
+        outline: none;
+
+        &.collapsed {
+          border-radius: 5px;
+          color: #666;
+        }
+      }
+    }
+
+    .accordion-body {
+      border: 1px solid #ddd;
+      border-top: 0;
+      border-radius: 0 0 5px 5px;
+      padding-top: 20px;
+
+      .nav-tabs {
+        border-bottom: 0;
+      }
+    }
+
+  }
+}
+
+.controls select {
+  vertical-align: middle;
+  width: 220px;
+}
+
+//
 // EDIT & SUBMIT ARTICLE FORM
 // ---------------------------------------------------------
 .edit {
@@ -287,16 +346,15 @@
 // Special Radio Styles for T3
 // ------------------------------
 .t3onoff {
-
-  width: 90px;
-  height: 30px;
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-  padding: 0;
-  position: relative;
   border: 1px solid #aaa;
   border-radius: 0;
+  display: block;
+  height: 30px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+  width: 90px;
 
   input[type=radio] {
     display: none;
@@ -324,7 +382,6 @@
     position: absolute;
     top: 0;
     border-radius: 0;
-    border: 1px solid #aaa;
 
     .transition(all 250ms);
   }

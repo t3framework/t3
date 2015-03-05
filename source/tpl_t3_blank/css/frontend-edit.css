@@ -1,0 +1,168 @@
+fieldset.t3onoff {
+  width: 90px;
+  height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  padding: 0 !important;
+  position: relative;
+  border: 1px solid #aaa;
+  border-radius: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  
+  
+  
+  
+}
+fieldset.t3onoff input[type=radio] {
+  display: none;
+}
+fieldset.t3onoff label {
+  width: 90px;
+  height: 30px;
+  overflow: hidden;
+  display: block;
+  border-radius: 0;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  z-index: 1;
+  text-transform: uppercase;
+  background: url(../../../plugins/system/t3/base/imgs/blank.gif) no-repeat transparent;
+  text-indent: -999em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+fieldset.t3onoff label:before,
+fieldset.t3onoff label:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  border-radius: 0;
+  border: 1px solid #aaa;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+fieldset.t3onoff label:before {
+  content: "ON";
+  width: 100%;
+  height: 100%;
+  text-indent: 0;
+  color: white;
+  padding: 4px 18px;
+  font-weight: normal;
+}
+fieldset.t3onoff label:after {
+  content: "";
+  width: 40%;
+  height: 100%;
+  background: #fff;
+}
+fieldset.t3onoff label.off:before {
+  content: "OFF";
+  text-align: right;
+  color: #555;
+}
+fieldset.t3onoff label.active {
+  z-index: 0;
+}
+fieldset.t3onoff label.off:before {
+  background: #eee;
+  left: 100%;
+}
+fieldset.t3onoff label.off.active:before {
+  left: 0%;
+}
+fieldset.t3onoff label.on:before {
+  background: #690;
+  left: -100%;
+}
+fieldset.t3onoff label.on.active:before {
+  left: 0%;
+}
+fieldset.t3onoff label.off:after {
+  left: 60%;
+}
+fieldset.t3onoff label.off.active:after {
+  left: 0%;
+}
+fieldset.t3onoff label.on:after {
+  left: 0%;
+}
+fieldset.t3onoff label.on.active:after {
+  left: 60%;
+}
+fieldset.radio.btn-group {
+  padding: 0;
+}
+fieldset.radio.btn-group input {
+  display: none;
+}
+fieldset.radio.btn-group label {
+  display: inline-block;
+  min-width: 54px;
+  padding: 0 12px;
+  border: 1px solid #aaa;
+  line-height: 28px;
+  background: #eee;
+  color: #555;
+  border-radius: 0;
+  text-align: center;
+  border-right-width: 0px;
+  text-transform: uppercase;
+}
+fieldset.radio.btn-group label:last-child {
+  border-right-width: 1px;
+}
+fieldset.radio.btn-group label.active {
+  background: #690;
+  border-color: #5c8b00;
+  color: #fff;
+}
+.com_config #modules-form .input-append .add-on,
+.com_config #modules-form .input-prepend .add-on {
+  width: 35px;
+}
+.com_config #modules-form .input-append input,
+.com_config #modules-form .input-prepend input {
+  display: inline-block;
+}
+.com_config #modules-form .input-append .btn,
+.com_config #modules-form .input-prepend .btn {
+  border: 1px solid ;
+}
+.com_config #modules-form .accordion-group {
+  margin-bottom: 20px;
+}
+.com_config #modules-form .accordion-group .accordion-heading .accordion-toggle {
+  border: 1px solid #ddd;
+  border-radius: 5px 5px 0 0;
+  color: #428bca;
+  display: block;
+  padding: 10px;
+  outline: none;
+}
+.com_config #modules-form .accordion-group .accordion-heading .accordion-toggle.collapsed {
+  border-radius: 5px;
+  color: #666;
+}
+.com_config #modules-form .accordion-group .accordion-body {
+  border: 1px solid #ddd;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  padding-top: 20px;
+}
+.com_config #modules-form .accordion-group .accordion-body .nav-tabs {
+  border-bottom: 0;
+}
+.controls select {
+  vertical-align: middle;
+  width: 220px;
+}

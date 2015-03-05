@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  mod_menu
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -46,7 +46,7 @@ switch ($item->browserNav) :
 	<a <?php echo $class; ?>href="<?php echo $flink; ?>" target="_blank" <?php echo $title, $dropdown; ?>><?php echo $linktype, $caret; ?></a><?php
 		break;
 	case 2:
-		// window.open
+		// Use JavaScript "window.open"
 		$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,'.$params->get('window_open');
 			?><a <?php echo $class; ?>href="<?php echo $flink; ?>" onclick="window.open(this.href,'targetWindow','<?php echo $options;?>');return false;" <?php echo $title, $dropdown; ?>><?php echo $linktype, $caret; ?></a><?php
 		break;
