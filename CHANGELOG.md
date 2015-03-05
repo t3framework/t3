@@ -1,4 +1,4 @@
-<h2>Version: 2.4.5(03/05/2015)</h2>
+<h2>Version: 2.4.5 (03/05/2015)</h2>
 <h3>Fix bugs</h3>
 - Fix bugs for Edit module frontend | <a href="https://github.com/t3framework/t3/commit/a614e9f51d63bb2dddac111f630dd3d644c0d366">Link</a>
 
