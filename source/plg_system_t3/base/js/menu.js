@@ -39,25 +39,25 @@
 
             //start
             var self = this,
-                options = this.options,
-                $menu = this.$menu;
+              options = this.options,
+              $menu = this.$menu;
 
             this.$items = $menu.find('li');
             this.$items.each(function (idx, li) {
 
                 var $item = $(this),
-                    $child = $item.children('.dropdown-menu'),
-                    $link = $item.children('a'),
-                    item = {
-                        $item: $item,
-                        child: $child.length,
-                        link: $link.length,
-                        clickable: !($link.length && $child.length),
-                        mega: $item.hasClass('mega'),
-                        status: 'close',
-                        timer: null,
-                        atimer: null
-                    };
+                  $child = $item.children('.dropdown-menu'),
+                  $link = $item.children('a'),
+                  item = {
+                      $item: $item,
+                      child: $child.length,
+                      link: $link.length,
+                      clickable: !($link.length && $child.length),
+                      mega: $item.hasClass('mega'),
+                      status: 'close',
+                      timer: null,
+                      atimer: null
+                  };
 
                 //store
                 $item.data('t3menu.item', item);
@@ -129,7 +129,7 @@
             });
 
             // ignore click on direct child
-            $menu.find('.mega-dropdown-menu').on('tap hideall.t3menu', function(e) {
+            $menu.find('.mega-dropdown-menu').on('hideall.t3menu', function(e) {
                 e.stopPropagation();
                 e.preventDefault();
                 return false;
@@ -137,7 +137,6 @@
         },
 
         show: function (item) {
-
             // hide all others menu of this instance
             if($.inArray(item, this.child_open) < this.child_open.length -1){
                 this.hide_others(item);
@@ -179,7 +178,6 @@
         },
 
         hide: function (item) {
-
             clearTimeout(this.timer);		//hide alls
             clearTimeout(item.timer);		//hide this item
             clearTimeout(item.astimer);	//animate timer
@@ -237,17 +235,17 @@
 
         position: function ($item) {
             var sub = $item.children('.mega-dropdown-menu'),
-                is_show = sub.is(':visible');
+              is_show = sub.is(':visible');
 
             if(!is_show){
                 sub.show();
             }
 
             var offset = $item.offset(),
-                width = $item.outerWidth(),
-                screen_width = $(window).width() - this.options.sb_width,
-                sub_width = sub.outerWidth(),
-                level = $item.data('level');
+              width = $item.outerWidth(),
+              screen_width = $(window).width() - this.options.sb_width,
+              sub_width = sub.outerWidth(),
+              level = $item.data('level');
 
             if(!is_show){
                 sub.css('display', '');
@@ -259,9 +257,9 @@
             if(level == 1){
 
                 var align = $item.data('alignsub'),
-                    align_offset = 0,
-                    align_delta = 0,
-                    align_trans = 0;
+                  align_offset = 0,
+                  align_delta = 0,
+                  align_trans = 0;
 
                 if(align == 'justify'){
                     return;	//do nothing
@@ -385,8 +383,8 @@
     $.fn.t3menu = function (option) {
         return this.each(function () {
             var $this = $(this),
-                data = $this.data('megamenu'),
-                options = typeof option == 'object' && option;
+              data = $this.data('megamenu'),
+              options = typeof option == 'object' && option;
 
             // Ignore off-canvas navigation
             if ($this.parents('#off-canvas-nav').length) return ;
@@ -420,26 +418,26 @@
         if (mm_duration) {
 
             $('<style type="text/css">' +
-                '.t3-megamenu.animate .animating > .mega-dropdown-menu,' +
-                '.t3-megamenu.animate.slide .animating > .mega-dropdown-menu > div {' +
-                'transition-duration: ' + mm_duration + 'ms !important;' +
-                '-webkit-transition-duration: ' + mm_duration + 'ms !important;' +
-                '}' +
-                '</style>').appendTo ('head');
+            '.t3-megamenu.animate .animating > .mega-dropdown-menu,' +
+            '.t3-megamenu.animate.slide .animating > .mega-dropdown-menu > div {' +
+            'transition-duration: ' + mm_duration + 'ms !important;' +
+            '-webkit-transition-duration: ' + mm_duration + 'ms !important;' +
+            '}' +
+            '</style>').appendTo ('head');
         }
 
         var mm_timeout = mm_duration ? 100 + mm_duration : 500,
-            mm_rtl = $(document.documentElement).attr('dir') == 'rtl',
-            mm_trigger = $(document.documentElement).hasClass('mm-hover'),
-            sb_width = (function () {
-                var parent = $('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body'),
-                    child = parent.children(),
-                    width = child.innerWidth() - child.height(100).innerWidth();
+          mm_rtl = $(document.documentElement).attr('dir') == 'rtl',
+          mm_trigger = $(document.documentElement).hasClass('mm-hover'),
+          sb_width = (function () {
+              var parent = $('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body'),
+                child = parent.children(),
+                width = child.innerWidth() - child.height(100).innerWidth();
 
-                parent.remove();
+              parent.remove();
 
-                return width;
-            })();
+              return width;
+          })();
 
         //lt IE 10
         if(!$.support.transition){

@@ -129,7 +129,7 @@
 			});
 
             // ignore click on direct child
-            $menu.find('.mega-dropdown-menu').on('tap hideall.t3menu', function(e) {
+            $menu.find('.mega-dropdown-menu').on('hideall.t3menu', function(e) {
                 e.stopPropagation();
                 e.preventDefault();
                 return false;
