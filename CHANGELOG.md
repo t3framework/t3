@@ -2,8 +2,14 @@
 
 <h3>Fix bugs</h3>
 - Fix bugs for Can not show submenu on the small screen | <a href="https://github.com/t3framework/t3/commit/0a33158fd25a96771802eadc5a73d0e9cd10cc12">Link</a>
-- Fix bugs for No need to override modulehelper in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/91977e18944782c8130e10a94103cbf020a54dc0">Link</a>
-
+- Fix bugs No need to override modulehelper in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/91977e18944782c8130e10a94103cbf020a54dc0">Link</a>
+- Fix bugs Sidebar-1, Sidebar-2 display ugly on responsive layout backend in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/f58b6c43896d66436fbb65e86cc5ff39e03c249a">Link</a>
+- Fix bugs Merge branch 'master' of https://github.com/t3framework/t3 in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/ee5fb344025ee4d2f3e2125de73463ce924a6129">Link</a>
+- Fix bugs Update style for module front-end edit in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/b4813a23a57053dba9797ab0825df2e28414a58c">Link</a>
+- Fix bugs Add bootstrap checkout icon in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/d29e17b81390450828599cbc5ebf40932556e3fc">Link</a>
+- Fix bugs MegaMenu dropdown links not working on mobile for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/28b28ccf3ee2689c5b272a9aef6199a3a76b7de5">Link</a>
+-  Fix bugs Update font awsome latest version 4.3.0 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/a689578e64632908295240eae5d98b4e5b16d57e">Link</a>
+-  
 <h2>Version: 2.4.5 (03/05/2015)</h2>
 
 <h3>Fix bugs</h3>
