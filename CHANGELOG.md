@@ -9,7 +9,6 @@
 - Fix bugs Add bootstrap checkout icon in T3 for Joomla 3.4.1 | <a href="https://github.com/t3framework/t3/commit/d29e17b81390450828599cbc5ebf40932556e3fc">Link</a>
 - Fix bugs MegaMenu dropdown links not working on mobile for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/28b28ccf3ee2689c5b272a9aef6199a3a76b7de5">Link</a>
 -  Fix bugs Update font awsome latest version 4.3.0 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/a689578e64632908295240eae5d98b4e5b16d57e">Link</a>
--  
 <h2>Version: 2.4.5 (03/05/2015)</h2>
 
 <h3>Fix bugs</h3>
