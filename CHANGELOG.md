@@ -1,4 +1,11 @@
+<h2>Version: 2.4.6 (03/25/2015)</h2>
+
+<h3>Fix bugs</h3>
+- Fix bugs for Can not show submenu on the small screen | <a href="https://github.com/t3framework/t3/commit/0a33158fd25a96771802eadc5a73d0e9cd10cc12">Link</a>
+- Fix bugs for No need to override modulehelper in T3 for Joomla 3.4 | <a href="https://github.com/t3framework/t3/commit/91977e18944782c8130e10a94103cbf020a54dc0">Link</a>
+
 <h2>Version: 2.4.5 (03/05/2015)</h2>
+
 <h3>Fix bugs</h3>
 - Fix bugs for Edit module frontend | <a href="https://github.com/t3framework/t3/commit/a614e9f51d63bb2dddac111f630dd3d644c0d366">Link</a>
 
