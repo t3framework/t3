@@ -173,6 +173,12 @@
 .t3-admin-layout-preview .col-xs-12 {
   width: 100%;
 }
+
+.t3-admin-layout-preview.sm .t3-sidebar,
+.t3-admin-layout-preview.xs .t3-sidebar {
+  min-height: 0 !important;
+}
+
 .t3-admin-layout-preview.sm,
 .t3-admin-layout-preview.md,
 .t3-admin-layout-preview.lg {

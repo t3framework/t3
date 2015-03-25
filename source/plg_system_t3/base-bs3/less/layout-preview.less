@@ -171,6 +171,12 @@
   //
   // Note that `.col-sm-12` doesn't get floated on purpose—there's no need since
   // it's full-width.
+  &.sm,
+  &.xs {
+    .t3-sidebar {
+      min-height: 0 !important;
+    }
+  }
 
   &.sm,
   &.md,
