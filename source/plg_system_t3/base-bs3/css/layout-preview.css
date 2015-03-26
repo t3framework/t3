@@ -175,7 +175,8 @@
 }
 
 .t3-admin-layout-preview.sm .t3-sidebar,
-.t3-admin-layout-preview.xs .t3-sidebar {
+.t3-admin-layout-preview.xs .t3-sidebar,
+.t3-admin-layout-preview.md .t3-sidebar {
   min-height: 0 !important;
 }
 
