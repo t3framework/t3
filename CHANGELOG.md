@@ -2,6 +2,7 @@
 <h2>Version: 2.4.7 (03/26/2015)</h2>
 
 <h3>Fix bugs</h3>
+- Fix bugs Reset min-height of sidebar-1 and sidebar-2 on responsive layout back-end settings | <a href="https://github.com/t3framework/t3/commit/5762fc20f24ab40e4439e70c0ebe48929c40450c">Link</a>
 - Fix bugs Re add modulehelper file to accept module layout in T3 base theme | <a href="https://github.com/t3framework/t3/commit/3895794797f1344438bee0ee607188dcdf07d157">Link</a>
 
 <h2>Version: 2.4.6 (03/25/2015)</h2>
