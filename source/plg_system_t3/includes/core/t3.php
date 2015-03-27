@@ -163,7 +163,8 @@ class T3 {
 				T3::register('JHtmlBootstrap', T3_ADMIN_PATH . '/includes/joomla25/html/bootstrap.php');
 				T3::register('JHtmlBehavior', T3_ADMIN_PATH . '/includes/joomla25/html/behavior.php');
         T3::register('JHtmlString', T3_ADMIN_PATH . '/includes/joomla25/html/string.php');
-        
+        T3::register('JHtmlJquery', T3_ADMIN_PATH . '/includes/joomla25/html/jquery.php');
+
         // load j25 compat language
         JFactory::getLanguage()->load('plg_system_t3.j25.compat', JPATH_ADMINISTRATOR);
 			}
