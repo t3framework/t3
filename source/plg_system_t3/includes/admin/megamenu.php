@@ -181,10 +181,18 @@ class T3AdminMegamenu
 			//overwrite with new value
 			$registry->set('mm_config', $currentconfig);
 
+			// fix utf8 caption in Joomla 3.x
+			$tparams = null;
+			if(version_compare(JVERSION, '3.0', 'ge')){
+				$tparams = json_encode($registry->toArray());
+			} else {
+				$tparams = $registry->toString();
+			}
+
 			$query = $db->getQuery(true);
 			$query
 				->update('#__template_styles')
-				->set('params =' . $db->quote($registry->toString()))
+				->set('params =' . $db->quote($tparams))
 				->where('id =' . (int)$theme->id);
 
 			$db->setQuery($query);
