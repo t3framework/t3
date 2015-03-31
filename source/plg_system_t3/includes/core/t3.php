@@ -140,6 +140,7 @@ class T3 {
 				// override core joomla class
 				// JViewLegacy
         T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');        
+        T3::register('JViewHtml',   T3_ADMIN_PATH . '/includes/joomla30/viewhtml.php');
 				// JModuleHelper
         T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla30/modulehelper.php');
 				// JPagination
