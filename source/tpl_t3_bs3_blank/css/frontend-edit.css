@@ -70,6 +70,14 @@
 .com_config #modules-form .accordion-group .accordion-body .nav-tabs {
   border-bottom: 0;
 }
+.com_config #modules-form .radio input[type="radio"] {
+  margin-left: 0;
+  position: relative;
+}
+.com_config #modules-form .radio label {
+  padding-left: 5px;
+  padding-right: 20px;
+}
 .controls select {
   vertical-align: middle;
   width: 220px;
@@ -197,6 +205,24 @@
   margin-right: 10px;
   margin-left: 10px;
 }
+.window.view-articles .filter {
+  overflow: visible;
+}
+.window.view-articles .filter .btn-toolbar .icon-remove,
+.window.view-articles .filter .btn-toolbar .icon-search {
+  margin-right: 5px;
+}
+.window.view-articles .filters {
+  float: none !important;
+}
+.window.view-articles .filters .chzn-container {
+  display: inline-block;
+}
+
+.window.view-articles .filters .chzn-drop input {
+  float: none;
+}
+
 .t3onoff {
   border: 1px solid #aaa;
   border-radius: 0;
