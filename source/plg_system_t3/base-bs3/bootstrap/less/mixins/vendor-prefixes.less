@@ -99,9 +99,12 @@
 
 // Placeholder text
 .placeholder(@color: @input-color-placeholder) {
-  &::-moz-placeholder           { color: @color;   // Firefox
-                                  opacity: 1; } // See https://github.com/twbs/bootstrap/pull/11526
-  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+  // Firefox
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  &:-ms-input-placeholder { color: @color; } // Internet Explorer 10+
   &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
 }
 
@@ -135,18 +138,6 @@
       -ms-transform: skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
        -o-transform: skewX(@x) skewY(@y);
           transform: skewX(@x) skewY(@y);
-}
-.translateY(@y) {
-  -webkit-transform: translateY(@y);
-      -ms-transform: translateY(@y); // IE9 only
-       -o-transform: translateY(@y);
-          transform: translateY(@y);
-}
-.translateX(@x) {
-  -webkit-transform: translateX(@x);
-      -ms-transform: translateX(@x); // IE9 only
-       -o-transform: translateX(@x);
-          transform: translateX(@x);
 }
 .translate(@x; @y) {
   -webkit-transform: translate(@x, @y);
