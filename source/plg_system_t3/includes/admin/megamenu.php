@@ -12,8 +12,6 @@
  *------------------------------------------------------------------------------
  */
 
-use Joomla\String\String;
-
 class T3AdminMegamenu
 {
 	public static function display()
@@ -155,15 +153,13 @@ class T3AdminMegamenu
 			$mmconfig  = stripslashes($mmconfig);
 		} 
 		
-		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
+		$currentconfig = $tplparams instanceof JRegistry ? $tplparams->get('mm_config', '') : null;
+		$_reg = new JRegistry;
+		$_reg->loadArray(json_decode($currentconfig, true));
+		$_reg->set($mmkey, json_decode($mmconfig, true));
 
-		if (!is_array($currentconfig)) {
-			$currentconfig = array();
-		}
+		$mm_config = $_reg->toString();
 
-		$currentconfig[$mmkey] = json_decode($mmconfig, true);
-		$currentconfig         = json_encode($currentconfig);
-		
 		//get all other styles that have the same template
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
@@ -181,20 +177,12 @@ class T3AdminMegamenu
 			$registry->loadString($theme->params);
 
 			//overwrite with new value
-			$registry->set('mm_config', $currentconfig);
-
-			// fix utf8 caption in Joomla 3.x
-			$tparams = null;
-			if(version_compare(JVERSION, '3.0', 'ge')){
-				$tparams = String::unicode_to_utf16(str_replace('\\\\u', '\\u', json_encode($registry->toArray())));
-			} else {
-				$tparams = $registry->toString();
-			}
+			$registry->set('mm_config', $mm_config);
 
 			$query = $db->getQuery(true);
 			$query
 				->update('#__template_styles')
-				->set('params =' . $db->quote($tparams))
+				->set('params =' . $db->quote($registry->toString()))
 				->where('id =' . (int)$theme->id);
 
 			$db->setQuery($query);
