@@ -184,7 +184,7 @@ class T3AdminMegamenu
 			// fix utf8 caption in Joomla 3.x
 			$tparams = null;
 			if(version_compare(JVERSION, '3.0', 'ge')){
-				$tparams = json_encode($registry->toArray());
+				$tparams = String::unicode_to_utf16(str_replace('\\\\u', '\\u', json_encode($registry->toArray())));
 			} else {
 				$tparams = $registry->toString();
 			}
