@@ -51,4 +51,3 @@ endif;
 
 <?php echo JHtml::_('bootstrap.endSlide'); ?>
 <?php endforeach; ?>
-<?php echo JHtml::_('bootstrap.endAccordion'); ?>
