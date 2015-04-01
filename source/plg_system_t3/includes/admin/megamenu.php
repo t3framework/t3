@@ -12,6 +12,8 @@
  *------------------------------------------------------------------------------
  */
 
+use Joomla\String\String;
+
 class T3AdminMegamenu
 {
 	public static function display()
