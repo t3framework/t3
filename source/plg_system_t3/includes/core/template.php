@@ -901,7 +901,7 @@ class T3Template extends ObjectExtendable
 			}
 
 			if (!$jqueryIncluded) {
-				$this->addScript(T3_URL . '/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
+				$this->addScript(T3_URL . '/js/jquery-1.11.2' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
 				$this->addScript(T3_URL . '/js/jquery.noconflict.js');
 			}
 		}
@@ -1012,7 +1012,7 @@ class T3Template extends ObjectExtendable
 					$jqver = explode('.', $jqver[$idx][0]);
 
 					if (isset($jqver[0]) && (int)$jqver[0] <= 1 && isset($jqver[1]) && (int)$jqver[1] < 7) {
-						$scripts[T3_URL . '/js/jquery-1.8.3' . ($devmode ? '' : '.min') . '.js'] = $script;
+						$scripts[T3_URL . '/js/jquery-1.11.2' . ($devmode ? '' : '.min') . '.js'] = $script;
 						$replace = true;
 					}
 				}
