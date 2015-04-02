@@ -1,5 +1,3 @@
-
-
 @media (max-width: 767px) {
   .always-show .mega > .mega-dropdown-menu,
   .always-show .dropdown-menu {
@@ -615,16 +613,17 @@ textarea.form-control {
 }
 .btn-inverse:hover,
 .btn-inverse:focus,
+.btn-inverse.focus,
 .btn-inverse:active,
 .btn-inverse.active,
-.open .dropdown-toggle.btn-inverse {
+.open > .dropdown-toggle.btn-inverse {
   color: #ffffff;
-  background-color: #1f1f1f;
+  background-color: #1a1a1a;
   border-color: #080808;
 }
 .btn-inverse:active,
 .btn-inverse.active,
-.open .dropdown-toggle.btn-inverse {
+.open > .dropdown-toggle.btn-inverse {
   background-image: none;
 }
 .btn-inverse.disabled,
@@ -636,6 +635,9 @@ fieldset[disabled] .btn-inverse:hover,
 .btn-inverse.disabled:focus,
 .btn-inverse[disabled]:focus,
 fieldset[disabled] .btn-inverse:focus,
+.btn-inverse.disabled.focus,
+.btn-inverse[disabled].focus,
+fieldset[disabled] .btn-inverse.focus,
 .btn-inverse.disabled:active,
 .btn-inverse[disabled]:active,
 fieldset[disabled] .btn-inverse:active,
@@ -2008,7 +2010,7 @@ div.calendar {
 .edit.item-page fieldset .btn-toolbar {
   margin-top: 10px;
 }
-.edit.item-page .chzn-container-multi .chzn-choices li.search-field input[type="text"] {
+.chzn-container-multi .chzn-choices li.search-field input[type="text"] {
   height: auto;
 }
 .iframe-bordered {
@@ -2407,6 +2409,8 @@ a.list-group-item.active:focus .list-group-item-text {
   opacity: .8;
   display: inline-block;
 }
+
+
 
 .off-canvas body > .autocompleter-choices {
   width: 0px;

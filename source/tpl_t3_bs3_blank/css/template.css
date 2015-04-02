@@ -613,6 +613,7 @@ textarea.form-control {
 }
 .btn-inverse:hover,
 .btn-inverse:focus,
+.btn-inverse.focus,
 .btn-inverse:active,
 .btn-inverse.active,
 .open > .dropdown-toggle.btn-inverse {
@@ -634,6 +635,9 @@ fieldset[disabled] .btn-inverse:hover,
 .btn-inverse.disabled:focus,
 .btn-inverse[disabled]:focus,
 fieldset[disabled] .btn-inverse:focus,
+.btn-inverse.disabled.focus,
+.btn-inverse[disabled].focus,
+fieldset[disabled] .btn-inverse.focus,
 .btn-inverse.disabled:active,
 .btn-inverse[disabled]:active,
 fieldset[disabled] .btn-inverse:active,
@@ -1266,7 +1270,6 @@ ul.latestusers li {
 .article-intro img,
 .article-content img {
   display: block;
-  width: 100% \9;
   max-width: 100%;
   height: auto;
 }

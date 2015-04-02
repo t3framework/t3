@@ -1,5 +1,3 @@
-
-
 .com_config #templates-form .tip {
   background: #f5f5f5;
   padding: 12px 12px;
@@ -35,6 +33,54 @@
   .com_config #templates-form .control-group .controls {
     margin-right: 280px;
   }
+}
+.com_config #modules-form .input-append .add-on,
+.com_config #modules-form .input-prepend .add-on {
+  width: 35px;
+}
+.com_config #modules-form .input-append input,
+.com_config #modules-form .input-prepend input {
+  display: inline-block;
+}
+.com_config #modules-form .input-append .btn,
+.com_config #modules-form .input-prepend .btn {
+  border: 1px solid #cccccc;
+}
+.com_config #modules-form .accordion-group {
+  margin-bottom: 20px;
+}
+.com_config #modules-form .accordion-group .accordion-heading .accordion-toggle {
+  border: 1px solid #ddd;
+  border-radius: 5px 5px 0 0;
+  color: #428bca;
+  display: block;
+  padding: 10px;
+  outline: none;
+}
+.com_config #modules-form .accordion-group .accordion-heading .accordion-toggle.collapsed {
+  border-radius: 5px;
+  color: #666;
+}
+.com_config #modules-form .accordion-group .accordion-body {
+  border: 1px solid #ddd;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  padding-top: 20px;
+}
+.com_config #modules-form .accordion-group .accordion-body .nav-tabs {
+  border-bottom: 0;
+}
+.com_config #modules-form .radio input[type="radio"] {
+  margin-right: 0;
+  position: relative;
+}
+.com_config #modules-form .radio label {
+  padding-right: 5px;
+  padding-left: 20px;
+}
+.controls select {
+  vertical-align: middle;
+  width: 220px;
 }
 @media (min-width: 768px) {
   .edit .inputbox,
@@ -159,16 +205,32 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+.window.view-articles .filter {
+  overflow: visible;
+}
+.window.view-articles .filter .btn-toolbar .icon-remove,
+.window.view-articles .filter .btn-toolbar .icon-search {
+  margin-left: 5px;
+}
+.window.view-articles .filters {
+  float: none !important;
+}
+.window.view-articles .filters .chzn-container {
+  display: inline-block;
+}
+.window.view-articles .filters .chzn-drop input {
+  float: none;
+}
 .t3onoff {
-  width: 90px;
-  height: 30px;
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-  padding: 0;
-  position: relative;
   border: 1px solid #aaa;
   border-radius: 0;
+  display: block;
+  height: 30px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+  width: 90px;
   
   
   
@@ -198,8 +260,8 @@
   position: absolute;
   top: 0;
   border-radius: 0;
-  border: 1px solid #aaa;
   -webkit-transition: all 250ms;
+  -o-transition: all 250ms;
   transition: all 250ms;
 }
 .t3onoff label:before {

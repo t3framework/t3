@@ -218,11 +218,9 @@
 .window.view-articles .filters .chzn-container {
   display: inline-block;
 }
-
 .window.view-articles .filters .chzn-drop input {
   float: none;
 }
-
 .t3onoff {
   border: 1px solid #aaa;
   border-radius: 0;

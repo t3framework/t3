@@ -181,7 +181,7 @@
     -webkit-transition: all 400ms;
     -o-transition: all 400ms;
     transition: all 400ms;
-    display: block !important;
+    display: block;
   }
   .t3-megamenu.animate .mega.open > .mega-dropdown-menu,
   .t3-megamenu.animate .mega.animating.open > .mega-dropdown-menu {
