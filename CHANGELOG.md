@@ -1,3 +1,20 @@
+<h2>Version: 2.4.8 (0/03/2015)</h2>
+
+<h3>Fix bugs</h3>
+- Fix bugs Filters dropdown hidden when edit article on frontend | <a href="https://github.com/t3framework/t3/commit/dab2290d04c6d2c29947835c93819e947fd2567e">Link</a>
+- Fix bugs Missing language in module frontend edit | <a href="https://github.com/t3framework/t3/commit/358ad9c56b2f3de58a6dff395b07ca91168d2b01">Link</a>
+- Fix bugs Miss font awesome in template with BS2 | <a href="https://github.com/t3framework/t3/commit/4e088da275cfe26d40698d605c7eccc18bd00506">Link</a>
+- Fix bugs Compile css for supporting rtl | <a href="https://github.com/t3framework/t3/commit/a1d676cc58193cf77cfa341916317ef6a2c870df">Link</a>
+- Fix bugs Upgrade to jquery 1.11.2 | <a 
+href="https://github.com/t3framework/t3/commit/8ad65d34b50592b165dd9c585e0268ce888cef49">Link</a>
+- Fix bugs Megamenu caption does not support utf8 | <a href="https://github.com/t3framework/t3/commit/99ad997546572bc1d5cad98f533cbbbff57a3428">Link</a>
+- Fix bugs Fix bug frontend editor for custom_html module | <a href="https://github.com/t3framework/t3/commit/d064b05a37ff9d9cdc1bcc5c944fbb43d201749c">Link</a>
+- Fix bugs Upgrade Bootstrap 3.3.4 | <a 
+href="https://github.com/t3framework/t3/commit/2dfc83e8ddc82c7c19840dd9f4f3c1fb1fcdc96b">Link</a>
+- Fix bugs Override module frontend edit layout | <a href="https://github.com/t3framework/t3/commit/389930696ef5537ef797f3a0ed563371a0512e90">Link</a>
+- Fix bugs jquery not supported on Joomla 2.5 | <a href="https://github.com/t3framework/t3/commit/3d09fcc54efd614fde311b4683eda8ae043f7634">Link</a>
+- Fix bugs Allow override component view in t3 html | <a href="https://github.com/t3framework/t3/commit/311adb2d19f02713b3c384faac60f4a244db4282">Link</a>
+- Fix bugs Category list does not show in the dropdown | <a href="https://github.com/t3framework/t3/commit/cbc7a8c6cd538836fb78f3fe7abdd3252034514e">Link</a>
 
 <h2>Version: 2.4.7 (03/26/2015)</h2>
 
