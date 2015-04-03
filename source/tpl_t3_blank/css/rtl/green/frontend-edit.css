@@ -130,6 +130,9 @@ fieldset.radio.btn-group label.active {
 #adminForm .clearfix {
   overflow: visible;
 }
+#adminForm .chzn-container .chzn-results {
+  clear: both;
+}
 .com_config #modules-form .input-append .add-on,
 .com_config #modules-form .input-prepend .add-on {
   width: 35px;
