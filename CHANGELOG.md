@@ -1,4 +1,4 @@
-<h2>Version: 2.4.8 (0/03/2015)</h2>
+<h2>Version: 2.4.8 (04/03/2015)</h2>
 
 <h3>Fix bugs</h3>
 - Fix bugs Filters dropdown hidden when edit article on frontend | <a href="https://github.com/t3framework/t3/commit/dab2290d04c6d2c29947835c93819e947fd2567e">Link</a>
