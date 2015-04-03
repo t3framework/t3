@@ -1,5 +1,3 @@
-
-
 .jumbotron {
   position: relative;
   padding: 40px 0;
@@ -219,28 +217,11 @@ a.thumbnail:hover {
   margin-left: 0 !important;
 }
 
-@media (max-width: 767px) {
-  .always-show .mega > .mega-dropdown-menu,
-  .always-show .dropdown-menu {
-    display: block !important;
-    position: static;
-  }
+.logo-control .logo-img-sm {
+  display: none;
 }
-@media (max-width: 767px) {
-  .logo-control .logo-img-sm {
-    display: block;
-  }
-  .logo-control .logo-img {
-    display: none;
-  }
-}
-@media (min-width: 768px) {
-  .logo-control .logo-img-sm {
-    display: none;
-  }
-  .logo-control .logo-img {
-    display: block;
-  }
+.logo-control .logo-img {
+  display: block;
 }
 .body-data-holder:before {
   display: none;
@@ -2959,6 +2940,8 @@ table.adminlist th a {
   text-align: right;
 }
 
+
+
 .t3-header {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -3123,4 +3106,3 @@ table.adminlist th a {
 .t3-copyright {
   border-top: 1px solid #ff941a;
 }
-

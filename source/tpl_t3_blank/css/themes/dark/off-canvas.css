@@ -1,5 +1,3 @@
-
-
 #off-canvas-nav {
   display: none;
 }
@@ -70,10 +68,8 @@
     display: block;
   }
 }
-
 @media (max-width: 767px) {
   .off-canvas .t3-mainnav .nav-collapse {
     margin-top: 0;
   }
 }
-

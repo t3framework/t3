@@ -1,5 +1,3 @@
-
-
 .jumbotron {
   position: relative;
   padding: 40px 0;
@@ -219,28 +217,11 @@ a.thumbnail:hover {
   margin-right: 0 !important;
 }
 
-@media (max-width: 767px) {
-  .always-show .mega > .mega-dropdown-menu,
-  .always-show .dropdown-menu {
-    display: block !important;
-    position: static;
-  }
+.logo-control .logo-img-sm {
+  display: none;
 }
-@media (max-width: 767px) {
-  .logo-control .logo-img-sm {
-    display: block;
-  }
-  .logo-control .logo-img {
-    display: none;
-  }
-}
-@media (min-width: 768px) {
-  .logo-control .logo-img-sm {
-    display: none;
-  }
-  .logo-control .logo-img {
-    display: block;
-  }
+.logo-control .logo-img {
+  display: block;
 }
 .body-data-holder:before {
   display: none;
@@ -3026,6 +3007,8 @@ table.adminlist th a {
   text-align: left;
 }
 
+
+
 .t3-header {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -3191,11 +3174,11 @@ table.adminlist th a {
   border-top: 1px solid #e60000;
 }
 
+
 .off-canvas body > .autocompleter-choices {
   width: 0px;
   left: auto;
 }
-
 article img[align=left],
 .img_caption.left,
 .pull-left.item-image {
@@ -3209,4 +3192,3 @@ article img[align=right],
 .languageswitcherload ul {
   float: left;
 }
-

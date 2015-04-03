@@ -1,5 +1,3 @@
-
-
 .t3-megamenu .mega-inner {
   padding: 10px;
   *zoom: 1;
@@ -282,7 +280,6 @@
     margin-right: 0;
   }
 }
-
 .t3-megamenu .mega-inner {
   padding: 20px;
 }
@@ -365,6 +362,7 @@
   font-weight: normal;
 }
 
+
 html[dir="rtl"] .t3-megamenu .mega-align-center > .dropdown-menu {
   -webkit-transform: translate(50%,0);
   -moz-transform: translate(50%,0);
@@ -400,4 +398,3 @@ html[dir="rtl"] .t3-megamenu.animate.elastic .level0 > .mega-align-center.open >
   -webkit-transform: scale(1,1) translate(50%,0);
   -ms-transform: scale(1,1) translate(50%,0);
 }
-

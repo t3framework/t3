@@ -1,5 +1,3 @@
-
-
 @media (min-width: 980px) and (max-width: 1199px) {
   .row {
     margin-right: -40px;
@@ -1039,6 +1037,8 @@
   }
 }
 
+
+
 @media (max-width: 767px) {
   .always-show .mega > .mega-dropdown-menu,
   .always-show .dropdown-menu {
@@ -1085,6 +1085,12 @@
   .navbar-collapse-fixed-bottom .btn-navbar {
     position: absolute;
     bottom: 0;
+  }
+  .logo-control .logo-img-sm {
+    display: block;
+  }
+  .logo-control .logo-img {
+    display: none;
   }
 }
 
@@ -1275,6 +1281,8 @@
   }
 }
 
+
+
 @media (max-width: 767px) {
   body {
     padding-top: 50px;
@@ -1361,4 +1369,3 @@
     display: inline-block;
   }
 }
-
