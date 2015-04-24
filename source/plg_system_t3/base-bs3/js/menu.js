@@ -110,7 +110,7 @@
                         $target.data('hide-processed', true);
                         setTimeout(function(){$target.data('hide-processed', false);}, 10);
 
-                        self.hide(item);
+                        self.hide(item, $target);
                     });
 
                     //if has child, don't goto link before open child - fix for touch screen
@@ -177,7 +177,7 @@
 			item.ctimer = setTimeout($.proxy(this.clickable, this, item), 300);
 		},
 
-		hide: function (item) {
+		hide: function (item, $target) {
 			clearTimeout(this.timer);		//hide alls
 			clearTimeout(item.timer);		//hide this item
 			clearTimeout(item.astimer);	//animate timer
@@ -190,7 +190,11 @@
 				item.atimer = setTimeout(function(){item.$item.removeClass('animating')}, this.options.duration);
 				item.timer = setTimeout(function(){item.$item.removeClass('open')}, 100);
 			} else {
-				item.$item.removeClass('open');
+				item.timer = setTimeout(function(){
+		                    if (!$target || !$target.is('input', item.$item)) {
+		                        item.$item.removeClass('open');
+		                    }
+		                }, 100);
 			}
 
 			item.status = 'close';
