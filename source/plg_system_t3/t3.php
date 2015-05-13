@@ -53,9 +53,9 @@ class plgSystemT3 extends JPlugin
 					$query = $db->getQuery(true);
 					$query
 						->select('home, template, params')
-						->from('`#__template_styles`')
-						->where('`client_id` = 0 AND `id`= ' . (int)$t3tmid)
-						->order('`id` ASC');
+						->from('#__template_styles')
+						->where('client_id = 0 AND id= ' . (int)$t3tmid)
+						->order('id ASC');
 					$db->setQuery($query);
 					$tm = $db->loadObject();
 
