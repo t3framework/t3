@@ -270,8 +270,8 @@ class T3AdminTheme
 			$listthemes = JFolder::folders($themepath);
 			if (count($listthemes)) {
 				foreach ($listthemes as $theme) {
-					$varsfile = $themepath . '/' . $theme . '/variables-custom.less';
-					if(file_exists($varsfile)){
+					//$varsfile = $themepath . '/' . $theme . '/variables-custom.less';
+					//if(file_exists($varsfile)){
 
 						$tobj = new stdClass();
 						$tobj->id    = $theme;
@@ -295,7 +295,10 @@ class T3AdminTheme
 						}
 
 						$cparams = new JRegistry;
-						$cparams->loadString(JFile::read($varsfile), 'LESS');
+						$varsfile = $themepath . '/' . $theme . '/variables.less';
+						if(file_exists($varsfile)) $cparams->loadString(JFile::read($varsfile), 'LESS');
+						$varsfile = $themepath . '/' . $theme . '/variables-custom.less';
+						if(file_exists($varsfile)) $cparams->loadString(JFile::read($varsfile), 'LESS');
 						if($params){
 							foreach ($cparams->toArray() as $key => $value) {
 								$params->set($key, $value);
@@ -306,7 +309,7 @@ class T3AdminTheme
 
 						$themes[$theme] = $tobj;
 						$jsondata[$theme] = $params->toArray();
-					}
+					//}
 				}
 			}
 		}
