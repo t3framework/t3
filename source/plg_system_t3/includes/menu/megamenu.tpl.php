@@ -200,7 +200,7 @@ class T3MenuMegamenuTpl
 		}
 
 		if (isset($setting['xicon']) && $setting['xicon']) {
-			$vars['icon'] = '<i class="' . $setting['xicon'] . '"></i>';
+			$vars['icon'] = '<span class="' . $setting['xicon'] . '"></span>';
 		}
 		if (isset($setting['caption']) && $setting['caption']) {
 			$vars['caption'] = '<span class="mega-caption">' . $setting['caption'] . '</span>';
