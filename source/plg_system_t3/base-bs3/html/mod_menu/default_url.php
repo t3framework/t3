@@ -17,7 +17,7 @@ $caret = '';
 if($item->deeper && $item->level < 2){
 	$class .= ' dropdown-toggle';
 	$dropdown = ' data-toggle="dropdown"';
-	$caret = '<b class="caret"></b>';
+	$caret = '<em class="caret"></em>';
 }
 
 if(!empty($class)){
