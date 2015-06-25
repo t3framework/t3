@@ -12,11 +12,11 @@
  */
 jQuery (document).ready(function($){
     function getAndroidVersion(ua) {
-        var ua = ua || navigator.userAgent; 
+        var ua = ua || navigator.userAgent;
         var match = ua.match(/Android\s([0-9\.]*)/);
         return match ? match[1] : false;
     };
-    
+
     if (parseInt(getAndroidVersion()) == 4) {
         $('#t3-mainnav').addClass('t3-mainnav-android');
     }
@@ -69,7 +69,7 @@ jQuery (document).ready(function($){
 
         $btn = $(this);
         $nav = $($btn.data('nav'));
-        $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
+        if (!$fixed) $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
 
         $nav.addClass ('off-canvas-current');
 
@@ -142,7 +142,7 @@ jQuery (document).ready(function($){
             return;
         }
         JA_isLoading=true;
-        
+
         //remove events
         $inner.off ('click', oc_hide);
         $close.off ('click', oc_hide);
@@ -181,11 +181,18 @@ jQuery (document).ready(function($){
             $inner.animate (p1);
             $nav.animate (p2);
         }
-        
+
     };
 
     var stopBubble = function (e) {
         e.stopPropagation();
         return true;
     }
+
+    // preload fixed items
+    $(window).load(function() {
+      setTimeout(function(){
+        $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
+      }, 100);
+    });
 })
