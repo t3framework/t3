@@ -1,3 +1,15 @@
+<h2>Version: 2.4.9 (07/01/2015)</h2>
+
+<h3>Fix bugs</h3>
+- Off-canvas is lag when click on toggle button | <a href="https://github.com/t3framework/t3/commit/42676e0acafe4955313c6413ca33716b164868d4">Link</a>
+- Change <b> to <em> follow up WCAG 2.0 Level AA, AAA | <a href="https://github.com/t3framework/t3/commit/fc5bbda793a05a687b875ffde882ec66cffd5d3a">Link</a>
+- Fix Can't input text into the form in megamenu | <a href="https://github.com/t3framework/t3/commit/dfc6cde036b7081b04218c93d51b2fb6c84b607d">Link</a>
+- Fix cannot switch theme in thememagic | <a href="https://github.com/t3framework/t3/commit/0b532e1098aa94127c99f38be80dc03d9e01d1d7">Link</a>
+- Remove unnecessary mysql specific backticks (`````) from database | <a href="https://github.com/t3framework/t3/commit/042ed9c630095ed42a6096749d7b2f818ad4e527">Link</a>
+- Fix error hide menu when click to input | <a href="https://github.com/t3framework/t3/commit/d8795aab7da9f7e52366371d7789504b3e897bb3">Link</a>
+- Off-Canvas Gltch | <a 
+href="https://github.com/t3framework/t3/commit/7e4ae3890c344d55dac77e13ca5fb7505527b1d8">Link</a>
+
 <h2>Version: 2.4.8 (04/03/2015)</h2>
 
 <h3>Fix bugs</h3>
