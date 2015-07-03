@@ -590,7 +590,7 @@ class T3Template extends ObjectExtendable
 			if(strpos($body, '<body>') !== false){
 				$places[] = '<body>';
 				$contents[] = "<body>\n" . $openbody;
-			} else {	//in case the body has other attribute	
+			} else {	//in case the body has other attribute
 				$body = preg_replace('@<body[^>]*?>@msU', "$0\n" . $openbody, $body);
 				JResponse::setBody($body);
 			}
@@ -963,7 +963,7 @@ class T3Template extends ObjectExtendable
 		$doc = JFactory::getDocument();
 		$dir    = $doc->direction;
 		$is_rtl = ($dir == 'rtl');
-    
+
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
 		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded
 		// And upgrade jquery as our Framework require jquery 1.7+ if we are loading jquery from google
@@ -1039,6 +1039,8 @@ class T3Template extends ObjectExtendable
 
 				// remove rtl
 				$fname = preg_replace ('@(^|/)rtl/@mi', '\1', $fname);
+				// remove local
+				$fname = preg_replace ('@^local/@mi', '', $fname);
 
 				// if (($devmode || $themermode) && is_file(T3_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
 				if (($devmode || $themermode)) {
