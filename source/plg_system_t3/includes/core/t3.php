@@ -1,14 +1,14 @@
 <?php
-/** 
+/**
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
  * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         http://t3-framework.org
  *------------------------------------------------------------------------------
  */
 
@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 
 class T3 {
-	
+
 	protected static $t3app = null;
 
 	protected static $tmpl  = null;
@@ -41,7 +41,7 @@ class T3 {
 			trigger_error('T3::import not found object: ' . $package, E_USER_ERROR);
 		}
 	}
-  
+
 	/**
 	 * Register class with Joomla Loader. Override joomla core if $import_key avaiable
 	 *
@@ -51,7 +51,7 @@ class T3 {
     if (!empty($import_key)) jimport($import_key);
     JLoader::register ($class, $path);
   }
- 
+
 	/**
 	 * @param   object  $tpl  template object to initialize if needed
 	 * @return  bool|null|T3Admin
@@ -59,9 +59,9 @@ class T3 {
 	public static function getApp($tpl = null){
 		if(empty(self::$t3app)){
 			$japp = JFactory::getApplication();
-			self::$t3app = $japp->isAdmin() ? self::getAdmin() : self::getSite($tpl); 
+			self::$t3app = $japp->isAdmin() ? self::getAdmin() : self::getSite($tpl);
 		}
-		
+
 		return self::$t3app;
 	}
 
@@ -72,7 +72,7 @@ class T3 {
 		$app       = JFactory::getApplication();
 		$input     = $app->input;
 		$coretheme = isset($xml->t3) && isset($xml->t3->base) ? trim((string)$xml->t3->base) : 'base';
-		
+
 		// check coretheme in media/t3/themes folder
 		// if not exists, use default base theme in T3
 		if (!$coretheme){
@@ -89,7 +89,7 @@ class T3 {
 				break;
 			}
 		}
-		
+
 		if(!defined('T3')){
 			// get ready for the t3 core base theme
 			include_once (T3_CORE_BASE_PATH . '/define.php');
@@ -100,7 +100,7 @@ class T3 {
 			exit;
 		}
 
-		define ('T3_TEMPLATE', $xml->tplname);
+		define ('T3_TEMPLATE', (String)$xml->tplname);
 		define ('T3_TEMPLATE_URL', JURI::root(true).'/templates/'.T3_TEMPLATE);
 		define ('T3_TEMPLATE_PATH', str_replace ('\\', '/', JPATH_ROOT) . '/templates/' . T3_TEMPLATE);
 		define ('T3_TEMPLATE_REL', 'templates/' . T3_TEMPLATE);
@@ -139,14 +139,14 @@ class T3 {
 			if(version_compare(JVERSION, '3.0', 'ge')){
 				// override core joomla class
 				// JViewLegacy
-        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');        
+        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');
         T3::register('JViewHtml',   T3_ADMIN_PATH . '/includes/joomla30/viewhtml.php');
 				// JModuleHelper
         T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla30/modulehelper.php');
 				// JPagination
-        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla30/pagination.php');        
+        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla30/pagination.php');
         // Register T3 Layout File to put a t3 base layer for layout files
-        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');        
+        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
 			} else {
 				// override core joomla class
 				// JView
@@ -184,7 +184,7 @@ class T3 {
 			$input->set('t3task', 'thememagic');
 		}
 	}
- 
+
 	public static function checkAction () {
 		// excute action by T3
 		if ($action = JFactory::getApplication()->input->getCmd ('t3action')) {
@@ -233,7 +233,7 @@ class T3 {
 		$type = 'Template'. JFactory::getApplication()->input->getCmd ('t3tp', '');
 		T3::import ('core/' . $type);
 
-		// create global t3 template object 
+		// create global t3 template object
 		$class = 'T3' . $type;
 		return new $class($tpl);
 	}
@@ -247,7 +247,7 @@ class T3 {
 		if (JError::$legacy) {
 			JError::setErrorHandling(E_ERROR, 'die');
 			JError::raiseError($code, $msg);
-			
+
 			exit;
 		} else {
 			throw new Exception($msg, $code);
@@ -265,12 +265,12 @@ class T3 {
 			$t3 = false; // set false
 			$app = JFactory::getApplication();
 			$input = $app->input;
-			
+
 			// get template name
 			$tplname = '';
 
 			if($input->getCmd ('t3action') && $input->getInt('styleid', '')) {
-				
+
 				$tplname = self::getTemplate(true);
 
 			} elseif ($app->isAdmin()) {
@@ -280,9 +280,9 @@ class T3 {
 					return false;
 				}
 
-				if($input->getCmd('option') == 'com_templates' && 
-					(preg_match('/style\./', $input->getCmd('task')) || 
-						$input->getCmd('view') == 'style' || 
+				if($input->getCmd('option') == 'com_templates' &&
+					(preg_match('/style\./', $input->getCmd('task')) ||
+						$input->getCmd('view') == 'style' ||
 						$input->getCmd('view') == 'template')){
 
 					$db    = JFactory::getDBO();
@@ -369,7 +369,7 @@ class T3 {
 			$app   = JFactory::getApplication();
 			$input = $app->input;
 			$id    = $input->getInt('styleid', $input->getInt('id'));
-				
+
 			if($id){
 				$db    = JFactory::getDbo();
 				$query = $db->getQuery(true);
@@ -386,7 +386,7 @@ class T3 {
 
 				$db->setQuery($query);
 				$template = $db->loadObject();
-				
+
 				if ($template) {
 					$registry = new JRegistry;
 					$registry->loadString($template->params);
@@ -400,7 +400,7 @@ class T3 {
 		if($name && self::$tmpl){
 			return self::$tmpl->template;
 		}
-		
+
 		return self::$tmpl;
 	}
 
