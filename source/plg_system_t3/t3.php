@@ -43,7 +43,7 @@ class plgSystemT3 extends JPlugin
 		if($input->getCmd('themer', 0) && ($t3tmid = $input->getCmd('t3tmid', 0))){
 			$user = JFactory::getUser();
 
-			if($t3tmid > 0 && ($user->authorise('core.manage', 'com_templates') || 
+			if($t3tmid > 0 && ($user->authorise('core.manage', 'com_templates') ||
 					(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], JUri::base()) !== false))){
 
 				$current = T3::getDefaultTemplate();
@@ -60,10 +60,10 @@ class plgSystemT3 extends JPlugin
 					$tm = $db->loadObject();
 
 					if (is_object($tm) && file_exists(JPATH_THEMES . '/' . $tm->template)) {
-						
+
 						$app->setTemplate($tm->template, (new JRegistry($tm->params)));
 						// setTemplate is buggy, we need to update more info
-						// update the template 
+						// update the template
 						$template = $app->getTemplate(true);
 						$template->id = $t3tmid;
 						$template->home = $tm->template;
@@ -79,9 +79,9 @@ class plgSystemT3 extends JPlugin
 
 			T3Bot::preload();
 			$template = T3::detect();
-			
+
 			if ($template) {
-				
+
 				// load the language
 				$this->loadLanguage();
 
@@ -186,9 +186,13 @@ class plgSystemT3 extends JPlugin
 	{
 
 		if(defined('T3_PLUGIN')){
+			$form_name = $form->getName();
+			// make it compatible with AMM
+			if ($form_name == 'com_advancedmodules.module') $form_name = 'com_modules.module';
+
 			if (T3::detect() && (
-				$form->getName() == 'com_templates.style'
-				|| $form->getName() == 'com_config.templates' 
+				$form_name == 'com_templates.style'
+				|| $form_name == 'com_config.templates'
 			)) {
 
 				$_form = clone $form;
@@ -203,10 +207,10 @@ class plgSystemT3 extends JPlugin
 
 				//search for global parameters and store in user state
 				$app      = JFactory::getApplication();
-				$gparams = array();				
+				$gparams = array();
 				foreach($_form->getGroup('params') as $param){
 					if($_form->getFieldAttribute($param->fieldname, 'global', 0, 'params')){
-						$gparams[] = $param->fieldname; 
+						$gparams[] = $param->fieldname;
 					}
 				}
 				$this->gparams = $gparams;
@@ -219,14 +223,14 @@ class plgSystemT3 extends JPlugin
 				$formpath = $tplpath . '/etc/form/';
 				JForm::addFormPath($formpath);
 
-				$extended = $formpath . $form->getName() . '.xml';
+				$extended = $formpath . $form_name . '.xml';
 				if (is_file($extended)) {
 					JFactory::getLanguage()->load('tpl_' . $tmpl, JPATH_SITE);
-					$form->loadFile($form->getName(), false);
+					$form->loadFile($form_name, false);
 				}
 
 				// load extra fields for specified module in format com_modules.module.module_name.xml
-				if ($form->getName() == 'com_modules.module') {
+				if ($form_name == 'com_modules.module') {
 					$module = isset($data->module) ? $data->module : '';
 					if (!$module) {
 						$jform = JFactory::getApplication()->input->get ("jform", null, 'array');
@@ -244,7 +248,7 @@ class plgSystemT3 extends JPlugin
 			}
 
 			// Extended by T3
-			$extended = T3_ADMIN_PATH . '/admin/form/' . $form->getName() . '.xml';
+			$extended = T3_ADMIN_PATH . '/admin/form/' . $form_name . '.xml';
 			if (is_file($extended)) {
 				$form->loadFile($extended, false);
 			}
@@ -258,7 +262,7 @@ class plgSystemT3 extends JPlugin
 			//get new params value
 			$japp = JFactory::getApplication();
 			$params = new JRegistry;
-			$params->loadString($data->params);						
+			$params->loadString($data->params);
 			//if we have any changed, we will update to global
 			if (isset($this->gparams) && count($this->gparams)) {
 
@@ -345,7 +349,7 @@ class plgSystemT3 extends JPlugin
 	{
 		// Detect layout path in T3 themes
 		if (defined('T3_PLUGIN') && T3::detect()) {
-			
+
 			T3::import('core/path');
 
 			$tPath = T3Path::getPath('html/' . $module . '/' . $layout . '.php');
@@ -353,7 +357,7 @@ class plgSystemT3 extends JPlugin
 				return $tPath;
 			}
 		}
-		
+
 		return false;
 	}
 
