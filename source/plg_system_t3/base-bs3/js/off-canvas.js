@@ -70,6 +70,7 @@ jQuery (document).ready(function($){
         $btn = $(this);
         $nav = $($btn.data('nav'));
         if (!$fixed) $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
+        else $fixed = $fixed.filter (function() {return $(this).css("position") === 'fixed';}).add($inner.find('.affix'));
 
         $nav.addClass ('off-canvas-current');
 
