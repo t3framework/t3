@@ -16,7 +16,7 @@
 	$(document).ready(function(){
 		
 		//frontend edit radio on/off - auto convert on-off radio if applicable
-		$('fieldset.radio').filter(function(){
+		var $onoff = $('fieldset.radio').filter(function(){
 			
 			return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
 					return $.inArray(this.value + '', ['0', '1']) !== -1;
@@ -25,8 +25,11 @@
 		}).addClass('t3onoff').removeClass('btn-group');
 
 		//add class on/off
-		$('fieldset.t3onoff').find('label').addClass(function(){
-			return $(this).hasClass('off') || $(this).prev('input').val() == '0' ? 'off' : 'on'
+		$onoff.find('label').addClass(function(){
+			var $this = $(this), $input = $this.prev('input'),
+			cls = $this.hasClass('off') || $input.val() == '0' ? 'off' : 'on';
+			cls += $input.prop('checked') ? ' active' : '';
+			return cls;
 		});
 
 		//listen to all
@@ -41,11 +44,6 @@
 			}
 		});
 
-		//initial state
-		$('.radio input[checked=checked]').each(function(){
-			$('label[for=' + $(this).attr('id') + ']').addClass('active');
-		});
-		
 	});
 	
 }(jQuery);
