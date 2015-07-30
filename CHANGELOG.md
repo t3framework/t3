@@ -1,3 +1,16 @@
+<h2>Version: 2.5.0 (07/30/2015)</h2>
+
+<h3>Fix bugs</h3>
+- Megamenu new feature: support tab-style in megamenu | <a href="https://github.com/t3framework/t3/commit/80ca609d219ed45ce49c742d5e5facf396a9930a">Link</a>
+- Fix frond-end edit on-off button | <a href="https://github.com/t3framework/t3/commit/86592cecf349bd7dc3be388bd695bb55565822c6">Link</a>
+- Sticky main menu (affix) jumps when off-canvas is opened | <a href="https://github.com/t3framework/t3/commit/ffa921c98f9efc96532586442dfe1dc96e2884ac">Link</a>
+- Make compatible with AMM | <a 
+href="https://github.com/t3framework/t3/commit/e5d148cbaa08a1668ffefb6c7e60a16bc2905c39">Link</a>
+- Fix compatibility with HHVM | <a href="https://github.com/t3framework/t3/commit/1db47129744196dfba677d0b96ea3e2b05de9f7e">Link</a>
+- Correct front-edit module url | <a href="https://github.com/t3framework/t3/commit/4884d667821d80a040603f678fa1aa54e879e695">Link</a>
+- Update new changes for module front-end edit layout. | <a href="https://github.com/t3framework/t3/commit/ef156c315f9e7c920d106a2d3fbc3c3a30a989a2">Link</a>
+- Fix less override in local folder | <a 
+href="https://github.com/t3framework/t3/commit/4f28e7fd11f94f53c59adaec8ddea655d9d7283d">Link</a>
 
 <h2>Version: 2.4.9 (07/01/2015)</h2>
 
