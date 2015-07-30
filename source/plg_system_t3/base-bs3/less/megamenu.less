@@ -287,7 +287,39 @@
     top: auto;
   }
 
-  // End
+
+  // Menu tab
+  // --------------
+  	.mega-tab > div {
+	  position: relative;
+	}
+	.mega-tab > div > ul {
+	  width: @t3-mega-dropdown-min-width;
+	}
+	
+	.mega-tab > div > ul > li {
+	  position: static;
+	}
+	
+	.mega-tab > div > ul > li > .dropdown-menu{
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: @t3-mega-dropdown-min-width;
+	}
+	
+	.mega-tab > div > ul > li > .mega-dropdown-menu {
+	  	border: none;
+	  	box-shadow: none;
+	}
+
+	.mega-tab > div > ul > li > .mega-dropdown-menu > div {
+	  	opacity: 1!important;
+		margin-left: 0!important;
+		transition: none!important;
+	}
+  // End 
 }
 
 

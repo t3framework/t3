@@ -273,6 +273,18 @@ defined('_JEXEC') or die;
                   </fieldset>
                 </li>
               </ul>
+              <ul>  
+                <li>
+                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_GROUP_STYLE', 'T3_NAVIGATION_MM_GROUP_STYLE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_GROUP_STYLE') ?></label>
+                  <fieldset class="radio btn-group toolcol-groupstyle">
+                    <input type="radio" id="toggleGroupStyle0" class="toolbox-input" name="toggleGroupStyle" data-name="groupstyle" value="0" checked="checked"/>
+                    <label for="toggleGroupStyle0"><?php echo JText::_('JNO') ?></label>
+                    <input type="radio" id="toggleGroupStyle1" class="toolbox-input" name="toggleGroupStyle" data-name="groupstyle" value="1"/>
+                    <label for="toggleGroupStyle1"><?php echo JText::_('JYES') ?></label>
+                  </fieldset>
+                </li>
+              </ul>
+              
             </div>    
           </div> 
 

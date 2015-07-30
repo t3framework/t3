@@ -167,6 +167,31 @@
 .t3-megamenu .nav [class*=" icon-"] {
   margin-right: 5px;
 }
+.t3-megamenu .mega-tab > div {
+  position: relative;
+}
+.t3-megamenu .mega-tab > div > ul {
+  width: 200px;
+}
+.t3-megamenu .mega-tab > div > ul > li {
+  position: static;
+}
+.t3-megamenu .mega-tab > div > ul > li > .dropdown-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 200px;
+}
+.t3-megamenu .mega-tab > div > ul > li > .mega-dropdown-menu {
+  border: none;
+  box-shadow: none;
+}
+.t3-megamenu .mega-tab > div > ul > li > .mega-dropdown-menu > div {
+  opacity: 1 !important;
+  margin-left: 0 !important;
+  transition: none !important;
+}
 @media (min-width: 768px) {
   .t3-megamenu.animate .mega  > .mega-dropdown-menu {
     transition: all 400ms;

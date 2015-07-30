@@ -117,6 +117,10 @@ class T3MenuMegamenuTpl
 			$cls  .= " hidden-collapse";
 			$data .= " data-hidewcol=\"1\"";
 		}
+		if (isset($setting['groupstyle']) && $setting['groupstyle']) {
+			$cls  .= " " . $setting['groupstyle'];
+			$data .= " data-groupstyle=\"{$setting['groupstyle']}\"";
+		}
 
 		return "<div class=\"$cls\" $data><div class=\"mega-inner\">";
 	}

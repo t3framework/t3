@@ -634,6 +634,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				/* enable/disable module chosen */
 				if (currentSelected.find ('.mega-nav').length > 0) {
 					$('.toolcol-position').parent().addClass('disabled');
+				} else {
+					$('.toolcol-groupstyle').parent().addClass('disabled');	
 				}
 				// disable choose width if signle column
 				if (currentSelected.parent().children().length == 1) {
@@ -649,8 +651,10 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				} else {
 					// toggle disable
 					update_toggle (toggle, 0);
-				}	
-					
+				}
+				
+				// toggle group style
+				update_toggle ($('.toolcol-groupstyle'), currentSelected.data('groupstyle') == 'mega-tab' ? 1 : 0);
 				break;
 		}
 	}
@@ -755,6 +759,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						currentSelected.find('.mega-inner').html('');
 					}
 					currentSelected.data (name, value);
+				}
+				break;
+			case 'groupstyle':
+				console.log(name + ':' + value);
+				if (value == 1) {
+					currentSelected.data (name, 'mega-tab').addClass('mega-tab');					
+				} else {
+					currentSelected.data (name, '').removeClass('mega-tab');
 				}
 				break;
 		}

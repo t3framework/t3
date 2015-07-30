@@ -735,6 +735,39 @@ body.bd {
   margin-left: -1px;
 }
 
+.mega-tab {
+  position: relative;
+}
+.mega-tab > div > ul {
+  width: 200px;
+}
+
+.mega-tab > div > ul > li {
+  position: static;
+}
+
+.mega-tab > div > ul > li > .dropdown-menu{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 200px;
+}
+
+.mega-tab > div > ul > li > .mega-dropdown-menu {
+  	border: none;
+  	box-shadow: none;
+}
+
+.mega-tab > div > ul > li:first-child > .mega-dropdown-menu {
+	display: block;
+  	opacity: 1!important;
+}	
+
+.mega-tab > div > ul > li > .mega-dropdown-menu > div {
+	margin-left: 0!important;
+	transition: none!important;
+}
 /* Fix not hide element in admin when adding hidden class */
 #t3-admin-mm-container .hidden-xs,
 #t3-admin-mm-container .hidden-sm,
