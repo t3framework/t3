@@ -50,25 +50,20 @@ class JFormFieldT3FolderList extends JFormFieldFolderList
 		$table->load((int) JFactory::getApplication()->input->getInt('id'));
 		// update path to this template 
 		$path = (string) $this->element['directory'];
-		if (!is_dir($path))
-		{
-			// process path in template
-			$options = array();
-			$vals = array();
-			// get all path in template
-			$paths = T3Path::getAllPath ($path);
-			foreach ($paths as $path) {
-				$this->directory = $this->element['directory'] = $path;
-				$tmps = parent::getOptions();
-				foreach ($tmps as $tmp) {
-					if (in_array($tmp->value, $vals)) continue;
-					$vals[] = $tmp->value;
-					$options[] = $tmp;
-				}
+		// process path in template
+		$options = array();
+		$vals = array();
+		// get all path in template
+		$paths = T3Path::getAllPath ($path);
+		foreach ($paths as $path) {
+			$this->directory = $this->element['directory'] = $path;
+			$tmps = parent::getOptions();
+			foreach ($tmps as $tmp) {
+				if (in_array($tmp->value, $vals)) continue;
+				$vals[] = $tmp->value;
+				$options[] = $tmp;
 			}
-			return $options;
 		}
-		
- 		return parent::getOptions();
+		return $options;
 	}
 }

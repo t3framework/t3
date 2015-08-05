@@ -56,9 +56,7 @@ class JFormFieldT3LayoutList extends JFormFieldFileList
 	{
 		// update path to this template 
 		$path = (string) $this->element['directory'];
-		if (!is_dir($path)) {
-			$this->directory = $this->element['directory'] = T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
-		}
+		$this->directory = $this->element['directory'] = T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
 
 		$options = parent::getOptions();
 
