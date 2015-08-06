@@ -232,8 +232,8 @@
 				<option value="click">T3_NAVIGATION_TRIG_CLICK</option>
 			</field>
 
-			<field name="navigation_mm_legend" type="t3depend" function="@legend" label="T3_NAVIGATION_MM_GROUP_LABEL"
-						 description="T3_NAVIGATION_MM_GROUP_DESC"/>
+			<field name="navigation_mm_legend" type="t3depend" function="@legend" label="T3_NAVIGATION_MM_CONFIG_GROUP_LABEL"
+						 description="T3_NAVIGATION_MM_CONFIG_GROUP_DESC"/>
 
 			<field name="navigation_type" type="radio" class="t3onoff" default="megamenu"
 						 global="1"
