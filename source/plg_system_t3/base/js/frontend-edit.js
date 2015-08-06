@@ -16,16 +16,14 @@
 	$(document).ready(function(){
 		
 		//frontend edit radio on/off - auto convert on-off radio if applicable
-		var $onoff = $('fieldset.radio').filter(function(){
-			
+		$('fieldset.radio').filter(function(){
 			return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
 					return $.inArray(this.value + '', ['0', '1']) !== -1;
 				}).length == 2;
-
 		}).addClass('t3onoff').removeClass('btn-group');
 
 		//add class on/off
-		$onoff.find('label').addClass(function(){
+		$('fieldset.t3onoff').find('label').addClass(function(){
 			var $this = $(this), $input = $this.prev('input'),
 			cls = $this.hasClass('off') || $input.val() == '0' ? 'off' : 'on';
 			cls += $input.prop('checked') ? ' active' : '';
