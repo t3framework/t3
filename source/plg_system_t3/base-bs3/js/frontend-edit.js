@@ -19,7 +19,7 @@
 		var $onoff = $('fieldset.radio').filter(function(){
 			
 			return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
-					return $.inArray(this.value + '', ['0', '1']) !== -1;
+					return $.inArray(this.value + '', ['0', '1', 't3bootstrap', 'megamenu']) !== -1;
 				}).length == 2;
 
 		}).addClass('t3onoff').removeClass('btn-group');
