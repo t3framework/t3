@@ -340,7 +340,7 @@ class T3 {
 				->select('id, home, template, s.params')
 				->from('#__template_styles as s')
 				->where('s.client_id = 0')
-				->where('s.home = 1')
+				->where('s.home = \'1\'')
 				->where('e.enabled = 1')
 				->leftJoin('#__extensions as e ON e.element=s.template AND e.type='.$db->quote('template').' AND e.client_id=s.client_id');
 
