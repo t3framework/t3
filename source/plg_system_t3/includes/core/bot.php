@@ -316,7 +316,7 @@ class T3Bot extends JObject
 				<form>
 					<fields name="params">
 						<fieldset name="addon_params" label="T3_ADDON_LABEL" description="T3_ADDON_DESC">
-					    <field type="t3depend" function="@legend" label="T3_ADDON_THEME_EXTRAS_LABEL" description="T3_ADDON_THEME_EXTRAS_DESC" />
+					    <field type="t3depend" name="t3_addon_theme_extra" function="@legend" label="T3_ADDON_THEME_EXTRAS_LABEL" description="T3_ADDON_THEME_EXTRAS_DESC" />
 				';
 							foreach ($extras as $extra) {
 								$_xml .= '
