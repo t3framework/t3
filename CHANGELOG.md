@@ -1,3 +1,15 @@
+<h2>Version: 2.5.1 (08/09/2015)</h2>
+
+<h3>Fix bugs</h3>
+- Fix duplicate legend for Template Extended Styles | <a href="https://github.com/t3framework/t3/commit/b33a83118be680e1d213e26050d863e71203d8ff">Link</a>
+- Update icons.php | <a 
+href="https://github.com/t3framework/t3/commit/2cfaefb18370bf8aa55fa4a1991d379ae05504ab">Link</a>
+- On PostgreSQL doesn't allow to acces content managment, neither user managment | <a href="https://github.com/t3framework/t3/commit/4f365f383fdede0e3e95903a47a65dbe62ccd67a">Link</a>
+- Resolve Overrides Language Constant | <a 
+href="https://github.com/t3framework/t3/commit/137bfeadc95a0f56639a9e69e25689dbaff7c51e">Link</a>
+- Fix onoff button on front-end config | <a href="https://github.com/t3framework/t3/commit/150186f77270675f14a8d904ad0b7d75d0253747">Link</a>
+- Fix cannot list layouts in backend | <a href="https://github.com/t3framework/t3/commit/59ce9d125f8effaf5aa0fbb8fb09a0572d963845">Link</a>
+
 <h2>Version: 2.5.0 (07/30/2015)</h2>
 
 <h3>Fix bugs</h3>
