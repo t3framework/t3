@@ -320,7 +320,7 @@ class T3Bot extends JObject
 				';
 							foreach ($extras as $extra) {
 								$_xml .= '
-							<field name="theme_extras_'.$extra.'" global="1" type="menuitem" multiple="true" default="" label="'.$extra.'" description="'.$extra.'" published="true" class="t3-extra-setting">
+							<field name="theme_extras_'.$extra.'" global="1" type="menuitem" multiple="true" default="" label="'.$extra.'" description="'.$extra.'" published="1" class="t3-extra-setting">
 									<option value="-1">T3_ADDON_THEME_EXTRAS_ALL</option>
 									<option value="0">T3_ADDON_THEME_EXTRAS_NONE</option>
 							</field>';
