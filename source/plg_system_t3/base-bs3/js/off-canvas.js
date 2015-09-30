@@ -110,7 +110,7 @@ jQuery (document).ready(function($){
 
         $wrapper.scrollTop (scrollTop);
         // update effect class
-        $wrapper[0].className = $wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ').trim() +
+        $wrapper[0].className = $.trim($wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ')) +
             ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
 
         setTimeout(oc_show, 50);
