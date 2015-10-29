@@ -190,6 +190,7 @@
                    hide_default="false"
                     />
 
+			<field name="skip_component_content" type="menuitem" multiple="1" label="T3_LAYOUT_SKIPCONTENT_LABEL" description="T3_LAYOUT_SKIPCONTENT_DESC" />
 		</fieldset>
 
 		<fieldset name="navigation_params" label="T3_NAVIGATION_LABEL" description="T3_NAVIGATION_DESC">
