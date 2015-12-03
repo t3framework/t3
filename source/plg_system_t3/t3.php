@@ -136,6 +136,33 @@ class plgSystemT3 extends JPlugin
 				if (class_exists('T3Ajax')) {
 					T3Ajax::render();
 				}
+				
+				// allow load module/modules in component using jdoc:include
+				$doc = JFactory::getDocument();
+				$main_content = $doc->getBuffer('component');
+				if ($main_content) {
+					// parse jdoc
+					if (preg_match_all('#<jdoc:include\ type="([^"]+)"(.*)\/>#iU', $main_content, $matches))
+					{
+						$replace = array();
+						$with = array();
+				
+						// Step through the jdocs in reverse order.
+						for ($i = 0; $i < count($matches[0]); $i++)
+						{
+						$type = $matches[1][$i];
+						$attribs = empty($matches[2][$i]) ? array() : JUtility::parseAttributes($matches[2][$i]);
+						$name = isset($attribs['name']) ? $attribs['name'] : null;
+								$replace[] = $matches[0][$i];
+								$with[] = $doc->getBuffer($type, $name, $attribs);
+						}
+				
+						$main_content = str_replace($replace, $with, $main_content);
+				
+						// update buffer
+						$doc->setBuffer($main_content, 'component');
+					}
+				}				
 			}
 		}
 	}
