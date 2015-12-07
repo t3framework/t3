@@ -37,6 +37,8 @@ class T3TemplateLayout extends T3Template
 			$this->setParam('responsive', 0);
 		}
 		$this->setParam('devmode', 0);
+		// disable option skip component content when loading layout for admin
+		$this->setParam('skip_component_content', null);
 	}
 
 	/**
