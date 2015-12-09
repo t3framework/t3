@@ -1,3 +1,16 @@
+<h2>Version: 2.5.2 (12/09/2015)</h2>
+<h3>Improvements</h3>
+- Update fr-FR.plg_system_t3.ini | <a href="https://github.com/t3framework/t3/commit/1156a5adc0b34e1952d3c73e125c0f125e986ded">Link</a>
+- Allow using jdoc:include inside component | <a href="https://github.com/t3framework/t3/commit/77f360970948ba1363b88f6e7add1cace407e0e0">Link</a>
+
+<h3>Fix bugs</h3>
+- IE 8: Can't open off-canvas | <a href="https://github.com/t3framework/t3/commit/3f8914ea1b836f6f7ffa5a012d5c4c482978e642">Link</a>
+- Remove http:// in T3 logo for valid with https | <a 
+href="https://github.com/t3framework/t3/commit/7516563d8881196a6b1a31abfdde360a1e4e9eaf">Link</a>
+- Add option to skip component content for specific pages | <a href="https://github.com/t3framework/t3/commit/48ab1de7808ae6b7f8be7d7e0afe8ea0f7ad0ea2">Link</a>
+- Disable option skip component content when loading layout for admin | <a 
+href="https://github.com/t3framework/t3/commit/d6d7e4a9b8c1057f39ead4b7924ba1abcfb5042b">Link</a>
+
 <h2>Version: 2.5.1 (08/09/2015)</h2>
 
 <h3>Fix bugs</h3>
