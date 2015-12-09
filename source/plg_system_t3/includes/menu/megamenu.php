@@ -325,13 +325,13 @@ class T3MenuMegamenu {
 			->where('m.access IN ('.implode(',', $this->settings['access']).')');
 		$db->setQuery($query);
 		$module = $db->loadObject();
-		$doc = JFactory::getDocument();
 		
 		//check in case the module is unpublish or deleted
 		if ($module && $module->id) {
 			$style   = 'T3Xhtml';
-			$content = $doc->getBuffer('module', $module->module, 
-										array('title'=>$module->title, 'style'=>$style));
+			$content = JModuleHelper::renderModule($module, array(
+				'style' => $style
+			));
 
 			$app = JFactory::getApplication();
 			$frontediting = $app->get('frontediting', 1);
