@@ -47,7 +47,8 @@ class T3MenuMegamenuTpl
 		}
 		if ($cls) $cls = 'class="' . trim($cls) . '"';
 
-		return '<ul ' . $cls . '>';
+		return '<ul itemscope itemtype="http://www.schema.org/SiteNavigationElement" ' . $cls . '>';
+
 	}
 
 	static function endnav($vars)
@@ -164,7 +165,7 @@ class T3MenuMegamenuTpl
 
 		if ($cls) $cls = 'class="' . trim($cls) . '"';
 
-		return "<li $cls $data>";
+		return "<li itemprop='name' $cls $data>";
 	}
 
 	static function enditem($vars)
@@ -245,16 +246,16 @@ class T3MenuMegamenuTpl
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-				$link = "<a class=\"$class\" href=\"$flink\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" href=\"$flink\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 
@@ -293,15 +294,15 @@ class T3MenuMegamenuTpl
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 			case 2:
 				// window.open
-				$link = "<a class=\"$class\" href=\"{$item->flink}\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\"" : "") . " $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" href=\"{$item->flink}\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\"" : "") . " $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 		endswitch;
 
