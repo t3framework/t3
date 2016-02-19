@@ -572,44 +572,39 @@ class T3Template extends ObjectExtendable
 	 */
 	function snippet()
 	{
-
 		$places   = array();
 		$contents = array();
 
 		if (($openhead = $this->getParam('snippet_open_head', ''))) {
-			$places[] = '<head>';	//not sure that any attritube can be place in head open tag, profile is not support in html5
+			$places[] = '@^\s*<head>\s*$@msU';	//not sure that any attritube can be place in head open tag, profile is not support in html5
 			$contents[] = "<head>\n" . $openhead;
 		}
 		if (($closehead = $this->getParam('snippet_close_head', ''))) {
-			$places[] = '</head>';
+			$places[] = '@^\s*</head>\s*$@msU';
 			$contents[] = $closehead . "\n</head>";
 		}
 		if (($openbody = $this->getParam('snippet_open_body', ''))) {
-			$body = JResponse::getBody();
-
-			if(strpos($body, '<body>') !== false){
-				$places[] = '<body>';
-				$contents[] = "<body>\n" . $openbody;
-			} else {	//in case the body has other attribute
-				$body = preg_replace('@<body[^>]*?>@msU', "$0\n" . $openbody, $body);
-				JResponse::setBody($body);
-			}
+			$places[] = '@^\s*<body[^>]*>\s*$@msU';
+			$contents[] = "<body>\n" . $openbody;
 		}
 
 		// append modules in debug position
-		if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
-			$places[] = '</body>';
-			$contents[] = '<div class="t3-debug">' . $this->getBuffer('modules', 'debug') . "</div>\n</body>";
+		if ($this->getParam('snippet_debug', 0) && $this->countModules('debug') || ($closebody = $this->getParam('snippet_close_body', ''))) {
+			$places[] = '@^\s*</body>\s*$@msU';
+			$replacefooter = '';
+			if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
+				$replacefooter .= '<div class="t3-debug">' . $this->getBuffer('modules', 'debug') . "</div>\n";
+			}
+			if (($closebody = $this->getParam('snippet_close_body', ''))) {
+				$replacefooter .= $closebody . "\n";
+			}
+			$replacefooter .= "</body>";
+			$contents[] = $replacefooter;
 		}
 
-		if (($closebody = $this->getParam('snippet_close_body', ''))) {
-			$places[] = '</body>';
-			$contents[] = $closebody . "\n</body>";
-		}
-
-		if (count($places)) {
+		if (count($places)) {			
 			$body = JResponse::getBody();
-			$body = str_replace($places, $contents, $body);
+			$body = preg_replace($places, $contents, $body);
 
 			JResponse::setBody($body);
 		}
