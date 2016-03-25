@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
 <div id="t3-off-canvas" class="t3-off-canvas <?php $this->_c('off-canvas') ?>">
 
   <div class="t3-off-canvas-header">
-    <h2 class="t3-off-canvas-header-title">Sidebar</h2>
+    <h2 class="t3-off-canvas-header-title"><?php echo JText::_('TPL_SIDE_BAR') ?></h2>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
 
