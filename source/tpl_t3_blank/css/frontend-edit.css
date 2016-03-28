@@ -165,3 +165,21 @@ fieldset.radio.btn-group label.active {
   vertical-align: middle;
   width: 220px;
 }
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: FontAwesome !important;
+}
+.view-history .btn-group {
+  margin-bottom: 10px;
+}
+.btn [class^="icon-"],
+.btn [class*=" icon-"] {
+  margin-right: 5px;
+}
+.btn span.icon-delete:before {
+  content: "\f057";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  color: #333;
+}

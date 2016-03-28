@@ -628,3 +628,28 @@ fieldset.radio.btn-group {
   cursor: pointer;
   margin-left: 5px;
 }
+
+// View history
+// ------------
+[class^="icon-"], [class*=" icon-"] {
+  font-family: FontAwesome3 !important;
+}
+
+.view-history .btn-group {
+  margin-bottom: 10px;
+}
+
+.btn [class^="icon-"],
+.btn [class*=" icon-"] {
+  margin-right: 5px;
+}
+
+.btn span.icon-delete {
+  &:before {
+    content: "\f057";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    color: #333;
+  }
+}
