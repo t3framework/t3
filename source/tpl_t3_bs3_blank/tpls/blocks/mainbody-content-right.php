@@ -7,6 +7,10 @@
 
 
 defined('_JEXEC') or die;
+
+if (is_array($this->getParam('skip_component_content')) && 
+  in_array(JFactory::getApplication()->input->getInt('Itemid'), $this->getParam('skip_component_content'))) 
+return;
 ?>
 
 <?php
