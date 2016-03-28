@@ -1,3 +1,19 @@
+<h2>Version: 2.5.3 (28/03/2016)</h2>
+<h3>Improvements</h3>
+- Update bootstrap latest version 3.3.6 | <a href="https://github.com/t3framework/t3/commit/892ccb74912874eae93aa58ee75716193723d813">Link</a>
+- Update Font Awesome Icons | <a href="https://github.com/t3framework/t3/commit/fdea5628223d331e5f0098b8445f360a319bab23">Link</a>
+
+<h3>Fix bugs</h3>
+- SEO - Schema Data for MegaMenu | <a href="https://github.com/t3framework/t3/commit/12dc13b4096b5200604157a3b41e0204a4dcfb4a">Link</a>
+- Fix wrong insert Custom Code in some case | <a 
+href="https://github.com/t3framework/t3/commit/e30c4430e4016b6837fec534ba64a7fa2eb753eb">Link</a>
+- Change sidebar title to language string | <a href="https://github.com/t3framework/t3/commit/165e99fd17243000f26ae0f4e30766c8a8a5a4ce">Link</a>
+- JURI::base(true) does not work in Joomla 3.5 | <a 
+href="https://github.com/t3framework/t3/commit/098388b21e2d24a84ab2b179aedc6ad91bf4aac6">Link</a>
+- Missing icon font on editor | <a href="https://github.com/t3framework/t3/commit/ba66212bb23e75fbcf8617a8936ec51b578a9b90">Link</a>
+- Message alert displays error in thememagic  | <a 
+href="https://github.com/t3framework/t3/commit/e88bc8104823e8946f23b47bbc45d95cf5290cdb">Link</a>
+
 <h2>Version: 2.5.2 (12/09/2015)</h2>
 <h3>Improvements</h3>
 - Update fr-FR.plg_system_t3.ini | <a href="https://github.com/t3framework/t3/commit/1156a5adc0b34e1952d3c73e125c0f125e986ded">Link</a>
