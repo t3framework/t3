@@ -765,7 +765,7 @@ var T3Theme = window.T3Theme || {};
 
 			T3Theme.jalert = $([
 				'<div class="alert alert-', (type || 'info'), '">',
-					'<button type="button" class="close" data-dismiss="alert">×</button>',
+					'<button type="button" class="close" data-dismiss="alert">&#215;</button>',
 					(title ? '<h4 class="alert-heading">' + title + '</h4>' : ''),
 					'<p>', msg, '</p>',
 				'</div>'].join(''))
