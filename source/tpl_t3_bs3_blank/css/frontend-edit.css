@@ -435,3 +435,7 @@ fieldset.radio.btn-group label.active {
   width: 16px;
   color: #333;
 }
+
+.layout-pagebreak .form-horizontal .control-group .controls {
+  margin-left: 0;
+}
