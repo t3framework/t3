@@ -20,12 +20,12 @@ $logoimgsm = ($logotype == 'image' && $this->params->get('enable_logoimage_sm', 
     <!-- LOGO -->
     <div class="span8 logo">
       <div class="logo-<?php echo $logotype, ($logoimgsm ? ' logo-control' : '') ?>">
-        <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>">
+        <a href="<?php echo JUri::base(true) ?>" title="<?php echo strip_tags($sitename) ?>">
           <?php if($logotype == 'image'): ?>
-            <img class="logo-img" src="<?php echo JURI::base(true) . '/' . $logoimage ?>" alt="<?php echo strip_tags($sitename) ?>" />
+            <img class="logo-img" src="<?php echo JUri::base(true) . '/' . $logoimage ?>" alt="<?php echo strip_tags($sitename) ?>" />
           <?php endif ?>
           <?php if($logoimgsm) : ?>
-            <img class="logo-img-sm" src="<?php echo JURI::base(true) . '/' . $logoimgsm ?>" alt="<?php echo strip_tags($sitename) ?>" />
+            <img class="logo-img-sm" src="<?php echo JUri::base(true) . '/' . $logoimgsm ?>" alt="<?php echo strip_tags($sitename) ?>" />
           <?php endif ?>
           <span><?php echo $sitename ?></span>
         </a>
