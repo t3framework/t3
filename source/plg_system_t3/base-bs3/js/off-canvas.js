@@ -125,7 +125,7 @@ jQuery (document).ready(function($){
         $wrapper.addClass ('off-canvas-open');
         $inner.on ('click', oc_hide);
         $close.on ('click', oc_hide);
-        $offcanvas.on ('click', stopBubble);
+        $offcanvas.on ('click', handleClick);
 
         // fix for old ie
         if ($.browser.msie && $.browser.version < 10) {
@@ -147,7 +147,7 @@ jQuery (document).ready(function($){
         //remove events
         $inner.off ('click', oc_hide);
         $close.off ('click', oc_hide);
-        $offcanvas.off ('click', stopBubble);
+        $offcanvas.off ('click', handleClick);
 
         //delay for click action
         setTimeout(function(){
@@ -185,9 +185,27 @@ jQuery (document).ready(function($){
 
     };
 
+    var handleClick = function (e) {
+        if (e.target.tagName == 'A') {
+            oc_hide();
+            // handle the anchor link
+            var arr1 = e.target.href.split('#'),
+                arr2 = location.href.split('#');
+            if (arr1[0] == arr2[0] && arr1.length > 1) {
+                setTimeout(function(){
+                    var anchor = $("a[name='"+ arr1[1] +"']");
+                    if (!anchor.length) anchor = $('#' + arr1[1]);
+                    $('html,body').animate({scrollTop: anchor.offset().top},'slow');
+                }, 500);
+            }
+            return ;
+        }
+        stopBubble(e);
+        return true;
+    }
+
     var stopBubble = function (e) {
         e.stopPropagation();
-        return true;
     }
 
     // preload fixed items
