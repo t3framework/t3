@@ -1,3 +1,10 @@
+<h2>Version: 2.5.4 (07/04/2016)</h2>
+<h3>Fix bugs</h3>
+- Fix error style when add a module position on front-end edit. | <a href="https://github.com/t3framework/t3/commit/ea6945de71e7a7ff8c8fb20f1e416f0462ad042e">Link</a>
+- Fix js error on smart search page | <a 
+href="https://github.com/t3framework/t3/commit/9c3dad54fac5d283bd679a0edc57beaa4d91a6df">Link</a>
+- Fix click on anchor in offvanvas menu. Fix #433 | <a href="https://github.com/t3framework/t3/commit/a8e188fdaebc148a8383e560aaf632d58d7e02fb">Link</a>
+
 <h2>Version: 2.5.3 (28/03/2016)</h2>
 <h3>Improvements</h3>
 - Update bootstrap latest version 3.3.6 | <a href="https://github.com/t3framework/t3/commit/892ccb74912874eae93aa58ee75716193723d813">Link</a>
