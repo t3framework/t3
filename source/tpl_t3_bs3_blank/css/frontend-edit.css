@@ -166,6 +166,25 @@
   clear: both;
   padding-top: 5px;
 }
+.window.view-modules .well .control-label {
+  display: inline-block;
+}
+.window.view-modules .well .controls {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.window.view-modules .control-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.window.view-modules #filter-bar {
+  margin-bottom: 10px;
+}
+.window.view-modules #filter-bar .btn-group button {
+  margin-top: 0;
+}
 .window #imageForm {
   margin: 0;
   width: auto;
@@ -417,6 +436,9 @@ fieldset.radio.btn-group label.active {
   cursor: pointer;
   margin-left: 5px;
 }
+.layout-pagebreak .form-horizontal .control-group .controls {
+  margin-left: 0;
+}
 [class^="icon-"],
 [class*=" icon-"] {
   font-family: FontAwesome3 !important;
@@ -434,8 +456,4 @@ fieldset.radio.btn-group label.active {
   height: 16px;
   width: 16px;
   color: #333;
-}
-
-.layout-pagebreak .form-horizontal .control-group .controls {
-  margin-left: 0;
 }
