@@ -44,6 +44,7 @@ JHtml::_('bootstrap.tooltip');
 
 <!-- Article -->
 <article itemscope itemtype="http://schema.org/Article">
+  <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>
 	<meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language; ?>" />
 
 <?php if ($params->get('show_title')) : ?>

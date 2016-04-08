@@ -42,7 +42,7 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 	    <!-- //Aside -->
 
 			<?php if ($params->get('show_intro')) :?>
-				<div class="intro" itemprop="articleBody"> <?php echo JHtml::_('string.truncateComplex', $item->introtext, $params->get('introtext_limit')); ?> </div>
+				<div class="intro"> <?php echo JHtml::_('string.truncateComplex', $item->introtext, $params->get('introtext_limit')); ?> </div>
 			<?php endif; ?>
 
     <!-- footer -->

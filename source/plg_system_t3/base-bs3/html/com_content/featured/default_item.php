@@ -48,7 +48,7 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
     <?php endif; ?>
     <!-- //Aside -->
 
-		<section class="article-intro clearfix" itemprop="articleBody">
+		<section class="article-intro clearfix">
 
 			<?php if (!$params->get('show_intro')) : ?>
 				<?php echo $this->item->event->afterDisplayTitle; ?>

@@ -23,7 +23,7 @@ $prefix = $uri->toString(array('scheme', 'host', 'port'));
 ?>
 
 <header class="article-header clearfix">
-	<<?php echo $title_tag; ?> class="article-title" itemprop="name">
+	<<?php echo $title_tag; ?> class="article-title" itemprop="headline">
 		<?php if ($params->get('link_titles')) : ?>
 			<a href="<?php echo $url ?>" itemprop="url" title="<?php echo $this->escape($item->title); ?>">
 				<?php echo $this->escape($item->title); ?></a>

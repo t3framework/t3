@@ -55,7 +55,7 @@ if (empty ($this->item->catslug)) {
     <?php endif; ?>
     <!-- //Aside -->
 
-		<section class="article-intro clearfix" itemprop="articleBody">
+		<section class="article-intro clearfix">
 			<?php if (!$params->get('show_intro')) : ?>
 				<?php echo $this->item->event->afterDisplayTitle; ?>
 			<?php endif; ?>
