@@ -10,7 +10,6 @@
 defined('JPATH_BASE') or die;
 $item = $displayData['item'];
 $author = ($item->created_by_alias ? $item->created_by_alias : $item->author);
-$author = '<span itemprop="name">' . $author . '</span>';
 ?>
 
 <dd class="createdby hasTooltip" itemprop="author" title="<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', ''); ?>">
@@ -26,6 +25,6 @@ $author = '<span itemprop="name">' . $author . '</span>';
     <meta itemprop="width" content="auto" />
     <meta itemprop="height" content="auto" />
   </span>
-  <meta itemprop="name" content="<?php echo $author; ?>">
+  <meta itemprop="name" content="<?php echo $author; ?>"/>
   </span>
 </dd>
