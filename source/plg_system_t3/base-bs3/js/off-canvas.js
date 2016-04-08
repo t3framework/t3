@@ -187,11 +187,11 @@ jQuery (document).ready(function($){
 
     var handleClick = function (e) {
         if (e.target.tagName == 'A') {
-            oc_hide();
             // handle the anchor link
             var arr1 = e.target.href.split('#'),
                 arr2 = location.href.split('#');
-            if (arr1[0] == arr2[0] && arr1.length > 1) {
+            if (arr1[0] == arr2[0] && arr1.length > 1 && arr1[1].length) {
+                oc_hide();
                 setTimeout(function(){
                     var anchor = $("a[name='"+ arr1[1] +"']");
                     if (!anchor.length) anchor = $('#' + arr1[1]);
