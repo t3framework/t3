@@ -1,3 +1,10 @@
+<h2>Version: 2.5.5 (08/04/2016)</h2>
+<h3>Fix bugs</h3>
+- Fix got error when validate structure data  | <a href="https://github.com/t3framework/t3/commit/d54f7a45460518411c0c9e93a7819b980417e5e2">Link</a>
+- Update article info block  | <a 
+href="https://github.com/t3framework/t3/commit/635f0116114362a307a9ee12d7f3a1bb57d2c788">Link</a>
+- Fix anchor on off-canvas sidebar | <a href="https://github.com/t3framework/t3/commit/b6a860d279985efde050b7599e95ac87cca7a7fb">Link</a>
+
 <h2>Version: 2.5.4 (07/04/2016)</h2>
 <h3>Fix bugs</h3>
 - Fix error style when add a module position on front-end edit. | <a href="https://github.com/t3framework/t3/commit/ea6945de71e7a7ff8c8fb20f1e416f0462ad042e">Link</a>
