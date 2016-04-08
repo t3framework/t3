@@ -15,7 +15,7 @@ if (empty($images->image_fulltext)) return ;
 
 $imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext;
 ?>
-fsdfsdf
+
 	<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> item-image article-image article-image-full">
     <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
       <img
