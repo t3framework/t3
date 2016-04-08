@@ -198,7 +198,6 @@ jQuery (document).ready(function($){
                     $('html,body').animate({scrollTop: anchor.offset().top},'slow');
                 }, 500);
             }
-            return ;
         }
         stopBubble(e);
         return true;
