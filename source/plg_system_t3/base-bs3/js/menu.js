@@ -79,6 +79,8 @@
 
 							// stop if click on menu item - prevent bubble event
 							$item.on('click', function(e) {
+								// ignore if this is toggle button
+								if ($(e.target).data('toggle')) return;
 								e.stopPropagation()
 							});
 						}
@@ -200,6 +202,8 @@
 					})
 				})
 			}
+			// fix for modal in menu
+			$menu.find('.modal').appendTo('body');
 		},
 
 		show : function(item) {
