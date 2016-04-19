@@ -197,6 +197,8 @@ class T3Template extends ObjectExtendable
 		} else {
 			echo "<div class=\"error\">Block [$block] not found!</div>";
 		}
+		// make sure other the block is ended with a new line
+		echo "\n";
 	}
 
 
