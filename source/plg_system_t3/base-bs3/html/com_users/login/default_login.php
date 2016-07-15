@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
+JHtml::_('behavior.formvalidator');
 ?>
 
 <div class="login-wrap">
@@ -39,7 +40,7 @@ JHtml::_('behavior.keepalive');
 		</div>
 		<?php endif; ?>
 
-		<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.login'); ?>" method="post" class="form-horizontal">
+		<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.login'); ?>" method="post" class="form-validate form-horizontal">
 
 			<fieldset>
 				<?php foreach ($this->form->getFieldset('credentials') as $field) : ?>
@@ -87,7 +88,11 @@ JHtml::_('behavior.keepalive');
 					</div>
 				</div>
 
+			<?php if ($this->params->get('login_redirect_url')) : ?>
 				<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url', $this->form->getValue('return'))); ?>" />
+			<?php else : ?>
+				<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_menuitem', $this->form->getValue('return'))); ?>" />
+			<?php endif; ?>
 				<?php echo JHtml::_('form.token'); ?>
 			</fieldset>
 		</form>
