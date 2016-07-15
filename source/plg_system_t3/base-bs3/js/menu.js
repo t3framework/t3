@@ -128,6 +128,9 @@
 							// fix for touch screen
 							if ($link.length && $child.length) {
 								$link.on('click', function(e) {
+									if (item.clickable) {
+										e.stopPropagation();
+									}
 									return item.clickable;
 								});
 							}
