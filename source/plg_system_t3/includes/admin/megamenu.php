@@ -102,7 +102,7 @@ class T3AdminMegamenu
 		if(isset($currentconfig[$mmkey])){
 			unset($currentconfig[$mmkey]);
 		}
-		$currentconfig = json_encode($currentconfig);
+		$currentconfig = json_encode($currentconfig, JSON_UNESCAPED_UNICODE);
 		
 		//get all other styles that have the same template
 		$db    = JFactory::getDBO();
