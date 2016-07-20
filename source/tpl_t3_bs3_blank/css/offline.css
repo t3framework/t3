@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.outline {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 20px;
+  position: absolute;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 460px;
+}
+
+.outline h1 {
+  text-align: center;
+}
+
+.outline p.message {
+  text-align: center;
+}
+
+#form-login fieldset {
+  border: 0;
+  padding: 0;
+}
+
+#form-login-username,
+#form-login-password {
+  margin-bottom: 10px;
+}
+
+#form-login-username label,
+#form-login-password label {
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+}
+
+#form-login-username input,
+#form-login-password input {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 2px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 10px;
+  transition: all 0.35s;
+  width: 100%;
+}
+
+#form-login-username input:focus,
+#form-login-password input:focus {
+  border-color: #069;
+}
+
+#submit-buton .button {
+  background-color: #069;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 15px;
+}
+
+#submit-buton .button:hover,
+#submit-buton .button:focus,
+#submit-buton .button:active {
+  background-color: #00547e;
+  cursor: pointer;
+}
