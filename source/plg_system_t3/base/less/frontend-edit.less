@@ -3,7 +3,6 @@
 /* Radio Button Groups ---*/
 
 fieldset.t3onoff {
-
   width: 90px;
   height: 30px;
   white-space: nowrap;
@@ -278,6 +277,62 @@ fieldset.radio.btn-group {
       .btn-group button {
         margin-top: 0;
       }
+    }
+  }
+}
+
+// Frontend Edit Insert module
+// ---------------------------------------
+.window.view-modules,
+.window.view-articles {
+  .js-stools {
+    margin-bottom: 20px;
+
+    .btn {
+      border: 1px solid #ccc;
+      margin-top: 0;
+    }
+
+    .input-append .btn {
+      border-left: 0;
+    }
+
+    input {
+      display: inline-block;
+    }
+  }
+
+  .js-stools-container-filters {
+    .chzn-container-single {
+      width: 220px !important;
+    }
+
+    .chzn-drop {
+      box-sizing: border-box !important;
+    }
+  }
+
+  table#moduleList {
+    td .label {
+      background-color: #999;
+      box-sizing: border-box;
+      border-radius: 3px;
+      display: inline-block;
+      font-weight: normal;
+      font-size: 100%;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+
+  table#moduleList td:nth-child(1) {
+    vertical-align: middle;
+  }
+
+  .icon-publish {
+    &:before {
+      content: "\f00c";
+      font-size: 16px;
     }
   }
 }
