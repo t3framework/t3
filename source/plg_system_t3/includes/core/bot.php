@@ -236,9 +236,8 @@ class T3Bot extends JObject
 
 					$currentconfig[$menukey] = $mmconfig;
 				}
-
 				// update  megamenu back to other template styles parameter
-				$mm_config = json_encode($currentconfig);
+				$mm_config = json_encode($currentconfig, JSON_UNESCAPED_UNICODE);
 
 				// update megamenu back to current template style parameter
 				$template = $app->getTemplate(true);
