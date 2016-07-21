@@ -24,6 +24,8 @@ class T3Bot extends JObject
 {
 	// call before checking & loading T3
 	public static function preload () {
+		// NO NEED TO reupdate megamenu configuration
+		return;
 		// check if menu is alter, then turn a flag to reupdate megamenu configuration
 		$input = JFactory::getApplication()->input;
 		if ($input->get('option') == 'com_menus' && 
