@@ -17,6 +17,7 @@ href="https://github.com/t3framework/t3/commit/9e16177db8f6eb44b36c4bf7f98ca1607
 - Fix lost megamenu configuration when edit menu item. Solved #425, #340 | <a href="https://github.com/t3framework/t3/commit/25720df624f9aa5f89569b35bb36124658cfe077">Link</a>
 - Update html5shim resource. Close #435 | <a href="https://github.com/t3framework/t3/commit/526289358825b0262e802dc5cbc18eb74b6c63b3">Link</a>
 - Not update megamenu configuration after alter menu item | <a href="https://github.com/t3framework/t3/commit/3da6073654bfd907e5c4dc438e9007b724328b26">Link</a>
+- Improve tab-style megamenu. Fix #437 | <a href="https://github.com/t3framework/t3/commit/b177ea9605a5ef342f9e3ef7af3bf585a9dcd316">Link</a>
 
 <h2>Version: 2.5.5 (08/04/2016)</h2>
 <h3>Fix bugs</h3>
