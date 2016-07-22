@@ -360,6 +360,51 @@ fieldset.radio.btn-group label.active {
   border-color: #5c8b00;
   color: #fff;
 }
+.window.view-modules .js-stools,
+.window.view-articles .js-stools {
+  margin-bottom: 20px;
+}
+.window.view-modules .js-stools .btn,
+.window.view-articles .js-stools .btn {
+  border: 1px solid #ccc;
+  margin-top: 0;
+}
+.window.view-modules .js-stools .input-append .btn,
+.window.view-articles .js-stools .input-append .btn {
+  border-left: 0;
+}
+.window.view-modules .js-stools input,
+.window.view-articles .js-stools input {
+  display: inline-block;
+}
+.window.view-modules .js-stools-container-filters .chzn-container-single,
+.window.view-articles .js-stools-container-filters .chzn-container-single {
+  width: 220px !important;
+}
+.window.view-modules .js-stools-container-filters .chzn-drop,
+.window.view-articles .js-stools-container-filters .chzn-drop {
+  box-sizing: border-box !important;
+}
+.window.view-modules table#moduleList td .label,
+.window.view-articles table#moduleList td .label {
+  background-color: #999;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: normal;
+  font-size: 100%;
+  padding: 10px;
+  width: 100%;
+}
+.window.view-modules table#moduleList td:nth-child(1),
+.window.view-articles table#moduleList td:nth-child(1) {
+  vertical-align: middle;
+}
+.window.view-modules .icon-publish:before,
+.window.view-articles .icon-publish:before {
+  content: "\f00c";
+  font-size: 16px;
+}
 .icon-eye-open:before,
 .icon-eye:before {
   content: "\f06e";
