@@ -1,3 +1,23 @@
+<h2>Version: 2.6.0 (22/07/2016)</h2>
+<h3>Fix bugs</h3>
+- Override template options view | <a href="https://github.com/t3framework/t3/commit/daafe23177404c3026c4b8db27782a6ed1a40e1b">Link</a>
+- Fix don't show caret on ipad  | <a 
+href="https://github.com/t3framework/t3/commit/9e16177db8f6eb44b36c4bf7f98ca16075efad37">Link</a>
+- Fix modal in megamenu | <a href="https://github.com/t3framework/t3/commit/286bb78bc2c3cceb166d6466979a5604e4954fb0">Link</a>
+- Fix custom code cannot append before close head | <a href="https://github.com/t3framework/t3/commit/eb9119812af74c26f11587b18f8753f192af5fc6">Link</a>
+- Override the modal view  | <a href="https://github.com/t3framework/t3/commit/837d90e4c091678f22e879b2bd5cc0b4ea46e84a">Link</a>
+- Add login/logout redirect link | <a href="https://github.com/t3framework/t3/commit/6b5ac5fe13213b621e1ff8f0f35ff2a4b82657c7">Link</a>
+- Fix cannot open link on parent menu item | <a href="https://github.com/t3framework/t3/commit/cf372a8e0426b2d49114cfe33d1486bcbb420f43">Link</a>
+- Megamenu configuration is lost with some special language | <a href="https://github.com/t3framework/t3/commit/258b81897df73494b64f69be8187abd1ce1a547a">Link</a>
+- No need store default joomla layouts in html of base themes | <a href="https://github.com/t3framework/t3/commit/3599d28afd50425c03985771e66f26607430dda6">Link</a>
+- Fixed: Does not show icon in modules list view  | <a href="https://github.com/t3framework/t3/commit/84f961b86e75f9f861873bbc8fad0aa18c364800">Link</a>
+- Update overwrite JLayoutFile. Fixed #438 | <a href="https://github.com/t3framework/t3/commit/38af3184f96bbe92cf66476a76667cb79a10cc6f">Link</a>
+- Front-end edit: Does not show publish icon | <a href="https://github.com/t3framework/t3/commit/276984e0a60630448894409eea4483216f6f7eed">Link</a>
+- Fixed: Does not show article title when click to article detail | <a href="https://github.com/t3framework/t3/commit/41aad9d4f44e626d3d1896e536e9e2838fa57e87">Link</a>
+- Fix lost megamenu configuration when edit menu item. Solved #425, #340 | <a href="https://github.com/t3framework/t3/commit/25720df624f9aa5f89569b35bb36124658cfe077">Link</a>
+- Update html5shim resource. Close #435 | <a href="https://github.com/t3framework/t3/commit/526289358825b0262e802dc5cbc18eb74b6c63b3">Link</a>
+- Not update megamenu configuration after alter menu item | <a href="https://github.com/t3framework/t3/commit/3da6073654bfd907e5c4dc438e9007b724328b26">Link</a>
+
 <h2>Version: 2.5.5 (08/04/2016)</h2>
 <h3>Fix bugs</h3>
 - Fix got error when validate structure data  | <a href="https://github.com/t3framework/t3/commit/d54f7a45460518411c0c9e93a7819b980417e5e2">Link</a>
