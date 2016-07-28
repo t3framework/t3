@@ -254,3 +254,9 @@ fieldset.radio.btn-group label.active {
   line-height: 40px;
   width: 100%;
 }
+.mce-container-body .icon-file-add:before {
+  content: "\f067";
+}
+.mce-container-body .icon-pictures:before {
+  content: "\f03e";
+}
