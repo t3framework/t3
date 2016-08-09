@@ -56,6 +56,7 @@ class JFormFieldT3FileList extends JFormFieldFileList
 	{
 		// update path to this template 
 		$path = (string) $this->element['directory'];
+		$path = JPath::clean($path);
 		$options = array();
 		// get files in template path
 		$this->directory = $this->element['directory'] = T3_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
