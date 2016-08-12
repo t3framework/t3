@@ -320,7 +320,7 @@ class T3Minify
 						}
 
 						$cssgroup['groupname'] = implode('', $groupname);
-						$cssgroup['groupname'] = $grouptime;
+						$cssgroup['grouptime'] = $grouptime;
             			$cssgroup['media'] = $media;
 						$cssgroups[] = $cssgroup;
 					}
