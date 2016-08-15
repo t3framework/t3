@@ -1,3 +1,13 @@
+<h2>Version: 2.6.1 (15/08/2016)</h2>
+<h3>Fix bugs</h3>
+- Fix lost icon when edit article at front-end | <a href="https://github.com/t3framework/t3/commit/2def47a10cdd91ab00dd627a0d376468de088e15">Link</a>
+- Sync layout file with latest joomla  | <a 
+href="https://github.com/t3framework/t3/commit/0888c1b9ed60ff43316af3139e7ff857328ce0ce">Link</a>
+- Fix listing folder in Windows on Joomla 3.6 | <a href="https://github.com/t3framework/t3/commit/d847973f368b2eff9b5ea525051c2e9340841213">Link</a>
+- Remove version in css/js minify url to increase performance score | <a href="https://github.com/t3framework/t3/commit/fe55ae948b211b341474fe0afe99e11c28898282">Link</a>
+- Fix minify css  | <a href="https://github.com/t3framework/t3/commit/9c426e72bc6b688b1505406895d40f7cfd11107e">Link</a>
+- Update override article layout | <a href="https://github.com/t3framework/t3/commit/a34dd4da673120bc5b2f6f3b315806c95f27bb0f">Link</a>
+
 <h2>Version: 2.6.0 (22/07/2016)</h2>
 <h3>Fix bugs</h3>
 - Override template options view | <a href="https://github.com/t3framework/t3/commit/daafe23177404c3026c4b8db27782a6ed1a40e1b">Link</a>
