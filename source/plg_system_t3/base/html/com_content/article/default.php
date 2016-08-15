@@ -29,7 +29,7 @@ JHtml::_('behavior.caption');
 JHtml::_('bootstrap.tooltip');
 ?>
 
-<?php if ($this->params->get('show_page_heading', 1)) : ?>
+<?php if ($this->params->get('show_page_heading')) : ?>
 	<div class="page-header clearfix">
 		<h1 class="page-title"><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 	</div>
