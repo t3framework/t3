@@ -61,7 +61,7 @@
 
 			var posNav = function () {
 				var t = $(window).scrollTop();
-				if (t < $nav.position().top) $nav.css('top', t);
+				if (t > 0 && t < $nav.position().top) $nav.css('top', t);
 			},
 
 			bdHideNav = function (e) {
