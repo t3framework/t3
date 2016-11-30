@@ -1,3 +1,10 @@
+<h2>Version: 2.6.2 (30/11/2016)</h2>
+<h3>Fix bugs</h3>
+- Fix render module on Joomla 3.6.4 | <a href="https://github.com/t3framework/t3/commit/51a50f30a8f140b012f47e4105085373d8649638">Link</a>
+- Update override file when upgrade to J3.6.4  | <a 
+href="https://github.com/t3framework/t3/commit/f9405060b14284ce83d4c639ef5ed1ca085f5d17">Link</a>
+- Fix off-canvas scroll on ios | <a href="https://github.com/t3framework/t3/commit/db23b0d93f78b56458dd11e6adb1c24d94af1831">Link</a>
+
 <h2>Version: 2.6.1 (15/08/2016)</h2>
 <h3>Fix bugs</h3>
 - Fix lost icon when edit article at front-end | <a href="https://github.com/t3framework/t3/commit/2def47a10cdd91ab00dd627a0d376468de088e15">Link</a>
