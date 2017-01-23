@@ -71,6 +71,11 @@ class T3MenuMegamenu {
 			if($item->level >= 2 && !isset($this->_items[$item->parent_id])){
 				continue;
 			}
+			
+			//intergration with new params joomla 3.6.x (menu_show)
+			$menu_show = $item->params->get('menu_show');
+			if (empty($menu_show) && $menu_show!==null)
+				continue;
 
 			$parent                           = isset($this->children[$item->parent_id]) ? $this->children[$item->parent_id] : array();
 			$parent[]                         = $item;
