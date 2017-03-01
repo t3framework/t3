@@ -2,10 +2,10 @@
 <extension type="package" version="2.5" method="upgrade">
     <name>T3 Framework Package</name>
     <packagename>t3</packagename>
-    <version>2.6.2</version>
+    <version>2.6.3</version>
     <url>http://www.t3-framework.org</url>
-    <creationDate>November 30, 2016</creationDate>
-    <copyright>(C) 2012 - 2016. All rights reserved.</copyright>
+    <creationDate>March 01, 2017</creationDate>
+    <copyright>(C) 2012 - 2017. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>support@t3-framework.org</authorEmail>
     <authorUrl>www.t3-framework.org</authorUrl>
@@ -19,7 +19,7 @@
 				<a href="http://t3-framework.org/"><img src="http://joomlart.s3.amazonaws.com/images/jat3v3-documents/message-installation/logo.png" alt="some_text" width="300" height="99"></a>
 				<h4><a href="http://t3-framework.org/" title="">Home</a> | <a href="http://demo.t3-framework.org/" title="">Demo</a> | <a href="http://t3-framework.org/documentation" title="">Document</a> | <a href="https://github.com/t3framework/t3/blob/master/CHANGELOG.md" title="">Changelog</a></h4>
 		<p> </p>
-		<p>Copyright 2004 - 2016 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
+		<p>Copyright 2004 - 2017 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
 		</div>
      <style>table.adminform{width: 100%;}</style>
 	 </div>
@@ -31,6 +31,6 @@
         <file type="template" id="t3_bs3_blank" client="site">tpl_t3_bs3_blank</file>
     </files>
     <updateservers>
-        <server type="extension" priority="1" name="T3 Framework Update"><![CDATA[http://www.t3-framework.org/update.xml]]></server>
+        <server type="extension" priority="1" name="T3 Framework Update">http://update.joomlart.com/service/tracking/j16/plg_system_t3.xml</server>
     </updateservers>
 </extension>
