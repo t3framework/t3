@@ -2,8 +2,8 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="2.5" type="template" method="upgrade" client="site">
 	<name>t3_blank</name>
-	<version>2.2.3</version>
-	<creationDate>July 22 2016</creationDate>
+	<version>2.2.4</version>
+	<creationDate>March 01 2017</creationDate>
 	<author>JoomlArt.com</author>
 	<authorEmail>webmaster@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
@@ -20,7 +20,7 @@
 				<h4><a href="http://t3-framework.org/" title="">Home</a> | <a href="http://demo.t3-framework.org/" title="">Demo</a> | <a href="http://t3-framework.org/documentation" title="">Document</a> | <a href="https://github.com/t3framework/t3/blob/master/CHANGELOG.md" title="">Changelog</a></h4>
 				<p> </p>
 				<span style="color:#FF0000">Note: T3 blank requires T3 plugin to be installed and enabled.</span><p></p>
-				<p>Copyright 2004 - 2015 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
+				<p>Copyright 2004 - 2017 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
 			</div>
 			<style>table.adminform{width: 100%;}</style>
 		</div>
@@ -113,7 +113,7 @@
 	</config>
 
 	<updateservers>
-		<server type="collection">http://update.joomlart.com/service/tracking/list.xml</server>
+    	<server type="extension">http://update.joomlart.com/service/tracking/j16/tpl_t3_blank.xml</server>
 	</updateservers>	
 
 </extension>
