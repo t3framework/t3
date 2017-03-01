@@ -1,3 +1,10 @@
+<h2>Version: 2.6.3 (01/03/2017)</h2>
+<h3>Fix bugs</h3>
+- Can not hide menu item in megamenu | <a href="https://github.com/t3framework/t3/commit/aac8d8ac5fe3857c509ee120a60a82dd61974591">Link</a>
+- New variables introduced with no default value  | <a 
+href="https://github.com/robwent/t3/commit/7449d9fbadb9bc2f3a75955241049c7a796971a6">Link</a>
+- Add updateserver tag and change version | <a href="https://github.com/t3framework/t3/commit/1bd10ee468d90f42a0e8b76e4dd42bbb1bfa61b0">Link</a>
+
 <h2>Version: 2.6.2 (30/11/2016)</h2>
 <h3>Fix bugs</h3>
 - Fix render module on Joomla 3.6.4 | <a href="https://github.com/t3framework/t3/commit/51a50f30a8f140b012f47e4105085373d8649638">Link</a>
