@@ -1117,7 +1117,7 @@ button.btn-primary:active {
   border-radius: 0;
   border: 1px solid #ccc;
   box-shadow: none;
-  height: 23px;
+  height: auto;
   line-height: 24px;
   padding: 4px 0 4px 8px;
   color: #555;
