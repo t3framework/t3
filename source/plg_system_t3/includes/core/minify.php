@@ -257,7 +257,7 @@ class T3Minify
 		$mediagroup['all'] = array();
 		$mediagroup['screen'] = array();
 		foreach ($doc->_styleSheets as $url => $stylesheet) {
-			$media = $stylesheet['media'] ? $stylesheet['media'] : 'all';
+			$media = !empty($stylesheet['media']) ? $stylesheet['media'] : 'all';
 			if (empty($mediagroup[$media])) {
 				$mediagroup[$media] = array();
 			}
@@ -269,7 +269,7 @@ class T3Minify
 			foreach ($group as $url => $stylesheet) {
 				$url = self::fixUrl($url);
 
-				if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
+				if ((!empty($stylesheet['mime']) && $stylesheet['mime'] == 'text/css' || $stylesheet['type'] == 'text/css') && ($csspath = self::cssPath($url))) {
 					$stylesheet['path'] = $csspath;
 					$stylesheet['data'] = file_get_contents($csspath);
 
@@ -396,7 +396,7 @@ class T3Minify
 
 				$output[$outputurl . '/' . $groupname] = array(
 					'mime' => 'text/css',
-					'media' => $media == 'all' ? NULL : $media,
+					'media' => $media,
 					'attribs' => array()
 					);
 			}
@@ -437,7 +437,7 @@ class T3Minify
 
 			$url = self::fixUrl($url);
 
-			if ($script['mime'] == 'text/javascript' && ($jspath = self::jsPath($url))) {
+			if (((!empty($script['mime']) && $script['mime'] == 'text/javascript') || $script['type'] == 'text/javascript') && ($jspath = self::jsPath($url))) {
 				
 				$script['path'] = $jspath;
 				$script['data'] = file_get_contents($jspath);
