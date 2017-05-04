@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 $cparams = JComponentHelper::getParams('com_media');
-
+$tparams = $this->params;
 jimport('joomla.html.html.bootstrap');
 ?>
 <div class="contact<?php echo $this->pageclass_sfx?>" itemscope itemtype="http://schema.org/Person">
@@ -42,6 +42,9 @@ jimport('joomla.html.html.bootstrap');
 			</span>
 		</h3>
 	<?php endif; ?>
+	
+	<?php echo $this->item->event->afterDisplayTitle; ?>
+	
 	<?php if ($this->params->get('show_contact_list') && count($this->contacts) > 1) : ?>
 		<form action="#" method="get" name="selectForm" id="selectForm">
 			<?php echo JText::_('COM_CONTACT_SELECT_CONTACT'); ?>
@@ -53,6 +56,8 @@ jimport('joomla.html.html.bootstrap');
 		<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
 		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
 	<?php endif; ?>
+	
+	<?php echo $this->item->event->beforeDisplayContent; ?>
 	
 	<?php if ($this->params->get('presentation_style') == 'sliders') : ?>
 		<div class="panel-group" id="slide-contact">
@@ -205,6 +210,11 @@ jimport('joomla.html.html.bootstrap');
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
+	
+	<?php if ($tparams->get('show_user_custom_fields') && $this->contactUser) : ?>
+		<?php echo $this->loadTemplate('user_custom_fields'); ?>
+	<?php endif; ?>
+	
 	<?php if ($this->contact->misc && $this->params->get('show_misc')) : ?>
 		<?php if ($this->params->get('presentation_style')=='sliders'):?>
 			<div class="panel panel-default">
@@ -258,4 +268,5 @@ jimport('joomla.html.html.bootstrap');
 	<?php if ($this->params->get('presentation_style') == 'tabs') : ?>
 		</div>
 	<?php endif; ?>
+	<?php echo $this->item->event->afterDisplayContent; ?>
 </div>

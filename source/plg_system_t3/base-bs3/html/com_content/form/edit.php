@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.tabstate');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.calendar');
-JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.formvalidator');
 
 if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('formbehavior.chosen', 'select');
@@ -82,6 +82,9 @@ if(count($extrafields)){
 				<?php if ($params->get('show_urls_images_frontend') ) : ?>
 				<li><a href="#images" data-toggle="tab"><?php echo JText::_('COM_CONTENT_IMAGES_AND_URLS') ?></a></li>
 				<?php endif; ?>
+				<?php foreach ($this->form->getFieldsets('params') as $name => $fieldSet) : ?>
+				<li><a href="#params-<?php echo $name; ?>" data-toggle="tab"><?php echo JText::_($fieldSet->label); ?></a></li>
+				<?php endforeach; ?>
 				<li><a href="#publishing" data-toggle="tab"><?php echo JText::_('COM_CONTENT_PUBLISHING') ?></a></li>
 				<li><a href="#language" data-toggle="tab"><?php echo JText::_('JFIELD_LANGUAGE_LABEL') ?></a></li>
 				<li><a href="#metadata" data-toggle="tab"><?php echo JText::_('COM_CONTENT_METADATA') ?></a></li>
@@ -91,20 +94,22 @@ if(count($extrafields)){
 				<div class="tab-pane active" id="editor">
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('title'); ?>
-						<?php echo $this->form->getInput('title'); ?>
+						<?php echo $this->form->renderField('title'); ?>
 					</div>
 
 					<?php if (is_null($this->item->id)) : ?>
 					<div class="form-group">
-						<?php echo $this->form->getLabel('alias'); ?>
-						<?php echo $this->form->getInput('alias'); ?>
+						<?php echo $this->form->renderField('alias'); ?>
 					</div>
 					<?php endif; ?>
 
 					<div class="form-group">
 						<?php echo $this->form->getInput('articletext'); ?>
 					</div>
+
+					<?php if ($this->captchaEnabled) : ?>
+						<?php echo $this->form->renderField('captcha'); ?>
+					<?php endif; ?>
 				</div>
 
 				<?php if(count($extrafields)) : ?>
@@ -128,53 +133,43 @@ if(count($extrafields)){
 				<div class="tab-pane" id="images">
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('image_intro', 'images'); ?>
-						<?php echo $this->form->getInput('image_intro', 'images'); ?>
+						<?php echo $this->form->renderField('image_intro', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('image_intro_alt', 'images'); ?>
-						<?php echo $this->form->getInput('image_intro_alt', 'images'); ?>
+						<?php echo $this->form->renderField('image_intro_alt', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('image_intro_caption', 'images'); ?>
-						<?php echo $this->form->getInput('image_intro_caption', 'images'); ?>
+						<?php echo $this->form->renderField('image_intro_caption', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('float_intro', 'images'); ?>
-						<?php echo $this->form->getInput('float_intro', 'images'); ?>
+						<?php echo $this->form->renderField('float_intro', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('image_fulltext', 'images'); ?>
-						<?php echo $this->form->getInput('image_fulltext', 'images'); ?>
+						<?php echo $this->form->renderField('image_fulltext', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('image_fulltext_alt', 'images'); ?>
-						<?php echo $this->form->getInput('image_fulltext_alt', 'images'); ?>
+						<?php echo $this->form->renderField('image_fulltext_alt', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('image_fulltext_caption', 'images'); ?>
-						<?php echo $this->form->getInput('image_fulltext_caption', 'images'); ?>
+						<?php echo $this->form->renderField('image_fulltext_caption', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('float_fulltext', 'images'); ?>
-						<?php echo $this->form->getInput('float_fulltext', 'images'); ?>
+						<?php echo $this->form->renderField('float_fulltext', 'images'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('urla', 'urls'); ?>
-						<?php echo $this->form->getInput('urla', 'urls'); ?>
+						<?php echo $this->form->renderField('urla', 'urls'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('urlatext', 'urls'); ?>
-						<?php echo $this->form->getInput('urlatext', 'urls'); ?>
+						<?php echo $this->form->renderField('urlatext', 'urls'); ?>
 					</div>
 
 					<div class="form-group">
@@ -182,13 +177,11 @@ if(count($extrafields)){
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('urlb', 'urls'); ?>
-						<?php echo $this->form->getInput('urlb', 'urls'); ?>
+						<?php echo $this->form->renderField('urlb', 'urls'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('urlbtext', 'urls'); ?>
-						<?php echo $this->form->getInput('urlbtext', 'urls'); ?>
+						<?php echo $this->form->renderField('urlbtext', 'urls'); ?>
 					</div>
 
 					<div class="form-group">
@@ -196,13 +189,11 @@ if(count($extrafields)){
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('urlc', 'urls'); ?>
-						<?php echo $this->form->getInput('urlc', 'urls'); ?>
+						<?php echo $this->form->renderField('urlc', 'urls'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('urlctext', 'urls'); ?>
-						<?php echo $this->form->getInput('urlctext', 'urls'); ?>
+						<?php echo $this->form->renderField('urlctext', 'urls'); ?>
 					</div>
 
 					<div class="form-group">
@@ -214,52 +205,43 @@ if(count($extrafields)){
 
 				<div class="tab-pane" id="publishing">
 					<div class="form-group">
-						<?php echo $this->form->getLabel('catid'); ?>
-						<?php echo $this->form->getInput('catid'); ?>
+						<?php echo $this->form->renderField('catid'); ?>
 					</div>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('tags'); ?>
-						<?php echo str_replace('span12', '', $this->form->getInput('tags')); ?>
+						<?php echo $this->form->renderField('tags'); ?>
 					</div>
 
 					<?php if ($params->get('save_history', 0)) : ?>
 					<div class="form-group">
-						<?php echo $this->form->getLabel('version_note'); ?>
-						<?php echo $this->form->getInput('version_note'); ?>
+						<?php echo $this->form->renderField('version_note'); ?>
 					</div>
 					<?php endif; ?>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('created_by_alias'); ?>
-						<?php echo $this->form->getInput('created_by_alias'); ?>
+						<?php echo $this->form->renderField('created_by_alias'); ?>
 					</div>
 
 					<?php if ($this->item->params->get('access-change')) : ?>
 						<div class="form-group">
-							<?php echo $this->form->getLabel('state'); ?>
-							<?php echo $this->form->getInput('state'); ?>
+							<?php echo $this->form->renderField('state'); ?>
 						</div>
 
 						<div class="form-group">
-							<?php echo $this->form->getLabel('featured'); ?>
-							<?php echo $this->form->getInput('featured'); ?>
+							<?php echo $this->form->renderField('featured'); ?>
 						</div>
 
 						<div class="form-group">
-							<?php echo $this->form->getLabel('publish_up'); ?>
-							<?php echo str_replace('class="btn"', 'class="btn btn-default"', $this->form->getInput('publish_up')); ?>
+							<?php echo $this->form->renderField('publish_up'); ?>
 						</div>
 
 						<div class="form-group">
-							<?php echo $this->form->getLabel('publish_down'); ?>
-							<?php echo str_replace('class="btn"', 'class="btn btn-default"', $this->form->getInput('publish_down')); ?>
+							<?php echo $this->form->renderField('publish_down'); ?>
 						</div>
 					<?php endif; ?>
 
 					<div class="form-group">
-						<?php echo $this->form->getLabel('access'); ?>
-						<?php echo $this->form->getInput('access'); ?>
+						<?php echo $this->form->renderField('access'); ?>
 					</div>
 
 					<?php if (is_null($this->item->id)):?>
@@ -271,27 +253,21 @@ if(count($extrafields)){
 
 				<div class="tab-pane" id="language">
 					<div class="form-group">
-						<?php echo $this->form->getLabel('language'); ?>
-						<?php echo $this->form->getInput('language'); ?>
+						<?php echo $this->form->renderField('language'); ?>
 					</div>
 				</div>
 
 				<div class="tab-pane" id="metadata">
 					<div class="form-group">
-						<?php echo $this->form->getLabel('metadesc'); ?>
-						<?php echo $this->form->getInput('metadesc'); ?>
+						<?php echo $this->form->renderField('metadesc'); ?>
 					</div>
 
 					<div class="form-group">
-							<?php echo $this->form->getLabel('metakey'); ?>
-							<?php echo $this->form->getInput('metakey'); ?>
+							<?php echo $this->form->renderField('metakey'); ?>
 					</div>
 
 					<input type="hidden" name="task" value="" />
 					<input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />
-					<?php if ($this->params->get('enable_category', 0) == 1) :?>
-					<input type="hidden" name="jform[catid]" value="<?php echo $this->params->get('catid', 1); ?>" />
-					<?php endif; ?>
 				</div>
 			</div>
 			<div class="btn-toolbar">
