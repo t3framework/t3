@@ -352,6 +352,14 @@
       margin-right: @grid-gutter-width;
     }
 
+    .well {
+      &:after {
+        display: table;
+        content: "";
+        clear: both;
+      }
+    }
+
   }
 
   // Upload Form
@@ -558,7 +566,8 @@ fieldset.radio.btn-group {
 // Frontend Edit Insert module
 // ---------------------------------------
 .window.view-modules,
-.window.view-articles {
+.window.view-articles,
+.window.view-contacts {
   .js-stools {
     margin-bottom: 20px;
 

@@ -294,7 +294,7 @@
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    margin-top: -100%;
+    margin-top: -30%;
   }
   .t3-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div {
     margin-top: 0%;

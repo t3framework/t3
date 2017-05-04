@@ -1712,6 +1712,9 @@ div.finder {
   width: 100%;
   height: auto;
 }
+.contact-form #jform_contact_email_copy {
+  margin-left: 0;
+}
 @media (max-width: 768px) {
   .contact-form #jform_captcha-lbl {
     display: none;
@@ -2016,7 +2019,7 @@ div.calendar {
   margin-top: 10px;
 }
 .chzn-container-multi .chzn-choices li.search-field input[type="text"] {
-  height: auto;
+  height: 34px;
 }
 .iframe-bordered {
   border: 1px solid #dddddd;
