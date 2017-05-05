@@ -1,16 +1,16 @@
 <h2>Version: 2.6.4 (05/05/2017)</h2>
 <h3>Fix bugs</h3>
-- Update compatiable with Joomla 3.7 | <a href="https://github.com/t3framework/t3/commit/439a9550fc81c3a7d0f4275e7ce68a99f9f8a541">Link</a>
+- Update compatiable with Joomla 3.7 | <a href="https://github.com/t3framework/t3/commit/439a9550fc81c3a7d0f4275e7ce68a99f9f8a541">Link</a><br/>
 - Select box displays error in template manager | <a 
-href="https://github.com/t3framework/t3/commit/862fe1936cc26749307043f8e93b2d026f29b7c0">Link</a>
-- Select the checked options on radio button group | <a href="https://github.com/t3framework/t3/commit/0ac5c9f0fd5ec5a1e7b0a3897cd85708a50cc131">Link</a>
-- Improve style for the front-end edit layout | <a href="https://github.com/t3framework/t3/commit/aab66e905a0303adf5315fe20b23a4b378f68c76">Link</a>
+href="https://github.com/t3framework/t3/commit/862fe1936cc26749307043f8e93b2d026f29b7c0">Link</a><br/>
+- Select the checked options on radio button group | <a href="https://github.com/t3framework/t3/commit/0ac5c9f0fd5ec5a1e7b0a3897cd85708a50cc131">Link</a><br/>
+- Improve style for the front-end edit layout | <a href="https://github.com/t3framework/t3/commit/aab66e905a0303adf5315fe20b23a4b378f68c76">Link</a><br/>
 - Update override to compatible with Joomla latest version | <a 
-href="https://github.com/t3framework/t3/commit/e22d22960e2956753b558ddb0e1cad69974a540b">Link</a>
-- Menu selection displays ugly after upgrade J3.7.0 | <a href="https://github.com/t3framework/t3/commit/9d6d023bf8e2a6c12b19aa9a9607db20dd792fff">Link</a>
+href="https://github.com/t3framework/t3/commit/e22d22960e2956753b558ddb0e1cad69974a540b">Link</a><br/>
+- Menu selection displays ugly after upgrade J3.7.0 | <a href="https://github.com/t3framework/t3/commit/9d6d023bf8e2a6c12b19aa9a9607db20dd792fff">Link</a><br/>
 - Rel attribute does not work for menu item | <a 
-href="https://github.com/t3framework/t3/commit/ef1c16221cf2b756f55b7a8db9c40b3b8e9b50b8">Link</a>
-- Got js error when enable optimize js | <a href="https://github.com/t3framework/t3/commit/871e2c5322b3df872f7dfa70fa4653dbaf1ade3b">Link</a>
+href="https://github.com/t3framework/t3/commit/ef1c16221cf2b756f55b7a8db9c40b3b8e9b50b8">Link</a><br/>
+- Got js error when enable optimize js | <a href="https://github.com/t3framework/t3/commit/871e2c5322b3df872f7dfa70fa4653dbaf1ade3b">Link</a><br/>
 
 <h2>Version: 2.6.3 (01/03/2017)</h2>
 <h3>Fix bugs</h3>
