@@ -181,6 +181,7 @@ class T3MenuMegamenuTpl
 		// Note. It is important to remove spaces between elements.
 		$vars['class']    = $item->anchor_css ? $item->anchor_css : '';
 		$vars['title']    = $item->anchor_title ? ' title="' . $item->anchor_title . '" ' : '';
+		$vars['rel']    = $item->anchor_rel ? ' rel="' . $item->anchor_rel . '" ' : '';
 		$vars['dropdown'] = ' data-target="#"';
 		$vars['caret']    = '';
 		$vars['icon']     = '';
@@ -233,6 +234,7 @@ class T3MenuMegamenuTpl
 	{
 		$item     = $vars['item'];
 		$class    = $vars['class'];
+		$rel	  = $vars['rel'];
 		$title    = $vars['title'];
 		$dropdown = $vars['dropdown'];
 		$caret    = $vars['caret'];
@@ -246,16 +248,16 @@ class T3MenuMegamenuTpl
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a itemprop='url' class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" $rel href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a itemprop='url' class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" $rel href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 			case 2:
 				// window.open
 				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-				$link = "<a itemprop='url' class=\"$class\" href=\"$flink\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" $rel href=\"$flink\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
 				break;
 		endswitch;
 
@@ -283,6 +285,7 @@ class T3MenuMegamenuTpl
 	{
 		$item     = $vars['item'];
 		$class    = $vars['class'];
+		$rel	  = $vars['rel'];
 		$title    = $vars['title'];
 		$dropdown = $vars['dropdown'];
 		$caret    = $vars['caret'];
@@ -294,15 +297,15 @@ class T3MenuMegamenuTpl
 		switch ($item->browserNav) :
 			default:
 			case 0:
-				$link = "<a itemprop='url' class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" $rel href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 			case 1:
 				// _blank
-				$link = "<a itemprop='url' class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" $rel href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 			case 2:
 				// window.open
-				$link = "<a itemprop='url' class=\"$class\" href=\"{$item->flink}\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\"" : "") . " $title $dropdown>$icon$linktype $caret$caption</a>";
+				$link = "<a itemprop='url' class=\"$class\" $rel href=\"{$item->flink}\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\"" : "") . " $title $dropdown>$icon$linktype $caret$caption</a>";
 				break;
 		endswitch;
 
