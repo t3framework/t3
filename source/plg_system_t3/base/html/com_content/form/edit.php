@@ -109,6 +109,9 @@ if(count($extrafields)){
 					<?php endif; ?>
 
 					<?php echo $this->form->getInput('articletext'); ?>
+					<?php if ($this->captchaEnabled) : ?>
+						<?php echo $this->form->renderField('captcha'); ?>
+					<?php endif; ?>
 				</div>
 				
 				<?php if(count($extrafields)) : ?>

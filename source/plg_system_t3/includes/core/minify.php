@@ -437,7 +437,7 @@ class T3Minify
 
 			$url = self::fixUrl($url);
 
-			if (((!empty($script['mime']) && $script['mime'] == 'text/javascript') || $script['type'] == 'text/javascript') && ($jspath = self::jsPath($url))) {
+			if (((!empty($script['mime']) && $script['mime'] == 'text/javascript') || $script['type'] == 'text/javascript') && !preg_match('/tinymce/', $url) && ($jspath = self::jsPath($url))) {
 				
 				$script['path'] = $jspath;
 				$script['data'] = file_get_contents($jspath);
@@ -480,7 +480,6 @@ class T3Minify
 				$groupname[] = $gurl;
 				$ftime = @filemtime($gsheet['path']);
 				if ($ftime > $grouptime) $grouptime = $ftime;
-				if (preg_match('/tinymce/', $gurl)) $jsgroup['ignore'] = true;
 			}
 
 			$jsgroup['groupname'] = implode('', $groupname);
