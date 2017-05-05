@@ -11,6 +11,7 @@ href="https://github.com/t3framework/t3/commit/e22d22960e2956753b558ddb0e1cad699
 - Rel attribute does not work for menu item | <a 
 href="https://github.com/t3framework/t3/commit/ef1c16221cf2b756f55b7a8db9c40b3b8e9b50b8">Link</a><br/>
 - Got js error when enable optimize js | <a href="https://github.com/t3framework/t3/commit/871e2c5322b3df872f7dfa70fa4653dbaf1ade3b">Link</a><br/>
+- Add recaptcha for article front-end edit | <a href="https://github.com/t3framework/t3/commit/4db877eec422bc732684796ca50c12b2b75fced6">Link</a><br/>
 
 <h2>Version: 2.6.3 (01/03/2017)</h2>
 <h3>Fix bugs</h3>
