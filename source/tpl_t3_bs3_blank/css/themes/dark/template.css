@@ -26,23 +26,23 @@
 }
 .t3-logo,
 .t3-logo-color {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-color.png");
+  background-image: url("//joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-color.png");
 }
 .t3-logo-small,
 .t3-logo-small.t3-logo-color {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-color.png");
+  background-image: url("//joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-color.png");
 }
 .t3-logo-dark {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-dark.png");
+  background-image: url("//joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-dark.png");
 }
 .t3-logo-small.t3-logo-dark {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-dark.png");
+  background-image: url("//joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-dark.png");
 }
 .t3-logo-light {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-light.png");
+  background-image: url("//joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-light.png");
 }
 .t3-logo-small.t3-logo-light {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-light.png");
+  background-image: url("//joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-light.png");
 }
 @media (max-width: 767px) {
   .logo-control .logo-img-sm {
@@ -810,6 +810,8 @@ input.invalid {
 .nav .caret {
   border-top-color: #ffffff;
   border-bottom-color: #ffffff;
+  border-bottom-width: 0;
+  border-style: solid;
 }
 .nav a:hover .caret {
   border-top-color: #d9d9d9;
@@ -1262,6 +1264,9 @@ ul.latestusers li {
 .article-info dd strong {
   font-weight: bold;
 }
+.tags {
+  margin-bottom: 20px;
+}
 .article-footer {
   color: #5a5a5a;
   font-size: 12px;
@@ -1707,6 +1712,9 @@ div.finder {
   width: 100%;
   height: auto;
 }
+.contact-form #jform_contact_email_copy {
+  margin-left: 0;
+}
 @media (max-width: 768px) {
   .contact-form #jform_captcha-lbl {
     display: none;
@@ -2011,7 +2019,7 @@ div.calendar {
   margin-top: 10px;
 }
 .chzn-container-multi .chzn-choices li.search-field input[type="text"] {
-  height: auto;
+  height: 34px;
 }
 .iframe-bordered {
   border: 1px solid #dddddd;
