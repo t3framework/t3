@@ -167,9 +167,9 @@
 .t3-megamenu .mega-tab > div > ul > li > .dropdown-menu {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
-  left: 200px;
+  right: 200px;
 }
 .t3-megamenu .mega-tab > div > ul > li > .mega-dropdown-menu {
   border: none;
@@ -177,7 +177,7 @@
 }
 .t3-megamenu .mega-tab > div > ul > li > .mega-dropdown-menu > div {
   opacity: 1 !important;
-  margin-left: 0 !important;
+  margin-right: 0 !important;
   transition: none !important;
 }
 @media (min-width: 768px) {

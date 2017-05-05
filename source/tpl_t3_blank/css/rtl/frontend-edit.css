@@ -165,3 +165,108 @@ fieldset.radio.btn-group label.active {
   vertical-align: middle;
   width: 220px;
 }
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: FontAwesome !important;
+}
+.view-history .btn-group {
+  margin-bottom: 10px;
+}
+.btn [class^="icon-"],
+.btn [class*=" icon-"] {
+  margin-left: 5px;
+}
+.btn span.icon-delete:before {
+  content: "\f057";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  color: #333;
+}
+.window.view-modules .well .control-label {
+  display: inline-block;
+}
+.window.view-modules .well .controls {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.window.view-modules .control-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.window.view-modules #filter-bar {
+  margin-bottom: 10px;
+}
+.window.view-modules #filter-bar .btn-group button {
+  margin-top: 0;
+}
+.view-modules .js-stools,
+.view-articles .js-stools,
+.view-contacts .js-stools {
+  margin-bottom: 20px;
+}
+.view-modules .js-stools .btn,
+.view-articles .js-stools .btn,
+.view-contacts .js-stools .btn {
+  border: 1px solid #ccc;
+  margin-top: 0;
+}
+.view-modules .js-stools .input-append .btn,
+.view-articles .js-stools .input-append .btn,
+.view-contacts .js-stools .input-append .btn {
+  border-right: 0;
+}
+.view-modules .js-stools input,
+.view-articles .js-stools input,
+.view-contacts .js-stools input {
+  display: inline-block;
+}
+.view-modules .js-stools-container-filters .chzn-container-single,
+.view-articles .js-stools-container-filters .chzn-container-single,
+.view-contacts .js-stools-container-filters .chzn-container-single {
+  width: 220px !important;
+}
+.view-modules .js-stools-container-filters .chzn-drop,
+.view-articles .js-stools-container-filters .chzn-drop,
+.view-contacts .js-stools-container-filters .chzn-drop {
+  box-sizing: border-box !important;
+}
+.view-modules table#moduleList td .label,
+.view-articles table#moduleList td .label,
+.view-contacts table#moduleList td .label {
+  background-color: #999;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: normal;
+  font-size: 100%;
+  padding: 10px;
+  width: 100%;
+}
+.view-modules table#moduleList td:nth-child(1),
+.view-articles table#moduleList td:nth-child(1),
+.view-contacts table#moduleList td:nth-child(1) {
+  vertical-align: middle;
+}
+.view-modules .icon-publish:before,
+.view-articles .icon-publish:before,
+.view-contacts .icon-publish:before {
+  content: "\f00c";
+  font-size: 16px;
+}
+.view-modules #extra_class.span12,
+.view-articles #extra_class.span12,
+.view-contacts #extra_class.span12 {
+  box-sizing: border-box;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+}
+.mce-container-body .icon-file-add:before {
+  content: "\f067";
+}
+.mce-container-body .icon-pictures:before {
+  content: "\f03e";
+}
