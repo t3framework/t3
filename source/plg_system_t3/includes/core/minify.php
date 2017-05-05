@@ -480,6 +480,7 @@ class T3Minify
 				$groupname[] = $gurl;
 				$ftime = @filemtime($gsheet['path']);
 				if ($ftime > $grouptime) $grouptime = $ftime;
+				if (preg_match('/tinymce/', $gurl)) $jsgroup['ignore'] = true;
 			}
 
 			$jsgroup['groupname'] = implode('', $groupname);
