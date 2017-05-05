@@ -1462,6 +1462,14 @@ button.btn-primary:active {
   margin-left: -10px;
 }
 
+.t3-admin-assignment #menu-assignment .menu-links {
+  column-count: 1;
+}
+
+.t3-admin-assignment #menu-assignment .menu-links > li.span3 {
+  width: 22.9282%;
+}
+
 .t3-admin-assignment .thumbnail {
   box-shadow: none;
   border-radius: 0;
@@ -1624,6 +1632,10 @@ button.btn-primary:active {
 
   .t3-admin-form .form-horizontal .t3-admin-header .control-group {
     float: none;
+  }
+
+  .t3-admin-assignment #menu-assignment .menu-links > li.span3 {
+    width: 100%;
   }
 
 }
