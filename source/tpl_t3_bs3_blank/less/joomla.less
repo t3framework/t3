@@ -2,7 +2,7 @@
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2017 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
  * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
  *                & Google group to become co-author)
@@ -114,6 +114,33 @@
 // Tags
 .tags {
   margin-bottom: @t3-global-margin;
+}
+
+// Extra fields
+// -------------------------
+.fields-container {
+  border: 1px solid darken(@t3-border-color, 5%);
+  margin-bottom: @t3-global-margin * 2;
+  padding: @t3-global-padding;
+
+  dd {
+    border-bottom: 1px dotted darken(@t3-border-color, 5%);
+    padding: (@t3-global-padding / 3) 0;
+
+    .field-label {
+      display: inline-block;
+      font-weight: bold;
+      padding-right: @t3-global-padding;
+    }
+
+    &:hover {
+      background-color: @gray-lightest;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 }
 
 
