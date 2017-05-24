@@ -15,7 +15,8 @@
 // No direct access
 defined('_JEXEC') or die();
 
-T3::import('lessphp/lessc.inc');
+if (!class_exists('lessc_formatter_compressed'))
+	T3::import('lessphp/lessc.inc');
 
 /**
  * T3LessCompiler class compile less
