@@ -112,6 +112,25 @@
 .contentdescription p {
 }
 
+// Extra fields
+// -------------------------
+.fields-container {
+  dd {
+    border-bottom: 1px dotted darken(@grayLighter, 5%);
+    padding: (@T3globalMargin / 3) 0;
+
+    .field-label {
+      display: inline-block;
+      font-weight: bold;
+      padding-right: @T3globalMargin;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
 
 // Article Footer
 // --------------
@@ -322,7 +341,7 @@ article aside .btn-group {
     background: #FFF;
     background: -moz-linear-gradient(bottom, #ccc, #f0f0f0);
     background: -webkit-linear-gradient(bottom, #ccc, #f0f0f0);
-    border: 1px solid #CCC;
+    border: 1px solid #ccc;
     border-radius: 3px;
     color: #666;
     font-size: 92%;

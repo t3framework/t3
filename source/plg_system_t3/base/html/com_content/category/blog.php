@@ -13,6 +13,22 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 JHtml::addIncludePath(T3_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
 JHtml::_('behavior.caption');
+
+$dispatcher = JEventDispatcher::getInstance();
+
+$this->category->text = $this->category->description;
+$dispatcher->trigger('onContentPrepare', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
+$this->category->description = $this->category->text;
+
+$results = $dispatcher->trigger('onContentAfterTitle', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
+$afterDisplayTitle = trim(implode("\n", $results));
+
+$results = $dispatcher->trigger('onContentBeforeDisplay', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
+$beforeDisplayContent = trim(implode("\n", $results));
+
+$results = $dispatcher->trigger('onContentAfterDisplay', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
+$afterDisplayContent = trim(implode("\n", $results));
+
 ?>
 <div class="blog<?php echo $this->pageclass_sfx;?>" itemscope itemtype="http://schema.org/Blog">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
@@ -29,6 +45,8 @@ JHtml::_('behavior.caption');
   		</h2>
 	</div>
 	<?php endif; ?>
+
+	<?php echo $afterDisplayTitle; ?>
 	
 	<?php if ($this->params->get('show_tags', 1) && !empty($this->category->tags->itemTags)) : ?>
 		<?php echo JLayoutHelper::render('joomla.content.tags', $this->category->tags->itemTags); ?>
@@ -39,9 +57,11 @@ JHtml::_('behavior.caption');
 		<?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
 			<img src="<?php echo $this->category->getParams()->get('image'); ?>"/>
 		<?php endif; ?>
+		<?php echo $beforeDisplayContent; ?>
 		<?php if ($this->params->get('show_description') && $this->category->description) : ?>
 			<?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
 		<?php endif; ?>
+		<?php echo $afterDisplayContent; ?>
 	</div>
 	<?php endif; ?>
 

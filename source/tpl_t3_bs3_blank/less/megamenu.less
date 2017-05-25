@@ -178,6 +178,21 @@
   .t3-module {
   }
 
+  .t3-module .module-inner {
+    padding: 0 @t3-global-padding;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+        padding: (@t3-global-padding / 4) 0;
+      }
+    }
+  }
+
   // Module Title
   .t3-module .module-title {
     .dropdown-header(); // Make the Module Title look like Dropdown Header
