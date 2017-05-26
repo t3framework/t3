@@ -1,3 +1,16 @@
+<h2>Version: 2.6.5 (26/05/2017)</h2>
+<h3>Fix bugs</h3>
+- Add Joomla extrafield tab on article edit view | <a href="https://github.com/t3framework/t3/commit/4e8072cb63e2cd087f7162861d18d68d7cff5151">Link</a><br/>
+- Update layout override | <a 
+href="https://github.com/t3framework/t3/commit/262e0e5052ca7b66e3307a19caafe568d990c9ad">Link</a><br/>
+- Fix conflict less complie library of kunena latest version | <a href="https://github.com/t3framework/t3/commit/35717f6af78ed886b44ff4f24a3589033d6a0ec5">Link</a><br/>
+- Improve style for the front-end edit layout | <a href="https://github.com/t3framework/t3/commit/aab66e905a0303adf5315fe20b23a4b378f68c76">Link</a><br/>
+- mod_menu "rel" option doesnt work.  | <a 
+href="https://github.com/t3framework/t3/commit/262e0e5052ca7b66e3307a19caafe568d990c9ad">Link</a><br/>
+- Don't show Joomla extrafields on article list view. | <a href="https://github.com/t3framework/t3/commit/6e41a733f3d3e6a6f646e60d053c08644b17fe97">Link</a><br/>
+- Improve style for module on Megamenu. | <a 
+href="https://github.com/t3framework/t3/commit/6e41a733f3d3e6a6f646e60d053c08644b17fe97">Link</a><br/>
+
 <h2>Version: 2.6.4 (05/05/2017)</h2>
 <h3>Fix bugs</h3>
 - Update compatiable with Joomla 3.7 | <a href="https://github.com/t3framework/t3/commit/439a9550fc81c3a7d0f4275e7ce68a99f9f8a541">Link</a><br/>
