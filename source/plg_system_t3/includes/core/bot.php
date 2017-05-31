@@ -45,7 +45,7 @@ class T3Bot extends JObject
 			//update all global parameters
 			foreach($themes as $theme){
 				$registry = new JRegistry;
-				$registry->loadString($theme->params);
+				$registry->loadString(stripslashes($theme->params));
 				$mm_config = $registry->get('mm_config');
 				if (!$mm_config) continue;
 
@@ -265,8 +265,8 @@ class T3Bot extends JObject
 				//update all global parameters
 				foreach($themes as $theme){
 					$registry = new JRegistry;
-					$registry->loadString($theme->params);
-					$registry->set('mm_config', $mm_config); //overwrite with new value
+					$registry->loadString(stripslashes($theme->params));
+					$registry->set('mm_config', stripslashes($mm_config)); //overwrite with new value
 					$registry->set('mm_config_needupdate', ""); //overwrite with new value
 
 					$query = $db->getQuery(true);

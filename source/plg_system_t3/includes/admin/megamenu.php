@@ -118,10 +118,10 @@ class T3AdminMegamenu
 		
 		foreach($themes as $theme){
 			$registry = new JRegistry;
-			$registry->loadString($theme->params);
+			$registry->loadString(stripslashes($theme->params));
 
 			//overwrite with new value
-			$registry->set('mm_config', $currentconfig);
+			$registry->set('mm_config', stripslashes($currentconfig));
 
 			$query = $db->getQuery(true);
 			$query
@@ -174,10 +174,10 @@ class T3AdminMegamenu
 		
 		foreach($themes as $theme){
 			$registry = new JRegistry;
-			$registry->loadString($theme->params);
+			$registry->loadString(stripslashes($theme->params));
 
 			//overwrite with new value
-			$registry->set('mm_config', $mm_config);
+			$registry->set('mm_config', stripslashes($mm_config));
 
 			$query = $db->getQuery(true);
 			$query

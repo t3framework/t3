@@ -289,7 +289,7 @@ class plgSystemT3 extends JPlugin
 			//get new params value
 			$japp = JFactory::getApplication();
 			$params = new JRegistry;
-			$params->loadString($data->params);
+			$params->loadString(stripslashes($data->params));
 			//if we have any changed, we will update to global
 			if (isset($this->gparams) && count($this->gparams)) {
 
@@ -307,7 +307,7 @@ class plgSystemT3 extends JPlugin
 				//update all global parameters
 				foreach ($themes as $theme) {
 					$registry = new JRegistry;
-					$registry->loadString($theme->params);
+					$registry->loadString(stripslashes($theme->params));
 
 					foreach ($this->gparams as $pname) {
 						$registry->set($pname, $params->get($pname)); //overwrite with new value
