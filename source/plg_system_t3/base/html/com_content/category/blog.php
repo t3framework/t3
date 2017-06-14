@@ -52,7 +52,7 @@ $afterDisplayContent = trim(implode("\n", $results));
 		<?php echo JLayoutHelper::render('joomla.content.tags', $this->category->tags->itemTags); ?>
 	<?php endif; ?>
 	
-	<?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
+	<?php if ($beforeDisplayContent || $afterDisplayContent || $this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
 	<div class="category-desc clearfix">
 		<?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
 			<img src="<?php echo $this->category->getParams()->get('image'); ?>"/>

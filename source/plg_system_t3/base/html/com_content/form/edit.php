@@ -388,6 +388,9 @@ if(count($extrafields)){
 				<button type="button" class="btn" onclick="Joomla.submitbutton('article.cancel')">
 					<span class="icon-remove-sign"></span>&#160;<?php echo JText::_('JCANCEL') ?>
 				</button>
+				<?php if ($params->get('save_history', 0) && $this->item->id) : ?>
+					<?php echo $this->form->getInput('contenthistory'); ?>
+				<?php endif; ?>
 			</div>
 			<?php echo JHtml::_('form.token'); ?>
 		</fieldset>

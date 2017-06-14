@@ -40,6 +40,8 @@ if (empty ($this->item->catslug)) {
     <?php if ($params->get('show_title')) : ?>
 			<?php echo JLayoutHelper::render('joomla.content.item_title', array('item' => $this->item, 'params' => $params, 'title-tag'=>'h2')); ?>
     <?php endif; ?>
+	
+	<?php echo $this->item->event->afterDisplayTitle; ?>
 
     <!-- Aside -->
     <?php if ($topInfo || $icons) : ?>
@@ -56,9 +58,7 @@ if (empty ($this->item->catslug)) {
     <!-- //Aside -->
 
 		<section class="article-intro clearfix" itemprop="articleBody">
-			<?php if (!$params->get('show_intro')) : ?>
-				<?php echo $this->item->event->afterDisplayTitle; ?>
-			<?php endif; ?>
+			<?php echo $this->item->event->afterDisplayTitle; ?>
 
 			<?php echo $this->item->event->beforeDisplayContent; ?>
 
