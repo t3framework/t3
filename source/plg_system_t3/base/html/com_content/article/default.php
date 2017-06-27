@@ -75,10 +75,6 @@ JHtml::_('bootstrap.tooltip');
 	<?php echo JLayoutHelper::render('joomla.content.tags', $this->item->tags->itemTags); ?>
 <?php endif; ?>
 
-<?php if (!$params->get('show_intro')) : ?>
-	<?php echo $this->item->event->afterDisplayTitle; ?>
-<?php endif; ?>
-
 <?php echo $this->item->event->beforeDisplayContent; ?>
 
 <?php if (isset($urls) && ((!empty($urls->urls_position) && ($urls->urls_position == '0')) || ($params->get('urls_position') == '0' && empty($urls->urls_position))) || (empty($urls->urls_position) && (!$params->get('urls_position')))): ?>

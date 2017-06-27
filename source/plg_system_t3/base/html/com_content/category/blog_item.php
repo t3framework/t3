@@ -58,8 +58,6 @@ if (empty ($this->item->catslug)) {
     <!-- //Aside -->
 
 		<section class="article-intro clearfix" itemprop="articleBody">
-			<?php echo $this->item->event->afterDisplayTitle; ?>
-
 			<?php echo $this->item->event->beforeDisplayContent; ?>
 
 			<?php echo JLayoutHelper::render('joomla.content.intro_image', $this->item); ?>
