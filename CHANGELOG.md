@@ -1,3 +1,12 @@
+<h2>Version: 2.6.6 (21/07/2017)</h2>
+<h3>Fix bugs</h3>
+- Got notice error in thememagic | <a href="https://github.com/t3framework/t3/commit/e1bf82506fa8a4ce3930fff537891775261728f8">Link</a><br/>
+- Update layout override | <a 
+href="https://github.com/t3framework/t3/commit/44c6e1bd2b9a4d005dc4d6478912f6f301bb6d5b">Link</a><br/>
+- Fixed: Duplicate AfterTitle events | <a href="https://github.com/t3framework/t3/commit/b6873118a4cd33e43650d0df7522908a2778df58">Link</a><br/>
+- Highlighting search results on Joomla 3.7.3 using T3 BS3 Blank Template | <a href="https://github.com/t3framework/t3/commit/fc0cfbfa252abb708b9fe621cf62770505739c74">Link</a><br/>
+- Change T3 logo path | <a href="https://github.com/t3framework/t3/commit/b2c8f1943aea240ac8ec23b479f123ce2e24f956">Link</a><br/>
+
 <h2>Version: 2.6.5 (26/05/2017)</h2>
 <h3>Fix bugs</h3>
 - Add Joomla extrafield tab on article edit view | <a href="https://github.com/t3framework/t3/commit/4e8072cb63e2cd087f7162861d18d68d7cff5151">Link</a><br/>
