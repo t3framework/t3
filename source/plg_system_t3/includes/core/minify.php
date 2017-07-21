@@ -269,7 +269,7 @@ class T3Minify
 			foreach ($group as $url => $stylesheet) {
 				$url = self::fixUrl($url);
 
-				if ((!empty($stylesheet['mime']) && $stylesheet['mime'] == 'text/css' || !empty($stylesheet['type']) && $stylesheet['type'] == 'text/css') && ($csspath = self::cssPath($url))) {
+				if (((!empty($stylesheet['mime']) && $stylesheet['mime'] == 'text/css') || (!empty($stylesheet['type']) && $stylesheet['type'] == 'text/css')) && ($csspath = self::cssPath($url))) {
 					$stylesheet['path'] = $csspath;
 					$stylesheet['data'] = file_get_contents($csspath);
 
