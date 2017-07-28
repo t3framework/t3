@@ -195,8 +195,12 @@ jQuery (document).ready(function($){
                 setTimeout(function(){
                     var anchor = $("a[name='"+ arr1[1] +"']");
                     if (!anchor.length) anchor = $('#' + arr1[1]);
-                    $('html,body').animate({scrollTop: anchor.offset().top},'slow');
-                }, 500);
+                    var top = 0;
+                    if ( anchor.offset() !== undefined) { // fix "more" button on ja_resume cause js error
+                    	top = anchor.offset().top;
+                    }
+                    $('html,body').animate({scrollTop: top},'slow');
+                }, 1000); // ja_resume error scroll on ipad -> increase waiting time
             }
         }
         stopBubble(e);
