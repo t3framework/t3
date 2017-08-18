@@ -250,6 +250,15 @@ var T3Admin = window.T3Admin || {};
 					onsubmit();
 				}
 			};
+			setTimeout(function(){
+				if (!$('.t3-admin-nav li.active a').length) {
+					$current = $('.t3-admin-tabcontent.tab-content .tab-pane.active');
+					if ($current.length) {
+						
+						$('.t3-admin-nav li a[href="#'+$current.attr('id')+'"]').parent().addClass('active');
+					}
+				}
+			}, 500);
 		},
 
 		initChangeStyle: function(){
