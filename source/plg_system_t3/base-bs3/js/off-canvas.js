@@ -195,8 +195,9 @@ jQuery (document).ready(function($){
                 setTimeout(function(){
                     var anchor = $("a[name='"+ arr1[1] +"']");
                     if (!anchor.length) anchor = $('#' + arr1[1]);
-                    $('html,body').animate({scrollTop: anchor.offset().top},'slow');
-                }, 500);
+                    if (anchor.length) 
+                        $('html,body').animate({scrollTop: anchor.offset().top},'slow');
+                }, 1000);
             }
         }
         stopBubble(e);
