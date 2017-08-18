@@ -189,6 +189,13 @@ T3AdminLayout = window.T3AdminLayout || {};
 				setTimeout(function(){
 					$('#jform_params_mainlayout').trigger('change.less');
 				}, 500);
+
+				// remove chosen select.
+				jposition = jselect.find('select#tpl-positions-list');
+				if (jposition.next().hasClass('chzn-container')) {
+					jposition.removeAttr('style');
+					jposition.next().remove();
+				}
 			});
 		},
 
