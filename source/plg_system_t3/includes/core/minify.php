@@ -517,7 +517,12 @@ class T3Minify
 
 						//already minify?
 						if(!preg_match('@.*\.min\.js.*@', $furl)){
-							$jsmin = self::minifyJs($fsheet['data']);
+							try {
+								$jsmin = self::minifyJs($fsheet['data']);
+							} catch (Exception $e) {
+								// error - ignore minify
+								$jsmin = $fsheet['data'];
+							}
 							//$jsmin = T3Path::updateUrl($jsmin, T3Path::relativePath($outputurl, dirname($furl)));
 						}
 
