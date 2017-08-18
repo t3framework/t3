@@ -45,7 +45,7 @@ Have a bug or a feature request? Feel free to open an issue via this link https:
 Contribution & Developer Network
 ----------
 With a desire to provide an unified responsive framework for the Joomla 3.x, we are looking forward to the contribution the collaboration from all 
-Joomla developers. Feel free to post your comment and or question to our [T3v3 forum at JoomlArt] (http://www.joomlart.com/forums/forumdisplay.php?411-JA-T3V3-Framework "Add a question/comment"), we have a plan to open a Google Group when we have enough developers using this framework.
+Joomla developers. Feel free to post your comment and or question to our [T3v3 forum at JoomlArt] (https://www.joomlart.com/forums/forum/joomlart-public-forums/t3-framework/ "Add a question/comment"), we have a plan to open a Google Group when we have enough developers using this framework.
 
 Developer Network Update
 ----------
