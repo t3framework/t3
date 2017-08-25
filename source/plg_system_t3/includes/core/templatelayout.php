@@ -337,6 +337,12 @@ class T3TemplateLayout extends T3Template
 			$attribs['name'] = $attribs['type'];
 		}
 
+		if (!empty($attribs['data-original'])) {
+			$optgroup = $this->_layoutsettings->get($attribs['data-original'], false);
+			if (!empty($optgroup->optgroup))
+				$attribs['data-optgroup'] = $optgroup->optgroup;
+		}
+
 		$tp = 'tpls/system/tp.php';
 		$path = '';
 		if (is_file(T3_TEMPLATE_PATH . '/' . $tp)) {
