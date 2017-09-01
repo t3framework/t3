@@ -342,8 +342,7 @@ class T3AdminLayout
 		
 		return JHtml::_('select.groupedlist', $templateGroups, '', array(
 			'id' => 'tpl-positions-list',
-			'list.select' => '',
-			'list.attr' => 'multiple="multiple" size="10"'
+			'list.select' => ''
 		));
 		
 	}

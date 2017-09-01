@@ -177,9 +177,11 @@ class T3TemplateLayout extends T3Template
 		//we have data - configuration saved
 		if (!empty($splparams)) {
 			$poss = array();
+			$optgroup = array();
 			foreach ($splparams as $i => $splparam) {
 				$param = (object)$splparam;
 				$poss[] = isset($param->position) ? $param->position : $defpos[$i];
+				$optgroup[] = isset($param->optgroup) ? $param->optgroup : '';
 			}
 
 		} else {
@@ -231,6 +233,7 @@ class T3TemplateLayout extends T3Template
 		//
 		$vars['name'] = $name;
 		$vars['poss'] = $poss;
+		$vars['optgroup'] = $optgroup;
 		$vars['spldata'] = implode('', $spldata);
 		$vars['default'] = $default;
 		$vars['spl'] = 1;
@@ -335,6 +338,12 @@ class T3TemplateLayout extends T3Template
 		$attribs['type'] = $type;
 		if (!isset($attribs['name'])) {
 			$attribs['name'] = $attribs['type'];
+		}
+
+		if (!empty($attribs['data-original'])) {
+			$optgroup = $this->_layoutsettings->get($attribs['data-original'], false);
+			if (!empty($optgroup->optgroup))
+				$attribs['data-optgroup'] = $optgroup->optgroup;
 		}
 
 		$tp = 'tpls/system/tp.php';

@@ -15,8 +15,11 @@
 $cls = array('t3-admin-layout-pos', 'block-' . $vars['name']);
 $attr = '';
 
-if(isset($vars['data-original'])){
+if(isset($vars['data-original'])) {
 	$attr = ' data-original="'. $vars['data-original'] . '"';
+	if (!empty($vars['data-optgroup'])) {
+		$attr .= ' data-optgroup="'. $vars['data-optgroup'] . '"';
+	}
 } else {
 	$cls[] = 't3-admin-layout-uneditable'; 
 }
