@@ -720,7 +720,7 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.initChangeStyle();
 		T3Admin.initT3ThemeExtras();
 		//T3Admin.initCheckupdate();
-		T3Admin.switchTab();
+		//T3Admin.switchTab();
 		T3Admin.fixValidate();
         T3Admin.noticeChange ();
 	});
