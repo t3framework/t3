@@ -1,3 +1,15 @@
+<h2>Version: 2.6.7 (06/09/2017)</h2>
+<h3>Fix bugs</h3>
+- T3 Module Layout Problems with Joomla 3.7.3 | <a href="https://github.com/t3framework/t3/commit/463cfa53691493251c15964af6f561777c7a12db">Link</a><br/>
+- Remove auto switch tab | <a 
+href="https://github.com/t3framework/t3/commit/876c564f891ebde3e4a00367382a5a20290762c0">Link</a><br/>
+- Create a menu type List contacts in a category to see the error | <a href="https://github.com/t3framework/t3/commit/fe92584bd909a915e9dba1a8846aa4a7238032f5">Link</a><br/>
+- Fix anchor error on mobile | <a href="https://github.com/t3framework/t3/commit/03d0be479ccfaac0b736e6de0be09a803a11d61c">Link</a><br/>
+- Got error when enable JS Compress Tool: Closure Compiler | <a href="https://github.com/t3framework/t3/commit/0332111ea17ecd7bcf8bf740dcfa519aaf279ac7">Link</a><br/>
+- Fix null date comparison | <a href="https://github.com/t3framework/t3/commit/01807fb80c38446bf4a1ea8230d728fed5511636">Link</a><br/>
+- Missing Field tab on the article editting page | <a href="https://github.com/t3framework/t3/commit/7012672c66deed5239f86d13c177117d4b2f41c7">Link</a><br/>
+- Improve style for custom field edit | <a href="https://github.com/t3framework/t3/commit/cfea53dc9554094e30b165bc614bfaba33f6a31d">Link</a><br/>
+
 <h2>Version: 2.6.6 (21/07/2017)</h2>
 <h3>Fix bugs</h3>
 - Got notice error in thememagic | <a href="https://github.com/t3framework/t3/commit/e1bf82506fa8a4ce3930fff537891775261728f8">Link</a><br/>
