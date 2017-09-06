@@ -575,6 +575,80 @@ article aside .btn-group {
   font-weight: bold;
 }
 
+// List contact
+.contact-category {
+  ul.category {
+    border-top: 0;
+    overflow: hidden;
+
+    li.row-fluid {
+      border: 1px solid @gray-lighter;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+      .clearfix();
+
+      & > div {
+        margin: 0;
+      }
+    }
+  }
+
+  .cat-children {
+    ul {
+      border: 0;
+      border-top: 1px solid #ddd;
+      list-style: none;
+      margin: 10px 0 0 0;
+      padding: 0;
+
+      li {
+        background: transparent;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+
+        .item-title {
+          border-left: 1px dotted @gray-light;
+          display: block;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 0 0 0 15px;
+          margin-left: 20px;
+          position: relative;
+
+          &:after {
+            border-top: 1px dotted @gray-light;
+            display: block;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            height: 1px;
+            width: 10px;
+          }
+        }
+
+        li .item-title {
+          margin-left: 40px;
+        }
+
+        li li .item-title {
+          margin-left: 60px;
+        }
+
+        li li li .item-title {
+          margin-left: 80px;
+        }
+
+        &:last-child {
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
+
 
 // Archive
 // ---------------------------------------------------------

@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_contact
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -15,18 +15,25 @@ $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 <?php if (empty($this->items)) : ?>
-	<p> <?php echo JText::_('COM_CONTACT_NO_ARTICLES'); ?>	 </p>
+	<p> <?php echo JText::_('COM_CONTACT_NO_CONTACTS'); ?>	 </p>
 <?php else : ?>
 
-<form action="<?php echo htmlspecialchars(JFactory::getURI()->toString()); ?>" method="post" name="adminForm" id="adminForm">
-<?php if ($this->params->get('show_pagination_limit')) : ?>
+<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
+<?php if ($this->params->get('filter_field') || $this->params->get('show_pagination_limit')) : ?>
 	<fieldset class="filters">
 	<legend class="hidelabeltxt"><?php echo JText::_('JGLOBAL_FILTER_LABEL'); ?></legend>
-
+		<?php if ($this->params->get('filter_field')) : ?>
+			<div class="btn-group">
+				<label class="filter-search-lbl element-invisible" for="filter-search"><span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span><?php echo JText::_('COM_CONTACT_FILTER_LABEL') . '&#160;'; ?></label>
+				<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="inputbox" onchange="document.adminForm.submit();" title="<?php echo JText::_('COM_CONTACT_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo JText::_('COM_CONTACT_FILTER_SEARCH_DESC'); ?>" />
+			</div>
+		<?php endif; ?>
+		<?php if ($this->params->get('show_pagination_limit')) : ?>
 		<div class="display-limit">
 			<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>&#160;
 			<?php echo $this->pagination->getLimitBox(); ?>
 		</div>
+		<?php endif; ?>
 	</fieldset>
 <?php endif; ?>
 	<table class="category">

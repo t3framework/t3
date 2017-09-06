@@ -183,6 +183,31 @@ fieldset.radio.btn-group label.active {
   width: 16px;
   color: #333;
 }
+.icon-eye-open:before,
+.icon-eye:before {
+  content: "\f06e";
+  font-family: "FontAwesome";
+}
+.icon-file-add:before {
+  content: "\f0f6";
+  font-family: "FontAwesome";
+}
+.icon-cancel:before {
+  content: "\f00d";
+  font-family: "FontAwesome";
+}
+.icon-publish:before {
+  content: "\f00c";
+}
+.icon-unpublish:before {
+  content: "\f00d";
+}
+.icon-featured:before {
+  content: "\f005";
+}
+.icon-unfeatured:before {
+  content: "\f005";
+}
 .window.view-modules .well .control-label {
   display: inline-block;
 }
