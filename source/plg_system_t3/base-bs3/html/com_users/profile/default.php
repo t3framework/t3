@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -16,7 +16,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('behavior.tooltip');
 }
 ?>
-<div class="profile <?php echo $this->pageclass_sfx?>">
+<div class="profile <?php echo $this->pageclass_sfx; ?>">
 <?php if (JFactory::getUser()->id == $this->data->id) : ?>
 <ul class="btn-toolbar pull-right">
 	<li class="btn-group">

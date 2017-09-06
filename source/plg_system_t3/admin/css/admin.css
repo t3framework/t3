@@ -1587,6 +1587,10 @@ button.btn-primary:active {
   border-radius: 0;
 }
 
+#tpl_positions_list_chzn {
+  margin-bottom: 10px;
+}
+
 
 /* -------------------------------------------------
 /* Responsive

@@ -1744,6 +1744,67 @@ div.finder {
 .contact .accordion-toggle {
   font-weight: bold;
 }
+.contact-category ul.category {
+  border-top: 0;
+  overflow: hidden;
+}
+.contact-category ul.category li.row-fluid {
+  border: 1px solid #eeeeee;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+.contact-category ul.category li.row-fluid:before,
+.contact-category ul.category li.row-fluid:after {
+  content: " ";
+  display: table;
+}
+.contact-category ul.category li.row-fluid:after {
+  clear: both;
+}
+.contact-category ul.category li.row-fluid > div {
+  margin: 0;
+}
+.contact-category .cat-children ul {
+  border: 0;
+  border-top: 1px solid #eeeeee;
+}
+.contact-category .cat-children ul li {
+  background: transparent;
+  border-bottom: 1px solid #eeeeee;
+  padding: 5px 0 5px 0;
+}
+.contact-category .cat-children ul li h4 {
+  border-left: 1px dotted #999999;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+  padding-left: 15px;
+  margin-left: 20px;
+  position: relative;
+}
+.contact-category .cat-children ul li h4:after {
+  border-top: 1px dotted #999999;
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  height: 1px;
+  width: 10px;
+}
+.contact-category .cat-children ul li li h4 {
+  margin-left: 40px;
+}
+.contact-category .cat-children ul li li li h4 {
+  margin-left: 60px;
+}
+.contact-category .cat-children ul li li li li h4 {
+  margin-left: 80px;
+}
+.contact-category .cat-children ul li:last-child {
+  border: 0;
+}
 #archive-items > li {
   line-height: normal;
   margin: 0;

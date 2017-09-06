@@ -29,9 +29,6 @@
 // TEMPLATES OPTIONS FORM
 // ------------------------------
 .com_config #templates-form {
-  legend {
-  }
-
   .tip {
     background: @well-bg;
     padding: (@padding-base-vertical * 2) @padding-base-horizontal;
@@ -193,6 +190,106 @@
     }
   }
 
+}
+
+// Extrafield
+// -----------------------
+.edit.item-page,
+.profile-edit {
+  #jform_com_fields_checkboxs {
+    label.checkbox {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    input[type="checkbox"] {
+      margin-left: 0;
+      margin-top: -2px;
+      position: relative;
+      vertical-align: middle;
+      width: auto;
+    }
+  }
+
+  .minicolors-input {
+    height: 28px;
+    width: auto;
+  }
+}
+
+// Edit profile
+// -----------------------
+.profile-edit {
+  #jform_com_fields_user_checkbox {
+    label.checkbox {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    input {
+      position: relative;
+      margin-left: 0;
+      margin-right: 5px;
+      width: auto;
+    }
+  }
+
+  .minicolors-input {
+    height: 28px;
+    width: auto;
+  }
+
+  #jform_com_fields_user_image_chzn {
+    .chzn-search {
+      box-sizing: border-box;
+    }
+
+    ul.chzn-results {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  #jform_com_fields_user_calendar {
+    float: left;
+  }
+
+  .chzn-container-single,
+  .chzn-container {
+    float: left;
+    margin-right: 10px;
+
+    @media screen and (max-width: 360px) {
+      width: 100% !important;
+    }
+
+    .chzn-drop {
+      box-sizing: border-box !important;
+    }
+  }
+}
+
+
+// User profile
+// ----------------------
+.profile {
+  #users-profile-core {
+    width: 100%;
+  }
+
+  .dl-horizontal {
+    dd {
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #ddd;
+      padding-bottom: 10px;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
 }
 
 
