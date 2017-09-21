@@ -199,8 +199,8 @@ class T3MenuMegamenuTpl
 
 		if ($item->menu_image) {
 			$item->params->get('menu_text', 1) ?
-				$vars['linktype'] = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
-				$vars['linktype'] = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" />';
+				$vars['linktype'] = '<img class="' . $item->menu_image_css . '" src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
+				$vars['linktype'] = '<img class="' . $item->menu_image_css . '" src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
 			$vars['linktype'] = $item->title;
 		}
