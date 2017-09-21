@@ -138,10 +138,12 @@ class T3 {
 		if (!$app->isAdmin()) {
 			if(version_compare(JVERSION, '3.8', 'ge')){
 				// override core joomla class
+				// JViewLegacy
+		        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');
 		        T3::register('JViewHtml',   T3_ADMIN_PATH . '/includes/joomla30/viewhtml.php');
-						// JModuleHelper
+				// JModuleHelper
 		        T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla4/ModuleHelper.php');
-						// JPagination
+				// JPagination
 		        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla4/Pagination.php');
 		        // Register T3 Layout File to put a t3 base layer for layout files
 		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
