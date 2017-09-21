@@ -26,9 +26,9 @@ class T3BootstrapTpl
 			foreach ($list as &$item) :
 
 				//intergration with new params joomla 3.6.x (menu_show)
-                $menu_show = $item->params->get('menu_show');
-                if (empty($menu_show) && $menu_show!==null)
-                    continue;
+				$menu_show = $item->params->get('menu_show');
+				if (empty($menu_show) && $menu_show!==null)
+				continue;
 
 				$class = 'item-' . $item->id;
 				if ($item->id == $active_id) {
