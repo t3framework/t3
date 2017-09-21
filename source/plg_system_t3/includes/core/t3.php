@@ -136,17 +136,26 @@ class T3 {
 		T3::import ('core/t3j');
 
 		if (!$app->isAdmin()) {
-			if(version_compare(JVERSION, '3.0', 'ge')){
+			if(version_compare(JVERSION, '3.8', 'ge')){
+				// override core joomla class
+		        T3::register('JViewHtml',   T3_ADMIN_PATH . '/includes/joomla30/viewhtml.php');
+						// JModuleHelper
+		        T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla4/ModuleHelper.php');
+						// JPagination
+		        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla4/Pagination.php');
+		        // Register T3 Layout File to put a t3 base layer for layout files
+		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
+			} else if(version_compare(JVERSION, '3.0', 'ge')){
 				// override core joomla class
 				// JViewLegacy
-        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');
-        T3::register('JViewHtml',   T3_ADMIN_PATH . '/includes/joomla30/viewhtml.php');
-				// JModuleHelper
-        T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla30/modulehelper.php');
-				// JPagination
-        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla30/pagination.php');
-        // Register T3 Layout File to put a t3 base layer for layout files
-        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
+		        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla30/viewlegacy.php');
+		        T3::register('JViewHtml',   T3_ADMIN_PATH . '/includes/joomla30/viewhtml.php');
+						// JModuleHelper
+		        T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla30/modulehelper.php');
+						// JPagination
+		        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla30/pagination.php');
+		        // Register T3 Layout File to put a t3 base layer for layout files
+		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
 			} else {
 				// override core joomla class
 				// JView
@@ -163,11 +172,11 @@ class T3 {
 				T3::register('JLayoutHelper', T3_ADMIN_PATH . '/includes/joomla25/layout/helper.php');
 				T3::register('JHtmlBootstrap', T3_ADMIN_PATH . '/includes/joomla25/html/bootstrap.php');
 				T3::register('JHtmlBehavior', T3_ADMIN_PATH . '/includes/joomla25/html/behavior.php');
-        T3::register('JHtmlString', T3_ADMIN_PATH . '/includes/joomla25/html/string.php');
-        T3::register('JHtmlJquery', T3_ADMIN_PATH . '/includes/joomla25/html/jquery.php');
+		        T3::register('JHtmlString', T3_ADMIN_PATH . '/includes/joomla25/html/string.php');
+		        T3::register('JHtmlJquery', T3_ADMIN_PATH . '/includes/joomla25/html/jquery.php');
 
-        // load j25 compat language
-        JFactory::getLanguage()->load('plg_system_t3.j25.compat', JPATH_ADMINISTRATOR);
+		        // load j25 compat language
+		        JFactory::getLanguage()->load('plg_system_t3.j25.compat', JPATH_ADMINISTRATOR);
 			}
 
 			// import renderer
