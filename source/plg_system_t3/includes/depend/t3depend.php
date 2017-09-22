@@ -127,7 +127,7 @@ class JFormFieldT3Depend extends JFormField
 
                 $profiles[$fname] = $f;
 				
-				$params = new JRegistry(JFile::read($path . DIRECTORY_SEPARATOR . $fname . '.ini'));
+				$params = new JRegistry(file_get_contents($path . DIRECTORY_SEPARATOR . $fname . '.ini'));
                 $jsonData[$fname] = $params->toArray();
             }
         }
