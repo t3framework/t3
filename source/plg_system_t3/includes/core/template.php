@@ -1117,7 +1117,7 @@ class T3Template extends ObjectExtendable
 		foreach ($afiles as $afile) {
 			if (is_file($afile)) {
 				//load xml
-				$axml = JFactory::getXML($afile);
+				$axml = simplexml_load_file($afile);
 
 				//process if exist
 				if ($axml) {
