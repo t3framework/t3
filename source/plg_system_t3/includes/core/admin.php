@@ -253,8 +253,8 @@ class T3Admin {
 			// extend parameters
 			T3Bot::prepareForm($form);
 
-			$xml = JFactory::getXML($tplXml);
-			$fxml = JFactory::getXML($frwXml);
+			$xml = simplexml_load_file($tplXml);
+			$fxml = simplexml_load_file($frwXml);
 
 			$db = JFactory::getDbo();
 			$query = $db->getQuery(true);
