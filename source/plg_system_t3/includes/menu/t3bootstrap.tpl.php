@@ -24,6 +24,10 @@ class T3BootstrapTpl
 		<ul class="nav navbar-nav">
 			<?php
 			foreach ($list as &$item) :
+				//intergration with new params joomla 3.6.x (menu_show)
+				$menu_show = (int)$item->params->get('menu_show', 0);
+				if ($menu_show!=1)
+					continue;
 				$class = 'item-' . $item->id;
 				if ($item->id == $active_id) {
 					$class .= ' current';
@@ -122,8 +126,8 @@ class T3BootstrapTpl
 
 		if ($item->menu_image) {
 			$item->params->get('menu_text', 1) ?
-				$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
-				$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" />';
+				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
+				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
 			$linktype = $item->title;
 		}
@@ -163,8 +167,8 @@ class T3BootstrapTpl
 		$title = $item->anchor_title ? ' title="' . $item->anchor_title . '" ' : '';
 		if ($item->menu_image) {
 			$item->params->get('menu_text', 1) ?
-				$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
-				$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" />';
+				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
+				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
 			$linktype = $item->title;
 		}
@@ -195,8 +199,8 @@ class T3BootstrapTpl
 
 		if ($item->menu_image) {
 			$item->params->get('menu_text', 1) ?
-				$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
-				$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" />';
+				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
+				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
 			$linktype = $item->title;
 		}

@@ -261,7 +261,7 @@ class T3AdminTheme
 		$varfile = $assetspath . '/less/variables.less';
 		if(file_exists($varfile)){
 			$params = new JRegistry;
-			$params->loadString(JFile::read($varfile), 'LESS');
+			$params->loadString(file_get_contents($varfile), 'LESS');
 			$jsondata['base'] = $params->toArray();
 		}
 
@@ -286,7 +286,7 @@ class T3AdminTheme
 							//get those developer custom values
 							if($other == 'variables.less'){
 								$params = new JRegistry;
-								$params->loadString(JFile::read($themepath . '/' . $theme . '/variables.less'), 'LESS');
+								$params->loadString(file_get_contents($themepath . '/' . $theme . '/variables.less'), 'LESS');
 							}
 
 							if($other != 'variables-custom.less'){
@@ -296,9 +296,9 @@ class T3AdminTheme
 
 						$cparams = new JRegistry;
 						$varsfile = $themepath . '/' . $theme . '/variables.less';
-						if(file_exists($varsfile)) $cparams->loadString(JFile::read($varsfile), 'LESS');
+						if(file_exists($varsfile)) $cparams->loadString(file_get_contents($varsfile), 'LESS');
 						$varsfile = $themepath . '/' . $theme . '/variables-custom.less';
-						if(file_exists($varsfile)) $cparams->loadString(JFile::read($varsfile), 'LESS');
+						if(file_exists($varsfile)) $cparams->loadString(file_get_contents($varsfile), 'LESS');
 						if($params){
 							foreach ($cparams->toArray() as $key => $value) {
 								$params->set($key, $value);
@@ -357,7 +357,7 @@ class T3AdminTheme
 		T3::import('depend/t3form');
 
 		$form = new T3Form('thememagic.themer', array('control' => 't3form'));
-		$form->load(JFile::read(JFile::exists(T3_TEMPLATE_PATH . '/thememagic.xml') ? T3_TEMPLATE_PATH . '/thememagic.xml' : T3_PATH . '/params/thememagic.xml'));
+		$form->load(file_get_contents(JFile::exists(T3_TEMPLATE_PATH . '/thememagic.xml') ? T3_TEMPLATE_PATH . '/thememagic.xml' : T3_PATH . '/params/thememagic.xml'));
 		$form->loadFile(T3_TEMPLATE_PATH . '/templateDetails.xml', true, '//config');
 
 		$tplform = new T3Form('thememagic.overwrite', array('control' => 't3form'));
@@ -412,7 +412,7 @@ class T3AdminTheme
 						//default variables
 						$varfile = T3_TEMPLATE_PATH . '/less/variables.less';
 						if(file_exists($varfile)){
-							$params->loadString(JFile::read($varfile), 'LESS');
+							$params->loadString(file_get_contents($varfile), 'LESS');
 
 							//get all less files in "theme" folder
 							$others = JFolder::files($themepath, '.less');
@@ -420,7 +420,7 @@ class T3AdminTheme
 								//get those developer custom values
 								if($other == 'variables.less'){
 									$devparams = new JRegistry;
-									$devparams->loadString(JFile::read($themepath . '/variables.less'), 'LESS');
+									$devparams->loadString(file_get_contents($themepath . '/variables.less'), 'LESS');
 
 									//overwrite the default variables
 									foreach ($devparams->toArray() as $key => $value) {
@@ -437,7 +437,7 @@ class T3AdminTheme
 							//load custom variables
 							if (file_exists($themepath . '/variables-custom.less')) {
 								$cparams = new JRegistry;
-								$cparams->loadString(JFile::read($themepath . '/variables-custom.less'), 'LESS');
+								$cparams->loadString(file_get_contents($themepath . '/variables-custom.less'), 'LESS');
 
 								//and overwrite those defaults variables
 								foreach ($cparams->toArray() as $key => $value) {
@@ -465,7 +465,7 @@ class T3AdminTheme
 								$path            = ltrim(str_replace(array(JPATH_ROOT, '\\'), array('', '/'), $less), '/');
 								$path            = T3Path::cleanPath($path);
 								$fullurl         = $baseurl . preg_replace('@(\\+)|(/+)@', '/', $path);
-								$cache[$fullurl] = JFile::read($less);
+								$cache[$fullurl] = file_get_contents($less);
 							}
 						}
 					}

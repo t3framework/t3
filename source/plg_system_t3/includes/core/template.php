@@ -93,7 +93,7 @@ class T3Template extends ObjectExtendable
 			$fconfig = T3Path::getPath('etc/layout/' . $layout . '.ini');
 			if (is_file($fconfig)) {
 				jimport('joomla.filesystem.file');
-				$this->_layoutsettings->loadString(JFile::read($fconfig), 'INI', array('processSections' => true));
+				$this->_layoutsettings->loadString(file_get_contents($fconfig), 'INI', array('processSections' => true));
 			}
 		}
 
@@ -1147,7 +1147,7 @@ class T3Template extends ObjectExtendable
 		foreach ($afiles as $afile) {
 			if (is_file($afile)) {
 				//load xml
-				$axml = JFactory::getXML($afile);
+				$axml = simplexml_load_file($afile);
 
 				//process if exist
 				if ($axml) {
