@@ -620,8 +620,29 @@ class T3Template extends ObjectExtendable
 	 */
 	function countModules($positions)
 	{
+		if (!$this->_tpl || !method_exists($this->_tpl, 'countModules')) return 0;
+
+		// get real post name
 		$pos = $this->getPosname($positions);
-		return $this->_tpl && method_exists($this->_tpl, 'countModules') ? $this->_tpl->countModules($pos) : 0;
+
+		// support only and, or - back compatibility
+		if (preg_match ('/ or /i', $pos)) {
+			$arr = preg_split('/ or /i', $pos);
+			$result = 0;
+			foreach ($arr as $p) {
+				$result = $result or $this->_tpl->countModules($p);
+			}		
+			return $result;
+		} else if (preg_match ('/ and /i', $pos)) {
+			$arr = preg_split('/ and /i', $pos);
+			$result = 1;
+			foreach ($arr as $p) {
+				$result = $result and $this->_tpl->countModules($p);
+			}		
+			return $result;
+		} 
+
+		return $this->_tpl->countModules($pos);
 	}
 
 
@@ -634,6 +655,8 @@ class T3Template extends ObjectExtendable
 	 */
 	function checkSpotlight($name, $positions)
 	{
+		if (!$this->_tpl || !method_exists($this->_tpl, 'countModules')) return 0;
+
 		$poss = array();
 
 		for ($i = 1; $i <= $this->maxgrid; $i++) {
@@ -650,7 +673,14 @@ class T3Template extends ObjectExtendable
 			$poss = preg_split('/\s*,\s*/', $positions);
 		}
 
-		return $this->_tpl && method_exists($this->_tpl, 'countModules') ? $this->_tpl->countModules(implode(' or ', $poss)) : 0;
+		// fix deprecated error: using expression in HtmlDocument::countModules()
+		foreach ($poss as $pos) {
+			if ($this->_tpl->countModules($pos)) return 1;
+		}
+
+		return 0;
+
+		//return $this->_tpl && method_exists($this->_tpl, 'countModules') ? $this->_tpl->countModules(implode(' or ', $poss)) : 0;
 	}
 
 
