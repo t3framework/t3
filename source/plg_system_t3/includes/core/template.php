@@ -630,14 +630,14 @@ class T3Template extends ObjectExtendable
 			$arr = preg_split('/ or /i', $pos);
 			$result = 0;
 			foreach ($arr as $p) {
-				$result = $result or $this->_tpl->countModules($p);
+				$result = $result || $this->_tpl->countModules($p);
 			}		
 			return $result;
 		} else if (preg_match ('/ and /i', $pos)) {
 			$arr = preg_split('/ and /i', $pos);
 			$result = 1;
 			foreach ($arr as $p) {
-				$result = $result and $this->_tpl->countModules($p);
+				$result = $result && $this->_tpl->countModules($p);
 			}		
 			return $result;
 		} 
