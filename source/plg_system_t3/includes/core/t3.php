@@ -146,7 +146,7 @@ class T3 {
 				// JPagination
 		        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla4/Pagination.php');
 		        // Register T3 Layout File to put a t3 base layer for layout files
-		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
+		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla4/FileLayout.php');
 			} else if(version_compare(JVERSION, '3.0', 'ge')){
 				// override core joomla class
 				// JViewLegacy
@@ -157,7 +157,7 @@ class T3 {
 						// JPagination
 		        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla30/pagination.php');
 		        // Register T3 Layout File to put a t3 base layer for layout files
-		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla25/layout/file.php');
+		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla30/layoutfile.php');
 			} else {
 				// override core joomla class
 				// JView
