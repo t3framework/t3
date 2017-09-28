@@ -1267,6 +1267,11 @@ ul.latestusers li {
 .tags {
   margin-bottom: 20px;
 }
+.tag-category #filter-search {
+  box-shadow: none;
+  float: left;
+  border-radius: 0;
+}
 .fields-container dd {
   border-bottom: 1px dotted #e1e1e1;
   padding: 6.66666667px 0;
