@@ -396,7 +396,8 @@ class T3Minify
 
 				$output[$outputurl . '/' . $groupname] = array(
 					'mime' => 'text/css',
-					'media' => $media
+					'media' => $media,
+					'attribs' => array()
 					);
 			}
 		}
