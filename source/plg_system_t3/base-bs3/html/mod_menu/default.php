@@ -23,7 +23,7 @@ if ($tagId = $params->get('tag_id', ''))
 {
 	$class = 'item-' . $item->id;
 
-	if ($item->id == $default_id)
+	if (isset($default_id) && $item->id == $default_id)
 	{
 		$class .= ' default';
 	}
