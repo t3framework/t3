@@ -21,7 +21,7 @@ if ($item->anchor_css)
 	$attributes['class'] = $item->anchor_css;
 }
 
-if ($item->anchor_rel)
+if (!empty($item->anchor_rel))
 {
 	$attributes['rel'] = $item->anchor_rel;
 }

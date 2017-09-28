@@ -48,7 +48,7 @@ $tparams = $this->item->params;
 		</h3>
 	<?php endif; ?>
 
-	<?php echo $this->item->event->afterDisplayTitle; ?>
+	<?php if (!empty($this->item->event)) echo $this->item->event->afterDisplayTitle; ?>
 
 	<?php if ($tparams->get('show_contact_list') && count($this->contacts) > 1) : ?>
 		<form action="#" method="get" name="selectForm" id="selectForm">
@@ -62,7 +62,7 @@ $tparams = $this->item->params;
 		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
 	<?php endif; ?>
 
-	<?php echo $this->item->event->beforeDisplayContent; ?>
+	<?php if (!empty($this->item->event)) echo $this->item->event->beforeDisplayContent; ?>
 
 	<?php $presentation_style = $tparams->get('presentation_style'); ?>
 	<?php $accordionStarted = false; ?>
@@ -410,5 +410,5 @@ $tparams = $this->item->params;
     <?php echo JHtml::_('bootstrap.endTabSet'); ?>
   <?php endif; ?>
 
-	<?php echo $this->item->event->afterDisplayContent; ?>
+	<?php if (!empty($this->item->event)) echo $this->item->event->afterDisplayContent; ?>
 </div>
