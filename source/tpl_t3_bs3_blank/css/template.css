@@ -2359,15 +2359,15 @@ a.list-group-item.active:focus .list-group-item-text {
   }
 }
 .head-search .form-control {
-  width: 100%;
   padding-left: 30px;
+  width: 100% !important;
 }
 @media screen and (min-width: 768px) {
   .head-search .form-control {
-    width: 150px;
+    width: 150px !important;
   }
   .head-search .form-control:focus {
-    width: 200px;
+    width: 200px !important;
   }
 }
 .t3-sl {

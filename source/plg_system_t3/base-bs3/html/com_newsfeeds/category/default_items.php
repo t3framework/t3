@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_newsfeeds
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,14 +20,16 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 	<p><?php echo JText::_('COM_NEWSFEEDS_NO_ARTICLES'); ?></p>
 <?php else : ?>
 
-	<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm"
-		  id="adminForm">
+	<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString(), ENT_COMPAT, 'UTF-8'); ?>" method="post" name="adminForm" id="adminForm">
 		<?php if ($this->params->get('filter_field') != 'hide' || $this->params->get('show_pagination_limit')) : ?>
 			<fieldset class="filters btn-toolbar">
-				<?php if ($this->params->get('filter_field') != 'hide') : ?>
+				<?php if ($this->params->get('filter_field') != 'hide' && $this->params->get('filter_field') == '1') : ?>
 					<div class="btn-group">
 						<label class="filter-search-lbl element-invisible" for="filter-search">
-							<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span><?php echo JText::_('COM_NEWSFEEDS_FILTER_LABEL') . '&#160;'; ?>
+							<span class="label label-warning">
+								<?php echo JText::_('JUNPUBLISHED'); ?>
+							</span>
+							<?php echo JText::_('COM_NEWSFEEDS_FILTER_LABEL') . '&#160;'; ?>
 						</label>
 						<input type="text" name="filter-search" id="filter-search"
 							   value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="input"
@@ -50,7 +52,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 			</fieldset>
 		<?php endif; ?>
-		<ul class="category unstyled list-striped list-unstyled">
+		<ul class="category list-striped list-condensed">
 			<?php foreach ($this->items as $i => $item) : ?>
 				<?php if ($this->items[$i]->published == 0) : ?>
 					<li class="system-unpublished cat-list-row<?php echo $i % 2; ?>">
@@ -69,12 +71,17 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 					</strong>
 				</span>
 				<?php if ($this->items[$i]->published == 0) : ?>
-					<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
+					<span class="label label-warning">
+						<?php echo JText::_('JUNPUBLISHED'); ?>
+					</span>
 				<?php endif; ?>
 				<br/>
 				<?php if ($this->params->get('show_link')) : ?>
+					<?php $link = JStringPunycode::urlToUTF8($item->link); ?>
 					<span class="list pull-left">
-							<a href="<?php echo $item->link; ?>"><?php echo $item->link; ?></a>
+						<a href="<?php echo $item->link; ?>">
+							<?php echo $item->link; ?>
+						</a>
 					</span>
 					<br/>
 				<?php endif; ?>

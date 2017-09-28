@@ -100,7 +100,7 @@ JFactory::getDocument()->addScriptDeclaration("
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 			<?php endif; ?>
 
-			<?php echo JLayoutHelper::render('joomla.edit.params', array('form'=>$this->form, 'params'=>$this, 'fieldsets' => $this->form->getFieldsets())); ?>
+			<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
 
 			<?php echo JHtml::_('bootstrap.addTab', $this->tab_name, 'publishing', JText::_('COM_CONTENT_PUBLISHING')); ?>
 				<?php echo $this->form->renderField('catid'); ?>

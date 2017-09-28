@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_tags
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -36,6 +36,12 @@ if ($bsspans < 1)
 
 $bscolumns = min($columns, floor(12 / $bsspans));
 $n = count($this->items);
+
+JFactory::getDocument()->addScriptDeclaration("
+		var resetFilter = function() {
+		document.getElementById('filter-search').value = '';
+	}
+");
 ?>
 
 <form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
@@ -47,6 +53,12 @@ $n = count($this->items);
 					<?php echo JText::_('COM_TAGS_TITLE_FILTER_LABEL') . '&#160;'; ?>
 				</label>
 				<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="inputbox" onchange="document.adminForm.submit();" title="<?php echo JText::_('COM_TAGS_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo JText::_('COM_TAGS_TITLE_FILTER_LABEL'); ?>" />
+				<button type="button" name="filter-search-button" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>" onclick="document.adminForm.submit();" class="btn">
+					<span class="fa fa-search"></span>
+				</button>
+				<button type="reset" name="filter-clear-button" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>" class="btn" onclick="resetFilter(); document.adminForm.submit();">
+					<span class="fa fa-remove"></span>
+				</button>
 			</div>
 		<?php endif; ?>
 		<?php if ($this->params->get('show_pagination_limit')) : ?>
@@ -66,11 +78,11 @@ $n = count($this->items);
 	</fieldset>
 	<?php endif; ?>
 
-<?php if ($this->items == false || $n == 0) : ?>
+<?php if ($this->items == false || $n === 0) : ?>
 	<p><?php echo JText::_('COM_TAGS_NO_TAGS'); ?></p>
 <?php else : ?>
 	<?php foreach ($this->items as $i => $item) : ?>
-		<?php if ($n == 1 || $i == 0 || $bscolumns == 1 || $i % $bscolumns == 0) : ?>
+		<?php if ($n === 1 || $i === 0 || $bscolumns === 1 || $i % $bscolumns === 0) : ?>
 			<ul class="thumbnails">
 		<?php endif; ?>
 		<?php if ((!empty($item->access)) && in_array($item->access, $this->user->getAuthorisedViewLevels())) : ?>
@@ -91,7 +103,7 @@ $n = count($this->items);
 				<?php if ($images->image_intro_caption) : ?>
 					<?php echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_intro_caption) . '"'; ?>
 				<?php endif; ?>
-				src="<?php echo $images->image_intro; ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>"/>
+				src="<?php echo $images->image_intro; ?>" alt="<?php echo htmlspecialchars($images->image_intro_alt); ?>"/>
 				</div>
 			<?php endif; ?>
 			</span>
@@ -99,7 +111,7 @@ $n = count($this->items);
 		<div class="caption">
 			<?php if ($this->params->get('all_tags_show_tag_description', 1)) : ?>
 				<span class="tag-body">
-					<?php echo JHtml::_('string.truncate', $item->description, $this->params->get('tag_list_item_maximum_characters')); ?>
+					<?php echo JHtml::_('string.truncate', $item->description, $this->params->get('all_tags_tag_maximum_characters')); ?>
 				</span>
 			<?php endif; ?>
 			<?php if ($this->params->get('all_tags_show_tag_hits')) : ?>
@@ -125,7 +137,7 @@ $n = count($this->items);
 		</div>
 	</li>
 
-		<?php if (($i == 0 && $n == 1) || $i == $n - 1 || $bscolumns == 1 || (($i + 1) % $bscolumns == 0)) : ?>
+		<?php if (($i === 0 && $n === 1) || $i === $n - 1 || $bscolumns === 1 || (($i + 1) % $bscolumns === 0)) : ?>
 			</ul>
 		<?php endif; ?>
 

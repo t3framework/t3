@@ -3,7 +3,7 @@
  * @package     Joomla.site
  * @subpackage  com_config
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,7 +11,9 @@ defined('_JEXEC') or die;
 
 $fieldSets = $this->form->getFieldsets('params');
 
-$i = 1;
+echo JHtml::_('bootstrap.startAccordion', 'collapseTypes');
+
+$i = 0;
 
 foreach ($fieldSets as $name => $fieldSet) :
 
@@ -36,7 +38,7 @@ endif;
 			<div class="controls">
 				<?php
 				// If multi-language site, make menu-type selection read-only
-				if (JLanguageMultilang::isEnabled() && $this->item['module'] == 'mod_menu' && $field->getAttribute('name') == 'menutype')
+				if (JLanguageMultilang::isEnabled() && $this->item['module'] === 'mod_menu' && $field->getAttribute('name') === 'menutype')
 				{
 					$field->__set('readonly', true);
 				}
@@ -51,3 +53,4 @@ endif;
 
 <?php echo JHtml::_('bootstrap.endSlide'); ?>
 <?php endforeach; ?>
+<?php echo JHtml::_('bootstrap.endAccordion'); ?>

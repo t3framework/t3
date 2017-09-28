@@ -3,20 +3,31 @@
  * @package     Joomla.Site
  * @subpackage  mod_search
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 // Including fallback code for the placeholder attribute in the search field.
 JHtml::_('jquery.framework');
-JHtml::_('script', 'system/html5fallback.js', false, true);
+JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true));
+if ($width)
+{
+	$moduleclass_sfx .= ' ' . 'mod_search' . $module->id;
+	$css = 'div.mod_search' . $module->id . ' input[type="search"]{ width:auto; }';
+	JFactory::getDocument()->addStyleDeclaration($css);
+	$width = ' size="' . $width . '"';
+}
+else
+{
+	$width = '';
+}
 ?>
-<div class="search<?php echo $moduleclass_sfx ?>">
+<div class="search<?php echo $moduleclass_sfx; ?>">
 	<form action="<?php echo JRoute::_('index.php');?>" method="post" class="form-inline form-search">
 		<?php
-			$output = '<label for="mod-search-searchword" class="element-invisible">' . $label . '</label> ';
-			$output .= '<input name="searchword" id="mod-search-searchword" maxlength="' . $maxlength . '"  class="form-control search-query" type="search" size="' . $width . '" placeholder="' . $text . '" />';
+			$output = '<label for="mod-search-searchword' . $module->id . '" class="element-invisible">' . $label . '</label> ';
+			$output .= '<input name="searchword" id="mod-search-searchword' . $module->id . '" maxlength="' . $maxlength . '"  class="form-control search-query" type="search" size="' . $width . '" placeholder="' . $text . '" />';
 
 			if ($button) :
 				if ($imagebutton) :

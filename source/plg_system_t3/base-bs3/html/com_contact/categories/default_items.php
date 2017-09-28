@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_contact
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,7 +14,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 }
 
 $class = ' class="category-item first"';
-if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) : ?>
+if ($this->maxLevelcat != 0 && count($this->items[$this->parent->id]) > 0) : ?>
 <?php foreach($this->items[$this->parent->id] as $id => $item) : ?>
 	<?php
 	if($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())) :
@@ -28,13 +28,14 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) : ?>
 		<h3 class="page-header item-title">
 			<a href="<?php echo JRoute::_(ContactHelperRoute::getCategoryRoute($item->id));?>">
 			<?php echo $this->escape($item->title); ?></a>
-			<?php if ($this->params->get('show_cat_num_articles_cat') == 1) :?>
+			<?php if ($this->params->get('show_cat_items_cat') == 1) :?>
 				<span class="badge badge-info tip hasTooltip" title="<?php echo T3J::tooltipText('COM_CONTACT_NUM_ITEMS'); ?>">
+					<?php echo JText::_('COM_CONTACT_NUM_ITEMS'); ?>&nbsp;
 					<?php echo $item->numitems; ?>
 				</span>
 			<?php endif; ?>
-			<?php if (count($item->getChildren()) > 0) : ?>
-				<a href="#category-<?php echo $item->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-default btn-xs pull-right"><span class="fa fa-plus"></span></a>
+			<?php if ($this->maxLevelcat > 1 && count($item->getChildren()) > 0) : ?>
+				<a id="category-btn-<?php echo $item->id; ?>" href="#category-<?php echo $item->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-default btn-xs pull-right"><span class="fa fa-plus"></span></a>
 			<?php endif;?>
 		</h3>
 		<?php if ($this->params->get('show_subcat_desc_cat') == 1) :?>
@@ -45,7 +46,7 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) : ?>
 			<?php endif; ?>
 		<?php endif; ?>
 
-		<?php if (count($item->getChildren()) > 0) :?>
+		<?php if ($this->maxLevelcat > 1 && count($item->getChildren()) > 0) : ?>
 			<div class="collapse fade" id="category-<?php echo $item->id;?>">
 				<?php
 				$this->items[$item->id] = $item->getChildren();

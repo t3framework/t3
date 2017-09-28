@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_search
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -70,9 +70,10 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 				<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>
 			</label>
 			<?php echo $this->pagination->getLimitBox(); ?>
-			<p class="counter">
-				<?php echo $this->pagination->getPagesCounter(); ?>
-			</p>
+			
+			<?php if($this->pagination->getPagesCounter() > 0) : ?>
+			<p class="counter"><?php echo $this->pagination->getPagesCounter(); ?></p>
+			<?php endif; ?>
 		</div>
 	<?php endif; ?>
 

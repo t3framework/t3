@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,8 +12,10 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 if(version_compare(JVERSION, '3.0', 'lt')){
 	JHtml::_('behavior.tooltip');
+	JHtml::_('behavior.formvalidation');
 }
-JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.formvalidator');
+
 ?>
 <div class="reset <?php echo $this->pageclass_sfx?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
@@ -31,14 +33,16 @@ JHtml::_('behavior.formvalidation');
 
 		<fieldset>
 			<?php foreach ($this->form->getFieldset($fieldset->name) as $name => $field): ?>
-				<div class="form-group">
-					<div class="col-sm-3 control-label">
-					<?php echo $field->label; ?>
-				</div>
-					<div class="col-sm-9">
-					<?php echo $field->input; ?>
-				</div>
-			</div>
+				<?php if ($field->hidden === false) : ?>
+					<div class="form-group">
+						<div class="col-sm-3 control-label">
+							<?php echo $field->label; ?>
+						</div>
+						<div class="col-sm-9">
+							<?php echo $field->input; ?>
+						</div>
+					</div>
+				<?php endif; ?>
 			<?php endforeach; ?>
 		</fieldset>
 		<?php endforeach; ?>

@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_contact
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -16,14 +16,11 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 ?>
 <div class="blog-featured<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->get('show_page_heading') != 0 ) : ?>
-	<h1>
-	<?php echo $this->escape($this->params->get('page_heading')); ?>
-	</h1>
+	<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 <?php endif; ?>
 
 <?php echo $this->loadTemplate('items'); ?>
-<?php 
-$pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
+<?php $pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
 if ($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2 && $pagesTotal > 1)) : ?>
 	<div class="pagination-wrap">
 

@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,7 +13,7 @@ $class = ' first';
 JHtml::_('bootstrap.tooltip');
 $lang	= JFactory::getLanguage();
 
-if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
+if ($this->maxLevelcat != 0 && count($this->items[$this->parent->id]) > 0) :
 ?>
 	<?php foreach($this->items[$this->parent->id] as $id => $item) : ?>
 		<?php
@@ -26,21 +26,22 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 		<div class="category-item<?php echo $class; ?>">
 		<?php $class = ''; ?>
 			<h3 class="page-header item-title">
-				<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($item->id));?>">
+				<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($item->id, $item->language)); ?>">
 				<?php echo $this->escape($item->title); ?></a>
 				<?php if ($this->params->get('show_cat_num_articles_cat') == 1) :?>
-					<span class="badge badge-info tip hasTooltip" title="<?php echo T3J::tooltipText('COM_CONTENT_NUM_ITEMS'); ?>">
+					<span class="badge badge-info tip hasTooltip" title="<?php echo JHtml::_('tooltipText', 'COM_CONTENT_NUM_ITEMS_TIP'); ?>">
+						<?php echo JText::_('COM_CONTENT_NUM_ITEMS'); ?>&nbsp;
 						<?php echo $item->numitems; ?>
 					</span>
 				<?php endif; ?>
-				<?php if (count($item->getChildren()) > 0) : ?>
-					<a href="#category-<?php echo $item->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right">
+				<?php if (count($item->getChildren()) > 0 && $this->maxLevelcat > 1) : ?>
+					<a id="category-btn-<?php echo $item->id; ?>" href="#category-<?php echo $item->id; ?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right">
 						<i class="fa fa-plus"></i>
 					</a>
 				<?php endif;?>
 			</h3>
 			<?php if ($this->params->get('show_description_image') && $item->getParams()->get('image')) : ?>
-				<img src="<?php echo $item->getParams()->get('image'); ?>"/>
+				<img src="<?php echo $item->getParams()->get('image'); ?>" alt="<?php echo htmlspecialchars($item->getParams()->get('image_alt'), ENT_COMPAT, 'UTF-8'); ?>" />
 			<?php endif; ?>
 			<?php if ($this->params->get('show_subcat_desc_cat') == 1) :?>
 				<?php if ($item->description) : ?>
@@ -50,7 +51,7 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 				<?php endif; ?>
 			<?php endif; ?>
 
-			<?php if (count($item->getChildren()) > 0) :?>
+			<?php if (count($item->getChildren()) > 0 && $this->maxLevelcat > 1) : ?>
 				<div class="collapse fade" id="category-<?php echo $item->id;?>">
 				<?php
 				$this->items[$item->id] = $item->getChildren();

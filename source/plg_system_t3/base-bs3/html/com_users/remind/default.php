@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,10 +12,12 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 if(version_compare(JVERSION, '3.0', 'lt')){
 	JHtml::_('behavior.tooltip');
+	JHtml::_('behavior.formvalidation');
 }
-JHtml::_('behavior.formvalidation');
+
+JHtml::_('behavior.formvalidator');
 ?>
-<div class="remind <?php echo $this->pageclass_sfx?>">
+<div class="remind <?php echo $this->pageclass_sfx; ?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
 	<div class="page-header">
 		<h1>
