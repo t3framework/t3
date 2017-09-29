@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -30,7 +30,7 @@ $results = $dispatcher->trigger('onContentAfterDisplay', array($this->category->
 $afterDisplayContent = trim(implode("\n", $results));
 
 ?>
-<div class="blog<?php echo $this->pageclass_sfx;?>" itemscope itemtype="http://schema.org/Blog">
+<div class="blog<?php echo $this->pageclass_sfx;?>" itemscope itemtype="https://schema.org/Blog">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
 	<div class="page-header clearfix">
 		<h1 class="page-title"> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -48,14 +48,14 @@ $afterDisplayContent = trim(implode("\n", $results));
 
 	<?php echo $afterDisplayTitle; ?>
 	
-	<?php if ($this->params->get('show_tags', 1) && !empty($this->category->tags->itemTags)) : ?>
+	<?php if ($this->params->get('show_cat_tags', 1) && !empty($this->category->tags->itemTags)) : ?>
 		<?php echo JLayoutHelper::render('joomla.content.tags', $this->category->tags->itemTags); ?>
 	<?php endif; ?>
 	
 	<?php if ($beforeDisplayContent || $afterDisplayContent || $this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
 	<div class="category-desc clearfix">
 		<?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
-			<img src="<?php echo $this->category->getParams()->get('image'); ?>"/>
+			<img src="<?php echo $this->category->getParams()->get('image'); ?>"  alt="<?php echo htmlspecialchars($this->category->getParams()->get('image_alt'), ENT_COMPAT, 'UTF-8'); ?>" />
 		<?php endif; ?>
 		<?php echo $beforeDisplayContent; ?>
 		<?php if ($this->params->get('show_description') && $this->category->description) : ?>
@@ -76,7 +76,7 @@ $afterDisplayContent = trim(implode("\n", $results));
 	<div class="items-leading">
 		<?php foreach ($this->lead_items as &$item) : ?>
 		<div class="leading leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
-				 itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+				 itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');
@@ -94,7 +94,7 @@ $afterDisplayContent = trim(implode("\n", $results));
 
 	<?php if (!empty($this->intro_items)) : ?>
 	<?php foreach ($this->intro_items as $key => &$item) : ?>
-		<?php $rowcount = ((int) $counter % (int) $this->columns) + 1; ?>
+		<?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
 		<?php if ($rowcount == 1) : ?>
 			<?php $row = $counter / $this->columns; ?>
 		<div class="items-row cols-<?php echo (int) $this->columns;?> <?php echo 'row-'.$row; ?> row-fluid">
@@ -121,7 +121,7 @@ $afterDisplayContent = trim(implode("\n", $results));
 	</div>
 	<?php endif; ?>
 	
-	<?php if (!empty($this->children[$this->category->id])&& $this->maxLevel != 0) : ?>
+	<?php if (!empty($this->children[$this->category->id]) && $this->maxLevel != 0) : ?>
 	<div class="cat-children">
 		<?php if ($this->params->get('show_category_heading_title_text', 1) == 1) : ?>
 		<h3> <?php echo JTEXT::_('JGLOBAL_SUBCATEGORIES'); ?> </h3>

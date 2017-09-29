@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,9 +17,7 @@ JHtml::_('behavior.caption');
 <div class="archive<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
 		<div class="page-header">
-			<h1>
-				<?php echo $this->escape($this->params->get('page_heading')); ?>
-			</h1>
+			<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 		</div>
 	<?php endif; ?>
 	<form id="adminForm" action="<?php echo JRoute::_('index.php') ?>" method="post" class="form-inline">

@@ -32,30 +32,72 @@ $userFieldGroups    = array();
 
 <?php foreach ($userFieldGroups as $groupTitle => $fields) : ?>
 	<?php $id = JApplicationHelper::stringURLSafe($groupTitle); ?>
+	
+	<!-- Slider -->
 	<?php if ($presentation_style == 'sliders') : ?>
-		<?php echo JHtml::_('bootstrap.addSlide', 'slide-contact', $groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS'), 'display-' . $id); ?>
-	<?php elseif ($presentation_style == 'tabs') : ?>
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'display-profile', $groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS')); ?>
-	<?php elseif ($presentation_style == 'plain') : ?>
-		<?php echo '<h3>' . ($groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS')) . '</h3>'; ?>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+			<h4 class="panel-title">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#<?php echo 'display-' . $id; ?>">
+				<?php echo JText::_('COM_CONTACT_USER_FIELDS');?>
+				</a>
+			</h4>
+			</div>
+			<div id="<?php echo 'display-' . $id; ?>" class="panel-collapse collapse">
+				<div class="panel-body">
+					<div class="contact-profile" id="user-custom-fields-<?php echo $id; ?>">
+						<dl class="dl-horizontal">
+						<?php foreach ($fields as $field) : ?>
+							<?php if (!$field->value) : ?>
+								<?php continue; ?>
+							<?php endif; ?>
+
+							<?php echo '<dt>' . $field->label . '</dt>'; ?>
+							<?php echo '<dd>' . $field->value . '</dd>'; ?>
+						<?php endforeach; ?>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
 	<?php endif; ?>
+	<!-- // Slider -->
 
-	<div class="contact-profile" id="user-custom-fields-<?php echo $id; ?>">
-		<dl class="dl-horizontal">
-		<?php foreach ($fields as $field) : ?>
-			<?php if (!$field->value) : ?>
-				<?php continue; ?>
-			<?php endif; ?>
+	<!-- Tabs -->
+	<?php if ($presentation_style == 'tabs') : ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'display-profile', $groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS')); ?>
+			<div class="contact-profile" id="user-custom-fields-<?php echo $id; ?>">
+				<dl class="dl-horizontal">
+				<?php foreach ($fields as $field) : ?>
+					<?php if (!$field->value) : ?>
+						<?php continue; ?>
+					<?php endif; ?>
 
-			<?php echo '<dt>' . $field->label . '</dt>'; ?>
-			<?php echo '<dd>' . $field->value . '</dd>'; ?>
-		<?php endforeach; ?>
-		</dl>
-	</div>
-
-	<?php if ($presentation_style == 'sliders') : ?>
-		<?php echo JHtml::_('bootstrap.endSlide'); ?>
-	<?php elseif ($presentation_style == 'tabs') : ?>
+					<?php echo '<dt>' . $field->label . '</dt>'; ?>
+					<?php echo '<dd>' . $field->value . '</dd>'; ?>
+				<?php endforeach; ?>
+				</dl>
+			</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 	<?php endif; ?>
+	<!-- // Tabs -->
+
+	<!-- Plain -->
+	<?php if ($presentation_style == 'plain') : ?>
+		<?php echo '<h3>' . ($groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS')) . '</h3>'; ?>
+		<div class="contact-profile" id="user-custom-fields-<?php echo $id; ?>">
+			<dl class="dl-horizontal">
+			<?php foreach ($fields as $field) : ?>
+				<?php if (!$field->value) : ?>
+					<?php continue; ?>
+				<?php endif; ?>
+
+				<?php echo '<dt>' . $field->label . '</dt>'; ?>
+				<?php echo '<dd>' . $field->value . '</dd>'; ?>
+			<?php endforeach; ?>
+			</dl>
+		</div>
+	<?php endif; ?>
+	<!-- // Plain -->
+
 <?php endforeach; ?>

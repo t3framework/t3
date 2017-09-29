@@ -3,14 +3,14 @@
  * @package     Joomla.Site
  * @subpackage  mod_login
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
 
-require_once JPATH_SITE.'/components/com_users/helpers/route.php';
+JLoader::register('UsersHelperRoute', JPATH_SITE . '/components/com_users/helpers/route.php');
 
 JHtml::_('behavior.keepalive');
 if(version_compare(JVERSION, '3.0', 'ge')){
@@ -107,14 +107,14 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 		<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGIN') ?>" />
 	</div>
 
-	<?php
-		$usersConfig = JComponentHelper::getParams('com_users');
-		if ($usersConfig->get('allowUserRegistration')) : ?>
+	<?php $usersConfig = JComponentHelper::getParams('com_users'); ?>
 		<ul class="unstyled">
+			<?php if ($usersConfig->get('allowUserRegistration')) : ?>
 			<li>
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
 				<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
 			</li>
+			<?php endif; ?>
 			<li>
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
 				  <?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
@@ -124,7 +124,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 			</li>
 
 		</ul>
-	<?php endif; ?>
+
 
 	<input type="hidden" name="option" value="com_users" />
 	<input type="hidden" name="task" value="user.login" />

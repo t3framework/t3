@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_newsfeeds
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,10 +20,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 	<p> <?php echo JText::_('COM_NEWSFEEDS_NO_ARTICLES'); ?></p>
 <?php else : ?>
 
-<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString(), ENT_COMPAT, 'UTF-8'); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if ($this->params->get('filter_field') != 'hide' || $this->params->get('show_pagination_limit')) :?>
 	<fieldset class="filters btn-toolbar">
-		<?php if ($this->params->get('filter_field') != 'hide') :?>
+		<?php if ($this->params->get('filter_field') != 'hide' && $this->params->get('filter_field') == '1') : ?>
 			<div class="btn-group">
 				<label class="filter-search-lbl element-invisible" for="filter-search"><span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span><?php echo JText::_('COM_NEWSFEEDS_FILTER_LABEL').'&#160;'; ?></label>
 				<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="input" onchange="document.adminForm.submit();"<?php if(version_compare(JVERSION, '3.0', 'ge')) : ?> title="<?php echo JText::_('COM_NEWSFEEDS_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo JText::_('COM_NEWSFEEDS_FILTER_SEARCH_DESC'); ?>"<?php endif; ?> />
@@ -64,6 +64,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<?php endif; ?>
 				<br />
 				<?php  if ($this->params->get('show_link')) : ?>
+					<?php $link = JStringPunycode::urlToUTF8($item->link); ?>
 					<span class="list pull-left">
 							<a href="<?php echo $item->link; ?>"><?php echo $item->link; ?></a>
 					</span>
@@ -78,7 +79,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 			<?php 
       $pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
       if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($pagesTotal > 1)) : ?>
-				<div class="pagination">
+				<div class="pagination-wrap">
 					<?php if ($this->params->def('show_pagination_results', 1)) : ?>
 						<p class="counter pull-right">
 							<?php echo $this->pagination->getPagesCounter(); ?>

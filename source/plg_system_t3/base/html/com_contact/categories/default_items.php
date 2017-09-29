@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_contact
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -39,21 +39,21 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 		<?php endif; ?>
         <?php endif; ?>
 
-		<?php if ($this->params->get('show_cat_items_cat') == 1) :?>
+		<?php if ($this->maxLevelcat > 1 && count($item->getChildren()) > 0) : ?>
 			<dl><dt>
 				<?php echo JText::_('COM_CONTACT_COUNT'); ?></dt>
 				<dd><?php echo $item->numitems; ?></dd>
 			</dl>
 		<?php endif; ?>
 
-		<?php if(count($item->getChildren()) > 0) :
+		<?php 
 			$this->items[$item->id] = $item->getChildren();
 			$this->parent = $item;
 			$this->maxLevelcat--;
 			echo $this->loadTemplate('items');
 			$this->parent = $item->getParent();
 			$this->maxLevelcat++;
-		endif; ?>
+		 ?>
 
 	</li>
 	<?php endif; ?>

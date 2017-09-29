@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 // Create a shortcut for params.
 $params  = & $this->item->params;
 $images  = json_decode($this->item->images);
+$canEdit = $this->item->params->get('access-edit');
 $info    = $params->get('info_block_position', 2);
 $aInfo1 = ($params->get('show_publish_date') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
 $aInfo2 = ($params->get('show_create_date') || $params->get('show_modify_date') || $params->get('show_hits'));
@@ -86,7 +87,7 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 			endif;
 			?>
 			<section class="readmore">
-				<a class="btn btn-default" href="<?php echo $link; ?>">
+				<a class="btn btn-default" href="<?php echo $link; ?>" itemprop="url">
 					<span>
 					<?php if (!$params->get('access-view')) :
 						echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');

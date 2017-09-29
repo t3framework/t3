@@ -8,7 +8,12 @@
  */
 
 defined('_JEXEC') or die;
-JHtml::_('behavior.tooltip');
+if(version_compare(JVERSION, '3.0', 'ge')){
+	JHtml::_('bootstrap.tooltip');
+} else {
+	JHtml::_('behavior.tooltip');
+}
+
 ?>
 <div class="profile <?php echo $this->pageclass_sfx?>">
 <?php if (JFactory::getUser()->id == $this->data->id) : ?>
