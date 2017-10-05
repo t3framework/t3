@@ -489,4 +489,25 @@ class T3 {
 		return $match[0];
 	}
 
+	/**
+	 * Check alternative template style for current style
+	 * If exists, then split access to alternative style
+	 */
+	public static function checkAltStyle () {
+		T3::import ('core/ab');
+		T3AB::checkAltStyle();
+	}
+
+
+	public static function getPageCacheKey () {
+		$pagekey = array();
+		// TODO: handle pagekey for page cache - From Joomla 3.8
+
+		// if available A/B testing, handle key for each variation
+		T3::import ('core/ab');
+		$abpagekey = T3AB::getPageCacheKey ();
+		if ($abpagekey) $pagekey[] = $abpagekey;
+
+		return count($pagekey) ? implode(';', $pagekey) : NULL;
+	}
 }
