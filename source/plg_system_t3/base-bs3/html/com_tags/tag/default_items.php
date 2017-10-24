@@ -107,6 +107,6 @@ JFactory::getDocument()->addScriptDeclaration("
 				</li>
 		<?php endforeach; ?>
 	</ul>
-</form>
 
 <?php endif; ?>
+</form>
