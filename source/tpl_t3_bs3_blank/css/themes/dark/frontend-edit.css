@@ -437,38 +437,52 @@ fieldset.radio.btn-group label.active {
 }
 .window.view-modules .js-stools,
 .window.view-articles .js-stools,
-.window.view-contacts .js-stools {
+.window.view-contacts .js-stools,
+.window.view-fields .js-stools,
+.window.view-items .js-stools {
   margin-bottom: 20px;
 }
 .window.view-modules .js-stools .btn,
 .window.view-articles .js-stools .btn,
-.window.view-contacts .js-stools .btn {
+.window.view-contacts .js-stools .btn,
+.window.view-fields .js-stools .btn,
+.window.view-items .js-stools .btn {
   border: 1px solid #ccc;
   margin-top: 0;
 }
 .window.view-modules .js-stools .input-append .btn,
 .window.view-articles .js-stools .input-append .btn,
-.window.view-contacts .js-stools .input-append .btn {
+.window.view-contacts .js-stools .input-append .btn,
+.window.view-fields .js-stools .input-append .btn,
+.window.view-items .js-stools .input-append .btn {
   border-left: 0;
 }
 .window.view-modules .js-stools input,
 .window.view-articles .js-stools input,
-.window.view-contacts .js-stools input {
+.window.view-contacts .js-stools input,
+.window.view-fields .js-stools input,
+.window.view-items .js-stools input {
   display: inline-block;
 }
 .window.view-modules .js-stools-container-filters .chzn-container-single,
 .window.view-articles .js-stools-container-filters .chzn-container-single,
-.window.view-contacts .js-stools-container-filters .chzn-container-single {
+.window.view-contacts .js-stools-container-filters .chzn-container-single,
+.window.view-fields .js-stools-container-filters .chzn-container-single,
+.window.view-items .js-stools-container-filters .chzn-container-single {
   width: 220px !important;
 }
 .window.view-modules .js-stools-container-filters .chzn-drop,
 .window.view-articles .js-stools-container-filters .chzn-drop,
-.window.view-contacts .js-stools-container-filters .chzn-drop {
+.window.view-contacts .js-stools-container-filters .chzn-drop,
+.window.view-fields .js-stools-container-filters .chzn-drop,
+.window.view-items .js-stools-container-filters .chzn-drop {
   box-sizing: border-box !important;
 }
 .window.view-modules table#moduleList td .label,
 .window.view-articles table#moduleList td .label,
-.window.view-contacts table#moduleList td .label {
+.window.view-contacts table#moduleList td .label,
+.window.view-fields table#moduleList td .label,
+.window.view-items table#moduleList td .label {
   background-color: #999;
   box-sizing: border-box;
   border-radius: 3px;
@@ -480,12 +494,16 @@ fieldset.radio.btn-group label.active {
 }
 .window.view-modules table#moduleList td:nth-child(1),
 .window.view-articles table#moduleList td:nth-child(1),
-.window.view-contacts table#moduleList td:nth-child(1) {
+.window.view-contacts table#moduleList td:nth-child(1),
+.window.view-fields table#moduleList td:nth-child(1),
+.window.view-items table#moduleList td:nth-child(1) {
   vertical-align: middle;
 }
 .window.view-modules .icon-publish:before,
 .window.view-articles .icon-publish:before,
-.window.view-contacts .icon-publish:before {
+.window.view-contacts .icon-publish:before,
+.window.view-fields .icon-publish:before,
+.window.view-items .icon-publish:before {
   content: "\f00c";
   font-size: 16px;
 }

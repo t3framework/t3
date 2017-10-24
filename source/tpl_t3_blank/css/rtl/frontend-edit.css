@@ -229,38 +229,52 @@ fieldset.radio.btn-group label.active {
 }
 .view-modules .js-stools,
 .view-articles .js-stools,
-.view-contacts .js-stools {
+.view-contacts .js-stools,
+.view-fields .js-stools,
+.view-items .js-stools {
   margin-bottom: 20px;
 }
 .view-modules .js-stools .btn,
 .view-articles .js-stools .btn,
-.view-contacts .js-stools .btn {
+.view-contacts .js-stools .btn,
+.view-fields .js-stools .btn,
+.view-items .js-stools .btn {
   border: 1px solid #ccc;
   margin-top: 0;
 }
 .view-modules .js-stools .input-append .btn,
 .view-articles .js-stools .input-append .btn,
-.view-contacts .js-stools .input-append .btn {
+.view-contacts .js-stools .input-append .btn,
+.view-fields .js-stools .input-append .btn,
+.view-items .js-stools .input-append .btn {
   border-right: 0;
 }
 .view-modules .js-stools input,
 .view-articles .js-stools input,
-.view-contacts .js-stools input {
+.view-contacts .js-stools input,
+.view-fields .js-stools input,
+.view-items .js-stools input {
   display: inline-block;
 }
 .view-modules .js-stools-container-filters .chzn-container-single,
 .view-articles .js-stools-container-filters .chzn-container-single,
-.view-contacts .js-stools-container-filters .chzn-container-single {
+.view-contacts .js-stools-container-filters .chzn-container-single,
+.view-fields .js-stools-container-filters .chzn-container-single,
+.view-items .js-stools-container-filters .chzn-container-single {
   width: 220px !important;
 }
 .view-modules .js-stools-container-filters .chzn-drop,
 .view-articles .js-stools-container-filters .chzn-drop,
-.view-contacts .js-stools-container-filters .chzn-drop {
+.view-contacts .js-stools-container-filters .chzn-drop,
+.view-fields .js-stools-container-filters .chzn-drop,
+.view-items .js-stools-container-filters .chzn-drop {
   box-sizing: border-box !important;
 }
 .view-modules table#moduleList td .label,
 .view-articles table#moduleList td .label,
-.view-contacts table#moduleList td .label {
+.view-contacts table#moduleList td .label,
+.view-fields table#moduleList td .label,
+.view-items table#moduleList td .label {
   background-color: #999;
   box-sizing: border-box;
   border-radius: 3px;
@@ -272,18 +286,24 @@ fieldset.radio.btn-group label.active {
 }
 .view-modules table#moduleList td:nth-child(1),
 .view-articles table#moduleList td:nth-child(1),
-.view-contacts table#moduleList td:nth-child(1) {
+.view-contacts table#moduleList td:nth-child(1),
+.view-fields table#moduleList td:nth-child(1),
+.view-items table#moduleList td:nth-child(1) {
   vertical-align: middle;
 }
 .view-modules .icon-publish:before,
 .view-articles .icon-publish:before,
-.view-contacts .icon-publish:before {
+.view-contacts .icon-publish:before,
+.view-fields .icon-publish:before,
+.view-items .icon-publish:before {
   content: "\f00c";
   font-size: 16px;
 }
 .view-modules #extra_class.span12,
 .view-articles #extra_class.span12,
-.view-contacts #extra_class.span12 {
+.view-contacts #extra_class.span12,
+.view-fields #extra_class.span12,
+.view-items #extra_class.span12 {
   box-sizing: border-box;
   height: 40px;
   line-height: 40px;
@@ -294,4 +314,74 @@ fieldset.radio.btn-group label.active {
 }
 .mce-container-body .icon-pictures:before {
   content: "\f03e";
+}
+.edit.item-page #jform_com_fields_checkboxs label.checkbox,
+.profile-edit #jform_com_fields_checkboxs label.checkbox {
+  display: inline-block;
+  margin-left: 10px;
+}
+.edit.item-page #jform_com_fields_checkboxs input[type="checkbox"],
+.profile-edit #jform_com_fields_checkboxs input[type="checkbox"] {
+  margin-right: 0;
+  margin-top: -2px;
+  position: relative;
+  vertical-align: middle;
+  width: auto;
+}
+.edit.item-page .minicolors-input,
+.profile-edit .minicolors-input {
+  height: 28px;
+  width: auto;
+}
+.profile-edit #jform_com_fields_user_checkbox label.checkbox {
+  display: inline-block;
+  margin-left: 10px;
+}
+.profile-edit #jform_com_fields_user_checkbox input {
+  position: relative;
+  margin-right: 0;
+  margin-left: 5px;
+  width: auto;
+}
+.profile-edit .minicolors-input {
+  height: 28px;
+  width: auto;
+}
+.profile-edit #jform_com_fields_user_image_chzn .chzn-search {
+  box-sizing: border-box;
+}
+.profile-edit #jform_com_fields_user_image_chzn ul.chzn-results {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.profile-edit #jform_com_fields_user_calendar {
+  float: right;
+}
+.profile-edit .chzn-container-single,
+.profile-edit .chzn-container {
+  float: right;
+  margin-left: 10px;
+}
+@media screen and (max-width: 360px) {
+  .profile-edit .chzn-container-single,
+  .profile-edit .chzn-container {
+    width: 100% !important;
+  }
+}
+.profile-edit .chzn-container-single .chzn-drop,
+.profile-edit .chzn-container .chzn-drop {
+  box-sizing: border-box !important;
+}
+.profile #users-profile-core {
+  width: 100%;
+}
+.profile .dl-horizontal dd {
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+}
+.profile .dl-horizontal dd img {
+  max-width: 100%;
 }
