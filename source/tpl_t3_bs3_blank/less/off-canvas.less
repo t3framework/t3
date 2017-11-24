@@ -37,8 +37,49 @@
   width: @navbar-height;
   height: @navbar-height;
   line-height: @navbar-height;
+  position: relative;
   &:focus {
     outline: none;
+  }
+
+  span {
+    background-color: @white;
+    display: block;
+    height: 2px;
+    position: absolute;
+    left: 15px;
+    width: 20px;
+    transition: all 0.25s;
+
+    &.bar-first {
+      top: 18px;
+    }
+
+    &.bar-mid {
+      top: 24px;
+    }
+
+    &.bar-last {
+      top: 30px;
+    }
+  }
+}
+
+.off-canvas-open {
+  .off-canvas-toggle {
+    span.bar-mid {
+      display: none;
+    }
+
+    span.bar-first {
+      top: 24px;
+      transform: rotate(45deg);
+    }
+
+    span.bar-last {
+      top: 24px;
+      transform: rotate(-45deg);
+    }
   }
 }
 

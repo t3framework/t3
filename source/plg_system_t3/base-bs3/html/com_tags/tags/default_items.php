@@ -160,5 +160,5 @@ JFactory::getDocument()->addScriptDeclaration("
 		<?php echo $this->pagination->getPagesLinks(); ?>
 	</div>
 	<?php endif; ?>
-</form>
 <?php endif; ?>
+</form>
