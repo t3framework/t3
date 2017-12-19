@@ -24,7 +24,7 @@
 
 		//add class on/off
 		$('fieldset.t3onoff').find('label').addClass(function(){
-			var $this = $(this), $input = $this.prev('input'),
+			var $this = $(this), $input = $('#' + $this.attr('for')),
 			cls = $this.hasClass('off') || $input.val() == '0' ? 'off' : 'on';
 			cls += $input.prop('checked') ? ' active' : '';
 			return cls;
