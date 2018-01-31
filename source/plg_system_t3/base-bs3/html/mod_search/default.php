@@ -27,7 +27,7 @@ else
 	<form action="<?php echo JRoute::_('index.php');?>" method="post" class="form-inline form-search">
 		<?php
 			$output = '<label for="mod-search-searchword' . $module->id . '" class="element-invisible">' . $label . '</label> ';
-			$output .= '<input name="searchword" id="mod-search-searchword" maxlength="' . $maxlength . '"  class="form-control search-query" type="search" size="' . $width . '" placeholder="' . $text . '" />';
+			$output .= '<input name="searchword" id="mod-search-searchword" maxlength="' . $maxlength . '"  class="form-control search-query" type="search"' . $width . 'placeholder="' . $text . '" />';
 
 			if ($button) :
 				if ($imagebutton) :
