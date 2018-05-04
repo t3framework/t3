@@ -52,7 +52,7 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 							<i class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i>
 						</span>
 						<input id="modlgn-username" type="text" name="username" class="input form-control" tabindex="0" size="18"
-							   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
+							   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" aria-label="username" />
 					</div>
 				<?php else: ?>
 					<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
@@ -67,7 +67,7 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 							<i class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i>
 						</span>
 					<input id="modlgn-passwd" type="password" name="password" class="input form-control" tabindex="0"
-						   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
+						   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" aria-label="password" />
 				</div>
 			<?php else: ?>
 				<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
