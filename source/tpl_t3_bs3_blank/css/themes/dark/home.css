@@ -63,19 +63,26 @@
   padding-top: 0;
 }
 .home .t3-sl-3 .jumbotron h1,
-.home .t3-sl-4 .jumbotron h1 {
+.home .t3-sl-4 .jumbotron h1,
+.home .t3-sl-3 .jumbotron h2,
+.home .t3-sl-4 .jumbotron h2 {
+  font-size: 60px;
   margin-bottom: 10px;
   margin-top: 0;
 }
 .home .t3-sl-3 .jumbotron p,
-.home .t3-sl-4 .jumbotron p {
+.home .t3-sl-4 .jumbotron p,
+.home .t3-sl-3 .jumbotron h3,
+.home .t3-sl-4 .jumbotron h3 {
   font-size: 18px;
   line-height: 1.25;
-  color: #5a5a5a;
+  color: #343434;
 }
 @media screen and (min-width: 768px) {
   .home .t3-sl-3 .jumbotron p,
-  .home .t3-sl-4 .jumbotron p {
+  .home .t3-sl-4 .jumbotron p,
+  .home .t3-sl-3 .jumbotron h3,
+  .home .t3-sl-4 .jumbotron h3 {
     font-size: 21px;
   }
 }
