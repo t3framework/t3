@@ -1,3 +1,18 @@
+<h2>Version: 2.7.1 (04/05/2018)</h2>
+<h3>Fix some bugs and make compatible with WCAG</h3>
+- Fix break layout when click to the fields button | <a href="https://github.com/t3framework/t3/commit/86ac007317ef97322ee64e41802615a0a94dc689">Link</a><br/>
+- Clear tag button does not work | <a 
+href="https://github.com/t3framework/t3/commit/518b61f57e1b06431093bfe188493c2398ebc141">Link</a><br/>
+- Add class to module menu override. | <a href="https://github.com/t3framework/t3/commit/3c1adab1dbe0e310068cbf5cd0c5085fbd9e1272">Link</a><br/>
+- Improve style for On / Off icon. | <a href="https://github.com/t3framework/t3/commit/2741fe2331ec6474ac29c1c3b201ce9e9dc2d6e5">Link</a><br/>
+- Update the check show label condition command | <a href="https://github.com/t3framework/t3/commit/4753debbb658663d5f9058f3e7ee818d73d40ed6">Link</a><br/>
+- Update module search override | <a href="https://github.com/t3framework/t3/commit/0ad54a5b77721256fc1f61128674eaf1143ba59f">Link</a><br/>
+- Add space for HTML element property | <a href="https://github.com/t3framework/t3/commit/ba038ed65b3a73cc827a69b6aa317261690bdb54">Link</a><br/>
+- Update override to compatible with WCAG | <a href="https://github.com/t3framework/t3/commit/4b051c9e2420f65386536913b54f108f6a5e2685">Link</a><br/>
+- Update aria roles for form elements | <a href="https://github.com/t3framework/t3/commit/0d94fe6c2f5f556976012ff05ca70a6acff2d506">Link</a><br/>
+- Add aria-label for form element | <a 
+href="https://github.com/t3framework/t3/commit/f8334416810bb0b31767a65946607714908431e4">Link</a>
+
 <h2>Version: 2.7.0 (29/09/2017)</h2>
 <h3>Fix bugs & Improvements</h3>
 - Fix bugs to compatible with Joomla 3.8 | <a href="https://github.com/t3framework/t3/commit/e01f461fea1a653abe2e59fbecc774cbd45dbd19">Link</a><br/>
