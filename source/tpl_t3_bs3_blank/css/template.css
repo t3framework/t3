@@ -1633,6 +1633,30 @@ article aside .btn-group > .dropdown-toggle .caret {
 .profile-edit select + button {
   margin-left: 5px;
 }
+.profile-edit .input-prepend .media-preview {
+  float: left;
+}
+.profile-edit .input-prepend #jform_com_fields_uavatar {
+  background-color: #ffffff;
+  box-shadow: none;
+}
+.profile-edit .input-prepend .btn {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 0 3px 3px 0;
+  text-align: center;
+}
+.profile-edit .input-prepend .btn span.icon-remove {
+  margin-right: 0;
+}
+.profile-edit .input-prepend .btn.modal {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-radius: 0;
+  position: relative;
+  margin: 0 0 0 -1px;
+}
 #searchForm:before,
 #searchForm:after {
   content: " ";
