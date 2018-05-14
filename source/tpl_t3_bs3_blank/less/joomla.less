@@ -1342,11 +1342,27 @@ div.finder {
 .alert-message {
   .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
 }
+
+.alert-warning {
+  .alert-message {
+    background-color: transparent;
+    color: @alert-warning-text;
+  }
+}
+
 .alert-notice {
   .alert-variant(@alert-info-bg; @alert-info-border; @alert-info-text);
 }
+
 .alert-error {
   .alert-variant(@alert-danger-bg; @alert-danger-border; @alert-danger-text);
+}
+
+.alert-error {
+  .alert-message {
+    background-color: transparent;
+    color: @alert-danger-text;
+  }
 }
 
 

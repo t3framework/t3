@@ -2068,6 +2068,10 @@ div.finder {
 .alert-message .alert-link {
   color: #356635;
 }
+.alert-warning .alert-message {
+  background-color: transparent;
+  color: #c09853;
+}
 .alert-notice {
   background-color: #d9edf7;
   border-color: #bce8f1;
@@ -2089,6 +2093,10 @@ div.finder {
 }
 .alert-error .alert-link {
   color: #953b39;
+}
+.alert-error .alert-message {
+  background-color: transparent;
+  color: #b94a48;
 }
 .tip-wrap {
   background: #fff6df;
