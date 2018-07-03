@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_tags
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
+JHtml::_('behavior.caption');
 JHtml::_('behavior.core');
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -97,7 +98,7 @@ JFactory::getDocument()->addScriptDeclaration("
 			<?php $images  = json_decode($item->images); ?>
 			<span class="tag-body">
 			<?php if (!empty($images->image_intro)): ?>
-				<?php $imgfloat = (empty($images->float_intro)) ? $this->params->get('float_intro') : $images->float_intro; ?>
+				<?php $imgfloat = empty($images->float_intro) ? $this->params->get('float_intro') : $images->float_intro; ?>
 				<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> item-image">
 					<img
 				<?php if ($images->image_intro_caption) : ?>

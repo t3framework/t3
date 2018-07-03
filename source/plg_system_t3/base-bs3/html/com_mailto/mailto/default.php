@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_mailto
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -63,20 +63,20 @@ $data	= $this->get('data');
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button class="btn btn-primary" onclick="return Joomla.submitbutton('send');">
+				<button type="submit" class="btn btn-primary" onclick="return Joomla.submitbutton('send');">
 					<?php echo JText::_('COM_MAILTO_SEND'); ?>
 				</button>
-				<button class="btn btn-default" onclick="window.close();return false;">
+				<button type="button" class="btn btn-default" onclick="window.close();return false;">
 					<?php echo JText::_('COM_MAILTO_CANCEL'); ?>
 				</button>
 		</div>
 			</div>
 
-		<input type="hidden" name="layout" value="<?php echo $this->getLayout();?>" />
+		<input type="hidden" name="layout" value="<?php echo htmlspecialchars($this->getLayout(), ENT_COMPAT, 'UTF-8'); ?>" />
 		<input type="hidden" name="option" value="com_mailto" />
 		<input type="hidden" name="task" value="send" />
 		<input type="hidden" name="tmpl" value="component" />
-		<input type="hidden" name="link" value="<?php echo $data->link; ?>" />
+		<input type="hidden" name="link" value="<?php echo $this->link; ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 
 	</form>
