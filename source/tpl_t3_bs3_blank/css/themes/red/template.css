@@ -1530,8 +1530,12 @@ article aside .btn-group > .dropdown-toggle .caret {
   position: relative;
 }
 #mailto-window h2 {
+  font-size: 22px;
   margin-top: 0;
   margin-bottom: 20px;
+}
+#mailtoForm .control-group .controls {
+  margin-left: 0;
 }
 #mailtoForm .formelm {
   padding: 5px 0;
