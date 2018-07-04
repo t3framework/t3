@@ -112,6 +112,76 @@
   border: 1px solid #cccccc;
   background-color: #ffffff;
 }
+.edit.item-page #jform_com_fields_checkboxs label.checkbox,
+.profile-edit #jform_com_fields_checkboxs label.checkbox {
+  display: inline-block;
+  margin-left: 10px;
+}
+.edit.item-page #jform_com_fields_checkboxs input[type="checkbox"],
+.profile-edit #jform_com_fields_checkboxs input[type="checkbox"] {
+  margin-right: 0;
+  margin-top: -2px;
+  position: relative;
+  vertical-align: middle;
+  width: auto;
+}
+.edit.item-page .minicolors-input,
+.profile-edit .minicolors-input {
+  height: 28px;
+  width: auto;
+}
+.profile-edit #jform_com_fields_user_checkbox label.checkbox {
+  display: inline-block;
+  margin-left: 10px;
+}
+.profile-edit #jform_com_fields_user_checkbox input {
+  position: relative;
+  margin-right: 0;
+  margin-left: 5px;
+  width: auto;
+}
+.profile-edit .minicolors-input {
+  height: 28px;
+  width: auto;
+}
+.profile-edit #jform_com_fields_user_image_chzn .chzn-search {
+  box-sizing: border-box;
+}
+.profile-edit #jform_com_fields_user_image_chzn ul.chzn-results {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.profile-edit #jform_com_fields_user_calendar {
+  float: right;
+}
+.profile-edit .chzn-container-single,
+.profile-edit .chzn-container {
+  float: right;
+  margin-left: 10px;
+}
+@media screen and (max-width: 360px) {
+  .profile-edit .chzn-container-single,
+  .profile-edit .chzn-container {
+    width: 100% !important;
+  }
+}
+.profile-edit .chzn-container-single .chzn-drop,
+.profile-edit .chzn-container .chzn-drop {
+  box-sizing: border-box !important;
+}
+.profile #users-profile-core {
+  width: 100%;
+}
+.profile .dl-horizontal dd {
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+}
+.profile .dl-horizontal dd img {
+  max-width: 100%;
+}
 .edit .nav-tabs {
   margin-bottom: 20px;
 }
@@ -166,6 +236,25 @@
   clear: both;
   padding-top: 5px;
 }
+.window.view-modules .well .control-label {
+  display: inline-block;
+}
+.window.view-modules .well .controls {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.window.view-modules .control-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.window.view-modules #filter-bar {
+  margin-bottom: 10px;
+}
+.window.view-modules #filter-bar .btn-group button {
+  margin-top: 0;
+}
 .window #imageForm {
   margin: 0;
   width: auto;
@@ -181,6 +270,11 @@
 }
 .window #imageForm .pull-right {
   margin-left: 30px;
+}
+.window #imageForm .well:after {
+  display: table;
+  content: "";
+  clear: both;
 }
 .window #uploadForm {
   width: auto;
@@ -341,6 +435,78 @@ fieldset.radio.btn-group label.active {
   border-color: #5c8b00;
   color: #fff;
 }
+.window.view-modules .js-stools,
+.window.view-articles .js-stools,
+.window.view-contacts .js-stools,
+.window.view-fields .js-stools,
+.window.view-items .js-stools {
+  margin-bottom: 20px;
+}
+.window.view-modules .js-stools .btn,
+.window.view-articles .js-stools .btn,
+.window.view-contacts .js-stools .btn,
+.window.view-fields .js-stools .btn,
+.window.view-items .js-stools .btn {
+  border: 1px solid #ccc;
+  margin-top: 0;
+}
+.window.view-modules .js-stools .input-append .btn,
+.window.view-articles .js-stools .input-append .btn,
+.window.view-contacts .js-stools .input-append .btn,
+.window.view-fields .js-stools .input-append .btn,
+.window.view-items .js-stools .input-append .btn {
+  border-right: 0;
+}
+.window.view-modules .js-stools input,
+.window.view-articles .js-stools input,
+.window.view-contacts .js-stools input,
+.window.view-fields .js-stools input,
+.window.view-items .js-stools input {
+  display: inline-block;
+}
+.window.view-modules .js-stools-container-filters .chzn-container-single,
+.window.view-articles .js-stools-container-filters .chzn-container-single,
+.window.view-contacts .js-stools-container-filters .chzn-container-single,
+.window.view-fields .js-stools-container-filters .chzn-container-single,
+.window.view-items .js-stools-container-filters .chzn-container-single {
+  width: 220px !important;
+}
+.window.view-modules .js-stools-container-filters .chzn-drop,
+.window.view-articles .js-stools-container-filters .chzn-drop,
+.window.view-contacts .js-stools-container-filters .chzn-drop,
+.window.view-fields .js-stools-container-filters .chzn-drop,
+.window.view-items .js-stools-container-filters .chzn-drop {
+  box-sizing: border-box !important;
+}
+.window.view-modules table#moduleList td .label,
+.window.view-articles table#moduleList td .label,
+.window.view-contacts table#moduleList td .label,
+.window.view-fields table#moduleList td .label,
+.window.view-items table#moduleList td .label {
+  background-color: #999;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: normal;
+  font-size: 100%;
+  padding: 10px;
+  width: 100%;
+}
+.window.view-modules table#moduleList td:nth-child(1),
+.window.view-articles table#moduleList td:nth-child(1),
+.window.view-contacts table#moduleList td:nth-child(1),
+.window.view-fields table#moduleList td:nth-child(1),
+.window.view-items table#moduleList td:nth-child(1) {
+  vertical-align: middle;
+}
+.window.view-modules .icon-publish:before,
+.window.view-articles .icon-publish:before,
+.window.view-contacts .icon-publish:before,
+.window.view-fields .icon-publish:before,
+.window.view-items .icon-publish:before {
+  content: "\f00c";
+  font-size: 16px;
+}
 .icon-eye-open:before,
 .icon-eye:before {
   content: "\f06e";
@@ -353,6 +519,18 @@ fieldset.radio.btn-group label.active {
 .icon-cancel:before {
   content: "\f00d";
   font-family: "FontAwesome";
+}
+.icon-publish:before {
+  content: "\f00c";
+}
+.icon-unpublish:before {
+  content: "\f00d";
+}
+.icon-featured:before {
+  content: "\f005";
+}
+.icon-unfeatured:before {
+  content: "\f005";
 }
 .button2-left,
 .button2-left div {
@@ -416,4 +594,25 @@ fieldset.radio.btn-group label.active {
 .controls img.calendar {
   cursor: pointer;
   margin-right: 5px;
+}
+.layout-pagebreak .form-horizontal .control-group .controls {
+  margin-right: 0;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: FontAwesome3 !important;
+}
+.view-history .btn-group {
+  margin-bottom: 10px;
+}
+.btn [class^="icon-"],
+.btn [class*=" icon-"] {
+  margin-left: 5px;
+}
+.btn span.icon-delete:before {
+  content: "\f057";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  color: #333;
 }

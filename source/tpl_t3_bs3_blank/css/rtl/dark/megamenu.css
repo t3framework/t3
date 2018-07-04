@@ -182,9 +182,9 @@
 .t3-megamenu .mega-tab > div > ul > li > .dropdown-menu {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
-  left: 200px;
+  right: 200px;
 }
 .t3-megamenu .mega-tab > div > ul > li > .mega-dropdown-menu {
   border: none;
@@ -192,7 +192,7 @@
 }
 .t3-megamenu .mega-tab > div > ul > li > .mega-dropdown-menu > div {
   opacity: 1 !important;
-  margin-left: 0 !important;
+  margin-right: 0 !important;
   transition: none !important;
 }
 @media (min-width: 768px) {
@@ -294,7 +294,7 @@
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    margin-top: -100%;
+    margin-top: -30%;
   }
   .t3-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div {
     margin-top: 0%;
@@ -402,6 +402,24 @@
 }
 .t3-megamenu .mega-nav .dropdown-submenu > a::after {
   margin-left: 0;
+}
+.t3-megamenu .t3-module .module-inner {
+  padding: 0 20px;
+}
+.t3-megamenu .t3-module .module-inner ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.t3-megamenu .t3-module .module-inner ul li {
+  list-style: none;
+  padding: 5px 0;
+}
+.t3-megamenu .t3-module .module-inner #login-form ul.unstyled {
+  padding-right: 0;
+}
+.t3-megamenu .t3-module .module-inner #login-form ul.unstyled li {
+  padding-top: 0;
 }
 .t3-megamenu .t3-module .module-title {
   margin: 0;
