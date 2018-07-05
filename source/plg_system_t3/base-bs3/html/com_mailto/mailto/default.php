@@ -16,15 +16,13 @@ JHtml::_('behavior.keepalive');
 <div id="mailto-window">
 	<h2>
 		<?php echo JText::_('COM_MAILTO_EMAIL_TO_A_FRIEND'); ?>
-	</h2>
-	<div class="mailto-close">
-		<a href="javascript: void window.close()" title="<?php echo JText::_('COM_MAILTO_CLOSE_WINDOW'); ?>">
-			<span>
-				<?php echo JText::_('COM_MAILTO_CLOSE_WINDOW'); ?>
-			</span>
+		
+		<a class="mailto-close" href="javascript: void window.close()" title="<?php echo JText::_('COM_MAILTO_CLOSE_WINDOW'); ?>">
+			<span class="fa fa-close"></span>
 		</a>
-	</div>
-	<form action="<?php echo JRoute::_('index.php?option=com_mailto&task=send'); ?>" method="post" class="form-validate form-horizontal well">
+	</h2>
+
+	<form id="mailtoForm" action="<?php echo JRoute::_('index.php?option=com_mailto&task=send'); ?>" method="post" class="form-validate form-horizontal">
 		<fieldset>
 			<?php foreach ($this->form->getFieldset('') as $field) : ?>
 				<?php if (!$field->hidden) : ?>
@@ -36,7 +34,7 @@ JHtml::_('behavior.keepalive');
 					<button type="submit" class="btn btn-primary validate">
 						<?php echo JText::_('COM_MAILTO_SEND'); ?>
 					</button>
-					<button type="button" class="button" onclick="window.close();return false;">
+					<button type="button" class="btn btn-default button" onclick="window.close();return false;">
 						<?php echo JText::_('COM_MAILTO_CANCEL'); ?>
 					</button>
 				</div>

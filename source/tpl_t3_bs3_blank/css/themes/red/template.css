@@ -1533,6 +1533,31 @@ article aside .btn-group > .dropdown-toggle .caret {
   font-size: 22px;
   margin-top: 0;
   margin-bottom: 20px;
+  overflow: hidden;
+}
+#mailto-window h2 .mailto-close {
+  background-color: #e1e1e1;
+  border-radius: 3px;
+  float: right;
+  height: 26px;
+  line-height: 22px;
+  text-align: center;
+  width: 26px;
+}
+#mailto-window h2 .mailto-close span {
+  color: #999999;
+  line-height: 22px;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+#mailto-window h2 .mailto-close:hover span,
+#mailto-window h2 .mailto-close:focus span,
+#mailto-window h2 .mailto-close:active span {
+  color: #555555;
+}
+#mailto-window .control-group .controls {
+  margin-left: 0;
 }
 #mailtoForm .control-group .controls {
   margin-left: 0;
