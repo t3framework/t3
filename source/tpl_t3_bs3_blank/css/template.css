@@ -1686,6 +1686,14 @@ article aside .btn-group > .dropdown-toggle .caret {
   position: relative;
   margin: 0 0 0 -1px;
 }
+.profile-edit .chzn-container .chzn-search:before,
+.profile-edit .chzn-container .chzn-search:after {
+  content: " ";
+  display: table;
+}
+.profile-edit .chzn-container .chzn-search:after {
+  clear: both;
+}
 #searchForm:before,
 #searchForm:after {
   content: " ";
