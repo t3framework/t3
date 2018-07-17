@@ -364,54 +364,6 @@
 			</field>
 
 		</fieldset>
-		<fieldset name="ab" label="T3_ABTESTING_LABEL" description="T3_ABTESTING_DESC">
-			<field
-				name="ab_altstyle"
-				type="templatestyle"
-				label="T3_ABTESTING_ALTSTYLE_LABEL"
-				description="T3_ABTESTING_ALTSTYLE_DESC"
-				filter="int"
-				>
-				<option value="0">JOPTION_USE_DEFAULT</option>
-			</field>
 
-			<!--field name="abtesting-start" type="calendar" label="T3_ABTESTING_START_LABEL"
-   				description="T3_ABTESTING_START_DESC" size="22"
-   				format="%Y-%m-%d %H:%M:%S" filter="user_utc" showtime="true" />
-
-			<field name="abtesting-end" type="calendar" label="T3_ABTESTING_END_LABEL"
-   				description="T3_ABTESTING_END_LABEL" size="22"
-   				format="%Y-%m-%d %H:%M:%S" filter="user_utc" showtime="true" /-->
-
-
-			<field name="ab_tracking" type="t3depend" function="@group">
-				<option for="ab_tracking_type" value="ga">
-					ab_tracking_ga_id, ab_tracking_ga_expid
-				</option>
-				<option for="ab_tracking_type" value="meta">
-					ab_tracking_meta_name
-				</option>
-			</field>
-
-			<field name="ab_tracking_legend" type="t3depend" function="@legend" label="T3_ABTESTING_TRACKING_LEGEND_LABEL"
-						 description="T3_ABTESTING_TRACKING_LEGEND_DESC"/>
-
-			<field name="ab_tracking_type" type="list" default="ga"
-						 label="T3_ABTESTING_TRACKING_TYPE_LABEL"
-						 description="T3_ABTESTING_TRACKING_TYPE_DESC">
-				<option value="ga">T3_ABTESTING_TRACKING_TYPE_GA</option>
-				<option value="meta">T3_ABTESTING_TRACKING_TYPE_META</option>
-			</field>
-			
-   			<field name="ab_tracking_ga_id" type="text"
-   				label="T3_ABTESTING_TRACKING_GA_ID_LABEL"	description="T3_ABTESTING_TRACKING_GA_ID_DESC" />
-
-   			<field name="ab_tracking_ga_expid" type="text"
-   				label="T3_ABTESTING_TRACKING_GA_EXPID_LABEL"	description="T3_ABTESTING_TRACKING_GA_EXPID_DESC" />
-
-   			<field name="ab_tracking_meta_name" type="text"
-   				label="T3_ABTESTING_TRACKING_META_NAME_LABEL"	description="T3_ABTESTING_TRACKING_META_NAME_DESC" />
-
-		</fieldset>
 	</fields>
 </form>

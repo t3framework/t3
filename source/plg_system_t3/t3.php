@@ -40,7 +40,6 @@ class plgSystemT3 extends JPlugin
 
 		$input = $app->input;
 
-		// themer 
 		if($input->getCmd('themer', 0) && ($t3tmid = $input->getCmd('t3tmid', 0))){
 			$user = JFactory::getUser();
 
@@ -71,11 +70,7 @@ class plgSystemT3 extends JPlugin
 					}
 				}
 			}
-		} else {
-			// frontend - check if alternative theme style
-			T3::checkAltStyle();
 		}
-
 	}
 
 	function onAfterRoute()
@@ -415,14 +410,4 @@ class plgSystemT3 extends JPlugin
 			}
 		}
 	}
-
-
-	/**
-	 * Handle page cache key - start from Joomla 3.8
-	 *
-	 */
-	public function onPageCacheGetKey () {
-		return T3::getPageCacheKey();
-	}
-
 }
