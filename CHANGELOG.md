@@ -1,3 +1,33 @@
+<h2>Version: 2.7.2 (05/07/2018)</h2>
+<h3>Update to compatible with Joomla 3.8.10</h3>
+- Update HTML override for login form | <a href="https://github.com/t3framework/t3/commit/1c4537ab968234afc751606215817c2ff7ff419f">Link</a><br/>
+- Improve style for user's extrafield | <a 
+href="https://github.com/t3framework/t3/commit/829d5335401f1fa3557434548eddec199843e7ec">Link</a><br/>
+- Alert Message Colour. | <a href="https://github.com/t3framework/t3/commit/3b3164bbbc9d44179ccee5a8976d5088cad4f2ff">Link</a><br/>
+- Remove long space before the class in the html tag. | <a href="https://github.com/t3framework/t3/commit/a3e16ffa3b087f2a21eb3c1666562c25feb30ff6">Link</a><br/>
+- Image css style option is not working on T3 blank | <a href="https://github.com/t3framework/t3/commit/ca9ee6593a9935b3694955a5259d910980e2365b">Link</a><br/>
+- Prevent removing all attributes of body tag | <a href="https://github.com/t3framework/t3/commit/6cedc4a7f5eb9f1759ffd4983b7ce99c7931095b">Link</a><br/>
+- Update to compatible with Joomla 3.8.10 | <a href="https://github.com/t3framework/t3/commit/8bec2ffd34b2e9f19103f9ee58f15ed398e6edc0">Link</a><br/>
+- Improve style for rtl language | <a href="https://github.com/t3framework/t3/commit/4fb9659bbcaa97e9f853173d502173b9df3904ff">Link</a><br/>
+- Update override for send email form | <a href="https://github.com/t3framework/t3/commit/261aed60e40962e5c4f0a8b83540cd8e94414315">Link</a><br/>
+- Fix Time zone dropdow lost data | <a 
+href="https://github.com/t3framework/t3/commit/63875bf63905bacf1f0b320a5ddc6e49a73560d7">Link</a>
+
+<h2>Version: 2.7.1 (04/05/2018)</h2>
+<h3>Fix some bugs and make compatible with WCAG</h3>
+- Fix break layout when click to the fields button | <a href="https://github.com/t3framework/t3/commit/86ac007317ef97322ee64e41802615a0a94dc689">Link</a><br/>
+- Clear tag button does not work | <a 
+href="https://github.com/t3framework/t3/commit/518b61f57e1b06431093bfe188493c2398ebc141">Link</a><br/>
+- Add class to module menu override. | <a href="https://github.com/t3framework/t3/commit/3c1adab1dbe0e310068cbf5cd0c5085fbd9e1272">Link</a><br/>
+- Improve style for On / Off icon. | <a href="https://github.com/t3framework/t3/commit/2741fe2331ec6474ac29c1c3b201ce9e9dc2d6e5">Link</a><br/>
+- Update the check show label condition command | <a href="https://github.com/t3framework/t3/commit/4753debbb658663d5f9058f3e7ee818d73d40ed6">Link</a><br/>
+- Update module search override | <a href="https://github.com/t3framework/t3/commit/0ad54a5b77721256fc1f61128674eaf1143ba59f">Link</a><br/>
+- Add space for HTML element property | <a href="https://github.com/t3framework/t3/commit/ba038ed65b3a73cc827a69b6aa317261690bdb54">Link</a><br/>
+- Update override to compatible with WCAG | <a href="https://github.com/t3framework/t3/commit/4b051c9e2420f65386536913b54f108f6a5e2685">Link</a><br/>
+- Update aria roles for form elements | <a href="https://github.com/t3framework/t3/commit/0d94fe6c2f5f556976012ff05ca70a6acff2d506">Link</a><br/>
+- Add aria-label for form element | <a 
+href="https://github.com/t3framework/t3/commit/f8334416810bb0b31767a65946607714908431e4">Link</a>
+
 <h2>Version: 2.7.0 (29/09/2017)</h2>
 <h3>Fix bugs & Improvements</h3>
 - Fix bugs to compatible with Joomla 3.8 | <a href="https://github.com/t3framework/t3/commit/e01f461fea1a653abe2e59fbecc774cbd45dbd19">Link</a><br/>

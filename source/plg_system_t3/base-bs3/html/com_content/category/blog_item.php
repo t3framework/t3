@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,7 +14,7 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.framework');
 
 // Create a shortcut for params.
-$params  = & $this->item->params;
+$params = $this->item->params;
 $images  = json_decode($this->item->images);
 $canEdit = $this->item->params->get('access-edit');
 $info    = $params->get('info_block_position', 0);

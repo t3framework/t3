@@ -606,6 +606,9 @@ textarea.form-control {
 .form-horizontal .form-control-static {
   padding-top: 7px;
 }
+.btn-primary {
+  background-color: #006097;
+}
 .btn-inverse {
   color: #ffffff;
   background-color: #2d2d2d;
@@ -806,6 +809,11 @@ input.invalid {
     padding: 10px 15px;
     display: inline-block;
   }
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: #00629a;
 }
 .nav .caret {
   border-top-color: #ffffff;
@@ -1522,8 +1530,37 @@ article aside .btn-group > .dropdown-toggle .caret {
   position: relative;
 }
 #mailto-window h2 {
+  font-size: 22px;
   margin-top: 0;
   margin-bottom: 20px;
+  overflow: hidden;
+}
+#mailto-window h2 .mailto-close {
+  background-color: #7a7a7a;
+  border-radius: 3px;
+  float: right;
+  height: 26px;
+  line-height: 22px;
+  text-align: center;
+  width: 26px;
+}
+#mailto-window h2 .mailto-close span {
+  color: #5a5a5a;
+  line-height: 22px;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+#mailto-window h2 .mailto-close:hover span,
+#mailto-window h2 .mailto-close:focus span,
+#mailto-window h2 .mailto-close:active span {
+  color: #4b4b4b;
+}
+#mailto-window .control-group .controls {
+  margin-left: 0;
+}
+#mailtoForm .control-group .controls {
+  margin-left: 0;
 }
 #mailtoForm .formelm {
   padding: 5px 0;
@@ -1624,6 +1661,38 @@ article aside .btn-group > .dropdown-toggle .caret {
 }
 .profile-edit select + button {
   margin-left: 5px;
+}
+.profile-edit .input-prepend .media-preview {
+  float: left;
+}
+.profile-edit .input-prepend #jform_com_fields_uavatar {
+  background-color: #ffffff;
+  box-shadow: none;
+}
+.profile-edit .input-prepend .btn {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 0 3px 3px 0;
+  text-align: center;
+}
+.profile-edit .input-prepend .btn span.icon-remove {
+  margin-right: 0;
+}
+.profile-edit .input-prepend .btn.modal {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-radius: 0;
+  position: relative;
+  margin: 0 0 0 -1px;
+}
+.profile-edit .chzn-container .chzn-search:before,
+.profile-edit .chzn-container .chzn-search:after {
+  content: " ";
+  display: table;
+}
+.profile-edit .chzn-container .chzn-search:after {
+  clear: both;
 }
 #searchForm:before,
 #searchForm:after {
@@ -2036,6 +2105,10 @@ div.finder {
 .alert-message .alert-link {
   color: #356635;
 }
+.alert-warning .alert-message {
+  background-color: transparent;
+  color: #c09853;
+}
 .alert-notice {
   background-color: #d9edf7;
   border-color: #bce8f1;
@@ -2057,6 +2130,10 @@ div.finder {
 }
 .alert-error .alert-link {
   color: #953b39;
+}
+.alert-error .alert-message {
+  background-color: transparent;
+  color: #b94a48;
 }
 .tip-wrap {
   background: #fff6df;

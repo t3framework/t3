@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  mod_login
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -49,10 +49,10 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 				<?php if (!$params->get('usetext')) : ?>
 					<div class="input-group">
 						<span class="input-group-addon">
-							<i class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i>
+							<span class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></span>
 						</span>
 						<input id="modlgn-username" type="text" name="username" class="input form-control" tabindex="0" size="18"
-							   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
+							   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" aria-label="username" />
 					</div>
 				<?php else: ?>
 					<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
@@ -64,10 +64,10 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 				<?php if (!$params->get('usetext')) : ?>
 				<div class="input-group">
 						<span class="input-group-addon">
-							<i class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i>
+							<span class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></span>
 						</span>
 					<input id="modlgn-passwd" type="password" name="password" class="input form-control" tabindex="0"
-						   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
+						   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" aria-label="password" />
 				</div>
 			<?php else: ?>
 				<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
@@ -80,19 +80,19 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 				<?php if (!$params->get('usetext')) : ?>
 				<div class="input-group">
 					<span class="input-group-addon">
-						<i class="fa fa-star hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>"></i>
+						<span class="fa fa-star hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>"></span>
 					</span>
 					<label for="modlgn-secretkey" class="element-invisible"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
-					<input id="modlgn-secretkey" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
 					<span class="input-group-addon hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-						<i class="fa fa-question-circle"></i>
+						<span class="fa fa-question-circle"></span>
 					</span>
 				</div>
 				<?php else: ?>
 					<label for="modlgn-secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY') ?></label>
-					<input id="modlgn-secretkey" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
 					<span class="btn btn-default width-auto hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-						<i class="fa fa-question-circle"></i>
+						<span class="fa fa-question-circle"></span>
 					</span>
 				<?php endif; ?>
 			</div>
@@ -100,13 +100,9 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 		
 			<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
 				<div id="form-login-remember" class="form-group">
-					<div class="checkbox">
-					<label for="modlgn-remember">
-						<input id="modlgn-remember" type="checkbox"
+					<input id="modlgn-remember" type="checkbox"
 							name="remember" class="input"
-							value="yes"/> <?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?>
-					</label>
-					</div>
+							value="yes" aria-label="remember"/> <?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?>
 				</div>
 			<?php endif; ?>
 			<div class="control-group">

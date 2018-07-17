@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_search
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -23,10 +23,10 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 	<div class="input-group form-group">
 		<input type="text" name="searchword" placeholder="<?php echo JText::_('COM_SEARCH_SEARCH_KEYWORD'); ?>"
 			   id="search-searchword" size="30" maxlength="<?php echo $upper_limit; ?>"
-			   value="<?php echo $this->escape($this->origkeyword); ?>" class="form-control"/>
+			   value="<?php echo $this->escape($this->origkeyword); ?>" class="form-control" aria-label="searchword" />
 		<span class="input-group-btn">
 			<button name="Search" onclick="this.form.submit()" class="btn btn-default"
-					title="<?php echo JText::_('COM_SEARCH_SEARCH'); ?>"><span class="fa fa-search"></span></button>
+					title="<?php echo JText::_('COM_SEARCH_SEARCH'); ?>" aria-label="search-button"><span class="fa fa-search"></span></button>
 		</span>
 	</div>
 
@@ -35,20 +35,20 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 			<p><?php echo JText::plural('COM_SEARCH_SEARCH_KEYWORD_N_RESULTS', '<span class="badge badge-info">' . $this->total . '</span>'); ?></p>
 		<?php endif; ?>
 	</div>
-
+	<?php if ($this->params->get('search_phrases', 1)) : ?>
 	<fieldset class="phrases">
 		<legend><?php echo JText::_('COM_SEARCH_FOR'); ?></legend>
 		<div class="phrases-box form-group">
 			<?php echo str_replace('class="radio"', 'class="radio-inline"', $this->lists['searchphrase']); ?>
 		</div>
 		<div class="ordering-box form-group">
-			<label for="ordering" class="control-label">
+			<label for="ordering" class="control-label ordering">
 				<?php echo JText::_('COM_SEARCH_ORDERING'); ?>
 			</label>
 			<?php echo $this->lists['ordering']; ?>
 		</div>
 	</fieldset>
-
+	<?php endif; ?>
 	<?php if ($this->params->get('search_areas', 1)) : ?>
 		<fieldset class="only">
 			<legend><?php echo JText::_('COM_SEARCH_SEARCH_ONLY'); ?></legend>

@@ -587,7 +587,7 @@ class T3Template extends ObjectExtendable
 		}
 		if (($openbody = $this->getParam('snippet_open_body', ''))) {
 			$places[] = '@^\s*<body[^>]*>\s*$@msU';
-			$contents[] = "<body>\n" . $openbody;
+			$contents[] = "$0\n" . $openbody;
 		}
 
 		// append modules in debug position

@@ -16,8 +16,7 @@ defined('_JEXEC') or die;
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>"
-	  class='<jdoc:include type="pageclass" />'>
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class='<jdoc:include type="pageclass" />'>
 
 <head>
 	<jdoc:include type="head" />

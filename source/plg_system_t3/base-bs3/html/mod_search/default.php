@@ -3,14 +3,15 @@
  * @package     Joomla.Site
  * @subpackage  mod_search
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 // Including fallback code for the placeholder attribute in the search field.
 JHtml::_('jquery.framework');
-JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true));
+JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
+
 if ($width)
 {
 	$moduleclass_sfx .= ' ' . 'mod_search' . $module->id;
@@ -27,7 +28,7 @@ else
 	<form action="<?php echo JRoute::_('index.php');?>" method="post" class="form-inline form-search">
 		<?php
 			$output = '<label for="mod-search-searchword' . $module->id . '" class="element-invisible">' . $label . '</label> ';
-			$output .= '<input name="searchword" id="mod-search-searchword" maxlength="' . $maxlength . '"  class="form-control search-query" type="search" size="' . $width . '" placeholder="' . $text . '" />';
+			$output .= '<input name="searchword" id="mod-search-searchword" aria-label="search" maxlength="' . $maxlength . '"  class="form-control search-query" type="search"' . $width . ' placeholder="' . $text . '" />';
 
 			if ($button) :
 				if ($imagebutton) :

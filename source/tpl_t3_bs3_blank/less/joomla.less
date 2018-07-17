@@ -521,20 +521,59 @@ article aside .btn-group {
   position: relative;
 
   h2 {
+    font-size: 22px;
     margin-top: 0;
     margin-bottom: 20px;
+    overflow: hidden;
+
+    .mailto-close {
+      background-color: darken(@gray-lighter, 5%);
+      border-radius: 3px;
+      float: right;
+      height: 26px;
+      line-height: 22px;
+      text-align: center;
+      width: 26px;
+
+      span {
+        color: @gray-light;
+        line-height: 22px;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+      }
+
+      &:hover, &:focus, &:active {
+        span {
+          color: @gray;
+        }
+      }
+    }
   }
   
   .mailto-close {
     a {
-      :hover {
+      &:hover {
 
       }
     }
   }
+
+  .control-group {
+    .controls {
+      margin-left: 0;
+    }
+  }
+
 }
 
 #mailtoForm {
+  .control-group {
+    .controls {
+      margin-left: 0;
+    }
+  }
+
   .formelm {
     padding: 5px 0;
     vertical-align: middle;
@@ -653,11 +692,50 @@ article aside .btn-group {
   input {
     .make-sm-column(6, @padding-base-horizontal);  // Make the input have the same width
   }
+
   select {
     .make-sm-column(6, @padding-base-horizontal);  // Make the select have the same width
   }
+
   select + button {
     margin-left: 5px;
+  }
+
+  .input-prepend {
+    .media-preview {
+      float: left;
+    }
+
+    #jform_com_fields_uavatar {
+      background-color: @white;
+      box-shadow: none;
+    }
+
+    .btn {
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 0 3px 3px 0;
+      text-align: center;
+
+      span.icon-remove {
+        margin-right: 0;
+      }
+    }
+
+    .btn.modal {
+      background-color: #eee;
+      border: 1px solid #ccc;
+      display: inline-block;
+      border-radius: 0;
+      position: relative;
+      margin: 0 0 0 -1px;
+    }
+  }
+
+  .chzn-container {
+    .chzn-search {
+      .clearfix();
+    }
   }
 }
 
@@ -1311,11 +1389,27 @@ div.finder {
 .alert-message {
   .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
 }
+
+.alert-warning {
+  .alert-message {
+    background-color: transparent;
+    color: @alert-warning-text;
+  }
+}
+
 .alert-notice {
   .alert-variant(@alert-info-bg; @alert-info-border; @alert-info-text);
 }
+
 .alert-error {
   .alert-variant(@alert-danger-bg; @alert-danger-border; @alert-danger-text);
+}
+
+.alert-error {
+  .alert-message {
+    background-color: transparent;
+    color: @alert-danger-text;
+  }
 }
 
 

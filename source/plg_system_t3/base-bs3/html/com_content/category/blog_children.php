@@ -3,21 +3,22 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 JHtml::_('bootstrap.tooltip');
-$lang  = JFactory::getLanguage();
+
 $class = ' class="first"';
+$lang  = JFactory::getLanguage();
 
 if ($this->maxLevel != 0 && count($this->children[$this->category->id]) > 0) : ?>
 
 	<?php foreach ($this->children[$this->category->id] as $id => $child) : ?>
-		<?php
-		if ($this->params->get('show_empty_categories') || $child->numitems || count($child->getChildren())) :
+		<?php // Check whether category access level allows access to subcategories. ?>
+		<?php if ($this->params->get('show_empty_categories') || $child->numitems || count($child->getChildren())) :
 			if (!isset($this->children[$this->category->id][$id + 1])) :
 				$class = ' class="last"';
 			endif;

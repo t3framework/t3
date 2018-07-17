@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_config
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -50,22 +50,22 @@ JFactory::getDocument()->addScriptDeclaration("
 				<div class="btn-group">
 					<button type="button" class="btn btn-default btn-primary"
 						onclick="Joomla.submitbutton('config.save.modules.apply')">
-						<i class="icon-apply"></i>
-						<?php echo JText::_('JAPPLY') ?>
+						<span class="icon-apply" aria-hidden="true"></span>
+						<?php echo JText::_('JAPPLY'); ?>
 					</button>
 				</div>
 				<div class="btn-group">
 					<button type="button" class="btn btn-default"
 						onclick="Joomla.submitbutton('config.save.modules.save')">
-						<i class="icon-save"></i>
-						<?php echo JText::_('JSAVE') ?>
+						<span class="icon-save" aria-hidden="true"></span>
+						<?php echo JText::_('JSAVE'); ?>
 					</button>
 				</div>
 				<div class="btn-group">
 					<button type="button" class="btn btn-default"
 						onclick="Joomla.submitbutton('config.cancel.modules')">
-						<i class="icon-cancel"></i>
-						<?php echo JText::_('JCANCEL') ?>
+						<span class="icon-cancel" aria-hidden="true"></span>
+						<?php echo JText::_('JCANCEL'); ?>
 					</button>
 				</div>
 			</div>
@@ -75,11 +75,11 @@ JFactory::getDocument()->addScriptDeclaration("
 			<legend><?php echo JText::_('COM_CONFIG_MODULES_SETTINGS_TITLE'); ?></legend>
 
 			<div>
-				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_NAME') ?>
-				<span class="label label-default"><?php echo $this->item['title'] ?></span>
+				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_NAME'); ?>
+				<span class="label label-default"><?php echo $this->item['title']; ?></span>
 				&nbsp;&nbsp;
-				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_TYPE') ?>
-				<span class="label label-default"><?php echo $this->item['module'] ?></span>
+				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_TYPE'); ?>
+				<span class="label label-default"><?php echo $this->item['module']; ?></span>
 			</div>
 
 			<br />
