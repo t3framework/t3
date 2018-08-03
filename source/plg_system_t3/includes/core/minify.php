@@ -396,9 +396,12 @@ class T3Minify
 
 				$output[$outputurl . '/' . $groupname] = array(
 					'mime' => 'text/css',
-					'media' => $media,
-					'attribs' => array()
+					'media' => $media
 					);
+				// back compatible with old version
+				if(version_compare(JVERSION, '3.5', 'lt')) {
+					$output[$outputurl . '/' . $groupname]['attribs'] = [];
+				}
 			}
 		}
 
