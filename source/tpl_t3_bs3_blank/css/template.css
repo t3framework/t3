@@ -1879,6 +1879,12 @@ div.finder {
 .contact-category .cat-children ul li:last-child {
   border: 0;
 }
+#jform_privacyconsent_privacy input {
+  margin-left: 0;
+}
+#jform_privacyconsent_privacy label {
+  margin-right: 10px;
+}
 #archive-items > li {
   line-height: normal;
   margin: 0;

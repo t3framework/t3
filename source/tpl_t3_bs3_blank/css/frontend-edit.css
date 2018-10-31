@@ -130,6 +130,17 @@
   height: 28px;
   width: auto;
 }
+.edit.item-page .chzn-container .chzn-search:before,
+.profile-edit .chzn-container .chzn-search:before,
+.edit.item-page .chzn-container .chzn-search:after,
+.profile-edit .chzn-container .chzn-search:after {
+  content: " ";
+  display: table;
+}
+.edit.item-page .chzn-container .chzn-search:after,
+.profile-edit .chzn-container .chzn-search:after {
+  clear: both;
+}
 .profile-edit #jform_com_fields_user_checkbox label.checkbox {
   display: inline-block;
   margin-right: 10px;
@@ -254,6 +265,11 @@
 }
 .window.view-modules #filter-bar .btn-group button {
   margin-top: 0;
+}
+.com_config.view-modules .btn-group label {
+  float: left;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 .window #imageForm {
   margin: 0;
@@ -615,4 +631,17 @@ fieldset.radio.btn-group label.active {
   height: 16px;
   width: 16px;
   color: #333;
+}
+body.modal-open .modal.hide {
+  background-color: #fff;
+  display: block !important;
+  left: auto;
+  right: auto;
+  top: 0;
+  bottom: auto;
+  transform: translateY(50%);
+  z-index: 1050;
+}
+body.modal-open .modal.hide .iframe {
+  border: 1px solid #ddd;
 }
