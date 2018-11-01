@@ -3084,6 +3084,11 @@ table.adminlist th a {
 .languageswitcherload .mod-languages {
   text-align: right;
 }
+#jform_terms_terms-lbl a.modal {
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+}
 
 
 
