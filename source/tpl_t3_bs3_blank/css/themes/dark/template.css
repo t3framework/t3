@@ -1885,6 +1885,12 @@ div.finder {
 #jform_privacyconsent_privacy label {
   margin-right: 10px;
 }
+#jform_privacyconsent_privacy-lbl a.modal,
+#jform_terms_terms-lbl a.modal {
+  display: inline-block;
+  font-weight: normal;
+  position: relative;
+}
 #jform_terms_terms input {
   margin-left: 0;
 }
