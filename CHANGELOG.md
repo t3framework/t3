@@ -1,3 +1,8 @@
+<h2>Version: 2.7.3 (01/11/2018)</h2>
+<h3>Update to compatible with Joomla 3.9</h3>
+- Can't hide User custom field label on the contact page | <a href="https://github.com/t3framework/t3/commit/c41cb00032037d4a126528453e0028bcadc0229d">Link</a><br/>
+- Fix bugs to compatible with Joomla 3.9 | <a href="https://github.com/t3framework/t3/commit/eb3a371bc3e632e11fe68bc348155f8ce43a8bdd">Link</a><br/>
+
 <h2>Version: 2.7.2 (05/07/2018)</h2>
 <h3>Update to compatible with Joomla 3.8.10</h3>
 - Update HTML override for login form | <a href="https://github.com/t3framework/t3/commit/1c4537ab968234afc751606215817c2ff7ff419f">Link</a><br/>
