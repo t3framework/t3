@@ -3084,10 +3084,74 @@ table.adminlist th a {
 .languageswitcherload .mod-languages {
   text-align: right;
 }
-#jform_terms_terms-lbl a.modal {
+#jform_privacyconsent_privacy-lbl a.modal,
+#jform_consentbox-lbl a.modal,
+#jform_terms_terms-lbl a.modal,
+#jform_profile_tos-lbl a.modal {
   border-radius: 0;
-  border: 0;
   box-shadow: none;
+  border: none;
+}
+#modal-jform_consentbox,
+#modal-consentbox {
+  top: 5%;
+  display: block;
+  z-index: 1050;
+  left: 50%;
+  width: 80%;
+  position: fixed;
+  margin-left: -40%;
+  background: #fff;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  outline: none;
+  padding: 0 !important;
+  transform: none;
+  bottom: auto;
+}
+#modal-jform_consentbox.in,
+#modal-consentbox.in {
+  opacity: 1;
+  display: block !important;
+}
+#modal-jform_consentbox .modal-header,
+#modal-consentbox .modal-header {
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+}
+#modal-jform_consentbox .modal-body,
+#modal-consentbox .modal-body {
+  overflow-y: auto;
+  width: 98%;
+  position: relative;
+  padding: 1%;
+}
+#modal-jform_consentbox .iframe,
+#modal-consentbox .iframe {
+  max-height: 739px;
+}
+#modal-jform_consentbox .modal-body {
+  max-height: 770px;
+}
+#modal-jform_consentbox .iframe {
+  max-height: 739px;
+}
+#modal-consentbox .modal-header h3 {
+  font-size: 26px;
+  margin: 0;
+}
+#modal-consentbox .modal-body {
+  max-height: 220px;
+}
+#modal-consentbox .iframe {
+  max-height: 200px;
 }
 
 
