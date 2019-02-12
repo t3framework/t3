@@ -14,12 +14,12 @@ $params  = & $this->item->params;
 $images  = json_decode($this->item->images);
 $canEdit = $this->item->params->get('access-edit');
 $info    = $params->get('info_block_position', 2);
+
 $aInfo1 = ($params->get('show_publish_date') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
 $aInfo2 = ($params->get('show_create_date') || $params->get('show_modify_date') || $params->get('show_hits'));
 $topInfo = ($aInfo1 && $info != 1) || ($aInfo2 && $info == 0);
 $botInfo = ($aInfo1 && $info == 1) || ($aInfo2 && $info != 0);
 $icons = $params->get('access-edit') || $params->get('show_print_icon') || $params->get('show_email_icon');
-
 ?>
 
   <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
@@ -35,14 +35,14 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 		<?php endif; ?>
 
     <!-- Aside -->
-    <?php if ($topInfo || $icons) : ?>
+    <?php if ($topInfo) : ?>
     <aside class="article-aside clearfix">
+    	<?php if ($icons): ?>
+      <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params)); ?>
+      <?php endif; ?>
+
       <?php if ($topInfo): ?>
       <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
-      <?php endif; ?>
-      
-      <?php if ($icons): ?>
-      <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params)); ?>
       <?php endif; ?>
     </aside>  
     <?php endif; ?>
@@ -64,6 +64,10 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
     <!-- footer -->
     <?php if ($botInfo) : ?>
     <footer class="article-footer clearfix">
+    	<?php if ($icons && $info == 1): ?>
+      <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params)); ?>
+      <?php endif; ?>
+
       <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
     </footer>
     <?php endif; ?>

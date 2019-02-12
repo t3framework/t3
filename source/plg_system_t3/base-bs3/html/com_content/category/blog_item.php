@@ -18,12 +18,13 @@ $params = $this->item->params;
 $images  = json_decode($this->item->images);
 $canEdit = $this->item->params->get('access-edit');
 $info    = $params->get('info_block_position', 0);
+$icons = $params->get('access-edit') || $params->get('show_print_icon') || $params->get('show_email_icon');
 
 $aInfo1 = ($params->get('show_publish_date') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
 $aInfo2 = ($params->get('show_create_date') || $params->get('show_modify_date') || $params->get('show_hits'));
 $topInfo = ($aInfo1 && $info != 1) || ($aInfo2 && $info == 0);
 $botInfo = ($aInfo1 && $info == 1) || ($aInfo2 && $info != 0);
-$icons = $params->get('access-edit') || $params->get('show_print_icon') || $params->get('show_email_icon');
+
 
 // Check if associations are implemented. If they are, define the parameter.
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
@@ -52,14 +53,14 @@ if (empty ($this->item->catslug)) {
     <?php endif; ?>
 
     <!-- Aside -->
-    <?php if ($topInfo || $icons) : ?>
+    <?php if ($topInfo) : ?>
     <aside class="article-aside clearfix">
-      <?php if ($topInfo): ?>
-      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
-      <?php endif; ?>
-      
       <?php if ($icons): ?>
       <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params)); ?>
+      <?php endif; ?>
+
+      <?php if ($topInfo): ?>
+      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
       <?php endif; ?>
     </aside>  
     <?php endif; ?>
@@ -76,10 +77,14 @@ if (empty ($this->item->catslug)) {
 
     <!-- footer -->
     <?php if ($botInfo) : ?>
-    <footer class="article-footer clearfix">
-      <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
-      <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
-    </footer>
+      <footer class="article-footer clearfix">
+        <?php if ($icons && $info == 1): ?>
+        <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params)); ?>
+        <?php endif; ?>
+
+        <?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
+        <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
+      </footer>
     <?php endif; ?>
     <!-- //footer -->
 

@@ -67,12 +67,12 @@ JHtml::_('behavior.caption');
   	<!-- Aside -->
 		<?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
 		<aside class="article-aside clearfix">
+			<?php if ($icons): ?>
+		  		<?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params, 'print' => $this->print)); ?>
+		  <?php endif; ?>
+
 			<?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
 			<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
-
-		  <?php if ($icons): ?>
-		  <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params, 'print' => $this->print)); ?>
-		  <?php endif; ?>
 		</aside>
 		<?php endif; ?>
 		<!-- // Aside -->
@@ -107,13 +107,15 @@ JHtml::_('behavior.caption');
 			</section>
 
 			<!-- Footer -->
-			<?php if ($info == 1 || $info == 2) : ?>
-				<?php if ($useDefList) : ?>
-					<footer class="article-footer clearfix">
-					<?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
-					<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
-					</footer>
-				<?php endif; ?>
+			<?php if ($useDefList && ($info == 1 || $info == 2)) : ?>
+				<footer class="article-footer clearfix">
+				<?php if ($icons && $info == 1): ?>
+				  <?php echo JLayoutHelper::render('joomla.content.icons', array('item' => $this->item, 'params' => $params, 'print' => $this->print)); ?>
+				  <?php endif; ?>
+
+				<?php // Todo: for Joomla4 joomla.content.info_block.block can be changed to joomla.content.info_block ?>
+				<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
+				</footer>
 			<?php endif; ?>
 			<!-- // Footer -->
 
