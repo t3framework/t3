@@ -10,3 +10,10 @@
  * @Link:         http://t3-framework.org 
  *------------------------------------------------------------------------------
  */
+
+ jQuery(document).ready(function($) {
+
+ 	if($('#jform_contact_email_copy').length) {
+ 		$('#jform_contact_email_copy').parents('.control-group').addClass('inline');
+ 	}
+ })

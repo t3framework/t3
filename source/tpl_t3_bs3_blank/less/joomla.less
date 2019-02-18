@@ -2,7 +2,7 @@
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2017 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
  * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
  *                & Google group to become co-author)
@@ -109,38 +109,6 @@
 }
 
 .contentdescription p {
-}
-
-// Tags
-.tags {
-  margin-bottom: @t3-global-margin;
-}
-
-.tag-category {
-  #filter-search {
-    box-shadow: none;
-    float: left;
-    border-radius: 0;
-  }
-}
-
-// Extra fields
-// -------------------------
-.fields-container {
-  dd {
-    border-bottom: 1px dotted darken(@t3-border-color, 5%);
-    padding: (@t3-global-padding / 3) 0;
-
-    .field-label {
-      display: inline-block;
-      font-weight: bold;
-      padding-right: @t3-global-padding;
-    }
-
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
 }
 
 
@@ -521,59 +489,20 @@ article aside .btn-group {
   position: relative;
 
   h2 {
-    font-size: 22px;
     margin-top: 0;
     margin-bottom: 20px;
-    overflow: hidden;
-
-    .mailto-close {
-      background-color: darken(@gray-lighter, 5%);
-      border-radius: 3px;
-      float: right;
-      height: 26px;
-      line-height: 22px;
-      text-align: center;
-      width: 26px;
-
-      span {
-        color: @gray-light;
-        line-height: 22px;
-        font-size: 16px;
-        margin: 0;
-        padding: 0;
-      }
-
-      &:hover, &:focus, &:active {
-        span {
-          color: @gray;
-        }
-      }
-    }
   }
   
   .mailto-close {
     a {
-      &:hover {
+      :hover {
 
       }
     }
   }
-
-  .control-group {
-    .controls {
-      margin-left: 0;
-    }
-  }
-
 }
 
 #mailtoForm {
-  .control-group {
-    .controls {
-      margin-left: 0;
-    }
-  }
-
   .formelm {
     padding: 5px 0;
     vertical-align: middle;
@@ -692,50 +621,11 @@ article aside .btn-group {
   input {
     .make-sm-column(6, @padding-base-horizontal);  // Make the input have the same width
   }
-
   select {
     .make-sm-column(6, @padding-base-horizontal);  // Make the select have the same width
   }
-
   select + button {
     margin-left: 5px;
-  }
-
-  .input-prepend {
-    .media-preview {
-      float: left;
-    }
-
-    #jform_com_fields_uavatar {
-      background-color: @white;
-      box-shadow: none;
-    }
-
-    .btn {
-      background-color: #eee;
-      border: 1px solid #ccc;
-      border-radius: 0 3px 3px 0;
-      text-align: center;
-
-      span.icon-remove {
-        margin-right: 0;
-      }
-    }
-
-    .btn.modal {
-      background-color: #eee;
-      border: 1px solid #ccc;
-      display: inline-block;
-      border-radius: 0;
-      position: relative;
-      margin: 0 0 0 -1px;
-    }
-  }
-
-  .chzn-container {
-    .chzn-search {
-      .clearfix();
-    }
   }
 }
 
@@ -926,11 +816,6 @@ div.finder {
     width: 100%;
     height: auto;
   }
-
-  #jform_contact_email_copy {
-    margin-left: 0;
-  }
-
   // Fixed for Capcha on Small Screen
   @media (max-width: @screen-sm) {
     // Hide the Capcha Label on Small Screen
@@ -955,109 +840,6 @@ div.finder {
   font-weight: bold;
 }
 
-
-// List contact
-.contact-category {
-  ul.category {
-    border-top: 0;
-    overflow: hidden;
-
-    li.row-fluid {
-      border: 1px solid @gray-lighter;
-      width: 100%;
-      margin-right: 0;
-      margin-left: 0;
-      .clearfix();
-
-      & > div {
-        margin: 0;
-      }
-    }
-  }
-
-  .cat-children {
-    ul {
-      border: 0;
-      border-top: 1px solid @t3-border-color;
-
-      li {
-        background: transparent;
-        border-bottom: 1px solid @t3-border-color;
-        padding: 5px 0 5px 0;
-
-        h4 {
-          border-left: 1px dotted @gray-light;
-          font-size: 14px;
-          font-weight: 600;
-          padding: 0;
-          padding-left: 15px;
-          margin-left: 20px;
-          position: relative;
-
-          &:after {
-            border-top: 1px dotted @gray-light;
-            display: block;
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 8px;
-            height: 1px;
-            width: 10px;
-          }
-        }
-
-        li h4 {
-          margin-left: 40px;
-        }
-
-        li li h4 {
-          margin-left: 60px;
-        }
-
-        li li li h4 {
-          margin-left: 80px;
-        }
-
-        &:last-child {
-          border: 0;
-        }
-      }
-    }
-  }
-}
-
-
-//
-// PRIVACY COMPONENT
-// ---------------------------------------------------------
-#jform_privacyconsent_privacy {
-  input {
-    margin-left: 0;
-  }
-
-  label {
-    margin-right: @t3-global-margin/2;
-  }
-}
-
-#jform_privacyconsent_privacy-lbl,
-#jform_terms_terms-lbl {
-  a.modal {
-    display: inline-block;
-    font-weight: normal;
-    position: relative;
-  }
-}
-
-#jform_terms_terms {
-  input {
-    margin-left: 0;
-  }
-
-  label {
-    margin-right: @t3-global-margin/2;
-  }
-}
 
 
 //
@@ -1422,27 +1204,11 @@ div.finder {
 .alert-message {
   .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
 }
-
-.alert-warning {
-  .alert-message {
-    background-color: transparent;
-    color: @alert-warning-text;
-  }
-}
-
 .alert-notice {
   .alert-variant(@alert-info-bg; @alert-info-border; @alert-info-text);
 }
-
 .alert-error {
   .alert-variant(@alert-danger-bg; @alert-danger-border; @alert-danger-text);
-}
-
-.alert-error {
-  .alert-message {
-    background-color: transparent;
-    color: @alert-danger-text;
-  }
 }
 
 
@@ -1510,7 +1276,7 @@ div.calendar {
 }
 
 .chzn-container-multi .chzn-choices li.search-field input[type="text"] {
-  height: 34px;
+  height: auto;
 }
 
 // ---------------------------------------------------------
@@ -1559,7 +1325,7 @@ div.calendar {
   white-space: normal;
 }
 
-// Popup article
+
 #modal-jform_consentbox,
 #modal-consentbox {
   top: 5%;
@@ -1570,9 +1336,9 @@ div.calendar {
   position: fixed;
   margin-left: -40%;
   background: #fff;
-  border-radius: @border-radius-large;
-    -webkit-border-radius: @border-radius-large;
-    -moz-border-radius: @border-radius-large;
+  border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
   box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
@@ -1602,17 +1368,17 @@ div.calendar {
   }
 
   .iframe {
-    max-height: 739px;
+    max-height: 739.6px;
   }
 }
 
 #modal-jform_consentbox {
   .modal-body {
-    max-height: 770px;
+    max-height: 770.3px;
   }
 
   .iframe {
-    max-height: 739px;
+    max-height: 739.6px;
   }
 }
 
@@ -1633,24 +1399,161 @@ div.calendar {
   }
 }
 
-// edit article
+#jform_privacyconsent_privacy-lbl,
+#jform_consentbox-lbl ,
+#jform_terms_terms-lbl,
+#jform_profile_tos-lbl {
+  a.modal {
+    display: inline-block;
+    position: relative;
+    width: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    left: 0;
+    margin: 0;
+  }
+}
+
+#jform_terms_terms,
+#jform_privacyconsent_privacy,
+#jform_consentbox,
+#jform_profile_tos {
+  input[type="radio"],
+  input[type="checkbox"] {
+    position: relative;
+    margin: 0;
+    margin-right: 5px;
+    width: auto;
+  }
+
+  label {
+    margin-right: @t3-global-margin / 2;
+    padding: 0;
+  }
+}
+
 #sbox-window {
   #sbox-content {
     iframe {
-      max-height: 100%;
       max-width: 100%;
+      max-height: 100%;
     }
   }
 }
 
-#mailtoForm{
-  #consentbox {
-    padding: 0 @padding-small-horizontal * 2;
+// Page tags
+.tag-category {
+  .btn-toolbar {
+    .btn-group {
+      display: flex;
+      margin-bottom: @t3-global-margin / 2;
+
+      .btn {
+        margin-left: 1px;
+
+        &:hover {
+          color: @white;
+          background: @gray-light;
+        }
+      }
+    }
+  }
+
+  ul.thumbnails {
+    padding: 0;
+    margin-top: @grid-gutter-width;
+
+    >li {
+      background: transparent;
+      list-style: none;
+      display: block;
+      border-bottom: 2px solid @gray-lighter;
+
+      &:hover {
+        background: transparent;
+      }
+
+      >h3 {
+        margin: @grid-gutter-width/2 0;
+
+        >a {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      .tag-body{
+        display: block;
+        margin-bottom: @t3-global-margin / 2;
+
+        // Image
+        .item-image {
+          img {
+            max-width: 100%;
+          }
+        }
+      }
+
+      .caption {
+        margin-bottom: @grid-gutter-width / 2;
+      }
+    }
   }
 }
 
-#contact-form {
-  #jform_consentbox {
-    padding: 0 @padding-small-horizontal * 2;
+// Contact
+.contact {
+  .contact-form {
+    .control-group {
+
+      &.inline {
+         // Mobile view
+        @media (max-width: @screen-xs-max){
+          display: flex;
+        }
+
+        .control-label {
+          // Mobile view
+          @media (max-width: @screen-xs-max){
+            width: auto;
+            padding-top: 0;
+            margin-right: @t3-global-margin / 4;
+          }
+        }
+      }
+
+      .controls {
+        // Mobile view
+        @media (max-width: @screen-xs-max){
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
+
+// Article index
+.item-page {
+  .article-index {
+    // Mobile view
+    @media (max-width: @screen-xs-max){
+      width: 100%;
+    }
+  }
+}
+
+// Register
+.registration {
+  .control-group {
+    .controls {
+      // Mobile view
+      @media (max-width: @screen-xs-max){
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+

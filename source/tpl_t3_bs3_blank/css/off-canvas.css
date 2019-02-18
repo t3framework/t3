@@ -114,11 +114,11 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
   padding: 6px 12px;
 }
 .t3-off-canvas .t3-off-canvas-body a {
-  color: #3174af;
+  color: #428bca;
 }
 .t3-off-canvas .t3-off-canvas-body a:hover,
 .t3-off-canvas .t3-off-canvas-body a:focus {
-  color: #204c73;
+  color: #2a6496;
 }
 .t3-off-canvas .t3-off-canvas-body a:focus {
   outline: thin dotted;
@@ -617,39 +617,9 @@ html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
   width: 50px;
   height: 50px;
   line-height: 50px;
-  position: relative;
 }
 .off-canvas-toggle:focus {
   outline: none;
-}
-.off-canvas-toggle span {
-  background-color: #ffffff;
-  display: block;
-  height: 2px;
-  position: absolute;
-  left: 15px;
-  width: 20px;
-  transition: all 0.25s;
-}
-.off-canvas-toggle span.bar-first {
-  top: 18px;
-}
-.off-canvas-toggle span.bar-mid {
-  top: 24px;
-}
-.off-canvas-toggle span.bar-last {
-  top: 30px;
-}
-.off-canvas-open .off-canvas-toggle span.bar-mid {
-  display: none;
-}
-.off-canvas-open .off-canvas-toggle span.bar-first {
-  top: 24px;
-  transform: rotate(45deg);
-}
-.off-canvas-open .off-canvas-toggle span.bar-last {
-  top: 24px;
-  transform: rotate(-45deg);
 }
 .t3-off-canvas {
   background: #ffffff;
@@ -682,12 +652,12 @@ html[dir="ltr"] .off-canvas-right.old-ie .t3-off-canvas {
   padding: 24px 12px;
 }
 .t3-off-canvas .t3-off-canvas-body a {
-  color: #3174af;
+  color: #428bca;
   text-decoration: none;
 }
 .t3-off-canvas .t3-off-canvas-body a:hover,
 .t3-off-canvas .t3-off-canvas-body a:focus {
-  color: #204c73;
+  color: #2a6496;
   text-decoration: none;
 }
 .t3-off-canvas .t3-off-canvas-body a:focus {
