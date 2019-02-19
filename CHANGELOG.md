@@ -1,3 +1,11 @@
+<h2>Version: 2.7.4 (19/02/2019)</h2>
+<h3>Update to compatible with Joomla 3.9.3 & Fix bugs</h3>
+- Fix warning error when used with PHP 7.3.0 & Joomla 3.9.3 | <a href="https://github.com/t3framework/t3/commit/220fcbda7728d0739231b611399118e77bb3d776">Link</a><br/>
+- Restyle privacy popup | <a href="https://github.com/t3framework/t3/commit/50e6a70618273135f50a8d861cb662f98ab7b2b9">Link</a><br/>
+- Missing Edit icon in Article / Category Blog / Featured page when change postion of article info to Split or below | <a href="https://github.com/t3framework/t3/commit/1e0009828798e3d432bc18e4b5a4991fd5008198">Link</a><br/>
+- RTL - Can not show privacy link on registration page and user profile page | <a href="https://github.com/t3framework/t3/commit/adbe0a65328096f9ee96dd974b7155db094a632d">Link</a><br/>
+- Filter by month is not working | <a href="https://github.com/t3framework/t3/commit/86b4001748f0fc9e0f808d11118310437feaae18">Link</a><br/>
+
 <h2>Version: 2.7.3 (01/11/2018)</h2>
 <h3>Update to compatible with Joomla 3.9</h3>
 - Can't hide User custom field label on the contact page | <a href="https://github.com/t3framework/t3/commit/c41cb00032037d4a126528453e0028bcadc0229d">Link</a><br/>
