@@ -3,21 +3,43 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Multilanguage;
+
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
-JHtml::_('behavior.framework');
-
 // Create some shortcuts.
-$params		= &$this->item->params;
-$n			= count($this->items);
-$listOrder	= $this->escape($this->state->get('list.ordering'));
-$listDirn	= $this->escape($this->state->get('list.direction'));
+$params     = &$this->item->params;
+$n          = count($this->items);
+$listOrder  = $this->escape($this->state->get('list.ordering'));
+$listDirn   = $this->escape($this->state->get('list.direction'));
+$langFilter = false;
+
+// Tags filtering based on language filter 
+if (($this->params->get('filter_field') === 'tag') && (Multilanguage::isEnabled()))
+{ 
+	$tagfilter = ComponentHelper::getParams('com_tags')->get('tag_list_language_filter');
+
+	switch ($tagfilter)
+	{
+		case 'current_language' :
+			$langFilter = JFactory::getApplication()->getLanguage()->getTag();
+			break;
+
+		case 'all' :
+			$langFilter = false;
+			break;
+
+		default :
+			$langFilter = $tagfilter;
+	}
+}
 
 // Check for at least one editable article
 $isEditable = false;
@@ -33,6 +55,7 @@ if (!empty($this->items))
 		}
 	}
 }
+
 // For B/C we also add the css classes inline. This will be removed in 4.0.
 JFactory::getDocument()->addStyleDeclaration('
 .hide { display: none; }
@@ -42,24 +65,28 @@ JFactory::getDocument()->addStyleDeclaration('
 
 $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 ?>
-
 <form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm" class="form-inline">
-	<?php if ($this->params->get('filter_field') !== 'hide' || $this->params->get('show_pagination_limit')) :?>
+<?php if ($this->params->get('filter_field') !== 'hide' || $this->params->get('show_pagination_limit')) : ?>
 	<fieldset class="filters btn-toolbar clearfix">
 		<legend class="hide"><?php echo JText::_('COM_CONTENT_FORM_FILTER_LEGEND'); ?></legend>
-		<?php if ($this->params->get('filter_field') !== 'hide') :?>
+		<?php if ($this->params->get('filter_field') !== 'hide') : ?>
 			<div class="btn-group">
-					<?php if ($this->params->get('filter_field') !== 'tag') : ?>
-						<label class="filter-search-lbl element-invisible" for="filter-search">
-							<?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?>
-						</label>
-						<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="inputbox" onchange="document.adminForm.submit();" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL'); ?>" />
-					<?php else : ?>
-						<select name="filter_tag" id="filter_tag" onchange="document.adminForm.submit();" >
-							<option value=""><?php echo JText::_('JOPTION_SELECT_TAG'); ?></option>
-							<?php echo JHtml::_('select.options', JHtml::_('tag.options', true, true), 'value', 'text', $this->state->get('filter.tag')); ?>
-						</select>
-					<?php endif; ?>
+				<?php if ($this->params->get('filter_field') === 'tag') : ?>
+					<select name="filter_tag" id="filter_tag" onchange="document.adminForm.submit();">
+						<option value=""><?php echo JText::_('JOPTION_SELECT_TAG'); ?></option>
+						<?php echo JHtml::_('select.options', JHtml::_('tag.options', array('filter.published' => array(1), 'filter.language' => $langFilter), true), 'value', 'text', $this->state->get('filter.tag')); ?>
+					</select>
+				<?php elseif ($this->params->get('filter_field') === 'month') : ?>
+					<select name="filter-search" id="filter-search" onchange="document.adminForm.submit();">
+						<option value=""><?php echo JText::_('JOPTION_SELECT_MONTH'); ?></option>
+						<?php echo JHtml::_('select.options', JHtml::_('content.months', $this->state), 'value', 'text', $this->state->get('list.filter')); ?>
+					</select>
+				<?php else : ?>
+					<label class="filter-search-lbl element-invisible" for="filter-search">
+						<?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?>
+					</label>
+					<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="inputbox" onchange="document.adminForm.submit();" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL'); ?>" />
+				<?php endif; ?>
 			</div>
 		<?php endif; ?>
 		<?php if ($this->params->get('show_pagination_limit')) : ?>
@@ -76,18 +103,20 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 		<input type="hidden" name="limitstart" value="" />
 		<input type="hidden" name="task" value="" />
 	</fieldset>
-		<div class="control-group hide pull-right">
-			<div class="controls">
-				<button type="submit" name="filter_submit" class="btn btn-primary"><?php echo JText::_('COM_CONTENT_FORM_FILTER_SUBMIT'); ?></button>
-			</div>
-		</div>
-	<?php endif; ?>
 
-	<?php if (empty($this->items)) : ?>
-		<?php if ($this->params->get('show_no_articles', 1)) : ?>
-			<p><?php echo JText::_('COM_CONTENT_NO_ARTICLES'); ?></p>
-		<?php endif; ?>
-	<?php else : ?>
+	<div class="control-group hide pull-right">
+		<div class="controls">
+			<button type="submit" name="filter_submit" class="btn btn-primary"><?php echo JText::_('COM_CONTENT_FORM_FILTER_SUBMIT'); ?></button>
+		</div>
+	</div>
+
+<?php endif; ?>
+
+<?php if (empty($this->items)) : ?>
+	<?php if ($this->params->get('show_no_articles', 1)) : ?>
+		<p><?php echo JText::_('COM_CONTENT_NO_ARTICLES'); ?></p>
+	<?php endif; ?>
+<?php else : ?>
 	<table class="category table table-striped table-bordered table-hover<?php echo $tableClass; ?>">
 		<caption class="hide"><?php echo JText::sprintf('COM_CONTENT_CATEGORY_LIST_TABLE_CAPTION', $this->category->title); ?></caption>
 		<thead>
@@ -146,12 +175,12 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 					<?php if (JLanguageAssociations::isEnabled() && $this->params->get('show_associations')) : ?>
 						<?php $associations = ContentHelperAssociation::displayAssociations($article->id); ?>
 						<?php foreach ($associations as $association) : ?>
-							<?php if ($this->params->get('flags', 1)) : ?>
+							<?php if ($this->params->get('flags', 1) && $association['language']->image) : ?>
 								<?php $flag = JHtml::_('image', 'mod_languages/' . $association['language']->image . '.gif', $association['language']->title_native, array('title' => $association['language']->title_native), true); ?>
 								&nbsp;<a href="<?php echo JRoute::_($association['item']); ?>"><?php echo $flag; ?></a>&nbsp;
 							<?php else : ?>
 								<?php $class = 'label label-association label-' . $association['language']->sef; ?>
-								&nbsp;<a class="' . <?php echo $class; ?> . '" href="<?php echo JRoute::_($association['item']); ?>"><?php echo strtoupper($association['language']->sef); ?></a>&nbsp;
+								&nbsp;<a class="<?php echo $class; ?>" href="<?php echo JRoute::_($association['item']); ?>"><?php echo strtoupper($association['language']->sef); ?></a>&nbsp;
 							<?php endif; ?>
 						<?php endforeach; ?>
 					<?php endif; ?>
@@ -252,27 +281,24 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 	</table>
 <?php endif; ?>
 
-
 <?php // Code to add a link to submit an article. ?>
 <?php if ($this->category->getParams()->get('access-create')) : ?>
 	<?php echo JHtml::_('icon.create', $this->category, $this->category->params); ?>
-<?php  endif; ?>
+<?php endif; ?>
 
 <?php // Add pagination links ?>
 <?php if (!empty($this->items)) : ?>
-	<?php 
-  $pagesTotal = isset($this->pagination->pagesTotal) ? $this->pagination->pagesTotal : $this->pagination->get('pages.total');
-  if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($pagesTotal > 1)) : ?>
-	<div class="pagination">
+	<?php if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
+		<div class="pagination">
 
-		<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-			<p class="counter pull-right">
-				<?php echo $this->pagination->getPagesCounter(); ?>
-			</p>
-		<?php endif; ?>
+			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
+				<p class="counter pull-right">
+					<?php echo $this->pagination->getPagesCounter(); ?>
+				</p>
+			<?php endif; ?>
 
-		<?php echo $this->pagination->getPagesLinks(); ?>
-	</div>
+			<?php echo $this->pagination->getPagesLinks(); ?>
+		</div>
 	<?php endif; ?>
+<?php endif; ?>
 </form>
-<?php  endif; ?>
