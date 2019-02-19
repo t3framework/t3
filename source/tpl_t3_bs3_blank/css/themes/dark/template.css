@@ -606,6 +606,9 @@ textarea.form-control {
 .form-horizontal .form-control-static {
   padding-top: 7px;
 }
+.btn-primary {
+  background-color: #006097;
+}
 .btn-inverse {
   color: #ffffff;
   background-color: #2d2d2d;
@@ -807,9 +810,16 @@ input.invalid {
     display: inline-block;
   }
 }
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: #00629a;
+}
 .nav .caret {
   border-top-color: #ffffff;
   border-bottom-color: #ffffff;
+  border-bottom-width: 0;
+  border-style: solid;
 }
 .nav a:hover .caret {
   border-top-color: #d9d9d9;
@@ -2443,15 +2453,15 @@ a.list-group-item.active:focus .list-group-item-text {
   }
 }
 .head-search .form-control {
-  width: 100%;
   padding-left: 30px;
+  width: 100% !important;
 }
 @media screen and (min-width: 768px) {
   .head-search .form-control {
-    width: 150px;
+    width: 150px !important;
   }
   .head-search .form-control:focus {
-    width: 200px;
+    width: 200px !important;
   }
 }
 .t3-sl {

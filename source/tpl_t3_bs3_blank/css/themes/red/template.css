@@ -606,6 +606,9 @@ textarea.form-control {
 .form-horizontal .form-control-static {
   padding-top: 7px;
 }
+.btn-primary {
+  background-color: #a80000;
+}
 .btn-inverse {
   color: #ffffff;
   background-color: #333333;
@@ -807,9 +810,16 @@ input.invalid {
     display: inline-block;
   }
 }
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: #ab0000;
+}
 .nav .caret {
   border-top-color: #cc0000;
   border-bottom-color: #cc0000;
+  border-bottom-width: 0;
+  border-style: solid;
 }
 .nav a:hover .caret {
   border-top-color: #800000;
@@ -901,18 +911,18 @@ input.invalid {
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #707070;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #575757;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
   color: #777777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777777;
+  color: #707070;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -920,7 +930,7 @@ input.invalid {
   background-color: transparent;
 }
 .navbar-default .navbar-nav > li > .nav-header {
-  color: #777777;
+  color: #707070;
   display: inline-block;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -969,12 +979,12 @@ input.invalid {
   border-bottom-color: #555555;
 }
 .navbar-default .navbar-nav > .dropdown > a .caret {
-  border-top-color: #777777;
-  border-bottom-color: #777777;
+  border-top-color: #707070;
+  border-bottom-color: #707070;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #777777;
+    color: #707070;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -995,7 +1005,7 @@ input.invalid {
   }
 }
 .navbar-default .navbar-link {
-  color: #777777;
+  color: #707070;
 }
 .navbar-default .navbar-link:hover {
   color: #333333;
@@ -2443,15 +2453,15 @@ a.list-group-item.active:focus .list-group-item-text {
   }
 }
 .head-search .form-control {
-  width: 100%;
   padding-left: 30px;
+  width: 100% !important;
 }
 @media screen and (min-width: 768px) {
   .head-search .form-control {
-    width: 150px;
+    width: 150px !important;
   }
   .head-search .form-control:focus {
-    width: 200px;
+    width: 200px !important;
   }
 }
 .t3-sl {
