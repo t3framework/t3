@@ -85,7 +85,7 @@ class T3Bootstrap
 					case 'separator':
 					case 'heading':
 						// No further action needed.
-						continue;
+						break;
 
 					case 'url':
 						if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
