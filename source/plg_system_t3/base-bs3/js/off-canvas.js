@@ -200,7 +200,8 @@ jQuery (document).ready(function($){
                         $('html,body').animate({scrollTop: anchor.offset().top},'slow');
                 }, 1000);
             }
-            return;
+            // prevent only if anchor same page.
+            if (e.target.href.search('#') !== -1) return;
         }
         stopBubble(e);
         return true;
