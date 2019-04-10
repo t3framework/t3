@@ -1294,6 +1294,11 @@ button.btn-primary:active {
   padding-left: 20px;
 }
 
+.field-media-wrapper .input-prepend .button-select,
+.field-media-wrapper .input-prepend .button-clear{
+  height: auto;
+}
+
 /* t3-admin-overview-block ---*/
 .t3-admin-overview-block {
   background: #f2f2f2;
