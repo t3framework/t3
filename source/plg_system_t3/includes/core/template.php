@@ -1212,7 +1212,7 @@ class T3Template extends ObjectExtendable
 		$extras = array();
 		$itemid = JFactory::getApplication()->input->get ('Itemid');
 		foreach ($aparams as $name => $value) {
-			if (preg_match ('/^theme_extras_(.+)$/', $name, $m)) {
+			if (preg_match ('/^(?:snippet|theme_extras)_(.+)$/', $name, $m)) {
 				$extras[$m[1]] = $value;
 			}
 		}
