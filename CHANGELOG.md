@@ -1,4 +1,4 @@
-<h2>Version: 2.7.5 (21/10/2019)</h2>
+<h2>Version: 2.7.5 (21/11/2019)</h2>
 <h3>Update Bootstrap & Fix bugs</h3>
 - Update Bootstrap 3.4.1 | <a href="https://github.com/t3framework/t3/commit/07c6a4a8d6b29544627316ec41034322a9ca7f29">Link</a><br/>
 - Fixed user remind and reset layout problems | <a href="https://github.com/t3framework/t3/commit/cf4ae1f6a289f98a4b5bef81ea71b9dbd5363b2a">Link</a><br/>
