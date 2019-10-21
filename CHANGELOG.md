@@ -1,3 +1,12 @@
+<h2>Version: 2.7.5 (21/10/2019)</h2>
+<h3>Update Bootstrap & Fix bugs</h3>
+- Update Bootstrap 3.4.1 | <a href="https://github.com/t3framework/t3/commit/07c6a4a8d6b29544627316ec41034322a9ca7f29">Link</a><br/>
+- Fixed user remind and reset layout problems | <a href="https://github.com/t3framework/t3/commit/cf4ae1f6a289f98a4b5bef81ea71b9dbd5363b2a">Link</a><br/>
+- Issue with Filter field on contact list page | <a href="https://github.com/t3framework/t3/commit/cc9e5821f649bab9b35020dfdde27bc98278a5db">Link</a><br/>
+- Backend: Got some errors media type css | <a href="https://github.com/t3framework/t3/commit/51883efe3dea75217535f534b9509b21bc2fc47a">Link</a><br/>
+- Could not click link inside off canvas | <a href="https://github.com/t3framework/t3/commit/b5062c1819fbac759d1088c57a4fcbfa3ec0e1a4">Link</a><br/>
+- Remove Warning PHP 7.3 | <a href="https://github.com/t3framework/t3/commit/c4449f8b000c84f49e3bbbfe805b054f2e94e415">Link</a><br/>
+
 <h2>Version: 2.7.4 (19/02/2019)</h2>
 <h3>Update to compatible with Joomla 3.9.3 & Fix bugs</h3>
 - Fix warning error when used with PHP 7.3.0 & Joomla 3.9.3 | <a href="https://github.com/t3framework/t3/commit/220fcbda7728d0739231b611399118e77bb3d776">Link</a><br/>
