@@ -70,6 +70,12 @@ $tparams = $this->item->params;
 
 	<!-- Slider type -->
 	<?php if ($presentation_style === 'sliders') : ?>
+		<?php if (!$accordionStarted)
+		{
+			echo JHtml::_('bootstrap.startAccordion', 'slide-contact', array('active' => 'display-misc'));
+			$accordionStarted = true;
+		}
+		?>
     <div class="panel-group" id="slide-contact">
 
 		<?php if ($this->params->get('show_info', 1)) : ?>
@@ -133,7 +139,21 @@ $tparams = $this->item->params;
 		<?php endif; ?> <!-- // Show email form -->
 
 		<?php if ($tparams->get('show_links')) : ?>
-	    <?php echo $this->loadTemplate('links'); ?>
+		<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#display-links">
+          <?php echo JText::_('COM_CONTACT_LINKS');?>
+          </a>
+        </h4>
+      </div>
+
+      <div id="display-links" class="panel-collapse collapse">
+        <div class="panel-body">
+          <?php echo $this->loadTemplate('links'); ?>
+        </div>
+      </div>
+    </div>	    			
 	  <?php endif; ?>
 
 	  <?php if ($tparams->get('show_articles') && $this->contact->user_id && $this->contact->articles) : ?>
