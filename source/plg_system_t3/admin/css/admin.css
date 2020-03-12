@@ -432,6 +432,7 @@ input[type="tel"], input[type="color"], .uneditable-input,
   line-height: 22px;
   border-radius: 0;
   font-size: 14px;
+  box-sizing: content-box;
 }
 
 select, input[type="file"] {
@@ -1644,10 +1645,4 @@ button.btn-primary:active {
     width: 100%;
   }
 
-}
-
-
-.field-media-wrapper .input-prepend .button-select,
-.field-media-wrapper .input-prepend .button-clear{
-  height: auto;
 }
