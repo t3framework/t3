@@ -54,7 +54,7 @@ class JFormFieldT3FolderList extends JFormFieldFolderList
 		$options = array();
 		$vals = array();
 		// get all path in template
-		$paths = T3Path::getAllPath ($path);
+		$paths = T3Path::getAllPath ($path, true);
 		foreach ($paths as $path) {
 			$this->directory = $this->element['directory'] = JPath::clean($path);
 			$tmps = parent::getOptions();
