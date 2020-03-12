@@ -645,3 +645,6 @@ body.modal-open .modal.hide {
 body.modal-open .modal.hide .iframe {
   border: 1px solid #ddd;
 }
+.thumbnails-media .imgFolder span {
+  line-height: 70px;
+}

@@ -1487,8 +1487,7 @@ input.invalid {
   background-color: #e5e5e5;
   border-bottom: 1px solid #fff;
 }
-.dropdown-menu li > a,
-.dropdown-menu li > span.separator {
+.dropdown-menu li > a {
   clear: both;
   color: #444;
   display: block;
