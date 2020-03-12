@@ -1,3 +1,11 @@
+<h2>Version: 2.7.6 (12/03/2020)</h2>
+<h3>Update to compatible with Joomla 3.9.16 & Fix bugs</h3>
+- Custom Theme not available after update to Joomla 3.9.16 | <a href="https://github.com/t3framework/t3/commit/f7fe9030c4e1946ece82f16f4a30f5bed34c8fd1">Link</a><br/>
+- PHP notice in contact page | <a href="https://github.com/t3framework/t3/commit/ae59c83daa0e5a40c44694c65075876da9bbcf7f">Link</a><br/>
+- Button CSS style problem in backend | <a href="https://github.com/t3framework/t3/commit/b0d3ccd19561114ef7be9f14b098adfad6bfb9c8">Link</a><br/>
+- Menu Separator css problems | <a href="https://github.com/t3framework/t3/commit/c74d33289124018d9877993c701cb054b08ea3c5">Link</a><br/>
+- Media folder list error in frontend editor | <a href="https://github.com/t3framework/t3/commit/daf3769408d0a1255fc7e70b88839bf6f4849233">Link</a><br/>
+
 <h2>Version: 2.7.5 (21/10/2019)</h2>
 <h3>Update Bootstrap & Fix bugs</h3>
 - Update Bootstrap 3.4.1 | <a href="https://github.com/t3framework/t3/commit/07c6a4a8d6b29544627316ec41034322a9ca7f29">Link</a><br/>
