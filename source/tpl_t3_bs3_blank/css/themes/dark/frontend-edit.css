@@ -134,8 +134,8 @@
 .profile-edit .chzn-container .chzn-search:before,
 .edit.item-page .chzn-container .chzn-search:after,
 .profile-edit .chzn-container .chzn-search:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 .edit.item-page .chzn-container .chzn-search:after,
 .profile-edit .chzn-container .chzn-search:after {
@@ -198,8 +198,8 @@
 }
 .edit .tab-pane:before,
 .edit .tab-pane:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 .edit .tab-pane:after {
   clear: both;
@@ -304,8 +304,8 @@
 }
 .window .manager:before,
 .window .manager:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 .window .manager:after {
   clear: both;

@@ -1,7 +1,7 @@
 .t3-megamenu .mega-inner:before,
 .t3-megamenu .mega-inner:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 .t3-megamenu .mega-inner:after {
   clear: both;
@@ -16,8 +16,8 @@
 }
 .t3-megamenu .mega-group:before,
 .t3-megamenu .mega-group:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 .t3-megamenu .mega-group:after {
   clear: both;
@@ -54,8 +54,8 @@
 }
 .t3-megamenu .mega-group-ct:before,
 .t3-megamenu .mega-group-ct:after {
-  content: " ";
   display: table;
+  content: " ";
 }
 .t3-megamenu .mega-group-ct:after {
   clear: both;
@@ -315,8 +315,8 @@
 @media (max-width: 767px) {
   .t3-megamenu .mega-inner:before,
   .t3-megamenu .mega-inner:after {
-    content: " ";
     display: table;
+    content: " ";
   }
   .t3-megamenu .mega-inner:after {
     clear: both;
