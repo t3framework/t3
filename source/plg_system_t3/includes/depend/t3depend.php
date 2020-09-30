@@ -53,14 +53,14 @@ class JFormFieldT3Depend extends JFormField
 				}
 			}
 
-			if(JFactory::getApplication()->isSite() || !defined('T3_TEMPLATE')){
+			if(JFactory::getApplication()->isClient('site') || !defined('T3_TEMPLATE')){
 				$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
 				$jdoc->addScript(T3_ADMIN_URL . '/includes/depend/js/depend.js');
 			}
 
 			JFactory::getDocument()->addScriptDeclaration ( '
 				jQuery.extend(T3Depend, {
-					adminurl: \'' . JFactory::getURI()->toString() . '\',
+					adminurl: \'' . JUri::getInstance()->toString() . '\',
 					rooturl: \'' . JURI::root() . '\'
 				});
 			');
@@ -292,9 +292,32 @@ class JFormFieldT3Depend extends JFormField
 	function group(){
 		$this->loadAsset();
 
-		if(preg_match_all('@\[([^\]]*)\]@', $this->name, $matches)):
+		if(preg_match_all('@\[([^\]]*)\]@', $this->name, $matches)) {
 
 			$group_name = str_replace(end($matches[0]), '', $this->name);
+
+			$script = 'jQuery(document).ready(function(){';
+			foreach ($this->element->children() as $option) {
+				$elms = preg_replace('/\s+/', '', (string)$option[0]);
+				$vals = preg_replace('/\s+/', '', $option['value']);
+				$hide = isset($option['hide']) ? !in_array($option['hide'], array('false', '', '0', 'no', 'off')) : 1;
+				$hide = (int)$hide;
+			
+				$script .= "T3Depend.add('" . $option['for'] . "', { \n"
+					. "vals: '$vals',\n"
+					. "elms: '$elms',\n"
+					. "group: '$group_name',\n"
+					. "hide: $hide"
+				. "});";
+			}
+
+			$script .= "});";
+
+			$jdoc = JFactory::getDocument();
+			$jdoc->addScriptDeclaration($script);
+		}
+
+/*
 		?>
 		<script type="text/javascript">
 			jQuery(document).ready(function(){
@@ -316,13 +339,13 @@ class JFormFieldT3Depend extends JFormField
 			});
 		</script>
 		<?php
-		endif;
+		endif; */
 	}
 
 	function ajax(){
 		$fcalls = array();
 
-		foreach ($this->element->children() as $option):
+		foreach ($this->element->children() as $option) {
 			$fparams = array();
 			if (!empty($option['url'])){
 				$fparams['url'] = (string)$option['url'];
@@ -350,7 +373,11 @@ class JFormFieldT3Depend extends JFormField
 			}
 
 			$fcalls[] = 'T3Depend.addajax(\'' . $this->getName($option['for']) . '\', ' . json_encode($fparams) . ');';
-		endforeach;
+		}
+
+		$jdoc = JFactory::getDocument();
+		$jdoc->addScriptDeclaration("jQuery(window).on('load', function(){ " . implode("\n", $fcalls) . "});");
+		/*
 		?>
 		<script type="text/javascript">
 			//<![CDATA[
@@ -359,7 +386,7 @@ class JFormFieldT3Depend extends JFormField
 			});
 			//]]>
 		</script>
-		<?php
+		<?php */
 	}
 
 	function legend(){

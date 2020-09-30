@@ -78,7 +78,7 @@ class T3Bot extends JObject
 		$input     = $app->input;
 		$tplparams = $app->getTemplate(true)->params;
 		
-		if (!$app->isAdmin()) {
+		if (!T3::isAdmin()) {
 			// check if need update megamenu configuration
 			if ($tplparams->get ('mm_config_needupdate')) {
 				T3::import('menu/megamenu');

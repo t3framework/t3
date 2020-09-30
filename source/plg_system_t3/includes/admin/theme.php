@@ -227,7 +227,7 @@ class T3AdminTheme
 	{
 		$app       = JFactory::getApplication();
 		$input     = $app->input;
-		$isadmin   = $app->isAdmin();
+		$isadmin   = T3::isAdmin();
 
 		if($isadmin){
 			$tplparams = T3::getTplParams();
@@ -345,7 +345,7 @@ class T3AdminTheme
 			$refreshTime = 3600000;
 		}
 
-		$backurl = JFactory::getURI();
+		$backurl = JUri::getInstance();
 		$backurl->delVar('t3action');
 		$backurl->delVar('t3task');
 

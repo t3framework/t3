@@ -494,7 +494,7 @@ class JLayoutFile extends JLayoutBase
 				break;
 
 			default:
-				$client = (int) JFactory::getApplication()->isAdmin();
+				$client = (int) T3::isAdmin();
 				break;
 		}
 

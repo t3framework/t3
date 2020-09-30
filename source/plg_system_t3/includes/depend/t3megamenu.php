@@ -142,7 +142,7 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 
 			JFactory::getDocument()->addScriptDeclaration ( '
 				jQuery.extend(T3Depend, {
-					adminurl: \'' . JFactory::getURI()->toString() . '\',
+					adminurl: \'' . JUri::getInstance()->toString() . '\',
 					rooturl: \'' . JURI::root() . '\'
 				});
 			');

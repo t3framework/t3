@@ -13,6 +13,9 @@
  */
 
 defined('_JEXEC') or die;
+jimport('joomla.language.help');
+$input = JFactory::getApplication()->input;
+$params  = T3::getTplParams();
 ?>
 <div id="t3-admin-toolbar" class="btn-toolbar">
 

@@ -291,7 +291,8 @@ class T3AdminMegamenu
 	{
 		$tplparams = T3::getTplParams();
 		
-		$url = JFactory::getURI();
+		//$url = JFactory::getURI();
+		$url = JUri::getInstance();
 		$url->delVar('t3action');
 		$url->delVar('t3task');
 		$referer  = $url->toString();

@@ -442,7 +442,7 @@ class JPagination extends JObject
 		$selected = $this->_viewall ? 0 : $this->limit;
 
 		// Build the select list.
-		if ($app->isAdmin())
+		if (T3::isAdmin())
 		{
 			$html = JHtml::_(
 				'select.genericlist',
@@ -583,7 +583,7 @@ class JPagination extends JObject
 	protected function _item_active(&$item)
 	{
 		$app = JFactory::getApplication();
-		if ($app->isAdmin())
+		if (T3::isAdmin())
 		{
 			if ($item->base > 0)
 			{
@@ -614,7 +614,7 @@ class JPagination extends JObject
 	protected function _item_inactive(&$item)
 	{
 		$app = JFactory::getApplication();
-		if ($app->isAdmin())
+		if (T3::isAdmin())
 		{
 			return "<span>" . $item->text . "</span>";
 		}

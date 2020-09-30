@@ -97,7 +97,9 @@ class T3Template extends ObjectExtendable
 			}
 		}
 
-		JDispatcher::getInstance()->trigger('onT3TplInit', array($this));
+		JFactory::getApplication()->triggerEvent('onT3TplInit', array($this));
+
+		//JDispatcher::getInstance()->trigger('onT3TplInit', array($this));
 	}
 
 
@@ -213,7 +215,7 @@ class T3Template extends ObjectExtendable
 	{
 		$path = T3Path::getPath('tpls/' . $layout . '.php', 'tpls/default.php');
 
-		JDispatcher::getInstance()->trigger('onT3LoadLayout', array(&$path, $layout));
+		JFactory::getApplication()->triggerEvent('onT3LoadLayout', array(&$path, $layout));
 
 		if (is_file($path)) {
 
@@ -348,7 +350,7 @@ class T3Template extends ObjectExtendable
 		$vars['datas']     = $datas;
 		$vars['cols']      = $cols;
 
-		JDispatcher::getInstance()->trigger('onT3Spotlight', array(&$vars, $name, $positions));
+		JFactory::getApplication()->triggerEvent('onT3Spotlight', array(&$vars, $name, $positions));
 
 		$this->loadBlock('spotlight', $vars);
 	}
@@ -561,7 +563,7 @@ class T3Template extends ObjectExtendable
 		$this->_pageclass[] = 'j' . str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
 		$this->_pageclass = array_unique($this->_pageclass);
 
-		JDispatcher::getInstance()->trigger('onT3BodyClass', array(&$this->_pageclass));
+		JFactory::getApplication()->triggerEvent('onT3BodyClass', array(&$this->_pageclass));
 
 		echo implode(' ', $this->_pageclass);
 	}

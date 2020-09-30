@@ -55,7 +55,7 @@ class JFormFieldT3Positions extends JFormField
 
 			JFactory::getDocument()->addScriptDeclaration ( '
 				jQuery.extend(T3Depend, {
-					adminurl: \'' . JFactory::getURI()->toString() . '\',
+					adminurl: \'' . JUri::getInstance()->toString() . '\',
 					rooturl: \'' . JURI::root() . '\'
 				});
 			');
