@@ -161,7 +161,7 @@ class T3Admin {
 		} else {
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
 
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
+			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.x.min.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/bootstrap/js/bootstrap.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 		}

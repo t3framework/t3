@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
 		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.css" />
 		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/thememagic/css/thememagic.css" />
 
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.x.min.js"></script>
 		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
 	</head>
 
