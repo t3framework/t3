@@ -59,6 +59,7 @@ class HtmlView extends _JHtmlView
 
 					//if it is T3 template, update search path for template
 					$this->_addPath('template', T3_PATH . '/html/' . $component . '/' . $this->getName());
+					if (\T3::isAdmin()) $this->_addPath('template', T3_ADMIN_PATH . '/admin/html/' . $component . '/' . $this->getName());
 
 					$fallback = JPATH_THEMES . '/' . $app->getTemplate() . '/html/' . $component . '/' . $this->getName();
 					$this->_addPath('template', $fallback);

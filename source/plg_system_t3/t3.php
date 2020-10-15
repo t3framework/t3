@@ -114,6 +114,13 @@ class plgSystemT3 extends JPlugin
 		}
 	}
 
+	function onAfterDispatch() {
+		if (defined('T3_PLUGIN') && T3::detect()) {
+			$t3app = T3::getApp();
+			if ($t3app) $t3app->init();
+		}
+	}
+
 	function onBeforeRender()
 	{
 		if (defined('T3_PLUGIN') && T3::detect()) {
@@ -169,7 +176,7 @@ class plgSystemT3 extends JPlugin
 
 	function onBeforeCompileHead()
 	{
-		if (defined('T3_PLUGIN') && T3::detect() && !T3::isAdmin()) {
+		if (defined('T3_PLUGIN') && T3::detect()) {
 			// call update head for replace css to less if in devmode
 			$t3app = T3::getApp();
 			if ($t3app) {

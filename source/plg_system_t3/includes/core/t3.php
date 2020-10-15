@@ -60,6 +60,7 @@ class T3 {
 
 		$serviceRegistry = JFactory::getContainer()->get(\Joomla\CMS\HTML\Registry::class);
 		$serviceRegistry->register('behavior', T3HtmlBehavior::class, true);
+		$serviceRegistry->register('bootstrap', T3HtmlBootstrap::class, true);
 	}
 
 	/**
@@ -145,7 +146,7 @@ class T3 {
 		T3::import ('core/path');
 		T3::import ('core/t3j');
 
-		if (!T3::isAdmin()) {
+		if (1 || !T3::isAdmin()) {
 			if(version_compare(JVERSION, '3.8', 'ge')){
 				// override core joomla class
 				// JViewLegacy

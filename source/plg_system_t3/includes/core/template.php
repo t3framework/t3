@@ -57,6 +57,10 @@ class T3Template extends ObjectExtendable
 	protected $_pageclass = array();
 
 
+	// after dispatch
+	public function init() {
+
+	}
 	/**
 	 * Class constructor
 	 *

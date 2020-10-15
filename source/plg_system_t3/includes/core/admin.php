@@ -19,6 +19,31 @@ class T3Admin {
 	protected $html = array();
 
 	/**
+	 * init admin backend to edit template style
+	 */
+	public function init() {
+		$app = JFactory::getApplication();
+		$input = $app->input;
+		if ($input->getCmd('view') == 'style') {
+			$app->set('themes.base', T3_ADMIN_PATH);
+			$app->set('theme', 'admin');
+		}
+		if(version_compare(JVERSION, '4', 'ge')){
+			$wa = JFactory::getDocument()->getWebAssetManager();
+			//var_dump($wa->getAssets('script'));die;
+			$wa->registerAsset('script', 'bootstrap.js.bundle', T3_ADMIN_REL . '/admin/bootstrap/js/bootstrap.js', ['dependencies' => 'jquery']);
+			$wa->registerAsset('script', 'jquery', T3_ADMIN_REL . '/admin/js/jquery-1.x.min.js');
+			$wa->registerAsset('script', 'jquery-noconflict', T3_ADMIN_REL . '/admin/js/jquery.noconflict.js');
+			//$wa->disableAsset('script', 'bootstrap.init.legacy');
+			//$wa->useAsset('script', 'bootstrap.js.bundle');
+		}
+	}
+
+
+	public function updateHead() {
+	}
+
+	/**
 	 * function render
 	 * render T3 administrator configuration form
 	 *
@@ -31,9 +56,8 @@ class T3Admin {
 
 		$body   = $app->getBody();
 		$layout = T3_ADMIN_PATH . '/admin/tpls/default.php';
-
+		$layout = false;
 		if(file_exists($layout)){
-			/*
 			// ob_start();
 			// $this->renderAdmin();
 			// $buffer = ob_get_clean();
@@ -46,7 +70,7 @@ class T3Admin {
 			$close = array_pop($endtags);
 
 			//should not happend
-			if(count($opentags) > 1){
+			if(count($opentags) > 1) {
 	
 				$iopen = 0;
 				$iclose = count($opentags);
@@ -67,13 +91,12 @@ class T3Admin {
 				}
 			}
 
-			$body = $open . $this->html['admin'] . $close;
-			*/
-			$body = $this->html['admin'];
+			//$body = $open . $this->html['admin'] . $close;
+			//$body = $this->html['admin'];
 		}
 
 		if(!$input->getCmd('file')){
-			//$body = $this->replaceToolbar($body);
+			$body = $this->replaceToolbar($body);
 		}
 
 		$body = $this->replaceDoctype($body);
@@ -81,7 +104,7 @@ class T3Admin {
 		$app->setBody($body);
 	}
 
-	public function addAssets(){		
+	public function addAssets() {
 		$japp   = JFactory::getApplication();
 		$jdoc   = JFactory::getDocument();
 		$db     = JFactory::getDbo();
@@ -157,7 +180,7 @@ class T3Admin {
 		//check for version compatible
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			//JHtml::_('jquery.framework');
-			//JHtml::_('bootstrap.framework');
+			JHtml::_('bootstrap.framework');
 		} else {
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
 
@@ -221,8 +244,8 @@ class T3Admin {
 		);
 
 		// render admin
-		$this->_renderAdmin();
-		//$this->_renderToolbar();
+		// $this->_renderAdmin();
+		$this->_renderToolbar();
 
 	}
 
@@ -239,6 +262,7 @@ class T3Admin {
 	 * @return render success or not
 	 */
 	function _renderAdmin(){
+		return;
 		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
 		$cusXml = T3Path::getPath('etc/assets.xml');
@@ -350,7 +374,8 @@ class T3Admin {
 		}
 		*/
 
-		$body = str_replace($this->html['toolbar'], $this->html['t3toolbar'], $body);
+		//$body = str_replace($this->html['toolbar'], $this->html['t3toolbar'], $body);
+		$body = str_replace('[[TOOLBAR]]', $this->html['t3toolbar'], $body);
 		return $body;
 	}
 

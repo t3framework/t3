@@ -18,42 +18,11 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
+
 $user = JFactory::getUser();
 $canDo = method_exists('TemplatesHelper', 'getActions') ? TemplatesHelper::getActions() : JHelperContent::getActions('com_templates');
 $iswritable = is_writable('t3test.txt');
-$app = JFactory::getApplication();
-$doc = JFactory::getDocument();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title><?php echo $doc->getTitle() ?></title>
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/plugins/chosen/chosen.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/css/admin.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/fonts/fa4/css/font-awesome.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/fonts/glyphicon/css/glyphicon.css" />
-
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.x.min.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/json2.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/plugins/chosen/chosen.jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/includes/depend/js/depend.js"></script>
-
-</head>
-<body class="bd">
-
-
-  <!--script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.x.min.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery.noconflict.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script-->
-
-<?php
-	include_once T3_ADMIN_PATH . '/admin/tpls/toolbar.php';
-?>		
-
-
 <?php if($iswritable): ?>
 <div id="t3-admin-writable-message" class="alert warning">
 	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -212,6 +181,3 @@ $doc = JFactory::getDocument();
 		include_once T3_ADMIN_PATH . '/admin/layout/layout.tpl.php';
 	}
 ?>
-
-</body>
-</html>
