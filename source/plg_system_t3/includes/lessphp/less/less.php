@@ -9012,6 +9012,9 @@ class Less_Visitor_toCSS extends Less_VisitorReplacing{
 		$rulesets = array();
 		$rulesetNode->paths = $this->visitRulesetPaths($rulesetNode);
 
+		// by pass error; debug later - KHANH
+		if (!$rulesetNode->rules) return $rulesets;
+		//;
 
 		// Compile rules and rulesets
 		$nodeRuleCnt = count($rulesetNode->rules);
