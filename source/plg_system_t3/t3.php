@@ -283,6 +283,18 @@ class plgSystemT3 extends JPlugin
 		}
 	}
 
+	function onContentBeforeSave($context, $data, $isNew)
+	{
+		// Check we are handling the frontend edit form.
+		if ($context == 'com_content.form')
+		{
+			// $this->t4->onContentBeforeSave($context, $data, $isNew);
+			//extend extra fields update value
+			T3Bot::onContentBeforeSave($context, $data, $isNew);
+		}
+		return true;
+	}
+	
 	function onExtensionAfterSave($option, $data)
 	{
 		if (defined('T3_PLUGIN') && T3::detect() && $option == 'com_templates.style' && !empty($data->id)) {
