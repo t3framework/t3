@@ -43,9 +43,9 @@ class T3Bootstrap
 			ob_start();
 			T3BootstrapTpl::render($this->getList());
 			$this->menu = ob_get_contents();
-			ob_end_clean();	
+			ob_end_clean();
 		}
-		
+
 		return $this->menu;
 	}
 
@@ -59,10 +59,19 @@ class T3Bootstrap
 
 		// Get active menu item
 		$items = $menu->getItems('menutype', $this->menutype);
+		$hidden_parents = array();
 		$lastitem = 0;
 
 		if ($items) {
 			foreach ($items as $i => $item) {
+
+				// Exclude item with menu item option 'Display in Menu' set to 'No' - #522
+				if (($item->params->get('menu_show', 1) == 0) || in_array($item->parent_id, $hidden_parents))
+				{
+					$hidden_parents[] = $item->id;
+					unset($items[$i]);
+					continue;
+				}
 
 				$item->deeper = false;
 				$item->shallower = false;
