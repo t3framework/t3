@@ -1,4 +1,12 @@
-<h2>Version: 2.7.6 (12/03/2020)</h2>
+<h2>Version: 2.7.7 (25/05/2021)</h2>
+<h3>Update to compatible with php8</h3>
+- Got error major in backend templates | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
+- Got error 'params' on the fontend when create menu item type = categoy list | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
+- Can not create menu with menu item type = featured contacts | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
+- Got error on the frontend when enabled Development mode in backend template | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
+- Can not show ThemeMagic preview in backend template | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
+- Can't save thememagic setting in backend template | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
+<h2>Version: <h2>Version: 2.7.6 (12/03/2020)</h2>
 <h3>Update to compatible with Joomla 3.9.16 & Fix bugs</h3>
 - Custom Theme not available after update to Joomla 3.9.16 | <a href="https://github.com/t3framework/t3/commit/f7fe9030c4e1946ece82f16f4a30f5bed34c8fd1">Link</a><br/>
 - PHP notice in contact page | <a href="https://github.com/t3framework/t3/commit/ae59c83daa0e5a40c44694c65075876da9bbcf7f">Link</a><br/>
