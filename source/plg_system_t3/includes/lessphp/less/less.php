@@ -660,6 +660,7 @@ class Less_Parser{
 			$this->skipWhitespace(strlen($match[0]));
 			return $match;
 		}
+		return [];
 	}
 
 
@@ -1657,8 +1658,9 @@ class Less_Parser{
 		}
 
 		$this->expectChar(']');
-
-		return $this->NewObj3('Less_Tree_Attribute',array( $key, $op[0], $val));
+		// kiendt- fix check empty option
+		$_op = !empty($op[0]) ? $op[0] : 0;
+		return $this->NewObj3('Less_Tree_Attribute',array( $key, $_op, $val));
 	}
 
 	//
@@ -5202,7 +5204,7 @@ class Less_Tree_Directive extends Less_Tree{
 	public $debugInfo;
 	public $type = 'Directive';
 
-	public function __construct($name, $value = null, $rules, $index = null, $currentFileInfo = null, $debugInfo = null ){
+	public function __construct($name, $value, $rules, $index = null, $currentFileInfo = null, $debugInfo = null ){
 		$this->name = $name;
 		$this->value = $value;
 		if( $rules ){
