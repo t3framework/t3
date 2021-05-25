@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="system" method="upgrade">
 	<name>T3 Framework</name>
 	<author>JoomlArt.com</author>
-	<creationDate>March 12, 2020</creationDate>
-	<copyright>Copyright (C) 2005 - 2020 Open Source Matters. All rights reserved.</copyright>
+	<creationDate>May 25, 2021</creationDate>
+	<copyright>Copyright (C) 2005 - 2021 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
-	<version>2.7.6</version>
+	<version>2.7.7</version>
 	<description>
 	<![CDATA[
 	<div align="center">
@@ -15,7 +15,7 @@
 				<a href="http://t3-framework.org/"><img src="http://static.joomlart.com/images/jat3v3-documents/message-installation/logo.png" alt="some_text" width="300" height="99"></a>
 				<h4><a href="http://t3-framework.org/" title="">Home</a> | <a href="http://demo.t3-framework.org/" title="">Demo</a> | <a href="http://t3-framework.org/documentation" title="">Document</a> | <a href="https://github.com/t3framework/t3/blob/master/CHANGELOG.md" title="">Changelog</a></h4>
 		<p> </p>
-		<p>Copyright 2004 - 2020 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
+		<p>Copyright 2004 - 2021 <a href='http://www.joomlart.com/' title='Visit Joomlart.com!'>JoomlArt.com</a>.</p>
 		</div>
      <style>table.adminform{width: 100%;}</style>
 	 </div>
