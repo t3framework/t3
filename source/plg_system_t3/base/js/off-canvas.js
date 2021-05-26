@@ -82,12 +82,12 @@
 					$(window).on('scroll touchmove', posNav);
 
 					// hide when click on off-canvas-nav
-					$('#off-canvas-nav').on ('click', function (e) {
+					$('#off-canvas-nav').on ('click touchstart', function (e) {
 						e.stopPropagation();
 					});
 					
 					//$('#off-canvas-nav a').on ('click', hideNav);
-					$('body').on ('click', bdHideNav);
+					$('body').on ('click touchstart', bdHideNav);
 				}, 50);
 
 				setTimeout (function(){
@@ -105,9 +105,9 @@
 				}
 
 				$(window).off('scroll touchmove', posNav);
-				$('#off-canvas-nav').off ('click');
+				$('#off-canvas-nav').off ('click touchstart');
 				//$('#off-canvas-nav a').off ('click', hideNav);
-				$('body').off ('click', bdHideNav);
+				$('body').off ('click touchstart', bdHideNav);
 				
 				$('html').removeClass ('off-canvas-enabled');
 				$btn.data('off-canvas', 'hide');
