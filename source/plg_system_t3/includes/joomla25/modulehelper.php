@@ -387,7 +387,7 @@ abstract class JModuleHelper
 			$query->where[] = '(mm.menuid = ' . (int) $Itemid . ' OR mm.menuid <= 0)';
 
 			// Filter by language
-			if ($app->isSite() && $app->getLanguageFilter())
+			if ($app->isClient('site') && $app->getLanguageFilter())
 			{
 				$query->where[] = 'm.language IN (' . $db->q($lang) . ',' . $db->q('*') . ')';
 			}

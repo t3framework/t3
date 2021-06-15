@@ -383,7 +383,7 @@ class T3Less
 	{
 		$app  = JFactory::getApplication();
 		$params = null;
-		if ($app->isAdmin()) {
+		if (T3::isAdmin()) {
 			$params = $app->getUserState ('current_template_params');
 		} else {
 			$tpl   =  $app->getTemplate(true);

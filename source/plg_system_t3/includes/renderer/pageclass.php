@@ -60,8 +60,8 @@ class JDocumentRendererPageClass extends JDocumentRenderer
 					$pageclass[] = 'home';
 				}
 
-				if ($active->params && $active->params->get('pageclass_sfx')) {
-					$pageclass[] = $active->params->get('pageclass_sfx');
+				if ($active->getParams() && $active->getParams()->get('pageclass_sfx')) {
+					$pageclass[] = $active->getParams()->get('pageclass_sfx');
 				}
 			}
 		}
@@ -69,7 +69,7 @@ class JDocumentRendererPageClass extends JDocumentRenderer
 		$pageclass[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
 		$pageclass = array_unique(array_merge($pageclass, $t3tpl->getPageclass()));
 
-		JDispatcher::getInstance()->trigger('onT3BodyClass', array(&$pageclass));
+		JFactory::getApplication()->triggerEvent('onT3BodyClass', array(&$pageclass));
 
 		return implode(' ', $pageclass);
 	}

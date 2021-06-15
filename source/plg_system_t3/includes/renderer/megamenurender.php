@@ -78,7 +78,7 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 			}
 		}
 
-		JDispatcher::getInstance()->trigger('onT3Megamenu', array(&$menutype, &$mmconfig, &$viewLevels));
+		JFactory::getApplication()->triggerEvent('onT3Megamenu', array(&$menutype, &$mmconfig, &$viewLevels));
 
 		$mmconfig['access'] = $viewLevels;
 		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $t3app->_tpl->params);

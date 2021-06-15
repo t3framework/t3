@@ -101,7 +101,7 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 			if(version_compare(JVERSION, '3.0', 'ge')){
 				JHtml::_('jquery.framework');
 			} else {
-				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
+				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.x.min.js');
 				$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 			}
 			
@@ -142,7 +142,7 @@ class JFormFieldT3MegaMenu extends JFormFieldHidden
 
 			JFactory::getDocument()->addScriptDeclaration ( '
 				jQuery.extend(T3Depend, {
-					adminurl: \'' . JFactory::getURI()->toString() . '\',
+					adminurl: \'' . JUri::getInstance()->toString() . '\',
 					rooturl: \'' . JURI::root() . '\'
 				});
 			');

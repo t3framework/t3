@@ -16,6 +16,32 @@
 class T3Admin {
 
 	protected $langs = array();
+	protected $html = array();
+
+	/**
+	 * init admin backend to edit template style
+	 */
+	public function init() {
+		$app = JFactory::getApplication();
+		$input = $app->input;
+		if ($input->getCmd('view') == 'style') {
+			$app->set('themes.base', T3_ADMIN_PATH);
+			$app->set('theme', 'admin');
+		}
+		if(version_compare(JVERSION, '4', 'ge')){
+			$wa = JFactory::getDocument()->getWebAssetManager();
+			//var_dump($wa->getAssets('script'));die;
+			$wa->registerAsset('script', 'bootstrap.js.bundle', T3_ADMIN_REL . '/admin/bootstrap/js/bootstrap.js', ['dependencies' => 'jquery']);
+			$wa->registerAsset('script', 'jquery', T3_ADMIN_REL . '/admin/js/jquery-1.x.min.js');
+			$wa->registerAsset('script', 'jquery-noconflict', T3_ADMIN_REL . '/admin/js/jquery.noconflict.js');
+			//$wa->disableAsset('script', 'bootstrap.init.legacy');
+			//$wa->useAsset('script', 'bootstrap.js.bundle');
+		}
+	}
+
+
+	public function updateHead() {
+	}
 
 	/**
 	 * function render
@@ -24,15 +50,17 @@ class T3Admin {
 	 * @return render success or not
 	 */
 	public function render(){
-		$input  = JFactory::getApplication()->input;
-		$body   = JResponse::getBody();
-		$layout = T3_ADMIN_PATH . '/admin/tpls/default.php';
+		$app = JFactory::getApplication();
+		$input  = $app->input;
+		if ('style' != $input->getCmd('view')) return;
 
-		if(file_exists($layout) && 'style' == $input->getCmd('view')){
-			
-			ob_start();
-			$this->renderAdmin();
-			$buffer = ob_get_clean();
+		$body   = $app->getBody();
+		$layout = T3_ADMIN_PATH . '/admin/tpls/default.php';
+		$layout = false;
+		if(file_exists($layout)){
+			// ob_start();
+			// $this->renderAdmin();
+			// $buffer = ob_get_clean();
 
 			//this cause backtrack_limit in some server
 			//$body = preg_replace('@<form\s[^>]*name="adminForm"[^>]*>(.*)</form>@msU', $buffer, $body);
@@ -42,7 +70,7 @@ class T3Admin {
 			$close = array_pop($endtags);
 
 			//should not happend
-			if(count($opentags) > 1){
+			if(count($opentags) > 1) {
 	
 				$iopen = 0;
 				$iclose = count($opentags);
@@ -63,7 +91,8 @@ class T3Admin {
 				}
 			}
 
-			$body = $open . $buffer . $close;
+			//$body = $open . $this->html['admin'] . $close;
+			//$body = $this->html['admin'];
 		}
 
 		if(!$input->getCmd('file')){
@@ -72,10 +101,17 @@ class T3Admin {
 
 		$body = $this->replaceDoctype($body);
 
-		JResponse::setBody($body);
+		$app->setBody($body);
 	}
 
-	public function addAssets(){
+	public function addAssets() {
+		$japp   = JFactory::getApplication();
+		$jdoc   = JFactory::getDocument();
+		$db     = JFactory::getDbo();
+		$params = T3::getTplParams();
+		$input  = $japp->input;
+
+		if ('style' != $input->getCmd('view')) return;
 
 		// load template language
 		JFactory::getLanguage()->load ('tpl_'.T3_TEMPLATE.'.sys', JPATH_ROOT, null, true);
@@ -120,12 +156,6 @@ class T3Admin {
 			'updateCompare' => JText::_('T3_OVERVIEW_TPL_COMPARE'),
 			'switchResponsiveMode' => JText::_('T3_MSG_SWITCH_RESPONSIVE_MODE')
 		);
-		
-		$japp   = JFactory::getApplication();
-		$jdoc   = JFactory::getDocument();
-		$db     = JFactory::getDbo();
-		$params = T3::getTplParams();
-		$input  = $japp->input;
 
 		//just in case
 		if(!($params instanceof JRegistry)){
@@ -149,11 +179,12 @@ class T3Admin {
 
 		//check for version compatible
 		if(version_compare(JVERSION, '3.0', 'ge')){
+			//JHtml::_('jquery.framework');
 			JHtml::_('bootstrap.framework');
 		} else {
 			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
 
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
+			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.x.min.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/bootstrap/js/bootstrap.js');
 			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 		}
@@ -211,6 +242,11 @@ class T3Admin {
 			T3Admin.t3layouturl = \'' . JURI::base() . 'index.php?t3action=layout' . '\';
 			T3Admin.jupdateUrl = \'' . JURI::base() . 'index.php?option=com_installer&view=update' . '\';'
 		);
+
+		// render admin
+		// $this->_renderAdmin();
+		$this->_renderToolbar();
+
 	}
 
 	public function addJSLang($key = '', $value = '', $overwrite = true){
@@ -225,7 +261,8 @@ class T3Admin {
 	 *
 	 * @return render success or not
 	 */
-	function renderAdmin(){
+	function _renderAdmin(){
+		return;
 		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
 		$cusXml = T3Path::getPath('etc/assets.xml');
@@ -274,8 +311,9 @@ class T3Admin {
 			$session->set('T3.t3lock', null);
 			$input = JFactory::getApplication()->input;
 
+			ob_start();
 			include $jtpl;
-			
+			$this->html['admin'] = ob_get_clean();
 			/*
 			//search for global parameters
 			$japp = JFactory::getApplication();
@@ -294,7 +332,7 @@ class T3Admin {
 		return false;
 	}
 
-	function replaceToolbar($body){
+	function _renderToolbar() {
 		$t3toolbar = T3_ADMIN_PATH . '/admin/tpls/toolbar.php';
 		$input = JFactory::getApplication()->input;
 
@@ -302,7 +340,27 @@ class T3Admin {
 			//get the existing toolbar html
 			jimport('joomla.language.help');
 			$params  = T3::getTplParams();
-			$toolbar = JToolBar::getInstance('toolbar')->render('toolbar');
+			$this->html['toolbar'] = JToolBar::getInstance('toolbar')->render();
+			$helpurl = JHelp::createURL($input->getCmd('view') == 'template' ? 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_TEMPLATES_EDIT' : 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_STYLES_EDIT');
+			$helpurl = htmlspecialchars($helpurl, ENT_QUOTES);
+
+			//render our toolbar
+			ob_start();
+			include $t3toolbar;
+			$this->html['t3toolbar'] = ob_get_clean();
+		}
+	}
+
+	function replaceToolbar($body){
+		/*
+		$t3toolbar = T3_ADMIN_PATH . '/admin/tpls/toolbar.php';
+		$input = JFactory::getApplication()->input;
+
+		if(file_exists($t3toolbar) && class_exists('JToolBar')){
+			//get the existing toolbar html
+			jimport('joomla.language.help');
+			$params  = T3::getTplParams();
+			$toolbar = JToolBar::getInstance('toolbar')->render();
 			$helpurl = JHelp::createURL($input->getCmd('view') == 'template' ? 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_TEMPLATES_EDIT' : 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_STYLES_EDIT');
 			$helpurl = htmlspecialchars($helpurl, ENT_QUOTES);
 
@@ -314,7 +372,10 @@ class T3Admin {
 			//replace it
 			$body = str_replace($toolbar, $t3toolbar, $body);
 		}
+		*/
 
+		//$body = str_replace($this->html['toolbar'], $this->html['t3toolbar'], $body);
+		$body = str_replace('[[TOOLBAR]]', $this->html['t3toolbar'], $body);
 		return $body;
 	}
 

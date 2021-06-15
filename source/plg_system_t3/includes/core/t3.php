@@ -26,6 +26,8 @@ class T3 {
 	protected static $t3app = null;
 
 	protected static $tmpl  = null;
+
+	protected static $serviceRegistry;
 	/**
 	 * Import T3 Library
 	 *
@@ -47,10 +49,19 @@ class T3 {
 	 *
 	 * @return void
 	 */
-  public static function register ($class, $path, $import_key = null) {
-    if (!empty($import_key)) jimport($import_key);
-    JLoader::register ($class, $path);
-  }
+	public static function register ($class, $path, $import_key = null) {
+		if (!empty($import_key)) jimport($import_key);
+		JLoader::register ($class, $path);
+	}
+
+	public static function registerHtmlClass () {
+		// register T3Html class
+		JLoader::registerPrefix('T3Html', T3_ADMIN_PATH . '/includes/joomla4/html');
+
+		$serviceRegistry = JFactory::getContainer()->get(\Joomla\CMS\HTML\Registry::class);
+		$serviceRegistry->register('behavior', T3HtmlBehavior::class, true);
+		$serviceRegistry->register('bootstrap', T3HtmlBootstrap::class, true);
+	}
 
 	/**
 	 * @param   object  $tpl  template object to initialize if needed
@@ -59,7 +70,7 @@ class T3 {
 	public static function getApp($tpl = null){
 		if(empty(self::$t3app)){
 			$japp = JFactory::getApplication();
-			self::$t3app = $japp->isAdmin() ? self::getAdmin() : self::getSite($tpl);
+			self::$t3app = T3::isAdmin() ? self::getAdmin() : self::getSite($tpl);
 		}
 
 		return self::$t3app;
@@ -113,7 +124,7 @@ class T3 {
 			define ('T3_THEMER', 1);
 		}
 
-		if (!$app->isAdmin()) {
+		if (!T3::isAdmin()) {
 			$params = $app->getTemplate(true)->params;
 			define ('T3_DEV_FOLDER', $params->get ('t3-assets', 't3-assets') . '/dev');
 			define ('T3_DEV_MODE', $params->get ('devmode', 0));
@@ -135,10 +146,11 @@ class T3 {
 		T3::import ('core/path');
 		T3::import ('core/t3j');
 
-		if (!$app->isAdmin()) {
+		if (1 || !T3::isAdmin()) {
 			if(version_compare(JVERSION, '3.8', 'ge')){
 				// override core joomla class
 				// JViewLegacy
+				/*
 		        T3::register('JViewLegacy',   T3_ADMIN_PATH . '/includes/joomla4/HtmlView.php');
 				// JModuleHelper
 		        T3::register('JModuleHelper',   T3_ADMIN_PATH . '/includes/joomla4/ModuleHelper.php');
@@ -146,6 +158,18 @@ class T3 {
 		        T3::register('JPagination',   T3_ADMIN_PATH . '/includes/joomla4/Pagination.php');
 		        // Register T3 Layout File to put a t3 base layer for layout files
 		        T3::register('JLayoutFile',   T3_ADMIN_PATH . '/includes/joomla4/FileLayout.php');
+		        */
+
+				// overwrite original Joomla
+				$loader = require JPATH_LIBRARIES . '/vendor/autoload.php';
+				// update class maps
+				$classMap = $loader->getClassMap();
+				$classMap['Joomla\CMS\Layout\FileLayout'] = T3_ADMIN_PATH . '/includes/joomla4/FileLayout.php';
+				$classMap['Joomla\CMS\Helper\ModuleHelper'] = T3_ADMIN_PATH . '/includes/joomla4/ModuleHelper.php';
+				$classMap['Joomla\CMS\MVC\View\HtmlView'] = T3_ADMIN_PATH . '/includes/joomla4/HtmlView.php';
+				$classMap['Joomla\CMS\Pagination\Pagination'] = T3_ADMIN_PATH . '/includes/joomla4/Pagination.php';
+				$loader->addClassMap($classMap);
+
 			} else if(version_compare(JVERSION, '3.0', 'ge')){
 				// override core joomla class
 				// JViewLegacy
@@ -185,8 +209,9 @@ class T3 {
 			T3::import('renderer/megamenu');
 			T3::import('renderer/t3bootstrap');
 		} else {
-
 		}
+
+		if(version_compare(JVERSION, '4', 'ge')) T3::registerHtmlClass();
 
 		// capture for tm=1 => show theme magic
 		if ($input->getCmd('tm') == 1) {
@@ -283,7 +308,7 @@ class T3 {
 
 				$tplname = self::getTemplate(true);
 
-			} elseif ($app->isAdmin()) {
+			} elseif (T3::isAdmin()) {
 				// if not login, do nothing
 				$user = JFactory::getUser();
 				if (!$user->id){
@@ -388,7 +413,7 @@ class T3 {
 					->from('#__template_styles')
 					->where('client_id = 0');
 
-				if($app->isAdmin() && $input->get('view') == 'template' && defined('T3_TEMPLATE')){
+				if(T3::isAdmin() && $input->get('view') == 'template' && defined('T3_TEMPLATE')){
 					$query->where('template='. $db->quote(T3_TEMPLATE));
 				} else {
 					$query->where('id='. $id);
@@ -448,6 +473,9 @@ class T3 {
 		return (!$active || $active->home);
 	}
 
+	public static function isAdmin() {
+		return JFactory::getApplication()->isClient('administrator');
+	}
 	/**
 	 * fix ja back link
 	 * @param $buffer
@@ -487,6 +515,15 @@ class T3 {
 		}
 
 		return $match[0];
+	}
+
+	// Create alias class for original call in $filepath, then overload the class
+	public static function makeAlias($filepath, $originClassName, $aliasClassName) {
+		if (!is_file($filepath)) return false;
+		$code = file_get_contents($filepath);
+		$code = str_replace('class ' . $originClassName, 'class ' . $aliasClassName, $code);
+		eval('?>'. $code);
+		return true;
 	}
 
 }

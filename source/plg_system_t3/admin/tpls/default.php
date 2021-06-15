@@ -18,6 +18,7 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
+
 $user = JFactory::getUser();
 $canDo = method_exists('TemplatesHelper', 'getActions') ? TemplatesHelper::getActions() : JHelperContent::getActions('com_templates');
 $iswritable = is_writable('t3test.txt');

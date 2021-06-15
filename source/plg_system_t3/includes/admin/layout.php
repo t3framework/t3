@@ -38,7 +38,7 @@ class T3AdminLayout
 		$app   = JFactory::getApplication();
 		$input = $app->input;
 		
-		if (!$app->isAdmin()) {
+		if (!T3::isAdmin()) {
 			
 			$tpl = $app->getTemplate(true);
 			

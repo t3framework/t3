@@ -36,7 +36,7 @@ class T3Ajax {
 		$app = JFactory::getApplication();
 		$router = $app->getRouter();
 		
-		if ($app->isSite()) {
+		if ($app->isClient('site')) {
 			//self::$signature = 't3ajax';
 			//self::$modesef = ($router->getMode() == JROUTER_MODE_SEF) ? true : false;
 			

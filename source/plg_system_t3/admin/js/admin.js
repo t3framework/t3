@@ -556,15 +556,15 @@ var T3Admin = window.T3Admin || {};
 						el.addClass('invalid');
 						el.set('aria-invalid', 'true');
 						if (el.labelref) {
-							document.id(el.labelref).addClass('invalid');
-							document.id(el.labelref).set('aria-invalid', 'true');
+							document.getElementById(el.labelref).addClass('invalid');
+							document.getElementById(el.labelref).set('aria-invalid', 'true');
 						}
 					} else {
 						el.removeClass('invalid');
 						el.set('aria-invalid', 'false');
 						if (el.labelref) {
-							document.id(el.labelref).removeClass('invalid');
-							document.id(el.labelref).set('aria-invalid', 'false');
+							document.getElementById(el.labelref).removeClass('invalid');
+							document.getElementById(el.labelref).set('aria-invalid', 'false');
 						}
 					}
 				};

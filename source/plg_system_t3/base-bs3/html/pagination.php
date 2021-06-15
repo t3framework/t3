@@ -104,7 +104,7 @@ function pagination_list_render($list)
 function pagination_item_active(&$item)
 {
 		$app = JFactory::getApplication();
-		if ($app->isAdmin())
+		if (T3::isAdmin())
 		{
 			if ($item->base > 0)
 			{

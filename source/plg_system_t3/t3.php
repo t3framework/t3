@@ -34,7 +34,7 @@ class plgSystemT3 extends JPlugin
 
 		//must be in frontend
 		$app = JFactory::getApplication();
-		if ($app->isAdmin()) {
+		if (T3::isAdmin()) {
 			return;
 		}
 
@@ -96,14 +96,14 @@ class plgSystemT3 extends JPlugin
 					include_once T3_TEMPLATE_PATH . '/templateHook.php';
 				}
 
-				$tplHookCls = preg_replace('/(^[^A-Z_]+|[^A-Z0-9_])/i', '', T3_TEMPLATE . 'Hook');
-				$dispatcher = JDispatcher::getInstance();
+				// $tplHookCls = preg_replace('/(^[^A-Z_]+|[^A-Z0-9_])/i', '', T3_TEMPLATE . 'Hook');
+				// $dispatcher = JDispatcher::getInstance();
 
-				if (class_exists($tplHookCls)) {
-					new $tplHookCls($dispatcher, array());
-				}
+				// if (class_exists($tplHookCls)) {
+				// 	new $tplHookCls($dispatcher, array());
+				// }
 
-				$dispatcher->trigger('onT3Init');
+				JFactory::getApplication()->triggerEvent('onT3Init');
 
 				//check and execute the t3action
 				T3::checkAction();
@@ -114,14 +114,21 @@ class plgSystemT3 extends JPlugin
 		}
 	}
 
+	function onAfterDispatch() {
+		if (defined('T3_PLUGIN') && T3::detect()) {
+			$t3app = T3::getApp();
+			if ($t3app) $t3app->init();
+		}
+	}
+
 	function onBeforeRender()
 	{
 		if (defined('T3_PLUGIN') && T3::detect()) {
 			$japp = JFactory::getApplication();
 
-			JDispatcher::getInstance()->trigger('onT3BeforeRender');
+			JFactory::getApplication()->triggerEvent('onT3BeforeRender');
 
-			if ($japp->isAdmin()) {
+			if (T3::isAdmin()) {
 
 				$t3app = T3::getApp();
 				$t3app->addAssets();
@@ -169,16 +176,16 @@ class plgSystemT3 extends JPlugin
 
 	function onBeforeCompileHead()
 	{
-		if (defined('T3_PLUGIN') && T3::detect() && !JFactory::getApplication()->isAdmin()) {
+		if (defined('T3_PLUGIN') && T3::detect()) {
 			// call update head for replace css to less if in devmode
 			$t3app = T3::getApp();
 			if ($t3app) {
 
-				JDispatcher::getInstance()->trigger('onT3BeforeCompileHead');
+				JFactory::getApplication()->triggerEvent('onT3BeforeCompileHead');
 
 				$t3app->updateHead();
 
-				JDispatcher::getInstance()->trigger('onT3AfterCompileHead');
+				JFactory::getApplication()->triggerEvent('onT3AfterCompileHead');
 			}
 		}
 	}
@@ -190,13 +197,13 @@ class plgSystemT3 extends JPlugin
 
 			if ($t3app) {
 
-				if (JFactory::getApplication()->isAdmin()) {
+				if (T3::isAdmin()) {
 					$t3app->render();
 				} else {
 					$t3app->snippet();
 				}
 
-				JDispatcher::getInstance()->trigger('onT3AfterRender');
+				JFactory::getApplication()->triggerEvent('onT3AfterRender');
 			}
 		}
 	}
