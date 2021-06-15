@@ -149,13 +149,15 @@ class T3AdminMegamenu
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
 		$tplparams     = T3::getTplParams();
 
-		if(get_magic_quotes_gpc() && !is_null($mmconfig)){
+		if(!is_null($mmconfig)){
 			$mmconfig  = stripslashes($mmconfig);
 		} 
 		
 		$currentconfig = $tplparams instanceof JRegistry ? $tplparams->get('mm_config', '') : null;
 		$_reg = new JRegistry;
-		$_reg->loadArray(json_decode($currentconfig, true));
+		if(getType(json_decode($currentconfig, true)) == "array"){
+			$_reg->loadArray(json_decode($currentconfig, true));
+		}
 		$_reg->set($mmkey, json_decode($mmconfig, true));
 
 		$mm_config = $_reg->toString();

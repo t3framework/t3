@@ -22,7 +22,7 @@ $params  = T3::getTplParams();
 	<?php if($input->getCmd('view') == 'style'): ?>
 	<div id="t3-admin-tb-save" class="btn-group">
 		<button id="t3-admin-tb-style-save-save" class="btn btn-success"><i class="icon-save"></i>  <?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
-		<button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+		<button class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
 			<span class="caret"></span>&nbsp;
 		</button>
 		<ul class="dropdown-menu">
@@ -35,7 +35,7 @@ $params  = T3::getTplParams();
 	<div id="t3-admin-tb-recompile" class="btn-group">
 		<button id="t3-admin-tb-compile-all" class="btn hasTip" title="<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?>::<?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS_DESC') ?>"><i class="icon-code"></i>  <i class="icon-loading"></i>  <?php echo JText::_('T3_TOOLBAR_COMPILE_LESS_CSS') ?></button>
 		<?php if($input->getCmd('view') == 'style') : ?>
-		<button class="btn dropdown-toggle" data-toggle="dropdown">
+		<button class="btn dropdown-toggle" data-bs-toggle="dropdown">
 			<span class="caret"></span>&nbsp;
 		</button>
 		<ul class="dropdown-menu">
