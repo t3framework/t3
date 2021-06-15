@@ -80,11 +80,14 @@ abstract class T3HtmlBehavior extends JHtmlBehavior
 				if (title) {
 					var parts = title.split('::', 2);
 					var mtelement = document.getElementById(this);
-					mtelement.store('tip:title', parts[0]);
-					mtelement.store('tip:text', parts[1]);
+					console.log(mtelement);
+					if(mtelement){
+						mtelement.store('tip:title', parts[0]);
+						mtelement.store('tip:text', parts[1]);
+					}
 				}
 			});
-			var JTooltips = new Tips($('$selector').get(), $options);
+			// var JTooltips = new Tips($('$selector').get(), $options);
 		});"
 		);
 

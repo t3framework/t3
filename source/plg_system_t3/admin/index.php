@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 /** @var JDocumentHtml $this */
 $displayHeader = $this->params->get('displayHeader', '1');
+$header_is_light = true;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">

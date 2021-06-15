@@ -23,5 +23,9 @@ $xml = simplexml_load_file($tplXml);
 
 $frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
 $fxml = simplexml_load_file($frwXml);
-
-include T3_ADMIN_PATH . '/admin/tpls/default.php'; ?>
+if(version_compare(JVERSION,'4',"ge")){
+	include T3_ADMIN_PATH . '/admin/tpls/default_j4.php';
+}else{
+	include T3_ADMIN_PATH . '/admin/tpls/default.php';
+}
+?>

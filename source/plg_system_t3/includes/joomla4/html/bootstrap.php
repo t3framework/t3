@@ -6,7 +6,7 @@
  * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
+use Joomla\CMS\HTML\Helpers\Bootstrap as JBootstrap;
 defined('JPATH_PLATFORM') or die;
 
 /**
@@ -14,7 +14,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  1.5
  */
-abstract class T3HtmlBootstrap extends JHtmlBootstrap
+abstract class T3HtmlBootstrap extends JBootstrap
 {
 
 
@@ -40,7 +40,7 @@ abstract class T3HtmlBootstrap extends JHtmlBootstrap
 	 *
 	 * @since   3.0
 	 */
-	public static function renderModal($selector = 'modal', $params = array(), $body = '')
+	public static function renderModal($selector = 'modal', $params = array(), $body = '') :string
 	{
 		$method = parent::class . '::' . __FUNCTION__;
 		// Force to rerender in admin
