@@ -24,6 +24,7 @@ body {
   line-height: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  margin: 0;
 }
 
 /* Need to redefine cause of Default Joomla Style */
@@ -116,6 +117,11 @@ hr {
   text-align: left;
 }
 
+.header .page-title {
+  font-size: 20px;
+  margin: 0;
+}
+
 .header .container-logo .logo {
   
 }
@@ -177,6 +183,16 @@ h1.page-title small {
   background-image: none;
 }
 
+/* Fix for Joomla 4 */
+#t3-admin-toolbar button.show {
+  display: inline-block;
+}
+
+#t3-admin-toolbar .dropdown-menu {
+  inset: auto !important;
+  transform: none !important;
+}
+
 /* Loading */
 #t3-admin-tb-recompile .icon-loading,
 #t3-admin-tb-recompile.loading .icon-code {
@@ -216,6 +232,7 @@ h1.page-title small {
 
 /* THE NAV
 ----------- */
+joomla-tab > ul,
 .t3-admin-nav .nav-tabs {
   margin: 0;
   border-top: 1px solid #ccc;
@@ -227,24 +244,27 @@ h1.page-title small {
   padding: 0;
 }
 
+joomla-tab > ul > li,
 .t3-admin-nav .nav-tabs > li {
   margin-bottom: -1px;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
   position: relative;
 }
 
+joomla-tab > ul > li > a,
 .t3-admin-nav .nav-tabs > li > a {
   color: #555;
   border-radius: 0;
   border: 0;
   border-bottom: 5px solid transparent;
   margin: 0;
-  padding: 15px 0 10px;
+  padding: 15px 0 10px !important;
   font-weight: bold;
   text-align: center;
 }
 
+joomla-tab > ul > li > a:hover,
 .t3-admin-nav .nav-tabs > li > a:hover {
   border: 0;
   border-bottom: 5px solid #07b;
@@ -252,6 +272,8 @@ h1.page-title small {
   background: transparent;
 }
 
+joomla-tab > ul > li > a[role="tab"][active],
+joomla-tab > ul > li > a[role="tab"][active]:hover,
 .t3-admin-nav .nav-tabs > .active > a, 
 .t3-admin-nav .nav-tabs > .active > a:hover {
   border: 0;
@@ -491,6 +513,7 @@ input[type="color"]:focus,
   text-indent: 0;
 }
 
+.t3-admin-fieldset-desc + .t3-admin-form-legend,
 .t3-admin-fieldset-desc + * + .t3-admin-form-legend{
   border-top: 1px solid #ccc;
   margin-top: 0;
@@ -755,6 +778,51 @@ input[type="color"]:focus,
 .t3onoff label.on.active:after {
   left: 60%;
 }
+
+
+/* [Joomla 4] Radio
+-------------------*/
+.admin .radio {
+  /* border: 1px solid #aaa;
+  border-radius: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: block;
+  padding: 0 !important;
+  position: relative;
+  height: 30px;
+  white-space: nowrap;
+  width: 90px; */
+}
+
+.admin .radio .form-check {
+  /* display: block;
+  height: 30px;
+  overflow: hidden;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  text-transform: uppercase;
+  width: 90px; */
+}
+
+.admin .radio .form-check label {
+  /* display: block;
+  position: relative;
+  width: 90px;
+  height: 30px;
+  z-index: 1; */
+}
+
+.admin .radio .form-check label.active {
+  /* z-index: 0; */
+}
+
+.admin .radio input[type="radio"] {
+  /* display: none; */
+}
+
+
 
 /* btn group radio */
 fieldset.radio.btn-group .btn {
@@ -1274,6 +1342,16 @@ button.btn-primary:active {
   cursor: pointer;
   margin-right: 5px;
   z-index: 10;
+}
+
+/* Fix on Joomla 4 */
+joomla-tab > ul {
+  background: #eee;
+  margin: 0;
+}
+
+joomla-tab > section {
+  padding: 0;
 }
 
 
