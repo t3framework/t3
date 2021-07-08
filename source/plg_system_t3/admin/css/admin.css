@@ -690,6 +690,10 @@ input[type="color"]:focus,
   box-sizing: border-box;
 }
 
+.t3onoff label:hover {
+  cursor: pointer;
+}
+
 /* use before as background */
 .t3onoff label:before {
   content: "ON";
