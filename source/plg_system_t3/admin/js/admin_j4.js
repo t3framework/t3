@@ -139,10 +139,8 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		initRadioGroup: function(){
-
 			//convert to on/off
-			$('fieldset.radio').filter(function(){
-			
+			$('fieldset .radio').filter(function(){
 				return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
 						return $.inArray(this.value + '', ['0', '1']) !== -1;
 					}).length == 2;
@@ -156,10 +154,9 @@ var T3Admin = window.T3Admin || {};
 			$('.t3onoff').removeClass('btn-group').find('label').removeClass('btn');
 			
 			//action
-			$('fieldset.radio').find('label').removeClass('btn-success btn-danger btn-primary').unbind('click').click(function() {
+			$('fieldset .radio').find('label').removeClass('btn-success btn-danger btn-primary').unbind('click').click(function() {
 				var label = $(this),
 					input = $('#' + label.attr('for'));
-
 				if (!input.prop('checked')){
 					label.addClass('active').siblings().removeClass('active');
 
