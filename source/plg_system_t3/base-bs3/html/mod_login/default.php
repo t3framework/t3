@@ -12,8 +12,13 @@ defined('_JEXEC') or die;
 
 JLoader::register('UsersHelperRoute', JPATH_SITE . '/components/com_users/helpers/route.php');
 
-JHtml::_('behavior.keepalive');
-if (version_compare(JVERSION, '3.0', 'ge')) {
+if (version_compare(JVERSION, '4', 'ge')) {
+	JFactory::getDocument()->getWebAssetManager()
+	->useScript('core')
+	->useScript('keepalive');
+	// JHtml::_('bootstrap.tooltip');
+}elseif (version_compare(JVERSION, '3.0', 'ge')) {
+	JHtml::_('behavior.keepalive');
 	JHtml::_('bootstrap.tooltip');
 }
 ?>

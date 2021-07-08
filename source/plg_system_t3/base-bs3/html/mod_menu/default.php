@@ -22,13 +22,17 @@ if ($tagId = $params->get('tag_id', ''))
 <?php foreach ($list as $i => &$item)
 {
 	$class = 'item-' . $item->id;
-
+	if(version_compare(JVERSION, '4', 'ge')){
+		$itemParams = $item->getParams();
+	}else{
+		$itemParams = $item->params;
+	}
 	if (isset($default_id) && $item->id == $default_id)
 	{
 		$class .= ' default';
 	}
 
-	if ($item->id == $active_id || ($item->type === 'alias' && $item->params->get('aliasoptions') == $active_id))
+	if ($item->id == $active_id || ($item->type === 'alias' && $itemParams->get('aliasoptions') == $active_id))
 	{
 		$class .= ' current';
 	}
@@ -39,7 +43,7 @@ if ($tagId = $params->get('tag_id', ''))
 	}
 	elseif ($item->type === 'alias')
 	{
-		$aliasToId = $item->params->get('aliasoptions');
+		$aliasToId = $itemParams->get('aliasoptions');
 
 		if (count($path) > 0 && $aliasToId == $path[count($path) - 1])
 		{

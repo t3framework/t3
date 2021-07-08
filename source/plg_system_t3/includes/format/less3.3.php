@@ -22,7 +22,7 @@ use stdClass;
  *
  * @since  1.0
  */
-class Less extends AbstractRegistryFormat
+class Less
 {
 	/**
 	 * Converts a name/value pairs object into an LESS variables declaration
