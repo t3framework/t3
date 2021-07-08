@@ -177,7 +177,7 @@
 
 	});
 
-	$(window).load(function(){
+	$(window).on('load',function(){
 
 		//fix animation for navbar-collapse-fixed-top||bottom
 		if(!$(document.documentElement).hasClass('off-canvas-ready') &&

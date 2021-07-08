@@ -219,7 +219,11 @@ class T3Admin {
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/json2.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jimgload.js');
 		$jdoc->addScript(T3_ADMIN_URL . '/admin/layout/js/layout.js');
-		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
+		if(version_compare(JVERSION, '4','lt')){
+			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
+		}else{
+			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin_j4.js');
+		}
 
 
 		$jdoc->addScriptDeclaration ( '

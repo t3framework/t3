@@ -80,7 +80,6 @@ abstract class T3HtmlBehavior extends JHtmlBehavior
 				if (title) {
 					var parts = title.split('::', 2);
 					var mtelement = document.getElementById(this);
-					console.log(mtelement);
 					if(mtelement){
 						mtelement.store('tip:title', parts[0]);
 						mtelement.store('tip:text', parts[1]);

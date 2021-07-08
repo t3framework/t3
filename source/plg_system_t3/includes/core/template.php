@@ -611,10 +611,10 @@ class T3Template extends ObjectExtendable
 		}
 
 		if (count($places)) {			
-			$body = JResponse::getBody();
+			$body = JFactory::getApplication()->getBody();
 			$body = preg_replace($places, $contents, $body);
 
-			JResponse::setBody($body);
+			JFactory::getApplication()->setBody($body);
 		}
 	}
 

@@ -212,7 +212,7 @@ jQuery (document).ready(function($){
     }
 
     // preload fixed items
-    $(window).load(function() {
+    $(window).on('load',function() {
       setTimeout(function(){
         $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
       }, 100);

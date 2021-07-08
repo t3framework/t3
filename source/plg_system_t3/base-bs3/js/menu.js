@@ -626,7 +626,7 @@
 							hover : mm_trigger
 						});
 
-						$(window).load(function() {
+						$(window).on('load',function() {
 
 							// check we miss any nav
 							$('ul.nav').has('.dropdown-menu').t3menu({
