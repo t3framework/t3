@@ -507,11 +507,9 @@ var T3Admin = window.T3Admin || {};
 							}
 						}
 					}
-					return true;
-					console.log(form.getElementsByTagName('fieldset'))
-					console.log(form.elements)
+
 					// Validate form fields
-					var elements = form.getElementsByTagName('fieldset').concat(Array.from(form.elements));
+					var elements = form.getElements('fieldset').concat(Array.from(form.elements));
 					for (var i = 0; i < elements.length; i++) {
 						if (this.validate(elements[i]) == false) {
 							valid = false;
@@ -558,16 +556,15 @@ var T3Admin = window.T3Admin || {};
 						el.addClass('invalid');
 						el.set('aria-invalid', 'true');
 						if (el.labelref) {
-							document.getElementById(el.labelref).addClass('invalid');
-							document.getElementById(el.labelref).set('aria-invalid', 'true');
+							document.id(el.labelref).addClass('invalid');
+							document.id(el.labelref).set('aria-invalid', 'true');
 						}
 					} else {
-						if(!el) return;
 						el.removeClass('invalid');
 						el.set('aria-invalid', 'false');
 						if (el.labelref) {
-							document.getElementById(el.labelref).removeClass('invalid');
-							document.getElementById(el.labelref).set('aria-invalid', 'false');
+							document.id(el.labelref).removeClass('invalid');
+							document.id(el.labelref).set('aria-invalid', 'false');
 						}
 					}
 				};
