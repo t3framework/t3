@@ -2,7 +2,7 @@
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2021 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
  * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
  *                & Google group to become co-author)
@@ -183,7 +183,8 @@ h1.page-title small {
   background-image: none;
 }
 
-/* Fix for Joomla 4 */
+/* FIX TO COMPATIBLE WITH JOOMLA 4
+---------------------------------- */
 #t3-admin-toolbar button.show {
   display: inline-block;
 }
@@ -192,6 +193,58 @@ h1.page-title small {
   inset: auto !important;
   transform: none !important;
 }
+
+#system-message-container joomla-alert {
+  border-radius: 0;
+  border-width: 1px;
+  border-radius: 5px;
+  margin: 0 20px 10px;
+  padding: 4px 12px;
+  width: auto;
+}
+
+#system-message-container joomla-alert .alert-heading {
+  align-self: center;
+  border-radius: 50%;
+  height: 32px;
+  line-height: 32px;
+  padding: 0;
+  text-align: center;
+  width: 32px;
+}
+
+#system-message-container joomla-alert .alert-heading .success {
+  display: block;
+  height: 32px;
+  padding-top: 8px;
+  text-align: center;
+  width: 32px;
+}
+
+#system-message-container joomla-alert .alert-heading .success::before {
+  height: 24px;
+  width: 24px;
+}
+
+#system-message-container joomla-alert .alert-message {
+  margin: 0;
+}
+
+#system-message-container joomla-alert .joomla-alert--close {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Media */
+joomla-field-media .input-group {
+  display: flex;
+  max-width: 378px;
+}
+
+joomla-field-media .input-group .field-media-input {
+  width: 254px;
+}
+
 
 /* Loading */
 #t3-admin-tb-recompile .icon-loading,
@@ -206,6 +259,7 @@ h1.page-title small {
   height: 14px;
   margin-bottom: -2px;
 }
+
 
 /* Header 
 --------- */
@@ -1044,7 +1098,7 @@ button.btn-primary:active {
 
 #system-message > dd > ul {
   color: #0055BB;
-  background-position: 4px top;
+  background-position: 4px 6px;
   background-repeat: no-repeat;
   margin-bottom: 10px;
   list-style: none;
@@ -1673,6 +1727,10 @@ joomla-tab > section {
   font-family: 'IcoMoon';
 }
 
+.icon-times::before {
+  content: "\f00d";
+}
+
 /* Fix for new Off-canvas Button */
 .fa-bars:before {
   font-family: "FontAwesome";
@@ -1712,6 +1770,10 @@ joomla-tab > section {
 
 #tpl_positions_list_chzn {
   margin-bottom: 10px;
+}
+
+.modal {
+  display: none;
 }
 
 
