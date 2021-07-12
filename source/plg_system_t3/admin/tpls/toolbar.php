@@ -48,7 +48,7 @@ if(version_compare(JVERSION, '4','ge')){
 		</ul>
 		<?php endif ?>
 	</div>
-
+	<?php if(version_compare(JVERSION, '4', 'lt')): ?>
 	<div id="t3-admin-tb-themer" 
 		class="btn-group">
 		<button 
@@ -60,7 +60,7 @@ if(version_compare(JVERSION, '4','ge')){
 			<i class="icon-magic"></i>  <?php echo JText::_('T3_TOOLBAR_THEMER') ?>
 		</button>
 	</div>
-
+<?php endif ?>
 	<div id="t3-admin-tb-megamenu" 
 		class="btn-group" >
 		<button 
