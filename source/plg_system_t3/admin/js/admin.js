@@ -85,19 +85,22 @@ var T3Admin = window.T3Admin || {};
 
 			//for style toolbar
 			$('#t3-admin-tb-style-save-save').on('click', function(){
-				Joomla.submitbutton('style.apply');
+
+				 Joomla.submitform('style.apply', document.getElementById('style-form'));
 			});
 
 			$('#t3-admin-tb-style-save-close').on('click', function(){
-				Joomla.submitbutton('style.save');
+
+				Joomla.submitform('style.save', document.getElementById('style-form'));
 			});
 			
 			$('#t3-admin-tb-style-save-clone').on('click', function(){
-				Joomla.submitbutton('style.save2copy');
+
+				Joomla.submitform('style.save2copy', document.getElementById('style-form'));
 			});
 
 			$('#t3-admin-tb-close').on('click', function(){
-				Joomla.submitbutton(($(this).hasClass('template') ? 'template' : 'style') + '.cancel');
+				Joomla.submitform(($(this).hasClass('template') ? 'template' : 'style') + '.cancel', document.getElementById('style-form'));
 			});
 
             // menu assignment toggle
@@ -508,6 +511,7 @@ var T3Admin = window.T3Admin || {};
 						}
 					}
 
+
 					// Validate form fields
 					var elements = form.getElements('fieldset').concat(Array.from(form.elements));
 					for (var i = 0; i < elements.length; i++) {
@@ -541,6 +545,8 @@ var T3Admin = window.T3Admin || {};
 				};
 
 				JFormValidator.prototype.handleResponse = function(state, el){
+
+
 					// Find the label object for the given field if it exists
 					//if (!(el.labelref)) {
 					//	var labels = $$('label');
@@ -553,6 +559,7 @@ var T3Admin = window.T3Admin || {};
 
 					// Set the element and its label (if exists) invalid state
 					if (state == false) {
+
 						el.addClass('invalid');
 						el.set('aria-invalid', 'true');
 						if (el.labelref) {
@@ -560,6 +567,7 @@ var T3Admin = window.T3Admin || {};
 							document.id(el.labelref).set('aria-invalid', 'true');
 						}
 					} else {
+
 						el.removeClass('invalid');
 						el.set('aria-invalid', 'false');
 						if (el.labelref) {
