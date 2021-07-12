@@ -8,7 +8,7 @@
  */
 
 defined('_JEXEC') or die;
-$positions = $this->model->getPositions();
+$positions = !empty($this->positions) ? $this->positions : $this->model->getPositions();
 
 // Add custom position to options
 $customGroupText = JText::_('COM_MODULES_CUSTOM_POSITION');
