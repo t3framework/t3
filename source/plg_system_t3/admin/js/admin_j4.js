@@ -230,7 +230,6 @@ var T3Admin = window.T3Admin || {};
 			form.onsubmit = function(e){
 				var json = {},
 					urlparts = form.action.split('#');
-					
 				if(/apply|save2copy/.test(form['task'].value)){
 					t3active = $('.t3-admin-nav .active a').attr('href').replace(/.*(?=#[^\s]*$)/, '').substr(1);
 
@@ -242,7 +241,7 @@ var T3Admin = window.T3Admin || {};
 					
 					form.action = urlparts.join('#');
 				}
-					
+
 				if($.isFunction(onsubmit)){
 					onsubmit();
 				}
@@ -504,22 +503,14 @@ var T3Admin = window.T3Admin || {};
 							}
 						}
 					}
-					return true;
+
 					// Validate form fields
-					var elements = form.getElementsByTagName('fieldset').concat(Array.from(form.elements));
+					var elements = [].slice.call(form.querySelectorAll('input, textarea, select, button, fieldset'));
 					for (var i = 0; i < elements.length; i++) {
 						if (this.validate(elements[i]) == false) {
 							valid = false;
 						}
 					}
-
-					// Run custom form validators if present
-					new Hash(this.custom).each(function (validator) {
-						if (validator.exec() != true) {
-							valid = false;
-						}
-					});
-
 					if (!valid) {
 						var message = Joomla.JText._('JLIB_FORM_FIELD_INVALID');
 						var errors = jQuery("label.invalid");
@@ -539,13 +530,13 @@ var T3Admin = window.T3Admin || {};
 
 				JFormValidator.prototype.handleResponse = function(state, element, empty){
 					const tagName = element.tagName.toLowerCase(); // Set the element and its label (if exists) invalid state
-			    if (tagName !== 'button' && element.value !== undefined || tagName === 'fieldset') {
-			      if (state === false) {
-			        this.markInvalid(element, empty);
-			      } else {
-			        this.markValid(element);
-			      }
-			    }
+				    if (tagName !== 'button' && element.value !== undefined || tagName === 'fieldset') {
+				      if (state === false) {
+				        this.markInvalid(element, empty);
+				      } else {
+				        this.markValid(element);
+				      }
+				    }
 				};
 
 			}
@@ -702,6 +693,7 @@ var T3Admin = window.T3Admin || {};
 		//T3Admin.switchTab();
 		T3Admin.fixValidate();
         T3Admin.noticeChange ();
+        $('body').addClass('j4');
 	});
 	
 }(jQuery);
