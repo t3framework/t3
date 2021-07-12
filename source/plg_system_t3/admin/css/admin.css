@@ -1772,10 +1772,116 @@ joomla-tab > section {
   margin-bottom: 10px;
 }
 
-.modal {
+.j4 .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
   display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
 }
 
+.j4 .modal.show {
+  opacity: 1;
+}
+
+.j4 .modal-dialog.jviewport-width80 {
+  max-width: none;
+  margin: 1.75rem auto;
+  width: 80vw;
+}
+
+.j4 .jviewport-height60 {
+  height: 60vh;
+}
+
+.j4 .modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: calc(.3rem - 1px);
+  border-top-right-radius: calc(.3rem - 1px);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.btn-close {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: .25em;
+  color: #000;
+  background: transparent url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3E%3C/svg%3E") 50%/1em auto no-repeat;
+  border: 0;
+  border-radius: .25rem;
+  opacity: .5;
+}
+
+.btn-close {
+  color: #000;
+  text-decoration: none;
+  opacity: .75;
+}
+
+iframe {
+  border: 0;
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: .75rem;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: calc(.3rem - 1px);
+  border-bottom-left-radius: calc(.3rem - 1px);
+}
+
+.modal-footer .btn {
+  margin: 0 8px;
+}
+
+
+/* Modal Backdrop */
+.modal-backdrop.show {
+  opacity: .5;
+}
+
+.modal-backdrop {
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+}
 
 /* -------------------------------------------------
 /* Responsive
