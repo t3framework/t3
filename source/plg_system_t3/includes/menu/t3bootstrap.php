@@ -67,7 +67,7 @@ class T3Bootstrap
 				$item->deeper = false;
 				$item->shallower = false;
 				$item->level_diff = 0;
-
+				$itemParams = version_compare(JVERSION, '4','ge') ? $item->getParams() : $item->params;
 				if (isset($items[$lastitem])) {
 					$items[$lastitem]->deeper = ($item->level > $items[$lastitem]->level);
 					$items[$lastitem]->shallower = ($item->level < $items[$lastitem]->level);
@@ -96,21 +96,24 @@ class T3Bootstrap
 
 					case 'alias':
 						// If this is an alias use the item id stored in the parameters to make the link.
-						$item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
+						$item->flink = 'index.php?Itemid=' . $itemParams->get('aliasoptions');
 						break;
 
 					default:
 						$router = $app::getRouter();
-						if ($router->getMode() == JROUTER_MODE_SEF) {
-							$item->flink = 'index.php?Itemid=' . $item->id;
-						} else {
-							$item->flink .= '&Itemid=' . $item->id;
+						if(version_compare(JVERSION, '4', 'lt')){
+							if ($router->getMode() == JROUTER_MODE_SEF) {
+								$item->flink = 'index.php?Itemid=' . $item->id;
+							} else {
+								$item->flink .= '&Itemid=' . $item->id;
+							}
 						}
+						
 						break;
 				}
 
 				if (strcasecmp(substr($item->flink, 0, 4), 'http') && (strpos($item->flink, 'index.php?') !== false)) {
-					$item->flink = JRoute::_($item->flink, true, $item->params->get('secure'));
+					$item->flink = JRoute::_($item->flink, true, $itemParams->get('secure'));
 				} else {
 					$item->flink = JRoute::_($item->flink);
 				}
@@ -118,9 +121,9 @@ class T3Bootstrap
 				// We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
 				// when the cause of that is found the argument should be removed
 				$item->title = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
-				$item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
-				$item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
-				$item->menu_image = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
+				$item->anchor_css = htmlspecialchars($itemParams->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
+				$item->anchor_title = htmlspecialchars($itemParams->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
+				$item->menu_image = $itemParams->get('menu_image', '') ? htmlspecialchars($itemParams->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
 			}
 
 			if (isset($items[$lastitem])) {

@@ -32,8 +32,11 @@ class JDocumentRendererT3Bootstrap extends JDocumentRenderer
 		// import the renderer
 		$t3app    = T3::getApp();
 		$menutype = empty($params['menutype']) ? $t3app->getParam('mm_type', 'mainmenu') : $params['menutype'];
-
-		JDispatcher::getInstance()->trigger('onT3BSMenu', array(&$menutype));
+		if(version_compare(JVERSION, '3','lt')){
+			JDispatcher::getInstance()->trigger('onT3BSMenu', array(&$menutype));
+		}else{
+			JFactory::getApplication()->triggerEvent('onT3BSMenu', array(&$menutype));
+		}
 		$menu = new T3Bootstrap($menutype);
 		
 		return $menu->render(true);

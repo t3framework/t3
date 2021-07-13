@@ -20,12 +20,14 @@ class T3BootstrapTpl
 		$active    = T3Bootstrap::getActive();
 		$active_id = $active->id;
 		$path      = $base->tree;
+
 		?>
 		<ul class="nav navbar-nav">
 			<?php
 			foreach ($list as &$item) :
+				$ItemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParams() : $item->params;
 				//intergration with new params joomla 3.6.x (menu_show)
-				$menu_show = (int)$item->params->get('menu_show', 1);
+				$menu_show = (int)$ItemParams->get('menu_show', 1);
 				if ($menu_show!=1)
 					continue;
 				$class = 'item-' . $item->id;
@@ -36,7 +38,7 @@ class T3BootstrapTpl
 				if (in_array($item->id, $path)) {
 					$class .= ' active';
 				} elseif ($item->type == 'alias') {
-					$aliasToId = $item->params->get('aliasoptions');
+					$aliasToId = $ItemParams->get('aliasoptions');
 					if (count($path) > 0 && $aliasToId == $path[count($path) - 1]) {
 						$class .= ' active';
 					} elseif (in_array($aliasToId, $path)) {
