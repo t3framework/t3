@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 if (version_compare(JVERSION, '3.0', 'ge')) {
 	JHtml::_('bootstrap.tooltip');
 }
+$moduleclass_sfx = $params->get('moduleclass_sfx','');
 ?>
 
 <ol class="breadcrumb <?php echo $moduleclass_sfx; ?>">
@@ -48,7 +49,7 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 				echo '<span>' . $item->name . '</span>';
 			}
 
-			if (($key != $penult_item_key) || $show_last) {
+			if ((($key != $penult_item_key) || $show_last) && !empty($separator)) {
 				echo '<span class="divider">' . $separator . '</span>';
 			}
 
