@@ -62,26 +62,30 @@
 
 <!-- MODAL CLONE LAYOUT -->
 <div id="t3-admin-layout-clone-dlg" class="layout-modal modal fade hide">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">×</button>
-		<h3><?php echo JText::_('T3_LAYOUT_ASK_ADD_LAYOUT') ?></h3>
-	</div>
-	<div class="modal-body">
-		<form class="form-horizontal prompt-block">
-			<p><?php echo JText::_('T3_LAYOUT_ASK_ADD_LAYOUT_DESC') ?></p>
-      <div class="input-prepend">
-        <span class="add-on"><i class="icon-info-sign"></i></span>
-        <input type="text" class="input-xlarge" id="t3-admin-layout-cloned-name" />
-      </div>
-		</form>
-		<div class="message-block">
-			<p class="msg"><?php echo JText::_('T3_LAYOUT_ASK_DEL_LAYOUT_DESC') ?></p>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3><?php echo JText::_('T3_LAYOUT_ASK_ADD_LAYOUT') ?></h3>
+				<button type="button" class="close" <?php echo version_compare(JVERSION, '4', 'ge') ? 'data-bs-dismiss="modal"' : 'data-dismiss="modal"'; ?>>×</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal prompt-block">
+					<p><?php echo JText::_('T3_LAYOUT_ASK_ADD_LAYOUT_DESC') ?></p>
+		      <div class="input-prepend">
+		        <span class="add-on"><i class="icon-info-sign"></i></span>
+		        <input type="text" class="input-xlarge" id="t3-admin-layout-cloned-name" />
+		      </div>
+				</form>
+				<div class="message-block">
+					<p class="msg"><?php echo JText::_('T3_LAYOUT_ASK_DEL_LAYOUT_DESC') ?></p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn cancel" <?php echo version_compare(JVERSION, '4', 'ge') ? 'data-bs-dismiss="modal"' : 'data-dismiss="modal"'; ?>><?php echo JText::_('JCANCEL') ?></button>
+				<button class="btn btn-danger yes hide"><?php echo JText::_('T3_LAYOUT_LABEL_DELETEIT') ?></button>
+				<button class="btn btn-success yes"><?php echo JText::_('T3_LAYOUT_LABEL_CLONEIT') ?></button>
+			</div>
 		</div>
-	</div>
-	<div class="modal-footer">
-		<button class="btn cancel" data-dismiss="modal"><?php echo JText::_('JCANCEL') ?></button>
-		<button class="btn btn-danger yes hide"><?php echo JText::_('T3_LAYOUT_LABEL_DELETEIT') ?></button>
-		<button class="btn btn-success yes"><?php echo JText::_('T3_LAYOUT_LABEL_CLONEIT') ?></button>
 	</div>
 </div>
 <script type="text/javascript">

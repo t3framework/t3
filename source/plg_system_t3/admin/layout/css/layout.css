@@ -535,3 +535,7 @@
 .t3-flex-1 {
   flex: 1;
 }
+/*compatible with joomla 4*/
+.j4 #t3-admin-layout-clone-dlg{
+  margin: 0 auto;
+}
