@@ -85,10 +85,12 @@
 /* Layout Panel Styling
 ---------------------------------------------------*/
 .t3-admin-layout-section {
+  background: #f2f2f2;
+  border-radius: 0;
   margin: 0 0 12px;
   padding: 12px 12px 0;
-  border-radius: 0;
-  background: #f2f2f2;
+  position: relative;
+  overflow: hidden;
 }
 
 .t3-admin-layout-section .t3-admin-layout-section {
@@ -362,6 +364,18 @@
   font-size: 24px;
 }
 
+.t3-admin-layout-preview .logo .logo-img-sm {
+  display: none;
+}
+
+.t3-admin-layout-preview .logo img {
+  max-height: 40px;
+}
+
+.t3-admin-layout-preview .logo .logo-image .site-slogan {
+  display: none;
+}
+
 .t3-admin-layout-preview .logo a {
   color: #333;
 }
@@ -511,4 +525,17 @@
   opacity: 0.5;
   display: block;
   visibility: visible;
+}
+
+.t3-d-flex {
+  display: flex;
+  align-items: stretch;
+}
+
+.t3-flex-1 {
+  flex: 1;
+}
+/*compatible with joomla 4*/
+.j4 #t3-admin-layout-clone-dlg{
+  margin: 0 auto;
 }
