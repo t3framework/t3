@@ -694,6 +694,8 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.fixValidate();
         T3Admin.noticeChange ();
         $('body').addClass('j4');
+        // disabled themermode config on backend
+        $(document).find('#jform_params_themermode').closest('.control-group').hide();
 	});
 	
 }(jQuery);

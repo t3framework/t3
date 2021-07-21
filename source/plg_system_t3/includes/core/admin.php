@@ -240,6 +240,7 @@ class T3Admin {
 			T3Admin.eids = [' . implode(',', $eids) .'];
 			T3Admin.telement = \'' . T3_TEMPLATE . '\';
 			T3Admin.felement = \'' . T3_ADMIN . '\';
+			T3Admin.jversion = \'' . jversion::MAJOR_VERSION . '\';
 			T3Admin.themerUrl = \'' . JUri::getInstance()->toString() . '&t3action=theme&t3task=thememagic' . '\';
 			T3Admin.megamenuUrl = \'' . JUri::getInstance()->toString() . '&t3action=megamenu&t3task=megamenu' . '\';
 			T3Admin.t3updateurl = \'' . JURI::base() . 'index.php?option=com_installer&view=update&task=update.ajax' . '\';
