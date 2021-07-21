@@ -102,27 +102,36 @@ class plgSystemT3 extends JPlugin
 				// if (class_exists($tplHookCls)) {
 				// 	new $tplHookCls($dispatcher, array());
 				// }
+				
 
 				JFactory::getApplication()->triggerEvent('onT3Init');
 
 				//check and execute the t3action
-				T3::checkAction();
+				if(version_compare(JVERSION, '4', 'lt')){
+					T3::checkAction();
+				}
 
 				//check and change template for ajax
 				T3::checkAjax();
 			}
 		}
 	}
-
 	function onAfterDispatch() {
+
 		if (defined('T3_PLUGIN') && T3::detect()) {
 			$t3app = T3::getApp();
 			if ($t3app) $t3app->init();
+		}
+		
+		//check and execute the t3action
+		if(version_compare(JVERSION, '4', 'ge')){
+			T3::checkAction();
 		}
 	}
 
 	function onBeforeRender()
 	{
+
 		if (defined('T3_PLUGIN') && T3::detect()) {
 			$japp = JFactory::getApplication();
 
