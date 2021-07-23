@@ -1779,6 +1779,24 @@ joomla-tab > section {
   margin-bottom: 10px;
 }
 
+
+/* JOOMLA 4 COMPATIBLE
+---------------------- */
+/* Media field */
+.j4 joomla-field-media .field-media-preview {
+  border-radius: 0;
+  height: 60px;
+}
+
+.j4 joomla-field-media .field-media-preview-icon {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 100%;
+  min-width: 100px;
+}
+
+/* Modal */
 .j4 .modal {
   position: fixed;
   top: 0;
