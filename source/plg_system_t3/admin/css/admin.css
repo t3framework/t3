@@ -17,6 +17,7 @@
 ----------------------------------------------------*/
 
 @import "../fonts/fa3/css/font-awesome.css";
+@import "../fonts/fa4/css/font-awesome.css";
 
 body {
   background: #fff;
@@ -1731,6 +1732,12 @@ joomla-tab > section {
   content: "\f00d";
 }
 
+.icon-paint-brush::before {
+  content: "\f1fc";
+  font-family: Font Awesome 5 Free;
+  font-weight: 900;
+}
+
 /* Fix for new Off-canvas Button */
 .fa-bars:before {
   font-family: "FontAwesome";
@@ -1772,19 +1779,35 @@ joomla-tab > section {
   margin-bottom: 10px;
 }
 
+
+/* JOOMLA 4 COMPATIBLE
+---------------------- */
+/* Media field */
+.j4 joomla-field-media .field-media-preview {
+  border-radius: 0;
+  height: 60px;
+}
+
+.j4 joomla-field-media .field-media-preview-icon {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 100%;
+  min-width: 100px;
+}
+
+/* Modal */
 .j4 .modal {
   position: fixed;
-  top: 50%;
+  top: 0;
   left: 0;
   z-index: 1050;
   display: none;
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
-  right: 0;
-  transform: translateY(-50%);
 }
 
 .j4 .modal.show {
