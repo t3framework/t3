@@ -1,13 +1,13 @@
-/** 
+/**
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
  * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @Link:         http://t3-framework.org
  *------------------------------------------------------------------------------
  */
 
@@ -37,7 +37,7 @@
 			}
 			var $ocnav = $navcollapse.clone().appendTo($nav);
 			// enable menu hover
-			$ocnav.find('li.dropdown > a, li.dropdown-submenu > a').on('click tab', function(e) {
+			$ocnav.find('li.dropdown > a, li.dropdown-submenu > a').on('click tap', function(e) {
 				var $a = $(this), $p = $a.parent();
 				if (!$p.hasClass('open')) {
 					e.stopPropagation();
@@ -75,17 +75,17 @@
 
 				$nav.css('top', $(window).scrollTop());
 				wpfix(1);
-				
+
 				setTimeout (function(){
 					$btn.data('off-canvas', 'show');
 					$('html').addClass ('off-canvas-enabled');
 					$(window).on('scroll touchmove', posNav);
 
 					// hide when click on off-canvas-nav
-					$('#off-canvas-nav').on ('click', function (e) {
+					$('#off-canvas-nav').on ('click tap', function (e) {
 						e.stopPropagation();
 					});
-					
+
 					//$('#off-canvas-nav a').on ('click', hideNav);
 					$('body').on ('click', bdHideNav);
 				}, 50);
@@ -98,8 +98,8 @@
 			hideNav = function (e) {
 
 				//prevent close on the first click of parent item
-				if(e && e.type == 'click' 
-					&& e.target.tagName.toUpperCase() == 'A' 
+				if(e && e.type == 'click'
+					&& e.target.tagName.toUpperCase() == 'A'
 					&& $(e.target).parent('li').data('noclick')){
 					return true;
 				}
@@ -107,8 +107,8 @@
 				$(window).off('scroll touchmove', posNav);
 				$('#off-canvas-nav').off ('click');
 				//$('#off-canvas-nav a').off ('click', hideNav);
-				$('body').off ('click', bdHideNav);
-				
+				$('body').off ('click tap', bdHideNav);
+
 				$('html').removeClass ('off-canvas-enabled');
 				$btn.data('off-canvas', 'hide');
 
