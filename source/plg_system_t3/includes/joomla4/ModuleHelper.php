@@ -10,6 +10,18 @@ namespace Joomla\CMS\Helper;
 
 defined('JPATH_PLATFORM') or die;
 
+use Joomla\CMS\Cache\CacheControllerFactoryInterface;
+use Joomla\CMS\Cache\Controller\CallbackController;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filter\InputFilter;
+use Joomla\CMS\Language\LanguageHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Log\Log;
+use Joomla\CMS\Profiler\Profiler;
+use Joomla\Database\ParameterType;
+use Joomla\Registry\Registry;
 
 // Make alias of original FileLayout
 \T3::makeAlias(JPATH_LIBRARIES . '/src/Helper/ModuleHelper.php', 'ModuleHelper', '_ModuleHelper');
@@ -22,6 +34,139 @@ defined('JPATH_PLATFORM') or die;
  */
 abstract class ModuleHelper extends _ModuleHelper
 {
+		/**
+	 * Render the module.
+	 *
+	 * @param   object  $module   A module object.
+	 * @param   array   $attribs  An array of attributes for the module (probably from the XML).
+	 *
+	 * @return  string  The HTML content of the module output.
+	 *
+	 * @since   1.5
+	 */
+	public static function renderModule($module, $attribs = array())
+	{
+		$app = Factory::getApplication();
+
+		// Check that $module is a valid module object
+		if (!\is_object($module) || !isset($module->module) || !isset($module->params))
+		{
+			if (JDEBUG)
+			{
+				Log::addLogger(array('text_file' => 'jmodulehelper.log.php'), Log::ALL, array('modulehelper'));
+				$app->getLogger()->debug(
+					__METHOD__ . '() - The $module parameter should be a module object.',
+					array('category' => 'modulehelper')
+				);
+			}
+
+			return '';
+		}
+
+		// Get module parameters
+		$params = new Registry($module->params);
+
+		// Render the module content
+		static::renderRawModule($module, $params, $attribs);
+
+		if (!empty($attribs['style']) && $attribs['style'] === 'raw')
+		{
+			return $module->content;
+		}
+
+		if (JDEBUG)
+		{
+			Profiler::getInstance('Application')->mark('beforeRenderModule ' . $module->module . ' (' . $module->title . ')');
+		}
+
+		// Record the scope.
+		$scope = $app->scope;
+
+		// Set scope to component name
+		$app->scope = $module->module;
+
+		// Get the template
+		$template = $app->getTemplate();
+
+		// Check if the current module has a style param to override template module style
+		$paramsChromeStyle = $params->get('style');
+		$basePath          = '';
+
+		if ($paramsChromeStyle)
+		{
+			$paramsChromeStyle   = explode('-', $paramsChromeStyle, 2);
+			$ChromeStyleTemplate = strtolower($paramsChromeStyle[0]);
+			$attribs['style']    = $paramsChromeStyle[1];
+
+			// Only set $basePath if the specified template isn't the current or system one.
+			if ($ChromeStyleTemplate !== $template && $ChromeStyleTemplate !== 'system')
+			{
+				$basePath = JPATH_THEMES . '/' . $ChromeStyleTemplate . '/html/layouts';
+			}
+		}
+
+		// Make sure a style is set
+		if (!isset($attribs['style']))
+		{
+			$attribs['style'] = 'none';
+		}
+
+		// Dynamically add outline style
+		if ($app->input->getBool('tp') && ComponentHelper::getParams('com_templates')->get('template_positions_display'))
+		{
+			$attribs['style'] .= ' outline';
+		}
+
+		$module->style = $attribs['style'];
+
+		// If the $module is nulled it will return an empty content, otherwise it will render the module normally.
+		$app->triggerEvent('onRenderModule', array(&$module, &$attribs));
+
+		if ($module === null || !isset($module->content))
+		{
+			return '';
+		}
+
+		$displayData = array(
+			'module'  => $module,
+			'params'  => $params,
+			'attribs' => $attribs,
+		);
+
+		foreach (explode(' ', $attribs['style']) as $style)
+		{
+			if ($moduleContent = LayoutHelper::render('chromes.' . $style, $displayData, $basePath))
+			{
+				$module->content = $moduleContent;
+			}
+		}
+		foreach (explode(' ', $attribs['style']) as $style)
+		{
+			$chromeMethod = 'modChrome_' . $style;
+
+			// Apply chrome and render module
+			if (function_exists($chromeMethod))
+			{
+				$module->style = $attribs['style'];
+
+				ob_start();
+				$chromeMethod($module, $params, $attribs);
+				$module->content = ob_get_contents();
+				ob_end_clean();
+			}
+		}
+		// Revert the scope
+		$app->scope = $scope;
+
+		$app->triggerEvent('onAfterRenderModule', array(&$module, &$attribs));
+
+		if (JDEBUG)
+		{
+			Profiler::getInstance('Application')->mark('afterRenderModule ' . $module->module . ' (' . $module->title . ')');
+		}
+
+		return $module->content;
+	}
 	/**
 	 * Get the path to a layout for a module
 	 *

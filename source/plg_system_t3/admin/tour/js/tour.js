@@ -139,7 +139,7 @@
 			if (this.currentTip.beforeShow !== undefined && $.isFunction(this.currentTip.beforeShow)){
 				this.currentTip.beforeShow.apply(this);
 			}
-
+			console.log('tour:',this.currentTip );
 			var tip = $(this.currentTip.element);
 			if (!tip.length) {
 				// show next tip
@@ -200,8 +200,14 @@
 			// hide current tips
 			$('#t3-admin-tour-controls').appendTo ($('body'));
 			if (this.currentTip) {
-				var tip = $(this.currentTip.element)
-				tip.popover('destroy');
+				var tip = $(this.currentTip.element);
+				if(T3Admin.jversion == 4){
+					console.log('tip:', tip);
+					this.initTipJ4();
+				}else {
+					tip.popover('destroy');	
+				}
+				
 				if (this.currentTip.highlighter) $(this.currentTip.highlighter).removeClass ('t3-admin-tour-hilite');
 				tip.removeClass ('t3-admin-tour-active t3-admin-tour-hilite');
 				this.currentTip = null;
@@ -212,6 +218,9 @@
 				$(document.body).data ('t3-admin-tour-contextTip', null);
 				this.unbindContextTip (tip);
 			}
+		},
+		initTipJ4: function(){
+			$('.t3-admin-tour-popover').remove();
 		},
 
 		actionStatus: function () {

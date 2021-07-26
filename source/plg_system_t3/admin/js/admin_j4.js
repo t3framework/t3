@@ -200,7 +200,7 @@ var T3Admin = window.T3Admin || {};
 			}
 
 			var titles = jptitle.html().split(':');
-
+			console.log(titles);
 			jptitle.removeClass('icon-48-thememanager').html(titles[0] + '<small>' + titles[1] + '</small>');
 
 			//remove joomla title
@@ -694,6 +694,7 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.fixValidate();
         T3Admin.noticeChange ();
         $('body').addClass('j4');
+        $('#t3-admin-tabs').find('ul').addClass('nav tablist');
         // disabled themermode config on backend
         $(document).find('#jform_params_themermode').closest('.control-group').hide();
 	});
