@@ -10,17 +10,12 @@ namespace Joomla\CMS\Helper;
 
 defined('JPATH_PLATFORM') or die;
 
-use Joomla\CMS\Cache\CacheControllerFactoryInterface;
-use Joomla\CMS\Cache\Controller\CallbackController;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filter\InputFilter;
-use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Log\Log;
 use Joomla\CMS\Profiler\Profiler;
-use Joomla\Database\ParameterType;
 use Joomla\Registry\Registry;
 
 // Make alias of original FileLayout
@@ -163,6 +158,64 @@ abstract class ModuleHelper extends _ModuleHelper
 		if (JDEBUG)
 		{
 			Profiler::getInstance('Application')->mark('afterRenderModule ' . $module->module . ' (' . $module->title . ')');
+		}
+
+		return $module->content;
+	}
+	
+	/**
+	 * Render the module content.
+	 *
+	 * @param   object    $module   A module object
+	 * @param   Registry  $params   A module parameters
+	 * @param   array     $attribs  An array of attributes for the module (probably from the XML).
+	 *
+	 * @return  string
+	 *
+	 * @since   4.0.0
+	 */
+	public static function renderRawModule($module, Registry $params, $attribs = array())
+	{
+		if (!empty($module->contentRendered))
+		{
+			return $module->content;
+		}
+
+		if (JDEBUG)
+		{
+			Profiler::getInstance('Application')->mark('beforeRenderRawModule ' . $module->module . ' (' . $module->title . ')');
+		}
+
+		$app = Factory::getApplication();
+
+		// Record the scope.
+		$scope = $app->scope;
+
+		// Set scope to component name
+		$app->scope = $module->module;
+
+		// Get module path
+		$module->module = preg_replace('/[^A-Z0-9_\.-]/i', '', $module->module);
+
+		$dispatcher = $app->bootModule($module->module, $app->getName())->getDispatcher($module, $app);
+
+		// Check if we have a dispatcher
+		if ($dispatcher)
+		{
+			ob_start();
+			$dispatcher->dispatch();
+			$module->content = ob_get_clean();
+		}
+
+		// Add the flag that the module content has been rendered
+		$module->contentRendered = true;
+
+		// Revert the scope
+		$app->scope = $scope;
+
+		if (JDEBUG)
+		{
+			Profiler::getInstance('Application')->mark('afterRenderRawModule ' . $module->module . ' (' . $module->title . ')');
 		}
 
 		return $module->content;
