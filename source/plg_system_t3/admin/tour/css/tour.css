@@ -249,3 +249,6 @@
   margin-top: 1px;
   padding: 0;
 }
+.j4 .t3-admin-tour-popover.show{
+  opacity: 1;
+}

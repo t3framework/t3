@@ -83,7 +83,7 @@ $iswritable = is_writable('t3test.txt');
 					<?php
 					$fieldSets = $form->getFieldsets('params');
 					foreach ($fieldSets as $name => $fieldSet) :
-						$label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_TEMPLATES_'.$name.'_FIELDSET_LABEL';
+						$label = !empty($fieldSet->label) ? $fieldSet->label : "T3_".strtoupper(str_replace("_params", "", $name))."_LABEL";
 					?>
 						<li<?php echo $t3lock == preg_replace( '/\s+/', ' ', $name) ? ' class="active"' : ''?>><a href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>" data-toggle="tab"><?php echo JText::_($label) ?></a></li>
 					<?php
