@@ -215,7 +215,7 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 								<?php echo JText::_('JNOTPUBLISHEDYET'); ?>
 							</span>
 				<?php endif; ?>
-				<?php if ((strtotime($article->publish_down) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()) : ?>
+				<?php if ((strtotime($article->publish_down) < strtotime(JFactory::getDate())) && !in_array($article->publish_down, array('',JFactory::getDbo()->getNullDate()))) : ?>
 					<span class="list-published label label-warning">
 								<?php echo JText::_('JEXPIRED'); ?>
 							</span>

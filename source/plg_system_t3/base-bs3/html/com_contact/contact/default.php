@@ -13,6 +13,7 @@ jimport('joomla.html.html.bootstrap');
 
 $cparams = JComponentHelper::getParams('com_media');
 $tparams = $this->item->params;
+if(version_compare(JVERSION, '4', 'ge')) $this->contact = $this->item;
 ?>
 
 <div class="contact<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Person">

@@ -10,7 +10,9 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.framework');
-
+if(version_compare(JVERSION, '4','ge')){
+	class NewsFeedsHelperRoute extends Joomla\Component\Newsfeeds\Site\Helper\RouteHelper{};
+}
 $n         = count($this->items);
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));

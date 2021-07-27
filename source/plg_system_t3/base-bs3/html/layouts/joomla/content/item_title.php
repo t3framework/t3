@@ -39,7 +39,7 @@ $prefix = $uri->toString(array('scheme', 'host', 'port'));
 	<?php if (strtotime($item->publish_up) > strtotime(JFactory::getDate())) : ?>
 		<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
 	<?php endif; ?>
-	<?php if ((strtotime($item->publish_down) < strtotime(JFactory::getDate())) && $item->publish_down != JFactory::getDbo()->getNullDate()) : ?>
+	<?php if ((strtotime($item->publish_down) < strtotime(JFactory::getDate())) && !in_array($item->publish_down, array('',JFactory::getDbo()->getNullDate()))) : ?>
 		<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
 	<?php endif; ?>
 </header>
