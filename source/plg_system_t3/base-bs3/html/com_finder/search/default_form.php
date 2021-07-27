@@ -3,103 +3,144 @@
  * @package     Joomla.Site
  * @subpackage  com_finder
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   (C) 2011 Open Source Matters, Inc. <https://www.joomla.org>
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-if ($this->params->get('show_advanced', 1) || $this->params->get('show_autosuggest', 1))
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+
+/*
+* This segment of code sets up the autocompleter.
+*/
+if ($this->params->get('show_autosuggest', 1))
 {
-	JHtml::_('jquery.framework');
+	if (version_compare(JVERSION, '4', 'ge')) {
+		
+	$this->document->getWebAssetManager()->usePreset('awesomplete');
+	$this->document->addScriptOptions('finder-search', array('url' => Route::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component')));
+	}else{
+		$doc = JFactory::getDocument();
 
-	$script = "
-jQuery(function() {";
-	if ($this->params->get('show_advanced', 1))
-	{
+		JHtml::_('jquery.framework');
+		$script = "
+			jQuery(function() {";
+
+				if ($this->params->get('show_advanced', 1))
+				{
+					/*
+					* This segment of code disables select boxes that have no value when the
+					* form is submitted so that the URL doesn't get blown up with null values.
+					*/
+					$script .= "
+				jQuery('#finder-search').on('submit', function(e){
+					e.stopPropagation();
+					// Disable select boxes with no value selected.
+					jQuery('#advancedSearch').find('select').each(function(index, el) {
+						var el = jQuery(el);
+						if(!el.val()){
+							el.attr('disabled', 'disabled');
+						}
+					});
+				});";
+				}
 		/*
-		* This segment of code disables select boxes that have no value when the
-		* form is submitted so that the URL doesn't get blown up with null values.
+		* This segment of code sets up the autocompleter.
 		*/
-		$script .= "
-	jQuery('#finder-search').on('submit', function(e){
-		e.stopPropagation();
-		// Disable select boxes with no value selected.
-		jQuery('#advancedSearch').find('select').each(function(index, el) {
-			var el = jQuery(el);
-			if(!el.val()){
-				el.attr('disabled', 'disabled');
+		if ($this->params->get('show_autosuggest', 1))
+			{
+				// enable jquery.ui
+				$wam = \T4\Helper\Asset::getWebAssetManager();
+				$wam->enableAsset('jquery.autocomplete');
+				$script .= "
+				jQuery('.input-group-append a.btn').on('click',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+					var target = jQuery(this).data('target');jQuery(target).slideToggle();
+				});
+			var suggest = jQuery('#q').autocomplete({
+				serviceUrl: '" . JRoute::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component') . "',
+				paramName: 'q',
+				minChars: 1,
+				maxHeight: 400,
+				width: 300,
+				zIndex: 9999,
+				deferRequestBy: 500
+			});";
 			}
-		});
-	});";
-	}
-	/*
-	* This segment of code sets up the autocompleter.
-	*/
-	if ($this->params->get('show_autosuggest', 1))
-	{
-		JHtml::_('script', 'jui/jquery.autocomplete.min.js', array('version' => 'auto', 'relative' => true));
 
-		$script .= "
-	var suggest = jQuery('#q').autocomplete({
-		serviceUrl: '" . JRoute::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component') . "',
-		paramName: 'q',
-		minChars: 1,
-		maxHeight: 400,
-		width: 300,
-		zIndex: 9999,
-		deferRequestBy: 500
-	});";
-	}
+			$script .= "
+		});";
 
-	$script .= "
-});";
+			$doc->addScriptDeclaration($script);
+		}
 
-	JFactory::getDocument()->addScriptDeclaration($script);
 }
+
 ?>
 
-<form id="finder-search" action="<?php echo JRoute::_($this->query->toURI()); ?>" method="get" class="form-inline">
+<form action="<?php echo Route::_($this->query->toUri()); ?>" method="get" class="js-finder-searchform">
 	<?php echo $this->getFields(); ?>
-
-	<?php // DISABLED UNTIL WEIRD VALUES CAN BE TRACKED DOWN. ?>
-	<?php if (false && $this->state->get('list.ordering') !== 'relevance_dsc') : ?>
-		<input type="hidden" name="o" value="<?php echo $this->escape($this->state->get('list.ordering')); ?>" />
-	<?php endif; ?>
-
-	<fieldset class="word">
-		<div class="form-group">
-			<label for="q">
-				<?php echo JText::_('COM_FINDER_SEARCH_TERMS'); ?>
+	<fieldset class="com-finder__search word mb-3">
+		<legend class="com-finder__search-legend visually-hidden">
+			<?php echo Text::_('COM_FINDER_SEARCH_FORM_LEGEND'); ?>
+		</legend>
+		<div class="form-inline">
+			<label for="q" class="me-2">
+				<?php echo Text::_('COM_FINDER_SEARCH_TERMS'); ?>
 			</label>
-			<input type="text" name="q" id="q" size="30" value="<?php echo $this->escape($this->query->input); ?>" class="inputbox" />
-		</div>
-		<div class="form-group">
-			<?php if ($this->escape($this->query->input) != '' || $this->params->get('allow_empty_query')):?>
-				<button id="smartsearch-btn" name="Search" type="submit" class="btn btn-primary"><span class="fa fa-search"></span> <?php echo JText::_('JSEARCH_FILTER_SUBMIT');?></button>
-			<?php else: ?>
-				<button id="smartsearch-btn" name="Search" type="submit" class="btn btn-primary disabled"><span class="fa fa-search"></span> <?php echo JText::_('JSEARCH_FILTER_SUBMIT');?></button>
-			<?php endif; ?>
-			<?php if ($this->params->get('show_advanced', 1)) : ?>
-				<a href="#advancedSearch" data-toggle="collapse" class="btn btn-default"><span class="fa fa-list"></span> <?php echo JText::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?></a>
-			<?php endif; ?>
+			<div class="input-group">
+				<input type="text" name="q" id="q" class="js-finder-search-query form-control" value="<?php echo $this->escape($this->query->input); ?>">
+				<button type="submit" class="btn btn-primary">
+					<span class="icon-search icon-white" aria-hidden="true"></span>
+					<?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?>
+				</button>
+				<?php if ($this->params->get('show_advanced', 1)) : ?>
+					<?php if(version_compare(JVERSION,'4','ge')): ?>
+					<?php HTMLHelper::_('bootstrap.collapse'); ?>
+					<button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#advancedSearch" aria-expanded="<?php echo ($this->params->get('expand_advanced', 0) ? 'true' : 'false'); ?>">
+						<span class="icon-search-plus" aria-hidden="true"></span>
+						<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?></button>
+					<?php else: ?>
+						<a href="#advancedSearch" data-toggle="collapse" class="btn">
+						<span class="icon-list" aria-hidden="true"></span>
+							<?php echo JText::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
+						</a>
+				<?php endif; ?>
+				<?php endif; ?>
+			</div>
 		</div>
 	</fieldset>
 
 	<?php if ($this->params->get('show_advanced', 1)) : ?>
-		<div id="advancedSearch" class="collapse<?php if ($this->params->get('expand_advanced', 0)) echo ' in'; ?>">
-			<hr />
+		<fieldset id="advancedSearch" class="com-finder__advanced js-finder-advanced collapse<?php if ($this->params->get('expand_advanced', 0)) echo ' show'; ?>">
+			<legend class="com-finder__search-advanced visually-hidden">
+				<?php echo Text::_('COM_FINDER_SEARCH_ADVANCED_LEGEND'); ?>
+			</legend>
 			<?php if ($this->params->get('show_advanced_tips', 1)) : ?>
-				<div id="search-query-explained">
-					<div class="advanced-search-tip">
+				<div class="com-finder__tips card card-outline-secondary mb-3">
+					<div class="card-body">
+						<?php if(version_compare(JVERSION, '4', 'ge')): ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_INTRO'); ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_AND'); ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_NOT'); ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_OR'); ?>
+						<?php if ($this->params->get('tuplecount', 1) > 1) : ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_PHRASE'); ?>
+						<?php endif; ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_OUTRO'); ?>
+					<?php else: ?>
 						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS'); ?>
+					<?php endif; ?>
 					</div>
-					<hr />
 				</div>
 			<?php endif; ?>
-			<div id="finder-filter-window">
-				<?php echo JHtml::_('filter.select', $this->query, $this->params); ?>
+			<div id="finder-filter-window" class="com-finder__filter">
+				<?php echo HTMLHelper::_('filter.select', $this->query, $this->params); ?>
 			</div>
-		</div>
+		</fieldset>
 	<?php endif; ?>
 </form>

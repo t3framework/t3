@@ -19,21 +19,35 @@ $category  = $displayData->get('category');
 $extension = $displayData->get('category')->extension;
 $canEdit = $params->get('access-edit');
 $className = substr($extension, 4);
-
-$dispatcher = JEventDispatcher::getInstance();
-
 $category->text = $category->description;
-$dispatcher->trigger('onContentPrepare', array($extension . '.categories', &$category, &$params, 0));
-$category->description = $category->text;
+if(version_compare(JVERSION, '3', 'ge')){
+	JFactory::getApplication()->triggerEvent('onContentPrepare', array($extension . '.categories', &$category, &$params, 0));
+	$category->description = $category->text;
 
-$results = $dispatcher->trigger('onContentAfterTitle', array($extension . '.categories', &$category, &$params, 0));
-$afterDisplayTitle = trim(implode("\n", $results));
+	$results = JFactory::getApplication()->triggerEvent('onContentAfterTitle', array($extension . '.categories', &$category, &$params, 0));
+	$afterDisplayTitle = trim(implode("\n", $results));
 
-$results = $dispatcher->trigger('onContentBeforeDisplay', array($extension . '.categories', &$category, &$params, 0));
-$beforeDisplayContent = trim(implode("\n", $results));
+	$results = JFactory::getApplication()->triggerEvent('onContentBeforeDisplay', array($extension . '.categories', &$category, &$params, 0));
+	$beforeDisplayContent = trim(implode("\n", $results));
 
-$results = $dispatcher->trigger('onContentAfterDisplay', array($extension . '.categories', &$category, &$params, 0));
-$afterDisplayContent = trim(implode("\n", $results));
+	$results = JFactory::getApplication()->triggerEvent('onContentAfterDisplay', array($extension . '.categories', &$category, &$params, 0));
+	$afterDisplayContent = trim(implode("\n", $results));
+}else{
+	$dispatcher = JEventDispatcher::getInstance();
+
+	$dispatcher->trigger('onContentPrepare', array($extension . '.categories', &$category, &$params, 0));
+	$category->description = $category->text;
+
+	$results = $dispatcher->trigger('onContentAfterTitle', array($extension . '.categories', &$category, &$params, 0));
+	$afterDisplayTitle = trim(implode("\n", $results));
+
+	$results = $dispatcher->trigger('onContentBeforeDisplay', array($extension . '.categories', &$category, &$params, 0));
+	$beforeDisplayContent = trim(implode("\n", $results));
+
+	$results = $dispatcher->trigger('onContentAfterDisplay', array($extension . '.categories', &$category, &$params, 0));
+	$afterDisplayContent = trim(implode("\n", $results));
+}
+
 
 /**
  * This will work for the core components but not necessarily for other components
