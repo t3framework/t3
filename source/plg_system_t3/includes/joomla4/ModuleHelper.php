@@ -183,10 +183,10 @@ abstract class ModuleHelper extends _ModuleHelper
 
 		if (JDEBUG)
 		{
-			Profiler::getInstance('Application')->mark('beforeRenderRawModule ' . $module->module . ' (' . $module->title . ')');
+			\JProfiler::getInstance('Application')->mark('beforeRenderModule ' . $module->module . ' (' . $module->title . ')');
 		}
 
-		$app = Factory::getApplication();
+		$app = \JFactory::getApplication();
 
 		// Record the scope.
 		$scope = $app->scope;
@@ -194,17 +194,39 @@ abstract class ModuleHelper extends _ModuleHelper
 		// Set scope to component name
 		$app->scope = $module->module;
 
+		// Get module parameters
+		$params = new Registry($module->params);
+
+		// Get the template
+		$template = $app->getTemplate();
+
 		// Get module path
 		$module->module = preg_replace('/[^A-Z0-9_\.-]/i', '', $module->module);
+		$path = JPATH_BASE . '/modules/' . $module->module . '/' . $module->module . '.php';
 
-		$dispatcher = $app->bootModule($module->module, $app->getName())->getDispatcher($module, $app);
-
-		// Check if we have a dispatcher
-		if ($dispatcher)
+		// Load the module
+		if (file_exists($path))
 		{
+			$lang = \JFactory::getLanguage();
+
+			$coreLanguageDirectory      = JPATH_BASE;
+			$extensionLanguageDirectory = dirname($path);
+
+			$langPaths = $lang->getPaths();
+
+			// Only load the module's language file if it hasn't been already
+			if (!$langPaths || (!isset($langPaths[$coreLanguageDirectory]) && !isset($langPaths[$extensionLanguageDirectory])))
+			{
+				// 1.5 or Core then 1.6 3PD
+				$lang->load($module->module, $coreLanguageDirectory, null, false, true) ||
+					$lang->load($module->module, $extensionLanguageDirectory, null, false, true);
+			}
+
+			$content = '';
 			ob_start();
-			$dispatcher->dispatch();
-			$module->content = ob_get_clean();
+			include $path;
+			$module->content = ob_get_contents() . $content;
+			ob_end_clean();
 		}
 
 		// Add the flag that the module content has been rendered
