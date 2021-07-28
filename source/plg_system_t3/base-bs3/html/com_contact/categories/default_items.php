@@ -8,7 +8,9 @@
  */
 
 defined('_JEXEC') or die;
-
+if(!class_exists('ContactHelperRoute') && version_compare(JVERSION, '4', 'ge')){
+	class ContactHelperRoute extends \Joomla\Component\Contact\Site\Helper\RouteHelper{};
+}
 if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('bootstrap.tooltip');
 }

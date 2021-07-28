@@ -37,7 +37,7 @@ $direction = JFactory::getLanguage()->isRtl() ? 'left' : 'right';
 		<a class="btn btn-default" href="<?php echo $displayData['link']; ?>" itemprop="url" aria-label="<?php echo JText::_('COM_CONTENT_READ_MORE'); ?> <?php echo htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8'); ?>">
 			<span>
 				<?php echo '<span class="icon-chevron-' . $direction . '" aria-hidden="true"></span>'; ?> 
-				<?php echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE'); ?>
+				<?php echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE',$item->title); ?>
 			</span>
 		</a>
 	<?php else : ?>
