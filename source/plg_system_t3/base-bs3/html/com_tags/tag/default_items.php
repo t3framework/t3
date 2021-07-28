@@ -8,7 +8,9 @@
  */
 
 defined('_JEXEC') or die;
-
+if(version_compare(JVERSION, '4', 'ge')){
+	class TagsHelperRoute extends \Joomla\Component\Tags\Site\Helper\RouteHelper{};
+}
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 JHtml::_('behavior.core');

@@ -203,7 +203,8 @@
 				var tip = $(this.currentTip.element);
 				if(T3Admin.jversion == 4){
 					console.log('tip:', tip);
-					this.initTipJ4();
+					// this.initTipJ4();
+					tip.popover('dispose');	
 				}else {
 					tip.popover('destroy');	
 				}

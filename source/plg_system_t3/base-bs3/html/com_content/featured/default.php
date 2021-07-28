@@ -12,7 +12,10 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::addIncludePath(T3_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
-JHtml::_('behavior.caption');
+if (version_compare(JVERSION, '4', 'lt')) {
+	JHtml::_('behavior.caption');
+}
+$this->columns = !empty($this->columns) ? $this->columns : $this->params->get('num_columns');
 
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space

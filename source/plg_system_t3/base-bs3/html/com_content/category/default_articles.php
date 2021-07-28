@@ -267,7 +267,7 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 			<?php if ($isEditable) : ?>
 				<td headers="categorylist_header_edit" class="list-edit">
 					<?php if ($article->params->get('access-edit')) : ?>
-						<?php echo JHtml::_('icon.edit', $article, $params); ?>
+						<?php echo JHtml::_('icon.edit', $article, $this->params); ?>
 					<?php endif; ?>
 				</td>
 			<?php endif; ?>

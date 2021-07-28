@@ -9,7 +9,9 @@
 
 defined('_JEXEC') or die;
 JHtml::_('behavior.core');
-
+if(version_compare(JVERSION, '4', 'ge')){
+	class ContactHelperRoute extends \Joomla\Component\Contact\Site\Helper\RouteHelper{};
+}
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
 

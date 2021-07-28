@@ -33,7 +33,9 @@ $icons = !empty($this->print) || $canEdit || $params->get('show_print_icon') || 
 
 // Check if associations are implemented. If they are, define the parameter.
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
-JHtml::_('behavior.caption');
+if(version_compare(JVERSION, '4', 'lt')){
+	JHtml::_('behavior.caption');
+}
 ?>
 
 <!-- Page header -->

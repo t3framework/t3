@@ -100,7 +100,6 @@ class T3Template extends ObjectExtendable
 				$this->_layoutsettings->loadString(file_get_contents($fconfig), 'INI', array('processSections' => true));
 			}
 		}
-
 		JFactory::getApplication()->triggerEvent('onT3TplInit', array($this));
 
 		//JDispatcher::getInstance()->trigger('onT3TplInit', array($this));
@@ -915,7 +914,8 @@ class T3Template extends ObjectExtendable
 			// megamenu.css override in template
 			$this->addCss('megamenu');
 		}
-
+		// JFactory::getDocument()->getWebAssetManager()->disableAsset('script','bootstrap.es5');
+		
 		// Add scripts
 		if (version_compare(JVERSION, '3.0', 'ge')) {
 			JHtml::_('jquery.framework');
