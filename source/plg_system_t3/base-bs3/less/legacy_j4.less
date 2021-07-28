@@ -1,0 +1,132 @@
+// BOOTSTRAP LEGACY
+// ----------------------------------
+.sr-only,
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+
+.j40 {
+  // Input group
+  // -----------
+  .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+
+    .form-control {
+      width: auto;
+    }
+
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  // Media field
+  joomla-field-media {
+    .input-group {
+      .form-control {
+        border-top-left-radius: 0;
+        min-width: 291px;
+      }
+
+      .btn {
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  // Control label
+  .form-control-feedback {
+    font-size: 12px;
+    font-weight: 400;
+    top: auto;
+    bottom: -28px;
+    line-height: 1;
+    width: auto;
+    white-space: nowrap;
+  }
+
+  // COMPONENTS
+  // ----------------------
+  // Newsfeed
+  .com-newsfeeds-newsfeed__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      border-bottom: 1px solid @t3-border-color;
+      padding: @t3-global-padding 0;
+    }
+
+    .feed-link {
+      margin-bottom: @t3-global-margin;
+    }
+  }
+
+  figure {
+    margin-bottom: @t3-global-margin;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  // Contact form
+  #com-contact-form {
+    margin-bottom: @t3-global-margin;
+  }
+
+  // Request confirm
+  .request-confirm {
+    fieldset {
+      legend {
+        font-size: 16px;
+        padding-bottom: @t3-global-padding;
+      }
+    }
+  }
+
+  // Article assign
+  .article-aside {
+    .icons {
+      float: right;
+
+      a {
+        display: block;
+        position: relative;
+      }
+
+      [role="tooltip"] {
+        background-color: rgba(0,0,0,0.6);
+        border-radius: 3px;
+        color: #fff;
+        display: none;
+        padding: 2px 4px;
+        position: absolute;
+        white-space: nowrap;
+        right: 0;
+      }
+
+      &:hover {
+        [role="tooltip"] {
+          display: block;
+        }
+      }
+    }
+  }
+}
