@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\String\PunycodeHelper;
+
 /**
  * Marker_class: Class based on the selection of text, none, or icons
  * jicon-text, jicon-none, jicon-icon
@@ -19,9 +22,13 @@ defined('_JEXEC') or die;
 		($this->contact->address || $this->contact->suburb  || $this->contact->state || $this->contact->country || $this->contact->postcode)) : ?>
 		<?php if ($this->params->get('address_check') > 0) : ?>
 			<dt>
+			<?php if (!$this->params->get('marker_address')) : ?>
+				<span class="icon-address" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('COM_CONTACT_ADDRESS'); ?></span>
+			<?php else : ?>
 				<span class="<?php echo $this->params->get('marker_class'); ?>" >
 					<?php echo $this->params->get('marker_address'); ?>
 				</span>
+			<?php endif; ?>
 			</dt>
 		<?php endif; ?>
 
@@ -70,9 +77,13 @@ defined('_JEXEC') or die;
 
 <?php if ($this->contact->email_to && $this->params->get('show_email')) : ?>
 	<dt>
+		<?php if (!$this->params->get('marker_email')) : ?>
+			<span class="icon-envelope" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('COM_CONTACT_EMAIL'); ?>"></span>
+		<?php else : ?>
 		<span class="<?php echo $this->params->get('marker_class'); ?>" itemprop="email">
 			<?php echo nl2br($this->params->get('marker_email')); ?>
 		</span>
+		<?php endif; ?>
 	</dt>
 	<dd>
 		<span class="contact-emailto">
@@ -83,9 +94,13 @@ defined('_JEXEC') or die;
 
 <?php if ($this->contact->telephone && $this->params->get('show_telephone')) : ?>
 	<dt>
+		<?php if (!$this->params->get('marker_telephone')) : ?>
+				<span class="icon-phone" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('COM_CONTACT_TELEPHONE'); ?></span>
+		<?php else : ?>
 		<span class="<?php echo $this->params->get('marker_class'); ?>">
 			<?php echo $this->params->get('marker_telephone'); ?>
 		</span>
+		<?php endif; ?>
 	</dt>
 	<dd>
 		<span class="contact-telephone" itemprop="telephone">
@@ -95,9 +110,13 @@ defined('_JEXEC') or die;
 <?php endif; ?>
 <?php if ($this->contact->fax && $this->params->get('show_fax')) : ?>
 	<dt>
+		<?php if (!$this->params->get('marker_fax')) : ?>
+			<span class="icon-fax" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('COM_CONTACT_FAX'); ?></span>
+		<?php else : ?>
 		<span class="<?php echo $this->params->get('marker_class'); ?>">
 			<?php echo $this->params->get('marker_fax'); ?>
 		</span>
+		<?php endif; ?>
 	</dt>
 	<dd>
 		<span class="contact-fax" itemprop="faxNumber">
@@ -107,9 +126,13 @@ defined('_JEXEC') or die;
 <?php endif; ?>
 <?php if ($this->contact->mobile && $this->params->get('show_mobile')) :?>
 	<dt>
+		<?php if (!$this->params->get('marker_mobile')) : ?>
+			<span class="icon-mobile" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('COM_CONTACT_MOBILE'); ?></span>
+		<?php else : ?>
 		<span class="<?php echo $this->params->get('marker_class'); ?>" >
 			<?php echo $this->params->get('marker_mobile'); ?>
 		</span>
+		<?php endif; ?>
 	</dt>
 	<dd>
 		<span class="contact-mobile" itemprop="telephone">
@@ -119,8 +142,13 @@ defined('_JEXEC') or die;
 <?php endif; ?>
 <?php if ($this->contact->webpage && $this->params->get('show_webpage')) : ?>
 	<dt>
+		<?php if (!$this->params->get('marker_webpage')) : ?>
+			<span class="icon-home" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('COM_CONTACT_WEBPAGE'); ?></span>
+		<?php else : ?>
 		<span class="<?php echo $this->params->get('marker_class'); ?>" >
+			<?php echo $this->params->get('marker_webpage'); ?>
 		</span>
+		<?php endif; ?>
 	</dt>
 	<dd>
 		<span class="contact-webpage">

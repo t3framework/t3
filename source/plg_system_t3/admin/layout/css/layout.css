@@ -535,7 +535,26 @@
 .t3-flex-1 {
   flex: 1;
 }
+
 /*compatible with joomla 4*/
-.j4 #t3-admin-layout-clone-dlg{
+.j4 #t3-admin-layout-clone-dlg {
+  border: 0;
+  left: 50%;
+  top: 50%;
+  height: auto;
+  transform: translate(-50%, -50%);
   margin: 0 auto;
+}
+
+.j4 #t3-admin-layout-clone-dlg .modal-header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.j4 #t3-admin-layout-clone-dlg .modal-body {
+  padding: 24px;
+}
+
+.j4 #t3-admin-layout-clone-dlg .modal-body form {
+  margin: 0;
 }

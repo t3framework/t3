@@ -52,9 +52,7 @@ if ($this->params->get('show_autosuggest', 1))
 		*/
 		if ($this->params->get('show_autosuggest', 1))
 			{
-				// enable jquery.ui
-				$wam = \T4\Helper\Asset::getWebAssetManager();
-				$wam->enableAsset('jquery.autocomplete');
+				JHtml::_('script', 'jui/jquery.autocomplete.min.js', array('version' => 'auto', 'relative' => true));
 				$script .= "
 				jQuery('.input-group-append a.btn').on('click',function(e){
 					e.preventDefault();
