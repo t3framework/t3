@@ -11,7 +11,6 @@
  * @Link:         http://t3-framework.org 
  *------------------------------------------------------------------------------
  */
-
  
 // no direct access
 defined('_JEXEC') or die;
