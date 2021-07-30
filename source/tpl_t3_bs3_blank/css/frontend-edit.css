@@ -654,3 +654,6 @@ body.modal-open .modal.hide .iframe {
 .j40 joomla-tab-element {
   margin-bottom: 20px;
 }
+ul.chosen-results {
+  clear: both;
+}
