@@ -1350,7 +1350,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 									}
 								})
 								.parents('select')
-								.trigger('liszt:updated')
+								// .trigger('liszt:updated') dont need trigger
 								.next('.t3-admin-layout-rmvbtn').toggleClass('disabled', !jallpos.val())
 								.next('.t3-admin-layout-defbtn').toggleClass('disabled', jspan.siblings('h3').html() == jspan.closest('[data-original]').attr('data-original'));
 
