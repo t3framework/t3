@@ -1920,6 +1920,10 @@ div.finder {
   background: #428bca;
   color: #ffffff;
 }
+.pager ul {
+  float: right;
+  margin: 0;
+}
 .pagenav {
   margin: 0;
   padding: 0;
