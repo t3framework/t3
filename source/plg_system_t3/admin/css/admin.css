@@ -287,7 +287,7 @@ joomla-field-media .input-group .field-media-input {
 
 /* THE NAV
 ----------- */
-joomla-tab > ul,
+#t3-admin-tabsTabs,
 .t3-admin-nav .nav-tabs {
   margin: 0;
   border-top: 1px solid #ccc;
@@ -299,7 +299,7 @@ joomla-tab > ul,
   padding: 0;
 }
 
-joomla-tab > ul > li,
+#t3-admin-tabsTabs > li,
 .t3-admin-nav .nav-tabs > li {
   margin-bottom: -1px;
   margin-right: 20px !important;
@@ -307,7 +307,7 @@ joomla-tab > ul > li,
   position: relative;
 }
 
-joomla-tab > ul > li > a,
+#t3-admin-tabsTabs > li > a,
 .t3-admin-nav .nav-tabs > li > a {
   color: #555;
   border-radius: 0;
@@ -319,7 +319,7 @@ joomla-tab > ul > li > a,
   text-align: center;
 }
 
-joomla-tab > ul > li > a:hover,
+#t3-admin-tabsTabs > li > a:hover,
 .t3-admin-nav .nav-tabs > li > a:hover {
   border: 0;
   border-bottom: 5px solid #07b;
@@ -327,8 +327,8 @@ joomla-tab > ul > li > a:hover,
   background: transparent;
 }
 
-joomla-tab > ul > li > a[role="tab"][active],
-joomla-tab > ul > li > a[role="tab"][active]:hover,
+#t3-admin-tabsTabs > li > .nav-link.active,
+#t3-admin-tabsTabs > li > .nav-link.active:hover,
 .t3-admin-nav .nav-tabs > .active > a, 
 .t3-admin-nav .nav-tabs > .active > a:hover {
   border: 0;
@@ -336,6 +336,7 @@ joomla-tab > ul > li > a[role="tab"][active]:hover,
   font-weight: bold;
   background: transparent;
   border-bottom: 5px solid #07b;
+  text-decoration: none;
 }
 
 
