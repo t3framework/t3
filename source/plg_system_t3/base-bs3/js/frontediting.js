@@ -125,6 +125,7 @@
 				$('.btn.jmodedit')
 					.on({
 						mouseenter: function() {
+							$('body>.tooltip.bs-tooltip-top').addClass('in');
 							// Stop delayed removal programmed by mouseleave of .jmoddiv or of this one:
 							$(this).clearQueue();
 						},
