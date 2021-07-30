@@ -560,6 +560,7 @@ samp {
 }
 .jumbotron iframe {
   margin-top: 20px;
+  max-width: 100%;
 }
 
 .form-control:focus {
@@ -2609,4 +2610,93 @@ a.list-group-item.active:focus .list-group-item-text {
 .poweredby .t3-logo-small {
   opacity: .8;
   display: inline-block;
+}
+
+.sr-only,
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.j40 .input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.j40 .input-group .form-control {
+  width: auto;
+}
+.j40 .input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.j40 joomla-field-media .input-group .form-control {
+  border-top-left-radius: 0;
+  min-width: 291px;
+}
+.j40 joomla-field-media .input-group .btn {
+  border-top-right-radius: 0;
+}
+.j40 .form-control-feedback {
+  font-size: 12px;
+  font-weight: 400;
+  top: auto;
+  bottom: -28px;
+  line-height: 1;
+  width: auto;
+  white-space: nowrap;
+}
+.j40 .com-newsfeeds-newsfeed__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.j40 .com-newsfeeds-newsfeed__items li {
+  border-bottom: 1px solid #eeeeee;
+  padding: 20px 0;
+}
+.j40 .com-newsfeeds-newsfeed__items .feed-link {
+  margin-bottom: 20px;
+}
+.j40 figure {
+  margin-bottom: 20px;
+}
+.j40 figure img {
+  max-width: 100%;
+}
+.j40 #com-contact-form {
+  margin-bottom: 20px;
+}
+.j40 .request-confirm fieldset legend {
+  font-size: 16px;
+  padding-bottom: 20px;
+}
+.j40 .article-aside .icons {
+  float: right;
+}
+.j40 .article-aside .icons a {
+  display: block;
+  position: relative;
+}
+.j40 .article-aside .icons [role="tooltip"] {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  color: #fff;
+  display: none;
+  padding: 2px 4px;
+  position: absolute;
+  white-space: nowrap;
+  right: 0;
+}
+.j40 .article-aside .icons:hover [role="tooltip"] {
+  display: block;
 }

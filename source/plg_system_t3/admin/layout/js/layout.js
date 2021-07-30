@@ -61,12 +61,10 @@ T3AdminLayout = window.T3AdminLayout || {};
 			}
 
 			var onsubmit = form.onsubmit;
-
-			form.onsubmit = function(e){
-
+			form.addEventListener('submit', function(e){
 				(form.task.value && form.task.value.indexOf('.cancel') != -1) ?
 					($.isFunction(onsubmit) ? onsubmit() : false) : T3AdminLayout.t3savelayout(onsubmit);
-			};
+			});
 		},
 
 		initPrepareLayout: function(){
@@ -229,6 +227,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 						.next().remove();
 				}
 			}
+			jtplpos.chosen();
 		},
 
 		initLayoutClone: function(){

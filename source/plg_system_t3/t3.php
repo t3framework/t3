@@ -106,13 +106,22 @@ class plgSystemT3 extends JPlugin
 
 				JFactory::getApplication()->triggerEvent('onT3Init');
 
-				//check and execute the t3action
-				if(version_compare(JVERSION, '4', 'lt')){
+				$jinput = JFactory::getApplication()->input;
+				$t3Task = $jinput->get('t3task', '');
+				$template = $jinput->getCmd('template');
+				$layout   = $jinput->getCmd('layout');
+				if($layout && $t3Task){
+					//check and execute the t3action
 					T3::checkAction();
 				}
+				if(version_compare(JVERSION, '4', 'lt')){
+					//check and execute the t3action
+					T3::checkAction();
 
-				//check and change template for ajax
-				T3::checkAjax();
+					//check and change template for ajax
+					T3::checkAjax();
+				}
+
 			}
 		}
 	}
@@ -122,10 +131,13 @@ class plgSystemT3 extends JPlugin
 			$t3app = T3::getApp();
 			if ($t3app) $t3app->init();
 		}
-		
-		//check and execute the t3action
+
 		if(version_compare(JVERSION, '4', 'ge')){
+			//check and execute the t3action
 			T3::checkAction();
+
+			//check and change template for ajax
+			T3::checkAjax();
 		}
 	}
 

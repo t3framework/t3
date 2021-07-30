@@ -18,9 +18,9 @@ use Joomla\CMS\Language\Text;
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
+JHtml::_('behavior.tooltip');
 
 $user = JFactory::getUser();
 $canDo = method_exists('TemplatesHelper', 'getActions') ? TemplatesHelper::getActions() : JHelperContent::getActions('com_templates');
@@ -82,8 +82,8 @@ $iswritable = is_writable('t3test.txt');
 	<fieldset>
 		<div class="t3-admin clearfix">
 			<div class="t3-admin-nav">
-				<?php echo HTMLHelper::_('uitab.startTabSet', 't3-admin-tabs', array('startOffset' => 0)); ?>
-				<?php echo HTMLHelper::_('uitab.addTab', 't3-admin-tabs', 'overview_params', Text::_('T3_OVERVIEW_LABEL')) ?>
+				<?php echo HTMLHelper::_('bootstrap.startTabSet', 't3-admin-tabs', array('startOffset' => 0,'active'=>$t3lock)); ?>
+				<?php echo HTMLHelper::_('bootstrap.addTab', 't3-admin-tabs', 'overview_params', Text::_('T3_OVERVIEW_LABEL')) ?>
 					<?php
 						$default_overview_override = T3_TEMPLATE_PATH . '/admin/default_overview.php';
 						if(file_exists($default_overview_override)) {
@@ -92,11 +92,11 @@ $iswritable = is_writable('t3test.txt');
 							include T3_ADMIN_PATH . '/admin/tpls/default_overview.php';
 						}
 					?>
-				<?php echo HTMLHelper::_('uitab.endTab') ?>
+				<?php echo HTMLHelper::_('bootstrap.endTab') ?>
 			<?php
 			$fieldSets = $form->getFieldsets('params');
 			foreach ($fieldSets as $name => $fieldSet) : ?>
-				<?php echo HTMLHelper::_('uitab.addTab', 't3-admin-tabs', $name, Text::_("T3_".strtoupper(str_replace("_params", "", $name))."_LABEL")) ?>
+				<?php echo HTMLHelper::_('bootstrap.addTab', 't3-admin-tabs', $name, Text::_("T3_".strtoupper(str_replace("_params", "", $name))."_LABEL")) ?>
 					<?php
 					if (isset($fieldSet->description) && trim($fieldSet->description)) : 
 						echo '<div class="t3-admin-fieldset-desc">'.(JText::_($fieldSet->description)).'</div>';
@@ -135,16 +135,16 @@ $iswritable = is_writable('t3test.txt');
 					</div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<?php echo HTMLHelper::_('uitab.endTab') ?>
+				<?php echo HTMLHelper::_('bootstrap.endTab') ?>
 			<?php endforeach;  ?>
 			<?php if ($user->authorise('core.edit', 'com_menu') && $form->getValue('client_id') == 0):?>
-			<?php echo HTMLHelper::_('uitab.addTab', 't3-admin-tabs', 'assignment_params', Text::_('T3_MENUS_ASSIGNMENT_LABEL')) ?>
+			<?php echo HTMLHelper::_('bootstrap.addTab', 't3-admin-tabs', 'assignment_params', Text::_('T3_MENUS_ASSIGNMENT_LABEL')) ?>
 				<?php if ($canDo->get('core.edit.state')) : ?>
 					<?php include T3_ADMIN_PATH . '/admin/tpls/default_assignment.php'; ?>
 				<?php endif; ?>
-			<?php echo HTMLHelper::_('uitab.endTab') ?>
+			<?php echo HTMLHelper::_('bootstrap.endTab') ?>
 			<?php endif;?>
-			<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
 
 			</div>
 		</div>
