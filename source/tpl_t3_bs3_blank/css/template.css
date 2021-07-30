@@ -1144,6 +1144,17 @@ input.invalid {
 #login-form #form-login-remember label {
   font-weight: normal;
 }
+.j40 #login-form .input-group {
+  flex-wrap: nowrap;
+}
+.j40 #login-form .input-group-addon {
+  width: auto;
+}
+.j40 #login-form input[type="text"],
+.j40 #login-form input[type="password"] {
+  flex: 1;
+  width: auto;
+}
 .banneritem a {
   font-weight: bold;
 }
