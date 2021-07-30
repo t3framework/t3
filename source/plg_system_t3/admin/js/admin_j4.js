@@ -227,7 +227,7 @@ var T3Admin = window.T3Admin || {};
 
 			var onsubmit = form.onsubmit;
 
-			form.onsubmit = function(e){
+			form.addEventListener("submit", function(e){
 				var json = {},
 					urlparts = form.action.split('#');
 				if(/apply|save2copy/.test(form['task'].value)){
@@ -245,7 +245,7 @@ var T3Admin = window.T3Admin || {};
 				if($.isFunction(onsubmit)){
 					onsubmit();
 				}
-			};
+			});
 		},
 
 		initChangeStyle: function(){
@@ -465,11 +465,14 @@ var T3Admin = window.T3Admin || {};
 				}
 			}
 		},
-
 		switchTab: function () {
-			$('.t3-admin-nav a[data-toggle="tab"]').on('shown', function (e) {
+			$('.t3-admin-nav a[data-bs-toggle="tab"]').on('show.bs.tab', function (e) {
 				var url = e.target.href;
 			  	window.location.hash = url.substring(url.indexOf('#')).replace ('_params', '');
+			  	console.log('tab:', this);
+			  	$('.t3-admin-nav li').removeClass('active');
+			  	$(this).parent('li').addClass('active');
+
 			});
 
 			var hash = window.location.hash;
@@ -690,11 +693,11 @@ var T3Admin = window.T3Admin || {};
 		T3Admin.initChangeStyle();
 		T3Admin.initT3ThemeExtras();
 		//T3Admin.initCheckupdate();
-		//T3Admin.switchTab();
+		T3Admin.switchTab();
 		T3Admin.fixValidate();
         T3Admin.noticeChange ();
         $('body').addClass('j4');
-        $('#t3-admin-tabs').find('ul').addClass('nav tablist');
+        $('.t3-admin-nav').find('ul').addClass('nav tablist');
         // disabled themermode config on backend
         $(document).find('#jform_params_themermode').closest('.control-group').hide();
 	});
