@@ -8,13 +8,14 @@
  */
 
 defined('JPATH_BASE') or die;
+use Joomla\CMS\Language\Text;
 $item = $displayData['item'];
 $title = $this->escape($item->category_title);
 if (!isset($item->catslug)) {
 	$item->catslug = $item->category_alias ? ($item->catid.':'.$item->category_alias) : $item->catid;
 }
 ?>
-			<dd class="category-name hasTooltip" title="<?php echo JText::sprintf('COM_CONTENT_CATEGORY', ''); ?>">
+			<dd class="category-name hasTooltip" title="<?php echo Text::sprintf('COM_CONTENT_CATEGORY', ''); ?>">
 				<i class="fa fa-folder-open"></i>
 				<?php if ($displayData['params']->get('link_category') && $item->catslug) : ?>
 					<?php echo JHtml::_('link', JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)), '<span itemprop="genre">'.$title.'</span>'); ?>
