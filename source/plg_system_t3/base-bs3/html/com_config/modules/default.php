@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.formvalidator');
@@ -46,39 +47,39 @@ JFactory::getDocument()->addScriptDeclaration("
 		<!-- Begin Content -->
 		<div class="span12">
 
-			<div class="btn-toolbar" role="toolbar" aria-label="<?php echo JText::_('JTOOLBAR'); ?>">
+			<div class="btn-toolbar" role="toolbar" aria-label="<?php echo Text::_('JTOOLBAR'); ?>">
 				<div class="btn-group">
 					<button type="button" class="btn btn-default btn-primary"
 						onclick="Joomla.submitbutton('config.save.modules.apply')">
 						<span class="icon-apply" aria-hidden="true"></span>
-						<?php echo JText::_('JAPPLY'); ?>
+						<?php echo Text::_('JAPPLY'); ?>
 					</button>
 				</div>
 				<div class="btn-group">
 					<button type="button" class="btn btn-default"
 						onclick="Joomla.submitbutton('config.save.modules.save')">
 						<span class="icon-save" aria-hidden="true"></span>
-						<?php echo JText::_('JSAVE'); ?>
+						<?php echo Text::_('JSAVE'); ?>
 					</button>
 				</div>
 				<div class="btn-group">
 					<button type="button" class="btn btn-default"
 						onclick="Joomla.submitbutton('config.cancel.modules')">
 						<span class="icon-cancel" aria-hidden="true"></span>
-						<?php echo JText::_('JCANCEL'); ?>
+						<?php echo Text::_('JCANCEL'); ?>
 					</button>
 				</div>
 			</div>
 
 			<hr class="hr-condensed" />
 			
-			<legend><?php echo JText::_('COM_CONFIG_MODULES_SETTINGS_TITLE'); ?></legend>
+			<legend><?php echo Text::_('COM_CONFIG_MODULES_SETTINGS_TITLE'); ?></legend>
 
 			<div>
-				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_NAME'); ?>
+				<?php echo Text::_('COM_CONFIG_MODULES_MODULE_NAME'); ?>
 				<span class="label label-default"><?php echo $this->item['title']; ?></span>
 				&nbsp;&nbsp;
-				<?php echo JText::_('COM_CONFIG_MODULES_MODULE_TYPE'); ?>
+				<?php echo Text::_('COM_CONFIG_MODULES_MODULE_TYPE'); ?>
 				<span class="label label-default"><?php echo $this->item['module']; ?></span>
 			</div>
 

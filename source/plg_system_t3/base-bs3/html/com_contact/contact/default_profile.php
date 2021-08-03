@@ -8,6 +8,8 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
+
 ?>
 <?php if (JPluginHelper::isEnabled('user', 'profile')) :
 	$fields = $this->item->profile->getFieldset('profile'); ?>
@@ -30,7 +32,7 @@ defined('_JEXEC') or die;
 							break;
 
 						case 'profile_dob':
-							echo '<dd>' . JHtml::_('date', $profile->text, JText::_('DATE_FORMAT_LC4'), false) . '</dd>';
+							echo '<dd>' . JHtml::_('date', $profile->text, Text::_('DATE_FORMAT_LC4'), false) . '</dd>';
 						break;
 
 						default:

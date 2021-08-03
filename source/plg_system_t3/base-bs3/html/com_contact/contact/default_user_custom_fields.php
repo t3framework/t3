@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 $params             = $this->item->params;
 $presentation_style = $params->get('presentation_style');
@@ -39,7 +40,7 @@ $userFieldGroups    = array();
 			<div class="panel-heading">
 			<h4 class="panel-title">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#slide-contact" href="#<?php echo 'display-' . $id; ?>">
-				<?php echo JText::_('COM_CONTACT_USER_FIELDS');?>
+				<?php echo Text::_('COM_CONTACT_USER_FIELDS');?>
 				</a>
 			</h4>
 			</div>
@@ -53,7 +54,7 @@ $userFieldGroups    = array();
 							<?php endif; ?>
 
 							<?php if ($field->params->get('showlabel')) : ?>
-								<?php echo '<dt>' . JText::_($field->label) . '</dt>'; ?>
+								<?php echo '<dt>' . Text::_($field->label) . '</dt>'; ?>
 							<?php endif; ?>
 
 							<?php echo '<dd>' . $field->value . '</dd>'; ?>
@@ -69,7 +70,7 @@ $userFieldGroups    = array();
 
 	<!-- Tabs -->
 	<?php if ($presentation_style == 'tabs') : ?>
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'display-profile', $groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'display-profile', $groupTitle ?: Text::_('COM_CONTACT_USER_FIELDS')); ?>
 			<div class="contact-profile" id="user-custom-fields-<?php echo $id; ?>">
 				<dl class="dl-horizontal">
 				<?php foreach ($fields as $field) : ?>
@@ -78,7 +79,7 @@ $userFieldGroups    = array();
 					<?php endif; ?>
 
 					<?php if ($field->params->get('showlabel')) : ?>
-						<?php echo '<dt>' . JText::_($field->label) . '</dt>'; ?>
+						<?php echo '<dt>' . Text::_($field->label) . '</dt>'; ?>
 					<?php endif; ?>
 
 					<?php echo '<dd>' . $field->value . '</dd>'; ?>
@@ -92,7 +93,7 @@ $userFieldGroups    = array();
 
 	<!-- Plain -->
 	<?php if ($presentation_style == 'plain') : ?>
-		<?php echo '<h3>' . ($groupTitle ?: JText::_('COM_CONTACT_USER_FIELDS')) . '</h3>'; ?>
+		<?php echo '<h3>' . ($groupTitle ?: Text::_('COM_CONTACT_USER_FIELDS')) . '</h3>'; ?>
 		<div class="contact-profile" id="user-custom-fields-<?php echo $id; ?>">
 			<dl class="dl-horizontal">
 			<?php foreach ($fields as $field) : ?>
@@ -101,7 +102,7 @@ $userFieldGroups    = array();
 				<?php endif; ?>
 
 			<?php if ($field->params->get('showlabel')) : ?>
-				<?php echo '<dt>' . JText::_($field->label) . '</dt>'; ?>
+				<?php echo '<dt>' . Text::_($field->label) . '</dt>'; ?>
 			<?php endif; ?>
 				<?php echo '<dd>' . $field->value . '</dd>'; ?>
 			<?php endforeach; ?>

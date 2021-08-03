@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
@@ -33,7 +34,7 @@ JHtml::_('behavior.formvalidator');
 			<?php endif; ?>
 
 			<?php if ($this->params->get('login_image') != '') :?>
-				<img src="<?php echo $this->escape($this->params->get('login_image')); ?>" class="login-image" alt="<?php echo JText::_('COM_USERS_LOGIN_IMAGE_ALT'); ?>"/>
+				<img src="<?php echo $this->escape($this->params->get('login_image')); ?>" class="login-image" alt="<?php echo Text::_('COM_USERS_LOGIN_IMAGE_ALT'); ?>"/>
 			<?php endif; ?>
 
 		<?php if (($this->params->get('logindescription_show') == 1 && str_replace(' ', '', $this->params->get('login_description')) != '') || $this->params->get('login_image') != '') : ?>
@@ -73,7 +74,7 @@ JHtml::_('behavior.formvalidator');
 						<div class="checkbox">
 							<label>
 								<input id="remember" type="checkbox" name="remember" value="yes"/>
-								<?php echo JText::_('COM_USERS_LOGIN_REMEMBER_ME') ?>
+								<?php echo Text::_('COM_USERS_LOGIN_REMEMBER_ME') ?>
 							</label>
 						</div>
 					</div>
@@ -83,7 +84,7 @@ JHtml::_('behavior.formvalidator');
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-9">
 						<button type="submit" class="btn btn-primary">
-							<?php echo JText::_('JLOGIN'); ?>
+							<?php echo Text::_('JLOGIN'); ?>
 						</button>
 					</div>
 				</div>
@@ -100,18 +101,18 @@ JHtml::_('behavior.formvalidator');
 			<ul>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
-					<?php echo JText::_('COM_USERS_LOGIN_RESET'); ?></a>
+					<?php echo Text::_('COM_USERS_LOGIN_RESET'); ?></a>
 				</li>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-					<?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?></a>
+					<?php echo Text::_('COM_USERS_LOGIN_REMIND'); ?></a>
 				</li>
 				<?php
 				$usersConfig = JComponentHelper::getParams('com_users');
 				if ($usersConfig->get('allowUserRegistration')) : ?>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-						<?php echo JText::_('COM_USERS_LOGIN_REGISTER'); ?></a>
+						<?php echo Text::_('COM_USERS_LOGIN_REGISTER'); ?></a>
 				</li>
 				<?php endif; ?>
 			</ul>

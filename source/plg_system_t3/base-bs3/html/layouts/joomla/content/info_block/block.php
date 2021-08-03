@@ -8,6 +8,7 @@
  */
 
 defined('JPATH_BASE') or die;
+use Joomla\CMS\Language\Text;
 JHtml::_('bootstrap.tooltip');
 
 $blockPosition = $displayData['params']->get('info_block_position', 2);
@@ -21,7 +22,7 @@ $blockPosition = $displayData['params']->get('info_block_position', 2);
 			<dt class="article-info-term">
 				<?php // TODO: implement info_block_show_title param to hide article info title ?>
 				<?php if ($displayData['params']->get('info_block_show_title', 1)) : ?>
-					<?php echo JText::_('COM_CONTENT_ARTICLE_INFO'); ?>
+					<?php echo Text::_('COM_CONTENT_ARTICLE_INFO'); ?>
 				<?php endif; ?>
 			</dt>
 

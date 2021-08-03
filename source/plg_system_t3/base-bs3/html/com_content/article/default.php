@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
@@ -148,7 +149,7 @@ if(version_compare(JVERSION, '4', 'lt')){
 						<?php $attribs = json_decode($this->item->attribs); ?>
 						<?php
 						if ($attribs->alternative_readmore == null) :
-							echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');
+							echo Text::_('COM_CONTENT_REGISTER_TO_READ_MORE');
 						elseif ($readmore = $attribs->alternative_readmore) :
 							echo $readmore;
 							if ($params->get('show_readmore_title', 0) != 0) :
@@ -157,7 +158,7 @@ if(version_compare(JVERSION, '4', 'lt')){
 						elseif ($params->get('show_readmore_title', 0) == 0) :
 							echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');
 						else :
-							echo JText::_('COM_CONTENT_READ_MORE');
+							echo Text::_('COM_CONTENT_READ_MORE');
 							echo JHtml::_('string.truncate', $this->item->title, $params->get('readmore_limit'));
 						endif; ?>
 						</span></a>

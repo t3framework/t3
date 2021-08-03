@@ -8,10 +8,12 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
+
 $positions = !empty($this->positions) ? $this->positions : $this->model->getPositions();
 
 // Add custom position to options
-$customGroupText = JText::_('COM_MODULES_CUSTOM_POSITION');
+$customGroupText = Text::_('COM_MODULES_CUSTOM_POSITION');
 
 // Build field
 $attr = array(
@@ -19,8 +21,8 @@ $attr = array(
 	'list.select' => $this->item['position'],
 	'list.attr'   => 'class="chzn-custom-value" '
 		. 'data-custom_group_text="' . $customGroupText . '" '
-		. 'data-no_results_text="' . JText::_('COM_MODULES_ADD_CUSTOM_POSITION') . '" '
-		. 'data-placeholder="' . JText::_('COM_MODULES_TYPE_OR_SELECT_POSITION') . '" '
+		. 'data-no_results_text="' . Text::_('COM_MODULES_ADD_CUSTOM_POSITION') . '" '
+		. 'data-placeholder="' . Text::_('COM_MODULES_TYPE_OR_SELECT_POSITION') . '" '
 );
 
 echo JHtml::_('select.groupedlist', $positions, 'jform[position]', $attr);

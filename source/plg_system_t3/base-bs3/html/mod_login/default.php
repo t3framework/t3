@@ -9,6 +9,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JLoader::register('UsersHelperRoute', JPATH_SITE . '/components/com_users/helpers/route.php');
 
@@ -35,7 +36,7 @@ if (version_compare(JVERSION, '4', 'ge')) {
 			</div>
 		<?php endif; ?>
 		<div class="logout-button">
-			<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGOUT'); ?>"/>
+			<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo Text::_('JLOGOUT'); ?>"/>
 			<input type="hidden" name="option" value="com_users"/>
 			<input type="hidden" name="task" value="user.logout"/>
 			<input type="hidden" name="return" value="<?php echo $return; ?>"/>
@@ -54,30 +55,30 @@ if (version_compare(JVERSION, '4', 'ge')) {
 				<?php if (!$params->get('usetext')) : ?>
 					<div class="input-group">
 						<span class="input-group-addon">
-							<span class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></span>
+							<span class="fa fa-user tip" title="<?php echo Text::_('MOD_LOGIN_VALUE_USERNAME') ?>"></span>
 						</span>
 						<input id="modlgn-username" type="text" name="username" class="input form-control" tabindex="0" size="18"
-							   placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" aria-label="username" />
+							   placeholder="<?php echo Text::_('MOD_LOGIN_VALUE_USERNAME') ?>" aria-label="username" />
 					</div>
 				<?php else: ?>
-					<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
+					<label for="modlgn-username"><?php echo Text::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
 					<input id="modlgn-username" type="text" name="username" class="input-sm form-control" tabindex="0"
-						   size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
+						   size="18" placeholder="<?php echo Text::_('MOD_LOGIN_VALUE_USERNAME') ?>"/>
 				<?php endif; ?>
 			</div>
 			<div id="form-login-password" class="form-group">
 				<?php if (!$params->get('usetext')) : ?>
 				<div class="input-group">
 						<span class="input-group-addon">
-							<span class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></span>
+							<span class="fa fa-lock tip" title="<?php echo Text::_('JGLOBAL_PASSWORD') ?>"></span>
 						</span>
 					<input id="modlgn-passwd" type="password" name="password" class="input form-control" tabindex="0"
-						   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" aria-label="password" />
+						   size="18" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD') ?>" aria-label="password" />
 				</div>
 			<?php else: ?>
-				<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
+				<label for="modlgn-passwd"><?php echo Text::_('JGLOBAL_PASSWORD') ?></label>
 				<input id="modlgn-passwd" type="password" name="password" class="input-sm form-control" tabindex="0"
-					   size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"/>
+					   size="18" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD') ?>"/>
 			<?php endif; ?>
 			</div>
 			<?php if (isset($twofactormethods) && count($twofactormethods) > 1): ?>
@@ -85,18 +86,18 @@ if (version_compare(JVERSION, '4', 'ge')) {
 				<?php if (!$params->get('usetext')) : ?>
 				<div class="input-group">
 					<span class="input-group-addon">
-						<span class="fa fa-star hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>"></span>
+						<span class="fa fa-star hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>"></span>
 					</span>
-					<label for="modlgn-secretkey" class="element-invisible"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
-					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
-					<span class="input-group-addon hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+					<label for="modlgn-secretkey" class="element-invisible"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+					<span class="input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
 						<span class="fa fa-question-circle"></span>
 					</span>
 				</div>
 				<?php else: ?>
-					<label for="modlgn-secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY') ?></label>
-					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
-					<span class="btn btn-default width-auto hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+					<label for="modlgn-secretkey"><?php echo Text::_('JGLOBAL_SECRETKEY') ?></label>
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+					<span class="btn btn-default width-auto hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
 						<span class="fa fa-question-circle"></span>
 					</span>
 				<?php endif; ?>
@@ -107,11 +108,11 @@ if (version_compare(JVERSION, '4', 'ge')) {
 				<div id="form-login-remember" class="form-group">
 					<input id="modlgn-remember" type="checkbox"
 							name="remember" class="input"
-							value="yes" aria-label="remember"/> <?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?>
+							value="yes" aria-label="remember"/> <?php echo Text::_('MOD_LOGIN_REMEMBER_ME') ?>
 				</div>
 			<?php endif; ?>
 			<div class="control-group">
-				<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGIN') ?>"/>
+				<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo Text::_('JLOGIN') ?>"/>
 			</div>
 
 			<?php $usersConfig = JComponentHelper::getParams('com_users'); ?>
@@ -119,15 +120,15 @@ if (version_compare(JVERSION, '4', 'ge')) {
 				<?php if ($usersConfig->get('allowUserRegistration')) : ?>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-						<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="fa fa-arrow-right"></span></a>
+						<?php echo Text::_('MOD_LOGIN_REGISTER'); ?> <span class="fa fa-arrow-right"></span></a>
 				</li>
 				<?php endif; ?>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-						<?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
+						<?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo JText::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
 				</li>
 			</ul>
 

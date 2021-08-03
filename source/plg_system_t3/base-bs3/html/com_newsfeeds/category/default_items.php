@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('behavior.framework');
 if(version_compare(JVERSION, '4','ge')){
@@ -19,7 +20,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 ?>
 
 <?php if (empty($this->items)) : ?>
-	<p><?php echo JText::_('COM_NEWSFEEDS_NO_ARTICLES'); ?></p>
+	<p><?php echo Text::_('COM_NEWSFEEDS_NO_ARTICLES'); ?></p>
 <?php else : ?>
 
 	<form action="<?php echo htmlspecialchars(JUri::getInstance()->toString(), ENT_COMPAT, 'UTF-8'); ?>" method="post" name="adminForm" id="adminForm">
@@ -29,23 +30,23 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 					<div class="btn-group">
 						<label class="filter-search-lbl element-invisible" for="filter-search">
 							<span class="label label-warning">
-								<?php echo JText::_('JUNPUBLISHED'); ?>
+								<?php echo Text::_('JUNPUBLISHED'); ?>
 							</span>
-							<?php echo JText::_('COM_NEWSFEEDS_FILTER_LABEL') . '&#160;'; ?>
+							<?php echo Text::_('COM_NEWSFEEDS_FILTER_LABEL') . '&#160;'; ?>
 						</label>
 						<input type="text" name="filter-search" id="filter-search"
 							   value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="input"
 							   onchange="document.adminForm.submit();"
 							<?php if (version_compare(JVERSION, '3.0', 'ge')) : ?>
-								title="<?php echo JText::_('COM_NEWSFEEDS_FILTER_SEARCH_DESC'); ?>"
-								placeholder="<?php echo JText::_('COM_NEWSFEEDS_FILTER_SEARCH_DESC'); ?>"
+								title="<?php echo Text::_('COM_NEWSFEEDS_FILTER_SEARCH_DESC'); ?>"
+								placeholder="<?php echo Text::_('COM_NEWSFEEDS_FILTER_SEARCH_DESC'); ?>"
 							<?php endif; ?> />
 					</div>
 				<?php endif; ?>
 				<?php if ($this->params->get('show_pagination_limit')) : ?>
 					<div class="btn-group pull-right">
 						<label for="limit" class="element-invisible">
-							<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>
+							<?php echo Text::_('JGLOBAL_DISPLAY_NUM'); ?>
 						</label>
 						<?php echo $this->pagination->getLimitBox(); ?>
 					</div>
@@ -74,7 +75,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				</span>
 				<?php if ($this->items[$i]->published == 0) : ?>
 					<span class="label label-warning">
-						<?php echo JText::_('JUNPUBLISHED'); ?>
+						<?php echo Text::_('JUNPUBLISHED'); ?>
 					</span>
 				<?php endif; ?>
 				<br/>

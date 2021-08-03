@@ -8,8 +8,9 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
-if (version_compare(JVERSION, '3.0', 'ge')) {
+if (version_compare(JVERSION, '3.0', 'ge')) {	
 	JHtml::_('bootstrap.tooltip');
 }
 $moduleclass_sfx = $params->get('moduleclass_sfx','');
@@ -18,9 +19,9 @@ $moduleclass_sfx = $params->get('moduleclass_sfx','');
 <ol class="breadcrumb <?php echo $moduleclass_sfx; ?>">
 	<?php
 	if ($params->get('showHere', 1)) {
-		echo '<li class="active">' . JText::_('MOD_BREADCRUMBS_HERE') . '&#160;</li>';
+		echo '<li class="active">' . Text::_('MOD_BREADCRUMBS_HERE') . '&#160;</li>';
 	} else {
-		echo '<li class="active"><span class="hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip" title="' . JText::_('MOD_BREADCRUMBS_HERE') . '"></i></span></li>';
+		echo '<li class="active"><span class="hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip" title="' . Text::_('MOD_BREADCRUMBS_HERE') . '"></i></span></li>';
 	}
 
 	// Get rid of duplicated entries on trail including home page when using multilanguage

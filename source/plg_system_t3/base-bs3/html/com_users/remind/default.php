@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('behavior.keepalive');
 if(version_compare(JVERSION, '3.0', 'lt')){
@@ -31,7 +32,7 @@ JHtml::_('behavior.formvalidator');
 		<?php foreach ($this->form->getFieldsets() as $fieldset) : ?>
 		<fieldset>
 				<?php if (isset($fieldset->label)) : ?>
-					<p><?php echo JText::_($fieldset->label); ?></p>
+					<p><?php echo Text::_($fieldset->label); ?></p>
 				<?php endif; ?>
 				<?php echo $this->form->renderFieldset($fieldset->name); ?>
 
@@ -39,7 +40,7 @@ JHtml::_('behavior.formvalidator');
 		<?php endforeach; ?>
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JSUBMIT'); ?></button>
+				<button type="submit" class="btn btn-primary validate"><?php echo Text::_('JSUBMIT'); ?></button>
 				<?php echo JHtml::_('form.token'); ?>
 			</div>
 		</div>

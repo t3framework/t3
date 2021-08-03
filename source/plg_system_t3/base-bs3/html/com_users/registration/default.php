@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('behavior.keepalive');
 if(version_compare(JVERSION, '3.0', 'lt')){
@@ -31,7 +32,7 @@ JHtml::_('behavior.formvalidation');
 			<?php // If the fieldset has a label set, display it as the legend. ?>
 			<?php if (isset($fieldset->label)):
 			?>
-				<legend><?php echo JText::_($fieldset->label);?></legend>
+				<legend><?php echo Text::_($fieldset->label);?></legend>
 			<?php endif;?>
 			<?php // Iterate through the fields in the set and display them. ?>
 			<?php echo $this->form->renderFieldset($fieldset->name); ?>
@@ -40,8 +41,8 @@ JHtml::_('behavior.formvalidation');
 	<?php endforeach;?>
 		<div class="form-group form-actions">
 			<div class="col-sm-offset-3 col-sm-9">
-				<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JREGISTER');?></button>
-				<a class="btn cancel" href="<?php echo JRoute::_('');?>" title="<?php echo JText::_('JCANCEL');?>"><?php echo JText::_('JCANCEL');?></a>
+				<button type="submit" class="btn btn-primary validate"><?php echo Text::_('JREGISTER');?></button>
+				<a class="btn cancel" href="<?php echo JRoute::_('');?>" title="<?php echo Text::_('JCANCEL');?>"><?php echo Text::_('JCANCEL');?></a>
 				<input type="hidden" name="option" value="com_users" />
 				<input type="hidden" name="task" value="registration.register" />
 				<?php echo JHtml::_('form.token');?>

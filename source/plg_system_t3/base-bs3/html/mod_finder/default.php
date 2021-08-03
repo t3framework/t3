@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::addIncludePath(JPATH_SITE . '/components/com_finder/helpers/html');
 
@@ -25,11 +26,11 @@ $lang->load('com_finder', JPATH_SITE);
 $suffix = $params->get('moduleclass_sfx');
 $output = '<input type="text" name="q" id="mod-finder-searchword' . $module->id . '" class="search-query input-medium" size="'
 	. $params->get('field_size', 20) . '" value="' . htmlspecialchars(JFactory::getApplication()->input->get('q', '', 'string'), ENT_COMPAT, 'UTF-8') . '"'
-	. ' placeholder="' . JText::_('MOD_FINDER_SEARCH_VALUE') . '"/>';
+	. ' placeholder="' . Text::_('MOD_FINDER_SEARCH_VALUE') . '"/>';
 
 $showLabel  = $params->get('show_label', 1);
 $labelClass = (!$showLabel ? 'element-invisible ' : '') . 'finder' . $suffix;
-$label      = '<label for="mod-finder-searchword' . $module->id . '" class="' . $labelClass . '">' . $params->get('alt_label', JText::_('JSEARCH_FILTER_SUBMIT')) . '</label>';
+$label      = '<label for="mod-finder-searchword' . $module->id . '" class="' . $labelClass . '">' . $params->get('alt_label', Text::_('JSEARCH_FILTER_SUBMIT')) . '</label>';
 
 switch ($params->get('label_pos', 'left'))
 {
@@ -53,7 +54,7 @@ switch ($params->get('label_pos', 'left'))
 
 if ($params->get('show_button'))
 {
-	$button = '<button class="btn btn-primary hasTooltip ' . $suffix . ' finder' . $suffix . '" type="submit" title="' . JText::_('MOD_FINDER_SEARCH_BUTTON') . '"><span class="icon-search icon-white"></span>' . JText::_('JSEARCH_FILTER_SUBMIT') . '</button>';
+	$button = '<button class="btn btn-primary hasTooltip ' . $suffix . ' finder' . $suffix . '" type="submit" title="' . Text::_('MOD_FINDER_SEARCH_BUTTON') . '"><span class="icon-search icon-white"></span>' . Text::_('JSEARCH_FILTER_SUBMIT') . '</button>';
 
 	switch ($params->get('button_pos', 'left'))
 	{
@@ -90,7 +91,7 @@ jQuery(document).ready(function() {
 		{
 			var el = jQuery(this);
 
-			if (el.val() === '" . JText::_('MOD_FINDER_SEARCH_VALUE', true) . "')
+			if (el.val() === '" . Text::_('MOD_FINDER_SEARCH_VALUE', true) . "')
 			{
 				el.val('');
 			}
@@ -160,7 +161,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		<?php $show_advanced = $params->get('show_advanced'); ?>
 		<?php if ($show_advanced == 2) : ?>
 			<br />
-			<a href="<?php echo JRoute::_($route); ?>"><?php echo JText::_('COM_FINDER_ADVANCED_SEARCH'); ?></a>
+			<a href="<?php echo JRoute::_($route); ?>"><?php echo Text::_('COM_FINDER_ADVANCED_SEARCH'); ?></a>
 		<?php elseif ($show_advanced == 1) : ?>
 			<div id="mod-finder-advanced<?php echo $module->id; ?>">
 				<?php echo JHtml::_('filter.select', $query, $params); ?>

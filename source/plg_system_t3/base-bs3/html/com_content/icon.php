@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 use Joomla\Registry\Registry;
 /**
@@ -41,16 +42,16 @@ abstract class JHtmlIcon
 		{
 			if ($legacy)
 			{
-				$text = JHtml::_('image', 'system/new.png', JText::_('JNEW'), null, true);
+				$text = JHtml::_('image', 'system/new.png', Text::_('JNEW'), null, true);
 			}
 			else
 			{
-				$text = '<span class="fa fa-plus"></span>&#160;' . JText::_('JNEW') . '&#160;';
+				$text = '<span class="fa fa-plus"></span>&#160;' . Text::_('JNEW') . '&#160;';
 			}
 		}
 		else
 		{
-			$text = JText::_('JNEW') . '&#160;';
+			$text = Text::_('JNEW') . '&#160;';
 		}
 
 		// Add the button classes to the attribs array
@@ -96,19 +97,19 @@ abstract class JHtmlIcon
 		{
 			if ($legacy)
 			{
-				$text = JHtml::_('image', 'system/emailButton.png', JText::_('JGLOBAL_EMAIL'), null, true);
+				$text = JHtml::_('image', 'system/emailButton.png', Text::_('JGLOBAL_EMAIL'), null, true);
 			}
 			else
 			{
-				$text = '<span class="fa fa-envelope"></span> ' . JText::_('JGLOBAL_EMAIL');
+				$text = '<span class="fa fa-envelope"></span> ' . Text::_('JGLOBAL_EMAIL');
 			}
 		}
 		else
 		{
-			$text = JText::_('JGLOBAL_EMAIL');
+			$text = Text::_('JGLOBAL_EMAIL');
 		}
 
-		$attribs['title']   = JText::_('JGLOBAL_EMAIL');
+		$attribs['title']   = Text::_('JGLOBAL_EMAIL');
 		$attribs['onclick'] = "window.open(this.href,'win2','" . $status . "'); return false;";
 
 		$output = JHtml::_('link', JRoute::_($url), $text, $attribs);
@@ -155,18 +156,18 @@ abstract class JHtmlIcon
 			$checkoutUser = JFactory::getUser($article->checked_out);
 
 			$date         = JHtml::_('date', $article->checked_out_time);
-			$tooltip      = JText::_('JLIB_HTML_CHECKED_OUT') . ' :: ' . JText::sprintf('COM_CONTENT_CHECKED_OUT_BY', $checkoutUser->name)
+			$tooltip      = Text::_('JLIB_HTML_CHECKED_OUT') . ' :: ' . JText::sprintf('COM_CONTENT_CHECKED_OUT_BY', $checkoutUser->name)
 				. ' <br /> ' . $date;
 
 			if ($legacy)
 			{
 				$button = JHtml::_('image', 'system/checked_out.png', null, null, true);
 				$text   = '<span class="hasTooltip" title="' . JHtml::tooltipText($tooltip . '', 0) . '">'
-					. $button . '</span> ' . JText::_('JLIB_HTML_CHECKED_OUT');
+					. $button . '</span> ' . Text::_('JLIB_HTML_CHECKED_OUT');
 			}
 			else
 			{
-				$text = '<span class="hasTooltip icon-lock" title="' . T3J::tooltipText($tooltip . '', 0) . '"></span> ' . JText::_('JLIB_HTML_CHECKED_OUT');
+				$text = '<span class="hasTooltip icon-lock" title="' . T3J::tooltipText($tooltip . '', 0) . '"></span> ' . Text::_('JLIB_HTML_CHECKED_OUT');
 			}
 
 			$output = JHtml::_('link', '#', $text, $attribs);
@@ -178,11 +179,11 @@ abstract class JHtmlIcon
 
 		if ($article->state == 0)
 		{
-			$overlib = JText::_('JUNPUBLISHED');
+			$overlib = Text::_('JUNPUBLISHED');
 		}
 		else
 		{
-			$overlib = JText::_('JPUBLISHED');
+			$overlib = Text::_('JPUBLISHED');
 		}
 
 		$date   = JHtml::_('date', $article->created);
@@ -201,7 +202,7 @@ abstract class JHtmlIcon
 			{
 				$icon = 'edit_unpublished.png';
 			}
-			$text = JHtml::_('image', 'system/' . $icon, JText::_('JGLOBAL_EDIT'), null, true);
+			$text = JHtml::_('image', 'system/' . $icon, Text::_('JGLOBAL_EDIT'), null, true);
 		}
 		else
 		{
@@ -211,7 +212,7 @@ abstract class JHtmlIcon
 			{
 				$icon = 'eye-close';
 			}
-			$text = '<span class="hasTooltip fa fa-' . $icon . ' tip" title="' . T3J::tooltipText(JText::_('COM_CONTENT_EDIT_ITEM'), $overlib, 0) . '"></span>&#160;' . JText::_('JGLOBAL_EDIT') . '&#160;';
+			$text = '<span class="hasTooltip fa fa-' . $icon . ' tip" title="' . T3J::tooltipText(Text::_('COM_CONTENT_EDIT_ITEM'), $overlib, 0) . '"></span>&#160;' . Text::_('JGLOBAL_EDIT') . '&#160;';
 		}
 
 		$output = JHtml::_('link', JRoute::_($url), $text, $attribs);
@@ -245,19 +246,19 @@ abstract class JHtmlIcon
 		{
 			if ($legacy)
 			{
-				$text = JHtml::_('image', 'system/printButton.png', JText::_('JGLOBAL_PRINT'), null, true);
+				$text = JHtml::_('image', 'system/printButton.png', Text::_('JGLOBAL_PRINT'), null, true);
 			}
 			else
 			{
-				$text = '<span class="fa fa-print"></span>&#160;' . JText::_('JGLOBAL_PRINT') . '&#160;';
+				$text = '<span class="fa fa-print"></span>&#160;' . Text::_('JGLOBAL_PRINT') . '&#160;';
 			}
 		}
 		else
 		{
-			$text = JText::_('JGLOBAL_PRINT');
+			$text = Text::_('JGLOBAL_PRINT');
 		}
 
-		$attribs['title']   = JText::_('JGLOBAL_PRINT');
+		$attribs['title']   = Text::_('JGLOBAL_PRINT');
 		$attribs['onclick'] = "window.open(this.href,'win2','" . $status . "'); return false;";
 		$attribs['rel']     = 'nofollow';
 
@@ -281,16 +282,16 @@ abstract class JHtmlIcon
 		{
 			if ($legacy)
 			{
-				$text = JHtml::_('image', 'system/printButton.png', JText::_('JGLOBAL_PRINT'), null, true);
+				$text = JHtml::_('image', 'system/printButton.png', Text::_('JGLOBAL_PRINT'), null, true);
 			}
 			else
 			{
-				$text = '<span class="fa fa-print"></span>&#160;' . JText::_('JGLOBAL_PRINT') . '&#160;';
+				$text = '<span class="fa fa-print"></span>&#160;' . Text::_('JGLOBAL_PRINT') . '&#160;';
 			}
 		}
 		else
 		{
-			$text = JText::_('JGLOBAL_PRINT');
+			$text = Text::_('JGLOBAL_PRINT');
 		}
 
 		return '<a href="#" onclick="window.print();return false;">' . $text . '</a>';
