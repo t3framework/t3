@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 // Create a shortcut for params.
 $item = $displayData['item'];
@@ -34,12 +35,12 @@ $prefix = $uri->toString(array('scheme', 'host', 'port'));
 	</<?php echo $title_tag; ?>>
 
 	<?php if ($item->state == 0) : ?>
-		<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
+		<span class="label label-warning"><?php echo Text::_('JUNPUBLISHED'); ?></span>
 	<?php endif; ?>
 	<?php if (strtotime($item->publish_up) > strtotime(JFactory::getDate())) : ?>
-		<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
+		<span class="label label-warning"><?php echo Text::_('JNOTPUBLISHEDYET'); ?></span>
 	<?php endif; ?>
 	<?php if ((strtotime($item->publish_down) < strtotime(JFactory::getDate())) && !in_array($item->publish_down, array('',JFactory::getDbo()->getNullDate()))) : ?>
-		<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
+		<span class="label label-warning"><?php echo Text::_('JEXPIRED'); ?></span>
 	<?php endif; ?>
 </header>

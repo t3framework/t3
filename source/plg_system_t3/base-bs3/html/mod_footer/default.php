@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 ?>
 <small class="footer1<?php echo $moduleclass_sfx; ?>"><?php echo $lineone; ?></small>
-<small class="footer2<?php echo $moduleclass_sfx; ?>"><?php echo JText::_( 'MOD_FOOTER_LINE2' ); ?></small>
+<small class="footer2<?php echo $moduleclass_sfx; ?>"><?php echo Text::_( 'MOD_FOOTER_LINE2' ); ?></small>

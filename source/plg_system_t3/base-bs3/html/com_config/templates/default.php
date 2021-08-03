@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
@@ -30,15 +31,15 @@ JFactory::getDocument()->addScriptDeclaration("
 		<!-- Begin Content -->
 
 
-		<div class="btn-toolbar" role="toolbar" aria-label="<?php echo JText::_('JTOOLBAR'); ?>">
+		<div class="btn-toolbar" role="toolbar" aria-label="<?php echo Text::_('JTOOLBAR'); ?>">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('config.save.templates.apply')">
-					<span class="icon-ok"></span> <?php echo JText::_('JSAVE') ?>
+					<span class="icon-ok"></span> <?php echo Text::_('JSAVE') ?>
 				</button>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn" onclick="Joomla.submitbutton('config.cancel')">
-					<span class="icon-cancel"></span> <?php echo JText::_('JCANCEL') ?>
+					<span class="icon-cancel"></span> <?php echo Text::_('JCANCEL') ?>
 				</button>
 			</div>
 		</div>

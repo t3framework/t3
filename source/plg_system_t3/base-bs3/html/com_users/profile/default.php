@@ -8,7 +8,7 @@
  */
 
 defined('_JEXEC') or die;
-
+use Joomla\CMS\Language\Text;
 
 if(version_compare(JVERSION, '3.0', 'ge')){
 	JHtml::_('bootstrap.tooltip');
@@ -21,7 +21,7 @@ if(version_compare(JVERSION, '3.0', 'ge')){
 <ul class="btn-toolbar pull-right">
 	<li class="btn-group">
 		<a class="btn btn-default" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->data->id);?>">
-			<span class="fa fa-user"></span> <?php echo JText::_('COM_USERS_EDIT_PROFILE'); ?>
+			<span class="fa fa-user"></span> <?php echo Text::_('COM_USERS_EDIT_PROFILE'); ?>
 		</a>
 	</li>
 </ul>

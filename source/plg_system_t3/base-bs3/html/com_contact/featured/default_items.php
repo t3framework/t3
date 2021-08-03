@@ -8,6 +8,8 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
+
 JHtml::_('behavior.core');
 if(version_compare(JVERSION, '4', 'ge')){
 	class ContactHelperRoute extends \Joomla\Component\Contact\Site\Helper\RouteHelper{};
@@ -18,15 +20,15 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 
 <?php if (empty($this->items)) : ?>
-	<p> <?php echo JText::_('COM_CONTACT_NO_CONTACTS'); ?>	 </p>
+	<p> <?php echo Text::_('COM_CONTACT_NO_CONTACTS'); ?>	 </p>
 <?php else : ?>
 
 <form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset class="filters">
-	<legend class="hidelabeltxt"><?php echo JText::_('JGLOBAL_FILTER_LABEL'); ?></legend>
+	<legend class="hidelabeltxt"><?php echo Text::_('JGLOBAL_FILTER_LABEL'); ?></legend>
 	<?php if ($this->params->get('show_pagination_limit')) : ?>
 		<div class="display-limit">
-			<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>&#160;
+			<?php echo Text::_('JGLOBAL_DISPLAY_NUM'); ?>&#160;
 			<?php echo $this->pagination->getLimitBox(); ?>
 		</div>
 	<?php endif; ?>
@@ -38,7 +40,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<?php if ($this->params->get('show_headings')) : ?>
 		<thead><tr>
 			<th class="item-num">
-				<?php echo JText::_('JGLOBAL_NUM'); ?>
+				<?php echo Text::_('JGLOBAL_NUM'); ?>
 			</th>
 			<th class="item-title">
 				<?php echo JHtml::_('grid.sort', 'COM_CONTACT_CONTACT_EMAIL_NAME_LABEL', 'a.name', $listDirn, $listOrder); ?>
@@ -50,24 +52,24 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 			<?php endif; ?>
 			<?php if ($this->params->get('show_email_headings')) : ?>
 			<th class="item-email">
-				<?php echo JText::_('JGLOBAL_EMAIL'); ?>
+				<?php echo Text::_('JGLOBAL_EMAIL'); ?>
 			</th>
 			<?php endif; ?>
 			<?php if ($this->params->get('show_telephone_headings')) : ?>
 			<th class="item-phone">
-				<?php echo JText::_('COM_CONTACT_TELEPHONE'); ?>
+				<?php echo Text::_('COM_CONTACT_TELEPHONE'); ?>
 			</th>
 			<?php endif; ?>
 
 			<?php if ($this->params->get('show_mobile_headings')) : ?>
 			<th class="item-phone">
-				<?php echo JText::_('COM_CONTACT_MOBILE'); ?>
+				<?php echo Text::_('COM_CONTACT_MOBILE'); ?>
 			</th>
 			<?php endif; ?>
 
 			<?php if ($this->params->get('show_fax_headings')) : ?>
 			<th class="item-phone">
-				<?php echo JText::_('COM_CONTACT_FAX'); ?>
+				<?php echo Text::_('COM_CONTACT_FAX'); ?>
 			</th>
 			<?php endif; ?>
 
@@ -102,7 +104,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 
 					<td class="item-title">
 						<?php if ($this->items[$i]->published == 0) : ?>
-							<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
+							<span class="label label-warning"><?php echo Text::_('JUNPUBLISHED'); ?></span>
 						<?php endif; ?>
 						<a href="<?php echo JRoute::_(ContactHelperRoute::getContactRoute($item->slug, $item->catid)); ?>" itemprop="url">
 							<span itemprop="name"><?php echo $item->name; ?></span>

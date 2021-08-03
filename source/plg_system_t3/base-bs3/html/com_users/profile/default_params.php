@@ -8,15 +8,14 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-
-
 ?>
 <?php $fields = $this->form->getFieldset('params'); ?>
 <?php if (count($fields)) : ?>
 <fieldset id="users-profile-custom">
-	<legend><?php echo JText::_('COM_USERS_SETTINGS_FIELDSET_LABEL'); ?></legend>
+	<legend><?php echo Text::_('COM_USERS_SETTINGS_FIELDSET_LABEL'); ?></legend>
 	<dl class="dl-horizontal">
 	<?php foreach ($fields as $field):
 		if (!$field->hidden) :?>

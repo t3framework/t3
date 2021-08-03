@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::addIncludePath(T3_PATH . '/html/com_content');
@@ -26,8 +27,8 @@ JHtml::_('behavior.caption');
 			<div class="filter-search form-group">
 				<?php if ($this->params->get('filter_field') !== 'hide') : ?>
 					<div class="form-group">
-						<label class="filter-search-lbl" for="filter-search"><?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?></label>
-						<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->filter); ?>" class="form-control col-sm-2" onchange="document.getElementById('adminForm').submit();"  placeholder="<?php echo JText::_('COM_CONTENT_TITLE_FILTER_LABEL'); ?>"/>
+						<label class="filter-search-lbl" for="filter-search"><?php echo Text::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?></label>
+						<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->filter); ?>" class="form-control col-sm-2" onchange="document.getElementById('adminForm').submit();"  placeholder="<?php echo Text::_('COM_CONTENT_TITLE_FILTER_LABEL'); ?>"/>
 					</div>
 				<?php endif; ?>
 
@@ -36,7 +37,7 @@ JHtml::_('behavior.caption');
 				<?php echo $this->form->limitField; ?>
 
 			</div>
-			<button type="submit" class="btn btn-primary"><?php echo JText::_('JGLOBAL_FILTER_BUTTON'); ?></button>
+			<button type="submit" class="btn btn-primary"><?php echo Text::_('JGLOBAL_FILTER_BUTTON'); ?></button>
 			<input type="hidden" name="view" value="archive"/>
 			<input type="hidden" name="option" value="com_content"/>
 			<input type="hidden" name="limitstart" value="0"/>

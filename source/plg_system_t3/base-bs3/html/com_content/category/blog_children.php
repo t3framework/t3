@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('bootstrap.tooltip');
 
@@ -44,7 +45,7 @@ if ($this->maxLevel != 0 && count($this->children[$this->category->id]) > 0) : ?
 				<?php echo $this->escape($child->title); ?></a>
 				<?php if ( $this->params->get('show_cat_num_articles', 1)) : ?>
 				<span class="badge badge-info tip hasTooltip" title="<?php echo JHtml::_('tooltipText', 'COM_CONTENT_NUM_ITEMS_TIP'); ?>">
-					<?php echo JText::_('COM_CONTENT_NUM_ITEMS'); ?>
+					<?php echo Text::_('COM_CONTENT_NUM_ITEMS'); ?>
 					<?php echo $child->getNumItems(true); ?>
 				</span>
 				<?php endif ; ?>

@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::addIncludePath(T3_PATH.'/html/com_content');
@@ -79,7 +80,7 @@ $this->columns = !empty($this->columns) ? $this->columns : $this->params->get('n
 
 <?php if (!empty($this->link_items)) : ?>
 	<section class="items-more">
-		<h3><?php echo JText::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
+		<h3><?php echo Text::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
 		<?php echo $this->loadTemplate('links'); ?>
 	</section>
 <?php endif; ?>

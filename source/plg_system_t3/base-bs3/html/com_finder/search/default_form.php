@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -105,7 +106,7 @@ if ($this->params->get('show_autosuggest', 1))
 					<?php else: ?>
 						<a href="#advancedSearch" data-toggle="collapse" class="btn">
 						<span class="icon-list" aria-hidden="true"></span>
-							<?php echo JText::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
 						</a>
 				<?php endif; ?>
 				<?php endif; ?>
@@ -131,7 +132,7 @@ if ($this->params->get('show_autosuggest', 1))
 						<?php endif; ?>
 						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_OUTRO'); ?>
 					<?php else: ?>
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS'); ?>
+						<?php echo Text::_('COM_FINDER_ADVANCED_TIPS'); ?>
 					<?php endif; ?>
 					</div>
 				</div>

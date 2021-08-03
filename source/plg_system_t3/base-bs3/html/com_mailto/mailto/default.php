@@ -8,6 +8,7 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Language\Text;
 
 JHtml::_('behavior.core');
 JHtml::_('behavior.keepalive');
@@ -15,9 +16,9 @@ JHtml::_('behavior.keepalive');
 ?>
 <div id="mailto-window">
 	<h2>
-		<?php echo JText::_('COM_MAILTO_EMAIL_TO_A_FRIEND'); ?>
+		<?php echo Text::_('COM_MAILTO_EMAIL_TO_A_FRIEND'); ?>
 		
-		<a class="mailto-close" href="javascript: void window.close()" title="<?php echo JText::_('COM_MAILTO_CLOSE_WINDOW'); ?>">
+		<a class="mailto-close" href="javascript: void window.close()" title="<?php echo Text::_('COM_MAILTO_CLOSE_WINDOW'); ?>">
 			<span class="fa fa-close"></span>
 		</a>
 	</h2>
@@ -32,10 +33,10 @@ JHtml::_('behavior.keepalive');
 			<div class="control-group">
 				<div class="controls">
 					<button type="submit" class="btn btn-primary validate">
-						<?php echo JText::_('COM_MAILTO_SEND'); ?>
+						<?php echo Text::_('COM_MAILTO_SEND'); ?>
 					</button>
 					<button type="button" class="btn btn-default button" onclick="window.close();return false;">
-						<?php echo JText::_('COM_MAILTO_CANCEL'); ?>
+						<?php echo Text::_('COM_MAILTO_CANCEL'); ?>
 					</button>
 				</div>
 			</div>
