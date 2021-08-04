@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2021 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -102,7 +102,7 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 							echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 						endif;
 					elseif ($params->get('show_readmore_title', 0) == 0) :
-						echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE',$this->item->title);
+						echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE',$this->item->title);
 					else :
 						echo Text::_('COM_CONTENT_READ_MORE');
 						echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
