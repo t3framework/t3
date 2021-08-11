@@ -36,7 +36,7 @@ foreach ($list as $item) : ?>
 		</a>
 		</h<?php echo $params->get('item_heading') + $levelup; ?>>
 		<?php if ($params->get('show_description', 0)) : ?>
-			<?php echo HTMLHelper::_('content.prepare', $item->description, $item->getParams(), 'mod_articles_categories.content'); ?>
+			<?php echo JHtml::_('content.prepare', $item->description, $item->getParams(), 'mod_articles_categories.content'); ?>
 		<?php endif; ?>
 		<?php if ($params->get('show_children', 0) && (($params->get('maxlevel', 0) == 0)
 			|| ($params->get('maxlevel') >= ($item->level - $startLevel)))

@@ -33,9 +33,11 @@ $beforeDisplayContent = trim(implode("\n", $results));
 $results = $app->triggerEvent('onContentAfterDisplay', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
 $afterDisplayContent = trim(implode("\n", $results));
 
+$htag    = $this->params->get('show_page_heading') ? 'h2' : 'h1';
+
 ?>
 
-<div class="blog<?php echo $this->pageclass_sfx;?>" itemscope itemtype="https://schema.org/Blog">
+<div class="com-content-category-blog blog<?php echo $this->pageclass_sfx;?>" itemscope itemtype="https://schema.org/Blog">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
 	<div class="page-header clearfix">
 		<h1 class="page-title"> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -43,11 +45,11 @@ $afterDisplayContent = trim(implode("\n", $results));
 	<?php endif; ?>
 	<?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
   	<div class="page-subheader clearfix">
-  		<h2 class="page-subtitle"><?php echo $this->escape($this->params->get('page_subheading')); ?>
+  		<<?php echo $htag; ?> class="page-subtitle"><?php echo $this->escape($this->params->get('page_subheading')); ?>
 			<?php if ($this->params->get('show_category_title')) : ?>
 			<small class="subheading-category"><?php echo $this->category->title;?></small>
 			<?php endif; ?>
-  		</h2>
+  		</<?php echo $htag; ?>>
 	</div>
 	<?php endif; ?>
 
@@ -97,25 +99,21 @@ $afterDisplayContent = trim(implode("\n", $results));
 	?>
 
 	<?php if (!empty($this->intro_items)) : ?>
-	<?php foreach ($this->intro_items as $key => &$item) : ?>
-		<?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-		<?php if ($rowcount === 1) : ?>
-			<?php $row = $counter / $this->columns; ?>
-		<div class="items-row cols-<?php echo (int) $this->columns;?> <?php echo 'row-'.$row; ?> row">
-		<?php endif; ?>
-			<div class="col-sm-<?php echo round((12 / $this->columns));?>">
-				<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-					<?php
-					$this->item = &$item;
-					echo $this->loadTemplate('item');
-				?>
-				</div><!-- end item -->
-				<?php $counter++; ?>
-			</div><!-- end span -->
-			<?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>			
-		</div><!-- end row -->
-			<?php endif; ?>
-	<?php endforeach; ?>
+		<div class="items-row row row-flex">
+		<?php foreach ($this->intro_items as $key => &$item) : ?>
+			<?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
+
+				<div class="col-12<?php echo ($this->columns >= 2) ? ' col-sm-6':''; ?> col-md-<?php echo round((12 / $this->columns));?>">
+					<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+						<?php
+						$this->item = &$item;
+						echo $this->loadTemplate('item');
+					?>
+					</div><!-- end item -->
+					<?php $counter++; ?>
+				</div><!-- end span -->
+		<?php endforeach; ?>
+		</div>
 	<?php endif; ?>
 	
 	<?php if (!empty($this->link_items)) : ?>

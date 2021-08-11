@@ -97,7 +97,7 @@ if ($this->params->get('show_autosuggest', 1))
 				</button>
 				<?php if ($this->params->get('show_advanced', 1)) : ?>
 					<?php if(version_compare(JVERSION,'4','ge')): ?>
-					<?php HTMLHelper::_('bootstrap.collapse'); ?>
+					<?php JHtml::_('bootstrap.collapse'); ?>
 					<button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#advancedSearch" aria-expanded="<?php echo ($this->params->get('expand_advanced', 0) ? 'true' : 'false'); ?>">
 						<span class="icon-search-plus" aria-hidden="true"></span>
 						<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?></button>
@@ -136,7 +136,7 @@ if ($this->params->get('show_autosuggest', 1))
 				</div>
 			<?php endif; ?>
 			<div id="finder-filter-window" class="com-finder__filter">
-				<?php echo HTMLHelper::_('filter.select', $this->query, $this->params); ?>
+				<?php echo JHtml::_('filter.select', $this->query, $this->params); ?>
 			</div>
 		</fieldset>
 	<?php endif; ?>
