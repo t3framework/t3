@@ -8,7 +8,9 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 JHtml::_('behavior.keepalive');
 if(version_compare(JVERSION, '3.0', 'lt')){
@@ -23,7 +25,7 @@ JHtml::_('behavior.formvalidation');
 	</div>
 <?php endif; ?>
 
-	<form id="member-registration" action="<?php echo JRoute::_('index.php?option=com_users&task=registration.register'); ?>" method="post" class="form-validate form-horizontal">
+	<form id="member-registration" action="<?php echo Route::_('index.php?option=com_users&task=registration.register'); ?>" method="post" class="form-validate form-horizontal">
 	<?php  // Iterate through the form fieldsets and display each one. ?>
 	<?php foreach ($this->form->getFieldsets() as $fieldset): ?>
 		<?php $fields = $this->form->getFieldset($fieldset->name);?>

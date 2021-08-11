@@ -9,6 +9,14 @@
 
 defined('_JEXEC') or die;
 
+if(!class_exists('ContentHelperRoute')){
+	if(version_compare(JVERSION, '4', 'ge')){
+		abstract class ContentHelperRoute extends \Joomla\Component\content\Site\Helper\RouteHelper{};
+	}else{
+		JLoader::register('ContentHelperRoute', $com_path . '/helpers/route.php');
+	}
+}
+
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 JHtml::_('behavior.caption');

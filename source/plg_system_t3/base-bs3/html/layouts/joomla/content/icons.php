@@ -48,7 +48,7 @@ JHtml::_('bootstrap.framework');
 	<div class="icons">
 		<div class="float-end">
 			<div>
-				<?php echo HTMLHelper::_('icon.edit', $displayData['item'], $displayData['params']); ?>
+				<?php echo JHtml::_('icon.edit', $displayData['item'], $displayData['params']); ?>
 			</div>
 		</div>
 	</div>

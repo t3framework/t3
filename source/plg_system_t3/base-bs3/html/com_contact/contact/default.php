@@ -8,13 +8,26 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\FileLayout;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\Component\Contact\Site\Helper\RouteHelper;
 
 jimport('joomla.html.html.bootstrap');
 
 $cparams = JComponentHelper::getParams('com_media');
 $tparams = $this->item->params;
-if(version_compare(JVERSION, '4', 'ge')) $this->contact = $this->item;
+$htag    = $tparams->get('show_page_heading') ? 'h2' : 'h1';
+
+if(version_compare(JVERSION, '4', 'ge')) {
+	$this->contact = $this->item;
+	$canDo   = ContentHelper::getActions('com_contact', 'category', $this->item->catid);
+	$canEdit = $canDo->get('core.edit') || ($canDo->get('core.edit.own') && $this->item->created_by === Factory::getUser()->id);
+} 
 ?>
 
 <div class="contact<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Person">
@@ -26,12 +39,22 @@ if(version_compare(JVERSION, '4', 'ge')) $this->contact = $this->item;
 
 	<?php if ($this->contact->name && $tparams->get('show_name')) : ?>
 		<div class="page-header">
-			<h2>
+			<<?php echo $htag; ?>>
 				<?php if ($this->item->published == 0) : ?>
 					<span class="label label-warning"><?php echo Text::_('JUNPUBLISHED'); ?></span>
 				<?php endif; ?>
 				<span class="contact-name" itemprop="name"><?php echo $this->contact->name; ?></span>
-			</h2>
+			</<?php echo $htag; ?>>
+		</div>
+	<?php endif; ?>
+
+	<?php if ($canEdit) : ?>
+		<div class="icons">
+			<div class="float-end">
+				<div>
+					<?php echo JHtml::_('contacticon.edit', $this->item, $tparams); ?>
+				</div>
+			</div>
 		</div>
 	<?php endif; ?>
 
@@ -66,7 +89,12 @@ if(version_compare(JVERSION, '4', 'ge')) $this->contact = $this->item;
 
 	<?php if (!empty($this->item->event)) echo $this->item->event->beforeDisplayContent; ?>
 
-	<?php $presentation_style = $tparams->get('presentation_style'); ?>
+	<?php if(version_compare(JVERSION, '4', 'ge')) {
+		$presentation_style = 'plain';
+		} else {
+		$presentation_style = $tparams->get('presentation_style');
+	}; ?>
+
 	<?php $accordionStarted = false; ?>
 	<?php $tabSetStarted = false; ?>
 

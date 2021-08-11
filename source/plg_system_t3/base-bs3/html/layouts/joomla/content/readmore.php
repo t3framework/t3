@@ -15,6 +15,10 @@ use Joomla\CMS\Language\Text;
 $params = $displayData['params'];
 $item = $displayData['item'];
 $direction = Factory::getLanguage()->isRtl() ? 'left' : 'right';
+
+$readmoreText = version_compare(JVERSION, '4', 'ge') ? Text::_('JGLOBAL_READ_MORE') : Text::_('COM_CONTENT_READ_MORE_TITLE');
+$readmoreShowTitle = version_compare(JVERSION, '4', 'ge') ? Text::sprintf('JGLOBAL_READ_MORE_TITLE', HTMLHelper::_('string.truncate', $item->title, $params->get('readmore_limit'))) : Text::_('COM_CONTENT_READ_MORE') ." ".HTMLHelper::_('string.truncate', $item->title, $params->get('readmore_limit'));
+
 ?>
 
 <section class="readmore">
@@ -32,7 +36,7 @@ $direction = Factory::getLanguage()->isRtl() ? 'left' : 'right';
 				<?php echo '<span class="icon-chevron-' . $direction . '" aria-hidden="true"></span>'; ?> 
 				<?php echo $readmore; ?>
 				<?php if ($params->get('show_readmore_title', 0) != 0) : ?>
-					<?php echo HTMLHelper::_('string.truncate', $item->title, $params->get('readmore_limit')); ?>
+					<?php echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit')); ?>
 				<?php endif; ?>
 			</span>
 		</a>
@@ -40,7 +44,7 @@ $direction = Factory::getLanguage()->isRtl() ? 'left' : 'right';
 		<a class="btn btn-default" href="<?php echo $displayData['link']; ?>" itemprop="url" aria-label="<?php echo Text::sprintf('COM_CONTENT_READ_MORE', $this->escape($item->title)); ?>">
 			<span>
 				<?php echo '<span class="icon-chevron-' . $direction . '" aria-hidden="true"></span>'; ?>
-				<?php echo Text::_('COM_CONTENT_READ_MORE'); ?>
+				<?php echo $readmoreText; ?>
 
 			</span>
 		</a>
@@ -48,7 +52,7 @@ $direction = Factory::getLanguage()->isRtl() ? 'left' : 'right';
 		<a class="btn btn-default" href="<?php echo $displayData['link']; ?>" itemprop="url" aria-label="<?php echo Text::sprintf('COM_CONTENT_READ_MORE', $this->escape($item->title)); ?>">
 		<span>
 			<?php echo '<span class="icon-chevron-' . $direction . '" aria-hidden="true"></span>'; ?> 
-			<?php echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE', HTMLHelper::_('string.truncate', $item->title, $params->get('readmore_limit'))); ?>
+			<?php echo $readmoreShowTitle; ?>
 		</span>
 		</a>
 	<?php endif; ?>
