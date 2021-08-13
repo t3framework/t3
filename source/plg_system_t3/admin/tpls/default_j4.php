@@ -156,9 +156,9 @@ $iswritable = is_writable('t3test.txt');
 </div>
 
 <?php
-	if (is_file(T3_ADMIN_PATH . '/admin/tour/tour.tpl.php')){
-		include_once T3_ADMIN_PATH . '/admin/tour/tour.tpl.php';
-	}
+	// if (is_file(T3_ADMIN_PATH . '/admin/tour/tour.tpl.php')){
+	// 	include_once T3_ADMIN_PATH . '/admin/tour/tour.tpl.php';
+	// }
 
 	//if (is_file(T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php')){
 	//	include_once T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
