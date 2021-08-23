@@ -20,7 +20,7 @@ class pkg_T3InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function preflight($route, JAdapterInstance $adapter)
+    public function preflight($route, $adapter)
     {
         return true;
     }
@@ -34,7 +34,7 @@ class pkg_T3InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function postflight($route, JAdapterInstance $adapter)
+    public function postflight($route, $adapter)
     {
         return true;
     }
