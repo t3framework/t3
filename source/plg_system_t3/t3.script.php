@@ -20,7 +20,7 @@ class plgSystemT3InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function postflight($route, JAdapterInstance $adapter)
+    public function postflight($route, $adapter)
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
