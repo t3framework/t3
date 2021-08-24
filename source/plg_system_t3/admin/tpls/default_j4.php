@@ -29,7 +29,7 @@ $iswritable = is_writable('t3test.txt');
 <?php if($iswritable): ?>
 <div id="t3-admin-writable-message" class="alert warning">
 	<button type="button" class="close" data-dismiss="alert">×</button>
-	<strong><?php echo JText::_('T3_MSG_WARNING'); ?></strong> <?php echo JText::_('T3_MSG_FILE_NOT_WRITABLE'); ?>
+	<strong><?php echo Text::_('T3_MSG_WARNING'); ?></strong> <?php echo Text::_('T3_MSG_FILE_NOT_WRITABLE'); ?>
 </div>
 <?php endif;?>
 <div class="t3-admin-form clearfix">
@@ -38,7 +38,7 @@ $iswritable = is_writable('t3test.txt');
 		<div class="controls-row">
 			<div class="control-group t3-control-group">
 				<div class="control-label t3-control-label">
-					<label id="t3-styles-list-lbl" for="t3-styles-list" class="hasTooltip" title="<?php echo JText::_('T3_SELECT_STYLE_DESC'); ?>"><?php echo JText::_('T3_SELECT_STYLE_LABEL'); ?></label>
+					<label id="t3-styles-list-lbl" for="t3-styles-list" class="hasTooltip" title="<?php echo Text::_('T3_SELECT_STYLE_DESC'); ?>"><?php echo Text::_('T3_SELECT_STYLE_LABEL'); ?></label>
 				</div>
 				<div class="controls t3-controls">
 					<?php echo JHTML::_('select.genericlist', $styles, 't3-styles-list', 'autocomplete="off"', 'id', 'title', $input->get('id')); ?>
@@ -66,7 +66,7 @@ $iswritable = is_writable('t3test.txt');
 				</div>
 				<div class="controls t3-controls">
 					<?php echo $form->getInput('client_id'); ?>
-					<input type="text" size="35" value="<?php echo $form->getValue('client_id') == 0 ? JText::_('JSITE') : JText::_('JADMINISTRATOR'); ?>	" class="input readonly" readonly="readonly" />
+					<input type="text" size="35" value="<?php echo $form->getValue('client_id') == 0 ? Text::_('JSITE') : Text::_('JADMINISTRATOR'); ?>	" class="input readonly" readonly="readonly" />
 				</div>
 			</div>
 			<div class="control-group t3-control-group">
@@ -96,10 +96,11 @@ $iswritable = is_writable('t3test.txt');
 			<?php
 			$fieldSets = $form->getFieldsets('params');
 			foreach ($fieldSets as $name => $fieldSet) : ?>
-				<?php echo HTMLHelper::_('bootstrap.addTab', 't3-admin-tabs', $name, Text::_("T3_".strtoupper(str_replace("_params", "", $name))."_LABEL")) ?>
+				<?php $label = !empty($fieldSet->label) ? $fieldSet->label : "T3_".strtoupper(str_replace("_params", "", $name))."_LABEL"; ?>
+				<?php echo HTMLHelper::_('bootstrap.addTab', 't3-admin-tabs', $name, Text::_($label)) ?>
 					<?php
 					if (isset($fieldSet->description) && trim($fieldSet->description)) : 
-						echo '<div class="t3-admin-fieldset-desc">'.(JText::_($fieldSet->description)).'</div>';
+						echo '<div class="t3-admin-fieldset-desc">'.(Text::_($fieldSet->description)).'</div>';
 					endif;
 
 					foreach ($form->getFieldset($name) as $field) :
@@ -112,7 +113,7 @@ $iswritable = is_writable('t3test.txt');
 							if(empty($placeholder)){
 								$placeholder = $form->getFieldAttribute($field->fieldname, 'default', '', $field->group);
 							} else {
-								$placeholder = JText::_($placeholder);
+								$placeholder = Text::_($placeholder);
 							}
 
 							if(!empty($placeholder)){
