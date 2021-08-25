@@ -243,7 +243,8 @@ joomla-field-media .input-group {
 }
 
 joomla-field-media .input-group .field-media-input {
-  width: 254px;
+  flex: 1;
+  width: auto;
 }
 
 
