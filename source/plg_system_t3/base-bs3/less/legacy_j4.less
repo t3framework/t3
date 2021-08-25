@@ -25,12 +25,7 @@
     align-items: stretch;
     width: 100%;
 
-    .input-group-addon {
-      width: auto;
-    }
-
-    input.form-control {
-      flex: 1;
+    .form-control {
       width: auto;
     }
 
@@ -130,6 +125,28 @@
       &:hover {
         [role="tooltip"] {
           display: block;
+        }
+      }
+    }
+  }
+
+
+  // Edit article
+  // ------------
+  .edit.item-page {
+    .choices__inner {
+      padding-right: 6px;
+
+      button {
+        background-color: rgba(255,255,255,0.3);
+        border-radius: 8px;
+        border: 0;
+        margin-left: 6px;
+        padding: 1px 6px;
+
+        &:hover, &:focus, &:active {
+          background-color: rgba(255,255,255,0.5);
+          cursor: pointer;
         }
       }
     }

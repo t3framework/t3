@@ -69,7 +69,9 @@ $lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 						<div class="col-sm-3 control-label">
 							<?php echo $field->label; ?>
 							<?php if (!$field->required && $field->type !== 'Spacer') : ?>
+								<?php if(version_compare(JVERSION, '4', 'lt')) : ?>
 								<span class="optional"><?php echo Text::_('COM_USERS_OPTIONAL'); ?></span>
+								<?php endif; ?>
 							<?php endif; ?>
 						</div>
 						<div class="col-sm-9 controls">
