@@ -9,54 +9,7 @@
 
 defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
-
-JHtml::_('behavior.formvalidator');
-JHtml::_('behavior.keepalive');
-$user = JFactory::getUser();
-
-JFactory::getDocument()->addScriptDeclaration("
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'config.cancel' || document.formvalidator.isValid(document.getElementById('templates-form')))
-		{
-			Joomla.submitform(task, document.getElementById('templates-form'));
-		}
-	}
-");
 ?>
-
-<form action="<?php echo JRoute::_('index.php?option=com_config'); ?>" method="post" name="adminForm" id="templates-form" class="form-validate">
-
-	<div class="row-fluid"><div class="span12">
-		<!-- Begin Content -->
-
-
-		<div class="btn-toolbar" role="toolbar" aria-label="<?php echo Text::_('JTOOLBAR'); ?>">
-			<div class="btn-group">
-				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('config.save.templates.apply')">
-					<span class="icon-ok"></span> <?php echo Text::_('JSAVE') ?>
-				</button>
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn" onclick="Joomla.submitbutton('config.cancel')">
-					<span class="icon-cancel"></span> <?php echo Text::_('JCANCEL') ?>
-				</button>
-			</div>
-		</div>
-
-		<hr class="hr-condensed" />
-
-		<div id="page-site" class="tab-pane active">
-			<div class="row-fluid"><div class="span12">
-				<?php // Get the menu parameters that are automatically set but may be modified.
-				echo $this->loadTemplate('options'); ?>
-			</div></div>
-		</div>
-
-		<input type="hidden" name="task" value="" />
-		<?php echo JHtml::_('form.token'); ?>
-
-		<!-- End Content -->
-	</div></div>
-
-</form>
+<div class="alert alert-info" style="border-radius: 5px;">
+	<h4 style="margin: 0;">Suggestion to update configuration in backend</h4>
+</div>
