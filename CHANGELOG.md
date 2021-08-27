@@ -1,3 +1,9 @@
+<h2>Version: 3.0.1 (27/08/2021)</h2>
+- Bug fix for front-end edit on Joomla 4
+
+<h2>Version: 3.0.0 (23/08/2021)</h2>
+- Update for Joomla 4 compatibility
+
 <h2>Version: 2.7.7 (25/05/2021)</h2>
 <h3>Update to compatible with php8</h3>
 - Got error major in backend templates | <a href="https://github.com/t3framework/t3/commit/f9727ca31a52b85c94fc4919903e109f96cfd901">Link</a><br/>
