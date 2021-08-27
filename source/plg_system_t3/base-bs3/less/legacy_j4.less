@@ -163,6 +163,7 @@
         position: absolute;
         white-space: nowrap;
         right: 0;
+        max-width: none;
       }
 
       &:hover {
@@ -285,9 +286,16 @@
   }
 
   .modal-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    padding: 12px 16px;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 24px;
+      font-weight: 500;
+    }
   }
 
   .modal-body {
