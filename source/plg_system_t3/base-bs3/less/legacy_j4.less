@@ -72,13 +72,22 @@
   // Media field
   joomla-field-media {
     .input-group {
+      max-width: 356px;
+
       .form-control {
         border-top-left-radius: 0;
-        min-width: 291px;
+        flex: 1;
       }
 
       .btn {
         border-top-right-radius: 0;
+      }
+
+      .icon-times::before {
+        content: "\f00d";
+        display: inline-block;
+        font-weight: FontAwesome;
+        font-size: 16px;
       }
     }
   }
@@ -170,7 +179,6 @@
       flex-wrap: nowrap;
 
       input {
-        flex: 1;
         width: auto;
       }
     }
@@ -195,6 +203,22 @@
           cursor: pointer;
         }
       }
+    }
+  }
+}
+
+// Edit profile
+// ------------
+.profile-edit {
+  .password-group .input-group input {
+    min-width: 268px;
+  }
+
+  .control-group {
+    margin-top: @t3-global-margin;
+
+    .controls {
+      float: none;
     }
   }
 }
