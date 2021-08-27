@@ -14,6 +14,14 @@
   border: 0 !important;
 }
 
+.field-calendar {
+  a {
+    &:hover, &:focus, &:active {
+      cursor: pointer;
+    }
+  }
+}
+
 
 .j40 {
   // Input group
@@ -21,7 +29,7 @@
   .input-group {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: stretch;
     width: 100%;
 
@@ -186,10 +194,6 @@
         text-align: left;
         width: 100%;
       }
-    }
-
-    .show .accordion-header .accordion-button {
-
     }
 
     .accordion-body {
