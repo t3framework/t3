@@ -560,6 +560,7 @@ samp {
 }
 .jumbotron iframe {
   margin-top: 20px;
+  max-width: 100%;
 }
 
 .form-control:focus {
@@ -1142,6 +1143,17 @@ input.invalid {
 }
 #login-form #form-login-remember label {
   font-weight: normal;
+}
+.j40 #login-form .input-group {
+  flex-wrap: nowrap;
+}
+.j40 #login-form .input-group-addon {
+  width: auto;
+}
+.j40 #login-form input[type="text"],
+.j40 #login-form input[type="password"] {
+  flex: 1;
+  width: auto;
 }
 .banneritem a {
   font-weight: bold;
@@ -1908,6 +1920,10 @@ div.finder {
   background: #cc0000;
   color: #ffffff;
 }
+.pager ul {
+  float: right;
+  margin: 0;
+}
 .pagenav {
   margin: 0;
   padding: 0;
@@ -2611,6 +2627,309 @@ a.list-group-item.active:focus .list-group-item-text {
   display: inline-block;
 }
 
+.sr-only,
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.btn-close {
+  background: #f0f0f0;
+  border: 0;
+  border-radius: 50%;
+  color: #999;
+  height: 32px;
+  text-align: center;
+  width: 32px;
+  margin-left: auto;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.btn-close::before {
+  content: "\f00d";
+  display: block;
+  font-family: FontAwesome3 !important;
+  font-size: 16px;
+}
+.btn-close:hover {
+  cursor: pointer;
+  color: #666;
+}
+.field-calendar a:hover,
+.field-calendar a:focus,
+.field-calendar a:active {
+  cursor: pointer;
+}
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: 100%;
+}
+.input-group .form-control {
+  width: auto;
+}
+.input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.j40 joomla-field-media .input-group {
+  max-width: 356px;
+}
+.j40 joomla-field-media .input-group .form-control {
+  border-top-left-radius: 0;
+  flex: 1;
+}
+.j40 joomla-field-media .input-group .btn {
+  border-top-right-radius: 0;
+}
+.j40 joomla-field-media .input-group .icon-times::before {
+  content: "\f00d";
+  display: inline-block;
+  font-weight: FontAwesome;
+  font-size: 16px;
+}
+.j40 .form-control-feedback {
+  font-size: 12px;
+  font-weight: 400;
+  top: auto;
+  bottom: -28px;
+  line-height: 1;
+  width: auto;
+  white-space: nowrap;
+}
+.j40 .com-newsfeeds-newsfeed__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.j40 .com-newsfeeds-newsfeed__items li {
+  border-bottom: 1px solid #eeeeee;
+  padding: 20px 0;
+}
+.j40 .com-newsfeeds-newsfeed__items .feed-link {
+  margin-bottom: 20px;
+}
+.j40 figure {
+  margin-bottom: 20px;
+}
+.j40 figure img {
+  max-width: 100%;
+}
+.j40 #com-contact-form {
+  margin-bottom: 20px;
+}
+.j40 .request-confirm fieldset legend {
+  font-size: 16px;
+  padding-bottom: 20px;
+}
+.j40 .article-aside .icons {
+  float: right;
+}
+.j40 .article-aside .icons a {
+  display: block;
+  position: relative;
+}
+.j40 .article-aside .icons [role="tooltip"] {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  color: #fff;
+  display: none;
+  padding: 2px 4px;
+  position: absolute;
+  white-space: nowrap;
+  right: 0;
+  max-width: none;
+}
+.j40 .article-aside .icons:hover [role="tooltip"] {
+  display: block;
+}
+.j40 .password-group .input-group {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.j40 .password-group .input-group input {
+  width: auto;
+}
+.j40 .edit.item-page .choices__inner {
+  padding-right: 6px;
+}
+.j40 .edit.item-page .choices__inner button {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  border: 0;
+  margin-left: 6px;
+  padding: 1px 6px;
+}
+.j40 .edit.item-page .choices__inner button:hover,
+.j40 .edit.item-page .choices__inner button:focus,
+.j40 .edit.item-page .choices__inner button:active {
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.profile-edit .password-group .input-group input {
+  min-width: 268px;
+}
+.profile-edit .control-group {
+  margin-top: 20px;
+}
+.profile-edit .control-group .controls {
+  float: none;
+}
+.j40.com_config.view-modules #options .accordion-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.j40.com_config.view-modules #options .accordion-header {
+  margin: 0;
+  line-height: 1;
+}
+.j40.com_config.view-modules #options .accordion-header .accordion-button {
+  background: transparent;
+  border: 0;
+  font-size: 18px;
+  padding: 12px 16px;
+  text-align: left;
+  width: 100%;
+}
+.j40.com_config.view-modules #options .accordion-body {
+  border-top: 1px solid #ddd;
+  padding: 24px;
+}
+.j40.com_config.view-modules #options .accordion-body .nav-tabs {
+  background: transparent;
+}
+.j40 .joomla-modal.show {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+.j40 .joomla-modal.show .modal-dialog {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.j40 .joomla-modal.show .modal-dialog .modal-content {
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.j40 .jviewport-width80 {
+  width: 80vw;
+}
+.j40 .jviewport-height70 {
+  height: 70vh;
+}
+.j40 .modal-header {
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  padding: 12px 16px;
+  justify-content: space-between;
+}
+.j40 .modal-header h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+.j40 .modal-body {
+  overflow: hidden;
+  padding: 0;
+}
+.j40 .iframe {
+  border: 0;
+  height: 100%;
+  width: 100%;
+}
+.j40 [role=tooltip]:not(.show) {
+  right: 5em;
+  z-index: 1070;
+  display: none;
+  max-width: 100%;
+  padding: .5em;
+  margin: .5em;
+  color: #000;
+  text-align: start;
+  background: #fff;
+  border: 1px solid #6d757e;
+  border-radius: .25rem;
+}
+.j40 .container-popup [id="filter[search]-desc"] {
+  top: 100%;
+  bottom: auto;
+}
+.j40 .btn-toolbar,
+.j40 .js-stools-container-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+.j40 .ordering-select {
+  display: flex;
+  align-items: center;
+}
+.j40 .btn-group {
+  margin-right: 10px;
+}
+.j40 .js-stools-container-filters {
+  display: none;
+  margin-top: 20px;
+}
+.j40 .js-stools-container-filters.js-stools-container-filters-visible {
+  display: flex;
+}
+.j40 .js-stools-container-filters .js-stools-field-filter {
+  margin-right: 10px;
+}
+.j40 .js-stools-container-filters .js-stools-field-filter:last-child {
+  margin-right: 0;
+}
+.j40 .js-stools-container-filters .choices .choices__inner {
+  border: 0;
+  min-height: auto;
+  padding: 0;
+}
+.j40 .js-stools-container-filters .choices .choices__inner input {
+  margin-bottom: 0;
+}
+.contentpane .subhead {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+}
+.contentpane .subhead joomla-toolbar-button {
+  margin-left: 10px;
+}
+.contentpane .media-sidebar {
+  border-right: 1px solid #ddd;
+}
+.contentpane .media-toolbar {
+  border-bottom: 1px solid #ddd;
+  margin-right: 20px;
+  padding-left: 20px;
+}
+.contentpane .media-toolbar .media-toolbar-icon {
+  border-left: 1px solid #ddd;
+}
+.contentpane .media-toolbar .icon-search-minus,
+.contentpane .media-toolbar .icon-search-plus {
+  font-family: FontAwesome3;
+}
+.contentpane .media-toolbar .icon-search-minus::before,
+.contentpane .media-toolbar .icon-search-plus::before {
+  content: "\f010";
+  display: block;
+  font-size: 16px;
+}
+.contentpane .media-toolbar .icon-search-plus::before {
+  content: "\f00e";
+}
 .home .t3-sl-1 .jumbotron .btn,
 .home .t3-sl-5 .jumbotron .btn {
   border-color: #fff;
