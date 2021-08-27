@@ -40,6 +40,7 @@
   }
 }
 
+// Calendar field
 .field-calendar {
   a {
     &:hover, &:focus, &:active {
@@ -48,27 +49,26 @@
   }
 }
 
+// Input group
+// -----------
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: 100%;
 
-.j40 {
-  // Input group
-  // -----------
-  .input-group {
-    position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    width: 100%;
-
-    .form-control {
-      width: auto;
-    }
-
-    .btn {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
+  .form-control {
+    width: auto;
   }
 
+  .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.j40 {
   // Media field
   joomla-field-media {
     .input-group {
