@@ -27,7 +27,9 @@
 
 // TEMPLATES OPTIONS FORM
 // ------------------------------
-.com_config {
+.com_config,
+.com_content.layout-edit,
+.layout-modal .contentpane {
   // Form elements
   // -------------
   .btn {
@@ -59,6 +61,12 @@
       box-shadow: none;
       border: 1px solid #ccc;
     }
+  }
+
+  select {
+    border-radius: 5px;
+    height: auto;
+    padding: 8px;
   }
 
   .field-calendar {
