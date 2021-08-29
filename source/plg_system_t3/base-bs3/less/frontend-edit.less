@@ -24,6 +24,56 @@
 @import "mixins.less";
 
 
+
+// TEMPLATES OPTIONS FORM
+// ------------------------------
+.com_config {
+  // Form elements
+  // -------------
+  .btn {
+    border-radius: 5px;
+    padding: 8px 16px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"] {
+    box-shadow: none;
+    border-radius: 5px;
+    padding: 0 12px;
+    height: 40px;
+    line-height: 40px;
+
+    &:focus {
+      border-color: #ccc;
+    }
+  }
+
+  textarea {
+    border: 1px solid #ddd;    
+    border-radius: 5px;
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .field-calendar {
+  }
+
+  .input-group {
+    .btn {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+
+
 // TEMPLATES OPTIONS FORM
 // ------------------------------
 .com_config #templates-form {
@@ -79,6 +129,42 @@
 //
 // MODULES OPTIONS FORM
 // ---------------------------------------------------------
+.com_config.view-modules {
+  #options {
+    .accordion-item {
+      background-color: rgba(255,255,255,1);
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 8px;
+    }
+
+    .accordion-header {
+      font-size: 18px;
+      margin: 0;
+      padding: 16px;
+      line-height: 1;
+
+      .accordion-button {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        text-align: left;
+        width: 100%;
+      }
+    }
+
+    .accordion-body {
+      border-top: 1px solid #ddd;
+      padding: 24px;
+
+      .nav-tabs {
+        background: transparent;
+      }
+    }
+    
+  }
+}
+
 .com_config #modules-form {
   .input-append,
   .input-prepend {
@@ -741,7 +827,6 @@ fieldset.radio.btn-group {
 // Fix for missing icons
 // because of the change from Font Awesome 3 to Font Awesome 4
 // -----------------------------------------------------------
-
 .icon-eye-open:before,
 .icon-eye:before {
   content:"\f06e";
@@ -915,8 +1000,6 @@ body.modal-open {
 .thumbnails-media .imgFolder span {
   line-height: 70px;
 }
-
-
 
 
 // JOOMLA 4 COMPATIBLE
