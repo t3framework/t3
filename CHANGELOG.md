@@ -1,3 +1,6 @@
+<h2>Version: 3.0.2 (31/08/2021)</h2>
+- Fix issues for front-end edit of article and custom html module on Joomla 4
+
 <h2>Version: 3.0.1 (27/08/2021)</h2>
 - Bug fix for front-end edit on Joomla 4
 
