@@ -26,6 +26,7 @@ $fxml = simplexml_load_file($frwXml);
 if(version_compare(JVERSION,'4',"ge")){
 	include T3_ADMIN_PATH . '/admin/tpls/default_j4.php';
 }else{
+	JFactory::getDocument()->addStylesheet(JUri::base(true).'/templates/'.JFactory::getApplication()->getTemplate().'/css/template' . ( JFactory::getDocument()->direction === 'rtl' ? '-rtl' : '') . '.css');
 	include T3_ADMIN_PATH . '/admin/tpls/default.php';
 }
 ?>
