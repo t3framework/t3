@@ -42,9 +42,71 @@
 
 // Calendar field
 .field-calendar {
+  .input-group {
+    input[type="text"] {
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
   a {
     &:hover, &:focus, &:active {
       cursor: pointer;
+    }
+  }
+}
+
+joomla-field-custom.field-custom-wrapper {
+  .input-group {
+    display: flex;
+    align-items: stretch;
+
+    input[type="text"] {
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .input-group-btn {
+      display: flex;
+      align-items: stretch;
+
+      .btn {
+        border-radius: 0;
+
+        &.button-select {
+          background-color: #2f7d32;
+          border-color: #2f7d32;
+
+          &:hover, &:focus, &:active {
+            background-color: #296e2c;
+            border-color: #296e2c;
+          }
+        }
+
+        &.button-clear {          
+          background-color: #c52827;
+          border: 1px solid #c52827;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+          color: #fff;
+
+          &:hover, &:focus, &:active {
+            background-color: #ae2322;
+            border-color: #c52827;
+          }
+        }
+
+        span {
+          line-height: 38px;
+        }
+      }
     }
   }
 }
@@ -74,6 +136,12 @@
     .input-group {
       max-width: 356px;
 
+      input[type="text"] {
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
       .form-control {
         border-top-left-radius: 0;
         flex: 1;
@@ -81,6 +149,8 @@
 
       .btn {
         border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
 
       .icon-times::before {
