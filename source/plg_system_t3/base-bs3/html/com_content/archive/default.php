@@ -13,7 +13,9 @@ use Joomla\CMS\Language\Text;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::addIncludePath(T3_PATH . '/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
-JHtml::_('behavior.caption');
+if(version_compare(JVERSION, '4','lt')){
+  JHtml::_('behavior.caption'); 
+}
 ?>
 <div class="archive<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>

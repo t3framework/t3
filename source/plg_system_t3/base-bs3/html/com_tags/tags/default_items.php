@@ -14,8 +14,9 @@ if(version_compare(JVERSION, '4', 'ge')){
 	class TagsHelperRoute extends \Joomla\Component\Tags\Site\Helper\RouteHelper{};
 }
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
-
-JHtml::_('behavior.caption');
+if(version_compare(JVERSION, '4','lt')){
+  JHtml::_('behavior.caption'); 
+}
 JHtml::_('behavior.core');
 JHtml::_('formbehavior.chosen', 'select');
 
