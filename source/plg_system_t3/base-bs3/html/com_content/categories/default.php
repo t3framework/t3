@@ -21,7 +21,9 @@ if(!class_exists('ContentHelperRoute')){
 }
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-JHtml::_('behavior.caption');
+if(version_compare(JVERSION, '4','lt')){
+  JHtml::_('behavior.caption'); 
+}
 JHtml::_('behavior.core');
 
 JFactory::getDocument()->addScriptDeclaration("

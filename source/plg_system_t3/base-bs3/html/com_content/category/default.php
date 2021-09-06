@@ -18,8 +18,9 @@ if(!class_exists('ContentHelperRoute')){
 }
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-
-JHtml::_('behavior.caption');
+if(version_compare(JVERSION, '4','lt')){
+  JHtml::_('behavior.caption'); 
+}
 ?>
 <div class="category-list<?php echo $this->pageclass_sfx;?>">
 

@@ -16,8 +16,6 @@ use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
-//use Joomla\Component\Content\Administrator\Extension\ContentComponent;
-use T4\Helper\J3J4;
 
 if(!class_exists('ContentHelperRoute')){
 	if(version_compare(JVERSION, '4', 'ge')){
