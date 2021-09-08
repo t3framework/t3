@@ -16,7 +16,7 @@ JHtml::addIncludePath(dirname(dirname(__FILE__)));
 if(version_compare(JVERSION, '4','lt')){
 	JHtml::_('behavior.caption');	
 }
-$this->columns = !empty($this->columns) ? $this->columns : $this->params->get('num_columns');
+$this->columns = !empty($this->columns) ? $this->columns : $this->params->get('num_columns','1');
 
 $app = JFactory::getApplication();
 
