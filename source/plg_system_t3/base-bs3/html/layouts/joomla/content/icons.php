@@ -45,12 +45,10 @@ JHtml::_('bootstrap.framework');
 	<?php endif; ?>
 <?php else: ?>
 	<?php if ($canEdit) : ?>
-	<div class="icons">
-		<div class="float-end">
-			<div>
-				<?php echo JHtml::_('icon.edit', $displayData['item'], $displayData['params']); ?>
-			</div>
-		</div>
+	<div class="icons float-right float-end">
+  	  <div class="edit-link">
+	    <?php echo JHtml::_('icon.edit', $displayData['item'], $displayData['params']); ?>
+	  </div>
 	</div>
 <?php endif; ?>
 
