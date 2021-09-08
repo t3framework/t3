@@ -1309,7 +1309,11 @@ button.btn-primary:active {
 }
 
 .chzn-container-single .chzn-single div b {
-  background-position: 0 4px;
+  background-position: 4px 4px;
+}
+
+.chzn-container-single .chzn-single div b:before {
+  display: none;
 }
 
 .chzn-container-single .chzn-search {
