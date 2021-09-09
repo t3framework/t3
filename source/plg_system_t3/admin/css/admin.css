@@ -1417,7 +1417,12 @@ button.btn-primary:active {
 
 .chzn-container-active .chzn-single-with-drop div b,
 .chzn-container-active.chzn-with-drop .chzn-single div b {
-  background-position: -18px 5px;
+  background-position: 4px 4px;
+}
+
+.chzn-container-active .chzn-single-with-drop div b:after,
+.chzn-container-active.chzn-with-drop .chzn-single div b:after {
+  display: none;
 }
 
 .chzn-container-active .chzn-choices {
