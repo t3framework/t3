@@ -1,3 +1,11 @@
+<h2>Version: 3.0.3 (10/09/2021)</h2>
+<h3>Bug fixes for Joomla 4</h3>
+- improve front-end view and tag filter layout | <a href="https://github.com/t3framework/t3/commit/4f7e151bf8f9f646a60f7573edfe1f1312aee024">Link</a><br/>
+- Add class to improve style for the edit article view | <a href="https://github.com/t3framework/t3/commit/59638f55f49e0261983f4e1cc8953bd7d192b303">Link</a><br/>
+- Fixed: Missing icons on front-end view | <a href="https://github.com/t3framework/t3/commit/b0aaa852b9dfae9ceec1820838b6f7e911acac58">Link</a><br/>
+- Update style select field on template style settings | <a href="https://github.com/t3framework/t3/commit/f3744b4b534c8428dda059222b69685e8febe9c2">Link</a><br/>
+- remove caption library with Joomla 4 | <a href="https://github.com/t3framework/t3/commit/85b36e59077f053dfffdfb4f09fe314b46e7bfe5">Link</a><br/>
+
 <h2>Version: 3.0.2 (31/08/2021)</h2>
 - Fix issues for front-end edit of article and custom html module on Joomla 4
 
