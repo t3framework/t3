@@ -17,7 +17,7 @@ if(version_compare(JVERSION, '4','lt')){
 	JHtml::_('behavior.caption');	
 }
 $this->columns = !empty($this->columns) ? $this->columns : $this->params->get('num_columns','1');
-
+if(!$this->columns) $this->columns = 1;
 $app = JFactory::getApplication();
 
 $this->category->text = $this->category->description;
