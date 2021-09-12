@@ -99,7 +99,20 @@ abstract class ModuleHelper extends _ModuleHelper
 				$basePath = JPATH_THEMES . '/' . $ChromeStyleTemplate . '/html/layouts';
 			}
 		}
+		if(version_compare(JVERSION, '4.0', 'lt')){
+				include_once JPATH_THEMES . '/system/html/modules.php';
+				$chromePath = JPATH_THEMES . '/' . $template . '/html/modules.php';
 
+				if (!isset($chrome[$chromePath]))
+				{
+					if (file_exists($chromePath))
+					{
+						include_once $chromePath;
+					}
+
+					$chrome[$chromePath] = true;
+				}
+		}
 		// Make sure a style is set
 		if (!isset($attribs['style']))
 		{
