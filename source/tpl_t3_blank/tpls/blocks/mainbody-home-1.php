@@ -6,6 +6,7 @@
  */
 
 defined('_JEXEC') or die;
+$jinput = JFactory::getApplication()->input;
 ?>
 
 <div class="home">
