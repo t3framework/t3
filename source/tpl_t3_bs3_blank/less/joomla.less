@@ -780,6 +780,55 @@ div.finder {
   }
 }
 
+.com-finder {
+
+  #advancedSearch {
+    margin-top: @t3-global-margin;
+  }
+
+  #finder-filter-window {
+    margin-top: @t3-global-margin;
+  }
+
+  .filter-branch {
+    border: 1px solid @t3-border-color;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .control-group {
+      margin-bottom: @t3-global-margin;
+      padding: @t3-global-padding / 2;
+    }
+
+    .chosen-single {
+      min-width: 250px;
+    }
+
+    .chosen-container-single {
+      width: auto !important;
+    }
+  }
+
+  // Search result
+  #search-results {
+    .result__item + .result__item {
+      border-top: 1px solid @t3-border-color;
+    }
+
+    .result__title-url {
+      font-size: 12px;
+    }
+
+    mark {
+      background: #FEF3C7;
+      border-radius: 3px;
+      display: inline-block;
+      margin-right: 2px;
+      padding: 1px 4px;
+    }
+  }
+}
 
 
 //

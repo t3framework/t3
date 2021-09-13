@@ -1,3 +1,67 @@
+.com_config .btn,
+.com_content.layout-edit .edit.item-page .btn,
+.layout-modal .contentpane .btn {
+  border-radius: 5px;
+  padding: 8px 16px;
+}
+.com_config input[type="text"],
+.com_content.layout-edit .edit.item-page input[type="text"],
+.layout-modal .contentpane input[type="text"],
+.com_config input[type="email"],
+.com_content.layout-edit .edit.item-page input[type="email"],
+.layout-modal .contentpane input[type="email"],
+.com_config input[type="number"],
+.com_content.layout-edit .edit.item-page input[type="number"],
+.layout-modal .contentpane input[type="number"],
+.com_config input[type="password"],
+.com_content.layout-edit .edit.item-page input[type="password"],
+.layout-modal .contentpane input[type="password"] {
+  box-shadow: none;
+  border-radius: 5px;
+  padding: 0 12px;
+  height: 40px;
+  line-height: 40px;
+}
+.com_config input[type="text"]:focus,
+.com_content.layout-edit .edit.item-page input[type="text"]:focus,
+.layout-modal .contentpane input[type="text"]:focus,
+.com_config input[type="email"]:focus,
+.com_content.layout-edit .edit.item-page input[type="email"]:focus,
+.layout-modal .contentpane input[type="email"]:focus,
+.com_config input[type="number"]:focus,
+.com_content.layout-edit .edit.item-page input[type="number"]:focus,
+.layout-modal .contentpane input[type="number"]:focus,
+.com_config input[type="password"]:focus,
+.com_content.layout-edit .edit.item-page input[type="password"]:focus,
+.layout-modal .contentpane input[type="password"]:focus {
+  border-color: #ccc;
+}
+.com_config textarea,
+.com_content.layout-edit .edit.item-page textarea,
+.layout-modal .contentpane textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: none;
+}
+.com_config textarea:focus,
+.com_content.layout-edit .edit.item-page textarea:focus,
+.layout-modal .contentpane textarea:focus {
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+.com_config select,
+.com_content.layout-edit .edit.item-page select,
+.layout-modal .contentpane select {
+  border-radius: 5px;
+  height: auto;
+  padding: 8px;
+}
+.com_config .input-group .btn,
+.com_content.layout-edit .edit.item-page .input-group .btn,
+.layout-modal .contentpane .input-group .btn {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .com_config #templates-form .tip {
   background: #f5f5f5;
   padding: 12px 12px;
@@ -33,6 +97,32 @@
   .com_config #templates-form .control-group .controls {
     margin-left: 280px;
   }
+}
+.com_config.view-modules #options .accordion-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.com_config.view-modules #options .accordion-header {
+  font-size: 18px;
+  margin: 0;
+  padding: 16px;
+  line-height: 1;
+}
+.com_config.view-modules #options .accordion-header .accordion-button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+.com_config.view-modules #options .accordion-body {
+  border-top: 1px solid #ddd;
+  padding: 24px;
+}
+.com_config.view-modules #options .accordion-body .nav-tabs {
+  background: transparent;
 }
 .com_config #modules-form .input-append .add-on,
 .com_config #modules-form .input-prepend .add-on {
@@ -361,7 +451,7 @@
   left: -1px;
   z-index: 1;
   text-transform: uppercase;
-  background: url(../../../../../../plugins/system/t3/base-bs3/imgs/blank.gif) no-repeat transparent;
+  background: url(../../../../../plugins/system/t3/base-bs3/imgs/blank.gif) no-repeat transparent;
   text-indent: -999em;
 }
 .t3onoff label:before,

@@ -1731,6 +1731,41 @@ div.finder {
   vertical-align: top;
   margin-top: 3px;
 }
+.com-finder #advancedSearch {
+  margin-top: 20px;
+}
+.com-finder #finder-filter-window {
+  margin-top: 20px;
+}
+.com-finder .filter-branch {
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.com-finder .filter-branch .control-group {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.com-finder .filter-branch .chosen-single {
+  min-width: 250px;
+}
+.com-finder .filter-branch .chosen-container-single {
+  width: auto !important;
+}
+.com-finder #search-results .result__item + .result__item {
+  border-top: 1px solid #eeeeee;
+}
+.com-finder #search-results .result__title-url {
+  font-size: 12px;
+}
+.com-finder #search-results mark {
+  background: #FEF3C7;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 2px;
+  padding: 1px 4px;
+}
 @media (max-width: 768px) {
   .contact .thumbnail {
     width: 100%;
@@ -2488,7 +2523,6 @@ a.list-group-item.active:focus .list-group-item-text {
   left: 10px;
   top: 6px;
   color: #555555;
-  z-index: 10;
 }
 @media screen and (min-width: 768px) {
   .head-search .search {
@@ -2664,10 +2698,61 @@ a.list-group-item.active:focus .list-group-item-text {
   cursor: pointer;
   color: #666;
 }
+.field-calendar .input-group input[type="text"] {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.field-calendar .input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 .field-calendar a:hover,
 .field-calendar a:focus,
 .field-calendar a:active {
   cursor: pointer;
+}
+joomla-field-custom.field-custom-wrapper .input-group {
+  display: flex;
+  align-items: stretch;
+}
+joomla-field-custom.field-custom-wrapper .input-group input[type="text"] {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn {
+  display: flex;
+  align-items: stretch;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn {
+  border-radius: 0;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-select {
+  background-color: #2f7d32;
+  border-color: #2f7d32;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-select:hover,
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-select:focus,
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-select:active {
+  background-color: #296e2c;
+  border-color: #296e2c;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-clear {
+  background-color: #c52827;
+  border: 1px solid #c52827;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #fff;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-clear:hover,
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-clear:focus,
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn.button-clear:active {
+  background-color: #ae2322;
+  border-color: #c52827;
+}
+joomla-field-custom.field-custom-wrapper .input-group .input-group-btn .btn span {
+  line-height: 38px;
 }
 .input-group {
   position: relative;
@@ -2683,8 +2768,34 @@ a.list-group-item.active:focus .list-group-item-text {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+.com-tags-tag.tag-category .filters {
+  display: flex;
+  align-items: center;
+}
+.users-profile-custom-joomlatoken .dl-horizontal dd {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 400px;
+}
+.com-finder .form-inline > label {
+  margin-bottom: 10px;
+}
+.com-finder .input-group {
+  display: flex;
+  align-items: center;
+}
+.com-finder .input-group .btn:last-of-type {
+  border-radius: 5px;
+  margin-left: 10px;
+}
 .j40 joomla-field-media .input-group {
   max-width: 356px;
+}
+.j40 joomla-field-media .input-group input[type="text"] {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .j40 joomla-field-media .input-group .form-control {
   border-top-left-radius: 0;
@@ -2692,6 +2803,8 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 .j40 joomla-field-media .input-group .btn {
   border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .j40 joomla-field-media .input-group .icon-times::before {
   content: "\f00d";
@@ -2785,30 +2898,6 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 .profile-edit .control-group .controls {
   float: none;
-}
-.j40.com_config.view-modules #options .accordion-item {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 8px;
-}
-.j40.com_config.view-modules #options .accordion-header {
-  margin: 0;
-  line-height: 1;
-}
-.j40.com_config.view-modules #options .accordion-header .accordion-button {
-  background: transparent;
-  border: 0;
-  font-size: 18px;
-  padding: 12px 16px;
-  text-align: left;
-  width: 100%;
-}
-.j40.com_config.view-modules #options .accordion-body {
-  border-top: 1px solid #ddd;
-  padding: 24px;
-}
-.j40.com_config.view-modules #options .accordion-body .nav-tabs {
-  background: transparent;
 }
 .j40 .joomla-modal.show {
   background-color: rgba(0, 0, 0, 0.5);
