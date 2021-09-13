@@ -13,7 +13,23 @@ return;
 ?>
 
 <div class="home">
+  <?php if($jinput->getCmd('option') == 'com_config' && $jinput->getCmd('view') == 'modules'): ?>
+  <div id="t3-mainbody" class="container t3-mainbody">
+    <div class="row">
 
+      <!-- MAIN CONTENT -->
+      <div id="t3-content" class="t3-content col-xs-12">
+        <?php if($this->hasMessage()) : ?>
+        <jdoc:include type="message" />
+        <?php endif ?>
+        <jdoc:include type="component" />
+      </div>
+      <!-- //MAIN CONTENT -->
+
+    </div>
+  </div> 
+  <?php endif; ?>
+  
 	<?php if ($this->countModules('home-1')) : ?>
 		<!-- HOME SL 1 -->
 		<div class="wrap t3-sl t3-sl-1 <?php $this->_c('home-1') ?>">
