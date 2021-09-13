@@ -1,3 +1,10 @@
+<h2>Version: 3.0.4 (13/09/2021)</h2>
+<h3>Bug fixes and improvements</h3>
+- Improve Smart Search page | <a href="https://github.com/t3framework/t3/commit/176a8acfc3a2eb5200024303c9bb785a08b38fd8">Link</a><br/>
+- fixed allow edit module on front-end | <a href="https://github.com/t3framework/t3/commit/6cb03b97a315c4875f0b80b927b6b80367488c1e">Link</a><br/>
+- fixed load modChrome style | <a href="https://github.com/t3framework/t3/commit/366e958020bc892fdee41d3bd8021bdca6467296">Link</a><br/>
+- set default num_columns on blog layout | <a href="https://github.com/t3framework/t3/commit/9b4ef7cf5fc97922c7e379078c70a0d15b0718f6">Link</a><br/>
+
 <h2>Version: 3.0.3 (10/09/2021)</h2>
 <h3>Bug fixes for Joomla 4</h3>
 - Improve front-end view and tag filter layout | <a href="https://github.com/t3framework/t3/commit/4f7e151bf8f9f646a60f7573edfe1f1312aee024">Link</a><br/>
