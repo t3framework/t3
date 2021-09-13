@@ -2488,6 +2488,7 @@ a.list-group-item.active:focus .list-group-item-text {
   left: 10px;
   top: 6px;
   color: #555555;
+  z-index: 10;
 }
 @media screen and (min-width: 768px) {
   .head-search .search {
