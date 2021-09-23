@@ -31,25 +31,15 @@ endif;
 ?>
 <?php echo JHtml::_('bootstrap.addSlide', 'collapseTypes', Text::_($label), 'collapse' . ($i++)); ?>
 
-<ul class="nav nav-tabs nav-stacked">
+<ul class="nav nav-tabs nav-stacked flex-column">
 <?php foreach ($this->form->getFieldset($name) as $field) : ?>
 
 	<li>
-		<div class="control-group">
-			<div class="control-label">
-				<?php echo $field->label; ?>
-			</div>
-			<div class="controls">
-				<?php
-				// If multi-language site, make menu-type selection read-only
-				if (JLanguageMultilang::isEnabled() && $this->item['module'] === 'mod_menu' && $field->getAttribute('name') === 'menutype')
-				{
-					$field->__set('readonly', true);
-				}
-				echo $field->input;
-				?>
-			</div>
-		</div>
+		<?php // If multi-language site, make menu-type selection read-only ?>
+		<?php if (Multilanguage::isEnabled() && $this->item['module'] === 'mod_menu' && $field->getAttribute('name') === 'menutype') : ?>
+			<?php $field->readonly = true; ?>
+		<?php endif; ?>
+		<?php echo $field->renderField(); ?>
 	</li>
 
 <?php endforeach; ?>
