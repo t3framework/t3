@@ -108,7 +108,7 @@ jQuery(document).ready(function ($) {
         $menu.find ('a[data-toggle="dropdown"]').removeAttr('data-toggle').removeAttr('data-target');
         $menu
             .find('> li > ul.dropdown-menu')
-            .prev('a').attr('data-toggle', 'dropdown').attr('data-target', '#')
+            .prev().attr('data-toggle', 'dropdown').attr('data-target', '#')
             .parent('li')
             .addClass(function(){
                 return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
