@@ -25,7 +25,8 @@ class T3BootstrapTpl
 		<ul class="nav navbar-nav">
 			<?php
 			foreach ($list as &$item) :
-				$ItemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParams() : $item->params;
+				$ItemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParams() : $Item->params;
+				$Item->itemParams = $ItemParams;
 				//intergration with new params joomla 3.6.x (menu_show)
 				$menu_show = (int)$ItemParams->get('menu_show', 1);
 				if ($menu_show!=1)
@@ -127,7 +128,7 @@ class T3BootstrapTpl
 		}
 
 		if ($item->menu_image) {
-			$item->params->get('menu_text', 1) ?
+			$Item->itemParams->get('menu_text', 1) ?
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
@@ -168,7 +169,7 @@ class T3BootstrapTpl
 		// Note. It is important to remove spaces between elements.
 		$title = $item->anchor_title ? ' title="' . $item->anchor_title . '" ' : '';
 		if ($item->menu_image) {
-			$item->params->get('menu_text', 1) ?
+			$Item->itemParams->get('menu_text', 1) ?
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
@@ -200,7 +201,7 @@ class T3BootstrapTpl
 		}
 
 		if ($item->menu_image) {
-			$item->params->get('menu_text', 1) ?
+			$Item->itemParams->get('menu_text', 1) ?
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {

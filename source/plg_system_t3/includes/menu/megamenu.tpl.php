@@ -186,7 +186,7 @@ class T3MenuMegamenuTpl
 		$vars['caret']    = '';
 		$vars['icon']     = '';
 		$vars['caption']  = '';
-
+		$itemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParam() : $item->params;
 		if ($item->dropdown && $item->level < 2) {
 			$vars['class']    .= ' dropdown-toggle';
 			$vars['dropdown'] .= ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
@@ -196,9 +196,8 @@ class T3MenuMegamenuTpl
 		if($item->group){
 			$vars['class']    .= ' dropdown-header mega-group-title';
 		}
-
 		if ($item->menu_image) {
-			$item->params->get('menu_text', 1) ?
+			$itemParams->get('menu_text', 1) ?
 				$vars['linktype'] = '<img class="' . $item->menu_image_css . '" src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$vars['linktype'] = '<img class="' . $item->menu_image_css . '" src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {

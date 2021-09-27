@@ -28,7 +28,11 @@ if (!empty($item->anchor_rel))
 
 $dropdown = '';
 $caret = '';
-
+if(version_compare(JVERSION, '4', 'ge')){
+		$itemParams = $item->getParams();
+	}else{
+		$itemParams = $item->params;
+	}
 if($item->deeper && $item->level < 2){
 	$attributes['class'] .= ' dropdown-toggle';
 	$attributes['data-toggle'] = 'dropdown';
@@ -49,7 +53,7 @@ if ($item->menu_image)
 		$linktype = JHtml::_('image', $item->menu_image, $item->title);
 	}
 
-	if ($item->params->get('menu_text', 1))
+	if ($itemParams->get('menu_text', 1))
 	{
 		$linktype .= '<span class="image-title">' . $item->title . '</span>';
 	}
