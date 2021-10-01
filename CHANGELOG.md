@@ -2,7 +2,7 @@
 <h3>Bug fixes and improvements</h3>
 - Improve menuItem render | <a href="https://github.com/t3framework/t3/commit/38310d96d571b655451579c85f2c6bc0ecfe6976">Link</a><br/>
 - fixed event click on menu heading type  | <a href="https://github.com/t3framework/t3/commit/8cc300dd91444bd111c38a511264cbd2c0edbc7c">Link</a><br/>
-- Improve iconmoon to fontawsome  | <a href="https://github.com/t3framework/t3/commit/b584f86e33f4832d4671ae97a7922771518a1135">Link</a><br/>
+- Change iconmoon to fontawsome  | <a href="https://github.com/t3framework/t3/commit/b584f86e33f4832d4671ae97a7922771518a1135">Link</a><br/>
 - Improve render Field on edit module layout  | <a href="https://github.com/t3framework/t3/commit/36e287dc9212946a93ca2bd92f81d327ac989d25">Link</a><br/>
 
 <h2>Version: 3.0.4 (13/09/2021)</h2>
