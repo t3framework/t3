@@ -171,7 +171,7 @@ if(version_compare(JVERSION, '4', 'lt')){
 								echo JHtml::_('string.truncate', $this->item->title, $params->get('readmore_limit'));
 							endif;
 						elseif ($params->get('show_readmore_title', 0) == 0) :
-							echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');
+							echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE');
 						else :
 							echo Text::_('COM_CONTENT_READ_MORE');
 							echo JHtml::_('string.truncate', $this->item->title, $params->get('readmore_limit'));
