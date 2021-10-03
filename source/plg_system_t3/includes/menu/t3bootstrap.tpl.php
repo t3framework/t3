@@ -25,8 +25,8 @@ class T3BootstrapTpl
 		<ul class="nav navbar-nav">
 			<?php
 			foreach ($list as &$item) :
-				$ItemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParams() : $Item->params;
-				$Item->itemParams = $ItemParams;
+				$ItemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParams() : $item->params;
+				$item->itemParams = $ItemParams;
 				//intergration with new params joomla 3.6.x (menu_show)
 				$menu_show = (int)$ItemParams->get('menu_show', 1);
 				if ($menu_show!=1)
