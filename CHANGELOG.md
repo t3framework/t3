@@ -1,3 +1,7 @@
+<h2>Version: 3.0.6 (03/10/2021)</h2>
+<h3>Bug fixes</h3>
+- Improve menuItem render | <a href="https://github.com/t3framework/t3/commit/783bed7759a7f68d8cef37d494e086adabf35a20">Link</a><br/>
+
 <h2>Version: 3.0.5 (01/10/2021)</h2>
 <h3>Bug fixes and improvements</h3>
 - Improve menuItem render | <a href="https://github.com/t3framework/t3/commit/38310d96d571b655451579c85f2c6bc0ecfe6976">Link</a><br/>
