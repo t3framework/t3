@@ -8,7 +8,9 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 JHtml::addIncludePath(JPATH_SITE . '/components/com_finder/helpers/html');
 
@@ -76,7 +78,7 @@ if(version_compare(JVERSION, "4", 'ge')){
 				<a href="<?php echo JRoute::_($route); ?>" class="mod-finder__advanced-link"><?php echo Text::_('COM_FINDER_ADVANCED_SEARCH'); ?></a>
 			<?php elseif ($show_advanced == 1) : ?>
 				<div class="mod-finder__advanced js-finder-advanced">
-					<?php echo JHTMLHelper::_('filter.select', $query, $params); ?>
+					<?php echo HTMLHelper::_('filter.select', $query, $params); ?>
 				</div>
 			<?php endif; ?>
 			<?php echo modFinderHelper::getGetFields($route, (int) $params->get('set_itemid', 0)); ?>
