@@ -92,7 +92,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 						<?php if ($this->params->get('show_country_headings') && !empty($item->country)) : ?>
 							<?php $location[] = $item->country; ?>
 						<?php endif; ?>
-						<?php echo implode($location, ', '); ?>
+						<?php echo implode(', ',$location); ?>
 					</div>
 
 					<div class="span3 col-md-3">
