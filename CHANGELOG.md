@@ -1,3 +1,8 @@
+<h2>Version: 3.0.7 (28/10/2021)</h2>
+<h3>Bug fixes</h3>
+- Compatible with PHP 8 | <a href="https://github.com/t3framework/t3/commit/dcec279923e1fed30476ac867362bc40fcb8bd0d">Link</a><br/>
+- Fixed add class when button unpublished trigger change  | <a href="https://github.com/t3framework/t3/commit/a2edc9537befd75ae0050f3e34ea3aae4a9e80a1">Link</a><br/>
+
 <h2>Version: 3.0.6 (03/10/2021)</h2>
 <h3>Bug fixes</h3>
 - Improve menuItem render | <a href="https://github.com/t3framework/t3/commit/783bed7759a7f68d8cef37d494e086adabf35a20">Link</a><br/>
