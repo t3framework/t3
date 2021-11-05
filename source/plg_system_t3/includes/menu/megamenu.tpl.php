@@ -186,7 +186,7 @@ class T3MenuMegamenuTpl
 		$vars['caret']    = '';
 		$vars['icon']     = '';
 		$vars['caption']  = '';
-		$itemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParam() : $item->params;
+		$itemParams = version_compare(JVERSION, '4', 'ge') ? $item->getParams() : $item->params;
 		if ($item->dropdown && $item->level < 2) {
 			$vars['class']    .= ' dropdown-toggle';
 			$vars['dropdown'] .= ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib

@@ -1,3 +1,19 @@
+<h2>Version: 3.0.7 (28/10/2021)</h2>
+<h3>Bug fixes</h3>
+- Compatible with PHP 8 | <a href="https://github.com/t3framework/t3/commit/dcec279923e1fed30476ac867362bc40fcb8bd0d">Link</a><br/>
+- Fixed add class when button unpublished trigger change  | <a href="https://github.com/t3framework/t3/commit/a2edc9537befd75ae0050f3e34ea3aae4a9e80a1">Link</a><br/>
+
+<h2>Version: 3.0.6 (03/10/2021)</h2>
+<h3>Bug fixes</h3>
+- Improve menuItem render | <a href="https://github.com/t3framework/t3/commit/783bed7759a7f68d8cef37d494e086adabf35a20">Link</a><br/>
+
+<h2>Version: 3.0.5 (01/10/2021)</h2>
+<h3>Bug fixes and improvements</h3>
+- Improve menuItem render | <a href="https://github.com/t3framework/t3/commit/38310d96d571b655451579c85f2c6bc0ecfe6976">Link</a><br/>
+- fixed event click on menu heading type  | <a href="https://github.com/t3framework/t3/commit/8cc300dd91444bd111c38a511264cbd2c0edbc7c">Link</a><br/>
+- Change iconmoon to fontawsome  | <a href="https://github.com/t3framework/t3/commit/b584f86e33f4832d4671ae97a7922771518a1135">Link</a><br/>
+- Improve render Field on edit module layout  | <a href="https://github.com/t3framework/t3/commit/36e287dc9212946a93ca2bd92f81d327ac989d25">Link</a><br/>
+
 <h2>Version: 3.0.4 (13/09/2021)</h2>
 <h3>Bug fixes and improvements</h3>
 - Improve Smart Search page | <a href="https://github.com/t3framework/t3/commit/176a8acfc3a2eb5200024303c9bb785a08b38fd8">Link</a><br/>

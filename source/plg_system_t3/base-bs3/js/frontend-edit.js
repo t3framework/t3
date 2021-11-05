@@ -40,6 +40,13 @@
 
 				input.prop('checked', true).trigger('change');
 			}
+			if (input.val() == '') {
+				label.addClass('active btn-primary');
+			} else if (input.val() == 0) {
+				label.addClass('active btn-danger');
+			} else {
+				label.addClass('active btn-success');
+			}
 		});
 		
 		$(".btn-group input[checked=checked]").each(function()
