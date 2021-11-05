@@ -100,18 +100,24 @@ abstract class ModuleHelper extends _ModuleHelper
 			}
 		}
 		if(version_compare(JVERSION, '4.0', 'lt')){
-				include_once JPATH_THEMES . '/system/html/modules.php';
-				$chromePath = JPATH_THEMES . '/' . $template . '/html/modules.php';
+			include_once JPATH_THEMES . '/system/html/modules.php';
+		}
 
-				if (!isset($chrome[$chromePath]))
-				{
-					if (file_exists($chromePath))
-					{
-						include_once $chromePath;
-					}
+		$chromePath = JPATH_THEMES . '/' . $template . '/html/modules.php';
 
-					$chrome[$chromePath] = true;
-				}
+		if (!isset($chrome[$chromePath]))
+		{
+			if (file_exists($chromePath))
+			{
+				// load module style on template
+				include_once $chromePath;
+			}else{
+				// load module style function for use on some module of JA
+				$chromePath = JPATH_ROOT . '/plugins/system/t3/base-bs3/html/modules.php';
+				include_once $chromePath;
+			}
+
+			$chrome[$chromePath] = true;
 		}
 		// Make sure a style is set
 		if (!isset($attribs['style']))
