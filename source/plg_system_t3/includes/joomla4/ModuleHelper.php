@@ -112,9 +112,11 @@ abstract class ModuleHelper extends _ModuleHelper
 				// load module style on template
 				include_once $chromePath;
 			}else{
-				// load module style function for use on some module of JA
-				$chromePath = JPATH_ROOT . '/plugins/system/t3/base-bs3/html/modules.php';
-				include_once $chromePath;
+				if($app->isClient('site')){
+					// load module style function for use on some module of JA
+					$chromePath = JPATH_ROOT . '/plugins/system/t3/base-bs3/html/modules.php';
+					include_once $chromePath;
+				}
 			}
 
 			$chrome[$chromePath] = true;
