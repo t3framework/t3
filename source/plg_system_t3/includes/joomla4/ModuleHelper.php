@@ -114,7 +114,7 @@ abstract class ModuleHelper extends _ModuleHelper
 			}else{
 				if($app->isClient('site')){
 					// load module style function for use on some module of JA
-					$chromePath = JPATH_ROOT . '/plugins/system/t3/base-bs3/html/modules.php';
+					$chromePath = \T3Path::getPath('html/modules.php');
 					include_once $chromePath;
 				}
 			}
