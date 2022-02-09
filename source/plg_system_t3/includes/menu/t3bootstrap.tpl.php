@@ -128,7 +128,7 @@ class T3BootstrapTpl
 		}
 
 		if ($item->menu_image) {
-			$Item->itemParams->get('menu_text', 1) ?
+			$item->itemParams->get('menu_text', 1) ?
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
@@ -169,7 +169,7 @@ class T3BootstrapTpl
 		// Note. It is important to remove spaces between elements.
 		$title = $item->anchor_title ? ' title="' . $item->anchor_title . '" ' : '';
 		if ($item->menu_image) {
-			$Item->itemParams->get('menu_text', 1) ?
+			$item->itemParams->get('menu_text', 1) ?
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
@@ -201,7 +201,7 @@ class T3BootstrapTpl
 		}
 
 		if ($item->menu_image) {
-			$Item->itemParams->get('menu_text', 1) ?
+			$item->itemParams->get('menu_text', 1) ?
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
 				$linktype = '<img class="' . $item->menu_image_css . '"  src="' . $item->menu_image . '" alt="' . $item->title . '" />';
 		} else {
