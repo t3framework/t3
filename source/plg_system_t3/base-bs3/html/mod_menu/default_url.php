@@ -11,6 +11,11 @@ defined('_JEXEC') or die;
 
 $attributes = array();
 $attributes['class']='';
+if(version_compare(JVERSION, '4', 'ge')){
+	$itemParams = $item->getParams();
+}else{
+	$itemParams = $item->params;
+}
 if ($item->anchor_title)
 {
 	$attributes['title'] = $item->anchor_title;
@@ -49,7 +54,7 @@ if ($item->menu_image)
 		$linktype = JHtml::_('image', $item->menu_image, $item->title);
 	}
 
-	if ($item->params->get('menu_text', 1))
+	if ($itemParams->get('menu_text', 1))
 	{
 		$linktype .= '<span class="image-title">' . $item->title . '</span>';
 	}
