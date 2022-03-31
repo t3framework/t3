@@ -1,3 +1,11 @@
+<h2>Version: 3.0.8 (31/3/2022)</h2>
+<h3>Bug fixes</h3>
+- Fix getting params of menu item on Joomla 4 | <a href="https://github.com/t3framework/t3/commit/04049ae3d9060688a685b925f38c31124bcdf782">Link</a><br/>
+- Fix menu that uses "t3bootstrap" type on Joomla 4 | <a href="https://github.com/t3framework/t3/commit/4b21319dfacbcaaaea09acd415a9a21bd4d2ec84">Link</a><br/>
+- Fix loading mod chrome by config on template | <a href="https://github.com/t3framework/t3/commit/4b21319dfacbcaaaea09acd415a9a21bd4d2ec84">Link</a><br/>
+- Fixed module style on front-end render | <a href="https://github.com/t3framework/t3/commit/2bd27ea0ac92eb04f9b80dcabb7edae3560452e9">Link</a><br/>
+- Joomla 4: Fix loading module style on plugin if it does not exists on template  | <a href="https://github.com/t3framework/t3/commit/b0f4d64741c69c3b489d96c63d57c581d33abb66">Link</a><br/>
+
 <h2>Version: 3.0.7 (28/10/2021)</h2>
 <h3>Bug fixes</h3>
 - Compatible with PHP 8 | <a href="https://github.com/t3framework/t3/commit/dcec279923e1fed30476ac867362bc40fcb8bd0d">Link</a><br/>
