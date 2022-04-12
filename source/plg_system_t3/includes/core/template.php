@@ -564,6 +564,9 @@ class T3Template extends ObjectExtendable
 		}
 
 		$this->_pageclass[] = 'j' . str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
+		if(version_compare(JVERSION,'4','ge')){
+			$this->_pageclass[] = 'j40';
+		}
 		$this->_pageclass = array_unique($this->_pageclass);
 
 		JFactory::getApplication()->triggerEvent('onT3BodyClass', array(&$this->_pageclass));
