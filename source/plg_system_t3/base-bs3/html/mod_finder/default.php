@@ -16,7 +16,7 @@ JHtml::addIncludePath(JPATH_SITE . '/components/com_finder/helpers/html');
 
 JHtml::_('jquery.framework');
 JHtml::_('formbehavior.chosen');
-if(version_compare(JVERSION, '4', 'ge')){
+if(version_compare(JVERSION, '4', 'ge') && !class_exists("modFinderHelper")){
 	class modFinderHelper extends \Joomla\Module\Finder\Site\Helper\FinderHelper{};
 }
 if(version_compare(JVERSION, '3.0', 'ge')){
