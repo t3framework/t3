@@ -160,9 +160,9 @@ abstract class ModuleHelper extends _ModuleHelper
 		foreach (explode(' ', $attribs['style']) as $style)
 		{
 			$chromeMethod = 'modChrome_' . $style;
-
+			$chromeStylePath = \T3Path::getPath('html/layouts/chromes/'.$style.'.php');
 			// Apply chrome and render module
-			if (function_exists($chromeMethod))
+			if (function_exists($chromeMethod) && !file_exists($chromeStylePath))
 			{
 				$module->style = $attribs['style'];
 
