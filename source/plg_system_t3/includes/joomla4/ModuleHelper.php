@@ -64,7 +64,8 @@ abstract class ModuleHelper extends _ModuleHelper
 		// Render the module content
 		static::renderRawModule($module, $params, $attribs);
 
-		if (!empty($attribs['style']) && $attribs['style'] === 'raw')
+		// Return early if only the content is required
+		if (!empty($attribs['contentOnly']))
 		{
 			return $module->content;
 		}
