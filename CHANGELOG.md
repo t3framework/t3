@@ -1,3 +1,10 @@
+<h2>Version: 3.0.9 (20/05/2022)</h2>
+<h3>Bug fixes</h3>
+- Update add j40 class to body support load css | <a href="https://github.com/t3framework/t3/commit/18a8ffffd7e0b1fc24a3bf2d348af495cc3e72a2">Link</a><br/>
+- Update check class exits mod_finder on Joomla 4 | <a href="https://github.com/t3framework/t3/commit/4802d2908f90353f51013e48eff5a2f79354f40c">Link</a><br/>
+- Fixed load override module style on parameter | <a href="https://github.com/t3framework/t3/commit/d549396f98ed813e51c3781e549cf7b6ace21a6a">Link</a><br/>
+- Check chromes style exits on template for render module  | <a href="https://github.com/t3framework/t3/commit/02a70d1c1f6793c04fb5f2582fa1055dba7fd6b8">Link</a><br/>
+
 <h2>Version: 3.0.8 (31/3/2022)</h2>
 <h3>Bug fixes</h3>
 - Fix getting params of menu item on Joomla 4 | <a href="https://github.com/t3framework/t3/commit/04049ae3d9060688a685b925f38c31124bcdf782">Link</a><br/>
