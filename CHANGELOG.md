@@ -1,3 +1,8 @@
+<h2>Version: 3.1.0 (14/07/2022)</h2>
+<h3>Bug fixes</h3>
+- Fixed module content error on joomla 4 | <a href="https://github.com/t3framework/t3/commit/73d855522c7e92074ffe9014ff7c19ea778c576b">Link</a><br/>
+- Fixed warning message php 8.0 | <a href="https://github.com/t3framework/t3/commit/543ff635ec50691d8bdbd7b6823d8e81d5909394">Link</a><br/>
+
 <h2>Version: 3.0.9 (20/05/2022)</h2>
 <h3>Bug fixes</h3>
 - Update add j40 class to body support load css | <a href="https://github.com/t3framework/t3/commit/18a8ffffd7e0b1fc24a3bf2d348af495cc3e72a2">Link</a><br/>
