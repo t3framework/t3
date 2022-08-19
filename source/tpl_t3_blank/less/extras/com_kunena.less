@@ -1,0 +1,264 @@
+/**
+ * $JA#COPYRIGHT$
+*/
+
+// VARIABLES & MIXINS
+// ------------------
+@import "../vars.less"; // Modify this for custom colors, font-sizes, etc
+
+// Kunena 6.0
+// --------------------------------------------------------
+
+.d-none {
+  display: none !important;
+}
+
+.float-start {
+  float: left !important;
+}
+
+.float-end {
+  float: right !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.border {
+  border: 1px solid @hr-border !important;
+}
+
+.card-header {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+// Min width 992px
+@media (min-width: @screen-md) {
+  .d-lg-block {
+    display: block !important;
+  }
+
+  .navbar-expand-lg .navbar-toggler, 
+  .navbar-expand-lg .offcanvas-header {
+    display: none !important;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto !important;
+  }
+}
+
+// Min width 768px
+@media (min-width: @screen-sm) {
+  .d-md-none {
+    display: none !important;
+  }
+}
+
+@media (min-width: @screen-xs) {
+  .d-sm-none {
+    display: none;
+  }
+}
+
+@media (max-width: @screen-xs) {
+  .hidden-xs-down {
+    display: none;
+  }
+}
+
+
+#kunena.layout {
+  div.knav-usercollapse {
+    position: static;
+    display: block !important;
+
+    #userdropdown {
+      #kform-login-remember {
+        input {
+          float: left;
+          margin-right: 6px;
+        }
+      }
+
+      #kform-login-desktop-submit {
+        button[type="submit"] {
+          background: #fa4b2a;
+          margin-top: @t3-global-margin/2;
+          min-width: 100px;
+          color: @white;
+        }
+
+        a {
+          font-size: 13px;
+          //color: @gray-dark;
+        }
+      }
+
+      // Form
+      .form-group {
+        .input-group {
+          position: relative;
+
+          input.form-control {
+            padding: 8px 24px 8px 10px;
+            max-width: 100%;
+            width: 100%;
+          }
+        }
+
+        .input-group-text {
+          position: absolute;
+          right: 8px;
+          top: 8px;
+          z-index: 9;
+        }
+      }
+    }
+  }
+
+  .alert-dismissible {
+    background-color: #d6e0e8;
+    border-color: #c1d0dd;
+    color: #1d3b55;
+    position: relative;
+    padding: @t3-global-padding @t3-global-padding*2 @t3-global-padding @t3-global-padding;
+    opacity: 1;
+    font-size: @font-size-large;
+
+    .btn-close {
+      position: absolute;
+      font-size: @font-size-large;
+      line-height: 1;
+      color: @black;
+      opacity: 0.4;
+      background: transparent;
+      right: 10px;
+      top: 10px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    h5 {
+      background: @brand-primary;
+      color: @brand-info;
+      padding: @t3-global-padding;
+      margin: -@t3-global-margin -@t3-global-margin @t3-global-margin -@t3-global-margin;
+
+      a {
+        color: @brand-info;
+        
+      }
+
+      small {
+        
+      }
+    }
+
+    p {
+      
+    }
+
+    div > .btn-link {
+      float: right;
+      margin-top: @t3-global-margin;
+      .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+      .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-small; @line-height-computed; @border-radius-base);
+    }
+  }
+
+  .card-header {
+    background-color: @white;
+    margin-top: 0;
+    padding: @t3-global-padding/2 @t3-global-padding;
+  }
+
+  .table {
+    margin-bottom: @t3-global-margin;
+  }
+
+  .breadcrumb-item {
+    .bi-house {
+      float: left;
+      margin-right: 4px;
+    }
+  }
+
+  #klogin-desktop {
+    float: left;
+    margin-right: 4px;
+
+    .bi-person {
+      float: left;
+      margin-right: 4px;
+    }
+  }
+
+  // Table
+  .kfrontend {
+    .table {
+      thead {
+        
+      }
+
+      tr {
+
+        td {
+          border: 1px solid @hr-border;
+          padding: @t3-global-margin/2 @t3-global-margin;
+        }
+
+        &.category {
+          td#kcat-icon a {
+            display: block;
+          }
+
+          h3 {
+            display: inline-block;
+            margin-bottom: 6px !important;
+
+            a {
+
+              svg {
+                color: rgba(255,255,255,0.5) !important;
+              }
+            }
+
+            &:hover {
+
+              a {
+
+                svg {
+                }
+              }
+
+              #kcatcount {
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .card-body {
+      margin-bottom: 0;
+      padding: @t3-global-padding;
+      border: 1px solid @hr-border;
+      border-top: none;
+    }
+  }
+
+  .kunena-search {
+    .input-group {
+      display: flex;
+    }
+  }
+}

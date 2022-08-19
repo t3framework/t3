@@ -81,27 +81,60 @@ if (version_compare(JVERSION, '4', 'ge')) {
 					   size="18" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD') ?>"/>
 			<?php endif; ?>
 			</div>
-			<?php if (isset($twofactormethods) && count($twofactormethods) > 1): ?>
-			<div id="form-login-secretkey" class="form-group">
-				<?php if (!$params->get('usetext')) : ?>
-				<div class="input-group">
-					<span class="input-group-addon">
-						<span class="fa fa-star hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>"></span>
-					</span>
-					<label for="modlgn-secretkey" class="element-invisible"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
-					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-					<span class="input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-						<span class="fa fa-question-circle"></span>
-					</span>
+			<?php if(version_compare(JVERSION, '4.2', 'ge')):?>
+				<?php foreach ($extraButtons as $button) :
+						$dataAttributeKeys = array_filter(array_keys($button), function ($key) {
+								return substr($key, 0, 5) == 'data-';
+						});
+						?>
+						<div class="mod-login__submit form-group">
+								<button type="button"
+												class="btn btn-secondary w-100 <?php echo $button['class'] ?? '' ?>"
+												<?php foreach ($dataAttributeKeys as $key) : ?>
+														<?php echo $key ?>="<?php echo $button[$key] ?>"
+												<?php endforeach; ?>
+												<?php if ($button['onclick']) : ?>
+												onclick="<?php echo $button['onclick'] ?>"
+												<?php endif; ?>
+												title="<?php echo Text::_($button['label']) ?>"
+												id="<?php echo $button['id'] ?>"
+												>
+										<?php if (!empty($button['icon'])) : ?>
+												<span class="<?php echo $button['icon'] ?>"></span>
+										<?php elseif (!empty($button['image'])) : ?>
+												<?php echo $button['image']; ?>
+										<?php elseif (!empty($button['svg'])) : ?>
+												<?php echo $button['svg']; ?>
+										<?php endif; ?>
+										<?php echo Text::_($button['label']) ?>
+								</button>
+						</div>
+				<?php endforeach; ?>
+
+			<?php else:?>
+
+				<?php if (isset($twofactormethods) && count($twofactormethods) > 1): ?>
+				<div id="form-login-secretkey" class="form-group">
+					<?php if (!$params->get('usetext')) : ?>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="fa fa-star hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>"></span>
+						</span>
+						<label for="modlgn-secretkey" class="element-invisible"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
+						<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+						<span class="input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+							<span class="fa fa-question-circle"></span>
+						</span>
+					</div>
+					<?php else: ?>
+						<label for="modlgn-secretkey"><?php echo Text::_('JGLOBAL_SECRETKEY') ?></label>
+						<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+						<span class="btn btn-default width-auto hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+							<span class="fa fa-question-circle"></span>
+						</span>
+					<?php endif; ?>
 				</div>
-				<?php else: ?>
-					<label for="modlgn-secretkey"><?php echo Text::_('JGLOBAL_SECRETKEY') ?></label>
-					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="input-small" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-					<span class="btn btn-default width-auto hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-						<span class="fa fa-question-circle"></span>
-					</span>
 				<?php endif; ?>
-			</div>
 			<?php endif; ?>
 		
 			<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
