@@ -722,7 +722,7 @@ class T3Template extends ObjectExtendable
 	function getPosname($condition)
 	{
 		$operators = '(,|\+|\-|\*|\/|==|\!=|\<\>|\<|\>|\<=|\>=|and|or|xor)';
-		$words = preg_split('# ' . $operators . ' #', $condition, null, PREG_SPLIT_DELIM_CAPTURE);
+		$words = preg_split('# ' . $operators . ' #', $condition, -1, PREG_SPLIT_DELIM_CAPTURE);
 		for ($i = 0, $n = count($words); $i < $n; $i += 2) {
 			// odd parts (modules)
 			$name = strtolower($words[$i]);
@@ -1196,7 +1196,8 @@ class T3Template extends ObjectExtendable
 											$media = $file['media'] ? (string) $file['media'] : null;
 											$this->addStylesheet($url, $type, $media);
 										} else {
-											$this->addStylesheet($url, array(), current($file->attributes()));
+											//$this->addStylesheet($url, array(), current($file->attributes()));
+											$this->addStylesheet($url, array(), current((array) $file->attributes()));
 										}
 									} else {
 										if(version_compare(JVERSION, '3.7', 'lt')) {
@@ -1205,7 +1206,7 @@ class T3Template extends ObjectExtendable
 											$async = $file['async'] ? (bool) $file['async'] : false;
 											$this->addScript($url, $type, $defer, $async);
 										} else {
-											$this->addScript($url, array(), current($file->attributes()));
+											$this->addScript($url, array(), current((array) $file->attributes()));
 										}
 									}
 								}

@@ -33,14 +33,16 @@ defined('_JEXEC') or die('Restricted access');
  * Default Module Chrome that has sematic markup and has best SEO support
  */
 function modChrome_T3Xhtml($module, &$params, &$attribs)
-{ 
-	$badge          = preg_match ('/badge/', $params->get('moduleclass_sfx'))? '<span class="badge">&nbsp;</span>' : '';
+{
+	$badge = !empty($params->get('moduleclass_sfx')) && preg_match('/badge/', $params->get('moduleclass_sfx'))
+		? '<span class="badge">&nbsp;</span>' : '';
 	$moduleTag      = htmlspecialchars($params->get('module_tag', 'div'));
 	$headerTag      = htmlspecialchars($params->get('header_tag', 'h3'));
 	$headerClass    = $params->get('header_class');
 	$bootstrapSize  = $params->get('bootstrap_size');
 	$moduleClass    = !empty($bootstrapSize) ? ' span' . (int) $bootstrapSize . '' : '';
-	$moduleClassSfx = htmlspecialchars($params->get('moduleclass_sfx'));
+	$moduleClassSfx = !empty($params->get('moduleclass_sfx'))
+		? htmlspecialchars($params->get('moduleclass_sfx')) : '';
 
 	if (!empty ($module->content)) {
 		$html = "<{$moduleTag} class=\"t3-module module{$moduleClassSfx} {$moduleClass}\" id=\"Mod{$module->id}\">" .
@@ -118,7 +120,7 @@ function modChrome_t3tabs($module, $params, $attribs)
 
 function modChrome_t3slider($module, &$params, &$attribs)
 {
-	$badge = preg_match ('/badge/', $params->get('moduleclass_sfx'))?"<span class=\"badge\">&nbsp;</span>\n":"";
+	$badge = !empty($params->get('moduleclass_sfx')) && preg_match ('/badge/', $params->get('moduleclass_sfx'))?"<span class=\"badge\">&nbsp;</span>\n":"";
 	$headerLevel = isset($attribs['headerLevel']) ? (int) $attribs['headerLevel'] : 3;
 	?>
 
@@ -169,7 +171,7 @@ function modChrome_t3modal($module, &$params, &$attribs)
 
 function modChrome_popover($module, &$params, &$attribs)
 {
-	$position = preg_match ('/left/', $params->get('moduleclass_sfx'))?"":"";
+	$position = !empty($params->get('moduleclass_sfx')) && preg_match ('/left/', $params->get('moduleclass_sfx'))?"":"";
 	$headerLevel = isset($attribs['headerLevel']) ? (int) $attribs['headerLevel'] : 3;
 
 	if (!empty ($module->content)) : ?>
