@@ -28,15 +28,18 @@ $botInfo = ($aInfo1 && $info == 1) || ($aInfo2 && $info != 0);
 
 // Check if associations are implemented. If they are, define the parameter.
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
-
+	$timePublishDown = $this->item->publish_down != null
+		? strtotime($this->item->publish_down) : '';
+	$timePublishUp = $this->item->publish_up != null
+		? strtotime($this->item->publish_up) : '';
 // update catslug if not exists - compatible with 2.5
 if (empty ($this->item->catslug)) {
   $this->item->catslug = $this->item->category_alias ? ($this->item->catid.':'.$this->item->category_alias) : $this->item->catid;
 }
 ?>
 
-<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
-|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && !in_array($this->item->publish_down,array('',JFactory::getDbo()->getNullDate())) )) : ?>
+<?php if ($this->item->state == 0 || strtotime($timePublishUp) > strtotime(JFactory::getDate())
+|| ((strtotime($timePublishDown) < strtotime(JFactory::getDate())) && !in_array($this->item->publish_down,array('',JFactory::getDbo()->getNullDate())) )) : ?>
 <div class="system-unpublished">
 <?php endif; ?>
 
@@ -107,8 +110,8 @@ if (empty ($this->item->catslug)) {
 	</article>
 	<!-- //Article -->
 
-<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
-|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && !in_array($this->item->publish_down,array('',JFactory::getDbo()->getNullDate())) )) : ?>
+<?php if ($this->item->state == 0 || strtotime($timePublishUp) > strtotime(JFactory::getDate())
+|| ((strtotime($timePublishDown) < strtotime(JFactory::getDate())) && !in_array($this->item->publish_down,array('',JFactory::getDbo()->getNullDate())) )) : ?>
 </div>
 <?php endif; ?>
 

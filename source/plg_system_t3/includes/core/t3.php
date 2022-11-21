@@ -82,7 +82,10 @@ class T3 {
 	public static function init ($xml) {
 		$app       = JFactory::getApplication();
 		$input     = $app->input;
-		$coretheme = isset($xml->t3) && isset($xml->t3->base) ? trim((string)$xml->t3->base) : 'base';
+		// echo '<pre>';var_dump($xml->t3->base);echo '</pre>';
+//		if ($xml->t3->base === null){echo '<pre>';var_dump($xml->t3->base);echo '</pre>';die('');}
+		$coretheme = isset($xml->t3) && isset($xml->t3->base)
+			? trim((string)$xml->t3->base) : 'base';
 
 		// check coretheme in media/t3/themes folder
 		// if not exists, use default base theme in T3
@@ -314,9 +317,9 @@ class T3 {
 				if (!$user->id){
 					return false;
 				}
-
+				$task = $input->getCmd('task') !== null ? $input->getCmd('task') : '';
 				if($input->getCmd('option') == 'com_templates' &&
-					(preg_match('/style\./', $input->getCmd('task')) ||
+					(preg_match('/style\./', $task) ||
 						$input->getCmd('view') == 'style' ||
 						$input->getCmd('view') == 'template')){
 

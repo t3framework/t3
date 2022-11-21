@@ -21,10 +21,14 @@ $aInfo2 = ($params->get('show_create_date') || $params->get('show_modify_date') 
 $topInfo = ($aInfo1 && $info != 1) || ($aInfo2 && $info == 0);
 $botInfo = ($aInfo1 && $info == 1) || ($aInfo2 && $info != 0);
 $icons = $params->get('access-edit') || $params->get('show_print_icon') || $params->get('show_email_icon');
+	$timePublishDown = $this->item->publish_down != null
+		? strtotime($this->item->publish_down) : '';
+	$timePublishUp = $this->item->publish_up != null
+		? strtotime($this->item->publish_up) : '';
 ?>
 
-  <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
-	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate() )) : ?>
+  <?php if ($this->item->state == 0 || strtotime($timePublishUp) > strtotime(JFactory::getDate())
+	|| ((strtotime($timePublishDown) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate() )) : ?>
 <div class="system-unpublished">
 	<?php endif; ?>
 
@@ -95,8 +99,8 @@ $icons = $params->get('access-edit') || $params->get('show_print_icon') || $para
 	</article>
 	<!-- //Article -->
 
-  <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
-	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate() )) : ?>
+  <?php if ($this->item->state == 0 || strtotime($timePublishUp) > strtotime(JFactory::getDate())
+	|| ((strtotime($timePublishDown) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate() )) : ?>
 </div>
 <?php endif; ?>
 <?php echo $this->item->event->afterDisplayContent; ?>

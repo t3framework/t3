@@ -200,7 +200,7 @@ var T3Admin = window.T3Admin || {};
 			}
 
 			var titles = jptitle.html().split(':');
-			console.log(titles);
+
 			jptitle.removeClass('icon-48-thememanager').html(titles[0] + '<small>' + titles[1] + '</small>');
 
 			//remove joomla title
@@ -469,7 +469,7 @@ var T3Admin = window.T3Admin || {};
 			$('.t3-admin-nav a[data-bs-toggle="tab"]').on('show.bs.tab', function (e) {
 				var url = e.target.href;
 			  	window.location.hash = url.substring(url.indexOf('#')).replace ('_params', '');
-			  	console.log('tab:', this);
+			  	// console.log('tab:', this);
 			  	$('.t3-admin-nav li').removeClass('active');
 			  	$(this).parent('li').addClass('active');
 
