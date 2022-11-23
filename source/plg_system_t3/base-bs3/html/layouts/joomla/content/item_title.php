@@ -21,6 +21,10 @@ if (empty ($item->catslug)) {
 $url = JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug));
 $uri = JUri::getInstance();
 $prefix = $uri->toString(array('scheme', 'host', 'port'));
+	$timePublishDown = $item->publish_down != null
+		? strtotime($item->publish_down) : '';
+	$timePublishUp = $item->publish_up != null
+		? strtotime($item->publish_up) : '';
 ?>
 
 <header class="article-header clearfix">
@@ -37,10 +41,10 @@ $prefix = $uri->toString(array('scheme', 'host', 'port'));
 	<?php if ($item->state == 0) : ?>
 		<span class="label label-warning"><?php echo Text::_('JUNPUBLISHED'); ?></span>
 	<?php endif; ?>
-	<?php if (strtotime($item->publish_up) > strtotime(JFactory::getDate())) : ?>
+	<?php if (strtotime($timePublishUp) > strtotime(JFactory::getDate())) : ?>
 		<span class="label label-warning"><?php echo Text::_('JNOTPUBLISHEDYET'); ?></span>
 	<?php endif; ?>
-	<?php if ((strtotime($item->publish_down) < strtotime(JFactory::getDate())) && !in_array($item->publish_down, array('',JFactory::getDbo()->getNullDate()))) : ?>
+	<?php if ((strtotime($timePublishDown) < strtotime(JFactory::getDate())) && !in_array($item->publish_down, array('',JFactory::getDbo()->getNullDate()))) : ?>
 		<span class="label label-warning"><?php echo Text::_('JEXPIRED'); ?></span>
 	<?php endif; ?>
 </header>
