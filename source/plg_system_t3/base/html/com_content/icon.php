@@ -192,12 +192,13 @@ abstract class JHtmlIcon
 		$overlib .= $date;
 		$overlib .= '&lt;br /&gt;';
 		$overlib .= JText::sprintf('COM_CONTENT_WRITTEN_BY', htmlspecialchars($author, ENT_COMPAT, 'UTF-8'));
-
+		$publishUp = $article->publish_up != null ? strtotime($article->publish_up) : '';
+		$publishDown = $article->publish_down != null ? strtotime($article->publish_down) : '';
 		if ($legacy)
 		{
 			$icon = $article->state ? 'edit.png' : 'edit_unpublished.png';
-			if (strtotime($article->publish_up) > strtotime(JFactory::getDate())
-				|| ((strtotime($article->publish_down) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()))
+			if (strtotime($publishUp) > strtotime(JFactory::getDate())
+				|| ((strtotime($publishDown) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()))
 			{
 				$icon = 'edit_unpublished.png';
 			}
@@ -206,8 +207,8 @@ abstract class JHtmlIcon
 		else
 		{
 			$icon = $article->state ? 'edit' : 'eye-close';
-			if (strtotime($article->publish_up) > strtotime(JFactory::getDate())
-				|| ((strtotime($article->publish_down) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()))
+			if (strtotime($publishUp) > strtotime(JFactory::getDate())
+				|| ((strtotime($publishDown) < strtotime(JFactory::getDate())) && $article->publish_down != JFactory::getDbo()->getNullDate()))
 			{
 				$icon = 'eye-close';
 			}
