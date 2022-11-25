@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="system" method="upgrade">
 	<name>T3 Framework</name>
 	<author>JoomlArt.com</author>
-	<creationDate>Jul 14, 2022</creationDate>
+	<creationDate>Nov 25, 2022</creationDate>
 	<copyright>Copyright (C) 2005 - 2022 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlart.com</authorEmail>
 	<authorUrl>http://www.t3-framework.org</authorUrl>
-	<version>3.1.0</version>
+	<version>3.1.1</version>
 	<description>
 	<![CDATA[
 	<div align="center">
