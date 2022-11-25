@@ -1,3 +1,9 @@
+<h2>Version: 3.1.1 (25/11/2022)</h2>
+<h3>Bug fixes</h3>
+- Fixed extra fields front-end edit not save | <a href="https://github.com/t3framework/t3/commit/8f35e86bcfc4e2783709fbfddc285957a5e6c191">Link</a><br/>
+- Compatible with php8.1x | <a href="https://github.com/t3framework/t3/commit/6dd865bdae2e403e4dacab5fcf621eb54ae95453">Link</a><br/>
+- Mainmenu Itemid added to the link for Joomla 4+ | <a href="https://github.com/t3framework/t3/commit/2deefdfdc3377ed8f2d7a7445dcd1d0263da3113">Link</a><br/>
+
 <h2>Version: 3.1.0 (14/07/2022)</h2>
 <h3>Bug fixes</h3>
 - Fixed module content error on joomla 4 | <a href="https://github.com/t3framework/t3/commit/73d855522c7e92074ffe9014ff7c19ea778c576b">Link</a><br/>
