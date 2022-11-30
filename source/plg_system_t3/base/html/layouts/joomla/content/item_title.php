@@ -20,10 +20,8 @@ if (empty ($item->catslug)) {
 $url = JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug));
 $uri = JUri::getInstance();
 $prefix = $uri->toString(array('scheme', 'host', 'port'));
-	$timePublishDown = $item->publish_down != null
-		? strtotime($item->publish_down) : '';
-	$timePublishUp = $item->publish_up != null
-		? strtotime($item->publish_up) : '';
+	$timePublishDown = $item->publish_down != null ? $item->publish_down : '';
+	$timePublishUp = $item->publish_up != null ? $item->publish_up : '';
 ?>
 
 <header class="article-header clearfix">
