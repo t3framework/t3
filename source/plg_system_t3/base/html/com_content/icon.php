@@ -192,8 +192,8 @@ abstract class JHtmlIcon
 		$overlib .= $date;
 		$overlib .= '&lt;br /&gt;';
 		$overlib .= JText::sprintf('COM_CONTENT_WRITTEN_BY', htmlspecialchars($author, ENT_COMPAT, 'UTF-8'));
-		$publishUp = $article->publish_up != null ? strtotime($article->publish_up) : '';
-		$publishDown = $article->publish_down != null ? strtotime($article->publish_down) : '';
+		$publishUp = $article->publish_up != null ? $article->publish_up : '';
+		$publishDown = $article->publish_down != null ? $article->publish_down : '';
 		if ($legacy)
 		{
 			$icon = $article->state ? 'edit.png' : 'edit_unpublished.png';
