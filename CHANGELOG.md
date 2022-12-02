@@ -1,3 +1,7 @@
+<h2>Version: 3.1.2 (02/12/2022)</h2>
+<h3>Hot fixes</h3>
+- Compatible with J4+ | <a href="https://github.com/t3framework/t3/commit/9bb219100d373418b2e529d422863334363e789d">Link</a><br/>
+
 <h2>Version: 3.1.1 (25/11/2022)</h2>
 <h3>Bug fixes</h3>
 - Fixed extra fields front-end edit not save | <a href="https://github.com/t3framework/t3/commit/8f35e86bcfc4e2783709fbfddc285957a5e6c191">Link</a><br/>
