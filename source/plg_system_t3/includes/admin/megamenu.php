@@ -217,7 +217,7 @@ class T3AdminMegamenu
 			->select('menutype, language')
 			->from($db->quoteName('#__menu'))
 			->where('published = 1')
-			->group('menutype');
+			->group('menutype, language');
 		$db->setQuery($query);
 		$menulangs = $db->loadAssocList('menutype');
 
